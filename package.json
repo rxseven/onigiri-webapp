@@ -99,6 +99,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "node-sass": "^4.7.2",
     "prettier-eslint": "^8.8.1"
   }
 }
