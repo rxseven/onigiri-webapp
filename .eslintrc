@@ -3,5 +3,30 @@
     "browser": true
   },
   "extends": "airbnb",
-  "plugins": ["react", "jsx-a11y", "import"]
+  "parser": "babel-eslint",
+  "plugins": ["react", "jsx-a11y", "import"],
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "local",
+        "args": "none"
+      }
+    ],
+    "no-useless-escape": 0,
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["to"]
+      }
+    ],
+    "jsx-a11y/label-has-for": 0,
+    "react/jsx-filename-extension": 0,
+    "react/no-string-refs": 0,
+    "react/prop-types": 0
+  }
 }
