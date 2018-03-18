@@ -1,9 +1,12 @@
 // Module dependencies
 import { combineReducers } from 'redux';
 
-// Root reducer
+// Reducers
+import dataReducer from '../data/reducer';
+
+// Combine reducers
 const reducer = combineReducers({
-  data: () => null
+  data: dataReducer
 });
 
 // Module exports
