@@ -90,5 +90,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "prettier-eslint": "^8.8.1"
   }
 }
