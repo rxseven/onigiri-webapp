@@ -1,8 +1,6 @@
+// Module dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+// Render React element into the DOM
+ReactDOM.render(<div>React boilerplate</div>, document.getElementById('root'));
