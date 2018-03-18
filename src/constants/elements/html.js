@@ -1,2 +1,4 @@
 // HTML elements
-export default {};
+export default {
+  root: 'root'
+};
