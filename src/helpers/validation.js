@@ -1,0 +1,2 @@
+// Pattern validation
+export default {};
