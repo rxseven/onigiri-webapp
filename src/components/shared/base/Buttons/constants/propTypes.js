@@ -20,5 +20,9 @@ export default exact({
     children: PropTypes.node.isRequired,
     label: PropTypes.string,
     size: PropTypes.string
+  },
+  set: {
+    children: PropTypes.node.isRequired,
+    options: PropTypes.string
   }
 });

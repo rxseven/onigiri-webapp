@@ -9,6 +9,9 @@ import Icon from '../Icon';
 // Constants
 import CSS from '../../../../constants/string/css';
 
+// Peer dependencies
+import styles from './styles.scss';
+
 // Declare prop types and default props
 import propTypes from './constants/propTypes';
 import defaultProps from './constants/defaultProps';
@@ -84,8 +87,14 @@ export const ButtonGroup = ({ children, label, size }) => {
   );
 };
 
+// Button set
+export const ButtonSet = ({ children, options }) => (
+  <div className={cx(styles.buttonSet, options)}>{children}</div>
+);
+
 // Specify default values for props
 Button.propTypes = propTypes.button;
 ButtonGroup.propTypes = propTypes.group;
+ButtonSet.propTypes = propTypes.set;
 
 Button.defaultProps = defaultProps.button;
