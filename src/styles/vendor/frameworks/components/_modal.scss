@@ -1,0 +1,22 @@
+:global .modal-open {
+  .modal {
+    &,
+    &.fade {
+      display: block;
+    }
+  }
+}
+
+:global .modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+:global .modal-footer {
+  .alert {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+    width: 100%;
+  }
+}
