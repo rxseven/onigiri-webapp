@@ -200,7 +200,9 @@ module.exports = {
                 loader: require.resolve('css-loader'),
                 options: {
                   sourceMap: true,
-                  importLoaders: 2
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: '[name]__[local]___[hash:base64:5]'
                 }
               },
               {
