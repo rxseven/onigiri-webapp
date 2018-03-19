@@ -1,0 +1,2 @@
+// Router paths
+export default {};
