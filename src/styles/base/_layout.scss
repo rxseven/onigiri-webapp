@@ -8,5 +8,10 @@
 // Body
 :global body {
   font-size: 1rem;
+  margin-bottom: $footer-height-xs;
   min-width: $screen-xs;
+
+  @media (min-width: $breakpoint-sm) {
+    margin-bottom: $footer-height-sm;
+  }
 }

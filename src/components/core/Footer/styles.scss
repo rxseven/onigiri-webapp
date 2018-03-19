@@ -1,0 +1,26 @@
+// Global styles
+@import "../../../styles/base/settings";
+@import "../../../styles/mixins/utilities";
+
+// Wrapper
+.wrapper {
+  @include padding-horizontal(15px);
+  background-color: #343a40;
+  bottom: 0;
+  color: #999;
+  height: $footer-height-xs;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 8000;
+
+  a {
+    transition: color 0.2s ease-in-out;
+  }
+
+  @media (min-width: $breakpoint-sm) {
+    @include padding-horizontal(25px);
+    height: $footer-height-sm;
+    text-align: left;
+  }
+}
