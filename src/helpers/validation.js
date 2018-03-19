@@ -46,6 +46,17 @@ export default {
 
     return false;
   },
+  name: (string) => {
+    if (string.length < 2) {
+      return 'Must be at least 2 characters';
+    } else if (string.search(/\d/) === 0) {
+      return 'Must contain only character';
+    } else if (string.search(REGEX.invalid) !== -1) {
+      return 'Invalid characters';
+    }
+
+    return false;
+  },
   password: (string) => {
     if (string.length < 5) {
       return 'Must be at least 5 characters';
