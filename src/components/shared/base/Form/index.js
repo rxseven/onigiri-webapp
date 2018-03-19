@@ -15,12 +15,18 @@ import Render from '../../helpers/Render';
 import PROP_TYPES from '../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../constants/models/state';
 
+// Peer dependencies
+import styles from './styles.scss';
+
 // Declare prop types and default props
 const propTypes = {
   form: {
     alert: PropTypes.bool,
     asynchronous: PROP_TYPES.model.asynchronous,
     spinner: PropTypes.bool
+  },
+  headline: {
+    children: PropTypes.string.isRequired
   }
 };
 
@@ -128,6 +134,11 @@ export class Form extends Component {
   }
 }
 
+// Form headline
+export const FormHL = ({ children }) => <h2 className={styles.headline}>{children}</h2>;
+
 // Specify prop types and default values for props
 Form.propTypes = propTypes.form;
+FormHL.propTypes = propTypes.headline;
+
 Form.defaultProps = defaultProps.form;
