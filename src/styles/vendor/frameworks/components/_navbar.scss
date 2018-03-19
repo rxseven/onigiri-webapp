@@ -7,3 +7,15 @@
     }
   }
 }
+
+:global .navbar-brand {
+  display: none;
+  font: {
+    size: 1.15rem;
+    weight: 300;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    display: inline-block;
+  }
+}
