@@ -1,2 +1,9 @@
 :global .navbar {
+  .container {
+    @include padding-vertical(0);
+
+    @media (min-width: $breakpoint-sm) {
+      @include padding-vertical(15px);
+    }
+  }
 }
