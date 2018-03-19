@@ -87,6 +87,26 @@ export const ButtonGroup = ({ children, label, size }) => {
   );
 };
 
+// List group item
+export const ButtonList = ({
+  active, children, handler, icon, title
+}) => {
+  // Configuration
+  const baseClass = 'list-group-item';
+
+  // View
+  return (
+    <button
+      className={cx(baseClass, `${baseClass}-action`, styles.buttonList, { active })}
+      onClick={handler}
+      type="button"
+    >
+      {icon && <Icon name={icon} text title={title} />}
+      <span className={styles.text}>{children}</span>
+    </button>
+  );
+};
+
 // Button set
 export const ButtonSet = ({ children, options }) => (
   <div className={cx(styles.buttonSet, options)}>{children}</div>
@@ -95,6 +115,7 @@ export const ButtonSet = ({ children, options }) => (
 // Specify default values for props
 Button.propTypes = propTypes.button;
 ButtonGroup.propTypes = propTypes.group;
+ButtonList.propTypes = propTypes.list;
 ButtonSet.propTypes = propTypes.set;
 
 Button.defaultProps = defaultProps.button;
