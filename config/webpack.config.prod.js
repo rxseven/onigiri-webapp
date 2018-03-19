@@ -212,6 +212,36 @@ module.exports = {
             ),
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
+          // SCSS
+          {
+            test: /\.scss$/,
+            use: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    },
+                  },
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'),
+                      options: {
+                        importLoaders: 2,
+                        minimize: true,
+                        sourceMap: shouldUseSourceMap,
+                      }
+                    },
+                    {
+                      loader: require.resolve('sass-loader')
+                    }
+                  ]
+                },
+                extractTextPluginOptions
+              )
+            )
+          },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
           // This loader doesn't use a "test" so it will catch all modules
