@@ -9,6 +9,9 @@ import Root from './components/Root';
 // Redux store
 import configureStore from './store/configureStore';
 
+// Global styles
+import './styles/index.scss';
+
 // Constants
 import HTML from './constants/elements/html';
 
