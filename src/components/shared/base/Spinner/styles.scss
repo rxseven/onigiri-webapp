@@ -1,0 +1,10 @@
+// Variables
+$element-spacing: 0.5rem;
+
+// Wrapper
+.wrapper {
+  display: inline-block;
+  height: 22px;
+  margin-left: $element-spacing !important;
+  margin-right: $element-spacing !important;
+}
