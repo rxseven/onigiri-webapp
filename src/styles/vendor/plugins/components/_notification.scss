@@ -1,0 +1,31 @@
+// React sAlert
+:global .s-alert {
+  &-box {
+    z-index: 9000;
+  }
+
+  &-top {
+    font-size: 0.875rem;
+    padding: 11px $padding-container;
+    text-align: center;
+
+    @media (min-width: $breakpoint-sm) {
+      @include padding-horizontal(15px);
+      font-size: 1rem;
+    }
+  }
+
+  &-success {
+    background-color: $color-success;
+  }
+
+  &-close {
+    right: 10px;
+    top: 10px;
+
+    @media (min-width: $breakpoint-sm) {
+      right: 4px;
+      top: 4px;
+    }
+  }
+}
