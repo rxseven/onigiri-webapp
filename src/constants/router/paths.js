@@ -1,2 +1,4 @@
 // Router paths
-export default {};
+export default {
+  root: '/'
+};

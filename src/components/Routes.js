@@ -1,9 +1,19 @@
 // Module dependencies
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+
+// Screens
+import Home from '../screens/Home';
+
+// Constants
+import PATHS from '../constants/router/paths';
 
 // Component
-const Routes = () => <Switch>Routes component</Switch>;
+const Routes = () => (
+  <Switch>
+    <Route component={Home} exact path={PATHS.root} />
+  </Switch>
+);
 
 // Module exports
 export default Routes;
