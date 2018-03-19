@@ -17,3 +17,20 @@
     }
   }
 }
+
+// Navigation group
+.group {
+  align-items: center;
+  display: flex !important;
+  flex: {
+    basis: auto;
+    grow: 1;
+  }
+}
+
+// Home link
+.home {
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}

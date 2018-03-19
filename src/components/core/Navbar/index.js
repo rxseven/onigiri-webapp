@@ -1,8 +1,10 @@
 // Module dependencies
+import cx from 'classnames';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import { Container } from '../../shared/base/Grid';
+import Icon from '../../shared/base/Icon';
 
 // Constants
 import PATHS from '../../../constants/router/paths';
@@ -22,11 +24,23 @@ class Navbar extends Component {
     </Link>
   );
 
-  // Render component
+  // Render nav links
+  renderNav = () => (
+    <div className="navbar-nav mr-auto">
+      <NavLink className={cx('navbar-item', 'nav-link', styles.home)} exact to={PATHS.root}>
+        <Icon name="home" title="Home" />
+      </NavLink>
+    </div>
+  );
+
+  // Render a component
   render() {
     return (
       <nav className="navbar navbar-dark bg-dark fixed-top">
-        <Container>{this.renderBrand()}</Container>
+        <Container>
+          {this.renderBrand()}
+          <div className={styles.group}>{this.renderNav()}</div>
+        </Container>
       </nav>
     );
   }
