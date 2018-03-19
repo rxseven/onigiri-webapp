@@ -1,0 +1,24 @@
+:global .jumbotron {
+  padding: 2rem;
+
+  &-headline {
+    font: {
+      size: 1.5rem;
+      weight: 300;
+    }
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+
+    @media (min-width: $breakpoint-md) {
+      font-size: 1.875rem;
+    }
+  }
+
+  .lead {
+    font-size: 1.05rem;
+
+    @media (min-width: $breakpoint-md) {
+      font-size: 1.15rem;
+    }
+  }
+}
