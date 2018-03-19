@@ -1,2 +1,38 @@
 :global .navbar {
+  .container {
+    @include padding-vertical(0);
+
+    @media (min-width: $breakpoint-sm) {
+      @include padding-vertical(15px);
+    }
+  }
+}
+
+:global .navbar-nav {
+  flex-direction: row;
+  margin-left: -0.5rem;
+
+  @media (min-width: $breakpoint-md) {
+    margin-left: 0;
+  }
+
+  .nav-link {
+    padding: 0.15rem 0.5rem;
+
+    @media (min-width: $breakpoint-sm) {
+      @include padding-horizontal(0.5rem);
+    }
+  }
+}
+
+:global .navbar-brand {
+  display: none;
+  font: {
+    size: 1.15rem;
+    weight: 300;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    display: inline-block;
+  }
 }

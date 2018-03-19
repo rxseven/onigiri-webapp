@@ -1,0 +1,36 @@
+// Global styles
+@import "../../../styles/base/settings";
+@import "../../../styles/mixins/utilities";
+
+// Logo
+.logo {
+  align-items: center;
+  display: flex;
+
+  .image {
+    @include square(26px);
+    background: url("./images/logo.png") no-repeat 0 0 / 100% 100%;
+    display: inline-block;
+
+    @media (min-width: $breakpoint-md) {
+      margin-right: 1rem;
+    }
+  }
+}
+
+// Navigation group
+.group {
+  align-items: center;
+  display: flex !important;
+  flex: {
+    basis: auto;
+    grow: 1;
+  }
+}
+
+// Home link
+.home {
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
+import { Column, Container, Row } from '../../shared/base/Grid';
+
 // Peer dependencies
 import styles from './styles.scss';
 
@@ -12,7 +14,15 @@ const propTypes = exact({
 });
 
 // Component
-const Main = ({ children }) => <main>{children}</main>;
+const Main = ({ children }) => (
+  <main className={styles.wrapper}>
+    <Container>
+      <Row>
+        <Column>{children}</Column>
+      </Row>
+    </Container>
+  </main>
+);
 
 // Specify prop types
 Main.propTypes = propTypes;

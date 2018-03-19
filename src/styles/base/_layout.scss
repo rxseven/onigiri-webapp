@@ -1,1 +1,17 @@
+// HTML
+:global html {
+  font-size: 87.5%;
+  min-height: 100%;
+  position: relative;
+}
 
+// Body
+:global body {
+  font-size: 1rem;
+  margin-bottom: $footer-height-xs;
+  min-width: $screen-xs;
+
+  @media (min-width: $breakpoint-sm) {
+    margin-bottom: $footer-height-sm;
+  }
+}

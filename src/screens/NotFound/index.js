@@ -1,17 +1,31 @@
 // Module dependencies
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import { Card, CardBody, CardLink, CardText, CardTitle } from '../../components/shared/base/Card';
+import { Body, Document, Head, Title } from '../../components/shared/base/Document';
+import Layout from '../../components/shared/base/Layout';
 
 // Constants
 import PATHS from '../../constants/router/paths';
 
 // Component
 const NotFound = () => (
-  <div>
-    <h2>404</h2>
-    <p>This is not webpage you are looking for.</p>
-    <Link to={PATHS.root}>Go back to Home page</Link>
-  </div>
+  <Document>
+    <Head>
+      <Title>Page Not Found</Title>
+    </Head>
+    <Body>
+      <Layout>
+        <Card>
+          <CardBody>
+            <CardTitle>404</CardTitle>
+            <CardText>This is not webpage you are looking for.</CardText>
+            <CardLink link={PATHS.root}>Go back to Home page</CardLink>
+          </CardBody>
+        </Card>
+      </Layout>
+    </Body>
+  </Document>
 );
 
 // Module exports
