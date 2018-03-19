@@ -138,11 +138,31 @@ export const ButtonSet = ({ children, options }) => (
   <div className={cx(styles.buttonSet, options)}>{children}</div>
 );
 
+// Button toolbar
+export const ButtonToolbar = ({
+  alignItem, children, justifyContent, label, marginBottom
+}) => (
+  <div
+    aria-label={label}
+    className={cx(
+      `align-items-${alignItem}`,
+      'btn-toolbar',
+      `justify-content-${justifyContent}`,
+      marginBottom
+    )}
+    role="toolbar"
+  >
+    {children}
+  </div>
+);
+
 // Specify default values for props
 Button.propTypes = propTypes.button;
 ButtonGroup.propTypes = propTypes.group;
 ButtonHandler.propTypes = propTypes.handler;
 ButtonList.propTypes = propTypes.list;
 ButtonSet.propTypes = propTypes.set;
+ButtonToolbar.propTypes = propTypes.toolbar;
 
 Button.defaultProps = defaultProps.button;
+ButtonToolbar.defaultProps = defaultProps.toolbar;

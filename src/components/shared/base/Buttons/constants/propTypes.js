@@ -35,5 +35,12 @@ export default exact({
   set: {
     children: PropTypes.node.isRequired,
     options: PropTypes.string
+  },
+  toolbar: {
+    alignItem: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    justifyContent: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    marginBottom: PropTypes.string
   }
 });

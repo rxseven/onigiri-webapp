@@ -1,3 +1,6 @@
+// Constants
+import CSS from '../../../../../constants/string/css';
+
 // Default props
 export default {
   button: {
@@ -9,5 +12,10 @@ export default {
     title: 'Button',
     type: 'button',
     visibility: false
+  },
+  toolbar: {
+    alignItem: 'center',
+    justifyContent: 'between',
+    marginBottom: CSS.margin.MB04
   }
 };
