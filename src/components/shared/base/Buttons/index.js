@@ -67,6 +67,25 @@ export const Button = ({
   }
 };
 
+// Button group
+export const ButtonGroup = ({ children, label, size }) => {
+  // Configuration
+  const baseClass = 'btn-group';
+
+  // View
+  return (
+    <div
+      aria-label={label}
+      className={cx(baseClass, size && `${baseClass}-${CSS.size[size]}`)}
+      role="group"
+    >
+      {children}
+    </div>
+  );
+};
+
 // Specify default values for props
 Button.propTypes = propTypes.button;
+ButtonGroup.propTypes = propTypes.group;
+
 Button.defaultProps = defaultProps.button;

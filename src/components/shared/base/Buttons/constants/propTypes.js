@@ -15,5 +15,10 @@ export default exact({
     title: PropTypes.string,
     type: PropTypes.string,
     visibility: PropTypes.bool
+  },
+  group: {
+    children: PropTypes.node.isRequired,
+    label: PropTypes.string,
+    size: PropTypes.string
   }
 });
