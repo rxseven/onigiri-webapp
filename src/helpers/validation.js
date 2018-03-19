@@ -3,7 +3,8 @@ import urlRegex from 'url-regex';
 
 // Regex
 const REGEX = {
-  email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  invalid: /^.*?(?=[\^!@#%&$~^_+=\*:<>\?/\{\|\}]).*$/
 };
 
 // Pattern validation
@@ -41,6 +42,19 @@ export default {
   http: (string) => {
     if (string && !/^(http|https):\/\//i.test(string)) {
       return 'Must begin with http:// or https://';
+    }
+
+    return false;
+  },
+  password: (string) => {
+    if (string.length < 5) {
+      return 'Must be at least 5 characters';
+    } else if (string.search(/\d/) === -1) {
+      return 'Must contain a number';
+    } else if (string.search(/[a-zA-Z]/) === -1) {
+      return 'Must contain a character';
+    } else if (string.search(REGEX.invalid) !== -1) {
+      return 'Invalid characters';
     }
 
     return false;
