@@ -15,7 +15,7 @@ const propTypes = exact({
 
 // Component
 const Main = ({ children }) => (
-  <main>
+  <main className={styles.wrapper}>
     <Container>
       <Row>
         <Column>{children}</Column>
