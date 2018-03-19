@@ -27,6 +27,9 @@ const propTypes = {
   },
   headline: {
     children: PropTypes.string.isRequired
+  },
+  subheadline: {
+    children: PropTypes.string.isRequired
   }
 };
 
@@ -137,8 +140,12 @@ export class Form extends Component {
 // Form headline
 export const FormHL = ({ children }) => <h2 className={styles.headline}>{children}</h2>;
 
+// Form Subheadline
+export const FormSHL = ({ children }) => <h3 className={styles.subheadline}>{children}</h3>;
+
 // Specify prop types and default values for props
 Form.propTypes = propTypes.form;
 FormHL.propTypes = propTypes.headline;
+FormSHL.propTypes = propTypes.subheadline;
 
 Form.defaultProps = defaultProps.form;
