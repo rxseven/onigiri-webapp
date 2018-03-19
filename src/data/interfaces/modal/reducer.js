@@ -1,3 +1,6 @@
+// Module dependencies
+import { createSelector } from 'reselect';
+
 // Actions
 import { MODAL_CLOSE, MODAL_OPEN } from './actions';
 
@@ -23,3 +26,9 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+// Non-memoized utility selectors
+const getNode = state => state.data.interfaces;
+
+// Get modal state
+export const getModal = createSelector(getNode, node => node.modal);
