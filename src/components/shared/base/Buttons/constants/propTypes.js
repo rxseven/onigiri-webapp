@@ -21,6 +21,10 @@ export default exact({
     label: PropTypes.string,
     size: PropTypes.string
   },
+  handler: {
+    children: PropTypes.node,
+    type: PropTypes.string
+  },
   list: {
     active: PropTypes.bool,
     children: PropTypes.node.isRequired,

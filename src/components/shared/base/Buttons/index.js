@@ -1,6 +1,6 @@
 // Module dependencies
 import cx from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import JSXwrapper from '../../helpers/JSXwrapper';
@@ -87,6 +87,32 @@ export const ButtonGroup = ({ children, label, size }) => {
   );
 };
 
+// Button handler
+export class ButtonHandler extends Component {
+  // Click handler
+  handleClick = () => {
+    this.props.handler.onClick(this.props.value);
+  };
+
+  // Render a component
+  render() {
+    switch (this.props.type) {
+      case 'button-list':
+        return (
+          <ButtonList {...this.props} handler={this.handleClick}>
+            {this.props.children}
+          </ButtonList>
+        );
+      default:
+        return (
+          <Button {...this.props} handler={this.handleClick}>
+            {this.props.children}
+          </Button>
+        );
+    }
+  }
+}
+
 // List group item
 export const ButtonList = ({
   active, children, handler, icon, title
@@ -115,6 +141,7 @@ export const ButtonSet = ({ children, options }) => (
 // Specify default values for props
 Button.propTypes = propTypes.button;
 ButtonGroup.propTypes = propTypes.group;
+ButtonHandler.propTypes = propTypes.handler;
 ButtonList.propTypes = propTypes.list;
 ButtonSet.propTypes = propTypes.set;
 
