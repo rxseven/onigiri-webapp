@@ -1,3 +1,6 @@
+// Module dependencies
+import { createSelector } from 'reselect';
+
 // Actions
 import { SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS } from './actions';
 
@@ -37,3 +40,9 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+// Non-memoized utility selectors
+const getNode = state => state.data;
+
+// Get session state
+export const getSession = createSelector(getNode, node => node.session);
