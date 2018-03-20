@@ -56,7 +56,12 @@ class Navbar extends Component {
               <Avatar url={user.photo.url} />
             </DropdownTrigger>
             <DropdownContent>
-              <div className="dropdown-menu">TODO: implement dropdown-item</div>
+              <div className="dropdown-menu">
+                <a className="dropdown-item" href="/" onClick={this.onSignout}>
+                  <Icon name="account-logout" title="Log out" />
+                  Log out
+                </a>
+              </div>
             </DropdownContent>
           </Dropdown>
         </div>
