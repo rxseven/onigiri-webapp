@@ -12,6 +12,7 @@ import { getSession } from '../../../data/session/reducer';
 import Avatar from '../../shared/base/Avatar';
 import { Container } from '../../shared/base/Grid';
 import Icon from '../../shared/base/Icon';
+import Render from '../../shared/helpers/Render';
 
 // Constants
 import PATHS from '../../../constants/router/paths';
@@ -28,11 +29,8 @@ class Navbar extends Component {
 
     // Sign out the current user
     this.props.actions.auth.signOut(() => {
-      // TODO: 1. Create SignIn screen
-      // TODO: 2. Navigate to sign-in screen after the event has been emitted
-
-      // FIXME: Replace this temporary implementation with TODO No.2
-      this.props.history.push({ pathname: PATHS.users.signup });
+      // Redirect to sign-in screen after the event has been emitted
+      this.props.history.push({ pathname: PATHS.users.signin });
     });
   };
 
@@ -80,6 +78,23 @@ class Navbar extends Component {
   );
 
   // Render nav links
+  renderLinks = () => {
+    // Variables
+    const { authorization } = this.props.data.session;
+    const { pathname } = this.props.location;
+    const { signin, signup } = PATHS.users;
+
+    // View
+    return (
+      <Render condition={!authorization && (pathname !== signin && pathname !== signup)}>
+        <NavLink className={cx('navbar-item', 'nav-link', styles.link)} to={signin}>
+          Sign in
+        </NavLink>
+      </Render>
+    );
+  };
+
+  // Render nav links
   renderNav = () => (
     <div className="navbar-nav mr-auto">
       <NavLink className={cx('navbar-item', 'nav-link', styles.home)} exact to={PATHS.root}>
@@ -96,7 +111,10 @@ class Navbar extends Component {
           {this.renderBrand()}
           <div className={styles.group}>
             {this.renderNav()}
-            <div className={styles.meta}>{this.renderAvatar()}</div>
+            <div className={styles.meta}>
+              {this.renderLinks()}
+              {this.renderAvatar()}
+            </div>
           </div>
         </Container>
       </nav>

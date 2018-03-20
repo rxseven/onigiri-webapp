@@ -13,17 +13,17 @@ import PATHS from '../../../../constants/router/paths';
 import Form from './components/Form';
 
 // Component
-const SignUp = () => (
+const SignIn = () => (
   <Document>
     <Head>
-      <Title>Create new Onigiri account</Title>
+      <Title>Sign in to Onigiri</Title>
     </Head>
     <Body>
       <Layout>
-        <FormHL>Create new account</FormHL>
+        <FormHL>Sign in to Onigiri</FormHL>
         <Form />
         <FormMeta>
-          <Link to={PATHS.users.signin}>Already have an account?</Link>
+          New to Onigiri? <Link to={PATHS.users.signup}>Create an account</Link>.
         </FormMeta>
       </Layout>
     </Body>
@@ -31,4 +31,4 @@ const SignUp = () => (
 );
 
 // Module exports
-export default SignUp;
+export default SignIn;

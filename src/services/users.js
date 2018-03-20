@@ -20,6 +20,15 @@ export const signUp = ({
     url: API.endpoints.users.signup
   });
 
+// Sign in a user with an email address and password
+export const signIn = ({ email, password }) =>
+  ajax({
+    auth: false,
+    data: { email, password },
+    method: 'post',
+    url: API.endpoints.users.signin
+  });
+
 // Sign out the current user
 export const signOut = () => ajax({ url: API.endpoints.users.signout });
 

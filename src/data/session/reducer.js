@@ -3,6 +3,9 @@ import { createSelector } from 'reselect';
 
 // Actions
 import {
+  SIGNIN,
+  SIGNIN_FAILURE,
+  SIGNIN_SUCCESS,
   SIGNOUT,
   SIGNOUT_FAILURE,
   SIGNOUT_SUCCESS,
@@ -36,11 +39,14 @@ const dataModel = data => ({
 // Reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-    // Sign-up
+    // Sign-in & Sign-up
+    case SIGNIN:
     case SIGNUP:
       return state;
+    case SIGNIN_FAILURE:
     case SIGNUP_FAILURE:
       return state;
+    case SIGNIN_SUCCESS:
     case SIGNUP_SUCCESS:
       return {
         ...state,
