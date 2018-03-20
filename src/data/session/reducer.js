@@ -2,7 +2,14 @@
 import { createSelector } from 'reselect';
 
 // Actions
-import { SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS } from './actions';
+import {
+  SIGNUP,
+  SIGNUP_FAILURE,
+  SIGNUP_SUCCESS,
+  USER_GET,
+  USER_GET_FAILURE,
+  USER_GET_SUCCESS
+} from './actions';
 
 // Initial state
 const initialState = {
@@ -36,6 +43,23 @@ export default (state = initialState, action) => {
         ...state,
         ...dataModel(action.payload.user)
       };
+
+    // Get user info
+    case USER_GET:
+      return {
+        ...state,
+        authorization: true,
+        verifying: true
+      };
+    case USER_GET_FAILURE:
+      return state;
+    case USER_GET_SUCCESS:
+      return {
+        ...state,
+        ...dataModel(action.payload)
+      };
+
+    // Default
     default:
       return state;
   }
