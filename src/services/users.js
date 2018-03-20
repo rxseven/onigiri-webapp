@@ -20,5 +20,8 @@ export const signUp = ({
     url: API.endpoints.users.signup
   });
 
+// Sign out the current user
+export const signOut = () => ajax({ url: API.endpoints.users.signout });
+
 // Get user info
 export const getUser = () => ajax({ url: API.endpoints.users.base });

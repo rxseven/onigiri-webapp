@@ -3,6 +3,10 @@ import tokenHelper from '../../helpers/token';
 import * as usersService from '../../services/users';
 
 // Actions
+export const SIGNOUT = 'data/session/SIGNOUT';
+export const SIGNOUT_FAILURE = 'data/session/SIGNOUT_FAILURE';
+export const SIGNOUT_SUCCESS = 'data/session/SIGNOUT_SUCCESS';
+
 export const SIGNUP = 'data/session/SIGNUP';
 export const SIGNUP_FAILURE = 'data/session/SIGNUP_FAILURE';
 export const SIGNUP_SUCCESS = 'data/session/SIGNUP_SUCCESS';
@@ -10,6 +14,11 @@ export const SIGNUP_SUCCESS = 'data/session/SIGNUP_SUCCESS';
 export const USER_GET = 'data/session/USER_GET';
 export const USER_GET_FAILURE = 'data/session/USER_GET_FAILURE';
 export const USER_GET_SUCCESS = 'data/session/USER_GET_SUCCESS';
+
+export const USER_RESET = 'data/session/USER_RESET';
+
+// Reset user
+export const resetUser = () => ({ type: USER_RESET });
 
 // Sign-up : Success
 const signUpSuccess = data => ({
@@ -44,6 +53,42 @@ export const signUp = (credentials, callback) => async (dispatch) => {
   } catch (error) {
     // Inform a reducer that the request failed
     dispatch(signUpFailure(error));
+  }
+};
+
+// Sign-out : Success
+const signOutSuccess = () => ({ type: SIGNOUT_SUCCESS });
+
+// Sign-out : Failure
+const signOutFailure = error => ({
+  type: SIGNOUT_FAILURE,
+  payload: error.response.data.error
+});
+
+// Sign-out : Start (loading)
+export const signOut = callback => async (dispatch) => {
+  try {
+    // 1. Inform a reducer that the request began (loading)
+    dispatch({ type: SIGNOUT });
+
+    // 2. Sign out the current user
+    // 3. Retrieve a response
+    await usersService.signOut();
+
+    // 4. Inform a reducer that the request finished successfully
+    dispatch(signOutSuccess());
+
+    // 5. Clean up session state
+    dispatch(resetUser());
+
+    // 6. Remove an access token from the user's browser
+    tokenHelper.remove();
+
+    // 7. Execute a callback
+    callback();
+  } catch (error) {
+    // Inform a reducer that the request failed
+    dispatch(signOutFailure(error));
   }
 };
 

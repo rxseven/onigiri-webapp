@@ -3,6 +3,9 @@ import { createSelector } from 'reselect';
 
 // Actions
 import {
+  SIGNOUT,
+  SIGNOUT_FAILURE,
+  SIGNOUT_SUCCESS,
   SIGNUP,
   SIGNUP_FAILURE,
   SIGNUP_SUCCESS,
@@ -42,6 +45,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         ...dataModel(action.payload.user)
+      };
+
+    // Sign-out
+    case SIGNOUT:
+    case SIGNOUT_FAILURE:
+      return state;
+    case SIGNOUT_SUCCESS:
+      return {
+        ...state,
+        ...initialState
       };
 
     // Get user info
