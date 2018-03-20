@@ -1,0 +1,15 @@
+// Global styles
+@import "../../../styles/mixins/utilities";
+
+// Logo
+.logo {
+  @include square(65px);
+  background: url("./images/logo.png") no-repeat 0 0 / 100% 100%;
+  display: block;
+  opacity: 0.65;
+}
+
+// Spinner
+.spinner {
+  padding-top: 5px;
+}
