@@ -12,7 +12,8 @@ export default {
   host: API.host,
   endpoints: {
     users: {
-      base: API.routes.users
+      base: API.routes.users,
+      signup: `${API.routes.users}/signup`
     }
   }
 };
