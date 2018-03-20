@@ -2,6 +2,7 @@
 export default {
   root: '/',
   users: {
-    signup: '/signup'
+    signup: '/signup',
+    welcome: '/welcome'
   }
 };
