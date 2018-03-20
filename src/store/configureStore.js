@@ -2,6 +2,8 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
+import { getUser } from '../data/session/actions';
+import tokenHelper from '../helpers/token';
 import reducer from '../reducers';
 
 // Store configuration
@@ -28,6 +30,12 @@ const configureStore = (initialState) => {
         store.replaceReducer(reducer);
       });
     }
+  }
+
+  // Verify an access token once the app starts
+  if (tokenHelper.get()) {
+    // Authorize the current user and get its user info
+    store.dispatch(getUser());
   }
 
   // Return a configuration
