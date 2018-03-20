@@ -46,3 +46,6 @@ const getNode = state => state.data;
 
 // Get session state
 export const getSession = createSelector(getNode, node => node.session);
+
+// Get authorization state
+export const getAuth = createSelector(getNode, node => node.session.authorization);
