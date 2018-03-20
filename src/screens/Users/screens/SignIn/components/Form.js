@@ -1,8 +1,10 @@
 // Module dependencies
+import { each } from 'lodash';
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 
 import { Form } from '../../../../../components/shared/base/Form';
+import validationHelper from '../../../../../helpers/validation';
 
 // Peer dependencies
 import FIELDS from '../constants/fields';
@@ -14,5 +16,23 @@ class SignInForm extends Component {
   }
 }
 
+// Error validation rules
+const validate = (values) => {
+  // Initial errors object
+  const errors = {};
+
+  // Validate email
+  errors.email = validationHelper.email(values.email);
+
+  // Iterates over elements of collection and validate value for each element
+  each(FIELDS, ({ name }) => {
+    if (!values[name]) {
+      errors[name] = 'You must provide a value';
+    }
+  });
+
+  return errors;
+};
+
 // Configure Redux Form
-export default reduxForm({ form: 'signin' })(SignInForm);
+export default reduxForm({ form: 'signin', validate })(SignInForm);
