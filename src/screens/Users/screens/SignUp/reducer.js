@@ -56,3 +56,6 @@ const getNode = state => state.screens.users.signup;
 
 // Get UI state
 export const getUI = createSelector(getNode, node => node.ui);
+
+// Get asynchronous state
+export const getAsync = createSelector(getNode, node => node.asynchronous);
