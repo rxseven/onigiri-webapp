@@ -1,6 +1,7 @@
 // Module dependencies
 import { each } from 'lodash';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
@@ -12,6 +13,9 @@ import { getUI } from '../reducer';
 import { Form } from '../../../../../components/shared/base/Form';
 import validationHelper from '../../../../../helpers/validation';
 
+// Constants
+import PATHS from '../../../../../constants/router/paths';
+
 // Peer dependencies
 import FIELDS from '../constants/fields';
 
@@ -19,9 +23,13 @@ import FIELDS from '../constants/fields';
 class SignUpForm extends Component {
   // Form submission callback
   submitCallback = () => {
-    // TODO: 1. Create Welcome screen
-    // TODO: 2. Redirect to Welcome screen after the form has been submitted
-    console.log('Form has been submitted successfully');
+    // Redirect to Welcome screen after the form has been submitted
+    this.props.history.push({
+      pathname: PATHS.users.welcome,
+      state: {
+        referrer: true
+      }
+    });
   };
 
   // Render component
@@ -105,7 +113,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connect component to application state
-const container = connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
+const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUpForm));
 
 // Configure Redux Form
 export default reduxForm({
