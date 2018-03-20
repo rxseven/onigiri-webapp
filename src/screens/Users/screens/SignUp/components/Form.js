@@ -1,6 +1,7 @@
 // Module dependencies
 import { each } from 'lodash';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 import { Form } from '../../../../../components/shared/base/Form';
@@ -67,9 +68,12 @@ const warn = (values) => {
   return warnings;
 };
 
+// Connect component to application state
+const container = connect(null)(SignUpForm);
+
 // Configure Redux Form
 export default reduxForm({
   form: 'signup',
   validate,
   warn
-})(SignUpForm);
+})(container);
