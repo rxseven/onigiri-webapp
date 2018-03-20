@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 
 // Actions
 import { SIGNIN, SIGNIN_FAILURE, SIGNIN_SUCCESS } from '../../../../data/session/actions';
+import { SIGNIN_RESET_UI } from './actions';
 
 // Constants
 import STATE_MODELS from '../../../../constants/models/state';
@@ -33,6 +34,7 @@ const asyncReducer = (state = initialState, action) => {
         }
       };
     case SIGNIN_SUCCESS:
+    case SIGNIN_RESET_UI:
       return {
         ...initialState
       };
