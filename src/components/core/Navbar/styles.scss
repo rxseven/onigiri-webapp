@@ -28,6 +28,33 @@
   }
 }
 
+// Meta links
+.meta {
+  $element-spacing: 0.25rem;
+
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+
+  > :not(:last-child) {
+    margin-right: $element-spacing;
+  }
+
+  > :not(:first-child) {
+    margin-left: $element-spacing;
+  }
+
+  .link {
+    color: rgba(255, 255, 255, 0.5);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
 // Home link
 .home {
   @media (min-width: $breakpoint-md) {
