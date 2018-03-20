@@ -54,5 +54,22 @@ const validate = (values) => {
   return errors;
 };
 
+// Warning validation rules
+const warn = (values) => {
+  // Initial warnings object
+  const warnings = {};
+
+  // Check password length
+  if (values.password && values.password.length > 12) {
+    warnings.password = 'Hmm, your password seem a bit long... (keep it less than 12 characters)';
+  }
+
+  return warnings;
+};
+
 // Configure Redux Form
-export default reduxForm({ form: 'signup', validate })(SignUpForm);
+export default reduxForm({
+  form: 'signup',
+  validate,
+  warn
+})(SignUpForm);
