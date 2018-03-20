@@ -17,6 +17,14 @@ import FIELDS from '../constants/fields';
 
 // Component
 class SignUpForm extends Component {
+  // Form submission callback
+  submitCallback = () => {
+    // TODO: 1. Create Welcome screen
+    // TODO: 2. Redirect to Welcome screen after the form has been submitted
+    console.log('Form has been submitted successfully');
+  };
+
+  // Render component
   render() {
     return (
       <Form
@@ -24,6 +32,7 @@ class SignUpForm extends Component {
         asynchronous={this.props.state.ui.asynchronous.post}
         fields={FIELDS}
         submitButton="Sign up"
+        submitCallback={this.submitCallback}
         submitFunction={this.props.actions.auth.signUp}
       />
     );
