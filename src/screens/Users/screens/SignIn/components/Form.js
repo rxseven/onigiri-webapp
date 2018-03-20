@@ -1,6 +1,7 @@
 // Module dependencies
 import { each } from 'lodash';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
@@ -12,11 +13,24 @@ import { getUI } from '../reducer';
 import { Form } from '../../../../../components/shared/base/Form';
 import validationHelper from '../../../../../helpers/validation';
 
+// Constants
+import PATHS from '../../../../../constants/router/paths';
+
 // Peer dependencies
 import FIELDS from '../constants/fields';
 
 // Component
 class SignInForm extends Component {
+  // Form submission callback
+  submitCallback = () => {
+    // TODO: Navigate to Survey list screen after the form has been submitted
+    console.log('Form has been submitted successfully');
+
+    // FIXME: Replace this temporary implementation with TODO
+    this.props.history.push({ pathname: PATHS.root });
+  };
+
+  // Render component
   render() {
     return (
       <Form
@@ -24,6 +38,7 @@ class SignInForm extends Component {
         asynchronous={this.props.state.ui.asynchronous.post}
         fields={FIELDS}
         submitButton="Sign in"
+        submitCallback={this.submitCallback}
         submitFunction={this.props.actions.auth.signIn}
       />
     );
@@ -63,7 +78,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connect component to application state
-const container = connect(mapStateToProps, mapDispatchToProps)(SignInForm);
+const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(SignInForm));
 
 // Configure Redux Form
 export default reduxForm({ form: 'signin', validate })(container);
