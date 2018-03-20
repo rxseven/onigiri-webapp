@@ -3,6 +3,10 @@ import tokenHelper from '../../helpers/token';
 import * as usersService from '../../services/users';
 
 // Actions
+export const SIGNIN = 'data/session/SIGNIN';
+export const SIGNIN_FAILURE = 'data/session/SIGNIN_FAILURE';
+export const SIGNIN_SUCCESS = 'data/session/SIGNIN_SUCCESS';
+
 export const SIGNOUT = 'data/session/SIGNOUT';
 export const SIGNOUT_FAILURE = 'data/session/SIGNOUT_FAILURE';
 export const SIGNOUT_SUCCESS = 'data/session/SIGNOUT_SUCCESS';
@@ -53,6 +57,51 @@ export const signUp = (credentials, callback) => async (dispatch) => {
   } catch (error) {
     // Inform a reducer that the request failed
     dispatch(signUpFailure(error));
+  }
+};
+
+// Sign-in : Success
+const signInSuccess = data => ({
+  type: SIGNIN_SUCCESS,
+  payload: data
+});
+
+// Sign-in : Failure
+const signInFailure = ({ response }) => {
+  // Destructure object properties
+  const { data, status } = response;
+
+  // Create custom error message
+  const errorMessage = status === 401 ? 'Incorrect email or password' : data;
+
+  // Return action
+  return {
+    type: SIGNIN_FAILURE,
+    payload: { message: errorMessage }
+  };
+};
+
+// Sign-in : Start (loading)
+export const signIn = (credentials, callback) => async (dispatch) => {
+  try {
+    // 1. Inform a reducer that the request began (loading)
+    dispatch({ type: SIGNIN });
+
+    // 2. Sign in a user with an email address and password
+    // 3. Retrieve data in a response and transform to an appropriate format
+    const { data } = await usersService.signIn(credentials);
+
+    // 4. Inform a reducer that the request finished successfully
+    dispatch(signInSuccess(data));
+
+    // 5. Store a token in the user's browser
+    tokenHelper.save(data.token);
+
+    // 6. Execute a callback
+    callback();
+  } catch (error) {
+    // Inform a reducer that the request failed
+    dispatch(signInFailure(error));
   }
 };
 
