@@ -2,7 +2,12 @@
 import { each } from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
+
+import { signIn } from '../../../../../data/session/actions';
+import { resetUI } from '../actions';
+import { getUI } from '../reducer';
 
 import { Form } from '../../../../../components/shared/base/Form';
 import validationHelper from '../../../../../helpers/validation';
@@ -35,8 +40,22 @@ const validate = (values) => {
   return errors;
 };
 
+// Map state to props
+const mapStateToProps = state => ({
+  state: {
+    ui: getUI(state)
+  }
+});
+
+// Map dispatch to props
+const mapDispatchToProps = dispatch => ({
+  actions: {
+    auth: bindActionCreators({ resetUI, signIn }, dispatch)
+  }
+});
+
 // Connect component to application state
-const container = connect(null)(SignInForm);
+const container = connect(mapStateToProps, mapDispatchToProps)(SignInForm);
 
 // Configure Redux Form
 export default reduxForm({ form: 'signin', validate })(container);
