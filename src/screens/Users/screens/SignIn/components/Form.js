@@ -18,7 +18,15 @@ import FIELDS from '../constants/fields';
 // Component
 class SignInForm extends Component {
   render() {
-    return <Form {...this.props} fields={FIELDS} submitButton="Sign in" />;
+    return (
+      <Form
+        {...this.props}
+        asynchronous={this.props.state.ui.asynchronous.post}
+        fields={FIELDS}
+        submitButton="Sign in"
+        submitFunction={this.props.actions.auth.signIn}
+      />
+    );
   }
 }
 
