@@ -19,3 +19,6 @@ export const signUp = ({
     method: 'post',
     url: API.endpoints.users.signup
   });
+
+// Get user info
+export const getUser = () => ajax({ url: API.endpoints.users.base });
