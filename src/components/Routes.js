@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 // Screens
 import Home from '../screens/Home';
 
+import SignIn from '../screens/Users/screens/SignIn';
 import SignUp from '../screens/Users/screens/SignUp';
 import Welcome from '../screens/Users/screens/Welcome';
 
@@ -22,6 +23,7 @@ const Routes = () => (
   <Switch>
     <Route component={Home} exact path={PATHS.root} />
 
+    <AuthRoute component={SignIn} path={PATHS.users.signin} />
     <AuthRoute component={SignUp} path={PATHS.users.signup} />
     <ReferralRoute component={Welcome} path={PATHS.users.welcome} />
 
