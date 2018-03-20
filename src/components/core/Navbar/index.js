@@ -1,6 +1,7 @@
 // Module dependencies
 import cx from 'classnames';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
 import { Container } from '../../shared/base/Grid';
@@ -46,5 +47,8 @@ class Navbar extends Component {
   }
 }
 
+// Connect component to application state
+const container = connect(null)(Navbar);
+
 // Module exports
-export default Navbar;
+export default container;
