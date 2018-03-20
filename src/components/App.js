@@ -6,6 +6,7 @@ import { LastLocationProvider } from 'react-router-last-location';
 
 import Footer from './core/Footer';
 import Header from './core/Header';
+import Loader from './core/Loader';
 import Main from './core/Main';
 import Notification from './core/Notification';
 import Wrapper from './core/Wrapper';
@@ -21,6 +22,7 @@ const App = () => (
           <Routes />
         </Main>
         <Footer />
+        <Loader />
         <Notification />
       </Wrapper>
     </LastLocationProvider>
