@@ -29,11 +29,8 @@ class Navbar extends Component {
 
     // Sign out the current user
     this.props.actions.auth.signOut(() => {
-      // TODO: 1. Create SignIn screen
-      // TODO: 2. Navigate to sign-in screen after the event has been emitted
-
-      // FIXME: Replace this temporary implementation with TODO No.2
-      this.props.history.push({ pathname: PATHS.users.signup });
+      // Redirect to sign-in screen after the event has been emitted
+      this.props.history.push({ pathname: PATHS.users.signin });
     });
   };
 
