@@ -15,6 +15,11 @@ export const USER_GET = 'data/session/USER_GET';
 export const USER_GET_FAILURE = 'data/session/USER_GET_FAILURE';
 export const USER_GET_SUCCESS = 'data/session/USER_GET_SUCCESS';
 
+export const USER_RESET = 'data/session/USER_RESET';
+
+// Reset user
+export const resetUser = () => ({ type: USER_RESET });
+
 // Sign-up : Success
 const signUpSuccess = data => ({
   type: SIGNUP_SUCCESS,
