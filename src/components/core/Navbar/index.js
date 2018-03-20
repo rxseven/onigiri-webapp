@@ -3,6 +3,7 @@ import cx from 'classnames';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+import Dropdown, { DropdownContent, DropdownTrigger } from 'react-simple-dropdown';
 
 import { getSession } from '../../../data/session/reducer';
 
@@ -18,15 +19,29 @@ import styles from './styles.scss';
 
 // Component
 class Navbar extends Component {
+  // Dropdown handler
+  onDropdownClick = () => {
+    this.refs.dropdown.hide();
+  };
+
   // Render user avatar
   renderAvatar = () => {
+    // Variables
     const { authorization, user } = this.props.data.session;
 
+    // View
     return (
       authorization &&
       user && (
         <div className="nav-item">
-          <Avatar url={user.photo.url} />
+          <Dropdown ref="dropdown">
+            <DropdownTrigger>
+              <Avatar url={user.photo.url} />
+            </DropdownTrigger>
+            <DropdownContent>
+              <div className="dropdown-menu">TODO: implement dropdown-item</div>
+            </DropdownContent>
+          </Dropdown>
         </div>
       )
     );
