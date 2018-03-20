@@ -1,9 +1,13 @@
 // Module dependencies
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
-import { FormHL } from '../../../../components/shared/base/Form';
+import { FormHL, FormMeta } from '../../../../components/shared/base/Form';
 import Layout from '../../../Users/components/Layout';
+
+// Constants
+import PATHS from '../../../../constants/router/paths';
 
 // Peer dependencies
 import Form from './components/Form';
@@ -18,6 +22,9 @@ const SignUp = () => (
       <Layout>
         <FormHL>Create new account</FormHL>
         <Form />
+        <FormMeta>
+          <Link to={PATHS.users.signin}>Already have an account?</Link>
+        </FormMeta>
       </Layout>
     </Body>
   </Document>
