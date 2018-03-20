@@ -1,4 +1,8 @@
 // Router paths
 export default {
-  root: '/'
+  root: '/',
+  users: {
+    signup: '/signup',
+    welcome: '/welcome'
+  }
 };
