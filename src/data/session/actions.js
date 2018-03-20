@@ -78,10 +78,13 @@ export const signOut = callback => async (dispatch) => {
     // 4. Inform a reducer that the request finished successfully
     dispatch(signOutSuccess());
 
-    // 5. Remove an access token from the user's browser
+    // 5. Clean up session state
+    dispatch(resetUser());
+
+    // 6. Remove an access token from the user's browser
     tokenHelper.remove();
 
-    // 6. Execute a callback
+    // 7. Execute a callback
     callback();
   } catch (error) {
     // Inform a reducer that the request failed
