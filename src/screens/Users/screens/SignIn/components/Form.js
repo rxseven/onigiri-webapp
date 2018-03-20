@@ -21,6 +21,17 @@ import FIELDS from '../constants/fields';
 
 // Component
 class SignInForm extends Component {
+  // Before a component is unmounted and destroyed...
+  componentWillUnmount() {
+    // Reset UI state
+    this.onReset();
+  }
+
+  // Reset UI state
+  onReset = () => {
+    this.props.actions.auth.resetUI();
+  };
+
   // Form submission callback
   submitCallback = () => {
     // TODO: Navigate to Survey list screen after the form has been submitted
