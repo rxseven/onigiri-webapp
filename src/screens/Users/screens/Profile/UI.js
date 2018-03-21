@@ -79,7 +79,7 @@ class UI extends Component {
           </TabList>
 
           <TabPanel className="nav-content">
-            <Profile />
+            <Profile state={{ data: profile }} />
           </TabPanel>
         </Tabs>
       );
