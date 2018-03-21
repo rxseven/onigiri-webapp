@@ -1,6 +1,9 @@
 // Module dependencies
 import { combineReducers } from 'redux';
 
+// Actions
+import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './data/profile/actions';
+
 // Reducers
 import dataReducer from './data/reducer';
 
@@ -15,7 +18,45 @@ const initialState = {
 };
 
 // Asynchronous reducer
-const asyncReducer = (state = initialState, action) => state;
+const asyncReducer = (state = initialState, action) => {
+  switch (action.type) {
+    // Get user profile
+    case PROFILE_GET:
+      return {
+        ...state,
+        get: {
+          ...state.get,
+          profile: {
+            ...initialState.get.profile,
+            loading: true
+          }
+        }
+      };
+    case PROFILE_GET_FAILURE:
+      return {
+        ...state,
+        get: {
+          ...state.get,
+          profile: {
+            ...initialState.get.profile,
+            error: action.payload
+          }
+        }
+      };
+    case PROFILE_GET_SUCCESS:
+      return {
+        ...state,
+        get: {
+          ...state.get,
+          profile: initialState.get.profile
+        }
+      };
+
+    // Default
+    default:
+      return state;
+  }
+};
 
 // UI reducer
 const uiReducer = combineReducers({
