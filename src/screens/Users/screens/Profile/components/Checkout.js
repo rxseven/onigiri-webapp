@@ -6,7 +6,9 @@ import React from 'react';
 import Payments from '../../../../../components/features/Payments';
 import { ButtonSet } from '../../../../../components/shared/base/Buttons';
 import { CardText } from '../../../../../components/shared/base/Card';
+import Spinner from '../../../../../components/shared/base/Spinner';
 import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
+import Render from '../../../../../components/shared/helpers/Render';
 
 // Constants
 import PROP_TYPES from '../../../../../constants/models/propTypes';
@@ -29,14 +31,23 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 });
 
 // Component
-const Checkout = ({ callback }) => (
-  <JSXwrapper>
-    <CardText>Pay $5.00 get 5 survey credits.</CardText>
-    <ButtonSet>
-      <Payments callback={callback} />
-    </ButtonSet>
-  </JSXwrapper>
-);
+const Checkout = ({ callback, state: { ui: { asynchronous } } }) => {
+  // Variables
+  const { loading } = asynchronous.post.checkout;
+
+  // View
+  return (
+    <JSXwrapper>
+      <CardText>Pay $5.00 get 5 survey credits.</CardText>
+      <ButtonSet>
+        <Payments callback={callback} />
+        <Render condition={loading}>
+          <Spinner />
+        </Render>
+      </ButtonSet>
+    </JSXwrapper>
+  );
+};
 
 // Specify prop types and default values for props
 Checkout.propTypes = propTypes;
