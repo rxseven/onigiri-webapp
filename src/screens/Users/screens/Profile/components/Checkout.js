@@ -7,6 +7,7 @@ import Payments from '../../../../../components/features/Payments';
 import { ButtonSet } from '../../../../../components/shared/base/Buttons';
 import { CardText } from '../../../../../components/shared/base/Card';
 import Spinner from '../../../../../components/shared/base/Spinner';
+import Error from '../../../../../components/shared/extended/Error';
 import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
 import Render from '../../../../../components/shared/helpers/Render';
 
@@ -33,12 +34,15 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 // Component
 const Checkout = ({ callback, state: { ui: { asynchronous } } }) => {
   // Variables
-  const { loading } = asynchronous.post.checkout;
+  const { error, loading } = asynchronous.post.checkout;
 
   // View
   return (
     <JSXwrapper>
       <CardText>Pay $5.00 get 5 survey credits.</CardText>
+      <Render condition={error}>
+        <Error alert={error} />
+      </Render>
       <ButtonSet>
         <Payments callback={callback} />
         <Render condition={loading}>
