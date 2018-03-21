@@ -15,6 +15,7 @@ import PATHS from '../../../../constants/router/paths';
 
 // Peer dependencies
 import Account from './components/Account';
+import Credits from './components/Credits';
 import Profile from './components/Profile';
 
 // Declare prop types and default props
@@ -103,10 +104,16 @@ class UI extends Component {
         <Tabs className="pills">
           <TabList className="nav nav-pills">
             <Tab className="nav-item" selectedClassName="active">
+              <span className="nav-link">Credits</span>
+            </Tab>
+            <Tab className="nav-item" selectedClassName="active">
               <span className="nav-link">Profile</span>
             </Tab>
           </TabList>
 
+          <TabPanel className="nav-content">
+            <Credits />
+          </TabPanel>
           <TabPanel className="nav-content">
             <Profile state={{ data: profile }} />
             <Account
