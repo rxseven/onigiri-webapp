@@ -15,6 +15,10 @@ export const SIGNUP = 'data/session/SIGNUP';
 export const SIGNUP_FAILURE = 'data/session/SIGNUP_FAILURE';
 export const SIGNUP_SUCCESS = 'data/session/SIGNUP_SUCCESS';
 
+export const USER_DELETE = 'data/session/USER_DELETE';
+export const USER_DELETE_FAILURE = 'data/session/USER_DELETE_FAILURE';
+export const USER_DELETE_SUCCESS = 'data/session/USER_DELETE_SUCCESS';
+
 export const USER_GET = 'data/session/USER_GET';
 export const USER_GET_FAILURE = 'data/session/USER_GET_FAILURE';
 export const USER_GET_SUCCESS = 'data/session/USER_GET_SUCCESS';
@@ -138,6 +142,40 @@ export const signOut = callback => async (dispatch) => {
   } catch (error) {
     // Inform a reducer that the request failed
     dispatch(signOutFailure(error));
+  }
+};
+
+// Delete user account : Success
+const deleteUserSuccess = () => ({
+  type: USER_DELETE_SUCCESS
+});
+
+// Delete user account : Failure
+const deleteUserFailure = error => ({
+  type: USER_DELETE_FAILURE,
+  payload: error.response.data.error
+});
+
+// Delete user account : Start (loading)
+export const deleteUser = callback => async (dispatch) => {
+  try {
+    // 1. Inform a reducer that the request began (loading)
+    dispatch({ type: USER_DELETE });
+
+    // 2. Delete user account
+    await usersService.deleteUser();
+
+    // 4. Inform a reducer that the request finished successfully
+    dispatch(deleteUserSuccess());
+
+    // 5. Remove an access token from the user's browser
+    tokenHelper.remove();
+
+    // 6. Execute a callback
+    callback();
+  } catch (error) {
+    // Inform a reducer that the request failed
+    dispatch(deleteUserFailure(error));
   }
 };
 
