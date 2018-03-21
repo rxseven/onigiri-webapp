@@ -12,6 +12,9 @@ import Error from '../../../../components/shared/extended/Error';
 import PROP_TYPES from '../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../constants/models/state';
 
+// Peer dependencies
+import Profile from './components/Profile';
+
 // Declare prop types and default props
 const propTypes = PROP_TYPES.wrapper.asynchronous({
   get: PropTypes.shape({
@@ -75,7 +78,9 @@ class UI extends Component {
             </Tab>
           </TabList>
 
-          <TabPanel className="nav-content">Profile</TabPanel>
+          <TabPanel className="nav-content">
+            <Profile />
+          </TabPanel>
         </Tabs>
       );
     }
