@@ -4,6 +4,9 @@ import { combineReducers } from 'redux';
 
 // Actions
 import {
+  CHECKOUT,
+  CHECKOUT_FAILURE,
+  CHECKOUT_SUCCESS,
   CREDITS_GET,
   CREDITS_GET_FAILURE,
   CREDITS_GET_SUCCESS
@@ -92,6 +95,35 @@ const asyncReducer = (state = initialState, action) => {
         get: {
           ...state.get,
           profile: initialState.get.profile
+        }
+      };
+
+    // Checkout
+    case CHECKOUT:
+      return {
+        ...state,
+        post: {
+          checkout: {
+            ...initialState.post.checkout,
+            loading: true
+          }
+        }
+      };
+    case CHECKOUT_FAILURE:
+      return {
+        ...state,
+        post: {
+          checkout: {
+            ...initialState.post.checkout,
+            error: action.payload
+          }
+        }
+      };
+    case CHECKOUT_SUCCESS:
+      return {
+        ...state,
+        post: {
+          checkout: initialState.post.checkout
         }
       };
 

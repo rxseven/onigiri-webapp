@@ -3,7 +3,14 @@ import { createSelector } from 'reselect';
 
 // Actions
 import { USER_RESET } from '../session/actions';
-import { CREDITS_GET, CREDITS_GET_FAILURE, CREDITS_GET_SUCCESS } from './actions';
+import {
+  CHECKOUT,
+  CHECKOUT_FAILURE,
+  CHECKOUT_SUCCESS,
+  CREDITS_GET,
+  CREDITS_GET_FAILURE,
+  CREDITS_GET_SUCCESS
+} from './actions';
 
 // Initial state
 const initialState = {
@@ -20,10 +27,13 @@ const dataModel = data => ({
 // Reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-    // Get credits
+    // Checkout and get credits
+    case CHECKOUT:
+    case CHECKOUT_FAILURE:
     case CREDITS_GET:
     case CREDITS_GET_FAILURE:
       return state;
+    case CHECKOUT_SUCCESS:
     case CREDITS_GET_SUCCESS:
       return {
         ...state,
