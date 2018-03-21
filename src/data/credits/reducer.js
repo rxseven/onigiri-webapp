@@ -40,3 +40,6 @@ const getNode = state => state.data;
 
 // Get credits selector
 export const getCredits = createSelector(getNode, node => node.credits);
+
+// Get balance selector
+export const getBalance = createSelector(getNode, node => node.credits.balance);
