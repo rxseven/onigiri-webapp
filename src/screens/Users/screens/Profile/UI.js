@@ -81,7 +81,7 @@ class UI extends Component {
 
           <TabPanel className="nav-content">
             <Profile state={{ data: profile }} />
-            <Account />
+            <Account state={{ data, ui }} />
           </TabPanel>
         </Tabs>
       );
