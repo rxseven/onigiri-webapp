@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
+import { Button } from '../../../components/shared/base/Buttons';
+
 // Declare prop types
 const propTypes = {
   callback: PropTypes.func.isRequired
@@ -18,7 +20,11 @@ const UI = ({ actions, callback, state }) => (
     panelLabel="Add Credits"
     stripeKey={process.env.REACT_APP_STRIPE_KEY}
     token={token => actions.payments.checkout(token, callback)}
-  />
+  >
+    <Button button="outline-primary" size="small">
+      Add Credits
+    </Button>
+  </StripeCheckout>
 );
 
 // Specify prop types
