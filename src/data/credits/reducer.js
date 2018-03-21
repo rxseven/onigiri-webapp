@@ -1,2 +1,8 @@
+// Initial state
+const initialState = {
+  balance: null,
+  lastCheckout: null
+};
+
 // Reducer
-export default (state = null, action) => state;
+export default (state = initialState, action) => state;
