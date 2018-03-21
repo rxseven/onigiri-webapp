@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import Layout from '../../../../components/shared/base/Layout';
+import Loading from '../../../../components/shared/base/Loading';
 
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
@@ -49,6 +50,11 @@ class UI extends Component {
     const { profile } = data;
     const { asynchronous } = ui;
     const { loading: profileLoading } = asynchronous.get.profile;
+
+    // Loading
+    if (profileLoading && !profile) {
+      return <Loading />;
+    }
 
     // Content
     if (!profileLoading && profile) {
