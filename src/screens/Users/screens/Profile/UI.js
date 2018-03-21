@@ -13,6 +13,7 @@ import PROP_TYPES from '../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../constants/models/state';
 
 // Peer dependencies
+import Account from './components/Account';
 import Profile from './components/Profile';
 
 // Declare prop types and default props
@@ -80,6 +81,7 @@ class UI extends Component {
 
           <TabPanel className="nav-content">
             <Profile state={{ data: profile }} />
+            <Account />
           </TabPanel>
         </Tabs>
       );
