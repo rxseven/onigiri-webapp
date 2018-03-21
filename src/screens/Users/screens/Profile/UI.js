@@ -37,6 +37,9 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 class UI extends Component {
   // After a component is mounted...
   componentDidMount() {
+    // Get credits
+    this.getData(this.getCredits);
+
     // Get user profile
     this.getData(this.getProfile);
   }
@@ -66,6 +69,11 @@ class UI extends Component {
   // Redirect to a referrer
   onRedirect = (from) => {
     this.props.history.push(from);
+  };
+
+  // Get credits
+  getCredits = () => {
+    this.props.actions.credits.getCredits();
   };
 
   // Get user profile

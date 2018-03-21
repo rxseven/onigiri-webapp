@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { deleteUser } from '../../../../data/session/actions';
 
+import * as creditsActions from '../../../../data/credits/actions';
 import { getCredits } from '../../../../data/credits/reducer';
 
 import * as modalActions from '../../../../data/interfaces/modal/actions';
@@ -32,6 +33,7 @@ const mapStateToProps = state => ({
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
   actions: {
+    credits: bindActionCreators(creditsActions, dispatch),
     modal: bindActionCreators(modalActions, dispatch),
     profile: bindActionCreators(profileActions, dispatch),
     user: bindActionCreators({ deleteUser }, dispatch)
