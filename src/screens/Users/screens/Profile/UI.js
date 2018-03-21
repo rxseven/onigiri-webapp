@@ -149,7 +149,7 @@ class UI extends Component {
     return (
       <Document>
         <Head>
-          <Title>Profile</Title>
+          <Title>Credits &amp; Profile</Title>
         </Head>
         <Body>
           <Layout>{this.renderContent(this.props)}</Layout>
