@@ -1,6 +1,7 @@
 // Module dependencies
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Notification from 'react-s-alert';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
@@ -66,6 +67,26 @@ class UI extends Component {
     });
   };
 
+  // Payment handler
+  onCheckoutSuccess = () => {
+    // Variables
+    const { from } = this.props.location.state || { from: false };
+
+    // Show a notification
+    Notification.success('You earned 5 survey credits. Thank you!', {
+      beep: false,
+      effect: 'stackslide',
+      position: 'top',
+      timeout: from ? 1750 : 3750,
+      onClose: () => {
+        // Redirect to a referrer if needed
+        if (from) {
+          this.onRedirect(from);
+        }
+      }
+    });
+  };
+
   // Redirect to a referrer
   onRedirect = (from) => {
     this.props.history.push(from);
@@ -123,7 +144,7 @@ class UI extends Component {
           </TabList>
 
           <TabPanel className="nav-content">
-            <Credits state={{ ...state }} />
+            <Credits callback={this.onCheckoutSuccess} state={{ ...state }} />
           </TabPanel>
           <TabPanel className="nav-content">
             <Profile state={{ data: profile }} />

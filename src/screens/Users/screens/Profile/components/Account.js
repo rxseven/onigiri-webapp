@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardSubtitle
 } from '../../../../../components/shared/base/Card';
+import Text from '../../../../../components/shared/base/Text';
 import Confirm from '../../../../../components/shared/extended/Confirm';
 import Render from '../../../../../components/shared/helpers/Render';
 import timestampHelper from '../../../../../helpers/timestamp';
@@ -16,7 +17,10 @@ import timestampHelper from '../../../../../helpers/timestamp';
 import styles from '../styles/profile.scss';
 
 // Component
-const Account = ({ actions, state: { data: { interfaces, profile }, ui: { asynchronous } } }) => (
+const Account = ({
+  actions,
+  state: { data: { credits: { balance }, interfaces, profile }, ui: { asynchronous } }
+}) => (
   <Card>
     <CardHeader>Account</CardHeader>
     <CardBody>
@@ -75,6 +79,15 @@ const Account = ({ actions, state: { data: { interfaces, profile }, ui: { asynch
         >
           <h5>Is this goodbye?</h5>
           <p>This action is permanent. Are you sure you don&apos;t want to reconsider?</p>
+          <Render condition={balance > 0}>
+            <p>
+              <Text options="text-secondary" small>
+                You have <strong>{balance}</strong> survey credit{balance > 1 && 's'} left, Onigiri
+                is a pay-as-you-go service. We do not issue full or partial refunds for deleted
+                accounts.
+              </Text>
+            </p>
+          </Render>
         </Confirm>
       </div>
     </CardBody>
