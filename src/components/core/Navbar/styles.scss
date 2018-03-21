@@ -53,6 +53,14 @@
       color: #fff;
     }
   }
+
+  :global(.nav-link) {
+    padding: 0.15rem 0.5rem;
+
+    @media (min-width: $breakpoint-sm) {
+      @include padding-horizontal(0.5rem);
+    }
+  }
 }
 
 // Home link
