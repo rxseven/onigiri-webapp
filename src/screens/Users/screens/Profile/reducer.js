@@ -27,7 +27,8 @@ const initialState = {
   get: {
     credits: { ...STATE_MODELS.model.asynchronous },
     profile: { ...STATE_MODELS.model.asynchronous }
-  }
+  },
+  post: { checkout: { ...STATE_MODELS.model.asynchronous } }
 };
 
 // Asynchronous reducer
