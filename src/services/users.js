@@ -37,3 +37,10 @@ export const getUser = () => ajax({ url: API.endpoints.users.base });
 
 // Get user profile
 export const getProfile = () => ajax({ url: API.endpoints.users.profile });
+
+// Delete user account
+export const deleteUser = () =>
+  ajax({
+    method: 'delete',
+    url: API.endpoints.users.base
+  });
