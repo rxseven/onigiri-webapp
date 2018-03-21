@@ -20,6 +20,7 @@ import STATE_MODELS from '../../../../constants/models/state';
 const initialState = {
   delete: { profile: { ...STATE_MODELS.model.asynchronous } },
   get: {
+    credits: { ...STATE_MODELS.model.asynchronous },
     profile: { ...STATE_MODELS.model.asynchronous }
   }
 };
