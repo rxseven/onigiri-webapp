@@ -1,0 +1,91 @@
+// Global styles
+@import "../../../../../styles/base/settings";
+@import "../../../../../styles/mixins/utilities";
+
+// Item
+.item {
+  @include clearfix;
+  margin-bottom: 0.75rem;
+}
+
+// Label and content
+.label,
+.content {
+  display: block;
+
+  @media (min-width: $breakpoint-sm) {
+    float: left;
+  }
+}
+
+// Label
+.label {
+  color: $color-label;
+
+  @media (min-width: $breakpoint-sm) {
+    width: 25%;
+  }
+}
+
+// Content
+.content {
+  @media (min-width: $breakpoint-sm) {
+    width: 75%;
+  }
+}
+
+// Avatar
+.avatar {
+  @include margin-horizontal(1rem);
+  @include square(96px);
+  position: relative;
+
+  @media (min-width: $breakpoint-sm) {
+    margin-top: 0;
+  }
+
+  .photo {
+    border-radius: 50%;
+    width: 100%;
+  }
+
+  .overlay {
+    @include square(100%);
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.15s ease-in-out;
+    z-index: 1;
+
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+    }
+  }
+
+  .text {
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+// Description and meta
+.description,
+.meta {
+  color: $color-description;
+  font-size: 12px;
+}
+
+// Meta
+.meta {
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
