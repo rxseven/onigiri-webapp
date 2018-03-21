@@ -13,6 +13,7 @@ import STATE_MODELS from '../../../../constants/models/state';
 
 // Initial state
 const initialState = {
+  delete: { profile: { ...STATE_MODELS.model.asynchronous } },
   get: {
     profile: { ...STATE_MODELS.model.asynchronous }
   }
