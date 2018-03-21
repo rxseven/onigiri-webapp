@@ -1,6 +1,7 @@
 // Module dependencies
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import Layout from '../../../../components/shared/base/Layout';
@@ -66,7 +67,17 @@ class UI extends Component {
 
     // Content
     if (!profileLoading && profile) {
-      return <div>Profile screen</div>;
+      return (
+        <Tabs className="pills">
+          <TabList className="nav nav-pills">
+            <Tab className="nav-item" selectedClassName="active">
+              <span className="nav-link">Profile</span>
+            </Tab>
+          </TabList>
+
+          <TabPanel className="nav-content">Profile</TabPanel>
+        </Tabs>
+      );
     }
 
     // Otherwise
