@@ -42,6 +42,23 @@ class UI extends Component {
     }
   };
 
+  // Render content
+  renderContent = ({ actions, state }) => {
+    // Variables
+    const { data, ui } = state;
+    const { profile } = data;
+    const { asynchronous } = ui;
+    const { loading: profileLoading } = asynchronous.get.profile;
+
+    // Content
+    if (!profileLoading && profile) {
+      return <div>Profile screen</div>;
+    }
+
+    // Otherwise
+    return <div />;
+  };
+
   // Render component
   render() {
     return (
@@ -50,7 +67,7 @@ class UI extends Component {
           <Title>Profile</Title>
         </Head>
         <Body>
-          <Layout>Profile screen</Layout>
+          <Layout>{this.renderContent(this.props)}</Layout>
         </Body>
       </Document>
     );
