@@ -11,6 +11,7 @@ import Error from '../../../../components/shared/extended/Error';
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../constants/models/state';
+import PATHS from '../../../../constants/router/paths';
 
 // Peer dependencies
 import Account from './components/Account';
@@ -46,11 +47,22 @@ class UI extends Component {
   // Confirm deleting user account
   onDeleteAccountConfirm = () => {
     this.props.actions.user.deleteUser(() => {
-      // TODO: 1. Close a modal
-      // TODO: 2. Create Farewell screen
-      // TODO: 3. Redirect to Farewell screen after the account has been deleted
-      console.log('this.onDeleteAccountConfirm() is executed.');
+      // Close a modal
+      this.props.actions.modal.closeModal();
+
+      // Redirect to Farewell screen after the account has been deleted
+      this.onRedirect({
+        pathname: PATHS.users.farewell,
+        state: {
+          referrer: true
+        }
+      });
     });
+  };
+
+  // Redirect to a referrer
+  onRedirect = (from) => {
+    this.props.history.push(from);
   };
 
   // Get user profile
