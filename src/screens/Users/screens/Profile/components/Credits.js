@@ -11,8 +11,6 @@ const Credits = ({ callback, state }) => {
   // Variables
   const { balance, lastCheckout } = state.data.credits;
 
-  console.log('state', state);
-
   // View
   return (
     <Card>
