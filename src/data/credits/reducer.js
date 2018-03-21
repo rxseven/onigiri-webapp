@@ -2,6 +2,7 @@
 import { createSelector } from 'reselect';
 
 // Actions
+import { USER_RESET } from '../session/actions';
 import { CREDITS_GET, CREDITS_GET_FAILURE, CREDITS_GET_SUCCESS } from './actions';
 
 // Initial state
@@ -28,6 +29,10 @@ export default (state = initialState, action) => {
         ...state,
         ...dataModel(action.payload)
       };
+
+    // Clean up data
+    case USER_RESET:
+      return initialState;
 
     // Default
     default:
