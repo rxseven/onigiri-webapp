@@ -45,11 +45,12 @@ class UI extends Component {
 
   // Confirm deleting user account
   onDeleteAccountConfirm = () => {
-    // TODO: 1. Call an action creator
-    // TODO: 2. Close a modal
-    // TODO: 3. Create Farewell screen
-    // TODO: 4. Redirect to Farewell screen after the account has been deleted
-    console.log('this.onDeleteAccountConfirm() is executed.');
+    this.props.actions.user.deleteUser(() => {
+      // TODO: 1. Close a modal
+      // TODO: 2. Create Farewell screen
+      // TODO: 3. Redirect to Farewell screen after the account has been deleted
+      console.log('this.onDeleteAccountConfirm() is executed.');
+    });
   };
 
   // Get user profile

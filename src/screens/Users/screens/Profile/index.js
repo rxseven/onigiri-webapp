@@ -2,6 +2,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { deleteUser } from '../../../../data/session/actions';
+
 import * as modalActions from '../../../../data/interfaces/modal/actions';
 import { getModal } from '../../../../data/interfaces/modal/reducer';
 
@@ -28,7 +30,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: {
     modal: bindActionCreators(modalActions, dispatch),
-    profile: bindActionCreators(profileActions, dispatch)
+    profile: bindActionCreators(profileActions, dispatch),
+    user: bindActionCreators({ deleteUser }, dispatch)
   }
 });
 
