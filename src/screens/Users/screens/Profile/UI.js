@@ -94,6 +94,7 @@ class UI extends Component {
     const { data, ui } = state;
     const { profile } = data;
     const { asynchronous } = ui;
+    const { loading: creditsLoading } = asynchronous.get.credits;
     const { error: profileError, loading: profileLoading } = asynchronous.get.profile;
 
     // Error
@@ -104,7 +105,7 @@ class UI extends Component {
     }
 
     // Loading
-    if (profileLoading && !profile) {
+    if (creditsLoading || (profileLoading && !profile)) {
       return <Loading />;
     }
 
