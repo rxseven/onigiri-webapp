@@ -11,6 +11,7 @@ import Error from '../../../../components/shared/extended/Error';
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../constants/models/state';
+import PATHS from '../../../../constants/router/paths';
 
 // Peer dependencies
 import Account from './components/Account';
@@ -36,6 +37,33 @@ class UI extends Component {
     // Get user profile
     this.getData(this.getProfile);
   }
+
+  // Request for deleting user account
+  onDeleteAccountRequest = () => {
+    // Open a confirmation modal
+    this.props.actions.modal.openModal();
+  };
+
+  // Confirm deleting user account
+  onDeleteAccountConfirm = () => {
+    this.props.actions.user.deleteUser(() => {
+      // Close a modal
+      this.props.actions.modal.closeModal();
+
+      // Redirect to Farewell screen after the account has been deleted
+      this.onRedirect({
+        pathname: PATHS.users.farewell,
+        state: {
+          referrer: true
+        }
+      });
+    });
+  };
+
+  // Redirect to a referrer
+  onRedirect = (from) => {
+    this.props.history.push(from);
+  };
 
   // Get user profile
   getProfile = () => {
@@ -81,7 +109,14 @@ class UI extends Component {
 
           <TabPanel className="nav-content">
             <Profile state={{ data: profile }} />
-            <Account state={{ data, ui }} />
+            <Account
+              actions={{
+                closeModal: actions.modal.closeModal,
+                deleteConfirm: this.onDeleteAccountConfirm,
+                deleteRequest: this.onDeleteAccountRequest
+              }}
+              state={{ data, ui }}
+            />
           </TabPanel>
         </Tabs>
       );

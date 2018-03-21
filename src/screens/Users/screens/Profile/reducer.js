@@ -3,6 +3,11 @@ import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
+import {
+  USER_DELETE,
+  USER_DELETE_FAILURE,
+  USER_DELETE_SUCCESS
+} from '../../../../data/session/actions';
 import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './data/profile/actions';
 
 // Reducers
@@ -13,6 +18,7 @@ import STATE_MODELS from '../../../../constants/models/state';
 
 // Initial state
 const initialState = {
+  delete: { profile: { ...STATE_MODELS.model.asynchronous } },
   get: {
     profile: { ...STATE_MODELS.model.asynchronous }
   }
@@ -21,6 +27,35 @@ const initialState = {
 // Asynchronous reducer
 const asyncReducer = (state = initialState, action) => {
   switch (action.type) {
+    // Delete user account
+    case USER_DELETE:
+      return {
+        ...state,
+        delete: {
+          profile: {
+            ...initialState.delete.profile,
+            loading: true
+          }
+        }
+      };
+    case USER_DELETE_FAILURE:
+      return {
+        ...state,
+        delete: {
+          profile: {
+            ...initialState.delete.profile,
+            error: action.payload
+          }
+        }
+      };
+    case USER_DELETE_SUCCESS:
+      return {
+        ...state,
+        delete: {
+          profile: initialState.get.profile
+        }
+      };
+
     // Get user profile
     case PROFILE_GET:
       return {

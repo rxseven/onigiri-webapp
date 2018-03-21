@@ -2,6 +2,7 @@
 import { createSelector } from 'reselect';
 
 // Actions
+import { USER_RESET } from '../../../../../../data/session/actions';
 import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './actions';
 
 // Initial state
@@ -19,6 +20,10 @@ export default (state = initialState, action) => {
         ...state,
         ...action.payload
       };
+
+    // Clean up data
+    case USER_RESET:
+      return initialState;
 
     // Default
     default:
