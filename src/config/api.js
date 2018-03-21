@@ -13,6 +13,7 @@ export default {
   endpoints: {
     users: {
       base: API.routes.users,
+      credits: `${API.routes.users}/credits`,
       profile: `${API.routes.users}/profile`,
       signin: `${API.routes.users}/signin`,
       signout: `${API.routes.users}/signout`,

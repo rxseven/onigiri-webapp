@@ -15,17 +15,20 @@ import PATHS from '../../../../constants/router/paths';
 
 // Peer dependencies
 import Account from './components/Account';
+import Credits from './components/Credits';
 import Profile from './components/Profile';
 
 // Declare prop types and default props
 const propTypes = PROP_TYPES.wrapper.asynchronous({
   get: PropTypes.shape({
+    credits: PROP_TYPES.model.asynchronous,
     profile: PROP_TYPES.model.asynchronous
   })
 });
 
 const defaultProps = STATE_MODELS.wrapper.asynchronous({
   get: {
+    credits: { ...STATE_MODELS.model.asynchronous },
     profile: { ...STATE_MODELS.model.asynchronous }
   }
 });
@@ -34,6 +37,9 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 class UI extends Component {
   // After a component is mounted...
   componentDidMount() {
+    // Get credits
+    this.getData(this.getCredits);
+
     // Get user profile
     this.getData(this.getProfile);
   }
@@ -65,6 +71,11 @@ class UI extends Component {
     this.props.history.push(from);
   };
 
+  // Get credits
+  getCredits = () => {
+    this.props.actions.credits.getCredits();
+  };
+
   // Get user profile
   getProfile = () => {
     this.props.actions.profile.getProfile();
@@ -83,17 +94,18 @@ class UI extends Component {
     const { data, ui } = state;
     const { profile } = data;
     const { asynchronous } = ui;
+    const { error: creditsError, loading: creditsLoading } = asynchronous.get.credits;
     const { error: profileError, loading: profileLoading } = asynchronous.get.profile;
 
     // Error
-    if (profileError) {
-      const error = profileError;
+    if (creditsError || profileError) {
+      const error = creditsError || profileError;
 
       return <Error alert={error} />;
     }
 
     // Loading
-    if (profileLoading && !profile) {
+    if (creditsLoading || (profileLoading && !profile)) {
       return <Loading />;
     }
 
@@ -103,10 +115,16 @@ class UI extends Component {
         <Tabs className="pills">
           <TabList className="nav nav-pills">
             <Tab className="nav-item" selectedClassName="active">
+              <span className="nav-link">Credits</span>
+            </Tab>
+            <Tab className="nav-item" selectedClassName="active">
               <span className="nav-link">Profile</span>
             </Tab>
           </TabList>
 
+          <TabPanel className="nav-content">
+            <Credits state={{ ...state }} />
+          </TabPanel>
           <TabPanel className="nav-content">
             <Profile state={{ data: profile }} />
             <Account
@@ -131,7 +149,7 @@ class UI extends Component {
     return (
       <Document>
         <Head>
-          <Title>Profile</Title>
+          <Title>Credits &amp; Profile</Title>
         </Head>
         <Body>
           <Layout>{this.renderContent(this.props)}</Layout>

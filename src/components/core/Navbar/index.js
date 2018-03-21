@@ -61,7 +61,7 @@ class Navbar extends Component {
                   to={PATHS.users.profile}
                 >
                   <Icon name="cog" title="Profile" />
-                  Profile
+                  Credits &amp; Profile
                 </Link>
                 <a className="dropdown-item" href="/" onClick={this.onSignout}>
                   <Icon name="account-logout" title="Log out" />

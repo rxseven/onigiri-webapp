@@ -4,6 +4,11 @@ import { combineReducers } from 'redux';
 
 // Actions
 import {
+  CREDITS_GET,
+  CREDITS_GET_FAILURE,
+  CREDITS_GET_SUCCESS
+} from '../../../../data/credits/actions';
+import {
   USER_DELETE,
   USER_DELETE_FAILURE,
   USER_DELETE_SUCCESS
@@ -20,6 +25,7 @@ import STATE_MODELS from '../../../../constants/models/state';
 const initialState = {
   delete: { profile: { ...STATE_MODELS.model.asynchronous } },
   get: {
+    credits: { ...STATE_MODELS.model.asynchronous },
     profile: { ...STATE_MODELS.model.asynchronous }
   }
 };
@@ -85,6 +91,38 @@ const asyncReducer = (state = initialState, action) => {
         get: {
           ...state.get,
           profile: initialState.get.profile
+        }
+      };
+
+    // Get credits
+    case CREDITS_GET:
+      return {
+        ...state,
+        get: {
+          ...state.get,
+          credits: {
+            ...initialState.get.credits,
+            loading: true
+          }
+        }
+      };
+    case CREDITS_GET_FAILURE:
+      return {
+        ...state,
+        get: {
+          ...state.get,
+          credits: {
+            ...initialState.get.credits,
+            error: action.payload
+          }
+        }
+      };
+    case CREDITS_GET_SUCCESS:
+      return {
+        ...state,
+        get: {
+          ...state.get,
+          credits: initialState.get.credits
         }
       };
 
