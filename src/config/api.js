@@ -3,6 +3,7 @@ const API = {
   name: 'onigiri-api',
   host: process.env.REACT_APP_API_URL,
   routes: {
+    payments: '/payments',
     users: '/users'
   }
 };
@@ -11,6 +12,10 @@ export default {
   name: API.name,
   host: API.host,
   endpoints: {
+    payments: {
+      base: API.routes.payments,
+      checkout: `${API.routes.payments}/checkout`
+    },
     users: {
       base: API.routes.users,
       credits: `${API.routes.users}/credits`,
