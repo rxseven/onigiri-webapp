@@ -53,7 +53,7 @@ const Confirm = (props) => {
         <Button disabled={loading} handler={() => onClose()} styles="secondary">
           {buttonCancel}
         </Button>
-        <Button disabled={loading} handler={onConfirm} styles="danger">
+        <Button button="danger" disabled={loading} handler={onConfirm}>
           {buttonConfirm}
         </Button>
       </ModalFooter>
