@@ -34,3 +34,6 @@ export const signOut = () => ajax({ url: API.endpoints.users.signout });
 
 // Get user info
 export const getUser = () => ajax({ url: API.endpoints.users.base });
+
+// Get user profile
+export const getProfile = () => ajax({ url: API.endpoints.users.profile });

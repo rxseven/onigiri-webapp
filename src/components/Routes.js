@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 // Screens
 import Home from '../screens/Home';
 
+import Profile from '../screens/Users/screens/Profile';
 import SignIn from '../screens/Users/screens/SignIn';
 import SignUp from '../screens/Users/screens/SignUp';
 import Welcome from '../screens/Users/screens/Welcome';
@@ -13,6 +14,7 @@ import NotFound from '../screens/NotFound';
 
 // Route helpers
 import AuthRoute from '../HOCs/AuthRoute';
+import PrivateRoute from '../HOCs/PrivateRoute';
 import ReferralRoute from '../HOCs/ReferralRoute';
 
 // Constants
@@ -23,6 +25,7 @@ const Routes = () => (
   <Switch>
     <Route component={Home} exact path={PATHS.root} />
 
+    <PrivateRoute component={Profile} path={PATHS.users.profile} />
     <AuthRoute component={SignIn} path={PATHS.users.signin} />
     <AuthRoute component={SignUp} path={PATHS.users.signup} />
     <ReferralRoute component={Welcome} path={PATHS.users.welcome} />

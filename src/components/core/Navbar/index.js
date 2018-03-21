@@ -55,6 +55,14 @@ class Navbar extends Component {
             </DropdownTrigger>
             <DropdownContent>
               <div className="dropdown-menu">
+                <Link
+                  className="dropdown-item"
+                  onClick={this.onDropdownClick}
+                  to={PATHS.users.profile}
+                >
+                  <Icon name="cog" title="Profile" />
+                  Profile
+                </Link>
                 <a className="dropdown-item" href="/" onClick={this.onSignout}>
                   <Icon name="account-logout" title="Log out" />
                   Log out
