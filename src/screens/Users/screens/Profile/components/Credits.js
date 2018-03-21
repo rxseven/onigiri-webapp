@@ -20,10 +20,7 @@ const Credits = ({ callback, state }) => {
       <CardBody>
         <CardTitle>You have {balance && <span>{balance}</span>} survey credits</CardTitle>
         <hr />
-        <Checkout
-          callback={() => console.log('TODO: Specify a callback function')}
-          state={{ ...state }}
-        />
+        <Checkout callback={callback} state={{ ...state }} />
       </CardBody>
       <Render condition={lastCheckout}>
         <CardFooter>
