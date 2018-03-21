@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import Layout from '../../../../components/shared/base/Layout';
 import Loading from '../../../../components/shared/base/Loading';
+import Error from '../../../../components/shared/extended/Error';
 
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
@@ -49,7 +50,14 @@ class UI extends Component {
     const { data, ui } = state;
     const { profile } = data;
     const { asynchronous } = ui;
-    const { loading: profileLoading } = asynchronous.get.profile;
+    const { error: profileError, loading: profileLoading } = asynchronous.get.profile;
+
+    // Error
+    if (profileError) {
+      const error = profileError;
+
+      return <Error alert={error} />;
+    }
 
     // Loading
     if (profileLoading && !profile) {
