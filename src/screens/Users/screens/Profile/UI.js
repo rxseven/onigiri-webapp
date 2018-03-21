@@ -37,6 +37,21 @@ class UI extends Component {
     this.getData(this.getProfile);
   }
 
+  // Request for deleting user account
+  onDeleteAccountRequest = () => {
+    // Open a confirmation modal
+    this.props.actions.modal.openModal();
+  };
+
+  // Confirm deleting user account
+  onDeleteAccountConfirm = () => {
+    // TODO: 1. Call an action creator
+    // TODO: 2. Close a modal
+    // TODO: 3. Create Farewell screen
+    // TODO: 4. Redirect to Farewell screen after the account has been deleted
+    console.log('this.onDeleteAccountConfirm() is executed.');
+  };
+
   // Get user profile
   getProfile = () => {
     this.props.actions.profile.getProfile();
@@ -81,7 +96,14 @@ class UI extends Component {
 
           <TabPanel className="nav-content">
             <Profile state={{ data: profile }} />
-            <Account state={{ data, ui }} />
+            <Account
+              actions={{
+                closeModal: actions.modal.closeModal,
+                deleteConfirm: this.onDeleteAccountConfirm,
+                deleteRequest: this.onDeleteAccountRequest
+              }}
+              state={{ data, ui }}
+            />
           </TabPanel>
         </Tabs>
       );

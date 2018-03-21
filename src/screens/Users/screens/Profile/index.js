@@ -2,6 +2,9 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import * as modalActions from '../../../../data/interfaces/modal/actions';
+import { getModal } from '../../../../data/interfaces/modal/reducer';
+
 // Peer dependencies
 import * as profileActions from './data/profile/actions';
 import { getProfile } from './data/profile/reducer';
@@ -12,6 +15,9 @@ import UI from './UI';
 const mapStateToProps = state => ({
   state: {
     data: {
+      interfaces: {
+        modal: getModal(state)
+      },
       profile: getProfile(state)
     },
     ui: getUI(state)
@@ -21,6 +27,7 @@ const mapStateToProps = state => ({
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
   actions: {
+    modal: bindActionCreators(modalActions, dispatch),
     profile: bindActionCreators(profileActions, dispatch)
   }
 });
