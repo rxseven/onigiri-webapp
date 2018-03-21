@@ -1,3 +1,6 @@
+// Module dependencies
+import { createSelector } from 'reselect';
+
 // Actions
 import { CREDITS_GET, CREDITS_GET_FAILURE, CREDITS_GET_SUCCESS } from './actions';
 
@@ -31,3 +34,9 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+// Non-memoized utility selectors
+const getNode = state => state.data;
+
+// Get credits selector
+export const getCredits = createSelector(getNode, node => node.credits);
