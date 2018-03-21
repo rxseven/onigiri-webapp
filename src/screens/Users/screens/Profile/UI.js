@@ -21,12 +21,14 @@ import Profile from './components/Profile';
 // Declare prop types and default props
 const propTypes = PROP_TYPES.wrapper.asynchronous({
   get: PropTypes.shape({
+    credits: PROP_TYPES.model.asynchronous,
     profile: PROP_TYPES.model.asynchronous
   })
 });
 
 const defaultProps = STATE_MODELS.wrapper.asynchronous({
   get: {
+    credits: { ...STATE_MODELS.model.asynchronous },
     profile: { ...STATE_MODELS.model.asynchronous }
   }
 });
