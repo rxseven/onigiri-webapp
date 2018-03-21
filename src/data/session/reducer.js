@@ -12,6 +12,9 @@ import {
   SIGNUP,
   SIGNUP_FAILURE,
   SIGNUP_SUCCESS,
+  USER_DELETE,
+  USER_DELETE_FAILURE,
+  USER_DELETE_SUCCESS,
   USER_GET,
   USER_GET_FAILURE,
   USER_GET_SUCCESS
@@ -58,6 +61,16 @@ export default (state = initialState, action) => {
     case SIGNOUT_FAILURE:
       return state;
     case SIGNOUT_SUCCESS:
+      return {
+        ...state,
+        ...initialState
+      };
+
+    // Delete user account
+    case USER_DELETE:
+    case USER_DELETE_FAILURE:
+      return state;
+    case USER_DELETE_SUCCESS:
       return {
         ...state,
         ...initialState
