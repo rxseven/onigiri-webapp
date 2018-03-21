@@ -24,6 +24,25 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 
 // Component
 class UI extends Component {
+  // After a component is mounted...
+  componentDidMount() {
+    // Get user profile
+    this.getData(this.getProfile);
+  }
+
+  // Get user profile
+  getProfile = () => {
+    this.props.actions.profile.getProfile();
+  };
+
+  // Check data in the application state before making a network request
+  getData = (action) => {
+    if (!this.props.state.data.profile) {
+      action();
+    }
+  };
+
+  // Render component
   render() {
     return (
       <Document>
