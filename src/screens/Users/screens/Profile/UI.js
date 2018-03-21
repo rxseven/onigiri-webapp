@@ -112,7 +112,7 @@ class UI extends Component {
           </TabList>
 
           <TabPanel className="nav-content">
-            <Credits />
+            <Credits state={{ ...state }} />
           </TabPanel>
           <TabPanel className="nav-content">
             <Profile state={{ data: profile }} />

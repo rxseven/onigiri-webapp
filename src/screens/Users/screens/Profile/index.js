@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 
 import { deleteUser } from '../../../../data/session/actions';
 
+import { getCredits } from '../../../../data/credits/reducer';
+
 import * as modalActions from '../../../../data/interfaces/modal/actions';
 import { getModal } from '../../../../data/interfaces/modal/reducer';
 
@@ -17,6 +19,7 @@ import UI from './UI';
 const mapStateToProps = state => ({
   state: {
     data: {
+      credits: getCredits(state),
       interfaces: {
         modal: getModal(state)
       },
