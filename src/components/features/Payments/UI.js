@@ -21,7 +21,7 @@ const UI = ({ actions, callback, state }) => (
     stripeKey={process.env.REACT_APP_STRIPE_KEY}
     token={token => actions.payments.checkout(token, callback)}
   >
-    <Button button="outline-primary" size="small">
+    <Button button="outline-primary" disabled={state.ui.asynchronous.post.loading} size="small">
       Add Credits
     </Button>
   </StripeCheckout>
