@@ -1,6 +1,12 @@
 // Module dependencies
+import PropTypes from 'prop-types';
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+
+// Declare prop types
+const propTypes = {
+  callback: PropTypes.func.isRequired
+};
 
 // Component
 const UI = ({ actions, callback, state }) => (
@@ -14,6 +20,9 @@ const UI = ({ actions, callback, state }) => (
     token={token => actions.payments.checkout(token, callback)}
   />
 );
+
+// Specify prop types
+UI.propTypes = propTypes;
 
 // Module exports
 export default UI;
