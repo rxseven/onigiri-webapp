@@ -94,12 +94,12 @@ class UI extends Component {
     const { data, ui } = state;
     const { profile } = data;
     const { asynchronous } = ui;
-    const { loading: creditsLoading } = asynchronous.get.credits;
+    const { error: creditsError, loading: creditsLoading } = asynchronous.get.credits;
     const { error: profileError, loading: profileLoading } = asynchronous.get.profile;
 
     // Error
-    if (profileError) {
-      const error = profileError;
+    if (creditsError || profileError) {
+      const error = creditsError || profileError;
 
       return <Error alert={error} />;
     }
