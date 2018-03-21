@@ -1,11 +1,11 @@
 // Module dependencies
-import React from 'react';
+import { connect } from 'react-redux';
 
 // Peer dependencies
 import UI from './UI';
 
-// Component
-const Payments = () => <UI />;
+// Connect component to application state
+const container = connect(null)(UI);
 
 // Module exports
-export default Payments;
+export default container;
