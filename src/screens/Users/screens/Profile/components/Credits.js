@@ -6,6 +6,9 @@ import Text from '../../../../../components/shared/base/Text';
 import Render from '../../../../../components/shared/helpers/Render';
 import timestampHelper from '../../../../../helpers/timestamp';
 
+// Peer dependencies
+import Checkout from './Checkout';
+
 // Component
 const Credits = ({ callback, state }) => {
   // Variables
@@ -16,6 +19,8 @@ const Credits = ({ callback, state }) => {
     <Card>
       <CardBody>
         <CardTitle>You have {balance && <span>{balance}</span>} survey credits</CardTitle>
+        <hr />
+        <Checkout />
       </CardBody>
       <Render condition={lastCheckout}>
         <CardFooter>
