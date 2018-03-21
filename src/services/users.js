@@ -38,6 +38,9 @@ export const getUser = () => ajax({ url: API.endpoints.users.base });
 // Get user profile
 export const getProfile = () => ajax({ url: API.endpoints.users.profile });
 
+// Get credits
+export const getCredits = () => ajax({ url: API.endpoints.users.credits });
+
 // Delete user account
 export const deleteUser = () =>
   ajax({
