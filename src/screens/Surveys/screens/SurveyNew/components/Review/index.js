@@ -2,6 +2,7 @@
 import { map } from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
 import { FormSHL } from '../../../../../../components/shared/base/Form';
@@ -91,7 +92,7 @@ class SurveyReview extends Component {
 SurveyReview.defaultProps = defaultProps;
 
 // Connect component to application state
-const container = connect(null)(SurveyReview);
+const container = withRouter(connect(null)(SurveyReview));
 
 // Module exports
 export default container;
