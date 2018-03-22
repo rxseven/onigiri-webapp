@@ -11,9 +11,12 @@ import Spinner from '../../../../../../components/shared/base/Spinner';
 import Error from '../../../../../../components/shared/extended/Error';
 import Render from '../../../../../../components/shared/helpers/Render';
 
+import emailHelper from '../../../../../../helpers/email';
+
 // Constants
 import PROP_TYPES from '../../../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../../../constants/models/state';
+import PATHS from '../../../../../../constants/router/paths';
 
 // Peer dependencies
 import * as surveyActions from '../../../SurveyNew/actions';
@@ -46,12 +49,21 @@ class SurveyReview extends Component {
   // Submit handler
   onSubmit = () => {
     // Variables
-    const { actions, state: { data: { form } } } = this.props;
+    const { actions, history, state: { data: { form } } } = this.props;
+    const { recipients, title } = form;
 
     // Create new survey and send out emails
     actions.survey.createSurvey(form, (id) => {
-      // TODO: Redirect to Success screen after the form has been submitted
-      console.log('this.onSubmit() is executed.');
+      // Redirect to Success screen after the form has been submitted
+      history.push({
+        pathname: PATHS.surveys.success,
+        state: {
+          id,
+          referrer: true,
+          recipients: emailHelper.length(recipients),
+          title
+        }
+      });
     });
   };
   // Render fields
