@@ -9,7 +9,8 @@ import {
   CHECKOUT_SUCCESS,
   CREDITS_GET,
   CREDITS_GET_FAILURE,
-  CREDITS_GET_SUCCESS
+  CREDITS_GET_SUCCESS,
+  CREDITS_UPDATE
 } from './actions';
 
 // Initial state
@@ -38,6 +39,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         ...dataModel(action.payload)
+      };
+
+    // Update credits
+    case CREDITS_UPDATE:
+      return {
+        ...state,
+        balance: action.payload.balance
       };
 
     // Clean up data
