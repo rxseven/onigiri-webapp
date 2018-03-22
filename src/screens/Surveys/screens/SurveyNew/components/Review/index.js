@@ -74,7 +74,11 @@ class SurveyReview extends Component {
 
 // Map state to props
 const mapStateToProps = state => ({
-  state: {}
+  state: {
+    data: {
+      form: state.form.survey.values
+    }
+  }
 });
 
 // Map dispatch to props
