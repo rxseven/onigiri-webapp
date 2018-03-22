@@ -3,7 +3,12 @@ import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
-import { SURVEYS_GET, SURVEYS_GET_FAILURE, SURVEYS_GET_SUCCESS } from './data/surveys/actions';
+import {
+  SURVEYS_GET,
+  SURVEYS_GET_FAILURE,
+  SURVEYS_GET_SUCCESS,
+  SURVEYS_SELECT_MODE
+} from './data/surveys/actions';
 
 // Reducers
 import dataReducer from './data/reducer';
@@ -63,7 +68,20 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
 };
 
 // View reducer
-const viewReducer = (state = initialState.view, action) => state;
+const viewReducer = (state = initialState.view, action) => {
+  switch (action.type) {
+    // Change mode
+    case SURVEYS_SELECT_MODE:
+      return {
+        ...state,
+        ...action.payload
+      };
+
+    // Default
+    default:
+      return state;
+  }
+};
 
 // UI reducer
 const uiReducer = combineReducers({
