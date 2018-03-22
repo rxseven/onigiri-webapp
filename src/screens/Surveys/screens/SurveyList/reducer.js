@@ -3,7 +3,12 @@ import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
-import { SURVEYS_GET, SURVEYS_GET_FAILURE, SURVEYS_GET_SUCCESS } from './data/surveys/actions';
+import {
+  SURVEYS_GET,
+  SURVEYS_GET_FAILURE,
+  SURVEYS_GET_SUCCESS,
+  SURVEYS_SELECT_MODE
+} from './data/surveys/actions';
 
 // Reducers
 import dataReducer from './data/reducer';
@@ -18,6 +23,12 @@ const initialState = {
       ...STATE_MODELS.model.asynchronous,
       loaded: false
     }
+  },
+  view: {
+    mode: 'active',
+    pagination: null,
+    query: null,
+    selected: null
   }
 };
 
@@ -56,6 +67,22 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
   }
 };
 
+// View reducer
+const viewReducer = (state = initialState.view, action) => {
+  switch (action.type) {
+    // Change mode
+    case SURVEYS_SELECT_MODE:
+      return {
+        ...state,
+        ...action.payload
+      };
+
+    // Default
+    default:
+      return state;
+  }
+};
+
 // UI reducer
 const uiReducer = combineReducers({
   asynchronous: asyncReducer
@@ -64,7 +91,8 @@ const uiReducer = combineReducers({
 // Combine reducers
 export default combineReducers({
   data: dataReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  view: viewReducer
 });
 
 // Non-memoized utility selectors
@@ -75,3 +103,6 @@ export const getUI = createSelector(getNode, node => node.ui);
 
 // Get asynchronous state
 export const getAsync = createSelector(getNode, node => node.ui.asynchronous);
+
+// Get view state
+export const getView = createSelector(getNode, node => node.view);

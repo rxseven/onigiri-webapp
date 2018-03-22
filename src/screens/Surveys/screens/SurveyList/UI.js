@@ -42,6 +42,21 @@ class UI extends Component {
     this.setState(() => ({ mode: TYPES.mode.active }));
   };
 
+  // Mode selection
+  onMode = (values) => {
+    // If the current selected mode is not identical to the previous one
+    if (values.mode !== this.state.mode) {
+      // Update list view mode
+      this.props.actions.surveys.selectMode(values);
+
+      // Cancel the current pending network request
+      this.props.actions.surveys.cancelSurveys();
+
+      // Reload survey list
+      this.setState(() => ({ ...values }));
+    }
+  };
+
   // Render component
   render() {
     // Variables
@@ -64,7 +79,7 @@ class UI extends Component {
             <StickyContainer>
               <Row>
                 <Column size={CSS.grid.col.SM03}>
-                  <Stickybar state={{ mode, screenWidth }} />
+                  <Stickybar actions={{ mode: this.onMode }} state={{ mode, screenWidth }} />
                 </Column>
                 <Column size={CSS.grid.col.SM09}>
                   <List

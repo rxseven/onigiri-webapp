@@ -4,7 +4,12 @@ import { createSelector } from 'reselect';
 
 // Actions
 import { USER_RESET } from '../../../../../../data/session/actions';
-import { SURVEYS_GET, SURVEYS_GET_FAILURE, SURVEYS_GET_SUCCESS } from './actions';
+import {
+  SURVEYS_GET,
+  SURVEYS_GET_FAILURE,
+  SURVEYS_GET_SUCCESS,
+  SURVEYS_SELECT_MODE
+} from './actions';
 
 // Initial state
 const initialState = {
@@ -33,6 +38,7 @@ export default (state = initialState, action) => {
 
     // Clean up data
     case USER_RESET:
+    case SURVEYS_SELECT_MODE:
       return initialState;
 
     // Default
