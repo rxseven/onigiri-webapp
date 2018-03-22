@@ -1,0 +1,44 @@
+// Global styles
+@import "../../../../../../styles/base/settings";
+
+// Content container
+.content {
+  margin-bottom: 1rem;
+}
+
+// Status
+.status {
+  $element-spacing: 0.5rem;
+
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+
+  > :not(:last-child) {
+    margin-right: $element-spacing;
+  }
+
+  > :not(:first-child) {
+    margin-left: $element-spacing;
+  }
+
+  padding-bottom: 5px;
+
+  .text {
+    font-size: 80%;
+    padding-left: 0.5rem;
+
+    .no {
+      color: $color-danger;
+    }
+
+    .yes {
+      color: $color-success;
+    }
+  }
+}
+
+// Footer
+.footer {
+  color: $color-secondary;
+}
