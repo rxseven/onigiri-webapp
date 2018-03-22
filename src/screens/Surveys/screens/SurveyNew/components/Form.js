@@ -1,6 +1,7 @@
 // Module dependencies
 import { each } from 'lodash';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 import { Form, FormSHL } from '../../../../../components/shared/base/Form';
@@ -80,10 +81,13 @@ const warn = (values) => {
   return warnings;
 };
 
+// Connect component to application state
+const container = connect(null)(SurveyForm);
+
 // Configure Redux Form
 export default reduxForm({
   form: 'survey',
   destroyOnUnmount: false,
   validate,
   warn
-})(SurveyForm);
+})(container);
