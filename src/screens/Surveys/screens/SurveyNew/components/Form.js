@@ -76,6 +76,7 @@ const warn = (values) => {
   if (!values.landing) {
     warnings.landing = 'Leaving it blank the default URL will be applied';
   }
+
   return warnings;
 };
 
