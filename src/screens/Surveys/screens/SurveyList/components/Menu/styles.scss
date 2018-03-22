@@ -1,0 +1,74 @@
+// Global styles
+@import "../../../../../../styles/base/settings";
+
+// Wrapper
+.wrapper {
+  :global .list-group-item-action {
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    padding: 0.5rem 0.75rem;
+
+    @media (min-width: $breakpoint-md) {
+      font-size: 0.875rem;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: $breakpoint-sm - 1) {
+    :global .list-group > .list-group-item:not(:last-child) {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    :global .list-group > .list-group-item:not(:first-child) {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    :global .list-group-item {
+      $transition-group: 0.15s ease-in-out;
+
+      background-color: $color-secondary;
+      border: {
+        color: $color-secondary;
+        radius: 0.2rem;
+      }
+      color: #fff;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      margin-bottom: 0;
+      padding: 0.25rem 0.5rem;
+      transition: color #{$transition-group},
+        background-color #{$transition-group}, border-color #{$transition-group},
+        box-shadow #{$transition-group};
+
+      &:hover {
+        color: #fff;
+        background-color: #5a6268;
+        border-color: #545b62;
+      }
+
+      &.active {
+        background-color: $color-primary;
+        border-color: $color-primary;
+
+        &:hover {
+          background-color: #0069d9;
+          border-color: #0062cc;
+        }
+      }
+    }
+
+    :global .list-group .list-group-item + .list-group-item,
+    :global .list-group .list-group-item + .list-group,
+    :global .list-group .list-group + .list-group-item,
+    :global .list-group .list-group + .list-group,
+    :global .list-group-vertical .list-group-item + .list-group-item,
+    :global .list-group-vertical .list-group-item + .list-group,
+    :global .list-group-vertical .list-group + .list-group-item,
+    :global .list-group-vertical .list-group + .list-group {
+      margin-left: -1px;
+    }
+  }
+}
