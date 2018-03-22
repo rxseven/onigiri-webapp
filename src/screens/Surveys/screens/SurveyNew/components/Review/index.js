@@ -7,12 +7,27 @@ import { bindActionCreators } from 'redux';
 
 import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
 import { FormSHL } from '../../../../../../components/shared/base/Form';
+import Spinner from '../../../../../../components/shared/base/Spinner';
 import Render from '../../../../../../components/shared/helpers/Render';
+
+// Constants
+import PROP_TYPES from '../../../../../../constants/models/propTypes';
+import STATE_MODELS from '../../../../../../constants/models/state';
 
 // Peer dependencies
 import * as surveyActions from '../../../SurveyNew/actions';
+import { getUI } from '../../reducer';
 import FIELDS from '../../constants/fields';
 import styles from './styles.scss';
+
+// Declare prop types and default props
+const propTypes = PROP_TYPES.wrapper.asynchronous({
+  post: PROP_TYPES.model.asynchronous
+});
+
+const defaultProps = STATE_MODELS.wrapper.asynchronous({
+  post: { ...STATE_MODELS.model.asynchronous }
+});
 
 // Component
 class SurveyReview extends Component {
@@ -68,7 +83,8 @@ class SurveyReview extends Component {
   // Render a component
   render() {
     // Variables
-    const { onCancel } = this.props;
+    const { onCancel, state: { ui: { asynchronous } } } = this.props;
+    const { loading } = asynchronous.post;
 
     // View
     return (
@@ -81,6 +97,9 @@ class SurveyReview extends Component {
           <Button button="primary" handler={this.onSubmit}>
             Send survey
           </Button>
+          <Render condition={loading}>
+            <Spinner />
+          </Render>
         </ButtonSet>
       </div>
     );
@@ -92,7 +111,8 @@ const mapStateToProps = state => ({
   state: {
     data: {
       form: state.form.survey.values
-    }
+    },
+    ui: getUI(state)
   }
 });
 
@@ -102,6 +122,10 @@ const mapDispatchToProps = dispatch => ({
     survey: bindActionCreators(surveyActions, dispatch)
   }
 });
+
+// Specify prop types and default values for props
+SurveyReview.propTypes = propTypes;
+SurveyReview.defaultProps = defaultProps;
 
 // Connect component to application state
 const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(SurveyReview));
