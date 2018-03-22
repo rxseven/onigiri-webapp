@@ -1,5 +1,6 @@
 // Module dependencies
 import { mapKeys } from 'lodash';
+import { createSelector } from 'reselect';
 
 // Actions
 import { USER_RESET } from '../../../../../../data/session/actions';
@@ -39,3 +40,9 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+// Non-memoized utility selectors
+const getNode = state => state.screens.surveys.list.data;
+
+// Get surveys
+export const getSurveys = createSelector(getNode, node => node.surveys);
