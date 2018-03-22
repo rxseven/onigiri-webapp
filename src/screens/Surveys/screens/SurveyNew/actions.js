@@ -6,6 +6,13 @@ export const SURVEY_CREATE = 'SurveyNew/SURVEY_CREATE';
 export const SURVEY_CREATE_FAILURE = 'SurveyNew/SURVEY_CREATE_FAILURE';
 export const SURVEY_CREATE_SUCCESS = 'SurveyNew/SURVEY_CREATE_SUCCESS';
 
+export const SURVEY_RESET_UI = 'SurveyNew/SURVEY_RESET_UI';
+
+// Reset UI state
+export const resetUI = () => ({
+  type: SURVEY_RESET_UI
+});
+
 // Create survey : Success
 const createSurveySuccess = data => ({
   type: SURVEY_CREATE_SUCCESS,
