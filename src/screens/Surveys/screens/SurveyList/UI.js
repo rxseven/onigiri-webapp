@@ -41,6 +41,14 @@ class UI extends Component {
 
   // Render component
   render() {
+    // Variables
+    const {
+      actions,
+      state: { data: { surveys: { data, meta } }, ui: { asynchronous } }
+    } = this.props;
+    const { mode, query } = this.state;
+
+    // View
     return (
       <Document>
         <Head>
@@ -52,7 +60,18 @@ class UI extends Component {
             <Row>
               <Column size={CSS.grid.col.SM03}>Sidebar</Column>
               <Column size={CSS.grid.col.SM09}>
-                <List />
+                <List
+                  actions={{
+                    getData: actions.surveys.getSurveys
+                  }}
+                  state={{
+                    asynchronous,
+                    data,
+                    meta,
+                    mode,
+                    query
+                  }}
+                />
               </Column>
             </Row>
           </Layout>
