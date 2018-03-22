@@ -2,6 +2,11 @@
 import React from 'react';
 import ScrollToTop from 'react-scroll-up';
 
+import Icon from '../../../../../../components/shared/base/Icon';
+
+// Peer dependencies
+import styles from './styles.scss';
+
 // Configuration
 const options = {
   showUnder: 160,
@@ -14,7 +19,17 @@ const options = {
 };
 
 // Component
-const ScrollTop = () => <ScrollToTop {...options}>ScrollTop</ScrollToTop>;
+const ScrollTop = () => (
+  <div className={styles.wrapper}>
+    <div className={styles.pin}>
+      <ScrollToTop {...options}>
+        <span className={styles.button}>
+          <Icon name="data-transfer-upload" title="Scroll Top" />
+        </span>
+      </ScrollToTop>
+    </div>
+  </div>
+);
 
 // Module exports
 export default ScrollTop;
