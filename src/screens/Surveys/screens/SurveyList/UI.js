@@ -3,6 +3,7 @@ import cx from 'classnames';
 import React, { Component } from 'react';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
+import { Column, Row } from '../../../../components/shared/base/Grid';
 import Layout from '../../../../components/shared/base/Layout';
 
 // Constants
@@ -44,7 +45,12 @@ class UI extends Component {
           <Title>Surveys</Title>
         </Head>
         <Body>
-          <Layout size={cx(CSS.grid.col.MD12, CSS.grid.col.LG10)}>SurveyList component</Layout>
+          <Layout size={cx(CSS.grid.col.MD12, CSS.grid.col.LG10)}>
+            <Row>
+              <Column size={CSS.grid.col.SM03}>Sidebar</Column>
+              <Column size={CSS.grid.col.SM09}>Content</Column>
+            </Row>
+          </Layout>
         </Body>
       </Document>
     );
