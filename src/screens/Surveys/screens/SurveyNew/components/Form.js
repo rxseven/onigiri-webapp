@@ -11,6 +11,8 @@ import { Form, FormSHL } from '../../../../../components/shared/base/Form';
 import Confirm from '../../../../../components/shared/extended/Confirm';
 import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
 
+import { getCredits } from '../../../../../data/credits/actions';
+import { getBalance } from '../../../../../data/credits/reducer';
 import * as modalActions from '../../../../../data/interfaces/modal/actions';
 import { getModal } from '../../../../../data/interfaces/modal/reducer';
 import validationHelper from '../../../../../helpers/validation';
@@ -23,6 +25,12 @@ import FIELDS from '../constants/fields';
 
 // Component
 class SurveyForm extends Component {
+  // After a component is mounted...
+  componentDidMount() {
+    // Get credits
+    this.getCredits();
+  }
+
   // Request for cancelling form
   onCancelFormRequest = () => {
     // Verify form values
@@ -49,6 +57,13 @@ class SurveyForm extends Component {
     // TODO 1. Create survey list view screen
     // TODO 2. Navigate to survey list view screen
     this.props.history.push(PATHS.root);
+  };
+
+  // Get credits
+  getCredits = () => {
+    if (this.props.state.data.balance == null) {
+      this.props.actions.credits.getCredits();
+    }
   };
 
   // Render content
@@ -136,6 +151,7 @@ const warn = (values) => {
 const mapStateToProps = state => ({
   state: {
     data: {
+      balance: getBalance(state),
       interfaces: {
         modal: getModal(state)
       }
@@ -146,6 +162,7 @@ const mapStateToProps = state => ({
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
   actions: {
+    credits: bindActionCreators({ getCredits }, dispatch),
     modal: bindActionCreators(modalActions, dispatch)
   }
 });
