@@ -1,2 +1,8 @@
+// Initial state
+const initialState = {
+  data: {},
+  meta: {}
+};
+
 // Reducer
-export default (state = null, action) => state;
+export default (state = initialState, action) => state;
