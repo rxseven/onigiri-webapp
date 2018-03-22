@@ -9,6 +9,7 @@ import PATHS from '../../../../../../constants/router/paths';
 import SCREENS from '../../../../../../constants/sizing/screens';
 
 // Peer dependencies
+import Menu from '../Menu';
 import styles from './styles.scss';
 
 // Component
@@ -19,7 +20,9 @@ const Sidebar = ({
 }) => (
   <div className={cx(styles.sidebar, isSticky ? styles.isSticky : false)} style={css}>
     <div className={styles.wrapper}>
-      <div className={styles.list}>Menu</div>
+      <div className={styles.list}>
+        <Menu />
+      </div>
 
       <div className={!isSticky && screenWidth >= SCREENS.small ? 'invisible' : styles.actions}>
         <Button
