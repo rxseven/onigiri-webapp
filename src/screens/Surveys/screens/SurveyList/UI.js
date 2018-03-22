@@ -14,6 +14,7 @@ import CSS from '../../../../constants/string/css';
 // Peer dependencies
 import Headset from './components/Headset';
 import List from './components/List';
+import ScrollTop from './components/ScrollTop';
 import Stickybar from './components/Stickybar';
 import TYPES from './constants/types';
 
@@ -85,6 +86,7 @@ class UI extends Component {
               <Row>
                 <Column size={CSS.grid.col.SM03}>
                   <Stickybar actions={{ mode: this.onMode }} state={{ mode, screenWidth }} />
+                  <ScrollTop />
                 </Column>
                 <Column size={CSS.grid.col.SM09}>
                   <List
