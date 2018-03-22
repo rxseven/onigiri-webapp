@@ -43,13 +43,46 @@ export class Scroller extends Component {
     this.isMouthing = false;
   }
 
+  // Load a list of surveys
+  onLoad = async () => {
+    // Constants
+    const { more, current, next } = this.state;
+
+    // If a list of surveys is available to be fetched, continue fetching data
+    if (more && this.props.state.mode) {
+      // If the API has not returned a response yet, skip the next request
+      if (next !== current) {
+        // Update the current page
+        this.setState(prevState => ({ current: prevState.current + 1 }));
+
+        // Create query string
+        const query = { page: next, ...this.state.query };
+
+        // Make a network request
+        this.props.actions.getData(query, () => {
+          if (this.isMouthing) {
+            // Create the next query if next pages are available
+            if (this.props.state.meta.paging.next) {
+              this.setState(() => ({ next: this.props.state.meta.paging.next }));
+            } else {
+              this.setState(() => ({ more: false }));
+            }
+
+            // Update total fetched items
+            this.setState(prevState => ({ total: prevState.total + 1 }));
+          }
+        });
+      }
+    }
+  };
+
   // Render a component
   render() {
     return (
       <InfiniteScroll
         hasMore={this.state.more}
         loader={<div key={0}>Loading...</div>}
-        loadMore={undefined}
+        loadMore={this.onLoad}
         pageStart={1}
         threshold={100}
       >
