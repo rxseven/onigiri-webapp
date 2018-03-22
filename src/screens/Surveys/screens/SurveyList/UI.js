@@ -10,6 +10,7 @@ import Layout from '../../../../components/shared/base/Layout';
 import CSS from '../../../../constants/string/css';
 
 // Peer dependencies
+import Headset from './components/Headset';
 import TYPES from './constants/types';
 
 // Component
@@ -46,6 +47,7 @@ class UI extends Component {
         </Head>
         <Body>
           <Layout size={cx(CSS.grid.col.MD12, CSS.grid.col.LG10)}>
+            <Headset />
             <Row>
               <Column size={CSS.grid.col.SM03}>Sidebar</Column>
               <Column size={CSS.grid.col.SM09}>Content</Column>
