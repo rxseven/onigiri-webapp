@@ -4,9 +4,17 @@ import { combineReducers } from 'redux';
 // Reducers
 import dataReducer from './data/reducer';
 
+// Constants
+import STATE_MODELS from '../../../../constants/models/state';
+
 // Initial state
 const initialState = {
-  asynchronous: null
+  asynchronous: {
+    get: {
+      ...STATE_MODELS.model.asynchronous,
+      loaded: false
+    }
+  }
 };
 
 // Asynchronous reducer
