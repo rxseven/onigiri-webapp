@@ -5,6 +5,8 @@ import { Route, Switch } from 'react-router-dom';
 // Screens
 import Home from '../screens/Home';
 
+import SurveyNew from '../screens/Surveys/screens/SurveyNew';
+
 import Farewell from '../screens/Users/screens/Farewell';
 import Profile from '../screens/Users/screens/Profile';
 import SignIn from '../screens/Users/screens/SignIn';
@@ -25,6 +27,8 @@ import PATHS from '../constants/router/paths';
 const Routes = () => (
   <Switch>
     <Route component={Home} exact path={PATHS.root} />
+
+    <PrivateRoute component={SurveyNew} exact path={PATHS.surveys.new} />
 
     <PrivateRoute component={Profile} path={PATHS.users.profile} />
     <AuthRoute component={SignIn} path={PATHS.users.signin} />
