@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
+import Loading from '../../base/Loading';
+
 // Declare prop types and default props
 import propTypes from './constants/propTypes';
 import defaultProps from './constants/defaultProps';
@@ -81,7 +83,7 @@ export class Scroller extends Component {
     return (
       <InfiniteScroll
         hasMore={this.state.more}
-        loader={<div key={0}>Loading...</div>}
+        loader={<Loading key={0} />}
         loadMore={this.onLoad}
         pageStart={1}
         threshold={100}
