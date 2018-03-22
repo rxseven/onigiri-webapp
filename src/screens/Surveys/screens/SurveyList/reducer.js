@@ -1,6 +1,9 @@
 // Module dependencies
 import { combineReducers } from 'redux';
 
+// Actions
+import { SURVEYS_GET, SURVEYS_GET_FAILURE, SURVEYS_GET_SUCCESS } from './data/surveys/actions';
+
 // Reducers
 import dataReducer from './data/reducer';
 
@@ -18,7 +21,39 @@ const initialState = {
 };
 
 // Asynchronous reducer
-const asyncReducer = (state = initialState.asynchronous, action) => state;
+const asyncReducer = (state = initialState.asynchronous, action) => {
+  switch (action.type) {
+    // Get surveys
+    case SURVEYS_GET:
+      return {
+        ...state,
+        get: {
+          ...initialState.asynchronous.get,
+          loading: true
+        }
+      };
+    case SURVEYS_GET_FAILURE:
+      return {
+        ...state,
+        get: {
+          ...initialState.asynchronous.get,
+          error: action.payload
+        }
+      };
+    case SURVEYS_GET_SUCCESS:
+      return {
+        ...state,
+        get: {
+          ...initialState.asynchronous.get,
+          loaded: true
+        }
+      };
+
+    // Default
+    default:
+      return state;
+  }
+};
 
 // UI reducer
 const uiReducer = combineReducers({
