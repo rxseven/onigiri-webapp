@@ -55,9 +55,49 @@ export class Scroller extends Component {
 
   // Before a component is unmounted and destroyed...
   componentWillUnmount() {
+    // Save the current pagination query
+    this.onSavePagination();
+
     // Update mouthing state
     this.isMouthing = false;
   }
+
+  // Save the current pagination query
+  onSavePagination = () => {
+    // Variables
+    const { isEmpty, meta: { summary } } = this.props.state;
+    const { current } = this.state;
+    let { more, next, total } = this.state;
+
+    // If navigate to details screen
+    if (!isEmpty) {
+      // Trying to save a pagination query while a component is still waiting
+      // for some data being returned from an asynchronous operation.
+
+      // Force unmouthing with more items to be fetched
+      if (current === next && next < summary.pages) {
+        next = current + 1;
+      }
+
+      // Unmouthing without any items to be fetched
+      if (current === next && next === summary.pages) {
+        const { total: totalItems } = summary;
+        more = false;
+        total = totalItems;
+      }
+
+      // Prepare a pagination query object
+      const pagination = {
+        ...this.state,
+        more,
+        next,
+        total
+      };
+
+      // Save pagination query
+      this.props.actions.updatePagination(pagination);
+    }
+  };
 
   // Load a list of surveys
   onLoad = async () => {
