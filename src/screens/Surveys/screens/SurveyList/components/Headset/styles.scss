@@ -1,0 +1,25 @@
+// Global styles
+@import "../../../../../../styles/base/settings";
+@import "../../../../../../styles/mixins/utilities";
+
+// Headset
+.headset {
+  align-items: center;
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+
+  @media (min-width: $breakpoint-sm) {
+    display: flex;
+  }
+}
+
+// Headline
+.headline {
+  font: {
+    size: 1.5rem;
+    weight: 300;
+  }
+  margin-bottom: 0;
+}
