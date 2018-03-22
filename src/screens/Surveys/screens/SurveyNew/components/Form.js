@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
 
 import { Button } from '../../../../../components/shared/base/Buttons';
+import { Card, CardBody, CardHeader, CardText } from '../../../../../components/shared/base/Card';
 import { Form, FormSHL } from '../../../../../components/shared/base/Form';
 import Confirm from '../../../../../components/shared/extended/Confirm';
 import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
@@ -96,9 +97,35 @@ class SurveyForm extends Component {
     </div>
   );
 
+  // Render warning message
+  renderWarning = () => (
+    <Card alignment="text-center">
+      <CardHeader>Not enough credits</CardHeader>
+      <CardBody>
+        <CardText>Sorry, your credits are gone.</CardText>
+        <Button
+          button="primary"
+          link={{ pathname: PATHS.users.profile, state: { from: this.props.location } }}
+          type="link"
+        >
+          Add credits
+        </Button>
+      </CardBody>
+    </Card>
+  );
+
   // Render component
   render() {
-    return <JSXwrapper>{this.renderContent()}</JSXwrapper>;
+    // Variables
+    const { balance } = this.props.state.data;
+
+    // View
+    return (
+      <JSXwrapper>
+        {balance != null && balance < 1 && this.renderWarning()}
+        {balance != null && balance >= 1 && this.renderContent()}
+      </JSXwrapper>
+    );
   }
 }
 
