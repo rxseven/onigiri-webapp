@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux';
 // Peer dependencies
 import * as dataActions from './data/surveys/actions';
 import { getSurveys } from './data/surveys/reducer';
-import { getUI } from './reducer';
+import * as uiActions from './actions';
+import { getUI, getView } from './reducer';
 import UI from './UI';
 
 // Map state to props
@@ -14,7 +15,8 @@ const mapStateToProps = state => ({
     data: {
       surveys: getSurveys(state)
     },
-    ui: getUI(state)
+    ui: getUI(state),
+    view: getView(state)
   }
 });
 
@@ -23,6 +25,7 @@ const mapDispatchToProps = dispatch => ({
   actions: {
     surveys: bindActionCreators(
       {
+        ...uiActions,
         ...dataActions
       },
       dispatch
