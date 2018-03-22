@@ -3,6 +3,7 @@ import { map } from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 
 import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
 import { FormSHL } from '../../../../../../components/shared/base/Form';
@@ -91,8 +92,18 @@ class SurveyReview extends Component {
 // TODO: Dummy props, please remove
 SurveyReview.defaultProps = defaultProps;
 
+// Map state to props
+const mapStateToProps = state => ({
+  state: {}
+});
+
+// Map dispatch to props
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({}, dispatch)
+});
+
 // Connect component to application state
-const container = withRouter(connect(null)(SurveyReview));
+const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(SurveyReview));
 
 // Module exports
 export default container;
