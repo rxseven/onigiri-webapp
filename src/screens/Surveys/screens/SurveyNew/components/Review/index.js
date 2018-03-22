@@ -97,8 +97,10 @@ class SurveyReview extends Component {
           <Error alert={error} />
         </Render>
         <ButtonSet>
-          <Button handler={onCancel}>Edit</Button>
-          <Button button="primary" handler={this.onSubmit}>
+          <Button disabled={loading} handler={onCancel}>
+            Edit
+          </Button>
+          <Button button="primary" disabled={loading} handler={this.onSubmit}>
             Send survey
           </Button>
           <Render condition={loading}>
