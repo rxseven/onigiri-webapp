@@ -78,6 +78,9 @@ class SurveyReview extends Component {
         {this.renderInfo()}
         <ButtonSet>
           <Button handler={onCancel}>Edit</Button>
+          <Button button="primary" handler={this.onSubmit}>
+            Send survey
+          </Button>
         </ButtonSet>
       </div>
     );
