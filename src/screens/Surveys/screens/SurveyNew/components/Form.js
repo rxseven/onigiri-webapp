@@ -40,6 +40,9 @@ const validate = (values) => {
   // Initial errors object
   const errors = {};
 
+  // Validate email
+  errors.from = validationHelper.email(values.from);
+
   // Validate email addresses
   errors.recipients = validationHelper.emails(values.recipients);
 

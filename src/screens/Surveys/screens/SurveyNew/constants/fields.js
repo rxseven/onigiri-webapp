@@ -9,7 +9,7 @@ export default [
     label: 'From',
     name: 'from',
     type: 'text',
-    required: true
+    required: false
   },
   {
     label: 'Subject line',
