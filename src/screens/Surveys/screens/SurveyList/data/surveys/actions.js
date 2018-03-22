@@ -8,6 +8,8 @@ export const SURVEYS_GET = 'Surveys/data/SURVEYS_GET';
 export const SURVEYS_GET_FAILURE = 'Surveys/data/SURVEYS_GET_FAILURE';
 export const SURVEYS_GET_SUCCESS = 'Surveys/data/SURVEYS_GET_SUCCESS';
 
+export const SURVEYS_SELECT_MODE = 'Surveys/data/SURVEYS_SELECT_MODE';
+
 // Cancel getting a list of surveys
 export const cancelSurveys = () => {
   // 1. Cancel a request
@@ -51,3 +53,9 @@ export const getSurveys = (query, callback) => async (dispatch) => {
     }
   }
 };
+
+// Select list view mode
+export const selectMode = query => ({
+  type: SURVEYS_SELECT_MODE,
+  payload: query
+});
