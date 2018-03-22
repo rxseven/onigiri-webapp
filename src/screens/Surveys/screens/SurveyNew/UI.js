@@ -19,13 +19,18 @@ class UI extends Component {
   // Initial state
   state = { isReview: false };
 
+  // Toggle form view
+  onToggleView = (visibility) => {
+    this.setState({ isReview: visibility });
+  };
+
   // Render content
   renderContent = () => {
     if (this.state.isReview) {
-      return <Review />;
+      return <Review onCancel={() => this.onToggleView(false)} />;
     }
 
-    return <Form />;
+    return <Form onReview={() => this.onToggleView(true)} />;
   };
 
   // Render component
