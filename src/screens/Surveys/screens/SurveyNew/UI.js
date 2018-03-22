@@ -12,6 +12,19 @@ import CSS from '../../../../constants/string/css';
 
 // Component
 class UI extends Component {
+  // Initial state
+  state = { isReview: false };
+
+  // Render content
+  renderContent = () => {
+    if (this.state.isReview) {
+      return <div>Review component</div>;
+    }
+
+    return <div>Form component</div>;
+  };
+
+  // Render component
   render() {
     return (
       <Document>
@@ -21,6 +34,7 @@ class UI extends Component {
         <Body>
           <Layout size={cx(CSS.grid.col.MD08, CSS.grid.col.LG06)}>
             <FormHL>Create survey</FormHL>
+            {this.renderContent()}
           </Layout>
         </Body>
       </Document>
