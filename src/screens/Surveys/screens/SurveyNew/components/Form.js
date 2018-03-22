@@ -6,16 +6,51 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
 
+import { Button } from '../../../../../components/shared/base/Buttons';
 import { Form, FormSHL } from '../../../../../components/shared/base/Form';
+import Confirm from '../../../../../components/shared/extended/Confirm';
 import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
 
+import * as modalActions from '../../../../../data/interfaces/modal/actions';
+import { getModal } from '../../../../../data/interfaces/modal/reducer';
 import validationHelper from '../../../../../helpers/validation';
+
+// Constants
+import PATHS from '../../../../../constants/router/paths';
 
 // Peer dependencies
 import FIELDS from '../constants/fields';
 
 // Component
 class SurveyForm extends Component {
+  // Request for cancelling form
+  onCancelFormRequest = () => {
+    // Verify form values
+    if (this.props.pristine) {
+      // If the form is clean, navigate away
+      this.onLeave();
+    } else {
+      // If the form has values, show a confirmation modal
+      this.props.actions.modal.openModal();
+    }
+  };
+
+  // Confirm cancelling form
+  onCancelFormConfirm = () => {
+    // Close a modal
+    this.props.actions.modal.closeModal();
+
+    // Navigate away
+    this.onLeave();
+  };
+
+  // Navigate to survey list view screen
+  onLeave = () => {
+    // TODO 1. Create survey list view screen
+    // TODO 2. Navigate to survey list view screen
+    this.props.history.push(PATHS.root);
+  };
+
   // Render content
   renderContent = () => (
     <div>
@@ -23,12 +58,26 @@ class SurveyForm extends Component {
       <Form
         {...this.props}
         alert={false}
+        cancelButton={<Button handler={this.onCancelFormRequest}>Cancel</Button>}
         fields={FIELDS}
         spinner={false}
         submitButton="Next"
         submitCallback={false}
         submitFunction={undefined}
       />
+      <Confirm
+        alert={false}
+        buttonCancel="Cancel"
+        buttonConfirm="Discard"
+        onClose={this.props.actions.modal.closeModal}
+        onConfirm={this.onCancelFormConfirm}
+        spinner={false}
+        title="Cancel Creating Survey"
+        visibility={this.props.state.data.interfaces.modal.isOpen}
+      >
+        <h5>All your progress will be lost</h5>
+        <p>Are you sure you don&apos;t want to reconsider?</p>
+      </Confirm>
     </div>
   );
 
@@ -85,12 +134,20 @@ const warn = (values) => {
 
 // Map state to props
 const mapStateToProps = state => ({
-  state: {}
+  state: {
+    data: {
+      interfaces: {
+        modal: getModal(state)
+      }
+    }
+  }
 });
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({}, dispatch)
+  actions: {
+    modal: bindActionCreators(modalActions, dispatch)
+  }
 });
 
 // Connect component to application state
