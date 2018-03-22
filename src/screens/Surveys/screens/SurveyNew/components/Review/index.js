@@ -13,23 +13,6 @@ import Render from '../../../../../../components/shared/helpers/Render';
 import FIELDS from '../../constants/fields';
 import styles from './styles.scss';
 
-// TODO: Dummy props, please remove
-const defaultProps = {
-  state: {
-    data: {
-      form: {
-        title: 'Dummy survey title',
-        from: 'noreply.surveys@rxseven.com',
-        subject: 'Dummy subject line',
-        body: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-        galley of type and scrambled it to make a type specimen book.`,
-        recipients: 'recipient-001@testmail.com, recipient-002@testmail.com'
-      }
-    }
-  }
-};
-
 // Component
 class SurveyReview extends Component {
   // Render fields
@@ -88,9 +71,6 @@ class SurveyReview extends Component {
     );
   }
 }
-
-// TODO: Dummy props, please remove
-SurveyReview.defaultProps = defaultProps;
 
 // Map state to props
 const mapStateToProps = state => ({
