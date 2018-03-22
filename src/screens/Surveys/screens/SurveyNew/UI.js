@@ -12,6 +12,7 @@ import CSS from '../../../../constants/string/css';
 
 // Peer dependencies
 import Form from './components/Form';
+import Review from './components/Review';
 
 // Component
 class UI extends Component {
@@ -21,7 +22,7 @@ class UI extends Component {
   // Render content
   renderContent = () => {
     if (this.state.isReview) {
-      return <div>Review component</div>;
+      return <Review />;
     }
 
     return <Form />;
