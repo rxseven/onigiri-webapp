@@ -2,6 +2,7 @@
 import { mapKeys } from 'lodash';
 
 // Actions
+import { USER_RESET } from '../../../../../../data/session/actions';
 import { SURVEYS_GET, SURVEYS_GET_FAILURE, SURVEYS_GET_SUCCESS } from './actions';
 
 // Initial state
@@ -28,6 +29,10 @@ export default (state = initialState, action) => {
           ...action.payload.meta
         }
       };
+
+    // Clean up data
+    case USER_RESET:
+      return initialState;
 
     // Default
     default:
