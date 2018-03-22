@@ -80,7 +80,7 @@ class SurveyForm extends Component {
         spinner={false}
         submitButton="Next"
         submitCallback={false}
-        submitFunction={undefined}
+        submitFunction={this.props.onReview}
       />
       <Confirm
         alert={false}
