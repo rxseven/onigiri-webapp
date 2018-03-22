@@ -10,11 +10,23 @@ import { FormSHL } from '../../../../../../components/shared/base/Form';
 import Render from '../../../../../../components/shared/helpers/Render';
 
 // Peer dependencies
+import * as surveyActions from '../../../SurveyNew/actions';
 import FIELDS from '../../constants/fields';
 import styles from './styles.scss';
 
 // Component
 class SurveyReview extends Component {
+  // Submit handler
+  onSubmit = () => {
+    // Variables
+    const { actions, state: { data: { form } } } = this.props;
+
+    // Create new survey and send out emails
+    actions.survey.createSurvey(form, (id) => {
+      // TODO: Redirect to Success screen after the form has been submitted
+      console.log('this.onSubmit() is executed.');
+    });
+  };
   // Render fields
   renderField = () =>
     // Create Field array of values
@@ -83,7 +95,9 @@ const mapStateToProps = state => ({
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({}, dispatch)
+  actions: {
+    survey: bindActionCreators(surveyActions, dispatch)
+  }
 });
 
 // Connect component to application state
