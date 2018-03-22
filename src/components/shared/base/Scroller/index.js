@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import Loading from '../../base/Loading';
+import Error from '../../extended/Error';
+import Render from '../../helpers/Render';
 
 // Declare prop types and default props
 import propTypes from './constants/propTypes';
@@ -37,6 +39,14 @@ export class Scroller extends Component {
   componentDidMount() {
     // Update mouthing state
     this.isMouthing = true;
+  }
+
+  // Before a mounted component receives new props...
+  componentWillReceiveProps(nextProps) {
+    // If the API returns error, stop making a request
+    if (nextProps.state.isError) {
+      this.setState(() => ({ more: false }));
+    }
   }
 
   // Before a component is unmounted and destroyed...
@@ -78,6 +88,13 @@ export class Scroller extends Component {
     }
   };
 
+  // Render alert
+  renderAlert = ({ isError = false }) => (
+    <Render condition={isError}>
+      <Error alert={isError} />
+    </Render>
+  );
+
   // Render a component
   render() {
     return (
@@ -89,6 +106,7 @@ export class Scroller extends Component {
         threshold={100}
       >
         {this.props.children}
+        {this.renderAlert(this.props.state)}
       </InfiniteScroll>
     );
   }
