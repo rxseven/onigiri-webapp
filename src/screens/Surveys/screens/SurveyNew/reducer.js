@@ -2,7 +2,12 @@
 import { combineReducers } from 'redux';
 
 // Actions
-import { SURVEY_CREATE, SURVEY_CREATE_FAILURE, SURVEY_CREATE_SUCCESS } from './actions';
+import {
+  SURVEY_CREATE,
+  SURVEY_CREATE_FAILURE,
+  SURVEY_CREATE_SUCCESS,
+  SURVEY_RESET_UI
+} from './actions';
 
 // Constants
 import STATE_MODELS from '../../../../constants/models/state';
@@ -32,9 +37,12 @@ const asyncReducer = (state = initialState, action) => {
         }
       };
     case SURVEY_CREATE_SUCCESS:
+    case SURVEY_RESET_UI:
       return {
         ...initialState
       };
+
+    // Default
     default:
       return state;
   }
