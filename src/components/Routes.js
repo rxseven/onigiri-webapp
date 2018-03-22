@@ -31,7 +31,11 @@ const Routes = () => (
     <Route component={Home} exact path={PATHS.root} />
 
     <PrivateRoute component={SurveyNew} exact path={PATHS.surveys.new} />
-    <ReferralRoute component={SurveySuccess} path={PATHS.surveys.success} />
+    <ReferralRoute
+      component={SurveySuccess}
+      path={PATHS.surveys.success}
+      redirectTo={PATHS.surveys.list}
+    />
     <PrivateRoute component={SurveyList} exact path={PATHS.surveys.list} />
 
     <PrivateRoute component={Profile} path={PATHS.users.profile} />
