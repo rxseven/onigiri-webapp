@@ -6,6 +6,7 @@ import { Sticky } from 'react-sticky';
 import SCREENS from '../../../../../../constants/sizing/screens';
 
 // Peer dependencies
+import Sidebar from '../Sidebar';
 import styles from './styles.scss';
 
 // Component
@@ -26,11 +27,12 @@ const Stickybar = ({ actions, state }) => (
           };
         }
 
-        // FIXME: debugging console log, please remove
-        console.log('Stickybar CSS :', css);
-
         // Sidebar
-        return <div>Sidebar</div>;
+        return (
+          <div>
+            <Sidebar state={{ ...state, css, isSticky }} />
+          </div>
+        );
       }}
     </Sticky>
   </div>
