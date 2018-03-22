@@ -1,6 +1,7 @@
 // Module dependencies
 import cx from 'classnames';
 import React, { Component } from 'react';
+import { reduxForm } from 'redux-form';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import { FormHL } from '../../../../components/shared/base/Form';
@@ -27,5 +28,11 @@ class UI extends Component {
   }
 }
 
+// Configure Redux Form
+const container = reduxForm({
+  form: 'survey',
+  destroyOnUnmount: true
+})(UI);
+
 // Module exports
-export default UI;
+export default container;
