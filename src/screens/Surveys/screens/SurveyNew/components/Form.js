@@ -9,6 +9,7 @@ import { reduxForm } from 'redux-form';
 import { Button } from '../../../../../components/shared/base/Buttons';
 import { Card, CardBody, CardHeader, CardText } from '../../../../../components/shared/base/Card';
 import { Form, FormSHL } from '../../../../../components/shared/base/Form';
+import Loading from '../../../../../components/shared/base/Loading';
 import Confirm from '../../../../../components/shared/extended/Confirm';
 import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
 
@@ -97,6 +98,9 @@ class SurveyForm extends Component {
     </div>
   );
 
+  // Render loading state
+  renderLoading = () => <Loading />;
+
   // Render warning message
   renderWarning = () => (
     <Card alignment="text-center">
@@ -122,6 +126,7 @@ class SurveyForm extends Component {
     // View
     return (
       <JSXwrapper>
+        {balance == null && this.renderLoading()}
         {balance != null && balance < 1 && this.renderWarning()}
         {balance != null && balance >= 1 && this.renderContent()}
       </JSXwrapper>
