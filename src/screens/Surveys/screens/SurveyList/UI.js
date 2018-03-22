@@ -13,6 +13,7 @@ import CSS from '../../../../constants/string/css';
 // Peer dependencies
 import Headset from './components/Headset';
 import List from './components/List';
+import Stickybar from './components/Stickybar';
 import TYPES from './constants/types';
 
 // Component
@@ -60,7 +61,9 @@ class UI extends Component {
             <Headset />
             <StickyContainer>
               <Row>
-                <Column size={CSS.grid.col.SM03}>Sidebar</Column>
+                <Column size={CSS.grid.col.SM03}>
+                  <Stickybar />
+                </Column>
                 <Column size={CSS.grid.col.SM09}>
                   <List
                     actions={{
