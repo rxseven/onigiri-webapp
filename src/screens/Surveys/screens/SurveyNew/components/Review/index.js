@@ -2,6 +2,7 @@
 import { map } from 'lodash';
 import React, { Component } from 'react';
 
+import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
 import { FormSHL } from '../../../../../../components/shared/base/Form';
 import Render from '../../../../../../components/shared/helpers/Render';
 
@@ -68,11 +69,18 @@ class SurveyReview extends Component {
 
   // Render a component
   render() {
+    // Variables
+    const { onCancel } = this.props;
+
+    // View
     return (
       <div className="form-review">
         <FormSHL>Please review your entries</FormSHL>
         {this.renderField()}
         {this.renderInfo()}
+        <ButtonSet>
+          <Button handler={onCancel}>Edit</Button>
+        </ButtonSet>
       </div>
     );
   }
