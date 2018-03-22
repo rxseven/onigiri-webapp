@@ -10,6 +10,9 @@ import Layout from '../../../../components/shared/base/Layout';
 // Constants
 import CSS from '../../../../constants/string/css';
 
+// Peer dependencies
+import Form from './components/Form';
+
 // Component
 class UI extends Component {
   // Initial state
@@ -21,7 +24,7 @@ class UI extends Component {
       return <div>Review component</div>;
     }
 
-    return <div>Form component</div>;
+    return <Form />;
   };
 
   // Render component
