@@ -8,7 +8,8 @@ export default {
   root: '/',
   surveys: {
     base: base.surveys,
-    new: `${base.surveys}/new`
+    new: `${base.surveys}/new`,
+    success: `${base.surveys}/new/success`
   },
   users: {
     farewell: '/farewell',
