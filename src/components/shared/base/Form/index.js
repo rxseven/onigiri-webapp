@@ -128,7 +128,7 @@ export class Form extends Component {
         </Render>
         <ButtonSet>
           {cancelButton}
-          <Button disabled={pristine || (spinner && loading)} styles="primary" type="submit">
+          <Button button="primary" disabled={pristine || (spinner && loading)} type="submit">
             {submitButton}
           </Button>
           <Render condition={spinner && loading}>
