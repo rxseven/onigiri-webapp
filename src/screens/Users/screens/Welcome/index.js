@@ -25,7 +25,7 @@ const Welcome = () => (
             <Text lead>Send professional looking surveys to customers</Text>
             <Text lead>Analyze responses with automatic summaries</Text>
             <hr />
-            <Button button="primary" link={PATHS.root} type="link">
+            <Button button="primary" link={PATHS.surveys.list} type="link">
               Get started!
             </Button>
           </HeroBody>
