@@ -2,18 +2,44 @@
 import { isEmpty as checkEmpty, map } from 'lodash';
 import React from 'react';
 
+import { Button } from '../../../../../../components/shared/base/Buttons';
+import { Hero, HeroHeader, HeroBody } from '../../../../../../components/shared/base/Hero';
 import { ListGroup } from '../../../../../../components/shared/base/ListGroup';
 import {
   Scroller,
-  ScrollerContent
+  ScrollerContent,
+  ScrollerEmpty
 } from '../../../../../../components/shared/base/Scroller';
+import Text from '../../../../../../components/shared/base/Text';
 
 // Constants
+import PATHS from '../../../../../../constants/router/paths';
 import CSS from '../../../../../../constants/string/css';
 
 // Peer dependencies
+import TYPES from '../../constants/types';
 import Item from '../Item';
 import styles from './styles.scss';
+
+// Render message
+const renderMessage = () => (
+  <Hero>
+    <HeroHeader>Get started!</HeroHeader>
+    <HeroBody>
+      <Text lead>Create custom surveys and questionnaires at no extra cost.</Text>
+      <Button button="primary" link={PATHS.surveys.new} type="link">
+        Start now
+      </Button>
+    </HeroBody>
+  </Hero>
+);
+
+// Render empty list
+const renderEmpty = mode => (
+  <Hero>
+    <HeroBody>No {mode} items</HeroBody>
+  </Hero>
+);
 
 // Component
 const List = ({ actions, state }) => {
@@ -21,8 +47,10 @@ const List = ({ actions, state }) => {
   const {
     asynchronous, data, meta, mode, pagination, query
   } = state;
+  const isActive = TYPES.mode.active;
   const isEmpty = checkEmpty(data);
   const isError = asynchronous.get.error;
+  const isLoaded = asynchronous.get.loaded;
 
   // View
   return (
@@ -46,6 +74,10 @@ const List = ({ actions, state }) => {
             })}
           </ListGroup>
         </ScrollerContent>
+        <ScrollerEmpty>
+          {isLoaded && isEmpty && mode === isActive && renderMessage()}
+          {isLoaded && isEmpty && mode !== isActive && renderEmpty(mode)}
+        </ScrollerEmpty>
       </Scroller>
     </div>
   );
