@@ -18,6 +18,12 @@ const initialState = {
       ...STATE_MODELS.model.asynchronous,
       loaded: false
     }
+  },
+  view: {
+    mode: 'active',
+    pagination: null,
+    query: null,
+    selected: null
   }
 };
 
@@ -56,6 +62,9 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
   }
 };
 
+// View reducer
+const viewReducer = (state = initialState.view, action) => state;
+
 // UI reducer
 const uiReducer = combineReducers({
   asynchronous: asyncReducer
@@ -64,7 +73,8 @@ const uiReducer = combineReducers({
 // Combine reducers
 export default combineReducers({
   data: dataReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  view: viewReducer
 });
 
 // Non-memoized utility selectors
