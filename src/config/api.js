@@ -12,6 +12,13 @@ const API = {
 export default {
   name: API.name,
   host: API.host,
+  query: {
+    surveys: {
+      list: {
+        limit: 2
+      }
+    }
+  },
   endpoints: {
     payments: {
       base: API.routes.payments,
