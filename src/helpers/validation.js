@@ -10,7 +10,7 @@ const REGEX = {
 // Pattern validation
 export default {
   email: (string) => {
-    if (!REGEX.email.test(string)) {
+    if (string && !REGEX.email.test(string)) {
       return 'Invalid email address';
     }
 
