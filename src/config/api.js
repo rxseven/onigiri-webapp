@@ -4,6 +4,7 @@ const API = {
   host: process.env.REACT_APP_API_URL,
   routes: {
     payments: '/payments',
+    surveys: '/surveys',
     users: '/users'
   }
 };
@@ -15,6 +16,9 @@ export default {
     payments: {
       base: API.routes.payments,
       checkout: `${API.routes.payments}/checkout`
+    },
+    surveys: {
+      base: API.routes.surveys
     },
     users: {
       base: API.routes.users,
