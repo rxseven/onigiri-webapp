@@ -11,6 +11,7 @@ import CSS from '../../../../constants/string/css';
 
 // Peer dependencies
 import Headset from './components/Headset';
+import List from './components/List';
 import TYPES from './constants/types';
 
 // Component
@@ -50,7 +51,9 @@ class UI extends Component {
             <Headset />
             <Row>
               <Column size={CSS.grid.col.SM03}>Sidebar</Column>
-              <Column size={CSS.grid.col.SM09}>Content</Column>
+              <Column size={CSS.grid.col.SM09}>
+                <List />
+              </Column>
             </Row>
           </Layout>
         </Body>
