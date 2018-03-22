@@ -62,9 +62,27 @@ const validate = (values) => {
   return errors;
 };
 
+// Warning validation rules
+const warn = (values) => {
+  // Initial warnings object
+  const warnings = {};
+
+  // From field
+  if (!values.from) {
+    warnings.from = 'Leaving it blank the default email will be applied';
+  }
+
+  // Landing page field
+  if (!values.landing) {
+    warnings.landing = 'Leaving it blank the default URL will be applied';
+  }
+  return warnings;
+};
+
 // Configure Redux Form
 export default reduxForm({
   form: 'survey',
   destroyOnUnmount: false,
-  validate
+  validate,
+  warn
 })(SurveyForm);
