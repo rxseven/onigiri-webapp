@@ -34,11 +34,8 @@ class SignInForm extends Component {
 
   // Form submission callback
   submitCallback = () => {
-    // TODO: Navigate to Survey list screen after the form has been submitted
-    console.log('Form has been submitted successfully');
-
-    // FIXME: Replace this temporary implementation with TODO
-    this.props.history.push({ pathname: PATHS.root });
+    // Redirect to Surveys screen after the form has been submitted
+    this.props.history.push({ pathname: PATHS.surveys.list });
   };
 
   // Render component
