@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
 import { FormSHL } from '../../../../../../components/shared/base/Form';
 import Spinner from '../../../../../../components/shared/base/Spinner';
+import Error from '../../../../../../components/shared/extended/Error';
 import Render from '../../../../../../components/shared/helpers/Render';
 
 // Constants
@@ -84,7 +85,7 @@ class SurveyReview extends Component {
   render() {
     // Variables
     const { onCancel, state: { ui: { asynchronous } } } = this.props;
-    const { loading } = asynchronous.post;
+    const { error, loading } = asynchronous.post;
 
     // View
     return (
@@ -92,6 +93,9 @@ class SurveyReview extends Component {
         <FormSHL>Please review your entries</FormSHL>
         {this.renderField()}
         {this.renderInfo()}
+        <Render condition={error}>
+          <Error alert={error} />
+        </Render>
         <ButtonSet>
           <Button handler={onCancel}>Edit</Button>
           <Button button="primary" handler={this.onSubmit}>
