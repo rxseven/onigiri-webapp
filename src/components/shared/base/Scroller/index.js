@@ -2,6 +2,10 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
+// Declare prop types and default props
+import propTypes from './constants/propTypes';
+import defaultProps from './constants/defaultProps';
+
 // Constants
 const INITIAL_STATE = {
   current: 0,
@@ -60,3 +64,10 @@ export const ScrollerContent = props => props.children;
 
 // Scroller empty content
 export const ScrollerEmpty = props => props.children;
+
+// Specify prop types and default values for props
+Scroller.propTypes = propTypes.core;
+ScrollerContent.propTypes = propTypes.content;
+ScrollerEmpty.propTypes = propTypes.empty;
+
+Scroller.defaultProps = defaultProps.core;
