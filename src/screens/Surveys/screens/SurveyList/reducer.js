@@ -9,6 +9,7 @@ import {
   SURVEYS_GET_SUCCESS,
   SURVEYS_SELECT_MODE
 } from './data/surveys/actions';
+import { SURVEYS_SAVE_PAGINATION } from './actions';
 
 // Reducers
 import dataReducer from './data/reducer';
@@ -70,6 +71,13 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
 // View reducer
 const viewReducer = (state = initialState.view, action) => {
   switch (action.type) {
+    // Save pagination query
+    case SURVEYS_SAVE_PAGINATION:
+      return {
+        ...state,
+        pagination: action.payload
+      };
+
     // Change mode
     case SURVEYS_SELECT_MODE:
       return {

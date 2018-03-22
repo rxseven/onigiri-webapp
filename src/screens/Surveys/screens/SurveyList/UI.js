@@ -57,13 +57,18 @@ class UI extends Component {
     }
   };
 
+  // Save the current pagination query
+  onPaginate = (values) => {
+    this.props.actions.surveys.savePagination(values);
+  };
+
   // Render component
   render() {
     // Variables
     const {
       actions,
       screenWidth,
-      state: { data: { surveys: { data, meta } }, ui: { asynchronous } }
+      state: { data: { surveys: { data, meta } }, ui: { asynchronous }, view: { pagination } }
     } = this.props;
     const { mode, query } = this.state;
 
@@ -84,13 +89,15 @@ class UI extends Component {
                 <Column size={CSS.grid.col.SM09}>
                   <List
                     actions={{
-                      getData: actions.surveys.getSurveys
+                      getData: actions.surveys.getSurveys,
+                      updatePagination: this.onPaginate
                     }}
                     state={{
                       asynchronous,
                       data,
                       meta,
                       mode,
+                      pagination,
                       query
                     }}
                   />
