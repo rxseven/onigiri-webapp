@@ -56,9 +56,7 @@ class SurveyForm extends Component {
 
   // Navigate to survey list view screen
   onLeave = () => {
-    // TODO 1. Create survey list view screen
-    // TODO 2. Navigate to survey list view screen
-    this.props.history.push(PATHS.root);
+    this.props.history.push(PATHS.surveys.list);
   };
 
   // Get credits
