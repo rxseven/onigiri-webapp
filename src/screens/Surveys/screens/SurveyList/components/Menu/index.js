@@ -18,7 +18,7 @@ const Menu = ({ actions, state }) => (
 }, index) => (
   <ButtonHandler
     active={state.mode === selection}
-    handler={undefined}
+    handler={{ onClick: actions.mode }}
     icon={icon}
     key={`button-0${index}`}
     title={title}

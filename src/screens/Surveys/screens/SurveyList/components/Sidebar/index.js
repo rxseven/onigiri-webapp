@@ -21,7 +21,7 @@ const Sidebar = ({
   <div className={cx(styles.sidebar, isSticky ? styles.isSticky : false)} style={css}>
     <div className={styles.wrapper}>
       <div className={styles.list}>
-        <Menu />
+        <Menu actions={actions} state={{ mode }} />
       </div>
 
       <div className={!isSticky && screenWidth >= SCREENS.small ? 'invisible' : styles.actions}>

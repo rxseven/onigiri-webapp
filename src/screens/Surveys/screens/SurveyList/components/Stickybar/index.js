@@ -30,7 +30,7 @@ const Stickybar = ({ actions, state }) => (
         // Sidebar
         return (
           <div>
-            <Sidebar state={{ ...state, css, isSticky }} />
+            <Sidebar actions={actions} state={{ ...state, css, isSticky }} />
           </div>
         );
       }}
