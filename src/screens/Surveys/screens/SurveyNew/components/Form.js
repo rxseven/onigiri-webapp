@@ -2,6 +2,7 @@
 import { each } from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
 import { Form, FormSHL } from '../../../../../components/shared/base/Form';
@@ -82,7 +83,7 @@ const warn = (values) => {
 };
 
 // Connect component to application state
-const container = connect(null)(SurveyForm);
+const container = withRouter(connect(null)(SurveyForm));
 
 // Configure Redux Form
 export default reduxForm({
