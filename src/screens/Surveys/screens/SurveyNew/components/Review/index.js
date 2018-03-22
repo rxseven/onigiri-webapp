@@ -32,6 +32,17 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 
 // Component
 class SurveyReview extends Component {
+  // Before a component is unmounted and destroyed...
+  componentWillUnmount() {
+    // Reset UI state
+    this.onReset();
+  }
+
+  // Reset UI state
+  onReset = () => {
+    this.props.actions.survey.resetUI();
+  };
+
   // Submit handler
   onSubmit = () => {
     // Variables
