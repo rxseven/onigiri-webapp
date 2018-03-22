@@ -1,4 +1,6 @@
 // Module dependencies
+import axios from 'axios';
+
 import ajax from '../helpers/ajax';
 
 // Constants
@@ -11,3 +13,20 @@ export const createSurvey = data =>
     method: 'post',
     url: API.endpoints.surveys.base
   });
+
+// Get a list of surveys
+let cancelRequest;
+export const getSurveys = query =>
+  // Sequently get a part of data (pagination, infinite scrolling)
+  ajax({
+    cancelToken: new axios.CancelToken((abort) => {
+      cancelRequest = abort;
+    }),
+    params: { ...query, limit: API.query.surveys.list.limit },
+    url: API.endpoints.surveys.base
+  });
+
+// Cancel getting a list of surveys
+export const cancelSurveys = () => {
+  cancelRequest('Operation canceled by the user');
+};
