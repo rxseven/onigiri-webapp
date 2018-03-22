@@ -103,3 +103,6 @@ export const getUI = createSelector(getNode, node => node.ui);
 
 // Get asynchronous state
 export const getAsync = createSelector(getNode, node => node.ui.asynchronous);
+
+// Get view state
+export const getView = createSelector(getNode, node => node.view);
