@@ -1,6 +1,7 @@
 // Module dependencies
 import cx from 'classnames';
 import React, { Component } from 'react';
+import withSizes from 'react-sizes';
 import { StickyContainer } from 'react-sticky';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
@@ -46,6 +47,7 @@ class UI extends Component {
     // Variables
     const {
       actions,
+      screenWidth,
       state: { data: { surveys: { data, meta } }, ui: { asynchronous } }
     } = this.props;
     const { mode, query } = this.state;
@@ -62,7 +64,7 @@ class UI extends Component {
             <StickyContainer>
               <Row>
                 <Column size={CSS.grid.col.SM03}>
-                  <Stickybar />
+                  <Stickybar state={{ mode, screenWidth }} />
                 </Column>
                 <Column size={CSS.grid.col.SM09}>
                   <List
@@ -87,5 +89,8 @@ class UI extends Component {
   }
 }
 
+// Map sizes to props
+const mapSizesToProps = ({ width }) => ({ screenWidth: width });
+
 // Module exports
-export default UI;
+export default withSizes(mapSizesToProps)(UI);

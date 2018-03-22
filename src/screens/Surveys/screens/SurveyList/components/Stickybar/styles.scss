@@ -1,0 +1,13 @@
+// Global styles
+@import "../../../../../../styles/base/settings";
+
+// Disable plugin's default styles
+.wrapper {
+  position: relative;
+
+  > div > div {
+    @media (max-width: $breakpoint-sm - 1) {
+      padding-bottom: 0 !important;
+    }
+  }
+}
