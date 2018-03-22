@@ -1,6 +1,9 @@
 // Module dependencies
 import * as surveysService from '../../../../services/surveys';
 
+// Action creators
+import { updateCredits } from '../../../../data/credits/actions';
+
 // Actions
 export const SURVEY_CREATE = 'SurveyNew/SURVEY_CREATE';
 export const SURVEY_CREATE_FAILURE = 'SurveyNew/SURVEY_CREATE_FAILURE';
@@ -37,6 +40,7 @@ export const createSurvey = (values, callback) => async (dispatch) => {
 
     // 4. Inform reducers that the request finished successfully
     dispatch(createSurveySuccess());
+    dispatch(updateCredits(data.credits));
 
     // 5. Execute a callback
     callback(data.id);
