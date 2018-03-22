@@ -11,6 +11,8 @@ export const CREDITS_GET = 'data/credits/CREDITS_GET';
 export const CREDITS_GET_FAILURE = 'data/credits/CREDITS_GET_FAILURE';
 export const CREDITS_GET_SUCCESS = 'data/credits/CREDITS_GET_SUCCESS';
 
+export const CREDITS_UPDATE = 'data/credits/CREDITS_UPDATE';
+
 // Checkout : Success
 const checkoutSuccess = data => ({
   type: CHECKOUT_SUCCESS,
@@ -73,3 +75,9 @@ export const getCredits = () => async (dispatch) => {
     dispatch(getCreditsFailure(error));
   }
 };
+
+// Update credits
+export const updateCredits = data => ({
+  type: CREDITS_UPDATE,
+  payload: data
+});
