@@ -1,6 +1,7 @@
 // Module dependencies
 import { map } from 'lodash';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
 import { FormSHL } from '../../../../../../components/shared/base/Form';
@@ -89,5 +90,8 @@ class SurveyReview extends Component {
 // TODO: Dummy props, please remove
 SurveyReview.defaultProps = defaultProps;
 
+// Connect component to application state
+const container = connect(null)(SurveyReview);
+
 // Module exports
-export default SurveyReview;
+export default container;
