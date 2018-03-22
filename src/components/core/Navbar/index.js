@@ -108,6 +108,11 @@ class Navbar extends Component {
       <NavLink className={cx('navbar-item', 'nav-link', styles.home)} exact to={PATHS.root}>
         <Icon name="home" title="Home" />
       </NavLink>
+      <Render condition={this.props.data.session.authorization}>
+        <NavLink className="navbar-item nav-link" to={PATHS.surveys.list}>
+          Surveys
+        </NavLink>
+      </Render>
     </div>
   );
 

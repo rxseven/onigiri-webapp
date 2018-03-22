@@ -2,9 +2,11 @@
 import { combineReducers } from 'redux';
 
 // Reducers
+import listReducer from './screens/SurveyList/reducer';
 import newReducer from './screens/SurveyNew/reducer';
 
 // Combine reducers
 export default combineReducers({
+  list: listReducer,
   new: newReducer
 });

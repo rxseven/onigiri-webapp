@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../screens/Home';
 
 import SurveyNew from '../screens/Surveys/screens/SurveyNew';
+import SurveyList from '../screens/Surveys/screens/SurveyList';
 import SurveySuccess from '../screens/Surveys/screens/SurveySuccess';
 
 import Farewell from '../screens/Users/screens/Farewell';
@@ -30,7 +31,12 @@ const Routes = () => (
     <Route component={Home} exact path={PATHS.root} />
 
     <PrivateRoute component={SurveyNew} exact path={PATHS.surveys.new} />
-    <ReferralRoute component={SurveySuccess} path={PATHS.surveys.success} />
+    <ReferralRoute
+      component={SurveySuccess}
+      path={PATHS.surveys.success}
+      redirectTo={PATHS.surveys.list}
+    />
+    <PrivateRoute component={SurveyList} exact path={PATHS.surveys.list} />
 
     <PrivateRoute component={Profile} path={PATHS.users.profile} />
     <AuthRoute component={SignIn} path={PATHS.users.signin} />

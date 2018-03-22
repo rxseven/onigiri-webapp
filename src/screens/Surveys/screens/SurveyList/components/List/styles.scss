@@ -1,0 +1,9 @@
+// Global styles
+@import "../../../../../../styles/base/settings";
+
+// Wrapper
+.wrapper {
+  @media (max-width: $breakpoint-sm - 1) {
+    margin-top: 41px;
+  }
+}
