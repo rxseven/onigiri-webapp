@@ -51,6 +51,15 @@ export class Scroller extends Component {
     if (nextProps.state.isError) {
       this.setState(() => ({ more: false }));
     }
+
+    // If the next selected mode is not identical to the current one, reload
+    if (nextProps.state.mode !== this.props.state.mode) {
+      // Reload a list of data
+      // 1. Reset infinite scrolling
+      // 2. Set state with new query object
+      // 3. Reload a component
+      this.setState(() => ({ ...INITIAL_STATE, query: nextProps.state.query }));
+    }
   }
 
   // Before a component is unmounted and destroyed...
