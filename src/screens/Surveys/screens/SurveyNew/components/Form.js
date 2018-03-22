@@ -3,6 +3,7 @@ import { each } from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
 
 import { Form, FormSHL } from '../../../../../components/shared/base/Form';
@@ -82,8 +83,18 @@ const warn = (values) => {
   return warnings;
 };
 
+// Map state to props
+const mapStateToProps = state => ({
+  state: {}
+});
+
+// Map dispatch to props
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({}, dispatch)
+});
+
 // Connect component to application state
-const container = withRouter(connect(null)(SurveyForm));
+const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(SurveyForm));
 
 // Configure Redux Form
 export default reduxForm({
