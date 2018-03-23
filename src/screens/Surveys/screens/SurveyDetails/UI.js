@@ -93,6 +93,11 @@ class UI extends Component {
     });
   };
 
+  // Update survey
+  onUpdate = (values) => {
+    this.props.actions.survey.updateSurvey(this.surveyId, values);
+  };
+
   // Get recipients
   getRecipients = () => {
     this.props.actions.survey.getRecipients(this.surveyId);
@@ -108,7 +113,8 @@ class UI extends Component {
     <Toolbar
       actions={{
         delete: this.onDeleteRequest,
-        reload: this.onReload
+        reload: this.onReload,
+        update: this.onUpdate
       }}
       state={{
         ...props.state,
