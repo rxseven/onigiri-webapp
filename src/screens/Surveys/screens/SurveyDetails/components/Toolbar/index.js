@@ -26,11 +26,17 @@ import styles from './styles.scss';
 const propTypes = PROP_TYPES.wrapper.asynchronous({
   get: PropTypes.shape({
     survey: PROP_TYPES.model.asynchronous
+  }),
+  patch: PropTypes.shape({
+    survey: PROP_TYPES.model.asynchronous
   })
 });
 
 const defaultProps = STATE_MODELS.wrapper.asynchronous({
   get: {
+    survey: { ...STATE_MODELS.model.asynchronous }
+  },
+  patch: {
     survey: { ...STATE_MODELS.model.asynchronous }
   }
 });
