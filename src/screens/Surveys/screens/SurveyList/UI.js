@@ -33,6 +33,9 @@ class UI extends Component {
 
   // After a component is mounted...
   componentDidMount() {
+    // Reset the recent selected survey
+    this.onResetSelected();
+
     // Initialize default configuration
     this.onInitialize();
   }
@@ -61,6 +64,14 @@ class UI extends Component {
   // Save the current pagination query
   onPaginate = (values) => {
     this.props.actions.surveys.savePagination(values);
+  };
+
+  // Reset the recent selected survey
+  onResetSelected = () => {
+    // If the selected item exists, reset
+    if (this.props.state.view.selected) {
+      this.props.actions.surveys.removeSelectedSurvey();
+    }
   };
 
   // Render component
