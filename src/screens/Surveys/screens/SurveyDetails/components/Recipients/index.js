@@ -1,8 +1,15 @@
 // Module dependencies
+import { map, size } from 'lodash';
 import React from 'react';
 
 import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
 import { CardSubtitle } from '../../../../../../components/shared/base/Card';
+import {
+  List,
+  ListItem,
+  ListContent,
+  ListLabel
+} from '../../../../../../components/shared/base/List';
 import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
 import Render from '../../../../../../components/shared/helpers/Render';
 
@@ -10,6 +17,9 @@ import Render from '../../../../../../components/shared/helpers/Render';
 import PROP_TYPES from '../../../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../../../constants/models/state';
 import CSS from '../../../../../../constants/string/css';
+
+// Peer dependencies
+import styles from './styles.scss';
 
 // Declare prop types and default props
 const propTypes = PROP_TYPES.pattern.asynchronous;
@@ -36,6 +46,29 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
             View recipient list
           </Button>
         </ButtonSet>
+      </Render>
+      <Render condition={data}>
+        <List>
+          <ListItem>
+            <ListLabel>Total</ListLabel>
+            <ListContent>{size(data)}</ListContent>
+          </ListItem>
+          <ListItem end>
+            <ListLabel>Recipient list</ListLabel>
+            <ListContent>
+              <ul className={styles.list}>
+                {map(data, (item) => {
+                  const { _id: id } = item;
+                  return (
+                    <li key={`recipient-${id}`}>
+                      <code>{item.email}</code>
+                    </li>
+                  );
+                })}
+              </ul>
+            </ListContent>
+          </ListItem>
+        </List>
       </Render>
     </JSXwrapper>
   );
