@@ -14,6 +14,9 @@ export const createSurvey = data =>
     url: API.endpoints.surveys.base
   });
 
+// Get recipients by survey ID
+export const getRecipients = id => ajax({ url: `${API.endpoints.surveys.base}/${id}/recipients` });
+
 // Get survey by ID
 export const getSurvey = id => ajax({ url: `${API.endpoints.surveys.base}/${id}` });
 
