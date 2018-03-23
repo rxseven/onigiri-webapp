@@ -99,7 +99,13 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => (
           </ListItem>
         </List>
 
-        <Recipients />
+        <Recipients
+          actions={actions}
+          state={{
+            data: data.recipients,
+            ui: { asynchronous: asynchronous.get.recipients }
+          }}
+        />
       </CardBody>
     </Card>
 
