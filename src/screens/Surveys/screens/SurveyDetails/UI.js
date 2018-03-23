@@ -13,6 +13,7 @@ import STATE_MODELS from '../../../../constants/models/state';
 
 // Peer dependencies
 import Content from './components/Content';
+import Modal from './components/Modal';
 import Toolbar from './components/Toolbar';
 
 // Declare prop types and default props
@@ -112,6 +113,9 @@ class UI extends Component {
     return null;
   };
 
+  // Render confirmation modal
+  renderModal = () => <Modal />;
+
   // Render component
   render() {
     return (
@@ -123,6 +127,7 @@ class UI extends Component {
           <Layout>
             {this.renderToolbar(this.props)}
             {this.renderContent(this.props)}
+            {this.renderModal(this.props)}
           </Layout>
         </Body>
       </Document>
