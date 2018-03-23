@@ -17,6 +17,17 @@ class UI extends Component {
     this.surveyId = this.props.match.params.id;
   }
 
+  // After a component is mounted...
+  componentDidMount() {
+    // Get survey
+    this.getSurvey();
+  }
+
+  // Get survey
+  getSurvey = (callback) => {
+    this.props.actions.survey.getSurvey(this.surveyId, callback);
+  };
+
   // Render component
   render() {
     return (
