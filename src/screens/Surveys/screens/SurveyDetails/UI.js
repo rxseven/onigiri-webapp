@@ -1,11 +1,29 @@
 // Module dependencies
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import Layout from '../../../../components/shared/base/Layout';
 
+// Constants
+import PROP_TYPES from '../../../../constants/models/propTypes';
+import STATE_MODELS from '../../../../constants/models/state';
+
 // Peer dependencies
 import Content from './components/Content';
+
+// Declare prop types and default props
+const propTypes = PROP_TYPES.wrapper.asynchronous({
+  get: PropTypes.shape({
+    survey: PROP_TYPES.model.asynchronous
+  })
+});
+
+const defaultProps = STATE_MODELS.wrapper.asynchronous({
+  get: {
+    survey: { ...STATE_MODELS.model.asynchronous }
+  }
+});
 
 // Component
 class UI extends Component {
@@ -44,6 +62,10 @@ class UI extends Component {
     );
   }
 }
+
+// Specify prop types and default values for props
+UI.propTypes = propTypes;
+UI.defaultProps = defaultProps;
 
 // Module exports
 export default UI;
