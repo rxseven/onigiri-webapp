@@ -1,6 +1,7 @@
 // Module dependencies
 import cx from 'classnames';
 import React, { Component } from 'react';
+import { withLastLocation } from 'react-router-last-location';
 import withSizes from 'react-sizes';
 import { StickyContainer } from 'react-sticky';
 
@@ -10,6 +11,7 @@ import Layout from '../../../../components/shared/base/Layout';
 
 // Constants
 import CSS from '../../../../constants/string/css';
+import PATHS from '../../../../constants/router/paths';
 
 // Peer dependencies
 import Headset from './components/Headset';
@@ -25,10 +27,26 @@ class UI extends Component {
     super(props);
 
     // Declare default state values
-    const defaultState = { mode: null, query: null, revisit: false };
+    let defaultState = { mode: null, query: null, revisit: false };
+
+    // If recent selected survey and last visited location exist
+    if (props.state.view.selected && props.lastLocation) {
+      // Variables
+      const { lastLocation, state: { view } } = props;
+      const { mode, query } = view;
+      const selectedPath = `${PATHS.surveys.base}/${view.selected}`;
+
+      // If navigates back from details screen, update the state
+      if (lastLocation.pathname === selectedPath) {
+        defaultState = { mode, query, revisit: true };
+      }
+    }
+
+    // Destructure default state object
+    const { mode, query, revisit } = defaultState;
 
     // Initialize component state
-    this.state = defaultState;
+    this.state = { mode, query, revisit };
   }
 
   // After a component is mounted...
@@ -42,8 +60,17 @@ class UI extends Component {
 
   // Initialize default configuration
   onInitialize = () => {
-    // Set default list view mode
-    this.setState(() => ({ mode: TYPES.mode.active }));
+    // If the last location was not details screen, set default
+    if (!this.state.revisit && !this.state.mode) {
+      // Reset list view
+      this.onResetView();
+
+      // Reset surveys data
+      this.onResetData();
+
+      // Set default list view mode
+      this.setState(() => ({ mode: TYPES.mode.active }));
+    }
   };
 
   // Mode selection
@@ -64,6 +91,16 @@ class UI extends Component {
   // Save the current pagination query
   onPaginate = (values) => {
     this.props.actions.surveys.savePagination(values);
+  };
+
+  // Reset surveys data
+  onResetData = () => {
+    this.props.actions.surveys.resetData();
+  };
+
+  // Reset list view
+  onResetView = () => {
+    this.props.actions.surveys.resetView();
   };
 
   // Reset the recent selected survey
@@ -128,4 +165,4 @@ class UI extends Component {
 const mapSizesToProps = ({ width }) => ({ screenWidth: width });
 
 // Module exports
-export default withSizes(mapSizesToProps)(UI);
+export default withLastLocation(withSizes(mapSizesToProps)(UI));
