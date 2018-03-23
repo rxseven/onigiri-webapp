@@ -1,3 +1,6 @@
+// Module dependencies
+import { createSelector } from 'reselect';
+
 // Actions
 import { USER_RESET } from '../../../../../../data/session/actions';
 import { SURVEY_GET, SURVEY_GET_FAILURE, SURVEY_GET_SUCCESS } from './actions';
@@ -27,3 +30,9 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+// Non-memoized utility selectors
+const getNode = state => state.screens.surveys.details.data;
+
+// Get survey
+export const getSurvey = createSelector(getNode, node => node.survey);
