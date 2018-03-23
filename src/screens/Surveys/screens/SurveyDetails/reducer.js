@@ -25,7 +25,10 @@ const initialState = {
     recipients: { ...STATE_MODELS.model.asynchronous },
     survey: { ...STATE_MODELS.model.asynchronous }
   },
-  delete: { survey: { ...STATE_MODELS.model.asynchronous } }
+  delete: { survey: { ...STATE_MODELS.model.asynchronous } },
+  patch: {
+    survey: { ...STATE_MODELS.model.asynchronous }
+  }
 };
 
 // Asynchronous reducer
