@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
-import { SURVEY_SELECTED_ADD } from '../../actions';
+import { SURVEY_SELECTED_ADD, SURVEY_SELECTED_REMOVE } from '../../actions';
 import {
   SURVEYS_GET,
   SURVEYS_GET_FAILURE,
@@ -91,6 +91,13 @@ const viewReducer = (state = initialState.view, action) => {
       return {
         ...state,
         selected: action.payload
+      };
+
+    // Untrack survey
+    case SURVEY_SELECTED_REMOVE:
+      return {
+        ...state,
+        selected: initialState.view.selected
       };
 
     // Default
