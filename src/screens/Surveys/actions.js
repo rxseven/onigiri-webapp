@@ -8,6 +8,8 @@ export const SURVEY_DELETE_SUCCESS = 'Survey/SURVEY_DELETE_SUCCESS';
 
 export const SURVEY_REMOVE = 'Survey/SURVEY_REMOVE';
 
+export const SURVEY_SELECTED_ADD = 'Survey/SURVEY_SELECTED_ADD';
+
 // Delete survey : Success
 const deleteSurveySuccess = data => ({
   type: SURVEY_DELETE_SUCCESS,
@@ -44,5 +46,11 @@ export const deleteSurvey = (id, callback) => async (dispatch) => {
 // Remove survey from its list
 export const removeSurvey = id => ({
   type: SURVEY_REMOVE,
+  payload: id
+});
+
+// Add selected survey
+export const addSelectedSurvey = id => ({
+  type: SURVEY_SELECTED_ADD,
   payload: id
 });
