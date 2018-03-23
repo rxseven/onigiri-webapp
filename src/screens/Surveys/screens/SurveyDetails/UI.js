@@ -36,6 +36,9 @@ class UI extends Component {
 
     // Component properties
     this.surveyId = this.props.match.params.id;
+
+    // Initial state
+    this.state = { updated: false };
   }
 
   // After a component is mounted...
@@ -44,13 +47,36 @@ class UI extends Component {
     this.getSurvey();
   }
 
+  // Reload survey
+  onReload = () => {
+    this.getSurvey(() => {
+      // Show status once the latest updates have already been fetched
+      this.setState(() => ({ updated: true }));
+
+      // Hide status after 3 seconds
+      setTimeout(() => {
+        this.setState(() => ({ updated: false }));
+      }, 3000);
+    });
+  };
+
   // Get survey
   getSurvey = (callback) => {
     this.props.actions.survey.getSurvey(this.surveyId, callback);
   };
 
   // Render toolbar
-  renderToolbar = () => <Toolbar state={{ ...this.props.state }} />;
+  renderToolbar = props => (
+    <Toolbar
+      actions={{
+        reload: this.onReload
+      }}
+      state={{
+        ...props.state,
+        status: { updated: this.state.updated }
+      }}
+    />
+  );
 
   // Render content
   renderContent = ({ state: { data, ui: { asynchronous } } }) => {
