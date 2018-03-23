@@ -57,7 +57,12 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
             </Render>
           </div>
           <ButtonGroup label="Actions" size="small">
-            Actions
+            <Button
+              disabled={processing || data.survey.locked}
+              handler={actions.delete}
+              icon="trash"
+              title="Delete"
+            />
           </ButtonGroup>
         </JSXwrapper>
       </Render>

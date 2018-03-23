@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
+import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../actions';
 import {
   RECIPIENTS_GET,
   RECIPIENTS_GET_FAILURE,
@@ -23,7 +24,8 @@ const initialState = {
   get: {
     recipients: { ...STATE_MODELS.model.asynchronous },
     survey: { ...STATE_MODELS.model.asynchronous }
-  }
+  },
+  delete: { survey: { ...STATE_MODELS.model.asynchronous } }
 };
 
 // Asynchronous reducer
@@ -90,6 +92,35 @@ const asyncReducer = (state = initialState, action) => {
         get: {
           ...state.get,
           survey: initialState.get.survey
+        }
+      };
+
+    // Delete survey
+    case SURVEY_DELETE:
+      return {
+        ...state,
+        delete: {
+          survey: {
+            ...initialState.delete.survey,
+            loading: true
+          }
+        }
+      };
+    case SURVEY_DELETE_FAILURE:
+      return {
+        ...state,
+        delete: {
+          survey: {
+            ...initialState.delete.survey,
+            error: action.payload
+          }
+        }
+      };
+    case SURVEY_DELETE_SUCCESS:
+      return {
+        ...state,
+        delete: {
+          survey: initialState.delete.survey
         }
       };
 

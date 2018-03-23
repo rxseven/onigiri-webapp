@@ -4,6 +4,7 @@ import { createSelector } from 'reselect';
 
 // Actions
 import { USER_RESET } from '../../../../../../data/session/actions';
+import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../../../actions';
 import {
   RECIPIENTS_GET,
   RECIPIENTS_GET_FAILURE,
@@ -28,6 +29,13 @@ export default (state = initialState, action) => {
         ...state,
         recipients: mapKeys(action.payload.recipients, '_id')
       };
+
+    // Delete survey
+    case SURVEY_DELETE:
+    case SURVEY_DELETE_FAILURE:
+      return state;
+    case SURVEY_DELETE_SUCCESS:
+      return initialState;
 
     // Get survey
     case SURVEY_GET:

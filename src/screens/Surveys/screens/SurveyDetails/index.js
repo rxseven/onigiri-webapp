@@ -2,6 +2,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import * as modalActions from '../../../../data/interfaces/modal/actions';
+import { getModal } from '../../../../data/interfaces/modal/reducer';
+import * as commonActions from '../../actions';
+
 // Peer dependencies
 import * as dataActions from './data/survey/actions';
 import { getSurvey } from './data/survey/reducer';
@@ -12,7 +16,10 @@ import UI from './UI';
 const mapStateToProps = state => ({
   state: {
     data: {
-      survey: getSurvey(state)
+      survey: getSurvey(state),
+      interfaces: {
+        modal: getModal(state)
+      }
     },
     ui: getUI(state)
   }
@@ -21,8 +28,10 @@ const mapStateToProps = state => ({
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
   actions: {
+    modal: bindActionCreators(modalActions, dispatch),
     survey: bindActionCreators(
       {
+        ...commonActions,
         ...dataActions
       },
       dispatch

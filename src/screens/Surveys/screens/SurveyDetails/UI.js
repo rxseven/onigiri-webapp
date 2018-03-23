@@ -10,9 +10,11 @@ import Error from '../../../../components/shared/extended/Error';
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../constants/models/state';
+import PATHS from '../../../../constants/router/paths';
 
 // Peer dependencies
 import Content from './components/Content';
+import Modal from './components/Modal';
 import Toolbar from './components/Toolbar';
 
 // Declare prop types and default props
@@ -47,6 +49,37 @@ class UI extends Component {
     this.getSurvey();
   }
 
+  // Navigate back to list view screen
+  onNavigateBack = () => {
+    // Configuration
+    const { history } = this.props;
+
+    // Move the pointer in the history stack by 1 entry, otherwise link to
+    if (this.fromList) {
+      history.goBack();
+    } else {
+      history.push(PATHS.surveys.list);
+    }
+  };
+
+  // Confirm deleting survey
+  onDeleteConfirm = () => {
+    // Delete survey from the given ID
+    this.props.actions.survey.deleteSurvey(this.surveyId, () => {
+      // Close a modal
+      this.props.actions.modal.closeModal();
+
+      // Redirect to list view
+      this.onNavigateBack();
+    });
+  };
+
+  // Request for deleting survey
+  onDeleteRequest = () => {
+    // Open a confirmation modal
+    this.props.actions.modal.openModal();
+  };
+
   // Reload survey
   onReload = () => {
     this.getSurvey(() => {
@@ -74,6 +107,7 @@ class UI extends Component {
   renderToolbar = props => (
     <Toolbar
       actions={{
+        delete: this.onDeleteRequest,
         reload: this.onReload
       }}
       state={{
@@ -112,6 +146,22 @@ class UI extends Component {
     return null;
   };
 
+  // Render confirmation modal
+  renderModal = ({ actions, state: { data, ui: { asynchronous } } }) => (
+    <Modal
+      actions={{
+        close: actions.modal.closeModal,
+        confirm: this.onDeleteConfirm
+      }}
+      state={{
+        ui: {
+          asynchronous: asynchronous.delete.survey,
+          visibility: data.interfaces.modal.isOpen
+        }
+      }}
+    />
+  );
+
   // Render component
   render() {
     return (
@@ -123,6 +173,7 @@ class UI extends Component {
           <Layout>
             {this.renderToolbar(this.props)}
             {this.renderContent(this.props)}
+            {this.renderModal(this.props)}
           </Layout>
         </Body>
       </Document>
