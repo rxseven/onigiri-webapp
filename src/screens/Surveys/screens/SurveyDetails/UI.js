@@ -48,6 +48,12 @@ class UI extends Component {
     this.getSurvey();
   }
 
+  // Request for deleting survey
+  onDeleteRequest = () => {
+    // Open a confirmation modal
+    this.props.actions.modal.openModal();
+  };
+
   // Reload survey
   onReload = () => {
     this.getSurvey(() => {
@@ -75,6 +81,7 @@ class UI extends Component {
   renderToolbar = props => (
     <Toolbar
       actions={{
+        delete: this.onDeleteRequest,
         reload: this.onReload
       }}
       state={{
@@ -114,7 +121,18 @@ class UI extends Component {
   };
 
   // Render confirmation modal
-  renderModal = () => <Modal />;
+  renderModal = ({ actions, state: { data } }) => (
+    <Modal
+      actions={{
+        close: actions.modal.closeModal
+      }}
+      state={{
+        ui: {
+          visibility: data.interfaces.modal.isOpen
+        }
+      }}
+    />
+  );
 
   // Render component
   render() {

@@ -9,10 +9,10 @@ const Modal = ({ actions, state: { ui } }) => (
     asynchronous={undefined}
     buttonCancel="Cancel"
     buttonConfirm="Okay"
-    onClose={undefined}
+    onClose={actions.close}
     onConfirm={undefined}
     title="Delete Survey"
-    visibility={false}
+    visibility={ui.visibility}
   >
     <p>This action is permanent. Are you sure you don&apos;t want to reconsider?</p>
   </Confirm>
