@@ -1,4 +1,5 @@
 // Module dependencies
+import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
@@ -46,6 +47,20 @@ class UI extends Component {
     this.props.actions.survey.getSurvey(this.surveyId, callback);
   };
 
+  // Render content
+  renderContent = ({ state: { data, ui: { asynchronous } } }) => {
+    // Variables
+    const { loading } = asynchronous.get.survey;
+
+    // Content
+    if (!loading && !isEmpty(data.survey)) {
+      return <Content />;
+    }
+
+    // Else
+    return null;
+  };
+
   // Render component
   render() {
     return (
@@ -54,9 +69,7 @@ class UI extends Component {
           <Title>Survey</Title>
         </Head>
         <Body>
-          <Layout>
-            <Content />
-          </Layout>
+          <Layout>{this.renderContent(this.props)}</Layout>
         </Body>
       </Document>
     );
