@@ -8,6 +8,7 @@ export const SURVEYS_GET = 'Surveys/data/SURVEYS_GET';
 export const SURVEYS_GET_FAILURE = 'Surveys/data/SURVEYS_GET_FAILURE';
 export const SURVEYS_GET_SUCCESS = 'Surveys/data/SURVEYS_GET_SUCCESS';
 
+export const SURVEYS_RESET_DATA = 'Surveys/data/SURVEYS_RESET_DATA';
 export const SURVEYS_SELECT_MODE = 'Surveys/data/SURVEYS_SELECT_MODE';
 
 // Cancel getting a list of surveys
@@ -53,6 +54,11 @@ export const getSurveys = (query, callback) => async (dispatch) => {
     }
   }
 };
+
+// Reset surveys data
+export const resetData = () => ({
+  type: SURVEYS_RESET_DATA
+});
 
 // Select list view mode
 export const selectMode = query => ({
