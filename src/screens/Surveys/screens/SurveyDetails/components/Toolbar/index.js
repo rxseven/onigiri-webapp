@@ -11,6 +11,8 @@ import Loading from '../../../../../../components/shared/base/Loading';
 import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
 import Render from '../../../../../../components/shared/helpers/Render';
 
+import dateHelper from '../../../../../../helpers/date';
+
 // Constants
 import PROP_TYPES from '../../../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../../../constants/models/state';
@@ -49,6 +51,9 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
           <div className={styles.status}>
             <Render condition={loading}>
               <Loading />
+            </Render>
+            <Render condition={!processing && status.updated}>
+              <span>Updated {dateHelper.currentTime()}</span>
             </Render>
           </div>
           <ButtonGroup label="Actions" size="small">
