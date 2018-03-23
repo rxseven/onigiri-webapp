@@ -6,11 +6,11 @@ import Confirm from '../../../../../components/shared/extended/Confirm';
 // Component
 const Modal = ({ actions, state: { ui } }) => (
   <Confirm
-    asynchronous={undefined}
+    asynchronous={ui.asynchronous}
     buttonCancel="Cancel"
     buttonConfirm="Okay"
     onClose={actions.close}
-    onConfirm={undefined}
+    onConfirm={actions.confirm}
     title="Delete Survey"
     visibility={ui.visibility}
   >

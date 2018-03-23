@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import * as modalActions from '../../../../data/interfaces/modal/actions';
 import { getModal } from '../../../../data/interfaces/modal/reducer';
+import * as commonActions from '../../actions';
 
 // Peer dependencies
 import * as dataActions from './data/survey/actions';
@@ -30,6 +31,7 @@ const mapDispatchToProps = dispatch => ({
     modal: bindActionCreators(modalActions, dispatch),
     survey: bindActionCreators(
       {
+        ...commonActions,
         ...dataActions
       },
       dispatch

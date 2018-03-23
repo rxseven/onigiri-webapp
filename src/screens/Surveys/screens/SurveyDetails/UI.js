@@ -48,6 +48,16 @@ class UI extends Component {
     this.getSurvey();
   }
 
+  // Confirm deleting survey
+  onDeleteConfirm = () => {
+    // Delete survey from the given ID
+    this.props.actions.survey.deleteSurvey(this.surveyId, () => {
+      // TODO: 1. Close a modal
+      // TODO: 2. Redirect to SurveyList screen after the survey has been deleted
+      console.log('this.onDeleteConfirm() is executed.');
+    });
+  };
+
   // Request for deleting survey
   onDeleteRequest = () => {
     // Open a confirmation modal
@@ -121,13 +131,15 @@ class UI extends Component {
   };
 
   // Render confirmation modal
-  renderModal = ({ actions, state: { data } }) => (
+  renderModal = ({ actions, state: { data, ui: { asynchronous } } }) => (
     <Modal
       actions={{
-        close: actions.modal.closeModal
+        close: actions.modal.closeModal,
+        confirm: this.onDeleteConfirm
       }}
       state={{
         ui: {
+          asynchronous: asynchronous.delete.survey,
           visibility: data.interfaces.modal.isOpen
         }
       }}
