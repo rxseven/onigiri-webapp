@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
+import { USER_RESET } from '../../../../data/session/actions';
 import { SURVEY_SELECTED_ADD, SURVEY_SELECTED_REMOVE } from '../../actions';
 import {
   SURVEYS_GET,
@@ -107,6 +108,7 @@ const viewReducer = (state = initialState.view, action) => {
       };
 
     // Reset view
+    case USER_RESET:
     case SURVEYS_RESET_VIEW:
       return {
         ...initialState.view
