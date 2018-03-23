@@ -9,6 +9,7 @@ export const SURVEY_DELETE_SUCCESS = 'Survey/SURVEY_DELETE_SUCCESS';
 export const SURVEY_REMOVE = 'Survey/SURVEY_REMOVE';
 
 export const SURVEY_SELECTED_ADD = 'Survey/SURVEY_SELECTED_ADD';
+export const SURVEY_SELECTED_REMOVE = 'Survey/SURVEY_SELECTED_REMOVE';
 
 // Delete survey : Success
 const deleteSurveySuccess = data => ({
@@ -53,4 +54,9 @@ export const removeSurvey = id => ({
 export const addSelectedSurvey = id => ({
   type: SURVEY_SELECTED_ADD,
   payload: id
+});
+
+// Remove selected survey
+export const removeSelectedSurvey = () => ({
+  type: SURVEY_SELECTED_REMOVE
 });
