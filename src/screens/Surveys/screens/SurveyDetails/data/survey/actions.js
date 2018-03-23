@@ -10,6 +10,8 @@ export const SURVEY_GET = 'Survey/data/SURVEY_GET';
 export const SURVEY_GET_FAILURE = 'Survey/data/SURVEY_GET_FAILURE';
 export const SURVEY_GET_SUCCESS = 'Survey/data/SURVEY_GET_SUCCESS';
 
+export const SURVEY_RESET_DATA = 'Survey/data/SURVEY_RESET_DATA';
+
 export const SURVEY_UPDATE = 'Survey/SURVEY_UPDATE';
 export const SURVEY_UPDATE_FAILURE = 'Survey/SURVEY_UPDATE_FAILURE';
 export const SURVEY_UPDATE_SUCCESS = 'Survey/SURVEY_UPDATE_SUCCESS';
@@ -83,6 +85,11 @@ export const getSurvey = (id, callback) => async (dispatch) => {
     dispatch(getSurveyFailure(error));
   }
 };
+
+// Reset data
+export const resetData = () => ({
+  type: SURVEY_RESET_DATA
+});
 
 // Update survey : Success
 const updateSurveySuccess = data => ({
