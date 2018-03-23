@@ -22,6 +22,7 @@ import CSS from '../../../../../constants/string/css';
 
 // Peer dependencies
 import Chart from './Chart';
+import Recipients from './Recipients';
 
 // Component
 const Content = ({ actions, state: { data, ui: { asynchronous } } }) => (
@@ -97,6 +98,8 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => (
             </ListContent>
           </ListItem>
         </List>
+
+        <Recipients />
       </CardBody>
     </Card>
 
