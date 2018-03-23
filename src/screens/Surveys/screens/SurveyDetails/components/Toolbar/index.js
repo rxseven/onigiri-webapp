@@ -2,7 +2,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { ButtonGroup, ButtonToolbar } from '../../../../../../components/shared/base/Buttons';
+import {
+  Button,
+  ButtonGroup,
+  ButtonToolbar
+} from '../../../../../../components/shared/base/Buttons';
 import Loading from '../../../../../../components/shared/base/Loading';
 import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
 import Render from '../../../../../../components/shared/helpers/Render';
@@ -31,12 +35,13 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => {
   // Variables
   const { error, loading } = asynchronous.get.survey;
+  const processing = loading;
 
   // View
   return (
     <ButtonToolbar label="Toolbar">
       <ButtonGroup label="Navigation" size="small">
-        Navigation
+        <Button disabled={processing} handler={actions.reload} icon="reload" title="Reload" />
       </ButtonGroup>
 
       <Render condition={!error}>
