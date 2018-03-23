@@ -3,7 +3,14 @@ import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
-import { SURVEY_GET, SURVEY_GET_FAILURE, SURVEY_GET_SUCCESS } from './data/survey/actions';
+import {
+  RECIPIENTS_GET,
+  RECIPIENTS_GET_FAILURE,
+  RECIPIENTS_GET_SUCCESS,
+  SURVEY_GET,
+  SURVEY_GET_FAILURE,
+  SURVEY_GET_SUCCESS
+} from './data/survey/actions';
 
 // Reducers
 import dataReducer from './data/reducer';
@@ -13,12 +20,47 @@ import STATE_MODELS from '../../../../constants/models/state';
 
 // Initial state
 const initialState = {
-  get: { survey: { ...STATE_MODELS.model.asynchronous } }
+  get: {
+    recipients: { ...STATE_MODELS.model.asynchronous },
+    survey: { ...STATE_MODELS.model.asynchronous }
+  }
 };
 
 // Asynchronous reducer
 const asyncReducer = (state = initialState, action) => {
   switch (action.type) {
+    // Get recipients
+    case RECIPIENTS_GET:
+      return {
+        ...state,
+        get: {
+          ...state.get,
+          recipients: {
+            ...initialState.get.recipients,
+            loading: true
+          }
+        }
+      };
+    case RECIPIENTS_GET_FAILURE:
+      return {
+        ...state,
+        get: {
+          ...state.get,
+          recipients: {
+            ...initialState.get.recipients,
+            error: action.payload
+          }
+        }
+      };
+    case RECIPIENTS_GET_SUCCESS:
+      return {
+        ...state,
+        get: {
+          ...state.get,
+          recipients: initialState.get.recipients
+        }
+      };
+
     // Get survey
     case SURVEY_GET:
       return {
