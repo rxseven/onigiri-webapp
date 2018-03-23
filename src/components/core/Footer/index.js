@@ -2,6 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import ExLink from '../../shared/base/ExLink';
 import { Column, Container, Row } from '../../shared/base/Grid';
 
 // Constants
@@ -25,10 +26,29 @@ const Footer = () => (
         <Column>
           <ul className={styles.navigation}>
             <li>
-              <FooterLink to={PATHS.root}>Link</FooterLink>
+              <FooterLink to={PATHS.static.terms}>Terms</FooterLink>
+            </li>
+            <li>
+              <FooterLink to={PATHS.static.privacy}>Privacy</FooterLink>
+            </li>
+            <li>
+              <FooterLink to={PATHS.static.about}>About</FooterLink>
+            </li>
+            <li>
+              <FooterLink to={PATHS.static.me}>Me</FooterLink>
             </li>
           </ul>
-          <div className={styles.content}>Content</div>
+          <div className={styles.content}>
+            <p>
+              Designed &amp; built with all the love in{' '}
+              <ExLink to="https://reactjs.org">React</ExLink> &amp;{' '}
+              <ExLink to="https://redux.js.org">Redux</ExLink>.
+            </p>
+            <p>
+              Copyright © 2018{' '}
+              <ExLink to="https://www.linkedin.com/in/pongsupawat/">Theerawat Pongsupawat</ExLink>.
+            </p>
+          </div>
         </Column>
       </Row>
     </Container>
