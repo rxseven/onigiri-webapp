@@ -137,6 +137,7 @@ class UI extends Component {
   renderToolbar = props => (
     <Toolbar
       actions={{
+        back: this.onNavigateBack,
         delete: this.onDeleteRequest,
         reload: this.onReload,
         update: this.onUpdate
