@@ -11,7 +11,10 @@ import {
   RECIPIENTS_GET_SUCCESS,
   SURVEY_GET,
   SURVEY_GET_FAILURE,
-  SURVEY_GET_SUCCESS
+  SURVEY_GET_SUCCESS,
+  SURVEY_UPDATE,
+  SURVEY_UPDATE_FAILURE,
+  SURVEY_UPDATE_SUCCESS
 } from './actions';
 
 // Initial state
@@ -42,6 +45,16 @@ export default (state = initialState, action) => {
     case SURVEY_GET_FAILURE:
       return state;
     case SURVEY_GET_SUCCESS:
+      return {
+        ...state,
+        ...action.payload
+      };
+
+    // Update survey
+    case SURVEY_UPDATE:
+    case SURVEY_UPDATE_FAILURE:
+      return state;
+    case SURVEY_UPDATE_SUCCESS:
       return {
         ...state,
         ...action.payload
