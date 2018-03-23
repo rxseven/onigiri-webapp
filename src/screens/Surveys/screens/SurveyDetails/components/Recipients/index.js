@@ -10,6 +10,7 @@ import {
   ListContent,
   ListLabel
 } from '../../../../../../components/shared/base/List';
+import Spinner from '../../../../../../components/shared/base/Spinner';
 import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
 import Render from '../../../../../../components/shared/helpers/Render';
 
@@ -45,6 +46,9 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
           >
             View recipient list
           </Button>
+          <Render condition={loading}>
+            <Spinner />
+          </Render>
         </ButtonSet>
       </Render>
       <Render condition={data}>
