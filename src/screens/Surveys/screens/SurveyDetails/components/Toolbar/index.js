@@ -8,6 +8,10 @@ import Render from '../../../../../../components/shared/helpers/Render';
 // Peer dependencies
 import styles from './styles.scss';
 
+// Declare prop types and default props
+const propTypes = {};
+const defaultProps = {};
+
 // Component
 const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => {
   // Variables
@@ -31,6 +35,10 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
     </ButtonToolbar>
   );
 };
+
+// Specify prop types and default values for props
+Toolbar.propTypes = propTypes;
+Toolbar.defaultProps = defaultProps;
 
 // Module exports
 export default Toolbar;
