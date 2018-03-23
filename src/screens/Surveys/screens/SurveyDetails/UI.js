@@ -60,6 +60,11 @@ class UI extends Component {
     });
   };
 
+  // Get recipients
+  getRecipients = () => {
+    this.props.actions.survey.getRecipients(this.surveyId);
+  };
+
   // Get survey
   getSurvey = (callback) => {
     this.props.actions.survey.getSurvey(this.surveyId, callback);
@@ -92,6 +97,9 @@ class UI extends Component {
     if (!loading && !isEmpty(data.survey)) {
       return (
         <Content
+          actions={{
+            getRecipients: this.getRecipients
+          }}
           state={{
             data: data.survey,
             ui: { asynchronous }
