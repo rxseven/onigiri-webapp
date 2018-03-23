@@ -26,11 +26,17 @@ import styles from './styles.scss';
 const propTypes = PROP_TYPES.wrapper.asynchronous({
   get: PropTypes.shape({
     survey: PROP_TYPES.model.asynchronous
+  }),
+  patch: PropTypes.shape({
+    survey: PROP_TYPES.model.asynchronous
   })
 });
 
 const defaultProps = STATE_MODELS.wrapper.asynchronous({
   get: {
+    survey: { ...STATE_MODELS.model.asynchronous }
+  },
+  patch: {
     survey: { ...STATE_MODELS.model.asynchronous }
   }
 });
@@ -46,6 +52,9 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
   return (
     <ButtonToolbar label="Toolbar">
       <ButtonGroup label="Navigation" size="small">
+        <Button disabled={processing} handler={actions.back} icon="chevron-left" title="Back">
+          List
+        </Button>
         <Button disabled={processing} handler={actions.reload} icon="reload" title="Reload" />
       </ButtonGroup>
 

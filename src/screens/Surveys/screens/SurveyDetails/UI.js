@@ -36,7 +36,11 @@ class UI extends Component {
   constructor(props) {
     super(props);
 
+    // Variables
+    const { fromList } = props.location.state || { fromList: false };
+
     // Component properties
+    this.fromList = fromList;
     this.surveyId = this.props.match.params.id;
 
     // Initial state
@@ -51,6 +55,9 @@ class UI extends Component {
 
   // Before a component is unmounted and destroyed...
   componentWillUnmount() {
+    // Reset survey data
+    this.onResetData();
+
     // Remove the current survey from its list (if needed)
     this.onRemoveItem();
   }
@@ -59,6 +66,9 @@ class UI extends Component {
   onNavigateBack = () => {
     // Configuration
     const { history } = this.props;
+
+    // Track selected survey
+    this.onAddSelected();
 
     // Move the pointer in the history stack by 1 entry, otherwise link to
     if (this.fromList) {
@@ -114,6 +124,18 @@ class UI extends Component {
     }
   };
 
+  // Reset survey data
+  onResetData = () => {
+    this.props.actions.survey.resetData();
+  };
+
+  // Track the current selected survey
+  onAddSelected = () => {
+    if (this.fromList) {
+      this.props.actions.survey.addSelectedSurvey(this.surveyId);
+    }
+  };
+
   // Update survey
   onUpdate = (values) => {
     this.props.actions.survey.updateSurvey(this.surveyId, values);
@@ -133,6 +155,7 @@ class UI extends Component {
   renderToolbar = props => (
     <Toolbar
       actions={{
+        back: this.onNavigateBack,
         delete: this.onDeleteRequest,
         reload: this.onReload,
         update: this.onUpdate
