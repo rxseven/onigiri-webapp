@@ -67,6 +67,14 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
               title="Done"
               value={{ completed: !data.survey.completed }}
             />
+            <ButtonHandler
+              button={data.survey.archived ? 'primary' : 'secondary'}
+              disabled={processing}
+              handler={{ onClick: actions.update }}
+              icon="box"
+              title="Archive"
+              value={{ archived: !data.survey.archived }}
+            />
             <Button
               disabled={processing || data.survey.locked}
               handler={actions.delete}
