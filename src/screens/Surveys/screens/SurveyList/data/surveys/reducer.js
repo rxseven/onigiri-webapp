@@ -1,9 +1,10 @@
 // Module dependencies
-import { mapKeys } from 'lodash';
+import { mapKeys, omit } from 'lodash';
 import { createSelector } from 'reselect';
 
 // Actions
 import { USER_RESET } from '../../../../../../data/session/actions';
+import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../../../actions';
 import {
   SURVEYS_GET,
   SURVEYS_GET_FAILURE,
@@ -34,6 +35,16 @@ export default (state = initialState, action) => {
         meta: {
           ...action.payload.meta
         }
+      };
+
+    // Remove survey from a list
+    case SURVEY_DELETE:
+    case SURVEY_DELETE_FAILURE:
+      return state;
+    case SURVEY_DELETE_SUCCESS:
+      return {
+        ...state,
+        data: omit(state.data, action.payload)
       };
 
     // Clean up data
