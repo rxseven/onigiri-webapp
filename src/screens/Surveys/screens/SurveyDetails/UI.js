@@ -49,6 +49,12 @@ class UI extends Component {
     this.getSurvey();
   }
 
+  // Before a component is unmounted and destroyed...
+  componentWillUnmount() {
+    // Remove the current survey from its list (if needed)
+    this.onRemoveItem();
+  }
+
   // Navigate back to list view screen
   onNavigateBack = () => {
     // Configuration
@@ -91,6 +97,21 @@ class UI extends Component {
         this.setState(() => ({ updated: false }));
       }, 3000);
     });
+  };
+
+  // Remove survey item from its list
+  onRemoveItem = () => {
+    // Variables
+    const { state: { data: { survey } }, location: { state } } = this.props;
+    const { mode } = state || { mode: false };
+    const isActive = Object.prototype.hasOwnProperty.call(survey, mode);
+    const isArchived = survey.archived;
+    const isCompleted = survey.completed;
+
+    // Remove selected item
+    if ((isActive && !survey[mode]) || (!isActive && (isCompleted || isArchived))) {
+      this.props.actions.survey.removeSurvey(this.surveyId);
+    }
   };
 
   // Update survey
