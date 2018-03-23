@@ -8,6 +8,7 @@ export default {
   root: '/',
   static: {
     about: '/about',
+    me: '/me',
     privacy: '/privacy-policy',
     terms: '/terms'
   },
