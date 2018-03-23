@@ -5,6 +5,7 @@ import React from 'react';
 import {
   Button,
   ButtonGroup,
+  ButtonHandler,
   ButtonToolbar
 } from '../../../../../../components/shared/base/Buttons';
 import Loading from '../../../../../../components/shared/base/Loading';
@@ -37,7 +38,8 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => {
   // Variables
   const { error, loading } = asynchronous.get.survey;
-  const processing = loading;
+  const { loading: updating } = asynchronous.patch.survey;
+  const processing = loading || updating;
 
   // View
   return (
@@ -57,6 +59,14 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
             </Render>
           </div>
           <ButtonGroup label="Actions" size="small">
+            <ButtonHandler
+              button={data.survey.completed ? 'primary' : 'secondary'}
+              disabled={processing}
+              handler={{ onClick: actions.update }}
+              icon="check"
+              title="Done"
+              value={{ completed: !data.survey.completed }}
+            />
             <Button
               disabled={processing || data.survey.locked}
               handler={actions.delete}
