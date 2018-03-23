@@ -7,6 +7,7 @@ const base = {
 export default {
   root: '/',
   static: {
+    privacy: '/privacy-policy',
     terms: '/terms'
   },
   surveys: {
