@@ -10,7 +10,7 @@ import {
   SURVEYS_GET_SUCCESS,
   SURVEYS_SELECT_MODE
 } from './data/surveys/actions';
-import { SURVEYS_SAVE_PAGINATION } from './actions';
+import { SURVEYS_RESET_VIEW, SURVEYS_SAVE_PAGINATION } from './actions';
 
 // Reducers
 import dataReducer from './data/reducer';
@@ -63,6 +63,12 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
         }
       };
 
+    // Reset list view
+    case SURVEYS_RESET_VIEW:
+      return {
+        ...initialState.asynchronous
+      };
+
     // Default
     default:
       return state;
@@ -98,6 +104,12 @@ const viewReducer = (state = initialState.view, action) => {
       return {
         ...state,
         selected: initialState.view.selected
+      };
+
+    // Reset view
+    case SURVEYS_RESET_VIEW:
+      return {
+        ...initialState.view
       };
 
     // Default
