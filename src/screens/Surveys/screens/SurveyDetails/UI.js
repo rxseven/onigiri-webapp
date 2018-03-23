@@ -64,7 +64,14 @@ class UI extends Component {
 
     // Content
     if (!loading && !isEmpty(data.survey)) {
-      return <Content />;
+      return (
+        <Content
+          state={{
+            data: data.survey,
+            ui: { asynchronous }
+          }}
+        />
+      );
     }
 
     // Else
