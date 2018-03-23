@@ -16,6 +16,10 @@ import SignIn from '../screens/Users/screens/SignIn';
 import SignUp from '../screens/Users/screens/SignUp';
 import Welcome from '../screens/Users/screens/Welcome';
 
+import About from '../screens/About';
+import Me from '../screens/Me';
+import Privacy from '../screens/Policy/Privacy';
+import Terms from '../screens/Terms';
 import NotFound from '../screens/NotFound';
 
 // Route helpers
@@ -46,6 +50,10 @@ const Routes = () => (
     <ReferralRoute component={Farewell} path={PATHS.users.farewell} />
     <ReferralRoute component={Welcome} path={PATHS.users.welcome} />
 
+    <Route component={About} path={PATHS.static.about} />
+    <Route component={Me} path={PATHS.static.me} />
+    <Route component={Privacy} path={PATHS.static.privacy} />
+    <Route component={Terms} path={PATHS.static.terms} />
     <Route component={NotFound} />
   </Switch>
 );

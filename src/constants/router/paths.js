@@ -6,6 +6,12 @@ const base = {
 // Router paths
 export default {
   root: '/',
+  static: {
+    about: '/about',
+    me: '/me',
+    privacy: '/privacy-policy',
+    terms: '/terms'
+  },
   surveys: {
     base: base.surveys,
     details: `${base.surveys}/:id`,
