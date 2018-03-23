@@ -1,4 +1,5 @@
 // Actions
+import { USER_RESET } from '../../../../../../data/session/actions';
 import { SURVEY_GET, SURVEY_GET_FAILURE, SURVEY_GET_SUCCESS } from './actions';
 
 // Initial state
@@ -16,6 +17,10 @@ export default (state = initialState, action) => {
         ...state,
         ...action.payload
       };
+
+    // Clean up data
+    case USER_RESET:
+      return initialState;
 
     // Default
     default:
