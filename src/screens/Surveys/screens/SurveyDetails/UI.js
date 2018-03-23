@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import Layout from '../../../../components/shared/base/Layout';
+import Error from '../../../../components/shared/extended/Error';
 
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
@@ -50,7 +51,12 @@ class UI extends Component {
   // Render content
   renderContent = ({ state: { data, ui: { asynchronous } } }) => {
     // Variables
-    const { loading } = asynchronous.get.survey;
+    const { error, loading } = asynchronous.get.survey;
+
+    // Error
+    if (error) {
+      return <Error alert={error} />;
+    }
 
     // Content
     if (!loading && !isEmpty(data.survey)) {
