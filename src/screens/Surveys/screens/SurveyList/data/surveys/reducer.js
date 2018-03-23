@@ -14,7 +14,8 @@ import {
   SURVEYS_GET,
   SURVEYS_GET_FAILURE,
   SURVEYS_GET_SUCCESS,
-  SURVEYS_SELECT_MODE
+  SURVEYS_SELECT_MODE,
+  SURVEYS_RESET_DATA
 } from './actions';
 
 // Initial state
@@ -56,6 +57,7 @@ export default (state = initialState, action) => {
     // Clean up data
     case USER_RESET:
     case SURVEYS_SELECT_MODE:
+    case SURVEYS_RESET_DATA:
       return initialState;
 
     // Default
