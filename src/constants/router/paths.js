@@ -8,6 +8,7 @@ export default {
   root: '/',
   surveys: {
     base: base.surveys,
+    details: `${base.surveys}/:id`,
     list: base.surveys,
     new: `${base.surveys}/new`,
     success: `${base.surveys}/new/success`

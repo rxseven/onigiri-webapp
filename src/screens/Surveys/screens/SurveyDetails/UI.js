@@ -1,0 +1,104 @@
+// Module dependencies
+import { isEmpty } from 'lodash';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+
+import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
+import Layout from '../../../../components/shared/base/Layout';
+import Error from '../../../../components/shared/extended/Error';
+
+// Constants
+import PROP_TYPES from '../../../../constants/models/propTypes';
+import STATE_MODELS from '../../../../constants/models/state';
+
+// Peer dependencies
+import Content from './components/Content';
+import Toolbar from './components/Toolbar';
+
+// Declare prop types and default props
+const propTypes = PROP_TYPES.wrapper.asynchronous({
+  get: PropTypes.shape({
+    survey: PROP_TYPES.model.asynchronous
+  })
+});
+
+const defaultProps = STATE_MODELS.wrapper.asynchronous({
+  get: {
+    survey: { ...STATE_MODELS.model.asynchronous }
+  }
+});
+
+// Component
+class UI extends Component {
+  // Constructor
+  constructor(props) {
+    super(props);
+
+    // Component properties
+    this.surveyId = this.props.match.params.id;
+  }
+
+  // After a component is mounted...
+  componentDidMount() {
+    // Get survey
+    this.getSurvey();
+  }
+
+  // Get survey
+  getSurvey = (callback) => {
+    this.props.actions.survey.getSurvey(this.surveyId, callback);
+  };
+
+  // Render toolbar
+  renderToolbar = () => <Toolbar state={{ ...this.props.state }} />;
+
+  // Render content
+  renderContent = ({ state: { data, ui: { asynchronous } } }) => {
+    // Variables
+    const { error, loading } = asynchronous.get.survey;
+
+    // Error
+    if (error) {
+      return <Error alert={error} />;
+    }
+
+    // Content
+    if (!loading && !isEmpty(data.survey)) {
+      return (
+        <Content
+          state={{
+            data: data.survey,
+            ui: { asynchronous }
+          }}
+        />
+      );
+    }
+
+    // Else
+    return null;
+  };
+
+  // Render component
+  render() {
+    return (
+      <Document>
+        <Head>
+          <Title>Survey</Title>
+        </Head>
+        <Body>
+          <Layout>
+            {this.renderToolbar(this.props)}
+            {this.renderContent(this.props)}
+          </Layout>
+        </Body>
+      </Document>
+    );
+  }
+}
+
+// Specify prop types and default values for props
+UI.propTypes = propTypes;
+UI.defaultProps = defaultProps;
+
+// Module exports
+export default UI;
