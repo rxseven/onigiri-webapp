@@ -55,6 +55,9 @@ class UI extends Component {
 
   // Before a component is unmounted and destroyed...
   componentWillUnmount() {
+    // Reset survey data
+    this.onResetData();
+
     // Remove the current survey from its list (if needed)
     this.onRemoveItem();
   }
@@ -116,6 +119,11 @@ class UI extends Component {
     if ((isActive && !survey[mode]) || (!isActive && (isCompleted || isArchived))) {
       this.props.actions.survey.removeSurvey(this.surveyId);
     }
+  };
+
+  // Reset survey data
+  onResetData = () => {
+    this.props.actions.survey.resetData();
   };
 
   // Update survey
