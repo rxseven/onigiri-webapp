@@ -43,3 +43,11 @@ export const getSurveys = query =>
 export const cancelSurveys = () => {
   cancelRequest('Operation canceled by the user');
 };
+
+// Update survey by ID
+export const updateSurvey = (id, values) =>
+  ajax({
+    data: values,
+    method: 'patch',
+    url: `${API.endpoints.surveys.base}/${id}/update`
+  });

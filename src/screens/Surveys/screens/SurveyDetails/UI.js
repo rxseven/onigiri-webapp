@@ -49,6 +49,12 @@ class UI extends Component {
     this.getSurvey();
   }
 
+  // Before a component is unmounted and destroyed...
+  componentWillUnmount() {
+    // Remove the current survey from its list (if needed)
+    this.onRemoveItem();
+  }
+
   // Navigate back to list view screen
   onNavigateBack = () => {
     // Configuration
@@ -93,6 +99,26 @@ class UI extends Component {
     });
   };
 
+  // Remove survey item from its list
+  onRemoveItem = () => {
+    // Variables
+    const { state: { data: { survey } }, location: { state } } = this.props;
+    const { mode } = state || { mode: false };
+    const isActive = Object.prototype.hasOwnProperty.call(survey, mode);
+    const isArchived = survey.archived;
+    const isCompleted = survey.completed;
+
+    // Remove selected item
+    if ((isActive && !survey[mode]) || (!isActive && (isCompleted || isArchived))) {
+      this.props.actions.survey.removeSurvey(this.surveyId);
+    }
+  };
+
+  // Update survey
+  onUpdate = (values) => {
+    this.props.actions.survey.updateSurvey(this.surveyId, values);
+  };
+
   // Get recipients
   getRecipients = () => {
     this.props.actions.survey.getRecipients(this.surveyId);
@@ -108,7 +134,8 @@ class UI extends Component {
     <Toolbar
       actions={{
         delete: this.onDeleteRequest,
-        reload: this.onReload
+        reload: this.onReload,
+        update: this.onUpdate
       }}
       state={{
         ...props.state,

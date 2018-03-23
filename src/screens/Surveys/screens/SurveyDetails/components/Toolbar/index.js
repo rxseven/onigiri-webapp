@@ -5,9 +5,11 @@ import React from 'react';
 import {
   Button,
   ButtonGroup,
+  ButtonHandler,
   ButtonToolbar
 } from '../../../../../../components/shared/base/Buttons';
 import Loading from '../../../../../../components/shared/base/Loading';
+import Spinner from '../../../../../../components/shared/base/Spinner';
 import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
 import Render from '../../../../../../components/shared/helpers/Render';
 
@@ -37,7 +39,8 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => {
   // Variables
   const { error, loading } = asynchronous.get.survey;
-  const processing = loading;
+  const { loading: updating } = asynchronous.patch.survey;
+  const processing = loading || updating;
 
   // View
   return (
@@ -52,11 +55,30 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
             <Render condition={loading}>
               <Loading />
             </Render>
+            <Render condition={updating}>
+              <Spinner />
+            </Render>
             <Render condition={!processing && status.updated}>
               <span>Updated {dateHelper.currentTime()}</span>
             </Render>
           </div>
           <ButtonGroup label="Actions" size="small">
+            <ButtonHandler
+              button={data.survey.completed ? 'primary' : 'secondary'}
+              disabled={processing}
+              handler={{ onClick: actions.update }}
+              icon="check"
+              title="Done"
+              value={{ completed: !data.survey.completed }}
+            />
+            <ButtonHandler
+              button={data.survey.archived ? 'primary' : 'secondary'}
+              disabled={processing}
+              handler={{ onClick: actions.update }}
+              icon="box"
+              title="Archive"
+              value={{ archived: !data.survey.archived }}
+            />
             <Button
               disabled={processing || data.survey.locked}
               handler={actions.delete}

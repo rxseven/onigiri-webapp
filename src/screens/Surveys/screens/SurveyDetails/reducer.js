@@ -10,7 +10,10 @@ import {
   RECIPIENTS_GET_SUCCESS,
   SURVEY_GET,
   SURVEY_GET_FAILURE,
-  SURVEY_GET_SUCCESS
+  SURVEY_GET_SUCCESS,
+  SURVEY_UPDATE,
+  SURVEY_UPDATE_FAILURE,
+  SURVEY_UPDATE_SUCCESS
 } from './data/survey/actions';
 
 // Reducers
@@ -25,7 +28,10 @@ const initialState = {
     recipients: { ...STATE_MODELS.model.asynchronous },
     survey: { ...STATE_MODELS.model.asynchronous }
   },
-  delete: { survey: { ...STATE_MODELS.model.asynchronous } }
+  delete: { survey: { ...STATE_MODELS.model.asynchronous } },
+  patch: {
+    survey: { ...STATE_MODELS.model.asynchronous }
+  }
 };
 
 // Asynchronous reducer
@@ -121,6 +127,35 @@ const asyncReducer = (state = initialState, action) => {
         ...state,
         delete: {
           survey: initialState.delete.survey
+        }
+      };
+
+    // Update survey
+    case SURVEY_UPDATE:
+      return {
+        ...state,
+        patch: {
+          survey: {
+            ...initialState.patch.survey,
+            loading: true
+          }
+        }
+      };
+    case SURVEY_UPDATE_FAILURE:
+      return {
+        ...state,
+        patch: {
+          survey: {
+            ...initialState.patch.survey,
+            error: action.payload
+          }
+        }
+      };
+    case SURVEY_UPDATE_SUCCESS:
+      return {
+        ...state,
+        patch: {
+          survey: initialState.patch.survey
         }
       };
 

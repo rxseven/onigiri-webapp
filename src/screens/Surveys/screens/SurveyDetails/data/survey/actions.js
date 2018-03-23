@@ -10,6 +10,10 @@ export const SURVEY_GET = 'Survey/data/SURVEY_GET';
 export const SURVEY_GET_FAILURE = 'Survey/data/SURVEY_GET_FAILURE';
 export const SURVEY_GET_SUCCESS = 'Survey/data/SURVEY_GET_SUCCESS';
 
+export const SURVEY_UPDATE = 'Survey/SURVEY_UPDATE';
+export const SURVEY_UPDATE_FAILURE = 'Survey/SURVEY_UPDATE_FAILURE';
+export const SURVEY_UPDATE_SUCCESS = 'Survey/SURVEY_UPDATE_SUCCESS';
+
 // Get recipients : Success
 const getRecipientsSuccess = data => ({
   type: RECIPIENTS_GET_SUCCESS,
@@ -77,5 +81,40 @@ export const getSurvey = (id, callback) => async (dispatch) => {
   } catch (error) {
     // Inform a reducer that the request failed
     dispatch(getSurveyFailure(error));
+  }
+};
+
+// Update survey : Success
+const updateSurveySuccess = data => ({
+  type: SURVEY_UPDATE_SUCCESS,
+  payload: data
+});
+
+// Update survey : Failure
+const updateSurveyFailure = error => ({
+  type: SURVEY_UPDATE_FAILURE,
+  payload: error.response.data.error
+});
+
+// Update survey : Start (loading)
+export const updateSurvey = (id, values, callback) => async (dispatch) => {
+  try {
+    // 1. Inform a reducer that the request began (loading)
+    dispatch({ type: SURVEY_UPDATE });
+
+    // 2. Update survey
+    // 3. Retrieve data in a response and transform to an appropriate format
+    const { data } = await surveysService.updateSurvey(id, values);
+
+    // 4. Inform a reducer that the request finished successfully
+    dispatch(updateSurveySuccess(data));
+
+    // 5. Execute a callback
+    if (callback) {
+      callback();
+    }
+  } catch (error) {
+    // Inform a reducer that the request failed
+    dispatch(updateSurveyFailure(error));
   }
 };
