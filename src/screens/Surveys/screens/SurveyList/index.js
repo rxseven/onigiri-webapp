@@ -2,6 +2,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import * as commonActions from '../../actions';
+
 // Peer dependencies
 import * as dataActions from './data/surveys/actions';
 import { getSurveys } from './data/surveys/reducer';
@@ -26,6 +28,7 @@ const mapDispatchToProps = dispatch => ({
     surveys: bindActionCreators(
       {
         ...uiActions,
+        ...commonActions,
         ...dataActions
       },
       dispatch
