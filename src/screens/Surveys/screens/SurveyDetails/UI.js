@@ -6,6 +6,15 @@ import Layout from '../../../../components/shared/base/Layout';
 
 // Component
 class UI extends Component {
+  // Constructor
+  constructor(props) {
+    super(props);
+
+    // Component properties
+    this.surveyId = this.props.match.params.id;
+  }
+
+  // Render component
   render() {
     return (
       <Document>
