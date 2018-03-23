@@ -12,6 +12,7 @@ import {
   SURVEY_GET,
   SURVEY_GET_FAILURE,
   SURVEY_GET_SUCCESS,
+  SURVEY_RESET_DATA,
   SURVEY_UPDATE,
   SURVEY_UPDATE_FAILURE,
   SURVEY_UPDATE_SUCCESS
@@ -61,6 +62,7 @@ export default (state = initialState, action) => {
       };
 
     // Clean up data
+    case SURVEY_RESET_DATA:
     case USER_RESET:
       return initialState;
 
