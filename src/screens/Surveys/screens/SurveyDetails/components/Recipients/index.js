@@ -11,6 +11,7 @@ import {
   ListLabel
 } from '../../../../../../components/shared/base/List';
 import Spinner from '../../../../../../components/shared/base/Spinner';
+import Error from '../../../../../../components/shared/extended/Error';
 import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
 import Render from '../../../../../../components/shared/helpers/Render';
 
@@ -50,6 +51,9 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
             <Spinner />
           </Render>
         </ButtonSet>
+      </Render>
+      <Render condition={error}>
+        <Error alert={error} options={CSS.margin.MB00} />
       </Render>
       <Render condition={data}>
         <List>
