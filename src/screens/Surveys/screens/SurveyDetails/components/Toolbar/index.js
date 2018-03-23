@@ -9,6 +9,7 @@ import {
   ButtonToolbar
 } from '../../../../../../components/shared/base/Buttons';
 import Loading from '../../../../../../components/shared/base/Loading';
+import Spinner from '../../../../../../components/shared/base/Spinner';
 import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
 import Render from '../../../../../../components/shared/helpers/Render';
 
@@ -53,6 +54,9 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
           <div className={styles.status}>
             <Render condition={loading}>
               <Loading />
+            </Render>
+            <Render condition={updating}>
+              <Spinner />
             </Render>
             <Render condition={!processing && status.updated}>
               <span>Updated {dateHelper.currentTime()}</span>
