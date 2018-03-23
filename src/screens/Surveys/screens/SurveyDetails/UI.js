@@ -10,6 +10,7 @@ import Error from '../../../../components/shared/extended/Error';
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../constants/models/state';
+import PATHS from '../../../../constants/router/paths';
 
 // Peer dependencies
 import Content from './components/Content';
@@ -48,13 +49,28 @@ class UI extends Component {
     this.getSurvey();
   }
 
+  // Navigate back to list view screen
+  onNavigateBack = () => {
+    // Configuration
+    const { history } = this.props;
+
+    // Move the pointer in the history stack by 1 entry, otherwise link to
+    if (this.fromList) {
+      history.goBack();
+    } else {
+      history.push(PATHS.surveys.list);
+    }
+  };
+
   // Confirm deleting survey
   onDeleteConfirm = () => {
     // Delete survey from the given ID
     this.props.actions.survey.deleteSurvey(this.surveyId, () => {
-      // TODO: 1. Close a modal
-      // TODO: 2. Redirect to SurveyList screen after the survey has been deleted
-      console.log('this.onDeleteConfirm() is executed.');
+      // Close a modal
+      this.props.actions.modal.closeModal();
+
+      // Redirect to list view
+      this.onNavigateBack();
     });
   };
 
