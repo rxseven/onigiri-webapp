@@ -67,6 +67,9 @@ class UI extends Component {
     // Configuration
     const { history } = this.props;
 
+    // Track selected survey
+    this.onAddSelected();
+
     // Move the pointer in the history stack by 1 entry, otherwise link to
     if (this.fromList) {
       history.goBack();
@@ -124,6 +127,13 @@ class UI extends Component {
   // Reset survey data
   onResetData = () => {
     this.props.actions.survey.resetData();
+  };
+
+  // Track the current selected survey
+  onAddSelected = () => {
+    if (this.fromList) {
+      this.props.actions.survey.addSelectedSurvey(this.surveyId);
+    }
   };
 
   // Update survey
