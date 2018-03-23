@@ -36,7 +36,11 @@ class UI extends Component {
   constructor(props) {
     super(props);
 
+    // Variables
+    const { fromList } = props.location.state || { fromList: false };
+
     // Component properties
+    this.fromList = fromList;
     this.surveyId = this.props.match.params.id;
 
     // Initial state
