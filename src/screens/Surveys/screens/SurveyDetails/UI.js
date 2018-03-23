@@ -50,7 +50,7 @@ class UI extends Component {
   };
 
   // Render toolbar
-  renderToolbar = () => <Toolbar />;
+  renderToolbar = () => <Toolbar state={{ ...this.props.state }} />;
 
   // Render content
   renderContent = ({ state: { data, ui: { asynchronous } } }) => {
