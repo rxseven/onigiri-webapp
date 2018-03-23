@@ -14,6 +14,13 @@ export const createSurvey = data =>
     url: API.endpoints.surveys.base
   });
 
+// Delete survey by ID
+export const deleteSurvey = id =>
+  ajax({
+    method: 'delete',
+    url: `${API.endpoints.surveys.base}/${id}`
+  });
+
 // Get recipients by survey ID
 export const getRecipients = id => ajax({ url: `${API.endpoints.surveys.base}/${id}/recipients` });
 
