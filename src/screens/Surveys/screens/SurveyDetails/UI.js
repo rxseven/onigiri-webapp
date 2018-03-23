@@ -13,6 +13,7 @@ import STATE_MODELS from '../../../../constants/models/state';
 
 // Peer dependencies
 import Content from './components/Content';
+import Toolbar from './components/Toolbar';
 
 // Declare prop types and default props
 const propTypes = PROP_TYPES.wrapper.asynchronous({
@@ -48,6 +49,9 @@ class UI extends Component {
     this.props.actions.survey.getSurvey(this.surveyId, callback);
   };
 
+  // Render toolbar
+  renderToolbar = () => <Toolbar />;
+
   // Render content
   renderContent = ({ state: { data, ui: { asynchronous } } }) => {
     // Variables
@@ -75,7 +79,10 @@ class UI extends Component {
           <Title>Survey</Title>
         </Head>
         <Body>
-          <Layout>{this.renderContent(this.props)}</Layout>
+          <Layout>
+            {this.renderToolbar(this.props)}
+            {this.renderContent(this.props)}
+          </Layout>
         </Body>
       </Document>
     );
