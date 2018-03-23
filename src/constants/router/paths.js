@@ -6,6 +6,9 @@ const base = {
 // Router paths
 export default {
   root: '/',
+  static: {
+    terms: '/terms'
+  },
   surveys: {
     base: base.surveys,
     details: `${base.surveys}/:id`,

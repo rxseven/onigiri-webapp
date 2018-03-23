@@ -16,6 +16,7 @@ import SignIn from '../screens/Users/screens/SignIn';
 import SignUp from '../screens/Users/screens/SignUp';
 import Welcome from '../screens/Users/screens/Welcome';
 
+import Terms from '../screens/Terms';
 import NotFound from '../screens/NotFound';
 
 // Route helpers
@@ -46,6 +47,7 @@ const Routes = () => (
     <ReferralRoute component={Farewell} path={PATHS.users.farewell} />
     <ReferralRoute component={Welcome} path={PATHS.users.welcome} />
 
+    <Route component={Terms} path={PATHS.static.terms} />
     <Route component={NotFound} />
   </Switch>
 );
