@@ -91,7 +91,7 @@ class SurveyReview extends Component {
   renderInfo = () => (
     <Render condition={!this.props.state.data.form.from}>
       <div className={styles.info}>
-          You did&apos;t provide sender email, the system defaults will be applied.
+        You did&apos;t provide sender email, the system defaults will be applied.
       </div>
     </Render>
   );
