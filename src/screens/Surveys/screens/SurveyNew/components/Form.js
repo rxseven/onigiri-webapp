@@ -147,7 +147,7 @@ const validate = (values) => {
     errors.sender = validationHelper.name(values.sender);
   }
 
-  // Validate email
+  // Validate sender email
   errors.from = validationHelper.email(values.from);
 
   // Validate subject line
@@ -160,13 +160,11 @@ const validate = (values) => {
     errors.body = validationHelper.name(values.body);
   }
 
-  // Validate email addresses
+  // Validate recipient emails
   errors.recipients = validationHelper.emails(values.recipients);
 
-  // Validate matching landing page's URL
+  // Validate landing page
   errors.landing = validationHelper.url(values.landing);
-
-  // Validate matching landing page's protocol
   errors.landing = validationHelper.http(values.landing);
 
   // Iterates over elements of collection and validate value for each element
