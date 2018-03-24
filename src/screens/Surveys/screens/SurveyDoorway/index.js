@@ -1,11 +1,11 @@
 // Module dependencies
-import React from 'react';
+import { connect } from 'react-redux';
 
 // Peer dependencies
 import UI from './UI';
 
-// Component
-const SurveysDoorway = props => <UI {...props} />;
+// Connect component to application state
+const container = connect(null)(UI);
 
 // Module exports
-export default SurveysDoorway;
+export default container;
