@@ -137,6 +137,11 @@ const validate = (values) => {
   // Initial errors object
   const errors = {};
 
+  // Validate survey title
+  if (values.title) {
+    errors.title = validationHelper.name(values.title);
+  }
+
   // Validate sender name
   if (values.sender) {
     errors.sender = validationHelper.name(values.sender);
@@ -144,6 +149,16 @@ const validate = (values) => {
 
   // Validate email
   errors.from = validationHelper.email(values.from);
+
+  // Validate subject line
+  if (values.subject) {
+    errors.subject = validationHelper.name(values.subject);
+  }
+
+  // Validate body
+  if (values.body) {
+    errors.body = validationHelper.name(values.body);
+  }
 
   // Validate email addresses
   errors.recipients = validationHelper.emails(values.recipients);
