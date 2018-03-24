@@ -2,7 +2,12 @@
 import { createSelector } from 'reselect';
 
 // Actions
-import { LANDING_GET, LANDING_GET_FAILURE, LANDING_GET_SUCCESS } from './actions';
+import {
+  LANDING_GET,
+  LANDING_GET_FAILURE,
+  LANDING_GET_SUCCESS,
+  LANDING_RESET_DATA
+} from './actions';
 
 // Initial state
 const initialState = { URI: 'null' };
@@ -19,6 +24,10 @@ export default (state = initialState, action) => {
         ...state,
         ...action.payload
       };
+
+    // Reset data
+    case LANDING_RESET_DATA:
+      return initialState;
 
     // Default
     default:
