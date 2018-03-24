@@ -45,6 +45,17 @@ class UI extends Component {
     this.getLanding();
   }
 
+  // Before a component is unmounted and destroyed...
+  componentWillUnmount() {
+    // Reset landing page data
+    this.onResetData();
+  }
+
+  // Reset landing page data
+  onResetData = () => {
+    this.props.actions.surveys.resetData();
+  };
+
   // Get landing page URI
   getLanding = (callback) => {
     this.props.actions.surveys.getLanding(this.surveyId, callback);
