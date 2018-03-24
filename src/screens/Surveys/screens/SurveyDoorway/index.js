@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
   actions: {
-    survey: bindActionCreators({ ...dataActions }, dispatch)
+    surveys: bindActionCreators({ ...dataActions }, dispatch)
   }
 });
 

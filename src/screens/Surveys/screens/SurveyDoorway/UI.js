@@ -40,7 +40,7 @@ class UI extends Component {
 
   // Get landing page URI
   getLanding = (callback) => {
-    this.props.actions.survey.getLanding(this.surveyId, callback);
+    this.props.actions.surveys.getLanding(this.surveyId, callback);
   };
 
   // Render component
