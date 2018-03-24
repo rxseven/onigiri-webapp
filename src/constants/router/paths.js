@@ -15,6 +15,7 @@ export default {
   surveys: {
     base: base.surveys,
     details: `${base.surveys}/:id`,
+    doorway: `${base.surveys}/doorway/:id/:choice`,
     list: base.surveys,
     new: `${base.surveys}/new`,
     success: `${base.surveys}/new/success`
