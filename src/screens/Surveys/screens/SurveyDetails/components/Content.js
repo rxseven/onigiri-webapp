@@ -72,6 +72,10 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
 
           <CardSubtitle options={CSS.margin.MB04}>Email</CardSubtitle>
           <List>
+            <ListItem>
+              <ListLabel>Sender</ListLabel>
+              <ListContent>{data.sender}</ListContent>
+            </ListItem>
             {data.from && (
               <ListItem>
                 <ListLabel>From</ListLabel>
