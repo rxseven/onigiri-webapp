@@ -88,21 +88,13 @@ class SurveyReview extends Component {
     });
 
   // Render info
-  renderInfo = () => {
-    // Variables
-    const { from, landing } = this.props.state.data.form;
-
-    // View
-    return (
-      <Render condition={!from || !landing}>
-        <div className={styles.info}>
-          You did&apos;t provide {!from && 'sender email'}
-          {!from && !landing && ' and '}
-          {!landing && 'landing page'}, the system defaults will be applied.
-        </div>
-      </Render>
-    );
-  };
+  renderInfo = () => (
+    <Render condition={!this.props.state.data.form.from}>
+      <div className={styles.info}>
+          You did&apos;t provide sender email, the system defaults will be applied.
+      </div>
+    </Render>
+  );
 
   // Render a component
   render() {
