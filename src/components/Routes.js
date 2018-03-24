@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../screens/Home';
 
 import SurveyDetails from '../screens/Surveys/screens/SurveyDetails';
+import SurveyDoorway from '../screens/Surveys/screens/SurveyDoorway';
 import SurveyNew from '../screens/Surveys/screens/SurveyNew';
 import SurveyList from '../screens/Surveys/screens/SurveyList';
 import SurveySuccess from '../screens/Surveys/screens/SurveySuccess';
@@ -41,6 +42,7 @@ const Routes = () => (
       path={PATHS.surveys.success}
       redirectTo={PATHS.surveys.list}
     />
+    <Route component={SurveyDoorway} path={PATHS.surveys.doorway} />
     <PrivateRoute component={SurveyDetails} path={PATHS.surveys.details} />
     <PrivateRoute component={SurveyList} exact path={PATHS.surveys.list} />
 
