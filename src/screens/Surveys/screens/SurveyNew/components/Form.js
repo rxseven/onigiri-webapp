@@ -137,6 +137,11 @@ const validate = (values) => {
   // Initial errors object
   const errors = {};
 
+  // Validate sender name
+  if (values.sender) {
+    errors.sender = validationHelper.name(values.sender);
+  }
+
   // Validate email
   errors.from = validationHelper.email(values.from);
 
