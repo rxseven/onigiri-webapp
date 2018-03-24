@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import Layout from '../../../../components/shared/base/Layout';
+import Loading from '../../../../components/shared/base/Loading';
 
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
@@ -47,6 +48,11 @@ class UI extends Component {
   renderContent = ({ state: { data, ui: { asynchronous } } }) => {
     // Variables
     const { loading } = asynchronous.get.landing;
+
+    // Loading
+    if (loading) {
+      return <Loading />;
+    }
 
     // Content
     if (!loading && data.landing.URI) {
