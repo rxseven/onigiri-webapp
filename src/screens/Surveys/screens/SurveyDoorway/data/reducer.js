@@ -2,9 +2,9 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import surveyReducer from './survey/reducer';
+import landingReducer from './landing/reducer';
 
 // Combine reducers
 export default combineReducers({
-  survey: surveyReducer
+  landing: landingReducer
 });
