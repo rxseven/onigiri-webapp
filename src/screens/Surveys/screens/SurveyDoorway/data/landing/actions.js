@@ -2,12 +2,12 @@
 import * as surveysService from '../../../../../../services/surveys';
 
 // Actions
-export const LANDING_GET = 'Survey/data/LANDING_GET';
-export const LANDING_GET_FAILURE = 'Survey/data/LANDING_GET_FAILURE';
-export const LANDING_GET_SUCCESS = 'Survey/data/LANDING_GET_SUCCESS';
+export const LANDING_GET = 'Landing/data/LANDING_GET';
+export const LANDING_GET_FAILURE = 'Landing/data/LANDING_GET_FAILURE';
+export const LANDING_GET_SUCCESS = 'Landing/data/LANDING_GET_SUCCESS';
 
 // Actions
-export const LANDING_RESET_DATA = 'Survey/data/LANDING_RESET_DATA';
+export const LANDING_RESET_DATA = 'Landing/data/LANDING_RESET_DATA';
 
 // Get landing page URI : Success
 const getLandingSuccess = data => ({
