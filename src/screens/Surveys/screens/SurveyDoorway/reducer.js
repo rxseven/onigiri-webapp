@@ -1,4 +1,5 @@
 // Module dependencies
+import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
@@ -63,3 +64,9 @@ export default combineReducers({
   data: dataReducer,
   ui: uiReducer
 });
+
+// Non-memoized utility selectors
+const getNode = state => state.screens.surveys.doorway;
+
+// Get UI state
+export const getUI = createSelector(getNode, node => node.ui);
