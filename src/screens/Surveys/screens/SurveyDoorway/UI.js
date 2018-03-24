@@ -1,8 +1,10 @@
 // Module dependencies
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
+import { Card, CardBody, CardHeader, CardText } from '../../../../components/shared/base/Card';
 import Layout from '../../../../components/shared/base/Layout';
 import Loading from '../../../../components/shared/base/Loading';
 import Error from '../../../../components/shared/extended/Error';
@@ -10,6 +12,7 @@ import Error from '../../../../components/shared/extended/Error';
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
 import STATE_MODELS from '../../../../constants/models/state';
+import CSS from '../../../../constants/string/css';
 
 // Declare prop types and default props
 const propTypes = PROP_TYPES.wrapper.asynchronous({
@@ -61,8 +64,19 @@ class UI extends Component {
     }
 
     // Content
-    if (!loading && data.landing.URI) {
-      return <div>Content</div>;
+    if (!loading) {
+      return (
+        <Card alignment="text-center">
+          <CardHeader>Thank you for your feedback!</CardHeader>
+          <CardBody>
+            <CardText>We’re so glad you’re happy with our service.</CardText>
+            <CardText>
+              We’re grateful that you trust our service and will continue to do everything we can to
+              offer you the best experience possible.
+            </CardText>
+          </CardBody>
+        </Card>
+      );
     }
 
     // Else
@@ -74,11 +88,10 @@ class UI extends Component {
     return (
       <Document>
         <Head>
-          <Title>Thank you for your feedback!</Title>
+          <Title>Onigiri</Title>
         </Head>
         <Body>
-          <Layout>
-            <h2>SurveyDoorway screen</h2>
+          <Layout size={cx(CSS.grid.col.MD08, CSS.grid.col.LG06)}>
             {this.renderContent(this.props)}
           </Layout>
         </Body>
