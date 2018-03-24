@@ -6,6 +6,9 @@ export const LANDING_GET = 'Survey/data/LANDING_GET';
 export const LANDING_GET_FAILURE = 'Survey/data/LANDING_GET_FAILURE';
 export const LANDING_GET_SUCCESS = 'Survey/data/LANDING_GET_SUCCESS';
 
+// Actions
+export const LANDING_RESET_DATA = 'Survey/data/LANDING_RESET_DATA';
+
 // Get landing page URI : Success
 const getLandingSuccess = data => ({
   type: LANDING_GET_SUCCESS,
@@ -40,3 +43,8 @@ export const getLanding = (id, callback) => async (dispatch) => {
     dispatch(getLandingFailure(error));
   }
 };
+
+// Reset state
+export const resetData = () => ({
+  type: LANDING_RESET_DATA
+});
