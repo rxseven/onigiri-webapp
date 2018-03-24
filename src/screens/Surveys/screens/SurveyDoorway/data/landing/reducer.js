@@ -1,3 +1,6 @@
+// Module dependencies
+import { createSelector } from 'reselect';
+
 // Actions
 import { LANDING_GET, LANDING_GET_FAILURE, LANDING_GET_SUCCESS } from './actions';
 
@@ -22,3 +25,9 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+// Non-memoized utility selectors
+const getNode = state => state.screens.surveys.doorway.data;
+
+// Get landing page URI
+export const getLanding = createSelector(getNode, node => node.landing);
