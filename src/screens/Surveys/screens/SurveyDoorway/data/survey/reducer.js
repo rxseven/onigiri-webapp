@@ -1,2 +1,5 @@
+// Initial state
+const initialState = { URI: null };
+
 // Reducer
-export default (state = null, action) => state;
+export default (state = initialState, action) => state;
