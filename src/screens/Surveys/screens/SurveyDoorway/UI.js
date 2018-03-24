@@ -5,9 +5,11 @@ import React, { Component } from 'react';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import { Card, CardBody, CardHeader, CardText } from '../../../../components/shared/base/Card';
+import ExLink from '../../../../components/shared/base/ExLink';
 import Layout from '../../../../components/shared/base/Layout';
 import Loading from '../../../../components/shared/base/Loading';
 import Error from '../../../../components/shared/extended/Error';
+import Render from '../../../../components/shared/helpers/Render';
 
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
@@ -74,6 +76,11 @@ class UI extends Component {
               We’re grateful that you trust our service and will continue to do everything we can to
               offer you the best experience possible.
             </CardText>
+            <Render condition={data.landing.URI}>
+              <ExLink button="primary" to={data.landing.URI || '#'} replace>
+                View campaign
+              </ExLink>
+            </Render>
           </CardBody>
         </Card>
       );
