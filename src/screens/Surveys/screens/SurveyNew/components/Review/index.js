@@ -43,7 +43,7 @@ class SurveyReview extends Component {
 
   // Reset UI state
   onReset = () => {
-    this.props.actions.survey.resetUI();
+    this.props.actions.surveys.resetUI();
   };
 
   // Submit handler
@@ -53,7 +53,7 @@ class SurveyReview extends Component {
     const { recipients, title } = form;
 
     // Create new survey and send out emails
-    actions.survey.createSurvey(form, (id) => {
+    actions.surveys.createSurvey(form, (id) => {
       // Redirect to Success screen after the form has been submitted
       history.push({
         pathname: PATHS.surveys.success,
@@ -140,7 +140,7 @@ const mapStateToProps = state => ({
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
   actions: {
-    survey: bindActionCreators(surveyActions, dispatch)
+    surveys: bindActionCreators(surveyActions, dispatch)
   }
 });
 
