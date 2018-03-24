@@ -81,7 +81,7 @@ class UI extends Component {
   // Confirm deleting survey
   onDeleteConfirm = () => {
     // Delete survey from the given ID
-    this.props.actions.survey.deleteSurvey(this.surveyId, () => {
+    this.props.actions.surveys.deleteSurvey(this.surveyId, () => {
       // Close a modal
       this.props.actions.modal.closeModal();
 
@@ -120,35 +120,35 @@ class UI extends Component {
 
     // Remove selected item
     if ((isActive && !survey[mode]) || (!isActive && (isCompleted || isArchived))) {
-      this.props.actions.survey.removeSurvey(this.surveyId);
+      this.props.actions.surveys.removeSurvey(this.surveyId);
     }
   };
 
   // Reset survey data
   onResetData = () => {
-    this.props.actions.survey.resetData();
+    this.props.actions.surveys.resetData();
   };
 
   // Track the current selected survey
   onAddSelected = () => {
     if (this.fromList) {
-      this.props.actions.survey.addSelectedSurvey(this.surveyId);
+      this.props.actions.surveys.addSelectedSurvey(this.surveyId);
     }
   };
 
   // Update survey
   onUpdate = (values) => {
-    this.props.actions.survey.updateSurvey(this.surveyId, values);
+    this.props.actions.surveys.updateSurvey(this.surveyId, values);
   };
 
   // Get recipients
   getRecipients = () => {
-    this.props.actions.survey.getRecipients(this.surveyId);
+    this.props.actions.surveys.getRecipients(this.surveyId);
   };
 
   // Get survey
   getSurvey = (callback) => {
-    this.props.actions.survey.getSurvey(this.surveyId, callback);
+    this.props.actions.surveys.getSurvey(this.surveyId, callback);
   };
 
   // Render toolbar

@@ -29,7 +29,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: {
     modal: bindActionCreators(modalActions, dispatch),
-    survey: bindActionCreators(
+    surveys: bindActionCreators(
       {
         ...commonActions,
         ...dataActions
