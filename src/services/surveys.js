@@ -21,6 +21,10 @@ export const deleteSurvey = id =>
     url: `${API.endpoints.surveys.base}/${id}`
   });
 
+// Get landing page URI by survey ID
+export const getLanding = id =>
+  ajax({ auth: false, url: `${API.endpoints.surveys.base}/${id}/landing` });
+
 // Get recipients by survey ID
 export const getRecipients = id => ajax({ url: `${API.endpoints.surveys.base}/${id}/recipients` });
 
