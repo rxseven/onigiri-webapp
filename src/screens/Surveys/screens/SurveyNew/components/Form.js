@@ -165,7 +165,6 @@ const validate = (values) => {
 
   // Validate landing page
   errors.landing = validationHelper.url(values.landing);
-  errors.landing = validationHelper.http(values.landing);
 
   // Iterates over elements of collection and validate value for each element
   each(FIELDS, ({ name, required }) => {
