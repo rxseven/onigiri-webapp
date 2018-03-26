@@ -137,17 +137,34 @@ const validate = (values) => {
   // Initial errors object
   const errors = {};
 
-  // Validate email
+  // Validate survey title
+  if (values.title) {
+    errors.title = validationHelper.name(values.title);
+  }
+
+  // Validate sender name
+  if (values.sender) {
+    errors.sender = validationHelper.name(values.sender);
+  }
+
+  // Validate sender email
   errors.from = validationHelper.email(values.from);
 
-  // Validate email addresses
+  // Validate subject line
+  if (values.subject) {
+    errors.subject = validationHelper.name(values.subject);
+  }
+
+  // Validate body
+  if (values.body) {
+    errors.body = validationHelper.name(values.body);
+  }
+
+  // Validate recipient emails
   errors.recipients = validationHelper.emails(values.recipients);
 
-  // Validate matching landing page's URL
+  // Validate landing page
   errors.landing = validationHelper.url(values.landing);
-
-  // Validate matching landing page's protocol
-  errors.landing = validationHelper.http(values.landing);
 
   // Iterates over elements of collection and validate value for each element
   each(FIELDS, ({ name, required }) => {

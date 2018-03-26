@@ -6,6 +6,12 @@ export default [
     required: true
   },
   {
+    label: 'Sender name',
+    name: 'sender',
+    type: 'text',
+    required: true
+  },
+  {
     label: 'From',
     name: 'from',
     type: 'text',
