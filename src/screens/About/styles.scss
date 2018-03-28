@@ -1,0 +1,138 @@
+// Global styles
+@import "../../styles/base/settings";
+@import "../../styles/mixins/utilities";
+
+// Variables
+$breakpoint-xs: 0px;
+$label-width-md: 15%;
+$label-width-sm: 20%;
+$label-width-xs: 25%;
+
+// Logos
+.logo {
+  background: transparent no-repeat 0 0 / 100%;
+  display: block;
+  margin: 0.75rem 0 0.85rem 0;
+}
+
+.bootstrap {
+  background-image: url("./images/logo-bootstrap.png");
+  composes: logo;
+  height: 46px;
+  width: 50px;
+}
+
+.express {
+  background-image: url("./images/logo-express.png");
+  composes: logo;
+  height: 43px;
+  width: 150px;
+}
+
+.heroku {
+  background-image: url("./images/logo-heroku.png");
+  composes: logo;
+  height: 45px;
+  width: 150px;
+}
+
+.mlab {
+  background-image: url("./images/logo-mlab.png");
+  composes: logo;
+  height: 54px;
+  width: 150px;
+}
+
+.mongodb {
+  background-image: url("./images/logo-mongodb.png");
+  composes: logo;
+  height: 40px;
+  width: 150px;
+}
+
+.node {
+  background-image: url("./images/logo-node.png");
+  composes: logo;
+  height: 92px;
+  width: 150px;
+}
+
+.react {
+  background-image: url("./images/logo-react.png");
+  composes: logo;
+  height: 45px;
+  width: 50px;
+}
+
+.redux {
+  @include square(50px);
+  background-image: url("./images/logo-redux.png");
+  composes: logo;
+}
+
+.sendgrid {
+  background-image: url("./images/logo-sendgrid.png");
+  composes: logo;
+  height: 27px;
+  width: 150px;
+}
+
+.stripe {
+  background-image: url("./images/logo-stripe.png");
+  composes: logo;
+  height: 63px;
+  width: 150px;
+}
+
+// Specs
+.specs {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-top: 0.5rem;
+
+  > li {
+    @include clearfix;
+    font-size: 0.875rem;
+  }
+
+  .label,
+  .content {
+    display: block;
+
+    @media (min-width: $breakpoint-xs) {
+      float: left;
+    }
+  }
+
+  .label {
+    color: $color-secondary;
+    margin-bottom: 0.25rem;
+
+    @media (min-width: $breakpoint-xs) {
+      width: $label-width-xs;
+    }
+
+    @media (min-width: $breakpoint-sm) {
+      width: $label-width-sm;
+    }
+
+    @media (min-width: $breakpoint-md) {
+      width: $label-width-md;
+    }
+  }
+
+  .content {
+    @media (min-width: $breakpoint-xs) {
+      width: 100% - $label-width-xs;
+    }
+
+    @media (min-width: $breakpoint-sm) {
+      width: 100% - $label-width-sm;
+    }
+
+    @media (min-width: $breakpoint-md) {
+      width: 100% - $label-width-md;
+    }
+  }
+}
