@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Body, Document, Head, Title } from '../../components/shared/base/Document';
 import Layout from '../../components/shared/base/Layout';
+import { HL } from '../../components/shared/base/Typography';
 
 // Component
 const Terms = () => (
@@ -12,7 +13,7 @@ const Terms = () => (
     </Head>
     <Body>
       <Layout>
-        <h2>Terms of Service</h2>
+        <HL>Terms of Service</HL>
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
           been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer
