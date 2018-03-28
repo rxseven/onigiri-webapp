@@ -8,10 +8,11 @@
   margin-bottom: 0.5rem;
 
   &.block {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.875rem;
 
     .label,
     .content {
+      display: block;
       float: none;
       width: 100%;
     }
@@ -32,7 +33,7 @@
 // Label
 .label {
   color: $color-label;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.25rem;
   width: 30%;
 
   @media (min-width: $breakpoint-sm) {
@@ -50,8 +51,13 @@
   }
 }
 
-// Link
-.link {
+// Title
+.title {
+  font-size: 1rem;
+}
+
+// Version
+.version {
   align-items: center;
   display: flex;
   justify-content: space-between;
