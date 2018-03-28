@@ -15,7 +15,9 @@ const propTypes = exact({
     alignment: PropTypes.string,
     background: PropTypes.string,
     children: PropTypes.node.isRequired,
+    end: PropTypes.bool,
     marginBottom: PropTypes.string,
+    options: PropTypes.string,
     text: PropTypes.string
   },
   footer: { children: PropTypes.node.isRequired },
@@ -25,10 +27,14 @@ const propTypes = exact({
     link: PropTypes.string.isRequired
   },
   subtitle: {
+    bold: PropTypes.bool,
     children: PropTypes.node.isRequired,
     options: PropTypes.string
   },
-  text: { children: PropTypes.node.isRequired },
+  text: {
+    children: PropTypes.node.isRequired,
+    options: PropTypes.string
+  },
   title: {
     children: PropTypes.node.isRequired,
     options: PropTypes.string
@@ -36,21 +42,30 @@ const propTypes = exact({
 });
 
 const defaultProps = {
-  container: { marginBottom: CSS.margin.MB04 },
-  subtitle: { options: null },
+  container: {
+    end: false,
+    marginBottom: CSS.margin.MB04,
+    options: null
+  },
+  subtitle: {
+    bold: false,
+    options: null
+  },
+  text: { options: null },
   title: { options: null }
 };
 
 // Card container
 export const Card = ({
-  alignment, background, children, marginBottom, text
+  alignment, background, children, end, marginBottom, options, text
 }) => (
   <div
     className={cx(
       'card',
-      background && `bg-${background}`,
-      marginBottom,
       alignment && `${alignment}`,
+      background && `bg-${background}`,
+      !end && marginBottom,
+      options,
       text && `text-${text}`
     )}
   >
@@ -77,12 +92,14 @@ export const CardLink = ({ children, link }) => (
 );
 
 // Card subtitle
-export const CardSubtitle = ({ children, options }) => (
-  <h6 className={cx('card-title', options)}>{children}</h6>
+export const CardSubtitle = ({ bold, children, options }) => (
+  <h6 className={cx('card-title', bold && 'font-weight-bold', options)}>{children}</h6>
 );
 
 // Card text
-export const CardText = ({ children }) => <p className="card-text">{children}</p>;
+export const CardText = ({ children, options }) => (
+  <p className={cx('card-text', options)}>{children}</p>
+);
 
 // Card title
 export const CardTitle = ({ children, options }) => (
