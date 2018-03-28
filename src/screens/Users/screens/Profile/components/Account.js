@@ -78,7 +78,7 @@ const Account = ({
           visibility={interfaces.modal.isOpen}
         >
           <h5>Is this goodbye?</h5>
-          <p>This action is permanent. Are you sure you don&apos;t want to reconsider?</p>
+          <p>This action is permanent. Are you sure you don’t want to reconsider?</p>
           <Render condition={balance > 0}>
             <p>
               <Text options="text-secondary" small>
