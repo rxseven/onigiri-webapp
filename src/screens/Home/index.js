@@ -1,8 +1,17 @@
 // Module dependencies
+import cx from 'classnames';
 import React from 'react';
 
+import { Button } from '../../components/shared/base/Buttons';
+import { Card, CardBody, CardText } from '../../components/shared/base/Card';
 import { Body, Document, Head, Title } from '../../components/shared/base/Document';
 import Layout from '../../components/shared/base/Layout';
+
+// Constants
+import PATHS from '../../constants/router/paths';
+
+// Peer dependencies
+import styles from './styles.scss';
 
 // Component
 const Home = () => (
@@ -12,16 +21,83 @@ const Home = () => (
     </Head>
     <Body>
       <Layout>
-        <h2>Home</h2>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-          been the industrys standard dummy text ever since the 1500s, when an unknown printer took
-          a galley of type and scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting, remaining essentially
-          unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-          Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-          PageMaker including versions of Lorem Ipsum.
-        </p>
+        <Card>
+          <CardBody>
+            <div className={styles.intro}>
+              <h3 className={cx(styles.headline, styles.highlight)}>
+                What can you do with Onigiri?
+              </h3>
+              <div className={cx(styles.content, styles.highlight)}>
+                <CardText>
+                  With Onigiri, you can create and analyze surveys right in your pocket or web
+                  browser —no special software required. You get results as they come in and, you
+                  can summarize survey results at a glance with graphs.
+                </CardText>
+              </div>
+            </div>
+          </CardBody>
+        </Card>
+
+        <Card>
+          <CardBody>
+            <h3 className={styles.headline}>
+              <span className={styles.number}>1</span>
+              <span>Create your survey</span>
+            </h3>
+            <div className={styles.content}>
+              <CardText>To start, we’ll create a new survey and add questions.</CardText>
+            </div>
+          </CardBody>
+        </Card>
+
+        <Card>
+          <CardBody>
+            <h3 className={styles.headline}>
+              <span className={styles.number}>2</span>
+              <span>Preview your survey</span>
+            </h3>
+            <div className={styles.content}>
+              <CardText>
+                When you’re done adding questions, you can preview your changes before sending it
+                out.
+              </CardText>
+            </div>
+          </CardBody>
+        </Card>
+
+        <Card>
+          <CardBody>
+            <h3 className={styles.headline}>
+              <span className={styles.number}>3</span>
+              <span>Send your survey</span>
+            </h3>
+            <div className={styles.content}>
+              <CardText>
+                Now, you’re ready to send out your survey and start collecting responses.
+              </CardText>
+            </div>
+          </CardBody>
+        </Card>
+
+        <Card end>
+          <CardBody>
+            <h3 className={styles.headline}>
+              <span className={styles.number}>4</span>
+              <span>Analyze responses</span>
+            </h3>
+            <div className={styles.content}>
+              <CardText>
+                After you send out your form, you’ll see responses on the Surveys tab.
+              </CardText>
+            </div>
+          </CardBody>
+        </Card>
+
+        <div className={styles.start}>
+          <Button button="outline-primary" link={PATHS.surveys.new} type="link">
+            Get started
+          </Button>
+        </div>
       </Layout>
     </Body>
   </Document>

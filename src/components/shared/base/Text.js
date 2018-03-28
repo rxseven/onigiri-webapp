@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
-import JSXwrapper from '../helpers/JSXwrapper';
-
 // Declare prop types and default props
 const propTypes = exact({
   text: {
+    block: PropTypes.bool,
+    bold: PropTypes.bool,
     children: PropTypes.node.isRequired,
     lead: PropTypes.bool,
     options: PropTypes.string,
@@ -18,6 +18,8 @@ const propTypes = exact({
 
 const defaultProps = {
   text: {
+    block: false,
+    bold: false,
     lead: false,
     mute: false,
     options: null,
@@ -27,17 +29,17 @@ const defaultProps = {
 
 // Text
 export default ({
-  children, lead, mute, options, small
-}) => (
-  <JSXwrapper>
-    {small ? (
-      <small className={cx(mute && 'text-muted', options)}>{children}</small>
-    ) : (
-      <span className={cx(options)}>{children}</span>
-    )}
-    {lead && <p className="lead">{children}</p>}
-  </JSXwrapper>
-);
+  block, bold, children, lead, mute, options, small
+}) => {
+  if (lead) {
+    return <p className="lead">{children}</p>;
+  } else if (small) {
+    return <small className={cx(mute && 'text-muted', options)}>{children}</small>;
+  } else if (bold) {
+    return <strong className={block && 'text-block'}>{children}</strong>;
+  }
+  return <span className={cx(block && 'text-block', options)}>{children}</span>;
+};
 
 // Specify prop types and default values for props
 Text.propTypes = propTypes.text;

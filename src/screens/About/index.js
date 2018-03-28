@@ -1,8 +1,15 @@
 // Module dependencies
 import React from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { Body, Document, Head, Title } from '../../components/shared/base/Document';
 import Layout from '../../components/shared/base/Layout';
+import { HL } from '../../components/shared/base/Typography';
+
+// Peer dependencies
+import Development from './content/Development';
+import Overview from './content/Overview';
+import Specs from './content/Specs';
 
 // Component
 const About = () => (
@@ -12,16 +19,30 @@ const About = () => (
     </Head>
     <Body>
       <Layout>
-        <h2>About Onigiri</h2>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-          been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer
-          took a galley of type and scrambled it to make a type specimen book. It has survived not
-          only five centuries, but also the leap into electronic typesetting, remaining essentially
-          unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-          Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-          PageMaker including versions of Lorem Ipsum.
-        </p>
+        <HL>About Onigiri</HL>
+        <Tabs className="tabs">
+          <TabList className="nav nav-tabs">
+            <Tab className="nav-item" selectedClassName="active">
+              <span className="nav-link">Overview</span>
+            </Tab>
+            <Tab className="nav-item" selectedClassName="active">
+              <span className="nav-link">Development</span>
+            </Tab>
+            <Tab className="nav-item" selectedClassName="active">
+              <span className="nav-link">Specs</span>
+            </Tab>
+          </TabList>
+
+          <TabPanel className="nav-content">
+            <Overview />
+          </TabPanel>
+          <TabPanel className="nav-content">
+            <Development />
+          </TabPanel>
+          <TabPanel className="nav-content">
+            <Specs />
+          </TabPanel>
+        </Tabs>
       </Layout>
     </Body>
   </Document>

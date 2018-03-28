@@ -91,7 +91,7 @@ class SurveyForm extends Component {
         visibility={this.props.state.data.interfaces.modal.isOpen}
       >
         <h5>All your progress will be lost</h5>
-        <p>Are you sure you don&apos;t want to reconsider?</p>
+        <p>Are you sure you don’t want to reconsider?</p>
       </Confirm>
     </div>
   );

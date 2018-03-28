@@ -1,0 +1,17 @@
+// Global typography styles
+
+:global(.list-end) {
+  margin-bottom: 0;
+}
+
+:global(.text-block) {
+  display: block;
+}
+
+:global(.text-end) {
+  margin-bottom: 0;
+}
+
+:global(.text-small) {
+  font-size: 80%;
+}

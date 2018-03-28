@@ -1,6 +1,14 @@
+// Global styles
+@import "../../../../styles/base/settings";
+
 // Link icon
 .icon {
   color: #999;
   font-size: 78%;
   margin-left: 8px;
+}
+
+// Flat color
+.flat {
+  color: $color-base;
 }

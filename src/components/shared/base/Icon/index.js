@@ -11,6 +11,7 @@ import styles from './styles.scss';
 const propTypes = exact({
   disabled: PropTypes.bool,
   name: PropTypes.string.isRequired,
+  options: PropTypes.string,
   text: PropTypes.bool,
   title: PropTypes.string.isRequired
 });
@@ -22,7 +23,7 @@ const defaultProps = {
 
 // Component
 const Icon = ({
-  disabled, name, text, title
+  disabled, name, options, text, title
 }) => {
   // Configuration
   const baseClass = 'oi';
@@ -36,6 +37,7 @@ const Icon = ({
         `${baseClass}-${name}`,
         'icon',
         disabled && styles.disabled,
+        options,
         text && `icon-inline ${styles.inline}`
       )}
       title={title}

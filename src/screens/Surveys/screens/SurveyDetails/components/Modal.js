@@ -14,7 +14,7 @@ const Modal = ({ actions, state: { ui } }) => (
     title="Delete Survey"
     visibility={ui.visibility}
   >
-    <p>This action is permanent. Are you sure you don&apos;t want to reconsider?</p>
+    <p>This action is permanent. Are you sure you don’t want to reconsider?</p>
   </Confirm>
 );
 
