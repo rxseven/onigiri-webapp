@@ -1,0 +1,85 @@
+// Global styles
+@import "../../styles/base/settings";
+@import "../../styles/mixins/utilities";
+
+// Variables
+$bullet-margin-md: 15px;
+$bullet-margin-xs: 10px;
+$bullet-size-md: 25px;
+$bullet-size-xs: 20px;
+$content-spacing-md: $bullet-size-md + $bullet-margin-md;
+$content-spacing-xs: $bullet-size-xs + $bullet-margin-xs;
+
+// Intro block
+.intro {
+  @media (min-width: $breakpoint-md) {
+    padding: 1rem $content-spacing-md;
+  }
+}
+
+// Section headline
+.headline {
+  align-items: center;
+  display: flex;
+  font: {
+    size: 16px;
+    weight: 300;
+  }
+  margin-bottom: 1rem;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+  }
+
+  &.highlight {
+    color: $color-primary;
+  }
+}
+
+// Bullet point numbers
+.number {
+  @include square($bullet-size-xs);
+  background-color: $color-primary;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  line-height: $bullet-size-xs;
+  margin-right: $bullet-margin-xs;
+  text-align: center;
+
+  @media (min-width: $breakpoint-md) {
+    @include square($bullet-size-md);
+    font-size: 14px;
+    line-height: $bullet-size-md;
+    margin-right: $bullet-margin-md;
+  }
+}
+
+// Section body
+.content {
+  color: #555;
+  padding-bottom: 0.15rem;
+  padding-left: $content-spacing-xs;
+
+  @media (min-width: $breakpoint-md) {
+    padding-bottom: 0.5rem;
+    padding-left: $content-spacing-md;
+  }
+
+  &.highlight {
+    padding-bottom: 0;
+    padding-left: 0;
+  }
+}
+
+// Get started section
+.start {
+  padding: 20px 0 5px 0;
+  text-align: center;
+
+  @media (min-width: $breakpoint-md) {
+    text-align: left;
+  }
+}
