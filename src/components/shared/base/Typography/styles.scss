@@ -1,0 +1,24 @@
+// Global styles
+@import "../../../../styles/base/settings";
+
+// Headline
+.headline {
+  font-size: 1.35rem;
+  margin-bottom: 1.0715rem;
+
+  @media (min-width: $breakpoint-sm) {
+    font-size: 1.65rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Subheadline
+.subheadline {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+
+  @media (min-width: $breakpoint-sm) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
