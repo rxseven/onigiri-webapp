@@ -86,7 +86,7 @@ const Development = () => (
         </List>
 
         <hr />
-        
+
         <CardSubtitle>Environment</CardSubtitle>
         <List>
           <ListItem>
