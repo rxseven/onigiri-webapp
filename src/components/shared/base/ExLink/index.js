@@ -1,5 +1,5 @@
 // Module dependencies
-import cx from 'lodash';
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
@@ -15,22 +15,26 @@ import styles from './styles.scss';
 const propTypes = exact({
   button: PropTypes.string,
   children: PropTypes.node.isRequired,
+  flat: PropTypes.bool,
   icon: PropTypes.bool,
   replace: PropTypes.bool,
   to: PropTypes.string.isRequired
 });
 
 const defaultProps = {
-  icon: false
+  button: '',
+  flat: false,
+  icon: false,
+  replace: false
 };
 
 // Component
 const ExLink = ({
-  button, children, icon, to, replace
+  button, children, flat, icon, replace, to
 }) => (
   <JSXwrapper>
     <a
-      className={cx(button && `btn btn-${button}`)}
+      className={cx(button && `btn btn-${button}`, flat && styles.flat)}
       href={to}
       rel="noopener noreferrer"
       target={replace ? '_self' : '_blank'}
