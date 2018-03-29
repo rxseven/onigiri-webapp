@@ -5,7 +5,7 @@
 // Wrapper
 .wrapper {
   @include padding-horizontal($padding-container);
-  margin-top: 39px;
+  margin-top: 46px;
 
   @media (min-width: $breakpoint-sm) {
     @include padding-horizontal(1.5rem);
