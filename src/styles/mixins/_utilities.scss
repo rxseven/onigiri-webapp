@@ -36,3 +36,21 @@
   height: $size;
   width: $size;
 }
+
+// Reset button
+@mixin button-reset {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
