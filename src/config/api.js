@@ -15,7 +15,7 @@ export default {
   query: {
     surveys: {
       list: {
-        limit: 2
+        limit: 5
       }
     }
   },
