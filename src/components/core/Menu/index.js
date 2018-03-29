@@ -1,11 +1,11 @@
 // Module dependencies
-import React from 'react';
+import { connect } from 'react-redux';
 
 // Peer dependencies
 import UI from './UI';
 
-// Component
-const Menu = () => <UI />;
+// Connect component to application state
+const container = connect(null)(UI);
 
 // Module exports
-export default Menu;
+export default container;
