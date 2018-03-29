@@ -34,6 +34,11 @@ const MenuLink = ({
 
 // Component
 class UI extends Component {
+  // Toggle menu
+  onToggleMenu = () => {
+    this.props.actions.menu.toggleMenu(false);
+  };
+
   // Render header
   renderHeader = (isAuth, user) =>
     isAuth && (

@@ -1,6 +1,7 @@
 // Module dependencies
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { action as toggleMenu } from 'redux-burger-menu';
 
 import { getSession } from '../../../data/session/reducer';
 
@@ -10,13 +11,18 @@ import UI from './UI';
 // Map state to props
 const mapStateToProps = state => ({
   data: {
+    interface: {
+      menu: state.burgerMenu
+    },
     session: getSession(state)
   }
 });
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({}, dispatch)
+  actions: {
+    menu: bindActionCreators({ toggleMenu }, dispatch)
+  }
 });
 
 // Connect component to application state
