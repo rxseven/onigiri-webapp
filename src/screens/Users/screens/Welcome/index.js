@@ -18,7 +18,7 @@ const Welcome = () => (
     </Head>
     <Body>
       <Layout>
-        <Hero>
+        <Hero end>
           <HeroHeader>Welcome to Onigiri</HeroHeader>
           <HeroBody>
             <Text lead>Create a survey as easily as creating a blog post</Text>
