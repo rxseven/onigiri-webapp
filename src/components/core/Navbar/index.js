@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import Dropdown, { DropdownContent, DropdownTrigger } from 'react-simple-dropdown';
+import { action as toggleMenu } from 'redux-burger-menu';
 
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducer';
@@ -37,6 +38,11 @@ class Navbar extends Component {
   // Dropdown handler
   onDropdownClick = () => {
     this.refs.dropdown.hide();
+  };
+
+  // Toggle menu
+  onToggleMenu = () => {
+    this.props.actions.menu.toggleMenu(true);
   };
 
   // Render user avatar
@@ -128,6 +134,9 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-dark bg-dark fixed-top">
         <Container>
+          <button className={styles.menu} onClick={this.onToggleMenu} type="button">
+            <Icon name="menu" title="Menu" />
+          </button>
           {this.renderBrand()}
           <div className={styles.group}>
             {this.renderNav()}
@@ -152,7 +161,8 @@ const mapStateToProps = state => ({
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
   actions: {
-    auth: bindActionCreators({ signOut }, dispatch)
+    auth: bindActionCreators({ signOut }, dispatch),
+    menu: bindActionCreators({ toggleMenu }, dispatch)
   }
 });
 

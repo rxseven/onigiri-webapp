@@ -2,6 +2,14 @@
 @import "../../../styles/base/settings";
 @import "../../../styles/mixins/utilities";
 
+// Menu
+.menu {
+  @include button-reset;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 1.25rem;
+}
+
 // Logo
 .logo {
   align-items: center;
