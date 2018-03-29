@@ -14,4 +14,9 @@
   @media (min-width: $breakpoint-sm) {
     margin-bottom: $footer-height-sm;
   }
+
+  // Hide overflow content
+  &.menu-open {
+    overflow: hidden;
+  }
 }
