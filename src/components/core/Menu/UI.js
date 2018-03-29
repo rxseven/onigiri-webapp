@@ -1,6 +1,7 @@
 // Module dependencies
 import React, { Component } from 'react';
 import { slide as Menu } from 'react-burger-menu';
+import { withRouter } from 'react-router-dom';
 import { decorator as reduxMenu } from 'redux-burger-menu';
 
 // Constants
@@ -31,4 +32,4 @@ class UI extends Component {
 }
 
 // Module exports
-export default UI;
+export default withRouter(UI);
