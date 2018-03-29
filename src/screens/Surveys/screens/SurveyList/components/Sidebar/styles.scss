@@ -5,7 +5,7 @@
 // Base container
 .sidebar {
   left: 0;
-  margin-top: 39px;
+  margin-top: $navbar-height-xs;
   position: fixed;
   top: 0;
   width: 100%;
@@ -18,7 +18,7 @@
 
   &.isSticky {
     @media (min-width: $breakpoint-sm) {
-      margin-top: 15px + 49px;
+      margin-top: $navbar-height-sm + 15px;
     }
   }
 }
