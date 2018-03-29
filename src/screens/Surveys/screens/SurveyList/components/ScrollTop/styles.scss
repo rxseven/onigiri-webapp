@@ -3,13 +3,13 @@
 @import "../../../../../../styles/mixins/utilities";
 
 // Variables
-$element-size-xs: 20px;
+$element-size-xs: 35px;
 $element-size-sm: 30px;
 
 // Wrapper
 .wrapper {
   @include square($element-size-xs);
-  bottom: $element-size-xs;
+  bottom: 20px;
   left: 50%;
   margin-left: -($element-size-xs / 2);
   position: fixed;
@@ -36,13 +36,25 @@ $element-size-sm: 30px;
 
 // Button
 .button {
+  $color-background: rgba(0, 0, 0, 0.1);
+  $color-border: rgba(0, 0, 0, 0.1);
+  $color-icon: $color-secondary;
+
   @include square($element-size-xs);
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: $color-background;
+  border: solid $color-border 1px;
   border-radius: 50%;
+  color: $color-icon;
   display: flex;
-  font-size: 10px;
+  font-size: 12px;
   justify-content: center;
+  transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+    color: darken($color-icon, 15%);
+  }
 
   @media (min-width: $breakpoint-sm) {
     @include square($element-size-sm);
