@@ -53,9 +53,15 @@
   }
 }
 
-// Home link
-.home {
+// Avatar
+.avatar {
+  display: none;
+
+  :global(.avatar) {
+    @include square(35px);
+  }
+
   @media (min-width: $breakpoint-md) {
-    display: none;
+    display: block;
   }
 }

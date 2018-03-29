@@ -102,18 +102,26 @@ class Navbar extends Component {
   };
 
   // Render nav links
-  renderNav = () => (
-    <div className="navbar-nav mr-auto">
-      <NavLink className={cx('navbar-item', 'nav-link', styles.home)} exact to={PATHS.root}>
-        <Icon name="home" title="Home" />
-      </NavLink>
-      <Render condition={this.props.data.session.authorization}>
-        <NavLink className="navbar-item nav-link" to={PATHS.surveys.list}>
-          Surveys
-        </NavLink>
-      </Render>
-    </div>
-  );
+  renderNav = () => {
+    // Variables
+    const { authorization } = this.props.data.session;
+
+    // View
+    return (
+      <div className="navbar-nav mr-auto">
+        <Render condition={!authorization}>
+          <NavLink className={cx('navbar-item', 'nav-link', styles.home)} exact to={PATHS.root}>
+            Home
+          </NavLink>
+        </Render>
+        <Render condition={authorization}>
+          <NavLink className="navbar-item nav-link" to={PATHS.surveys.list}>
+            Dashboard
+          </NavLink>
+        </Render>
+      </div>
+    );
+  };
 
   // Render a component
   render() {
