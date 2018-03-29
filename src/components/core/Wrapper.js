@@ -5,6 +5,9 @@ import exact from 'prop-types-exact';
 
 import uiHelper from '../../helpers/interface';
 
+// Constants
+import HTML from '../../constants/elements/html';
+
 // Declare prop types
 const propTypes = exact({
   children: PropTypes.node.isRequired
@@ -28,7 +31,11 @@ class Wrapper extends Component {
 
   // Render component
   render() {
-    return <div className={this.state.visibility}>{this.props.children}</div>;
+    return (
+      <div className={this.state.visibility} id={HTML.wrapper}>
+        {this.props.children}
+      </div>
+    );
   }
 }
 
