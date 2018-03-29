@@ -344,6 +344,24 @@ const Technical = () => (
                   </ListLink>
                 </ListContent>
               </ListItem>
+              <ListItem>
+                <ListLabel>An off-canvas sidebar component for React</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/negomi/react-burger-menu">
+                    react-burger-menu
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>
+                  A Redux reducer &amp; HOC decorator for use with react-burger-menu
+                </ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/negomi/redux-burger-menu">
+                    redux-burger-menu
+                  </ListLink>
+                </ListContent>
+              </ListItem>
             </List>
 
             <hr />
