@@ -16,7 +16,7 @@ const Credits = ({ callback, state }) => {
 
   // View
   return (
-    <Card>
+    <Card end>
       <CardBody>
         <CardTitle>You have {balance && <span>{balance}</span>} survey credits</CardTitle>
         <hr />
