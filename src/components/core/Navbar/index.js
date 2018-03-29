@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import Dropdown, { DropdownContent, DropdownTrigger } from 'react-simple-dropdown';
+import { action as toggleMenu } from 'redux-burger-menu';
 
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducer';
@@ -39,6 +40,11 @@ class Navbar extends Component {
     this.refs.dropdown.hide();
   };
 
+  // Toggle menu
+  onToggleMenu = () => {
+    this.props.actions.menu.toggleMenu(true);
+  };
+
   // Render user avatar
   renderAvatar = () => {
     // Variables
@@ -48,7 +54,7 @@ class Navbar extends Component {
     return (
       authorization &&
       user && (
-        <div className="nav-item">
+        <div className={cx('nav-item', styles.avatar)}>
           <Dropdown ref="dropdown">
             <DropdownTrigger>
               <Avatar url={user.photo.url} />
@@ -79,7 +85,6 @@ class Navbar extends Component {
   renderBrand = () => (
     <Link className="navbar-brand" to={PATHS.root}>
       <div className={styles.logo}>
-        <span className={styles.image} />
         <span>おにぎり</span>
       </div>
     </Link>
@@ -103,24 +108,35 @@ class Navbar extends Component {
   };
 
   // Render nav links
-  renderNav = () => (
-    <div className="navbar-nav mr-auto">
-      <NavLink className={cx('navbar-item', 'nav-link', styles.home)} exact to={PATHS.root}>
-        <Icon name="home" title="Home" />
-      </NavLink>
-      <Render condition={this.props.data.session.authorization}>
-        <NavLink className="navbar-item nav-link" to={PATHS.surveys.list}>
-          Surveys
-        </NavLink>
-      </Render>
-    </div>
-  );
+  renderNav = () => {
+    // Variables
+    const { authorization } = this.props.data.session;
+
+    // View
+    return (
+      <div className="navbar-nav mr-auto">
+        <Render condition={!authorization}>
+          <NavLink className={cx('navbar-item', 'nav-link', styles.home)} exact to={PATHS.root}>
+            Home
+          </NavLink>
+        </Render>
+        <Render condition={authorization}>
+          <NavLink className="navbar-item nav-link" to={PATHS.surveys.list}>
+            Dashboard
+          </NavLink>
+        </Render>
+      </div>
+    );
+  };
 
   // Render a component
   render() {
     return (
       <nav className="navbar navbar-dark bg-dark fixed-top">
         <Container>
+          <button className={styles.menu} onClick={this.onToggleMenu} type="button">
+            <Icon name="menu" title="Menu" />
+          </button>
           {this.renderBrand()}
           <div className={styles.group}>
             {this.renderNav()}
@@ -145,7 +161,8 @@ const mapStateToProps = state => ({
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
   actions: {
-    auth: bindActionCreators({ signOut }, dispatch)
+    auth: bindActionCreators({ signOut }, dispatch),
+    menu: bindActionCreators({ toggleMenu }, dispatch)
   }
 });
 

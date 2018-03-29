@@ -26,16 +26,16 @@ const Footer = () => (
         <Column>
           <ul className={styles.navigation}>
             <li>
-              <FooterLink to={PATHS.static.terms}>Terms</FooterLink>
-            </li>
-            <li>
-              <FooterLink to={PATHS.static.privacy}>Privacy</FooterLink>
-            </li>
-            <li>
               <FooterLink to={PATHS.static.about}>About</FooterLink>
             </li>
             <li>
               <FooterLink to={PATHS.static.me}>Me</FooterLink>
+            </li>
+            <li>
+              <FooterLink to={PATHS.static.terms}>Terms</FooterLink>
+            </li>
+            <li>
+              <FooterLink to={PATHS.static.privacy}>Privacy</FooterLink>
             </li>
           </ul>
           <div className={styles.content}>

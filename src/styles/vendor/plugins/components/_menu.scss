@@ -1,0 +1,15 @@
+// React Burger menu
+:global .bm-menu {
+  background: #fff;
+
+  &-wrap {
+    max-width: 320px;
+    top: 0;
+    z-index: 8001 !important;
+  }
+}
+
+:global .bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+}

@@ -1,4 +1,6 @@
 // HTML elements
 export default {
-  root: 'root'
+  body: 'body',
+  root: 'root',
+  wrapper: 'wrapper'
 };

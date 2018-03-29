@@ -1,0 +1,78 @@
+// Global styles
+@import "../../../styles/base/settings";
+@import "../../../styles/mixins/utilities";
+
+// Header
+.header {
+  padding: 1.15rem 1.15rem 1.15rem 1.25rem;
+
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}
+
+// User
+.user {
+  color: $color-secondary;
+  display: block;
+  font-size: 0.85rem;
+}
+
+// Avatar
+.avatar {
+  margin-bottom: 1rem;
+
+  :global(.avatar) {
+    @include square(35px);
+  }
+}
+
+// Icon
+.icon {
+  display: inline-block;
+  margin-right: 1.25rem;
+  min-width: 18px;
+}
+
+// Sign-out button
+.signout {
+  @include button-reset;
+  text-align: left;
+  width: 100%;
+}
+
+// Navigation
+.navigation {
+  border-top: solid #eee 1px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  > li {
+    > a,
+    > button {
+      display: block;
+      padding: 1.15rem 0 1.15rem 1.25rem;
+    }
+  }
+
+  a,
+  button {
+    color: $color-base;
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: $color-base;
+      text-decoration: none;
+    }
+  }
+
+  .active {
+    color: #999;
+  }
+
+  :global(.is-active) {
+    cursor: default;
+  }
+}
