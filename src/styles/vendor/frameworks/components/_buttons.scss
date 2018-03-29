@@ -1,0 +1,19 @@
+:global .btn:focus,
+:global .btn:active:focus,
+:global .btn.active:focus,
+:global .btn.focus,
+:global .btn:active.focus,
+:global .btn.active.focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+:global .list-group-item:focus,
+:global .list-group-item:active:focus,
+:global .list-group-item.active:focus,
+:global .list-group-item.focus,
+:global .list-group-item:active.focus,
+:global .list-group-item.active.focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
