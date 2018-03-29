@@ -28,8 +28,9 @@ const SurveySuccess = ({ location: { state } }) => (
               <Icon name="circle-check" title="Success" />
             </div>
             <p>
-              <strong>{state.title}</strong> has been created successfully.<br /> The survey will be
-              sent out to <strong>{state.recipients}</strong> recipient{state.recipients > 1 && 's'}{' '}
+              <strong>{state.title}</strong> has been created successfully.<br /> Onigiri will send
+              the survey to <strong>{state.recipients}</strong> recipient{state.recipients > 1 &&
+                's'}{' '}
               shortly.
             </p>
             <div className={styles.actions}>
