@@ -17,6 +17,9 @@ import PATHS from '../../../constants/router/paths';
 // Peer dependencies
 import styles from './styles.scss';
 
+// Constants
+const MENU_OPEN = 'menu-open';
+
 // Extended Menu component
 const ExMenu = reduxMenu(Menu);
 
@@ -34,6 +37,21 @@ const MenuLink = ({
 
 // Component
 class UI extends Component {
+  // After updating occurs
+  componentDidUpdate(prevProps) {
+    // Close off-canvas menu
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.onToggleMenu();
+    }
+
+    // Toggle overflow content
+    if (this.props.data.interface.menu.isOpen) {
+      document.body.classList.add(MENU_OPEN);
+    } else {
+      document.body.classList.remove(MENU_OPEN);
+    }
+  }
+
   // Toggle menu
   onToggleMenu = () => {
     this.props.actions.menu.toggleMenu(false);
