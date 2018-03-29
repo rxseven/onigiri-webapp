@@ -21,7 +21,7 @@ const SurveySuccess = ({ location: { state } }) => (
     </Head>
     <Body>
       <Layout>
-        <Card alignment="text-center">
+        <Card alignment="text-center" end>
           <CardHeader>Success</CardHeader>
           <CardBody>
             <div className={styles.symbol}>
