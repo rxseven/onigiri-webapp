@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { action as toggleMenu } from 'redux-burger-menu';
 
+import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducer';
 
 // Peer dependencies
@@ -21,6 +22,7 @@ const mapStateToProps = state => ({
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
   actions: {
+    auth: bindActionCreators({ signOut }, dispatch),
     menu: bindActionCreators({ toggleMenu }, dispatch)
   }
 });

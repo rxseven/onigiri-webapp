@@ -57,6 +57,21 @@ class UI extends Component {
     this.props.actions.menu.toggleMenu(false);
   };
 
+  // Sign-out handler
+  onSignout = (event) => {
+    // Prevent a browser from being refreshed
+    event.preventDefault();
+
+    // Sign out the current user
+    this.props.actions.auth.signOut(() => {
+      // Close off-canvas menu
+      this.onToggleMenu();
+
+      // Redirect to sign-in screen after the event has been emitted
+      this.props.history.push({ pathname: PATHS.users.signin });
+    });
+  };
+
   // Render header
   renderHeader = (isAuth, user) =>
     isAuth && (
@@ -111,6 +126,14 @@ class UI extends Component {
           <MenuLink icon="cog" title="Credits &amp; Profile" to={PATHS.users.profile}>
             Credits &amp; Profile
           </MenuLink>
+        </li>
+        <li>
+          <button className={styles.signout} onClick={this.onSignout} type="button">
+            <span className={styles.icon}>
+              <Icon name="account-logout" title="Log out" />
+            </span>
+            Log out
+          </button>
         </li>
       </ul>
     );
