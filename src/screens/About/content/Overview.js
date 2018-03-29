@@ -16,6 +16,8 @@ import {
   List,
   ListItem,
   ListContent,
+  ListGroup,
+  ListGroupItem,
   ListLabel,
   ListLink,
   ListTitle
@@ -72,7 +74,7 @@ const Overview = () => (
                   </CardText>
                   <hr />
                   <CardText options="text-secondary text-small">
-                    <strong>Onigiri</strong> (おにぎり), also known as rice ball, is a Japanese food
+                    <strong>Onigiri</strong> (おにぎり) also known as rice ball, is a Japanese food
                     made from white rice formed into triangular or cylindrical shapes and often
                     wrapped in seaweed.{' '}
                     <ExLink to="https://en.wikipedia.org/wiki/Onigiri">Wikipedia</ExLink>
@@ -98,9 +100,24 @@ const Overview = () => (
               <ListItem end>
                 <ListLabel>Lastest release</ListLabel>
                 <ListContent>
-                  <ListLink to="https://github.com/rxseven/onigiri-webapp/releases">
-                    v1.0.0-alpha
-                  </ListLink>
+                  <ListGroup>
+                    <ListGroupItem>
+                      <ListLink
+                        to="https://github.com/rxseven/onigiri-webapp/releases"
+                        v="1.0.0-alpha"
+                      >
+                        Web application
+                      </ListLink>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListLink
+                        to="https://github.com/rxseven/onigiri-api/releases"
+                        v="1.0.0-alpha"
+                      >
+                        RESTful API
+                      </ListLink>
+                    </ListGroupItem>
+                  </ListGroup>
                 </ListContent>
               </ListItem>
             </List>
@@ -217,11 +234,26 @@ const Overview = () => (
             <List>
               <ListItem>
                 <ListContent>
-                  <ListLabel>Version</ListLabel>
+                  <ListLabel>Versions</ListLabel>
                   <ListContent>
-                    <ListLink to="https://github.com/rxseven/onigiri-webapp/releases">
-                      v1.0.0-alpha
-                    </ListLink>
+                    <ListGroup>
+                      <ListGroupItem>
+                        <ListLink
+                          to="https://github.com/rxseven/onigiri-webapp/releases"
+                          v="1.0.0-alpha"
+                        >
+                          Web application
+                        </ListLink>
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        <ListLink
+                          to="https://github.com/rxseven/onigiri-api/releases"
+                          v="1.0.0-alpha"
+                        >
+                          RESTful API
+                        </ListLink>
+                      </ListGroupItem>
+                    </ListGroup>
                   </ListContent>
                 </ListContent>
               </ListItem>
