@@ -101,7 +101,7 @@ class SurveyForm extends Component {
 
   // Render warning message
   renderWarning = () => (
-    <Card alignment="text-center">
+    <Card alignment="text-center" end>
       <CardHeader>Not enough credits</CardHeader>
       <CardBody>
         <CardText>Sorry, your credits are gone.</CardText>
