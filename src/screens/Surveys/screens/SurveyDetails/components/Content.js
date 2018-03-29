@@ -34,7 +34,7 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
   // View
   return (
     <JSXwrapper>
-      <Card background={data.completed ? 'light' : 'default'}>
+      <Card background={data.completed ? 'light' : 'default'} end>
         <CardHeader>{data.title}</CardHeader>
         <CardBody>
           <Chart data={data} />
