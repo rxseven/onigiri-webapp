@@ -133,6 +133,7 @@ const Me = () => (
                   <ListTitle>How could you evaluate me from this project?</ListTitle>
                   <ListLabel>Results</ListLabel>
                   <ul>
+                    <li>Functionality</li>
                     <li>User interface</li>
                     <li>User experience and data-flow</li>
                     <li>Contents, data, and assets</li>
