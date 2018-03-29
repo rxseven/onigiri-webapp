@@ -22,7 +22,7 @@ const Farewell = () => (
     </Head>
     <Body>
       <Layout>
-        <Card>
+        <Card end>
           <CardBody>
             <CardTitle>Goodbye</CardTitle>
             <CardText>Your account has been successfully deleted.</CardText>
