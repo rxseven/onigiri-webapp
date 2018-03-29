@@ -6,16 +6,6 @@
 .logo {
   align-items: center;
   display: flex;
-
-  .image {
-    @include square(26px);
-    background: url("./images/logo.png") no-repeat 0 0 / 100% 100%;
-    display: inline-block;
-
-    @media (min-width: $breakpoint-md) {
-      margin-right: 1rem;
-    }
-  }
 }
 
 // Navigation group

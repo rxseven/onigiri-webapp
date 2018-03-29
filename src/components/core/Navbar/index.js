@@ -79,7 +79,6 @@ class Navbar extends Component {
   renderBrand = () => (
     <Link className="navbar-brand" to={PATHS.root}>
       <div className={styles.logo}>
-        <span className={styles.image} />
         <span>おにぎり</span>
       </div>
     </Link>
