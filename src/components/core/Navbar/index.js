@@ -48,7 +48,7 @@ class Navbar extends Component {
     return (
       authorization &&
       user && (
-        <div className="nav-item">
+        <div className={cx('nav-item', styles.avatar)}>
           <Dropdown ref="dropdown">
             <DropdownTrigger>
               <Avatar url={user.photo.url} />
