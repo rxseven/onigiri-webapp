@@ -9,6 +9,7 @@ import { action as toggleMenu } from 'redux-burger-menu';
 
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducer';
+import { getAsync } from '../../../data/interfaces/session/reducer';
 
 import Avatar from '../../shared/base/Avatar';
 import { Container } from '../../shared/base/Grid';
@@ -48,7 +49,7 @@ class Navbar extends Component {
   // Render user avatar
   renderAvatar = () => {
     // Variables
-    const { authorization, user } = this.props.data.session;
+    const { authorization, user } = this.props.state.data.session;
 
     // View
     return (
@@ -71,7 +72,11 @@ class Navbar extends Component {
                 </Link>
                 <a className="dropdown-item" href="/" onClick={this.onSignout}>
                   <Icon name="account-logout" title="Log out" />
-                  Log out
+                  {this.props.state.ui.asynchronous.signout.loading ? (
+                    <span className={styles.leaving}>Logging out...</span>
+                  ) : (
+                    <span>Log out</span>
+                  )}
                 </a>
               </div>
             </DropdownContent>
@@ -93,7 +98,7 @@ class Navbar extends Component {
   // Render nav links
   renderLinks = () => {
     // Variables
-    const { authorization } = this.props.data.session;
+    const { authorization } = this.props.state.data.session;
     const { pathname } = this.props.location;
     const { signin, signup } = PATHS.users;
 
@@ -110,7 +115,7 @@ class Navbar extends Component {
   // Render nav links
   renderNav = () => {
     // Variables
-    const { authorization } = this.props.data.session;
+    const { authorization } = this.props.state.data.session;
 
     // View
     return (
@@ -121,8 +126,11 @@ class Navbar extends Component {
           </NavLink>
         </Render>
         <Render condition={authorization}>
-          <NavLink className="navbar-item nav-link" to={PATHS.surveys.list}>
+          <NavLink className="navbar-item nav-link" exact to={PATHS.surveys.list}>
             Dashboard
+          </NavLink>
+          <NavLink className={cx('navbar-item', 'nav-link', styles.link)} to={PATHS.surveys.new}>
+            New Survey
           </NavLink>
         </Render>
       </div>
@@ -153,8 +161,13 @@ class Navbar extends Component {
 
 // Map state to props
 const mapStateToProps = state => ({
-  data: {
-    session: getSession(state)
+  state: {
+    data: {
+      session: getSession(state)
+    },
+    ui: {
+      asynchronous: getAsync(state)
+    }
   }
 });
 

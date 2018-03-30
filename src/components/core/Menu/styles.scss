@@ -29,6 +29,7 @@
 
 // Icon
 .icon {
+  color: #666;
   display: inline-block;
   margin-right: 1.25rem;
   min-width: 18px;
@@ -39,6 +40,11 @@
   @include button-reset;
   text-align: left;
   width: 100%;
+}
+
+// Leaving
+.leaving {
+  color: $color-secondary;
 }
 
 // Navigation
@@ -69,10 +75,19 @@
   }
 
   .active {
-    color: #999;
+    $color-active: #999;
+
+    &,
+    &:hover {
+      color: $color-active;
+    }
+
+    .icon {
+      color: $color-active;
+    }
   }
 
-  :global(.is-active) {
+  :global(.active) {
     cursor: default;
   }
 }

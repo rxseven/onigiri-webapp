@@ -1,5 +1,7 @@
 // Module dependencies
 import cx from 'classnames';
+import PropTypes from 'prop-types';
+import exact from 'prop-types-exact';
 import React, { Component } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { connect } from 'react-redux';
@@ -9,6 +11,7 @@ import { action as toggleMenu, decorator as reduxMenu } from 'redux-burger-menu'
 
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducer';
+import { getAsync } from '../../../data/interfaces/session/reducer';
 
 import Avatar from '../../shared/base/Avatar';
 import Icon from '../../shared/base/Icon';
@@ -28,11 +31,28 @@ const MENU_OPEN = 'menu-open';
 // Extended Menu component
 const ExMenu = reduxMenu(Menu);
 
+// Declare prop types and default props
+const propTypes = exact({
+  navigation: {
+    children: PropTypes.node.isRequired,
+    exact: PropTypes.bool,
+    icon: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    to: PropTypes.string.isRequired
+  }
+});
+
+const defaultProps = {
+  navigation: {
+    exact: false
+  }
+};
+
 // Link micro component
 const MenuLink = ({
-  children, icon, title, to
+  children, exact: exactPath, icon, title, to
 }) => (
-  <NavLink activeClassName={cx('is-active', styles.active)} to={to}>
+  <NavLink activeClassName={cx('active', styles.active)} exact={exactPath} to={to}>
     <span className={styles.icon}>
       <Icon name={icon} title={title} />
     </span>
@@ -50,7 +70,7 @@ class UI extends Component {
     }
 
     // Toggle overflow content
-    if (this.props.data.interface.menu.isOpen) {
+    if (this.props.state.data.interfaces.menu.isOpen) {
       document.body.classList.add(MENU_OPEN);
     } else {
       document.body.classList.remove(MENU_OPEN);
@@ -78,7 +98,7 @@ class UI extends Component {
   };
 
   // Render header
-  renderHeader = (isAuth, user) =>
+  renderHeader = ({ isAuth, user }) =>
     isAuth && (
       <div className={styles.header}>
         <div className={styles.user}>
@@ -91,11 +111,11 @@ class UI extends Component {
     );
 
   // Render navigation
-  renderNav = isAuth => (
+  renderNav = ({ isAuth }) => (
     <ul className={styles.navigation}>
       <Render condition={isAuth}>
         <li>
-          <MenuLink icon="list" title="Dashboard" to={PATHS.surveys.list}>
+          <MenuLink exact icon="list" title="Dashboard" to={PATHS.surveys.list}>
             Dashboard
           </MenuLink>
         </li>
@@ -124,7 +144,7 @@ class UI extends Component {
   );
 
   // Render profile
-  renderProfile = (isAuth, user) =>
+  renderProfile = ({ asynchronous, isAuth, user }) =>
     isAuth && (
       <ul className={styles.navigation}>
         <li>
@@ -137,7 +157,11 @@ class UI extends Component {
             <span className={styles.icon}>
               <Icon name="account-logout" title="Log out" />
             </span>
-            Log out
+            {asynchronous.signout.loading ? (
+              <span className={styles.leaving}>Logging out...</span>
+            ) : (
+              <span>Log out</span>
+            )}
           </button>
         </li>
       </ul>
@@ -146,7 +170,7 @@ class UI extends Component {
   // Render component
   render() {
     // Variables
-    const { session: { authorization, user } } = this.props.data;
+    const { data: { session: { authorization, user } }, ui: { asynchronous } } = this.props.state;
     const isAuth = authorization && user;
 
     // Options
@@ -162,9 +186,9 @@ class UI extends Component {
     return (
       <ExMenu {...menuOptions}>
         <div>
-          {this.renderHeader(isAuth, user)}
-          {this.renderNav(isAuth)}
-          {this.renderProfile(isAuth, user)}
+          {this.renderHeader({ isAuth, user })}
+          {this.renderNav({ isAuth })}
+          {this.renderProfile({ asynchronous, isAuth, user })}
         </div>
       </ExMenu>
     );
@@ -173,11 +197,16 @@ class UI extends Component {
 
 // Map state to props
 const mapStateToProps = state => ({
-  data: {
-    interface: {
-      menu: state.burgerMenu
+  state: {
+    data: {
+      interfaces: {
+        menu: state.burgerMenu
+      },
+      session: getSession(state)
     },
-    session: getSession(state)
+    ui: {
+      asynchronous: getAsync(state)
+    }
   }
 });
 
@@ -191,6 +220,10 @@ const mapDispatchToProps = dispatch => ({
 
 // Connect component to application state
 const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(UI));
+
+// Specify prop types and default values for props
+MenuLink.propTypes = propTypes.navigation;
+MenuLink.defaultProps = defaultProps.navigation;
 
 // Module exports
 export default container;

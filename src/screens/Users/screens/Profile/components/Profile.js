@@ -1,4 +1,5 @@
 // Module dependencies
+import cx from 'classnames';
 import React from 'react';
 
 import { Card, CardBody, CardHeader } from '../../../../../components/shared/base/Card';
@@ -50,7 +51,7 @@ const Profile = ({ state: { data } }) => (
           <div className={styles.label}>Gender</div>
           <div className={styles.content}>{data.gender}</div>
         </div>
-        <div className={styles.item}>
+        <div className={cx(styles.item, styles.end)}>
           <div className={styles.label}>Language</div>
           <div className={styles.content}>{data.language}</div>
         </div>

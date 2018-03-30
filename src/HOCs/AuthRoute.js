@@ -9,7 +9,7 @@ import { getAuth } from '../data/session/reducer';
 import PATHS from '../constants/router/paths';
 
 // HOC
-const AuthRoute = ({ component: Component, data: { authorization }, ...rest }) => (
+const AuthRoute = ({ component: Component, state: { data: { authorization } }, ...rest }) => (
   <Route
     {...rest}
     render={props =>
@@ -29,8 +29,10 @@ const AuthRoute = ({ component: Component, data: { authorization }, ...rest }) =
 
 // Map state to props
 const mapStateToProps = state => ({
-  data: {
-    authorization: getAuth(state)
+  state: {
+    data: {
+      authorization: getAuth(state)
+    }
   }
 });
 

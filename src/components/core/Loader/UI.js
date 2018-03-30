@@ -9,7 +9,7 @@ import Render from '../../shared/helpers/Render';
 import styles from './styles.scss';
 
 // Component
-const UI = ({ data }) => (
+const UI = ({ state: { data } }) => (
   <Render condition={data.session.verifying}>
     <Overlay>
       <div className={styles.logo} />
