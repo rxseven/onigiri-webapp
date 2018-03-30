@@ -52,7 +52,7 @@ const defaultProps = {
 const MenuLink = ({
   children, exact: exactPath, icon, title, to
 }) => (
-  <NavLink activeClassName={cx('is-active', styles.active)} exact={exactPath} to={to}>
+  <NavLink activeClassName={cx('active', styles.active)} exact={exactPath} to={to}>
     <span className={styles.icon}>
       <Icon name={icon} title={title} />
     </span>
