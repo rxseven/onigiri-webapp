@@ -75,9 +75,15 @@
   }
 
   .active {
+    $color-active: #999;
+
     &,
     &:hover {
-      color: #999;
+      color: $color-active;
+    }
+
+    .icon {
+      color: $color-active;
     }
   }
 
