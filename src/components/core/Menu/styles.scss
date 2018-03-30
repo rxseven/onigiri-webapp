@@ -29,6 +29,7 @@
 
 // Icon
 .icon {
+  color: #666;
   display: inline-block;
   margin-right: 1.25rem;
   min-width: 18px;
@@ -74,7 +75,10 @@
   }
 
   .active {
-    color: #999;
+    &,
+    &:hover {
+      color: #999;
+    }
   }
 
   :global(.active) {
