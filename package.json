@@ -1,7 +1,20 @@
 {
-  "name": "onigiri",
-  "version": "0.1.0",
+  "name": "onigiri-webapp",
+  "description": "React and Redux web application for collecting and organizing surveys",
+  "version": "1.0.0-alpha",
+  "homepage": "https://onigiri-webapp.herokuapp.com",
+  "license": "CC BY-NC-ND 4.0",
+  "author": {
+    "name": "Theerawat Pongpawat",
+    "email": "rxseven.com@gmail.com",
+    "url": "http://www.rxseven.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rxseven/onigiri-webapp"
+  },
   "private": true,
+  "main": "index.js",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",

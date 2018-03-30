@@ -148,6 +148,41 @@ const Overview = () => (
           </CardBody>
         </Card>
 
+        <Card>
+          <CardHeader>License</CardHeader>
+          <CardBody>
+            <List>
+              <ListItem end>
+                <ListContent>
+                  <CardText>
+                    <a
+                      href="http://creativecommons.org/licenses/by-nc-nd/4.0/"
+                      rel="license noopener noreferrer"
+                      target="_blank"
+                    >
+                      <img
+                        alt="Creative Commons License"
+                        src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png"
+                      />
+                    </a>
+                  </CardText>
+                  <CardText>
+                    This work is licensed under a{' '}
+                    <a
+                      href="http://creativecommons.org/licenses/by-nc-nd/4.0/"
+                      rel="license noopener noreferrer"
+                      target="_blank"
+                    >
+                      Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International
+                      License
+                    </a>.
+                  </CardText>
+                </ListContent>
+              </ListItem>
+            </List>
+          </CardBody>
+        </Card>
+
         <Card end>
           <CardHeader>Notes</CardHeader>
           <CardBody>
