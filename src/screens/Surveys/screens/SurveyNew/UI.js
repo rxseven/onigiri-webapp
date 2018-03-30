@@ -5,7 +5,9 @@ import { reduxForm } from 'redux-form';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import { FormHL } from '../../../../components/shared/base/Form';
+import Icon from '../../../../components/shared/base/Icon';
 import Layout from '../../../../components/shared/base/Layout';
+import { Tip, TipHeader } from '../../../../components/shared/base/Tip';
 
 // Constants
 import CSS from '../../../../constants/string/css';
@@ -33,6 +35,38 @@ class UI extends Component {
     return <Form onReview={() => this.onToggleView(true)} />;
   };
 
+  // Render tips
+  renderTips = () => (
+    <Tip end>
+      <TipHeader>
+        <Icon name="star" title="Tips" /> Demo tips
+      </TipHeader>
+      <ul className="list-flat">
+        <li>
+          <strong>Recipient list</strong> must be a list of REAL email addresses, please provide at
+          least two emails.
+        </li>
+        <li>
+          <strong>From</strong> and <strong>Landing page</strong> are optional.
+        </li>
+      </ul>
+      <hr />
+      <TipHeader>
+        <Icon name="beaker" title="Notes" /> Notes
+      </TipHeader>
+      <ul className="list-flat">
+        <li>
+          Onigiri is restricted to sending <strong>100 emails per day</strong>, please help me save
+          the limits, trying with <strong>2-5 recipient emails</strong> are appropriate numbers.
+        </li>
+        <li>
+          In case you won’t get any email survey (please double check your junk box), this would
+          mean the limits are already reached.
+        </li>
+      </ul>
+    </Tip>
+  );
+
   // Render component
   render() {
     return (
@@ -44,6 +78,7 @@ class UI extends Component {
           <Layout size={cx(CSS.grid.col.MD08, CSS.grid.col.LG06)}>
             <FormHL>Create survey</FormHL>
             {this.renderContent()}
+            {this.renderTips()}
           </Layout>
         </Body>
       </Document>
