@@ -65,7 +65,7 @@ class UI extends Component {
     }
 
     // Toggle overflow content
-    if (this.props.data.interface.menu.isOpen) {
+    if (this.props.state.data.interfaces.menu.isOpen) {
       document.body.classList.add(MENU_OPEN);
     } else {
       document.body.classList.remove(MENU_OPEN);
@@ -161,7 +161,7 @@ class UI extends Component {
   // Render component
   render() {
     // Variables
-    const { session: { authorization, user } } = this.props.data;
+    const { session: { authorization, user } } = this.props.state.data;
     const isAuth = authorization && user;
 
     // Options
@@ -188,11 +188,13 @@ class UI extends Component {
 
 // Map state to props
 const mapStateToProps = state => ({
-  data: {
-    interface: {
-      menu: state.burgerMenu
-    },
-    session: getSession(state)
+  state: {
+    data: {
+      interfaces: {
+        menu: state.burgerMenu
+      },
+      session: getSession(state)
+    }
   }
 });
 
