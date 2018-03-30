@@ -6,6 +6,10 @@
 .item {
   @include clearfix;
   margin-bottom: 0.75rem;
+
+  &.end {
+    margin-bottom: 0;
+  }
 }
 
 // Label and content
