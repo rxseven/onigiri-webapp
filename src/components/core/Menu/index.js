@@ -1,5 +1,7 @@
 // Module dependencies
 import cx from 'classnames';
+import PropTypes from 'prop-types';
+import exact from 'prop-types-exact';
 import React, { Component } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { connect } from 'react-redux';
@@ -28,11 +30,24 @@ const MENU_OPEN = 'menu-open';
 // Extended Menu component
 const ExMenu = reduxMenu(Menu);
 
+// Declare prop types and default props
+const propTypes = exact({
+  children: PropTypes.node.isRequired,
+  exact: PropTypes.bool,
+  icon: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired
+});
+
+const defaultProps = {
+  exact: false
+};
+
 // Link micro component
 const MenuLink = ({
-  children, icon, title, to
+  children, exact: exactPath, icon, title, to
 }) => (
-  <NavLink activeClassName={cx('is-active', styles.active)} to={to}>
+  <NavLink activeClassName={cx('is-active', styles.active)} exact={exactPath} to={to}>
     <span className={styles.icon}>
       <Icon name={icon} title={title} />
     </span>
@@ -95,7 +110,7 @@ class UI extends Component {
     <ul className={styles.navigation}>
       <Render condition={isAuth}>
         <li>
-          <MenuLink icon="list" title="Dashboard" to={PATHS.surveys.list}>
+          <MenuLink exact icon="list" title="Dashboard" to={PATHS.surveys.list}>
             Dashboard
           </MenuLink>
         </li>
@@ -191,6 +206,10 @@ const mapDispatchToProps = dispatch => ({
 
 // Connect component to application state
 const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(UI));
+
+// Specify prop types and default values for props
+MenuLink.propTypes = propTypes;
+MenuLink.defaultProps = defaultProps;
 
 // Module exports
 export default container;
