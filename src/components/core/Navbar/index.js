@@ -9,6 +9,7 @@ import { action as toggleMenu } from 'redux-burger-menu';
 
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducer';
+import { getAsync } from '../../../data/interfaces/session/reducer';
 
 import Avatar from '../../shared/base/Avatar';
 import { Container } from '../../shared/base/Grid';
@@ -71,7 +72,11 @@ class Navbar extends Component {
                 </Link>
                 <a className="dropdown-item" href="/" onClick={this.onSignout}>
                   <Icon name="account-logout" title="Log out" />
-                  Log out
+                  {this.props.state.ui.asynchronous.signout.loading ? (
+                    <span className={styles.leaving}>Logging out...</span>
+                  ) : (
+                    <span>Log out</span>
+                  )}
                 </a>
               </div>
             </DropdownContent>
@@ -159,6 +164,9 @@ const mapStateToProps = state => ({
   state: {
     data: {
       session: getSession(state)
+    },
+    ui: {
+      asynchronous: getAsync(state)
     }
   }
 });

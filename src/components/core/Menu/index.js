@@ -11,6 +11,7 @@ import { action as toggleMenu, decorator as reduxMenu } from 'redux-burger-menu'
 
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducer';
+import { getAsync } from '../../../data/interfaces/session/reducer';
 
 import Avatar from '../../shared/base/Avatar';
 import Icon from '../../shared/base/Icon';
@@ -143,7 +144,7 @@ class UI extends Component {
   );
 
   // Render profile
-  renderProfile = (isAuth, user) =>
+  renderProfile = (asynchronous, isAuth, user) =>
     isAuth && (
       <ul className={styles.navigation}>
         <li>
@@ -156,7 +157,11 @@ class UI extends Component {
             <span className={styles.icon}>
               <Icon name="account-logout" title="Log out" />
             </span>
-            Log out
+            {asynchronous.signout.loading ? (
+              <span className={styles.leaving}>Logging out...</span>
+            ) : (
+              <span>Log out</span>
+            )}
           </button>
         </li>
       </ul>
@@ -165,7 +170,7 @@ class UI extends Component {
   // Render component
   render() {
     // Variables
-    const { session: { authorization, user } } = this.props.state.data;
+    const { data: { session: { authorization, user } }, ui: { asynchronous } } = this.props.state;
     const isAuth = authorization && user;
 
     // Options
@@ -183,7 +188,7 @@ class UI extends Component {
         <div>
           {this.renderHeader(isAuth, user)}
           {this.renderNav(isAuth)}
-          {this.renderProfile(isAuth, user)}
+          {this.renderProfile(asynchronous, isAuth, user)}
         </div>
       </ExMenu>
     );
@@ -198,6 +203,9 @@ const mapStateToProps = state => ({
         menu: state.burgerMenu
       },
       session: getSession(state)
+    },
+    ui: {
+      asynchronous: getAsync(state)
     }
   }
 });
