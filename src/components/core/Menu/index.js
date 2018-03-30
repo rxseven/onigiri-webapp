@@ -32,15 +32,19 @@ const ExMenu = reduxMenu(Menu);
 
 // Declare prop types and default props
 const propTypes = exact({
-  children: PropTypes.node.isRequired,
-  exact: PropTypes.bool,
-  icon: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired
+  navigation: {
+    children: PropTypes.node.isRequired,
+    exact: PropTypes.bool,
+    icon: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    to: PropTypes.string.isRequired
+  }
 });
 
 const defaultProps = {
-  exact: false
+  navigation: {
+    exact: false
+  }
 };
 
 // Link micro component
@@ -210,8 +214,8 @@ const mapDispatchToProps = dispatch => ({
 const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(UI));
 
 // Specify prop types and default values for props
-MenuLink.propTypes = propTypes;
-MenuLink.defaultProps = defaultProps;
+MenuLink.propTypes = propTypes.navigation;
+MenuLink.defaultProps = defaultProps.navigation;
 
 // Module exports
 export default container;
