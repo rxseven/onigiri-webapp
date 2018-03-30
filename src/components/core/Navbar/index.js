@@ -48,7 +48,7 @@ class Navbar extends Component {
   // Render user avatar
   renderAvatar = () => {
     // Variables
-    const { authorization, user } = this.props.data.session;
+    const { authorization, user } = this.props.state.data.session;
 
     // View
     return (
@@ -93,7 +93,7 @@ class Navbar extends Component {
   // Render nav links
   renderLinks = () => {
     // Variables
-    const { authorization } = this.props.data.session;
+    const { authorization } = this.props.state.data.session;
     const { pathname } = this.props.location;
     const { signin, signup } = PATHS.users;
 
@@ -110,7 +110,7 @@ class Navbar extends Component {
   // Render nav links
   renderNav = () => {
     // Variables
-    const { authorization } = this.props.data.session;
+    const { authorization } = this.props.state.data.session;
 
     // View
     return (
@@ -156,8 +156,10 @@ class Navbar extends Component {
 
 // Map state to props
 const mapStateToProps = state => ({
-  data: {
-    session: getSession(state)
+  state: {
+    data: {
+      session: getSession(state)
+    }
   }
 });
 
