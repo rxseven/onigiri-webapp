@@ -1,4 +1,5 @@
 // Module dependencies
+import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
@@ -48,3 +49,9 @@ const asyncReducer = (state = initialState, action) => {
 export default combineReducers({
   asynchronous: asyncReducer
 });
+
+// Non-memoized utility selectors
+const getNode = state => state.data.interfaces;
+
+// Get session state
+export const getSession = createSelector(getNode, node => node.session);
