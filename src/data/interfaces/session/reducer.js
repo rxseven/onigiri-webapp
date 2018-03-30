@@ -1,6 +1,9 @@
 // Module dependencies
 import { combineReducers } from 'redux';
 
+// Actions
+import { SIGNOUT, SIGNOUT_FAILURE, SIGNOUT_SUCCESS } from '../../session/actions';
+
 // Constants
 import STATE_MODELS from '../../../constants/models/state';
 
@@ -12,7 +15,34 @@ const initialState = {
 };
 
 // Asynchronous reducer
-const asyncReducer = (state = initialState, action) => state;
+const asyncReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SIGNOUT:
+      return {
+        ...state,
+        signout: {
+          ...initialState.signout,
+          loading: true
+        }
+      };
+    case SIGNOUT_FAILURE:
+      return {
+        ...state,
+        signout: {
+          ...initialState.signout,
+          error: action.payload
+        }
+      };
+    case SIGNOUT_SUCCESS:
+      return {
+        ...initialState
+      };
+
+    // Default
+    default:
+      return state;
+  }
+};
 
 // Combine reducers
 export default combineReducers({
