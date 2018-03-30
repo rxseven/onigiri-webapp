@@ -21,7 +21,7 @@ const Account = ({
   actions,
   state: { data: { credits: { balance }, interfaces, profile }, ui: { asynchronous } }
 }) => (
-  <Card>
+  <Card end>
     <CardHeader>Account</CardHeader>
     <CardBody>
       <div className={styles.list}>

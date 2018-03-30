@@ -34,7 +34,7 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
   // View
   return (
     <JSXwrapper>
-      <Card background={data.completed ? 'light' : 'default'}>
+      <Card background={data.completed ? 'light' : 'default'} end>
         <CardHeader>{data.title}</CardHeader>
         <CardBody>
           <Chart data={data} />
@@ -102,12 +102,6 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
                 </ListContent>
               </ListItem>
             )}
-            <ListItem>
-              <ListLabel>Creation date</ListLabel>
-              <ListContent>
-                {timestampHelper.date(data.dateSent)}, {timestampHelper.time(data.dateSent)}
-              </ListContent>
-            </ListItem>
           </List>
 
           <hr />
@@ -123,6 +117,12 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
                   {isClosed && ', '}
                   {completed && 'completed'}
                 </Text>
+              </ListContent>
+            </ListItem>
+            <ListItem>
+              <ListLabel>Creation date</ListLabel>
+              <ListContent>
+                {timestampHelper.date(data.dateSent)}, {timestampHelper.time(data.dateSent)}
               </ListContent>
             </ListItem>
           </List>
