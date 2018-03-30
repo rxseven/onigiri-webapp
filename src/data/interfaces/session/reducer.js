@@ -55,3 +55,6 @@ const getNode = state => state.data.interfaces;
 
 // Get session state
 export const getSession = createSelector(getNode, node => node.session);
+
+// Get asynchronous state
+export const getAsync = createSelector(getNode, node => node.session.asynchronous);
