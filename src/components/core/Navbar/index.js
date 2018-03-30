@@ -121,8 +121,11 @@ class Navbar extends Component {
           </NavLink>
         </Render>
         <Render condition={authorization}>
-          <NavLink className="navbar-item nav-link" to={PATHS.surveys.list}>
+          <NavLink className="navbar-item nav-link" exact to={PATHS.surveys.list}>
             Dashboard
+          </NavLink>
+          <NavLink className={cx('navbar-item', 'nav-link', styles.link)} to={PATHS.surveys.new}>
+            New Survey
           </NavLink>
         </Render>
       </div>
