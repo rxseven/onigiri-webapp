@@ -8,8 +8,10 @@ import UI from './UI';
 
 // Map state to props
 const mapStateToProps = state => ({
-  data: {
-    session: getSession(state)
+  state: {
+    data: {
+      session: getSession(state)
+    }
   }
 });
 
