@@ -27,7 +27,6 @@ And run the following commands in terminal:
 ```
 yarn install
 yarn start
-
 ```
 
 Then open `localhost:3000` in a browser.
@@ -63,7 +62,7 @@ Chrome and Firefox have full support, but Safari and IE have strange behaviors.
 
 ## Related projects
 
-[onigiri-api](https://github.com/rxseven/onigiri-api)
+### [onigiri-api](https://github.com/rxseven/onigiri-api)
 
 RESTful API for Onigiri built with Node.js, Express, Passport and MongoDB.
 
