@@ -15,7 +15,10 @@ const defaultProps = {
 
 // HOC
 const PrivateRoute = ({
-  component: Component, data: { authorization }, exact, ...rest
+  component: Component,
+  state: { data: { authorization } },
+  exact,
+  ...rest
 }) => (
   <Route
     {...rest}
@@ -40,8 +43,10 @@ PrivateRoute.defaultProps = defaultProps;
 
 // Map state to props
 const mapStateToProps = state => ({
-  data: {
-    authorization: getAuth(state)
+  state: {
+    data: {
+      authorization: getAuth(state)
+    }
   }
 });
 
