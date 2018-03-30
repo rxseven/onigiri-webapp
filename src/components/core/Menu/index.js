@@ -98,7 +98,7 @@ class UI extends Component {
   };
 
   // Render header
-  renderHeader = (isAuth, user) =>
+  renderHeader = ({ isAuth, user }) =>
     isAuth && (
       <div className={styles.header}>
         <div className={styles.user}>
@@ -111,7 +111,7 @@ class UI extends Component {
     );
 
   // Render navigation
-  renderNav = isAuth => (
+  renderNav = ({ isAuth }) => (
     <ul className={styles.navigation}>
       <Render condition={isAuth}>
         <li>
@@ -144,7 +144,7 @@ class UI extends Component {
   );
 
   // Render profile
-  renderProfile = (asynchronous, isAuth, user) =>
+  renderProfile = ({ asynchronous, isAuth, user }) =>
     isAuth && (
       <ul className={styles.navigation}>
         <li>
@@ -186,9 +186,9 @@ class UI extends Component {
     return (
       <ExMenu {...menuOptions}>
         <div>
-          {this.renderHeader(isAuth, user)}
-          {this.renderNav(isAuth)}
-          {this.renderProfile(asynchronous, isAuth, user)}
+          {this.renderHeader({ isAuth, user })}
+          {this.renderNav({ isAuth })}
+          {this.renderProfile({ asynchronous, isAuth, user })}
         </div>
       </ExMenu>
     );
