@@ -1,0 +1,65 @@
+// Global styles
+@import "../../../../styles/base/settings";
+@import "../../../../styles/mixins/utilities";
+
+// Item
+.item {
+  @include clearfix;
+  margin-bottom: 0.5rem;
+
+  &.block {
+    margin-bottom: 0.875rem;
+
+    .label,
+    .content {
+      display: block;
+      float: none;
+      width: 100%;
+    }
+  }
+
+  &.end {
+    margin-bottom: 0;
+  }
+}
+
+// Label and content
+.label,
+.content {
+  display: block;
+  float: left;
+}
+
+// Label
+.label {
+  color: $color-label;
+  margin-bottom: 0.25rem;
+  width: 30%;
+
+  @media (min-width: $breakpoint-sm) {
+    width: 25%;
+  }
+}
+
+// Content
+.content {
+  display: flex;
+  width: 70%;
+
+  @media (min-width: $breakpoint-sm) {
+    width: 75%;
+  }
+}
+
+// Title
+.title {
+  font-size: 1rem;
+}
+
+// Version
+.version {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

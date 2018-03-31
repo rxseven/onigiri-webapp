@@ -1,0 +1,14 @@
+// Global styles
+@import "../../../styles/base/settings";
+@import "../../../styles/mixins/utilities";
+
+// Wrapper
+.wrapper {
+  @include padding-horizontal($padding-container);
+  margin-top: $navbar-height-xs;
+
+  @media (min-width: $breakpoint-sm) {
+    @include padding-horizontal(1.5rem);
+    margin-top: $navbar-height-sm;
+  }
+}

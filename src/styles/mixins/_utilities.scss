@@ -1,0 +1,56 @@
+// Micro clearfix
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+// Horizontal margin
+@mixin margin-horizontal($size) {
+  margin-bottom: $size;
+  margin-top: $size;
+}
+
+// Vertical margin
+@mixin margin-vertical($size) {
+  margin-left: $size;
+  margin-right: $size;
+}
+
+// Horizontal padding
+@mixin padding-horizontal($size) {
+  padding-bottom: $size;
+  padding-top: $size;
+}
+
+// Vertical padding
+@mixin padding-vertical($size) {
+  padding-left: $size;
+  padding-right: $size;
+}
+
+// Square block
+@mixin square($size) {
+  height: $size;
+  width: $size;
+}
+
+// Reset button
+@mixin button-reset {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}

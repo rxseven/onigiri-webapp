@@ -1,0 +1,80 @@
+// Global styles
+@import "../../../styles/base/settings";
+@import "../../../styles/mixins/utilities";
+
+// Menu
+.menu {
+  @include button-reset;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 1.25rem;
+}
+
+// Logo
+.logo {
+  align-items: center;
+  display: flex;
+}
+
+// Navigation group
+.group {
+  align-items: center;
+  display: flex !important;
+  flex: {
+    basis: auto;
+    grow: 1;
+  }
+}
+
+// Meta links
+.meta {
+  $element-spacing: 0.25rem;
+
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+
+  > :not(:last-child) {
+    margin-right: $element-spacing;
+  }
+
+  > :not(:first-child) {
+    margin-left: $element-spacing;
+  }
+
+  .link {
+    color: rgba(255, 255, 255, 0.5);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  :global(.nav-link) {
+    padding: 0.15rem 0.5rem;
+
+    @media (min-width: $breakpoint-sm) {
+      @include padding-horizontal(0.5rem);
+    }
+  }
+}
+
+// Avatar
+.avatar {
+  display: none;
+
+  :global(.avatar) {
+    @include square(35px);
+  }
+
+  @media (min-width: $breakpoint-md) {
+    display: block;
+  }
+}
+
+// Leaving
+.leaving {
+  color: $color-secondary;
+}

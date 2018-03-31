@@ -1,0 +1,26 @@
+// Headlines
+.headline {
+  font: {
+    size: 1.5rem;
+    weight: 300;
+  }
+  margin-bottom: 1.75rem;
+}
+
+// Subheadlines
+.subheadline {
+  font: {
+    size: 1.1rem;
+    weight: 300;
+  }
+  margin-bottom: 1.25rem;
+}
+
+// Meta context
+.meta {
+  padding-top: 1.25rem;
+
+  .context {
+    font-size: 1rem;
+  }
+}

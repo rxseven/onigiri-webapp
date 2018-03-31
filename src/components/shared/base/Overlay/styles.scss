@@ -1,0 +1,18 @@
+// Wrapper
+.wrapper {
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9000;
+}
+
+// Content
+.content {
+  text-align: center;
+}

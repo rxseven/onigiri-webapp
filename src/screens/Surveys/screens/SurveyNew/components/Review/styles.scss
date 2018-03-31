@@ -1,0 +1,17 @@
+// Global styles
+@import "../../../../../../styles/base/settings";
+
+// Label
+.label {
+  color: #999;
+}
+
+// Info
+.info {
+  color: $color-info;
+  font: {
+    size: 80%;
+  }
+  margin-bottom: 1.25rem;
+  padding-top: 1rem;
+}

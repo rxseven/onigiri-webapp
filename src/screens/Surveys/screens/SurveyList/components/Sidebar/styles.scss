@@ -1,0 +1,101 @@
+// Global styles
+@import "../../../../../../styles/base/settings";
+@import "../../../../../../styles/mixins/utilities";
+
+// Base container
+.sidebar {
+  left: 0;
+  margin-top: $navbar-height-xs;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+
+  @media (min-width: $breakpoint-sm) {
+    margin-top: 0;
+    position: static;
+  }
+
+  &.isSticky {
+    @media (min-width: $breakpoint-sm) {
+      margin-top: $navbar-height-sm + 15px;
+    }
+  }
+}
+
+// Wrapper
+.wrapper {
+  @media (max-width: $breakpoint-sm - 1) {
+    @include padding-vertical($padding-container);
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    padding-top: 15px;
+  }
+}
+
+// Actions
+.actions {
+  @media (min-width: $breakpoint-sm) {
+    margin-bottom: 1rem;
+  }
+
+  :global(.btn) {
+    @media (min-width: $breakpoint-sm) {
+      display: block;
+      width: 100%;
+    }
+
+    .hidden {
+      display: none;
+
+      @media (min-width: $breakpoint-md) {
+        display: inline;
+      }
+    }
+  }
+}
+
+// List menu
+.list {
+  @media (min-width: $breakpoint-sm) {
+    margin-bottom: 1rem;
+  }
+
+  :global(.list-group) {
+    flex-direction: row;
+
+    @media (min-width: $breakpoint-sm) {
+      flex-direction: column;
+    }
+  }
+
+  :global(.icon),
+  :global(.icon-inline) {
+    margin-right: 0;
+
+    @media (min-width: $breakpoint-sm) {
+      margin-right: 8px;
+    }
+  }
+}
+
+// Fading bar
+.fade {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  bottom: 0;
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr="#ffffff",
+      endColorstr="#00ffffff",
+      GradientType=0
+    );
+  height: 30px;
+  position: relative;
+}

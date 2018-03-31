@@ -1,0 +1,63 @@
+// Global styles
+@import "../../../../../../styles/base/settings";
+@import "../../../../../../styles/mixins/utilities";
+
+// Variables
+$element-size-xs: 35px;
+$element-size-sm: 30px;
+
+// Wrapper
+.wrapper {
+  @include square($element-size-xs);
+  bottom: 20px;
+  left: 50%;
+  margin-left: -($element-size-xs / 2);
+  position: fixed;
+  z-index: 7000;
+
+  @media (min-width: $breakpoint-sm) {
+    @include square($element-size-sm);
+    bottom: 0;
+    position: absolute;
+  }
+}
+
+// Pin
+.pin {
+  @include square(100%);
+  bottom: 15px;
+  left: auto;
+
+  @media (min-width: $breakpoint-sm) {
+    @include square($element-size-sm);
+    position: fixed;
+  }
+}
+
+// Button
+.button {
+  $color-background: rgba(0, 0, 0, 0.1);
+  $color-border: rgba(0, 0, 0, 0.1);
+  $color-icon: $color-secondary;
+
+  @include square($element-size-xs);
+  align-items: center;
+  background-color: $color-background;
+  border: solid $color-border 1px;
+  border-radius: 50%;
+  color: $color-icon;
+  display: flex;
+  font-size: 12px;
+  justify-content: center;
+  transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+    color: darken($color-icon, 15%);
+  }
+
+  @media (min-width: $breakpoint-sm) {
+    @include square($element-size-sm);
+    font-size: 12px;
+  }
+}

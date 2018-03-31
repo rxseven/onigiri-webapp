@@ -1,0 +1,14 @@
+:global .form-control {
+  &.is-warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+
+    ~ .warning-feedback {
+      color: #856404;
+      display: block;
+      font-size: 80%;
+      margin-top: 0.25rem;
+      width: 100%;
+    }
+  }
+}

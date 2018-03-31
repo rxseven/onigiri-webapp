@@ -1,0 +1,90 @@
+// Global styles
+@import "../../../styles/base/settings";
+@import "../../../styles/mixins/utilities";
+
+// Wrapper
+.wrapper {
+  @include padding-horizontal(15px);
+  background-color: #343a40;
+  bottom: 0;
+  color: #999;
+  height: $footer-height-xs;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 8000;
+
+  a {
+    transition: color 0.2s ease-in-out;
+  }
+
+  @media (min-width: $breakpoint-sm) {
+    @include padding-horizontal(25px);
+    height: $footer-height-sm;
+    text-align: left;
+  }
+}
+
+// Navigation
+.navigation {
+  list-style: none;
+  margin: 0 0 1.15rem 0;
+  padding: 0;
+
+  @media (min-width: $breakpoint-sm) {
+    margin-bottom: 1.5rem;
+  }
+
+  > li {
+    display: inline;
+    font-size: 0.85rem;
+
+    & + li {
+      margin-left: 1rem;
+    }
+
+    @media (min-width: $breakpoint-sm) {
+      font-size: 0.9rem;
+    }
+  }
+
+  a {
+    color: #fff;
+
+    &.active {
+      color: #999;
+      cursor: default;
+      text-decoration: none;
+    }
+  }
+}
+
+// Content
+.content {
+  font-size: 0.8rem;
+
+  @media (min-width: $breakpoint-sm) {
+    font-size: 0.875rem;
+  }
+
+  p {
+    margin-bottom: 0.25rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: $breakpoint-sm) {
+      margin-bottom: 0.35rem;
+    }
+  }
+
+  a {
+    color: #999;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}

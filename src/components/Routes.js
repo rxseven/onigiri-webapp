@@ -1,0 +1,64 @@
+// Module dependencies
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+
+// Screens
+import Home from '../screens/Home';
+
+import SurveyDetails from '../screens/Surveys/screens/SurveyDetails';
+import SurveyDoorway from '../screens/Surveys/screens/SurveyDoorway';
+import SurveyNew from '../screens/Surveys/screens/SurveyNew';
+import SurveyList from '../screens/Surveys/screens/SurveyList';
+import SurveySuccess from '../screens/Surveys/screens/SurveySuccess';
+
+import Farewell from '../screens/Users/screens/Farewell';
+import Profile from '../screens/Users/screens/Profile';
+import SignIn from '../screens/Users/screens/SignIn';
+import SignUp from '../screens/Users/screens/SignUp';
+import Welcome from '../screens/Users/screens/Welcome';
+
+import About from '../screens/About';
+import Me from '../screens/Me';
+import Privacy from '../screens/Policy/Privacy';
+import Terms from '../screens/Terms';
+import NotFound from '../screens/NotFound';
+
+// Route helpers
+import AuthRoute from '../HOCs/AuthRoute';
+import PrivateRoute from '../HOCs/PrivateRoute';
+import ReferralRoute from '../HOCs/ReferralRoute';
+
+// Constants
+import PATHS from '../constants/router/paths';
+
+// Component
+const Routes = () => (
+  <Switch>
+    <Route component={Home} exact path={PATHS.root} />
+
+    <PrivateRoute component={SurveyNew} exact path={PATHS.surveys.new} />
+    <ReferralRoute
+      component={SurveySuccess}
+      path={PATHS.surveys.success}
+      redirectTo={PATHS.surveys.list}
+    />
+    <Route component={SurveyDoorway} path={PATHS.surveys.doorway} />
+    <PrivateRoute component={SurveyDetails} path={PATHS.surveys.details} />
+    <PrivateRoute component={SurveyList} exact path={PATHS.surveys.list} />
+
+    <PrivateRoute component={Profile} path={PATHS.users.profile} />
+    <AuthRoute component={SignIn} path={PATHS.users.signin} />
+    <AuthRoute component={SignUp} path={PATHS.users.signup} />
+    <ReferralRoute component={Farewell} path={PATHS.users.farewell} />
+    <ReferralRoute component={Welcome} path={PATHS.users.welcome} />
+
+    <Route component={About} path={PATHS.static.about} />
+    <Route component={Me} path={PATHS.static.me} />
+    <Route component={Privacy} path={PATHS.static.privacy} />
+    <Route component={Terms} path={PATHS.static.terms} />
+    <Route component={NotFound} />
+  </Switch>
+);
+
+// Module exports
+export default Routes;

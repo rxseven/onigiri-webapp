@@ -1,0 +1,39 @@
+:global .nav {
+  &-tabs,
+  &-pills {
+    margin-bottom: 1rem;
+  }
+
+  &-pills {
+    .nav-item {
+      &.active {
+        .nav-link {
+          background-color: $color-link;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  &-tabs {
+    .nav-item {
+      &.active {
+        .nav-link {
+          background-color: #fff;
+          border-color: #dee2e6 #dee2e6 #fff;
+          color: #495057;
+        }
+      }
+    }
+  }
+
+  &-link {
+    color: $color-link;
+    cursor: pointer;
+    margin-bottom: 0;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}

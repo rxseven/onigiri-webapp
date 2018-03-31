@@ -1,0 +1,5 @@
+// Prevent elements flicker after being touched on touch devices
+html,
+body {
+  -webkit-tap-highlight-color: transparent;
+}
