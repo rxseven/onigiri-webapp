@@ -27,7 +27,7 @@ const Item = ({
   }
 }) => {
   // Variables
-  const isResponse = no && yes;
+  const isResponse = no || yes;
 
   // View
   return (
