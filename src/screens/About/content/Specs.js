@@ -89,7 +89,7 @@ const Technical = () => (
                     </li>
                     <li>
                       <span className={styles.label}>MongoDB</span>
-                      <span className={styles.content}>v3.4.10</span>
+                      <span className={styles.content}>v3.4.13 (MMAPv1)</span>
                     </li>
                     <li>
                       <span className={styles.label}>RAM</span>
