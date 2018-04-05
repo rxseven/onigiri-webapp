@@ -100,14 +100,14 @@ class UI extends Component {
   // Render header
   renderHeader = ({ isAuth, user }) =>
     isAuth && (
-      <div className={styles.header}>
+      <NavLink activeClassName="active" className={styles.header} to={PATHS.users.profile}>
         <div className={styles.user}>
           <div className={styles.avatar}>
             <Avatar url={user.photo.url} />
           </div>
           <Text>{`${user.name.firstName} ${user.name.lastName}`}</Text>
         </div>
-      </div>
+      </NavLink>
     );
 
   // Render navigation
