@@ -100,19 +100,24 @@ class UI extends Component {
   // Render header
   renderHeader = ({ isAuth, user }) =>
     isAuth && (
-      <div className={styles.header}>
+      <NavLink activeClassName="active" className={styles.header} to={PATHS.users.profile}>
         <div className={styles.user}>
           <div className={styles.avatar}>
             <Avatar url={user.photo.url} />
           </div>
           <Text>{`${user.name.firstName} ${user.name.lastName}`}</Text>
         </div>
-      </div>
+      </NavLink>
     );
 
   // Render navigation
   renderNav = ({ isAuth }) => (
     <ul className={styles.navigation}>
+      <li>
+        <MenuLink exact icon="home" title="Home" to={PATHS.root}>
+          Home
+        </MenuLink>
+      </li>
       <Render condition={isAuth}>
         <li>
           <MenuLink exact icon="list" title="Dashboard" to={PATHS.surveys.list}>

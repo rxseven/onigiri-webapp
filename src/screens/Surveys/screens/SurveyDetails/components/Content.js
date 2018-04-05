@@ -1,4 +1,5 @@
 // Module dependencies
+import cx from 'classnames';
 import React from 'react';
 
 import Alert from '../../../../../components/shared/base/Alert';
@@ -138,7 +139,7 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
       </Card>
 
       <Render condition={data.locked}>
-        <Alert type="warning">
+        <Alert options={cx(CSS.margin.MT03, CSS.margin.MB00, 'text-small')} type="warning">
           <Icon name="lock-locked" title="Locked" /> This sample survey is locked from being
           deleted.
         </Alert>

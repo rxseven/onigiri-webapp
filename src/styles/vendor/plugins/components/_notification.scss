@@ -6,11 +6,10 @@
 
   &-top {
     font-size: 0.875rem;
-    padding: 11px $padding-container;
+    padding: $padding-container;
     text-align: center;
 
     @media (min-width: $breakpoint-sm) {
-      @include padding-horizontal(15px);
       font-size: 1rem;
     }
   }
