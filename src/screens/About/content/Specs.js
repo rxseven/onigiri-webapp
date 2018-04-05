@@ -491,7 +491,7 @@ const Technical = () => (
               <ListItem>
                 <ListLabel>Authentication library for Node.js</ListLabel>
                 <ListContent>
-                  <ListLink to="http://www.passportjs.org">Passport</ListLink>
+                  <ListLink to="http://www.passportjs.org">passport</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -589,7 +589,7 @@ const Technical = () => (
             <hr />
 
             <CardSubtitle>
-              3<sup>rd</sup> party services and libraries for Node.js
+              3<sup>rd</sup> party libraries for Node.js
             </CardSubtitle>
             <List>
               <ListItem>
