@@ -113,6 +113,11 @@ class UI extends Component {
   // Render navigation
   renderNav = ({ isAuth }) => (
     <ul className={styles.navigation}>
+      <li>
+        <MenuLink exact icon="home" title="Home" to={PATHS.root}>
+          Home
+        </MenuLink>
+      </li>
       <Render condition={isAuth}>
         <li>
           <MenuLink exact icon="list" title="Dashboard" to={PATHS.surveys.list}>
