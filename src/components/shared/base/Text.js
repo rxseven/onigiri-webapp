@@ -12,6 +12,7 @@ const propTypes = exact({
     children: PropTypes.node.isRequired,
     lead: PropTypes.bool,
     options: PropTypes.string,
+    secondary: PropTypes.bool,
     small: PropTypes.bool
   }
 });
@@ -23,22 +24,25 @@ const defaultProps = {
     lead: false,
     mute: false,
     options: null,
+    secondary: false,
     small: false
   }
 };
 
 // Text
 export default ({
-  block, bold, children, lead, mute, options, small
+  block, bold, children, lead, mute, options, secondary, small
 }) => {
+  const css = secondary && 'text-secondary';
+
   if (lead) {
     return <p className="lead">{children}</p>;
   } else if (small) {
-    return <small className={cx(mute && 'text-muted', options)}>{children}</small>;
+    return <small className={cx(css, mute && 'text-muted', options)}>{children}</small>;
   } else if (bold) {
-    return <strong className={block && 'text-block'}>{children}</strong>;
+    return <strong className={cx(block && 'text-block', css)}>{children}</strong>;
   }
-  return <span className={cx(block && 'text-block', options)}>{children}</span>;
+  return <span className={cx(block && 'text-block', css, options)}>{children}</span>;
 };
 
 // Specify prop types and default values for props
