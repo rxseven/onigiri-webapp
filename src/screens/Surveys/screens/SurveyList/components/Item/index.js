@@ -43,12 +43,10 @@ const Item = ({
       </div>
       <div className={styles.status}>
         <Render condition={isResponse}>
-          <div>
-            <Icon name="bar-chart" title="Statistics" />
-            <span className={styles.text}>
-              <span className={styles.yes}>Y{yes}</span> <span className={styles.no}>N{no}</span>
-            </span>
-          </div>
+          <Icon name="bar-chart" title="Statistics" />
+          <span className={styles.text}>
+            <span className={styles.yes}>Y{yes}</span> <span className={styles.no}>N{no}</span>
+          </span>
         </Render>
         <Render condition={locked}>
           <Icon disabled name="lock-locked" title="Locked" />
