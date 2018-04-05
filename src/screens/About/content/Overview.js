@@ -60,8 +60,8 @@ const Overview = () => (
               <ListItem end>
                 <ListContent>
                   <CardText>
-                    <strong>Onigiri</strong> is a small open-source CRUD web application and RESTful
-                    API built with React, Redux, Node.js, Express, Passport, and MongoDB.
+                    <strong>Onigiri</strong> is a small open-source web application and RESTful API
+                    built with React, Redux, Node.js, Express, Passport, and MongoDB.
                   </CardText>
                   <CardText>
                     It is maintained by{' '}
@@ -104,7 +104,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        v="1.0.0-alpha"
+                        v="1.0.0-alpha.2"
                       >
                         Web application
                       </ListLink>
@@ -112,7 +112,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-api/releases"
-                        v="1.0.0-alpha"
+                        v="1.0.0-alpha.2"
                       >
                         RESTful API
                       </ListLink>
@@ -263,7 +263,7 @@ const Overview = () => (
       </TabPanel>
       <TabPanel className="nav-content">
         <Card>
-          <CardHeader>Pre-release</CardHeader>
+          <CardHeader>Pre-releases</CardHeader>
           <CardBody>
             <CardSubtitle>Release information</CardSubtitle>
             <List>
@@ -275,7 +275,7 @@ const Overview = () => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-webapp/releases"
-                          v="1.0.0-alpha"
+                          v="1.0.0-alpha.2"
                         >
                           Web application
                         </ListLink>
@@ -283,7 +283,7 @@ const Overview = () => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-api/releases"
-                          v="1.0.0-alpha"
+                          v="1.0.0-alpha.2"
                         >
                           RESTful API
                         </ListLink>
@@ -295,7 +295,24 @@ const Overview = () => (
               <ListItem>
                 <ListContent>
                   <ListLabel>Date</ListLabel>
-                  <ListContent>March 31, 2018</ListContent>
+                  <ListContent>
+                    <ListGroupItem>
+                      <ListLink
+                        to="https://github.com/rxseven/onigiri-webapp/releases"
+                        tag="April 05, 2018"
+                      >
+                        Web application
+                      </ListLink>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListLink
+                        to="https://github.com/rxseven/onigiri-api/releases"
+                        tag="April 05, 2018"
+                      >
+                        RESTful API
+                      </ListLink>
+                    </ListGroupItem>
+                  </ListContent>
                 </ListContent>
               </ListItem>
             </List>
@@ -398,6 +415,7 @@ const Overview = () => (
                     <li>OAuth (Google &amp; Facebook)</li>
                     <li>Change password</li>
                     <li>Reset password</li>
+                    <li>Refresh token</li>
                   </ul>
                 </ListContent>
               </ListItem>
@@ -407,8 +425,20 @@ const Overview = () => (
             <List>
               <ListItem>
                 <ListContent>
-                  <ul className="list-end">
+                  <ul>
                     <li>Update profile</li>
+                  </ul>
+                </ListContent>
+              </ListItem>
+            </List>
+            <hr />
+            <CardSubtitle>Payments</CardSubtitle>
+            <List>
+              <ListItem>
+                <ListContent>
+                  <ul className="list-end">
+                    <li>Low credits alert</li>
+                    <li>Custom checkout amount</li>
                   </ul>
                 </ListContent>
               </ListItem>
@@ -420,12 +450,14 @@ const Overview = () => (
                 <ListContent>
                   <ul className="list-end">
                     <li>Save draft</li>
-                    <li>Hot actions</li>
+                    <li>Shortcut actions</li>
                     <li>Categories, tags, lables, and pins</li>
-                    <li>Notes</li>
+                    <li>Notes and comments</li>
                     <li>Filter and search</li>
                     <li>Survey templates</li>
                     <li>Import email from external file</li>
+                    <li>Remove all archived items</li>
+                    <li>Survey goals</li>
                   </ul>
                 </ListContent>
               </ListItem>
@@ -438,6 +470,7 @@ const Overview = () => (
                   <ul className="list-end">
                     <li>Animations</li>
                     <li>Performance improvements</li>
+                    <li>Testing</li>
                   </ul>
                 </ListContent>
               </ListItem>
@@ -449,13 +482,26 @@ const Overview = () => (
         <Card end>
           <CardHeader>
             <span className={cx(CSS.margin.MR03, 'text-danger')}>
-              <Icon name="warning" title="Open" /> 0 Open
+              <Icon name="warning" title="Open" /> 2 Open
             </span>
             <span className={cx('text-secondary')}>
               <Icon name="check" title="Closed" /> 0 Closed
             </span>
           </CardHeader>
-          <CardBody>No issues found</CardBody>
+          <CardBody>
+            <List>
+              <ListItem end>
+                <ol className="list-end list-flat">
+                  <li>
+                    <code>textarea</code> multiple lines is not working properly
+                  </li>
+                  <li>
+                    While menu is opening, page scrolling is not working properly on an iPhone
+                  </li>
+                </ol>
+              </ListItem>
+            </List>
+          </CardBody>
         </Card>
       </TabPanel>
     </Tabs>
