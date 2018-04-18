@@ -5,7 +5,7 @@
   },
   "extends": ["airbnb", "plugin:jest/recommended"],
   "parser": "babel-eslint",
-  "plugins": ["react", "jest", "jsx-a11y", "import"],
+  "plugins": ["jest", "jsx-a11y", "import", "react"],
   "rules": {
     "comma-dangle": ["error", "never"],
     "no-unused-vars": [
