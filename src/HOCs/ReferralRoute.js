@@ -22,18 +22,21 @@ const ReferralRoute = ({
     <Route
       {...rest}
       exact={exact}
-      render={props =>
-        (referrer ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: redirectTo,
-              state: { from: props.location }
-            }}
-          />
-        ))
-      }
+      render={props => (
+        <Choose>
+          <When condition={referrer}>
+            <Component {...props} />
+          </When>
+          <Otherwise>
+            <Redirect
+              to={{
+                pathname: redirectTo,
+                state: { from: props.location }
+              }}
+            />
+          </Otherwise>
+        </Choose>
+      )}
     />
   );
 };

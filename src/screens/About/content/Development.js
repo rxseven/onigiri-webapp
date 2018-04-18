@@ -306,7 +306,21 @@ const Development = () => (
 
             <hr />
 
-            <CardSubtitle>Configurations</CardSubtitle>
+            <CardSubtitle>Plugins &amp; Presets</CardSubtitle>
+            <List>
+              <ListItem>
+                <ListLabel>Babel plugin that extends JSX to add basic control statements</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/AlexGilleran/jsx-control-statements">
+                    JSX Control Statements
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+            </List>
+
+            <hr />
+
+            <CardSubtitle>Rules &amp; Configurations</CardSubtitle>
             <List>
               <ListItem>
                 <ListLabel>ESLint’s rules for Node.js</ListLabel>
@@ -321,6 +335,14 @@ const Development = () => (
                 <ListContent>
                   <ListLink to="https://github.com/airbnb/javascript">
                     eslint-config-airbnb
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>JSX control statements specific linting rules for ESLint</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/vkbansal/eslint-plugin-jsx-control-statements">
+                    eslint-plugin-jsx-control-statements
                   </ListLink>
                 </ListContent>
               </ListItem>

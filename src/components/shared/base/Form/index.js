@@ -9,7 +9,6 @@ import { Button, ButtonSet } from '../../base/Buttons';
 import Spinner from '../../base/Spinner';
 import Text from '../../base/Text';
 import Error from '../../extended/Error';
-import Render from '../../helpers/Render';
 
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';
@@ -63,13 +62,13 @@ export const FormField = ({
   // View
   return (
     <div className="form-group">
-      <Render condition={type === 'text' || type === 'password'}>
+      <If condition={type === 'text' || type === 'password'}>
         <input className={inputStyles} id={input.name} placeholder={label} type={type} {...input} />
-      </Render>
+      </If>
 
-      <Render condition={type === 'textarea'}>
+      <If condition={type === 'textarea'}>
         <textarea className={inputStyles} id={input.name} placeholder={label} rows={3} {...input} />
-      </Render>
+      </If>
 
       {helper && <Text mute options="form-text" small>{helper}</Text>}
 
@@ -123,17 +122,17 @@ export class Form extends Component {
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         {this.renderField()}
-        <Render condition={alert && error}>
+        <If condition={alert && error}>
           <Error alert={error} />
-        </Render>
+        </If>
         <ButtonSet>
           {cancelButton}
           <Button button="primary" disabled={pristine || (spinner && loading)} type="submit">
             {submitButton}
           </Button>
-          <Render condition={spinner && loading}>
+          <If condition={spinner && loading}>
             <Spinner />
-          </Render>
+          </If>
         </ButtonSet>
       </form>
     );

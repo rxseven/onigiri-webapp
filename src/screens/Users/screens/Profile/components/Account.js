@@ -10,7 +10,6 @@ import {
 } from '../../../../../components/shared/base/Card';
 import Text from '../../../../../components/shared/base/Text';
 import Confirm from '../../../../../components/shared/extended/Confirm';
-import Render from '../../../../../components/shared/helpers/Render';
 import timestampHelper from '../../../../../helpers/timestamp';
 
 // Peer dependencies
@@ -61,13 +60,13 @@ const Account = ({
         >
           Delete your account
         </Button>
-        <Render condition={profile.role === 'tester'}>
+        <If condition={profile.role === 'tester'}>
           <p className={styles.meta}>
             Note : This account cannot be deleted, it was created for specific use by the
             administrator. If you would like to try with this feature please create your own account
             instead.
           </p>
-        </Render>
+        </If>
         <Confirm
           asynchronous={asynchronous.delete.profile}
           buttonCancel="Cancel"
@@ -79,7 +78,7 @@ const Account = ({
         >
           <h5>Is this goodbye?</h5>
           <p>This action is permanent. Are you sure you don’t want to reconsider?</p>
-          <Render condition={balance > 0}>
+          <If condition={balance > 0}>
             <p>
               <Text options="text-secondary" small>
                 You have <strong>{balance}</strong> survey credit{balance > 1 && 's'} left, Onigiri
@@ -87,7 +86,7 @@ const Account = ({
                 accounts.
               </Text>
             </p>
-          </Render>
+          </If>
         </Confirm>
       </div>
     </CardBody>

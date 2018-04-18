@@ -6,7 +6,6 @@ import React from 'react';
 
 import Icon from '../Icon';
 import JSXwrapper from '../../helpers/JSXwrapper';
-import Render from '../../helpers/Render';
 
 // Peer dependencies
 import styles from './styles.scss';
@@ -40,11 +39,11 @@ const ExLink = ({
       target={replace ? '_self' : '_blank'}
     >
       {children}
-      <Render condition={icon}>
+      <If condition={icon}>
         <span className={styles.icon}>
           <Icon name="external-link" title="External link" />
         </span>
-      </Render>
+      </If>
     </a>
   </JSXwrapper>
 );

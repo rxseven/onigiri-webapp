@@ -8,7 +8,6 @@ import {
 } from '../../../../../../components/shared/base/ListGroup';
 import Icon from '../../../../../../components/shared/base/Icon';
 import Text from '../../../../../../components/shared/base/Text';
-import Render from '../../../../../../components/shared/helpers/Render';
 
 import timestampHelper from '../../../../../../helpers/timestamp';
 
@@ -42,15 +41,15 @@ const Item = ({
         <ListGroupText>{subject}</ListGroupText>
       </div>
       <div className={styles.status}>
-        <Render condition={isResponse}>
+        <If condition={isResponse}>
           <Icon name="bar-chart" title="Statistics" />
           <span className={styles.text}>
             <span className={styles.yes}>Y{yes}</span> <span className={styles.no}>N{no}</span>
           </span>
-        </Render>
-        <Render condition={locked}>
+        </If>
+        <If condition={locked}>
           <Icon disabled name="lock-locked" title="Locked" />
-        </Render>
+        </If>
       </div>
       <div className={styles.footer}>
         <Text small>Sent on {timestampHelper.date(dateSent)}</Text>
