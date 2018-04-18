@@ -14,7 +14,6 @@ import { getAsync } from '../../../data/interfaces/session/reducer';
 import Avatar from '../../shared/base/Avatar';
 import { Container } from '../../shared/base/Grid';
 import Icon from '../../shared/base/Icon';
-import Render from '../../shared/helpers/Render';
 
 // Constants
 import PATHS from '../../../constants/router/paths';
@@ -72,11 +71,14 @@ class Navbar extends Component {
                 </Link>
                 <a className="dropdown-item" href="/" onClick={this.onSignout}>
                   <Icon name="account-logout" title="Log out" />
-                  {this.props.state.ui.asynchronous.signout.loading ? (
-                    <span className={styles.leaving}>Logging out...</span>
-                  ) : (
-                    <span>Log out</span>
-                  )}
+                  <Choose>
+                    <When condition={this.props.state.ui.asynchronous.signout.loading}>
+                      <span className={styles.leaving}>Logging out...</span>
+                    </When>
+                    <Otherwise>
+                      <span>Log out</span>
+                    </Otherwise>
+                  </Choose>
                 </a>
               </div>
             </DropdownContent>
@@ -104,11 +106,11 @@ class Navbar extends Component {
 
     // View
     return (
-      <Render condition={!authorization && (pathname !== signin && pathname !== signup)}>
+      <If condition={!authorization && (pathname !== signin && pathname !== signup)}>
         <NavLink className={cx('navbar-item', 'nav-link', styles.link)} to={signin}>
           Sign in
         </NavLink>
-      </Render>
+      </If>
     );
   };
 
@@ -120,19 +122,19 @@ class Navbar extends Component {
     // View
     return (
       <div className="navbar-nav mr-auto">
-        <Render condition={!authorization}>
+        <If condition={!authorization}>
           <NavLink className={cx('navbar-item', 'nav-link', styles.home)} exact to={PATHS.root}>
             Home
           </NavLink>
-        </Render>
-        <Render condition={authorization}>
+        </If>
+        <If condition={authorization}>
           <NavLink className="navbar-item nav-link" exact to={PATHS.surveys.list}>
             Dashboard
           </NavLink>
           <NavLink className={cx('navbar-item', 'nav-link', styles.link)} to={PATHS.surveys.new}>
             New Survey
           </NavLink>
-        </Render>
+        </If>
       </div>
     );
   };
