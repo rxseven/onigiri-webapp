@@ -3,7 +3,7 @@
     "browser": true,
     "jest/globals": true
   },
-  "extends": ["airbnb", "plugin:jest/recommended"],
+  "extends": ["airbnb", "plugin:jest/recommended", "react-app"],
   "parser": "babel-eslint",
   "plugins": ["jest", "jsx-a11y", "import", "react"],
   "rules": {
