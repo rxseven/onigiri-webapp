@@ -9,7 +9,6 @@ import { CardText } from '../../../../../components/shared/base/Card';
 import Spinner from '../../../../../components/shared/base/Spinner';
 import Error from '../../../../../components/shared/extended/Error';
 import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
-import Render from '../../../../../components/shared/helpers/Render';
 
 // Constants
 import PROP_TYPES from '../../../../../constants/models/propTypes';
@@ -40,14 +39,14 @@ const Checkout = ({ callback, state: { ui: { asynchronous } } }) => {
   return (
     <JSXwrapper>
       <CardText>Pay $5.00 get 5 survey credits.</CardText>
-      <Render condition={error}>
+      <If condition={error}>
         <Error alert={error} />
-      </Render>
+      </If>
       <ButtonSet>
         <Payments callback={callback} />
-        <Render condition={loading}>
+        <If condition={loading}>
           <Spinner />
-        </Render>
+        </If>
       </ButtonSet>
     </JSXwrapper>
   );
