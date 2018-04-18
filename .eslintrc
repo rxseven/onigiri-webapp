@@ -1,11 +1,17 @@
 {
   "env": {
     "browser": true,
-    "jest/globals": true
+    "jest/globals": true,
+    "jsx-control-statements/jsx-control-statements": true
   },
-  "extends": ["airbnb", "plugin:jest/recommended", "react-app"],
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended",
+    "plugin:jsx-control-statements/recommended",
+    "react-app"
+  ],
   "parser": "babel-eslint",
-  "plugins": ["jest", "jsx-a11y", "import", "react"],
+  "plugins": ["import", "jest", "jsx-a11y", "jsx-control-statements", "react"],
   "rules": {
     "comma-dangle": ["error", "never"],
     "no-unused-vars": [
@@ -33,7 +39,16 @@
     ],
     "jsx-a11y/href-no-hash": 0,
     "jsx-a11y/label-has-for": 0,
+    "jsx-control-statements/jsx-choose-not-empty": 1,
+    "jsx-control-statements/jsx-for-require-each": 1,
+    "jsx-control-statements/jsx-for-require-of": 1,
+    "jsx-control-statements/jsx-if-require-condition": 1,
+    "jsx-control-statements/jsx-otherwise-once-last": 1,
+    "jsx-control-statements/jsx-use-if-tag": 1,
+    "jsx-control-statements/jsx-when-require-condition": 1,
+    "jsx-control-statements/jsx-jcs-no-undef": 1,
     "react/jsx-filename-extension": 0,
+    "react/jsx-no-undef": [2, { "allowGlobals": true }],
     "react/no-string-refs": 0,
     "react/prop-types": 0
   }
