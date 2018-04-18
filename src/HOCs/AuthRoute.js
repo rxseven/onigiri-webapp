@@ -12,18 +12,21 @@ import PATHS from '../constants/router/paths';
 const AuthRoute = ({ component: Component, state: { data: { authorization } }, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-      (!authorization ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: PATHS.root,
-            state: { from: props.location }
-          }}
-        />
-      ))
-    }
+    render={props => (
+      <Choose>
+        <When condition={!authorization}>
+          <Component {...props} />
+        </When>
+        <Otherwise>
+          <Redirect
+            to={{
+              pathname: PATHS.root,
+              state: { from: props.location }
+            }}
+          />
+        </Otherwise>
+      </Choose>
+    )}
   />
 );
 
