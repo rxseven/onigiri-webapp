@@ -5,7 +5,6 @@ import InfiniteScroll from 'react-infinite-scroller';
 import Loading from '../../base/Loading';
 import Text from '../../base/Text';
 import Error from '../../extended/Error';
-import Render from '../../helpers/Render';
 
 // Peer dependencies
 import styles from './styles.scss';
@@ -143,18 +142,18 @@ export class Scroller extends Component {
 
   // Render ended content
   renderEnded = ({ isEmpty }) => (
-    <Render condition={this.state.total >= 1 && !this.state.more && !isEmpty}>
+    <If condition={this.state.total >= 1 && !this.state.more && !isEmpty}>
       <div className={styles.ended}>
         <Text small>You reached the end of the list</Text>
       </div>
-    </Render>
+    </If>
   );
 
   // Render alert
   renderAlert = ({ isError = false }) => (
-    <Render condition={isError}>
+    <If condition={isError}>
       <Error alert={isError} />
-    </Render>
+    </If>
   );
 
   // Render a component
