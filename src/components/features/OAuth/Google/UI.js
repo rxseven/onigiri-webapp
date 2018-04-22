@@ -1,6 +1,10 @@
 // Module dependencies
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
+
+// Constants
+import PATHS from '../../../../constants/router/paths';
 
 // Component
 class UI extends Component {
@@ -24,7 +28,17 @@ class UI extends Component {
   // Success handler
   onSussess = (response) => {
     // Submit the access token to the API
-    this.props.actions.auth.oauthGoogle(response.accessToken, null);
+    this.props.actions.auth.oauthGoogle(response.accessToken, (status) => {
+      // Redirect to Welcome screen after user account has been registered
+      if (status === 201) {
+        this.props.history.push({
+          pathname: PATHS.users.welcome,
+          state: {
+            referrer: true
+          }
+        });
+      }
+    });
   };
 
   // Request handler
@@ -55,4 +69,4 @@ class UI extends Component {
 }
 
 // Module exports
-export default UI;
+export default withRouter(UI);
