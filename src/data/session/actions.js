@@ -7,6 +7,10 @@ export const OAUTH_FACEBOOK = 'data/session/OAUTH_FACEBOOK';
 export const OAUTH_FACEBOOK_FAILURE = 'data/session/OAUTH_FACEBOOK_FAILURE';
 export const OAUTH_FACEBOOK_SUCCESS = 'data/session/OAUTH_FACEBOOK_SUCCESS';
 
+export const OAUTH_GOOGLE = 'data/session/OAUTH_GOOGLE';
+export const OAUTH_GOOGLE_FAILURE = 'data/session/OAUTH_GOOGLE_FAILURE';
+export const OAUTH_GOOGLE_SUCCESS = 'data/session/OAUTH_GOOGLE_SUCCESS';
+
 export const OAUTH_FAILURE = 'data/session/OAUTH_FAILURE';
 export const OAUTH_REQUEST = 'data/session/OAUTH_REQUEST';
 
@@ -140,6 +144,42 @@ export const oauthFacebook = (accessToken, callback) => async (dispatch) => {
   } catch (error) {
     // Inform a reducer that the request failed
     dispatch(oauthFacebookFailure(error));
+  }
+};
+
+// Sign-in with Google : Success
+const oauthGoogleSuccess = data => ({
+  type: OAUTH_GOOGLE_SUCCESS,
+  payload: data
+});
+
+// Sign-in with Google : Failure
+const oauthGoogleFailure = error => ({
+  type: OAUTH_GOOGLE_FAILURE,
+  payload: error.response.data.error
+});
+
+// Sign-in with Google : Start (loading)
+export const oauthGoogle = (accessToken, callback) => async (dispatch) => {
+  try {
+    // 1. Inform a reducer that the request began (loading)
+    dispatch({ type: OAUTH_GOOGLE });
+
+    // 2. Sign in a user with Google
+    // 3. Retrieve data in a response and transform to an appropriate format
+    const { data, status } = await usersService.oauthGoogle(accessToken);
+
+    // 4. Inform a reducer that the request finished successfully
+    dispatch(oauthGoogleSuccess(data));
+
+    // 5. Store a token in the user's browser
+    tokenHelper.save(data.token);
+
+    // 6. Execute a callback
+    if (callback) callback(status);
+  } catch (error) {
+    // Inform a reducer that the request failed
+    dispatch(oauthGoogleFailure(error));
   }
 };
 

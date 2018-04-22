@@ -7,6 +7,9 @@ import {
   OAUTH_FACEBOOK,
   OAUTH_FACEBOOK_FAILURE,
   OAUTH_FACEBOOK_SUCCESS,
+  OAUTH_GOOGLE,
+  OAUTH_GOOGLE_FAILURE,
+  OAUTH_GOOGLE_SUCCESS,
   OAUTH_FAILURE,
   OAUTH_REQUEST,
   SIGNIN,
@@ -32,6 +35,7 @@ const initialState = {
 const asyncReducer = (state = initialState.asynchronous, action) => {
   switch (action.type) {
     case OAUTH_FACEBOOK:
+    case OAUTH_GOOGLE:
     case OAUTH_REQUEST:
     case SIGNIN:
       return {
@@ -50,6 +54,7 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
         }
       };
     case OAUTH_FACEBOOK_FAILURE:
+    case OAUTH_GOOGLE_FAILURE:
     case SIGNIN_FAILURE:
       return {
         ...state,
@@ -59,6 +64,7 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
         }
       };
     case OAUTH_FACEBOOK_SUCCESS:
+    case OAUTH_GOOGLE_SUCCESS:
     case SIGNIN_SUCCESS:
     case SIGNIN_RESET_UI:
       return {

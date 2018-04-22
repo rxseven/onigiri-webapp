@@ -7,6 +7,7 @@ import { getSession } from '../../../../data/session/reducer';
 import { getUI } from './reducer';
 
 import FacebookLogin from '../../../../components/features/OAuth/Facebook';
+import GoogleLogin from '../../../../components/features/OAuth/Google';
 import { Button } from '../../../../components/shared/base/Buttons';
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import { FormHL, FormMeta, FormStack } from '../../../../components/shared/base/Form';
@@ -49,6 +50,9 @@ class SignIn extends Component {
   renderForms = () => (
     <Choose>
       <When condition={!this.state.isLocal}>
+        <FormStack>
+          <GoogleLogin />
+        </FormStack>
         <FormStack>
           <FacebookLogin />
         </FormStack>
