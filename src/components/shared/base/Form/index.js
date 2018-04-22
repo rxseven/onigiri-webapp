@@ -22,6 +22,7 @@ const propTypes = {
   form: {
     alert: PropTypes.bool,
     asynchronous: PROP_TYPES.model.asynchronous,
+    options: PropTypes.string,
     spinner: PropTypes.bool
   },
   headline: {
@@ -39,6 +40,7 @@ const defaultProps = {
   form: {
     alert: true,
     asynchronous: { ...STATE_MODELS.model.asynchronous },
+    options: null,
     spinner: true
   }
 };
@@ -113,6 +115,7 @@ export class Form extends Component {
       asynchronous: { error, loading },
       cancelButton,
       handleSubmit,
+      options,
       pristine,
       spinner,
       submitButton
@@ -120,7 +123,7 @@ export class Form extends Component {
 
     // View
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)}>
+      <form className={cx(options)} onSubmit={handleSubmit(this.onSubmit)}>
         {this.renderField()}
         <If condition={alert && error}>
           <Error alert={error} />
