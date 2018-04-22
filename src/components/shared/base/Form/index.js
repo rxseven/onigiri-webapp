@@ -46,6 +46,9 @@ const defaultProps = {
     asynchronous: { ...STATE_MODELS.model.asynchronous },
     options: null,
     spinner: true
+  },
+  group: {
+    end: false
   }
 };
 
@@ -170,3 +173,4 @@ FormMeta.propTypes = propTypes.meta;
 FormSHL.propTypes = propTypes.subheadline;
 
 Form.defaultProps = defaultProps.form;
+FormGroup.defaultProps = defaultProps.group;
