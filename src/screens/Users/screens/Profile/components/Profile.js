@@ -18,25 +18,29 @@ const Profile = ({ state: { data } }) => (
           <div className={styles.content}>
             <div className={styles.avatar}>
               <img alt="Avatar" className={styles.photo} src={data.photo.url} />
-              <a
-                className={styles.overlay}
-                href="https://en.gravatar.com/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <span className={styles.text}>
-                  Change<br /> avatar
-                </span>
-              </a>
+              <If condition={data.provider === 'local'}>
+                <a
+                  className={styles.overlay}
+                  href="https://en.gravatar.com/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className={styles.text}>
+                    Change<br /> avatar
+                  </span>
+                </a>
+              </If>
             </div>
-            <div className={styles.description}>
-              <p>
-                Update your avatar through your{' '}
-                <a href="https://en.gravatar.com/" rel="noopener noreferrer" target="_blank">
-                  Gavatar account
-                </a>.
-              </p>
-            </div>
+            <If condition={data.provider === 'local'}>
+              <div className={styles.description}>
+                <p>
+                  Update your avatar through your{' '}
+                  <a href="https://en.gravatar.com/" rel="noopener noreferrer" target="_blank">
+                    Gavatar account
+                  </a>.
+                </p>
+              </div>
+            </If>
           </div>
         </div>
         <div className={styles.item}>
