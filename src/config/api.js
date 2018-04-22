@@ -31,7 +31,8 @@ export default {
       base: API.routes.users,
       credits: `${API.routes.users}/credits`,
       oauth: {
-        facebook: `${API.routes.users}/oauth/facebook`
+        facebook: `${API.routes.users}/oauth/facebook`,
+        google: `${API.routes.users}/oauth/google`
       },
       profile: `${API.routes.users}/profile`,
       signin: `${API.routes.users}/signin`,
