@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { getSession } from '../../../../data/session/reducer';
+import { getUI } from './reducer';
+
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import { FormHL, FormMeta } from '../../../../components/shared/base/Form';
 import Icon from '../../../../components/shared/base/Icon';
@@ -48,8 +51,18 @@ class SignIn extends Component {
   }
 }
 
+// Map state to props
+const mapStateToProps = state => ({
+  state: {
+    data: {
+      session: getSession(state)
+    },
+    ui: getUI(state)
+  }
+});
+
 // Connect component to application state
-const container = connect(null)(SignIn);
+const container = connect(mapStateToProps)(SignIn);
 
 // Module exports
 export default container;
