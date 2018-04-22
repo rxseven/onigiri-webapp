@@ -71,19 +71,10 @@ const signInSuccess = data => ({
 });
 
 // Sign-in : Failure
-const signInFailure = ({ response }) => {
-  // Destructure object properties
-  const { data, status } = response;
-
-  // Create custom error message
-  const errorMessage = status === 401 ? 'Incorrect email or password' : data;
-
-  // Return action
-  return {
-    type: SIGNIN_FAILURE,
-    payload: { message: errorMessage }
-  };
-};
+const signInFailure = error => ({
+  type: SIGNIN_FAILURE,
+  payload: error.response.data.error
+});
 
 // Sign-in : Start (loading)
 export const signIn = (credentials, callback) => async (dispatch) => {
