@@ -30,6 +30,9 @@ export default {
     users: {
       base: API.routes.users,
       credits: `${API.routes.users}/credits`,
+      oauth: {
+        facebook: `${API.routes.users}/oauth/facebook`
+      },
       profile: `${API.routes.users}/profile`,
       signin: `${API.routes.users}/signin`,
       signout: `${API.routes.users}/signout`,
