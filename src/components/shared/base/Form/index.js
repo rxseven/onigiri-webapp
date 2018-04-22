@@ -35,6 +35,10 @@ const propTypes = {
   meta: {
     children: PropTypes.node.isRequired
   },
+  stack: {
+    children: PropTypes.node.isRequired,
+    end: PropTypes.bool
+  },
   subheadline: {
     children: PropTypes.string.isRequired
   }
@@ -48,6 +52,9 @@ const defaultProps = {
     spinner: true
   },
   group: {
+    end: false
+  },
+  stack: {
     end: false
   }
 };
@@ -162,6 +169,9 @@ export const FormMeta = ({ children }) => (
   </div>
 );
 
+// Form stack
+export const FormStack = ({ children, end }) => <div className={!end && 'mb-3'}>{children}</div>;
+
 // Form Subheadline
 export const FormSHL = ({ children }) => <h3 className={styles.subheadline}>{children}</h3>;
 
@@ -170,7 +180,9 @@ Form.propTypes = propTypes.form;
 FormGroup.propTypes = propTypes.group;
 FormHL.propTypes = propTypes.headline;
 FormMeta.propTypes = propTypes.meta;
+FormStack.propTypes = propTypes.stack;
 FormSHL.propTypes = propTypes.subheadline;
 
 Form.defaultProps = defaultProps.form;
 FormGroup.defaultProps = defaultProps.group;
+FormStack.defaultProps = defaultProps.stack;
