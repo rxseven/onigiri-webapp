@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { getSession } from '../../../../data/session/reducer';
 import { getUI } from './reducer';
 
+import FacebookLogin from '../../../../components/features/OAuth/Facebook';
 import { Button } from '../../../../components/shared/base/Buttons';
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import { FormHL, FormMeta, FormStack } from '../../../../components/shared/base/Form';
@@ -48,6 +49,9 @@ class SignIn extends Component {
   renderForms = () => (
     <Choose>
       <When condition={!this.state.isLocal}>
+        <FormStack>
+          <FacebookLogin />
+        </FormStack>
         <FormStack>
           <Button block disabled={this.state.isLoading} handler={this.onToggleForm}>
             Email and password
