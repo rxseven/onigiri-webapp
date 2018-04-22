@@ -61,7 +61,7 @@ class UI extends Component {
       <GoogleLogin
         buttonText="Login"
         className="btn btn-danger btn-block"
-        clientId="578117249100-eacgkquh7te9d1mnthkcneejdu67m3cd.apps.googleusercontent.com"
+        clientId={process.env.REACT_APP_GOOGLE_APP_ID}
         disabled={this.state.isLoading}
         onFailure={this.onFailure}
         onRequest={this.onRequest}
