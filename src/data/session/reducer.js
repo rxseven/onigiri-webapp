@@ -24,6 +24,7 @@ import {
 const initialState = {
   authorization: false,
   loading: {
+    signin: false,
     verify: false
   },
   user: null
@@ -33,6 +34,7 @@ const initialState = {
 const dataModel = data => ({
   authorization: true,
   loading: {
+    signin: false,
     verify: false
   },
   user: {
@@ -48,9 +50,23 @@ export default (state = initialState, action) => {
   switch (action.type) {
     // Sign-in & Sign-up
     case SIGNIN:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          signin: true
+        }
+      };
     case SIGNUP:
       return state;
     case SIGNIN_FAILURE:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          signin: false
+        }
+      };
     case SIGNUP_FAILURE:
       return state;
     case SIGNIN_SUCCESS:
