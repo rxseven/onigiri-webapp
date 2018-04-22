@@ -1,8 +1,12 @@
 // Module dependencies
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 import { Button } from '../../../../components/shared/base/Buttons';
+
+// Constants
+import PATHS from '../../../../constants/router/paths';
 
 // Component
 class UI extends Component {
@@ -21,7 +25,17 @@ class UI extends Component {
   onLogin = (response) => {
     // Success, submit the access token to the API
     if (response.accessToken) {
-      this.props.actions.auth.oauthFacebook(response.accessToken, null);
+      this.props.actions.auth.oauthFacebook(response.accessToken, (status) => {
+        // Redirect to Welcome screen after user account has been registered
+        if (status === 201) {
+          this.props.history.push({
+            pathname: PATHS.users.welcome,
+            state: {
+              referrer: true
+            }
+          });
+        }
+      });
     } else {
       // Failure, reset session status
       this.props.actions.auth.oauthFailure();
@@ -61,4 +75,4 @@ class UI extends Component {
 }
 
 // Module exports
-export default UI;
+export default withRouter(UI);
