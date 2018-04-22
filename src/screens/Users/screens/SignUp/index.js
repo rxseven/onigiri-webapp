@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
-import { FormHL, FormMeta } from '../../../../components/shared/base/Form';
+import { FormHL, FormMeta, FormStack } from '../../../../components/shared/base/Form';
 import Icon from '../../../../components/shared/base/Icon';
 import { Tip, TipHeader } from '../../../../components/shared/base/Tip';
 import Layout from '../../../Users/components/Layout';
@@ -23,7 +23,9 @@ const SignUp = () => (
     <Body>
       <Layout>
         <FormHL>Create new account</FormHL>
-        <Form />
+        <FormStack>
+          <Form />
+        </FormStack>
         <FormMeta>
           <Link to={PATHS.users.signin}>Already have an account?</Link>
         </FormMeta>
