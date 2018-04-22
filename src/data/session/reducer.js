@@ -3,6 +3,8 @@ import { createSelector } from 'reselect';
 
 // Actions
 import {
+  OAUTH_FAILURE,
+  OAUTH_REQUEST,
   SIGNIN,
   SIGNIN_FAILURE,
   SIGNIN_SUCCESS,
@@ -48,6 +50,24 @@ const dataModel = data => ({
 // Reducer
 export default (state = initialState, action) => {
   switch (action.type) {
+    // OAuth
+    case OAUTH_REQUEST:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          signin: true
+        }
+      };
+    case OAUTH_FAILURE:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          signin: false
+        }
+      };
+
     // Sign-in & Sign-up
     case SIGNIN:
       return {

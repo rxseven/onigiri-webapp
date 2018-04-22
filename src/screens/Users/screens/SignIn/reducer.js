@@ -3,7 +3,13 @@ import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
-import { SIGNIN, SIGNIN_FAILURE, SIGNIN_SUCCESS } from '../../../../data/session/actions';
+import {
+  OAUTH_FAILURE,
+  OAUTH_REQUEST,
+  SIGNIN,
+  SIGNIN_FAILURE,
+  SIGNIN_SUCCESS
+} from '../../../../data/session/actions';
 import { SIGNIN_RESET_UI } from './actions';
 
 // Constants
@@ -22,12 +28,21 @@ const initialState = {
 // Asynchronous reducer
 const asyncReducer = (state = initialState.asynchronous, action) => {
   switch (action.type) {
+    case OAUTH_REQUEST:
     case SIGNIN:
       return {
         ...state,
         post: {
           ...initialState.asynchronous.post,
           loading: true
+        }
+      };
+    case OAUTH_FAILURE:
+      return {
+        ...state,
+        post: {
+          ...initialState.asynchronous.post,
+          loading: false
         }
       };
     case SIGNIN_FAILURE:
@@ -57,6 +72,11 @@ const strategyReducer = (state = initialState.strategy, action) => {
       return {
         ...state,
         type: 'local'
+      };
+    case OAUTH_REQUEST:
+      return {
+        ...state,
+        type: 'oauth'
       };
     case SIGNIN_RESET_UI:
       return {
