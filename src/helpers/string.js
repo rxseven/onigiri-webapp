@@ -1,0 +1,2 @@
+// String helpers
+module.exports = {};
