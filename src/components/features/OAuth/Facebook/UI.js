@@ -67,7 +67,7 @@ class UI extends Component {
   render() {
     return (
       <FacebookLogin
-        appId="197076591088050"
+        appId={process.env.REACT_APP_FACEBOOK_APP_ID}
         autoLoad={false}
         callback={this.onLogin}
         fields="email, name, picture"
