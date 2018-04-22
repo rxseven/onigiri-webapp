@@ -35,6 +35,11 @@ class UI extends Component {
             }
           });
         }
+
+        // Redirect to Surveys screen after user has been authenticated
+        if (status === 200) {
+          this.props.history.push({ pathname: PATHS.surveys.list });
+        }
       });
     } else {
       // Failure, reset session status
@@ -62,7 +67,7 @@ class UI extends Component {
   render() {
     return (
       <FacebookLogin
-        appId="197076591088050"
+        appId={process.env.REACT_APP_FACEBOOK_APP_ID}
         autoLoad={false}
         callback={this.onLogin}
         fields="email, name, picture"
