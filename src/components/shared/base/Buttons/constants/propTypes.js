@@ -5,6 +5,7 @@ import exact from 'prop-types-exact';
 // Prop types
 export default exact({
   button: {
+    block: PropTypes.bool,
     button: PropTypes.string,
     children: PropTypes.node,
     disabled: PropTypes.bool,

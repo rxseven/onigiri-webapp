@@ -22,13 +22,22 @@ const propTypes = {
   form: {
     alert: PropTypes.bool,
     asynchronous: PROP_TYPES.model.asynchronous,
+    options: PropTypes.string,
     spinner: PropTypes.bool
+  },
+  group: {
+    children: PropTypes.node.isRequired,
+    end: PropTypes.bool
   },
   headline: {
     children: PropTypes.string.isRequired
   },
   meta: {
     children: PropTypes.node.isRequired
+  },
+  stack: {
+    children: PropTypes.node.isRequired,
+    end: PropTypes.bool
   },
   subheadline: {
     children: PropTypes.string.isRequired
@@ -39,7 +48,14 @@ const defaultProps = {
   form: {
     alert: true,
     asynchronous: { ...STATE_MODELS.model.asynchronous },
+    options: null,
     spinner: true
+  },
+  group: {
+    end: false
+  },
+  stack: {
+    end: false
   }
 };
 
@@ -113,6 +129,7 @@ export class Form extends Component {
       asynchronous: { error, loading },
       cancelButton,
       handleSubmit,
+      options,
       pristine,
       spinner,
       submitButton
@@ -120,7 +137,7 @@ export class Form extends Component {
 
     // View
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)}>
+      <form className={cx(options)} onSubmit={handleSubmit(this.onSubmit)}>
         {this.renderField()}
         <If condition={alert && error}>
           <Error alert={error} />
@@ -139,6 +156,9 @@ export class Form extends Component {
   }
 }
 
+// Form group
+export const FormGroup = ({ children, end }) => <div className={cx('form-group', end && styles.end)}>{children}</div>;
+
 // Form headline
 export const FormHL = ({ children }) => <h2 className={styles.headline}>{children}</h2>;
 
@@ -149,13 +169,20 @@ export const FormMeta = ({ children }) => (
   </div>
 );
 
+// Form stack
+export const FormStack = ({ children, end }) => <div className={!end && 'mb-3'}>{children}</div>;
+
 // Form Subheadline
 export const FormSHL = ({ children }) => <h3 className={styles.subheadline}>{children}</h3>;
 
 // Specify prop types and default values for props
 Form.propTypes = propTypes.form;
+FormGroup.propTypes = propTypes.group;
 FormHL.propTypes = propTypes.headline;
 FormMeta.propTypes = propTypes.meta;
+FormStack.propTypes = propTypes.stack;
 FormSHL.propTypes = propTypes.subheadline;
 
 Form.defaultProps = defaultProps.form;
+FormGroup.defaultProps = defaultProps.group;
+FormStack.defaultProps = defaultProps.stack;

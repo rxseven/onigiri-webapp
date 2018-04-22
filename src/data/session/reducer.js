@@ -23,14 +23,20 @@ import {
 // Initial state
 const initialState = {
   authorization: false,
-  verifying: false,
+  loading: {
+    signin: false,
+    verify: false
+  },
   user: null
 };
 
 // Data model
 const dataModel = data => ({
   authorization: true,
-  verifying: false,
+  loading: {
+    signin: false,
+    verify: false
+  },
   user: {
     id: data.id,
     email: data.email,
@@ -44,9 +50,23 @@ export default (state = initialState, action) => {
   switch (action.type) {
     // Sign-in & Sign-up
     case SIGNIN:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          signin: true
+        }
+      };
     case SIGNUP:
       return state;
     case SIGNIN_FAILURE:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          signin: false
+        }
+      };
     case SIGNUP_FAILURE:
       return state;
     case SIGNIN_SUCCESS:
@@ -81,7 +101,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         authorization: true,
-        verifying: true
+        loading: {
+          ...state.loading,
+          verify: true
+        }
       };
     case USER_GET_FAILURE:
       return state;

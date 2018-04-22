@@ -11,17 +11,22 @@ import STATE_MODELS from '../../../../constants/models/state';
 
 // Initial state
 const initialState = {
-  post: { ...STATE_MODELS.model.asynchronous }
+  asynchronous: {
+    post: { ...STATE_MODELS.model.asynchronous }
+  },
+  strategy: {
+    type: null
+  }
 };
 
 // Asynchronous reducer
-const asyncReducer = (state = initialState, action) => {
+const asyncReducer = (state = initialState.asynchronous, action) => {
   switch (action.type) {
     case SIGNIN:
       return {
         ...state,
         post: {
-          ...initialState.post,
+          ...initialState.asynchronous.post,
           loading: true
         }
       };
@@ -29,15 +34,36 @@ const asyncReducer = (state = initialState, action) => {
       return {
         ...state,
         post: {
-          ...initialState.post,
+          ...initialState.asynchronous.post,
           error: action.payload
         }
       };
     case SIGNIN_SUCCESS:
     case SIGNIN_RESET_UI:
       return {
-        ...initialState
+        ...initialState.asynchronous
       };
+
+    // Default
+    default:
+      return state;
+  }
+};
+
+// Strategy reducer
+const strategyReducer = (state = initialState.strategy, action) => {
+  switch (action.type) {
+    case SIGNIN:
+      return {
+        ...state,
+        type: 'local'
+      };
+    case SIGNIN_RESET_UI:
+      return {
+        ...initialState.strategy
+      };
+
+    // Default
     default:
       return state;
   }
@@ -45,7 +71,8 @@ const asyncReducer = (state = initialState, action) => {
 
 // UI reducer
 const uiReducer = combineReducers({
-  asynchronous: asyncReducer
+  asynchronous: asyncReducer,
+  strategy: strategyReducer
 });
 
 // Combine reducers

@@ -10,6 +10,7 @@ import { signIn } from '../../../../../data/session/actions';
 import { resetUI } from '../actions';
 import { getUI } from '../reducer';
 
+import { Button } from '../../../../../components/shared/base/Buttons';
 import { Form } from '../../../../../components/shared/base/Form';
 import validationHelper from '../../../../../helpers/validation';
 
@@ -43,7 +44,9 @@ class SignInForm extends Component {
     return (
       <Form
         {...this.props}
+        alert={false}
         asynchronous={this.props.state.ui.asynchronous.post}
+        cancelButton={<Button handler={this.props.onCancel}>Cancel</Button>}
         fields={FIELDS}
         submitButton="Sign in"
         submitCallback={this.submitCallback}

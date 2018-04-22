@@ -9,7 +9,7 @@ import styles from './styles.scss';
 
 // Component
 const UI = ({ state: { data } }) => (
-  <If condition={data.session.verifying}>
+  <If condition={data.session.loading.verify}>
     <Overlay>
       <div className={styles.logo} />
       <div className={styles.spinner}>
