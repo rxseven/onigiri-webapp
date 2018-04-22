@@ -13,6 +13,9 @@ import STATE_MODELS from '../../../../constants/models/state';
 const initialState = {
   asynchronous: {
     post: { ...STATE_MODELS.model.asynchronous }
+  },
+  strategy: {
+    type: null
   }
 };
 
@@ -47,9 +50,29 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
   }
 };
 
+// Strategy reducer
+const strategyReducer = (state = initialState.strategy, action) => {
+  switch (action.type) {
+    case SIGNIN:
+      return {
+        ...state,
+        type: 'local'
+      };
+    case SIGNIN_RESET_UI:
+      return {
+        ...initialState.strategy
+      };
+
+    // Default
+    default:
+      return state;
+  }
+};
+
 // UI reducer
 const uiReducer = combineReducers({
-  asynchronous: asyncReducer
+  asynchronous: asyncReducer,
+  strategy: strategyReducer
 });
 
 // Combine reducers
