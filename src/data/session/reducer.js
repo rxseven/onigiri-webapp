@@ -23,14 +23,18 @@ import {
 // Initial state
 const initialState = {
   authorization: false,
-  verifying: false,
+  loading: {
+    verify: false
+  },
   user: null
 };
 
 // Data model
 const dataModel = data => ({
   authorization: true,
-  verifying: false,
+  loading: {
+    verify: false
+  },
   user: {
     id: data.id,
     email: data.email,
@@ -81,7 +85,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         authorization: true,
-        verifying: true
+        loading: {
+          ...state.loading,
+          verify: true
+        }
       };
     case USER_GET_FAILURE:
       return state;
