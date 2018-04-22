@@ -43,6 +43,7 @@ class SignInForm extends Component {
     return (
       <Form
         {...this.props}
+        alert={false}
         asynchronous={this.props.state.ui.asynchronous.post}
         fields={FIELDS}
         submitButton="Sign in"
