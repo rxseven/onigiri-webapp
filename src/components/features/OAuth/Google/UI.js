@@ -4,6 +4,17 @@ import GoogleLogin from 'react-google-login';
 
 // Component
 class UI extends Component {
+  // After a component is instantiated as well as when it receives new props...
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // Set loading status
+    return { isLoading: nextProps.state.data.session.loading.signin } || null;
+  }
+
+  // Initial state
+  state = {
+    isLoading: false
+  };
+
   // Failure handler
   onFailure = () => {
     // Reset session status
@@ -18,6 +29,9 @@ class UI extends Component {
 
   // Request handler
   onRequest = () => {
+    // Set loading status
+    this.setState(() => ({ isLoading: true }));
+
     // Set session status
     this.props.actions.auth.oauthRequest();
   };
@@ -29,6 +43,7 @@ class UI extends Component {
         buttonText="Login"
         className="btn btn-danger btn-block"
         clientId="578117249100-eacgkquh7te9d1mnthkcneejdu67m3cd.apps.googleusercontent.com"
+        disabled={this.state.isLoading}
         onFailure={this.onFailure}
         onRequest={this.onRequest}
         onSuccess={this.onSussess}
