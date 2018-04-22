@@ -10,6 +10,7 @@ import {
 } from '../../../../../components/shared/base/Card';
 import Text from '../../../../../components/shared/base/Text';
 import Confirm from '../../../../../components/shared/extended/Confirm';
+import stringHelper from '../../../../../helpers/string';
 import timestampHelper from '../../../../../helpers/timestamp';
 
 // Peer dependencies
@@ -31,6 +32,15 @@ const Account = ({
         <div className={styles.item}>
           <div className={styles.label}>Account type</div>
           <div className={styles.content}>{profile.role}</div>
+        </div>
+        <div className={styles.item}>
+          <div className={styles.label}>Logged in with</div>
+          <div className={styles.content}>
+            <Choose>
+              <When condition={profile.provider === 'local'}>Email</When>
+              <Otherwise>{stringHelper.capitalizeFirstLetter(profile.provider)} ID</Otherwise>
+            </Choose>
+          </div>
         </div>
         <div className={styles.item}>
           <div className={styles.label}>Verification</div>
