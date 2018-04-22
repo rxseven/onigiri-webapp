@@ -1,6 +1,7 @@
 // Module dependencies
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import { FormHL, FormMeta } from '../../../../components/shared/base/Form';
@@ -47,5 +48,8 @@ class SignIn extends Component {
   }
 }
 
+// Connect component to application state
+const container = connect(null)(SignIn);
+
 // Module exports
-export default SignIn;
+export default container;
