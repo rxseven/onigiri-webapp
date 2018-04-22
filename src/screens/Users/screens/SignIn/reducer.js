@@ -4,6 +4,9 @@ import { combineReducers } from 'redux';
 
 // Actions
 import {
+  OAUTH_FACEBOOK,
+  OAUTH_FACEBOOK_FAILURE,
+  OAUTH_FACEBOOK_SUCCESS,
   OAUTH_FAILURE,
   OAUTH_REQUEST,
   SIGNIN,
@@ -28,6 +31,7 @@ const initialState = {
 // Asynchronous reducer
 const asyncReducer = (state = initialState.asynchronous, action) => {
   switch (action.type) {
+    case OAUTH_FACEBOOK:
     case OAUTH_REQUEST:
     case SIGNIN:
       return {
@@ -45,6 +49,7 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
           loading: false
         }
       };
+    case OAUTH_FACEBOOK_FAILURE:
     case SIGNIN_FAILURE:
       return {
         ...state,
@@ -53,6 +58,7 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
           error: action.payload
         }
       };
+    case OAUTH_FACEBOOK_SUCCESS:
     case SIGNIN_SUCCESS:
     case SIGNIN_RESET_UI:
       return {
