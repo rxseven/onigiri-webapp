@@ -10,6 +10,7 @@ import { Button } from '../../../../components/shared/base/Buttons';
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import { FormHL, FormMeta, FormStack } from '../../../../components/shared/base/Form';
 import Icon from '../../../../components/shared/base/Icon';
+import Spinner from '../../../../components/shared/base/Spinner';
 import { Tip, TipHeader } from '../../../../components/shared/base/Tip';
 import Error from '../../../../components/shared/extended/Error';
 import Layout from '../../../Users/components/Layout';
@@ -19,6 +20,7 @@ import PATHS from '../../../../constants/router/paths';
 
 // Peer dependencies
 import Form from './components/Form';
+import styles from './styles.scss';
 
 // Constants
 const PAGE_TITLE = 'Sign in to Onigiri';
@@ -72,6 +74,13 @@ class SignIn extends Component {
   // Render status
   renderStatus = ({ isError, isLoading, strategy }) => (
     <Choose>
+      <When condition={isLoading && strategy.type === 'oauth'}>
+        <FormStack>
+          <div className={styles.loading}>
+            <Spinner />
+          </div>
+        </FormStack>
+      </When>
       <When condition={isError}>
         <Error alert={isError} />
       </When>

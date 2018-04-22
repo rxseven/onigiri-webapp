@@ -3,6 +3,9 @@ import tokenHelper from '../../helpers/token';
 import * as usersService from '../../services/users';
 
 // Actions
+export const OAUTH_FAILURE = 'data/session/OAUTH_FAILURE';
+export const OAUTH_REQUEST = 'data/session/OAUTH_REQUEST';
+
 export const SIGNIN = 'data/session/SIGNIN';
 export const SIGNIN_FAILURE = 'data/session/SIGNIN_FAILURE';
 export const SIGNIN_SUCCESS = 'data/session/SIGNIN_SUCCESS';
@@ -99,6 +102,16 @@ export const signIn = (credentials, callback) => async (dispatch) => {
     dispatch(signInFailure(error));
   }
 };
+
+// Sign-in with OAuth : Failure
+export const oauthFailure = () => ({
+  type: OAUTH_FAILURE
+});
+
+// Sign-in with OAuth : Request
+export const oauthRequest = () => ({
+  type: OAUTH_REQUEST
+});
 
 // Sign-out : Success
 const signOutSuccess = () => ({ type: SIGNOUT_SUCCESS });
