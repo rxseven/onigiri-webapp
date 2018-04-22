@@ -3,6 +3,9 @@ import { createSelector } from 'reselect';
 
 // Actions
 import {
+  OAUTH_FACEBOOK,
+  OAUTH_FACEBOOK_FAILURE,
+  OAUTH_FACEBOOK_SUCCESS,
   OAUTH_FAILURE,
   OAUTH_REQUEST,
   SIGNIN,
@@ -51,6 +54,7 @@ const dataModel = data => ({
 export default (state = initialState, action) => {
   switch (action.type) {
     // OAuth
+    case OAUTH_FACEBOOK:
     case OAUTH_REQUEST:
       return {
         ...state,
@@ -59,6 +63,7 @@ export default (state = initialState, action) => {
           signin: true
         }
       };
+    case OAUTH_FACEBOOK_FAILURE:
     case OAUTH_FAILURE:
       return {
         ...state,
@@ -66,6 +71,11 @@ export default (state = initialState, action) => {
           ...state.loading,
           signin: false
         }
+      };
+    case OAUTH_FACEBOOK_SUCCESS:
+      return {
+        ...state,
+        ...dataModel(action.payload.user)
       };
 
     // Sign-in & Sign-up

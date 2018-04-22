@@ -4,6 +4,15 @@ import ajax from '../helpers/ajax';
 // Constants
 import API from '../config/api';
 
+// Sign in a user with Facebook
+export const oauthFacebook = accessToken =>
+  ajax({
+    auth: false,
+    data: { access_token: accessToken },
+    method: 'post',
+    url: API.endpoints.users.oauth.facebook
+  });
+
 // Sign-up, register new user account
 export const signUp = ({
   email, firstName, lastName, password

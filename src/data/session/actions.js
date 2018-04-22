@@ -3,6 +3,10 @@ import tokenHelper from '../../helpers/token';
 import * as usersService from '../../services/users';
 
 // Actions
+export const OAUTH_FACEBOOK = 'data/session/OAUTH_FACEBOOK';
+export const OAUTH_FACEBOOK_FAILURE = 'data/session/OAUTH_FACEBOOK_FAILURE';
+export const OAUTH_FACEBOOK_SUCCESS = 'data/session/OAUTH_FACEBOOK_SUCCESS';
+
 export const OAUTH_FAILURE = 'data/session/OAUTH_FAILURE';
 export const OAUTH_REQUEST = 'data/session/OAUTH_REQUEST';
 
@@ -100,6 +104,42 @@ export const signIn = (credentials, callback) => async (dispatch) => {
   } catch (error) {
     // Inform a reducer that the request failed
     dispatch(signInFailure(error));
+  }
+};
+
+// Sign-in with Facebook : Success
+const oauthFacebookSuccess = data => ({
+  type: OAUTH_FACEBOOK_SUCCESS,
+  payload: data
+});
+
+// Sign-in with Facebook : Failure
+const oauthFacebookFailure = error => ({
+  type: OAUTH_FACEBOOK_FAILURE,
+  payload: error.response.data.error
+});
+
+// Sign-in with Facebook : Start (loading)
+export const oauthFacebook = (accessToken, callback) => async (dispatch) => {
+  try {
+    // 1. Inform a reducer that the request began (loading)
+    dispatch({ type: OAUTH_FACEBOOK });
+
+    // 2. Sign in a user with Facebook
+    // 3. Retrieve data in a response and transform to an appropriate format
+    const { data, status } = await usersService.oauthFacebook(accessToken);
+
+    // 4. Inform a reducer that the request finished successfully
+    dispatch(oauthFacebookSuccess(data, status));
+
+    // 5. Store a token in the user's browser
+    tokenHelper.save(data.token);
+
+    // 6. Execute a callback
+    if (callback) callback(status);
+  } catch (error) {
+    // Inform a reducer that the request failed
+    dispatch(oauthFacebookFailure(error));
   }
 };
 
