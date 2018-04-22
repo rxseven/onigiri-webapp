@@ -6,6 +6,9 @@ import {
   OAUTH_FACEBOOK,
   OAUTH_FACEBOOK_FAILURE,
   OAUTH_FACEBOOK_SUCCESS,
+  OAUTH_GOOGLE,
+  OAUTH_GOOGLE_FAILURE,
+  OAUTH_GOOGLE_SUCCESS,
   OAUTH_FAILURE,
   OAUTH_REQUEST,
   SIGNIN,
@@ -55,6 +58,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     // OAuth
     case OAUTH_FACEBOOK:
+    case OAUTH_GOOGLE:
     case OAUTH_REQUEST:
       return {
         ...state,
@@ -65,6 +69,7 @@ export default (state = initialState, action) => {
       };
     case OAUTH_FACEBOOK_FAILURE:
     case OAUTH_FAILURE:
+    case OAUTH_GOOGLE_FAILURE:
       return {
         ...state,
         loading: {
@@ -73,6 +78,7 @@ export default (state = initialState, action) => {
         }
       };
     case OAUTH_FACEBOOK_SUCCESS:
+    case OAUTH_GOOGLE_SUCCESS:
       return {
         ...state,
         ...dataModel(action.payload.user)
