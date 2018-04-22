@@ -35,6 +35,11 @@ class UI extends Component {
             }
           });
         }
+
+        // Redirect to Surveys screen after user has been authenticated
+        if (status === 200) {
+          this.props.history.push({ pathname: PATHS.surveys.list });
+        }
       });
     } else {
       // Failure, reset session status
