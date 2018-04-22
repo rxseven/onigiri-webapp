@@ -4,6 +4,7 @@ import CSS from '../../../../../constants/string/css';
 // Default props
 export default {
   button: {
+    block: false,
     button: 'secondary',
     disabled: false,
     handler: null,

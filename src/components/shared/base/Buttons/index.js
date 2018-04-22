@@ -18,6 +18,7 @@ import defaultProps from './constants/defaultProps';
 
 // Base button
 export const Button = ({
+  block,
   button,
   children,
   disabled,
@@ -35,6 +36,7 @@ export const Button = ({
   const css = {
     button: cx(
       baseClass,
+      block && `${baseClass}-block`,
       `${baseClass}-${button}`,
       size && `${baseClass}-${CSS.size[size]}`,
       visibility
