@@ -3,6 +3,7 @@ import cx from 'classnames';
 import React from 'react';
 
 import { Card, CardBody, CardHeader } from '../../../../../components/shared/base/Card';
+import ExLink from '../../../../../components/shared/base/ExLink';
 
 // Peer dependencies
 import styles from '../styles/profile.scss';
@@ -24,25 +25,18 @@ const Profile = ({ state: { data } }) => {
               <div className={styles.avatar}>
                 <img alt="Avatar" className={styles.photo} src={data.photo.url} />
                 <If condition={isLocal}>
-                  <a
-                    className={styles.overlay}
-                    href="https://en.gravatar.com/"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
+                  <ExLink options={styles.overlay} to="https://en.gravatar.com">
                     <span className={styles.text}>
                       Change<br /> avatar
                     </span>
-                  </a>
+                  </ExLink>
                 </If>
               </div>
               <If condition={isLocal}>
                 <div className={styles.description}>
                   <p>
                     Update your avatar through your{' '}
-                    <a href="https://en.gravatar.com/" rel="noopener noreferrer" target="_blank">
-                      Gavatar account
-                    </a>.
+                    <ExLink to="https://en.gravatar.com">Gavatar account</ExLink>.
                   </p>
                 </div>
               </If>
