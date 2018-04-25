@@ -1,8 +1,16 @@
 // Module dependencies
-import React from 'react';
+import LoadableVisibility from 'react-loadable-visibility/react-loadable';
+
+import Loader from '../components/shared/base/Loader';
 
 // HOC
-const withLoadable = () => <div>Loadable HOC</div>;
+const withLoadable = loader =>
+  LoadableVisibility({
+    delay: 200,
+    loader,
+    loading: Loader,
+    timeout: 10000
+  });
 
 // Module exports
 export default withLoadable;
