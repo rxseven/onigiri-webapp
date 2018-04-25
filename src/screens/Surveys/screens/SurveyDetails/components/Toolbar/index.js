@@ -8,7 +8,6 @@ import {
   ButtonHandler,
   ButtonToolbar
 } from '../../../../../../components/shared/base/Buttons';
-import Loading from '../../../../../../components/shared/base/Loading';
 import Spinner from '../../../../../../components/shared/base/Spinner';
 import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
 
@@ -61,7 +60,7 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
         <JSXwrapper>
           <div className={styles.status}>
             <If condition={loading}>
-              <Loading />
+              <Spinner loading />
             </If>
             <If condition={updating}>
               <Spinner />
