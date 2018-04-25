@@ -9,7 +9,7 @@ import { reduxForm } from 'redux-form';
 import { Button } from '../../../../../components/shared/base/Buttons';
 import { Card, CardBody, CardHeader, CardText } from '../../../../../components/shared/base/Card';
 import { Form, FormSHL } from '../../../../../components/shared/base/Form';
-import Loading from '../../../../../components/shared/base/Loading';
+import Spinner from '../../../../../components/shared/base/Spinner';
 import Confirm from '../../../../../components/shared/extended/Confirm';
 import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
 
@@ -97,7 +97,7 @@ class SurveyForm extends Component {
   );
 
   // Render loading state
-  renderLoading = () => <Loading />;
+  renderLoading = () => <Spinner loading />;
 
   // Render warning message
   renderWarning = () => (
