@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
-import Loading from '../../base/Loading';
+import Spinner from '../../base/Spinner';
 import Text from '../../base/Text';
 import Error from '../../extended/Error';
 
@@ -161,7 +161,7 @@ export class Scroller extends Component {
     return (
       <InfiniteScroll
         hasMore={this.state.more}
-        loader={<Loading key={0} />}
+        loader={<Spinner key={0} loading />}
         loadMore={this.onLoad}
         pageStart={1}
         threshold={100}
