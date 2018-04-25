@@ -1,8 +1,8 @@
 // Module dependencies
-import { ThreeBounce } from 'better-react-spinkit';
 import React from 'react';
 
 import Overlay from '../../shared/base/Overlay';
+import Spinner from '../../shared/base/Spinner';
 
 // Peer dependencies
 import styles from './styles.scss';
@@ -13,7 +13,7 @@ const UI = ({ state: { data } }) => (
     <Overlay>
       <div className={styles.logo} />
       <div className={styles.spinner}>
-        <ThreeBounce color="#999" duration="1.25s" gutter={6} size={6} />
+        <Spinner loading />
       </div>
     </Overlay>
   </If>
