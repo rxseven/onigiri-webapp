@@ -1,2 +1,4 @@
 // Window object helpers
-export default {};
+export default {
+  reload: () => window.location.reload()
+};
