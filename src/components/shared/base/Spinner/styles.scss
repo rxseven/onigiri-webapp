@@ -1,8 +1,12 @@
-// Variables
-$element-spacing: 0.5rem;
+// Bounce
+.bounce {
+  text-align: center;
+}
 
-// Wrapper
-.wrapper {
+// Fading circle
+.circle {
+  $element-spacing: 0.5rem;
+
   display: inline-block;
   height: 22px;
   margin-left: $element-spacing !important;

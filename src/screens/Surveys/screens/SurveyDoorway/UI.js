@@ -7,7 +7,7 @@ import { Body, Document, Head, Title } from '../../../../components/shared/base/
 import { Card, CardBody, CardHeader, CardText } from '../../../../components/shared/base/Card';
 import ExLink from '../../../../components/shared/base/ExLink';
 import Layout from '../../../../components/shared/base/Layout';
-import Loading from '../../../../components/shared/base/Loading';
+import Spinner from '../../../../components/shared/base/Spinner';
 import Error from '../../../../components/shared/extended/Error';
 
 // Constants
@@ -70,9 +70,9 @@ class UI extends Component {
       return <Error alert={error} />;
     }
 
-    // Loading
+    // Loading spinner
     if (loading) {
-      return <Loading />;
+      return <Spinner loading />;
     }
 
     // Content

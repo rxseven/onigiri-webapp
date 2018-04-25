@@ -10,7 +10,7 @@ import JSXwrapper from '../components/shared/helpers/JSXwrapper';
 import Body from './core/Body';
 import Footer from './core/Footer';
 import Header from './core/Header';
-import Loader from './core/Loader';
+import Lightbox from './core/Lightbox';
 import Main from './core/Main';
 import Menu from './core/Menu';
 import Notification from './core/Notification';
@@ -32,7 +32,7 @@ const App = () => (
             </Main>
             <Footer />
           </Body>
-          <Loader />
+          <Lightbox />
           <Notification />
         </Wrapper>
       </LastLocationProvider>
