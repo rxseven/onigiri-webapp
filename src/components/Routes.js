@@ -2,34 +2,34 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-// Screens
-import Home from '../screens/Home';
-
-import SurveyDetails from '../screens/Surveys/screens/SurveyDetails';
-import SurveyDoorway from '../screens/Surveys/screens/SurveyDoorway';
-import SurveyNew from '../screens/Surveys/screens/SurveyNew';
-import SurveyList from '../screens/Surveys/screens/SurveyList';
-import SurveySuccess from '../screens/Surveys/screens/SurveySuccess';
-
-import Farewell from '../screens/Users/screens/Farewell';
-import Profile from '../screens/Users/screens/Profile';
-import SignIn from '../screens/Users/screens/SignIn';
-import SignUp from '../screens/Users/screens/SignUp';
-import Welcome from '../screens/Users/screens/Welcome';
-
-import About from '../screens/About';
-import Me from '../screens/Me';
-import Privacy from '../screens/Policy/Privacy';
-import Terms from '../screens/Terms';
-import NotFound from '../screens/NotFound';
-
-// Route helpers
 import AuthRoute from '../HOCs/AuthRoute';
+import Loadable from '../HOCs/Loadable';
 import PrivateRoute from '../HOCs/PrivateRoute';
 import ReferralRoute from '../HOCs/ReferralRoute';
 
 // Constants
 import PATHS from '../constants/router/paths';
+
+// Static screens
+const Home = Loadable(() => import('../screens/Home'));
+
+const SurveyDetails = Loadable(() => import('../screens/Surveys/screens/SurveyDetails'));
+const SurveyDoorway = Loadable(() => import('../screens/Surveys/screens/SurveyDoorway'));
+const SurveyNew = Loadable(() => import('../screens/Surveys/screens/SurveyNew'));
+const SurveyList = Loadable(() => import('../screens/Surveys/screens/SurveyList'));
+const SurveySuccess = Loadable(() => import('../screens/Surveys/screens/SurveySuccess'));
+
+const Farewell = Loadable(() => import('../screens/Users/screens/Farewell'));
+const Profile = Loadable(() => import('../screens/Users/screens/Profile'));
+const SignIn = Loadable(() => import('../screens/Users/screens/SignIn'));
+const SignUp = Loadable(() => import('../screens/Users/screens/SignUp'));
+const Welcome = Loadable(() => import('../screens/Users/screens/Welcome'));
+
+const About = Loadable(() => import('../screens/About'));
+const Me = Loadable(() => import('../screens/Me'));
+const Privacy = Loadable(() => import('../screens/Policy/Privacy'));
+const Terms = Loadable(() => import('../screens/Terms'));
+const NotFound = Loadable(() => import('../screens/NotFound'));
 
 // Component
 const Routes = () => (
