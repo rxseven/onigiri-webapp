@@ -1,0 +1,24 @@
+{
+  // Prettier
+  // Format a file on save. A formatter must be available, the file must not be auto-saved, and editor must not be shutting down.
+  "editor.formatOnSave": true,
+
+  // Flow
+  // Flow works best when installed per-project with explicit versioning rather than globally.
+  // Use Flow from local NPM dependency.
+  "flow.useNPMPackagedFlow": true,
+
+  // Prettier
+  // Disable the default JavaScript formatter (VSCode's built-in) and allows Prettier to handle our code formatting.
+  // Enable/disable default JavaScript formatter.
+  "javascript.format.enable": false,
+
+  // ESLint and Flow
+  // Disable all built-in syntax checking and use ESLint and Flow to validate our source code.
+  // Enable/disable JavaScript validation.
+  "javascript.validate.enable": false,
+
+  // Prettier and ESLint
+  // Use prettier-eslint instead of prettier. Other settings will only be fallbacks in case they could not be inferred from ESLint rules.
+  "prettier.eslintIntegration": true
+}
