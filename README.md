@@ -17,8 +17,10 @@ Clone a repository from `https://github.com/rxseven/onigiri-webapp.git`
 Configure `.env.development`
 
 ```
-REACT_APP_API_URL=http://onigiri-api.herokuapp.com
-REACT_APP_WEB_URL=http://localhost:3000
+REACT_APP_API_URL=https://onigiri-api.herokuapp.com
+REACT_APP_WEB_URL=https://localhost:3000
+REACT_APP_FACEBOOK_APP_ID=[FACEBOOK_APP_ID]
+REACT_APP_GOOGLE_APP_ID=[GOOGLE_APP_ID]
 REACT_APP_STRIPE_KEY=[STRIPE_PUBLIC_KEY]
 ```
 
@@ -26,10 +28,12 @@ And run the following commands in terminal:
 
 ```
 yarn install
-yarn start
+HTTPS=true yarn start
 ```
 
-Then open `localhost:3000` in a browser.
+Then open `https://localhost:3000` in a browser.
+
+Note that the server will use a self-signed certificate, so your web browser will almost definitely display a warning upon accessing the page.
 
 ## Browser support
 
