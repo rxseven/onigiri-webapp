@@ -6,7 +6,6 @@ import { Button } from '../base/Buttons';
 import { Modal, ModalBody, ModalFooter } from '../base/Modal';
 import Spinner from '../base/Spinner';
 import Error from '../extended/Error';
-import Render from '../helpers/Render';
 
 // Constants
 import PROP_TYPES from '../../../constants/models/propTypes';
@@ -44,12 +43,12 @@ const Confirm = (props) => {
     <Modal {...props}>
       <ModalBody>{children}</ModalBody>
       <ModalFooter>
-        <Render condition={spinner && loading}>
+        <If condition={spinner && loading}>
           <Spinner />
-        </Render>
-        <Render condition={alert && error}>
+        </If>
+        <If condition={alert && error}>
           <Error alert={error} />
-        </Render>
+        </If>
         <Button disabled={loading} handler={() => onClose()} styles="secondary">
           {buttonCancel}
         </Button>

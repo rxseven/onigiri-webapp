@@ -104,7 +104,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        v="1.0.0-alpha.2"
+                        v="1.0.0-alpha.3"
                       >
                         Web application
                       </ListLink>
@@ -112,7 +112,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-api/releases"
-                        v="1.0.0-alpha.2"
+                        v="1.0.0-alpha.3"
                       >
                         RESTful API
                       </ListLink>
@@ -275,7 +275,7 @@ const Overview = () => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-webapp/releases"
-                          v="1.0.0-alpha.2"
+                          v="1.0.0-alpha.3"
                         >
                           Web application
                         </ListLink>
@@ -283,7 +283,7 @@ const Overview = () => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-api/releases"
-                          v="1.0.0-alpha.2"
+                          v="1.0.0-alpha.3"
                         >
                           RESTful API
                         </ListLink>
@@ -294,12 +294,12 @@ const Overview = () => (
               </ListItem>
               <ListItem>
                 <ListContent>
-                  <ListLabel>Date</ListLabel>
+                  <ListLabel>Dates</ListLabel>
                   <ListContent>
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        tag="April 05, 2018"
+                        tag="April 28, 2018"
                       >
                         Web application
                       </ListLink>
@@ -307,7 +307,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-api/releases"
-                        tag="April 05, 2018"
+                        tag="April 28, 2018"
                       >
                         RESTful API
                       </ListLink>
@@ -322,8 +322,19 @@ const Overview = () => (
               <ListItem>
                 <ListContent>
                   <ul className="list-end">
-                    <li>Sign up with password-based</li>
-                    <li>Sign in a user with an email address and password</li>
+                    <li>
+                      Password-base
+                      <ul>
+                        <li>Sign up</li>
+                        <li>Sign in</li>
+                      </ul>
+                    </li>
+                    <li>
+                      OAuth 2.0{' '}
+                      <Text options="text-secondary">
+                        (via 3<sup>rd</sup> party services, Facebook &amp; Google)
+                      </Text>
+                    </li>
                     <li>Sign out</li>
                   </ul>
                 </ListContent>
@@ -412,7 +423,7 @@ const Overview = () => (
               <ListItem>
                 <ListContent>
                   <ul className="list-end">
-                    <li>OAuth (Google &amp; Facebook)</li>
+                    <li>Verify account</li>
                     <li>Change password</li>
                     <li>Reset password</li>
                     <li>Refresh token</li>
@@ -471,6 +482,7 @@ const Overview = () => (
                     <li>Animations</li>
                     <li>Performance improvements</li>
                     <li>Testing</li>
+                    <li>Static type checking</li>
                   </ul>
                 </ListContent>
               </ListItem>

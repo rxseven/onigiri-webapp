@@ -6,7 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import Layout from '../../../../components/shared/base/Layout';
-import Loading from '../../../../components/shared/base/Loading';
+import Spinner from '../../../../components/shared/base/Spinner';
 import Error from '../../../../components/shared/extended/Error';
 
 // Constants
@@ -127,7 +127,7 @@ class UI extends Component {
 
     // Loading
     if (creditsLoading || (profileLoading && !profile)) {
-      return <Loading />;
+      return <Spinner loading />;
     }
 
     // Content

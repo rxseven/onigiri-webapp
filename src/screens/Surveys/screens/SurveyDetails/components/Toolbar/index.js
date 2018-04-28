@@ -8,10 +8,8 @@ import {
   ButtonHandler,
   ButtonToolbar
 } from '../../../../../../components/shared/base/Buttons';
-import Loading from '../../../../../../components/shared/base/Loading';
 import Spinner from '../../../../../../components/shared/base/Spinner';
 import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
-import Render from '../../../../../../components/shared/helpers/Render';
 
 import dateHelper from '../../../../../../helpers/date';
 
@@ -58,18 +56,18 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
         <Button disabled={processing} handler={actions.reload} icon="reload" title="Reload" />
       </ButtonGroup>
 
-      <Render condition={!error}>
+      <If condition={!error}>
         <JSXwrapper>
           <div className={styles.status}>
-            <Render condition={loading}>
-              <Loading />
-            </Render>
-            <Render condition={updating}>
+            <If condition={loading}>
+              <Spinner loading />
+            </If>
+            <If condition={updating}>
               <Spinner />
-            </Render>
-            <Render condition={!processing && status.updated}>
+            </If>
+            <If condition={!processing && status.updated}>
               <span>Updated {dateHelper.currentTime()}</span>
-            </Render>
+            </If>
           </div>
           <ButtonGroup label="Actions" size="small">
             <ButtonHandler
@@ -96,7 +94,7 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
             />
           </ButtonGroup>
         </JSXwrapper>
-      </Render>
+      </If>
     </ButtonToolbar>
   );
 };

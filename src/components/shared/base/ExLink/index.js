@@ -6,7 +6,6 @@ import React from 'react';
 
 import Icon from '../Icon';
 import JSXwrapper from '../../helpers/JSXwrapper';
-import Render from '../../helpers/Render';
 
 // Peer dependencies
 import styles from './styles.scss';
@@ -17,6 +16,7 @@ const propTypes = exact({
   children: PropTypes.node.isRequired,
   flat: PropTypes.bool,
   icon: PropTypes.bool,
+  options: PropTypes.string,
   replace: PropTypes.bool,
   to: PropTypes.string.isRequired
 });
@@ -25,26 +25,27 @@ const defaultProps = {
   button: '',
   flat: false,
   icon: false,
+  options: null,
   replace: false
 };
 
 // Component
 const ExLink = ({
-  button, children, flat, icon, replace, to
+  button, children, flat, icon, options, replace, to
 }) => (
   <JSXwrapper>
     <a
-      className={cx(button && `btn btn-${button}`, flat && styles.flat)}
+      className={cx(button && `btn btn-${button}`, flat && styles.flat, options)}
       href={to}
       rel="noopener noreferrer"
       target={replace ? '_self' : '_blank'}
     >
       {children}
-      <Render condition={icon}>
+      <If condition={icon}>
         <span className={styles.icon}>
           <Icon name="external-link" title="External link" />
         </span>
-      </Render>
+      </If>
     </a>
   </JSXwrapper>
 );

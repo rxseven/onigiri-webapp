@@ -6,7 +6,6 @@ import Icon from '../../../../../components/shared/base/Icon';
 import Text from '../../../../../components/shared/base/Text';
 import { Tip, TipHeader } from '../../../../../components/shared/base/Tip';
 import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
-import Render from '../../../../../components/shared/helpers/Render';
 import timestampHelper from '../../../../../helpers/timestamp';
 
 // Peer dependencies
@@ -26,14 +25,14 @@ const Credits = ({ callback, state }) => {
           <hr />
           <Checkout callback={callback} state={{ ...state }} />
         </CardBody>
-        <Render condition={lastCheckout}>
+        <If condition={lastCheckout}>
           <CardFooter>
             <Text mute small>
               Last checkout on {timestampHelper.date(lastCheckout)},{' '}
               {timestampHelper.time(lastCheckout)}
             </Text>
           </CardFooter>
-        </Render>
+        </If>
       </Card>
       <Tip end>
         <TipHeader>

@@ -13,7 +13,6 @@ import {
 import Spinner from '../../../../../../components/shared/base/Spinner';
 import Error from '../../../../../../components/shared/extended/Error';
 import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
-import Render from '../../../../../../components/shared/helpers/Render';
 
 // Constants
 import PROP_TYPES from '../../../../../../constants/models/propTypes';
@@ -37,7 +36,7 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
     <JSXwrapper>
       <hr />
       <CardSubtitle options={CSS.margin.MB04}>Recipients</CardSubtitle>
-      <Render condition={!data}>
+      <If condition={!data}>
         <ButtonSet options={error && CSS.margin.MB04}>
           <Button
             button="outline-primary"
@@ -47,15 +46,15 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
           >
             View recipient list
           </Button>
-          <Render condition={loading}>
+          <If condition={loading}>
             <Spinner />
-          </Render>
+          </If>
         </ButtonSet>
-      </Render>
-      <Render condition={error}>
+      </If>
+      <If condition={error}>
         <Error alert={error} options={CSS.margin.MB00} />
-      </Render>
-      <Render condition={data}>
+      </If>
+      <If condition={data}>
         <List>
           <ListItem>
             <ListLabel>Total</ListLabel>
@@ -77,7 +76,7 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
             </ListContent>
           </ListItem>
         </List>
-      </Render>
+      </If>
     </JSXwrapper>
   );
 };

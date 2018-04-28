@@ -3,6 +3,17 @@ import tokenHelper from '../../helpers/token';
 import * as usersService from '../../services/users';
 
 // Actions
+export const OAUTH_FACEBOOK = 'data/session/OAUTH_FACEBOOK';
+export const OAUTH_FACEBOOK_FAILURE = 'data/session/OAUTH_FACEBOOK_FAILURE';
+export const OAUTH_FACEBOOK_SUCCESS = 'data/session/OAUTH_FACEBOOK_SUCCESS';
+
+export const OAUTH_GOOGLE = 'data/session/OAUTH_GOOGLE';
+export const OAUTH_GOOGLE_FAILURE = 'data/session/OAUTH_GOOGLE_FAILURE';
+export const OAUTH_GOOGLE_SUCCESS = 'data/session/OAUTH_GOOGLE_SUCCESS';
+
+export const OAUTH_FAILURE = 'data/session/OAUTH_FAILURE';
+export const OAUTH_REQUEST = 'data/session/OAUTH_REQUEST';
+
 export const SIGNIN = 'data/session/SIGNIN';
 export const SIGNIN_FAILURE = 'data/session/SIGNIN_FAILURE';
 export const SIGNIN_SUCCESS = 'data/session/SIGNIN_SUCCESS';
@@ -71,19 +82,10 @@ const signInSuccess = data => ({
 });
 
 // Sign-in : Failure
-const signInFailure = ({ response }) => {
-  // Destructure object properties
-  const { data, status } = response;
-
-  // Create custom error message
-  const errorMessage = status === 401 ? 'Incorrect email or password' : data;
-
-  // Return action
-  return {
-    type: SIGNIN_FAILURE,
-    payload: { message: errorMessage }
-  };
-};
+const signInFailure = error => ({
+  type: SIGNIN_FAILURE,
+  payload: error.response.data.error
+});
 
 // Sign-in : Start (loading)
 export const signIn = (credentials, callback) => async (dispatch) => {
@@ -108,6 +110,88 @@ export const signIn = (credentials, callback) => async (dispatch) => {
     dispatch(signInFailure(error));
   }
 };
+
+// Sign-in with Facebook : Success
+const oauthFacebookSuccess = data => ({
+  type: OAUTH_FACEBOOK_SUCCESS,
+  payload: data
+});
+
+// Sign-in with Facebook : Failure
+const oauthFacebookFailure = error => ({
+  type: OAUTH_FACEBOOK_FAILURE,
+  payload: error.response.data.error
+});
+
+// Sign-in with Facebook : Start (loading)
+export const oauthFacebook = (accessToken, callback) => async (dispatch) => {
+  try {
+    // 1. Inform a reducer that the request began (loading)
+    dispatch({ type: OAUTH_FACEBOOK });
+
+    // 2. Sign in a user with Facebook
+    // 3. Retrieve data in a response and transform to an appropriate format
+    const { data, status } = await usersService.oauthFacebook(accessToken);
+
+    // 4. Inform a reducer that the request finished successfully
+    dispatch(oauthFacebookSuccess(data, status));
+
+    // 5. Store a token in the user's browser
+    tokenHelper.save(data.token);
+
+    // 6. Execute a callback
+    if (callback) callback(status);
+  } catch (error) {
+    // Inform a reducer that the request failed
+    dispatch(oauthFacebookFailure(error));
+  }
+};
+
+// Sign-in with Google : Success
+const oauthGoogleSuccess = data => ({
+  type: OAUTH_GOOGLE_SUCCESS,
+  payload: data
+});
+
+// Sign-in with Google : Failure
+const oauthGoogleFailure = error => ({
+  type: OAUTH_GOOGLE_FAILURE,
+  payload: error.response.data.error
+});
+
+// Sign-in with Google : Start (loading)
+export const oauthGoogle = (accessToken, callback) => async (dispatch) => {
+  try {
+    // 1. Inform a reducer that the request began (loading)
+    dispatch({ type: OAUTH_GOOGLE });
+
+    // 2. Sign in a user with Google
+    // 3. Retrieve data in a response and transform to an appropriate format
+    const { data, status } = await usersService.oauthGoogle(accessToken);
+
+    // 4. Inform a reducer that the request finished successfully
+    dispatch(oauthGoogleSuccess(data));
+
+    // 5. Store a token in the user's browser
+    tokenHelper.save(data.token);
+
+    // 6. Execute a callback
+    if (callback) callback(status);
+  } catch (error) {
+    // Inform a reducer that the request failed
+    dispatch(oauthGoogleFailure(error));
+  }
+};
+
+// Sign-in with OAuth : Failure
+export const oauthFailure = () => ({
+  type: OAUTH_FAILURE
+});
+
+// Sign-in with OAuth : Request
+export const oauthRequest = () => ({
+  type: OAUTH_REQUEST
+});
 
 // Sign-out : Success
 const signOutSuccess = () => ({ type: SIGNOUT_SUCCESS });

@@ -2,10 +2,9 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
-import Loading from '../../base/Loading';
+import Spinner from '../../base/Spinner';
 import Text from '../../base/Text';
 import Error from '../../extended/Error';
-import Render from '../../helpers/Render';
 
 // Peer dependencies
 import styles from './styles.scss';
@@ -143,18 +142,18 @@ export class Scroller extends Component {
 
   // Render ended content
   renderEnded = ({ isEmpty }) => (
-    <Render condition={this.state.total >= 1 && !this.state.more && !isEmpty}>
+    <If condition={this.state.total >= 1 && !this.state.more && !isEmpty}>
       <div className={styles.ended}>
         <Text small>You reached the end of the list</Text>
       </div>
-    </Render>
+    </If>
   );
 
   // Render alert
   renderAlert = ({ isError = false }) => (
-    <Render condition={isError}>
+    <If condition={isError}>
       <Error alert={isError} />
-    </Render>
+    </If>
   );
 
   // Render a component
@@ -162,7 +161,7 @@ export class Scroller extends Component {
     return (
       <InfiniteScroll
         hasMore={this.state.more}
-        loader={<Loading key={0} />}
+        loader={<Spinner key={0} loading />}
         loadMore={this.onLoad}
         pageStart={1}
         threshold={100}

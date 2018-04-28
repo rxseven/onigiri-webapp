@@ -16,7 +16,6 @@ import { getAsync } from '../../../data/interfaces/session/reducer';
 import Avatar from '../../shared/base/Avatar';
 import Icon from '../../shared/base/Icon';
 import Text from '../../shared/base/Text';
-import Render from '../../shared/helpers/Render';
 
 // Constants
 import HTML from '../../../constants/elements/html';
@@ -118,13 +117,13 @@ class UI extends Component {
           Home
         </MenuLink>
       </li>
-      <Render condition={isAuth}>
+      <If condition={isAuth}>
         <li>
           <MenuLink exact icon="list" title="Dashboard" to={PATHS.surveys.list}>
             Dashboard
           </MenuLink>
         </li>
-      </Render>
+      </If>
       <li>
         <MenuLink icon="info" title="About" to={PATHS.static.about}>
           About
@@ -162,11 +161,14 @@ class UI extends Component {
             <span className={styles.icon}>
               <Icon name="account-logout" title="Log out" />
             </span>
-            {asynchronous.signout.loading ? (
-              <span className={styles.leaving}>Logging out...</span>
-            ) : (
-              <span>Log out</span>
-            )}
+            <Choose>
+              <When condition={asynchronous.signout.loading}>
+                <span className={styles.leaving}>Logging out...</span>
+              </When>
+              <Otherwise>
+                <span>Log out</span>
+              </Otherwise>
+            </Choose>
           </button>
         </li>
       </ul>

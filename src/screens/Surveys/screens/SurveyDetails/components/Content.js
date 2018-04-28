@@ -14,7 +14,6 @@ import Icon from '../../../../../components/shared/base/Icon';
 import { List, ListItem, ListContent, ListLabel } from '../../../../../components/shared/base/List';
 import Text from '../../../../../components/shared/base/Text';
 import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
-import Render from '../../../../../components/shared/helpers/Render';
 
 import timestampHelper from '../../../../../helpers/timestamp';
 
@@ -51,7 +50,7 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
             </ListItem>
           </List>
 
-          <Render condition={data.lastResponded}>
+          <If condition={data.lastResponded}>
             <hr />
             <CardSubtitle options={CSS.margin.MB04}>Response</CardSubtitle>
             <List>
@@ -67,7 +66,7 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
                 </ListContent>
               </ListItem>
             </List>
-          </Render>
+          </If>
 
           <hr />
 
@@ -138,12 +137,12 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
         </CardBody>
       </Card>
 
-      <Render condition={data.locked}>
+      <If condition={data.locked}>
         <Alert options={cx(CSS.margin.MT03, CSS.margin.MB00, 'text-small')} type="warning">
           <Icon name="lock-locked" title="Locked" /> This sample survey is locked from being
           deleted.
         </Alert>
-      </Render>
+      </If>
     </JSXwrapper>
   );
 };

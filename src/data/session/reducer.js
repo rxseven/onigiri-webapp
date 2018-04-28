@@ -3,6 +3,14 @@ import { createSelector } from 'reselect';
 
 // Actions
 import {
+  OAUTH_FACEBOOK,
+  OAUTH_FACEBOOK_FAILURE,
+  OAUTH_FACEBOOK_SUCCESS,
+  OAUTH_GOOGLE,
+  OAUTH_GOOGLE_FAILURE,
+  OAUTH_GOOGLE_SUCCESS,
+  OAUTH_FAILURE,
+  OAUTH_REQUEST,
   SIGNIN,
   SIGNIN_FAILURE,
   SIGNIN_SUCCESS,
@@ -23,14 +31,20 @@ import {
 // Initial state
 const initialState = {
   authorization: false,
-  verifying: false,
+  loading: {
+    signin: false,
+    verify: false
+  },
   user: null
 };
 
 // Data model
 const dataModel = data => ({
   authorization: true,
-  verifying: false,
+  loading: {
+    signin: false,
+    verify: false
+  },
   user: {
     id: data.id,
     email: data.email,
@@ -42,11 +56,53 @@ const dataModel = data => ({
 // Reducer
 export default (state = initialState, action) => {
   switch (action.type) {
+    // OAuth
+    case OAUTH_FACEBOOK:
+    case OAUTH_GOOGLE:
+    case OAUTH_REQUEST:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          signin: true
+        }
+      };
+    case OAUTH_FACEBOOK_FAILURE:
+    case OAUTH_FAILURE:
+    case OAUTH_GOOGLE_FAILURE:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          signin: false
+        }
+      };
+    case OAUTH_FACEBOOK_SUCCESS:
+    case OAUTH_GOOGLE_SUCCESS:
+      return {
+        ...state,
+        ...dataModel(action.payload.user)
+      };
+
     // Sign-in & Sign-up
     case SIGNIN:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          signin: true
+        }
+      };
     case SIGNUP:
       return state;
     case SIGNIN_FAILURE:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          signin: false
+        }
+      };
     case SIGNUP_FAILURE:
       return state;
     case SIGNIN_SUCCESS:
@@ -81,7 +137,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         authorization: true,
-        verifying: true
+        loading: {
+          ...state.loading,
+          verify: true
+        }
       };
     case USER_GET_FAILURE:
       return state;

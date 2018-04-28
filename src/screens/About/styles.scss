@@ -29,6 +29,20 @@ $label-width-xs: 25%;
   width: 150px;
 }
 
+.facebook {
+  background-image: url("./images/logo-facebook.png");
+  composes: logo;
+  height: 31px;
+  width: 150px;
+}
+
+.google {
+  background-image: url("./images/logo-google.png");
+  composes: logo;
+  height: 24px;
+  width: 150px;
+}
+
 .heroku {
   background-image: url("./images/logo-heroku.png");
   composes: logo;
@@ -94,6 +108,12 @@ $label-width-xs: 25%;
   > li {
     @include clearfix;
     font-size: 0.875rem;
+
+    &:last-child {
+      .label {
+        margin-bottom: 0;
+      }
+    }
   }
 
   .label,

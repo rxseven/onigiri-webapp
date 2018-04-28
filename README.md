@@ -17,8 +17,10 @@ Clone a repository from `https://github.com/rxseven/onigiri-webapp.git`
 Configure `.env.development`
 
 ```
-REACT_APP_API_URL=http://onigiri-api.herokuapp.com
-REACT_APP_WEB_URL=http://localhost:3000
+REACT_APP_API_URL=https://onigiri-api.herokuapp.com
+REACT_APP_WEB_URL=https://localhost:3000
+REACT_APP_FACEBOOK_APP_ID=[FACEBOOK_APP_ID]
+REACT_APP_GOOGLE_APP_ID=[GOOGLE_APP_ID]
 REACT_APP_STRIPE_KEY=[STRIPE_PUBLIC_KEY]
 ```
 
@@ -26,33 +28,12 @@ And run the following commands in terminal:
 
 ```
 yarn install
-yarn start
+HTTPS=true yarn start
 ```
 
-Then open `localhost:3000` in a browser.
+Then open `https://localhost:3000` in a browser.
 
-## Development configuration
-
-### Prettier
-
-We will configure Prettier to format our code based on our ESLint rules.
-
-First we need to install [prettier-eslint](https://www.npmjs.com/package/prettier-eslint) by running
-
-`yarn add prettier-eslint --dev`
-
-We want Visual **Studio Code** to format our code using **Prettier** after saving a file.
-
-Press `CMD + ,` if you’re on a Mac to open your Workspace Settings then add the following:
-
-```json
-// Format a file on save. A formatter must be available, the file must not be auto-saved, and editor must not be shutting down.
-"editor.formatOnSave": true,
-// Enable/disable default JavaScript formatter (For Prettier)
-"javascript.format.enable": false,
-// Use 'prettier-eslint' instead of 'prettier'. Other settings will only be fallbacks in case they could not be inferred from eslint rules.
-"prettier.eslintIntegration": true
-```
+Note that the server will use a self-signed certificate, so your web browser will almost definitely display a warning upon accessing the page.
 
 ## Browser support
 

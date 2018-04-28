@@ -23,18 +23,21 @@ const PrivateRoute = ({
   <Route
     {...rest}
     exact={exact}
-    render={props =>
-      (authorization ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: PATHS.users.signin,
-            state: { from: props.location }
-          }}
-        />
-      ))
-    }
+    render={props => (
+      <Choose>
+        <When condition={authorization}>
+          <Component {...props} />
+        </When>
+        <Otherwise>
+          <Redirect
+            to={{
+              pathname: PATHS.users.signin,
+              state: { from: props.location }
+            }}
+          />
+        </Otherwise>
+      </Choose>
+    )}
   />
 );
 

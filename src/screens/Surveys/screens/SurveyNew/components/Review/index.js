@@ -9,7 +9,6 @@ import { Button, ButtonSet } from '../../../../../../components/shared/base/Butt
 import { FormSHL } from '../../../../../../components/shared/base/Form';
 import Spinner from '../../../../../../components/shared/base/Spinner';
 import Error from '../../../../../../components/shared/extended/Error';
-import Render from '../../../../../../components/shared/helpers/Render';
 
 import emailHelper from '../../../../../../helpers/email';
 
@@ -89,11 +88,11 @@ class SurveyReview extends Component {
 
   // Render info
   renderInfo = () => (
-    <Render condition={!this.props.state.data.form.from}>
+    <If condition={!this.props.state.data.form.from}>
       <div className={styles.info}>
         You did’t provide sender email, the system defaults will be applied.
       </div>
-    </Render>
+    </If>
   );
 
   // Render a component
@@ -108,9 +107,9 @@ class SurveyReview extends Component {
         <FormSHL>Please review your entries</FormSHL>
         {this.renderField()}
         {this.renderInfo()}
-        <Render condition={error}>
+        <If condition={error}>
           <Error alert={error} />
-        </Render>
+        </If>
         <ButtonSet>
           <Button disabled={loading} handler={onCancel}>
             Edit
@@ -118,9 +117,9 @@ class SurveyReview extends Component {
           <Button button="primary" disabled={loading} handler={this.onSubmit}>
             Send survey
           </Button>
-          <Render condition={loading}>
+          <If condition={loading}>
             <Spinner />
-          </Render>
+          </If>
         </ButtonSet>
       </div>
     );
