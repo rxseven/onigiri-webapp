@@ -108,6 +108,12 @@ $label-width-xs: 25%;
   > li {
     @include clearfix;
     font-size: 0.875rem;
+
+    &:last-child {
+      .label {
+        margin-bottom: 0;
+      }
+    }
   }
 
   .label,
