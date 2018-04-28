@@ -142,7 +142,7 @@ const Development = () => (
               <ListItem>
                 <ListLabel>Operating system</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/lae/macos/high-sierra/" v="10.13.3">
+                  <ListLink to="https://www.apple.com/lae/macos/high-sierra/" v="10.13.4">
                     macOS High Sierra
                   </ListLink>
                 </ListContent>
@@ -192,6 +192,9 @@ const Development = () => (
                       <ListLink to="https://github.com/Microsoft/vscode-eslint">ESLint</ListLink>
                     </li>
                     <li>
+                      <ListLink to="https://github.com/flowtype/flow-for-vscode">Flow</ListLink>
+                    </li>
+                    <li>
                       <ListLink to="https://github.com/jest-community/vscode-jest">Jest</ListLink>
                     </li>
                     <li>
@@ -236,10 +239,28 @@ const Development = () => (
                   <ListLink to="https://trello.com">Trello</ListLink>
                 </ListContent>
               </ListItem>
-              <ListItem end>
+              <ListItem>
                 <ListLabel>Photo editing tool</ListLabel>
                 <ListContent>
                   <ListLink to="http://adobe.com/photoshop">Adobe Photoshop CC</ListLink>
+                </ListContent>
+              </ListItem>
+            </List>
+
+            <hr />
+
+            <CardSubtitle>3<sup>rd</sup> party service’s tools</CardSubtitle>
+            <List>
+              <ListItem>
+                <ListLabel>CLI for managing Heroku apps</ListLabel>
+                <ListContent>
+                  <ListLink to="https://devcenter.heroku.com/articles/heroku-cli">Heroku CLI</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>Plugin for Heroku CLI that can manipulate the repo</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/heroku/heroku-repo">Heroku Repo plugin</ListLink>
                 </ListContent>
               </ListItem>
             </List>
@@ -286,6 +307,12 @@ const Development = () => (
                 <ListLabel>Linting utility for JavaScript</ListLabel>
                 <ListContent>
                   <ListLink to="https://eslint.org">ESLint</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>Static type checker for JavaScript</ListLabel>
+                <ListContent>
+                  <ListLink to="https://flow.org">Flow</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -415,10 +442,30 @@ const Development = () => (
                   <ListLink to="https://sendgrid.com">SendGrid</ListLink>
                 </ListContent>
               </ListItem>
-              <ListItem end>
+              <ListItem>
                 <ListLabel>Online payment platform</ListLabel>
                 <ListContent>
                   <ListLink to="https://stripe.com/checkout">Stripe</ListLink>
+                </ListContent>
+              </ListItem>
+            </List>
+
+            <hr />
+
+            <CardSubtitle>Platforms</CardSubtitle>
+            <List>
+              <ListItem>
+                <ListLabel>Social Networking Platform</ListLabel>
+                <ListContent>
+                  <ListLink to="https://developers.facebook.com/products/account-creation">
+                    Facebook Platform
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem end>
+                <ListLabel>Cloud computing, Hosting services &amp; APIs</ListLabel>
+                <ListContent>
+                  <ListLink to="https://cloud.google.com/">Google Cloud Platform</ListLink>
                 </ListContent>
               </ListItem>
             </List>
@@ -518,7 +565,7 @@ const Development = () => (
               <ListItem>
                 <ListLabel>Mac</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/macos/high-sierra/" v="10.13.3">
+                  <ListLink to="https://www.apple.com/macos/high-sierra/" v="10.13.4">
                     macOS High Sierra
                   </ListLink>
                 </ListContent>
@@ -545,12 +592,12 @@ const Development = () => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="#" v="11.0.3">
+                      <ListLink to="https://www.apple.com/safari/" v="11.1">
                         Safari
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="#" v="59.0.1">
+                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="59.0.2">
                         Firefox
                       </ListLink>
                     </ListGroupItem>
@@ -572,7 +619,7 @@ const Development = () => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.2.6">
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.3">
                         iPhone 6
                       </ListLink>
                     </ListGroupItem>
@@ -587,7 +634,7 @@ const Development = () => (
               <ListItem>
                 <ListLabel>Android phone</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.android.com/versions/nougat-7-0/" tag="Android v7.0">
+                  <ListLink to="https://www.android.com/versions/oreo-8-0/" tag="Android v8.0">
                     Samsung Galaxy S8
                   </ListLink>
                 </ListContent>
@@ -595,7 +642,7 @@ const Development = () => (
               <ListItem end>
                 <ListLabel>Tablet</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.2.6">
+                  <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.3">
                     iPad mini 3
                   </ListLink>
                 </ListContent>

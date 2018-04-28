@@ -150,7 +150,7 @@ const Technical = () => (
 
               <hr />
 
-              <ListItem end>
+              <ListItem>
                 <ListLabel>Online payment platform</ListLabel>
                 <ListContent>
                   <ListLink to="https://stripe.com/checkout">
@@ -169,6 +169,50 @@ const Technical = () => (
                   </ul>
                 </ListContent>
               </ListItem>
+
+              <hr />
+
+              <ListItem>
+                <ListLabel>Social Networking Platform</ListLabel>
+                <ListContent>
+                  <ListLink to="https://developers.facebook.com/products/account-creation">
+                    <span className={styles.facebook} />
+                    Facebook Platform
+                  </ListLink>
+                  <ul className={styles.specs}>
+                    <li>
+                      <span className={styles.label}>Plan</span>
+                      <span className={styles.content}>Free</span>
+                    </li>
+                    <li>
+                      <span className={styles.label}>Service</span>
+                      <span className={styles.content}>Facebook Login</span>
+                    </li>
+                  </ul>
+                </ListContent>
+              </ListItem>
+
+              <hr />
+
+              <ListItem end>
+                <ListLabel>Cloud computing, Hosting services &amp; APIs</ListLabel>
+                <ListContent>
+                  <ListLink to="https://cloud.google.com/">
+                    <span className={styles.google} />
+                    Google Cloud Platform
+                  </ListLink>
+                  <ul className={styles.specs}>
+                    <li>
+                      <span className={styles.label}>Plan</span>
+                      <span className={styles.content}>Free</span>
+                    </li>
+                    <li>
+                      <span className={styles.label}>Service</span>
+                      <span className={styles.content}>Google+ API</span>
+                    </li>
+                  </ul>
+                </ListContent>
+              </ListItem>
             </List>
           </CardBody>
         </Card>
@@ -182,7 +226,7 @@ const Technical = () => (
                 <ListLabel>JavaScript library for building user interfaces</ListLabel>
                 <ListContent>
                   <span className={styles.react} />
-                  <ListLink to="https://reactjs.org" v="16.2.0">
+                  <ListLink to="https://reactjs.org" v="16.3.2">
                     React
                   </ListLink>
                 </ListContent>
@@ -209,7 +253,7 @@ const Technical = () => (
           </CardBody>
         </Card>
 
-        <Card end>
+        <Card>
           <CardHeader>Dependencies</CardHeader>
           <CardBody>
             <CardSubtitle>React &amp; Redux</CardSubtitle>
@@ -280,6 +324,24 @@ const Technical = () => (
                 <ListLabel>A document head manager for React</ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com/nfl/react-helmet">react-helmet</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>A HOC for loading components with dynamic imports</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/jamiebuilds/react-loadable">
+                    react-loadable
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>
+                  A wrapper around react-loadable to load elements that are visible on the page
+                </ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/stratiformltd/react-loadable-visibility">
+                    react-loadable-visibility
+                  </ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -386,6 +448,22 @@ const Technical = () => (
                   </ListLink>
                 </ListContent>
               </ListItem>
+              <ListItem>
+                <ListLabel>A Component React for Facebook Login</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/keppelen/react-facebook-login">
+                    react-facebook-login
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>A Google OAuth log-in component for React</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/anthonyjgrove/react-google-login">
+                    react-google-login
+                  </ListLink>
+                </ListContent>
+              </ListItem>
             </List>
 
             <hr />
@@ -442,6 +520,35 @@ const Technical = () => (
                   <ListLink to="https://github.com/rxseven/onigiri-webapp/blob/master/package.json">
                     <code>package.json</code>
                   </ListLink>
+                </ListContent>
+              </ListItem>
+            </List>
+          </CardBody>
+        </Card>
+
+        <Card end>
+          <CardHeader>Will be implemented within the next releases</CardHeader>
+          <CardBody>
+            <List>
+              <ListItem>
+                <ListLabel>Immutable collections for JavaScript</ListLabel>
+                <ListContent>
+                  <ListLink to="https://facebook.github.io/immutable-js/">Immutable</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>A React utility belt for function components and HOCs</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/acdlite/recompose">Recompose</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem end>
+                <ListLabel>
+                  Utility for creating an equivalent function of Redux <code>combineReducers</code>{' '}
+                  that works with Immutable.js state.
+                </ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/gajus/redux-immutable">redux-immutable</ListLink>
                 </ListContent>
               </ListItem>
             </List>
