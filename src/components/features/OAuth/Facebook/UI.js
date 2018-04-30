@@ -70,7 +70,9 @@ class UI extends Component {
         appId={process.env.REACT_APP_FACEBOOK_APP_ID}
         autoLoad={false}
         callback={this.onLogin}
+        disableMobileRedirect
         fields="email, name, picture"
+        isMobile
         onClick={this.onRequest}
         render={renderProps => this.renderButton(renderProps)}
         scope="public_profile, email"
