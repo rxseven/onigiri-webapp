@@ -208,7 +208,7 @@ const Technical = () => (
                     </li>
                     <li>
                       <span className={styles.label}>Service</span>
-                      <span className={styles.content}>Google+ API</span>
+                      <span className={styles.content}>OAuth client ID</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -317,7 +317,15 @@ const Technical = () => (
                   A utility provides access to the last location in React and React Router apps
                 </ListLabel>
                 <ListContent>
-                  <ListLink to="react-router-last-location">react-router-last-location</ListLink>
+                  <ListLink to="https://github.com/hinok/react-router-last-location">react-router-last-location</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>
+                  React component to keep the scroll position of the page
+                </ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/ipatate/react-router-scroll-memory">react-router-scroll-memory</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -682,13 +690,19 @@ const Technical = () => (
               <ListItem>
                 <ListLabel>JavaScript utility library</ListLabel>
                 <ListContent>
-                  <ListLink to="https://lodash.com">Lodash</ListLink>
+                  <ListLink to="https://lodash.com">lodash</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
                 <ListLabel>Object schema validation</ListLabel>
                 <ListContent>
-                  <ListLink to="https://github.com/hapijs/joi">Joi</ListLink>
+                  <ListLink to="https://github.com/hapijs/joi">joi</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>Node.js Gravatar library</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/emerleite/node-gravatar">gravatar</ListLink>
                 </ListContent>
               </ListItem>
             </List>
@@ -702,13 +716,13 @@ const Technical = () => (
               <ListItem>
                 <ListLabel>SendGrid Node.js library</ListLabel>
                 <ListContent>
-                  <ListLink to="https://github.com/sendgrid/sendgrid-nodejs">SendGrid</ListLink>
+                  <ListLink to="https://github.com/sendgrid/sendgrid-nodejs">sendgrid</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
                 <ListLabel>Stripe API wrapper for Node.js</ListLabel>
                 <ListContent>
-                  <ListLink to="https://github.com/stripe/stripe-node">Stripe</ListLink>
+                  <ListLink to="https://github.com/stripe/stripe-node">strip</ListLink>
                 </ListContent>
               </ListItem>
             </List>

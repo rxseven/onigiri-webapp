@@ -204,15 +204,31 @@ const Development = () => (
                 </ListContent>
               </ListItem>
               <ListItem>
-                <ListLabel>Web browser</ListLabel>
+                <ListLabel>Web browser and debugging tools</ListLabel>
                 <ListContent>
                   <ListLink to="https://www.google.com/chrome/">Chrome</ListLink>
-                </ListContent>
-              </ListItem>
-              <ListItem>
-                <ListLabel>Web authoring and debugging tools</ListLabel>
-                <ListContent>
-                  <ListLink to="https://developer.chrome.com/devtools">Chrome DevTools</ListLink>
+                  <ul className={cx(CSS.margin.MB00, CSS.margin.MT02)}>
+                    <li>
+                      <ListLink to="https://developer.chrome.com/devtools">
+                        Chrome DevTools
+                      </ListLink>
+                    </li>
+                    <li>
+                      <ListLink to="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi">
+                        React Developer Tools
+                      </ListLink>
+                    </li>
+                    <li>
+                      <ListLink to="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd">
+                        Redux DevTools
+                      </ListLink>
+                    </li>
+                    <li>
+                      <ListLink to="https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog">
+                        Immutable.js Object Formatter
+                      </ListLink>
+                    </li>
+                  </ul>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -249,12 +265,16 @@ const Development = () => (
 
             <hr />
 
-            <CardSubtitle>3<sup>rd</sup> party service’s tools</CardSubtitle>
+            <CardSubtitle>
+              3<sup>rd</sup> party service’s tools
+            </CardSubtitle>
             <List>
               <ListItem>
                 <ListLabel>CLI for managing Heroku apps</ListLabel>
                 <ListContent>
-                  <ListLink to="https://devcenter.heroku.com/articles/heroku-cli">Heroku CLI</ListLink>
+                  <ListLink to="https://devcenter.heroku.com/articles/heroku-cli">
+                    Heroku CLI
+                  </ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
