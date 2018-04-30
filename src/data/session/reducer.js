@@ -143,7 +143,10 @@ export default (state = initialState, action) => {
         }
       };
     case USER_GET_FAILURE:
-      return state;
+      return {
+        ...state,
+        ...initialState
+      };
     case USER_GET_SUCCESS:
       return {
         ...state,

@@ -273,10 +273,15 @@ const getUserSuccess = data => ({
 });
 
 // Get user info : Failure
-const getUserFailure = error => ({
-  type: USER_GET_FAILURE,
-  payload: error.response.data.error
-});
+const getUserFailure = (error) => {
+  // If unauthorized, remove an access token from the user's browser
+  if (error.response.status === 401) {
+    tokenHelper.remove();
+  }
+
+  // Return an action
+  return { type: USER_GET_FAILURE };
+};
 
 // Get user info : Start (loading)
 export const getUser = () => async (dispatch) => {
