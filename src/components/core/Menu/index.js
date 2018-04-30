@@ -148,31 +148,41 @@ class UI extends Component {
   );
 
   // Render profile
-  renderProfile = ({ asynchronous, isAuth, user }) =>
-    isAuth && (
-      <ul className={styles.navigation}>
-        <li>
-          <MenuLink icon="cog" title="Credits &amp; Profile" to={PATHS.users.profile}>
-            Credits &amp; Profile
-          </MenuLink>
-        </li>
-        <li>
-          <button className={styles.signout} onClick={this.onSignout} type="button">
-            <span className={styles.icon}>
-              <Icon name="account-logout" title="Log out" />
-            </span>
-            <Choose>
-              <When condition={asynchronous.signout.loading}>
-                <span className={styles.leaving}>Logging out...</span>
-              </When>
-              <Otherwise>
-                <span>Log out</span>
-              </Otherwise>
-            </Choose>
-          </button>
-        </li>
-      </ul>
-    );
+  renderProfile = ({ asynchronous, isAuth, user }) => (
+    <ul className={styles.navigation}>
+      <Choose>
+        <When condition={isAuth}>
+          <li>
+            <MenuLink icon="cog" title="Credits &amp; Profile" to={PATHS.users.profile}>
+              Credits &amp; Profile
+            </MenuLink>
+          </li>
+          <li>
+            <button className={styles.signout} onClick={this.onSignout} type="button">
+              <span className={styles.icon}>
+                <Icon name="account-logout" title="Log out" />
+              </span>
+              <Choose>
+                <When condition={asynchronous.signout.loading}>
+                  <span className={styles.leaving}>Logging out...</span>
+                </When>
+                <Otherwise>
+                  <span>Log out</span>
+                </Otherwise>
+              </Choose>
+            </button>
+          </li>
+        </When>
+        <Otherwise>
+          <li>
+            <MenuLink icon="account-login" title="Privay" to={PATHS.users.signin}>
+              Sign in
+            </MenuLink>
+          </li>
+        </Otherwise>
+      </Choose>
+    </ul>
+  );
 
   // Render component
   render() {
