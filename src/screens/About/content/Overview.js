@@ -1,6 +1,6 @@
 // Dependencies
 import cx from 'classnames';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import {
@@ -23,14 +23,13 @@ import {
   ListTitle
 } from '../../../components/shared/base/List';
 import Text from '../../../components/shared/base/Text';
-import JSXwrapper from '../../../components/shared/helpers/JSXwrapper';
 
 // Constants
 import CSS from '../../../constants/string/css';
 
 // Component
 const Overview = () => (
-  <JSXwrapper>
+  <Fragment>
     <div>
       <p>
         With <strong>Onigiri</strong>, you can create and analyze surveys right in your pocket or
@@ -517,7 +516,7 @@ const Overview = () => (
         </Card>
       </TabPanel>
     </Tabs>
-  </JSXwrapper>
+  </Fragment>
 );
 
 // Module exports
