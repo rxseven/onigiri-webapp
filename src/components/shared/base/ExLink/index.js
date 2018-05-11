@@ -2,10 +2,9 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Icon from '../Icon';
-import JSXwrapper from '../../helpers/JSXwrapper';
 
 // Peer dependencies
 import styles from './styles.scss';
@@ -33,7 +32,7 @@ const defaultProps = {
 const ExLink = ({
   button, children, flat, icon, options, replace, to
 }) => (
-  <JSXwrapper>
+  <Fragment>
     <a
       className={cx(button && `btn btn-${button}`, flat && styles.flat, options)}
       href={to}
@@ -47,7 +46,7 @@ const ExLink = ({
         </span>
       </If>
     </a>
-  </JSXwrapper>
+  </Fragment>
 );
 
 // Specify prop types and default values for props
