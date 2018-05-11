@@ -1,9 +1,8 @@
 // Module dependencies
 import cx from 'classnames';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import JSXwrapper from '../../helpers/JSXwrapper';
 import Icon from '../Icon';
 
 // Constants
@@ -45,10 +44,10 @@ export const Button = ({
   };
 
   const content = (
-    <JSXwrapper>
+    <Fragment>
       {icon && <Icon name={icon} text={css.icon.text} title={title} />}
       {children && <span className={`${baseClass}-text`}>{children}</span>}
-    </JSXwrapper>
+    </Fragment>
   );
 
   const properties = { className: css.button, disabled, type };

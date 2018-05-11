@@ -1,5 +1,5 @@
 // Dependencies
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { Card, CardBody, CardHeader, CardSubtitle } from '../../../components/shared/base/Card';
@@ -10,14 +10,13 @@ import {
   ListLabel,
   ListLink
 } from '../../../components/shared/base/List';
-import JSXwrapper from '../../../components/shared/helpers/JSXwrapper';
 
 // Peer dependencies
 import styles from '../styles.scss';
 
 // Component
 const Technical = () => (
-  <JSXwrapper>
+  <Fragment>
     <div>
       <p>
         Below is the list of technology stack and third party services I use to build and run this
@@ -744,7 +743,7 @@ const Technical = () => (
         </Card>
       </TabPanel>
     </Tabs>
-  </JSXwrapper>
+  </Fragment>
 );
 
 // Module exports

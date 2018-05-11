@@ -1,6 +1,6 @@
 // Dependencies
 import cx from 'classnames';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { Card, CardBody, CardHeader, CardSubtitle } from '../../../components/shared/base/Card';
@@ -13,14 +13,13 @@ import {
   ListLabel,
   ListLink
 } from '../../../components/shared/base/List';
-import JSXwrapper from '../../../components/shared/helpers/JSXwrapper';
 
 // Constants
 import CSS from '../../../constants/string/css';
 
 // Component
 const Development = () => (
-  <JSXwrapper>
+  <Fragment>
     <div>
       <p>
         Below is the list of web authoring and debugging tools, third party services, and testing
@@ -672,7 +671,7 @@ const Development = () => (
         </Card>
       </TabPanel>
     </Tabs>
-  </JSXwrapper>
+  </Fragment>
 );
 
 // Module exports

@@ -1,6 +1,6 @@
 // Module dependencies
 import cx from 'classnames';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Alert from '../../../../../components/shared/base/Alert';
 import {
@@ -13,7 +13,6 @@ import ExLink from '../../../../../components/shared/base/ExLink';
 import Icon from '../../../../../components/shared/base/Icon';
 import { List, ListItem, ListContent, ListLabel } from '../../../../../components/shared/base/List';
 import Text from '../../../../../components/shared/base/Text';
-import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
 
 import timestampHelper from '../../../../../helpers/timestamp';
 
@@ -33,7 +32,7 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
 
   // View
   return (
-    <JSXwrapper>
+    <Fragment>
       <Card background={data.completed ? 'light' : 'default'} end>
         <CardHeader>{data.title}</CardHeader>
         <CardBody>
@@ -143,7 +142,7 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
           deleted.
         </Alert>
       </If>
-    </JSXwrapper>
+    </Fragment>
   );
 };
 
