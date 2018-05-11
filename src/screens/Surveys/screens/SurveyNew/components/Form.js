@@ -1,6 +1,6 @@
 // Module dependencies
 import { each } from 'lodash';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -11,7 +11,6 @@ import { Card, CardBody, CardHeader, CardText } from '../../../../../components/
 import { Form, FormSHL } from '../../../../../components/shared/base/Form';
 import Spinner from '../../../../../components/shared/base/Spinner';
 import Confirm from '../../../../../components/shared/extended/Confirm';
-import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
 
 import { getCredits } from '../../../../../data/credits/actions';
 import { getBalance } from '../../../../../data/credits/reducer';
@@ -123,11 +122,11 @@ class SurveyForm extends Component {
 
     // View
     return (
-      <JSXwrapper>
+      <Fragment>
         {balance == null && this.renderLoading()}
         {balance != null && balance < 1 && this.renderWarning()}
         {balance != null && balance >= 1 && this.renderContent()}
-      </JSXwrapper>
+      </Fragment>
     );
   }
 }
