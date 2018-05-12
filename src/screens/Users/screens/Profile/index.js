@@ -12,8 +12,8 @@ import { getModal } from '../../../../data/interfaces/modal/reducer';
 
 // Peer dependencies
 import * as profileActions from './data/profile/actions';
-import { getProfile } from './data/profile/reducer';
-import { getUI } from './reducer';
+import { getProfile } from './data/profile/reducers';
+import { getUI } from './reducers';
 import UI from './UI';
 
 // Map state to props

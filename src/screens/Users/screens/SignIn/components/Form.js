@@ -8,7 +8,7 @@ import { reduxForm } from 'redux-form';
 
 import { signIn } from '../../../../../data/session/actions';
 import { resetUI } from '../actions';
-import { getUI } from '../reducer';
+import { getUI } from '../reducers';
 
 import { Button } from '../../../../../components/shared/base/Buttons';
 import { Form } from '../../../../../components/shared/base/Form';

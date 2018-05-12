@@ -2,7 +2,7 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import profileReducer from './profile/reducer';
+import profileReducer from './profile/reducers';
 
 // Combine reducers
 export default combineReducers({

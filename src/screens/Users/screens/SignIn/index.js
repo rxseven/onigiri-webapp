@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getSession } from '../../../../data/session/reducer';
-import { getUI } from './reducer';
+import { getUI } from './reducers';
 
 import FacebookLogin from '../../../../components/features/OAuth/Facebook';
 import GoogleLogin from '../../../../components/features/OAuth/Google';

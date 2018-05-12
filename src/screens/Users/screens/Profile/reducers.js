@@ -19,7 +19,7 @@ import {
 import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './data/profile/actions';
 
 // Reducers
-import dataReducer from './data/reducer';
+import dataReducer from './data/reducers';
 
 // Constants
 import STATE_MODELS from '../../../../constants/models/state';

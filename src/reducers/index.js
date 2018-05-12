@@ -5,7 +5,7 @@ import { reducer as menuReducer } from 'redux-burger-menu';
 
 // Reducers
 import dataReducer from '../data/reducer';
-import screensReducer from '../screens/reducer';
+import screensReducer from '../screens/reducers';
 
 // Combine reducers
 const reducer = combineReducers({
