@@ -14,7 +14,7 @@ import {
 import { SURVEYS_RESET_VIEW, SURVEYS_SAVE_PAGINATION } from './actions';
 
 // Reducers
-import dataReducer from './data/reducer';
+import dataReducer from './data/reducers';
 
 // Constants
 import STATE_MODELS from '../../../../constants/models/state';

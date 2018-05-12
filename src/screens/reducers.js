@@ -2,7 +2,7 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import surveysReducer from './Surveys/reducer';
+import surveysReducer from './Surveys/reducers';
 import usersReducer from './Users/reducers';
 
 // Combine reducers

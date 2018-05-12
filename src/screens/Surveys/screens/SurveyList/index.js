@@ -8,7 +8,7 @@ import * as commonActions from '../../actions';
 import * as dataActions from './data/surveys/actions';
 import { getSurveys } from './data/surveys/reducer';
 import * as uiActions from './actions';
-import { getUI, getView } from './reducer';
+import { getUI, getView } from './reducers';
 import UI from './UI';
 
 // Map state to props

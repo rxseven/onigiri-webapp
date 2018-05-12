@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 
 // Peer dependencies
 import * as dataActions from './data/landing/actions';
-import { getLanding } from './data/landing/reducer';
-import { getUI } from './reducer';
+import { getLanding } from './data/landing/reducers';
+import { getUI } from './reducers';
 import UI from './UI';
 
 // Map state to props

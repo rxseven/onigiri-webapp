@@ -8,8 +8,8 @@ import * as commonActions from '../../actions';
 
 // Peer dependencies
 import * as dataActions from './data/survey/actions';
-import { getSurvey } from './data/survey/reducer';
-import { getUI } from './reducer';
+import { getSurvey } from './data/survey/reducers';
+import { getUI } from './reducers';
 import UI from './UI';
 
 // Map state to props

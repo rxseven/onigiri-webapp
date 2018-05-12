@@ -6,7 +6,7 @@ import { combineReducers } from 'redux';
 import { LANDING_GET, LANDING_GET_FAILURE, LANDING_GET_SUCCESS } from './data/landing/actions';
 
 // Reducers
-import dataReducer from './data/reducer';
+import dataReducer from './data/reducers';
 
 // Constants
 import STATE_MODELS from '../../../../constants/models/state';
