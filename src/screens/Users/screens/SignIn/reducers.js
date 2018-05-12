@@ -32,7 +32,7 @@ const initialState = {
 };
 
 // Asynchronous reducer
-const asyncReducer = (state = initialState.asynchronous, action) => {
+const asynchronous = (state = initialState.asynchronous, action) => {
   switch (action.type) {
     case OAUTH_FACEBOOK:
     case OAUTH_GOOGLE:
@@ -78,7 +78,7 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
 };
 
 // Strategy reducer
-const strategyReducer = (state = initialState.strategy, action) => {
+const strategy = (state = initialState.strategy, action) => {
   switch (action.type) {
     case SIGNIN:
       return {
@@ -102,15 +102,13 @@ const strategyReducer = (state = initialState.strategy, action) => {
 };
 
 // UI reducer
-const uiReducer = combineReducers({
-  asynchronous: asyncReducer,
-  strategy: strategyReducer
+const ui = combineReducers({
+  asynchronous,
+  strategy
 });
 
 // Combine reducers
-export default combineReducers({
-  ui: uiReducer
-});
+export default combineReducers({ ui });
 
 // Non-memoized utility selectors
 const getNode = state => state.screens.users.signin;

@@ -2,13 +2,13 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import profileReducer from './screens/Profile/reducers';
-import signinReducer from './screens/SignIn/reducers';
-import signupReducer from './screens/SignUp/reducers';
+import profile from './screens/Profile/reducers';
+import signin from './screens/SignIn/reducers';
+import signup from './screens/SignUp/reducers';
 
 // Combine reducers
 export default combineReducers({
-  profile: profileReducer,
-  signin: signinReducer,
-  signup: signupReducer
+  profile,
+  signin,
+  signup
 });

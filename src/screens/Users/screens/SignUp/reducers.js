@@ -15,7 +15,7 @@ const initialState = {
 };
 
 // Asynchronous reducer
-const asyncReducer = (state = initialState, action) => {
+const asynchronous = (state = initialState, action) => {
   switch (action.type) {
     case SIGNUP:
       return {
@@ -44,14 +44,10 @@ const asyncReducer = (state = initialState, action) => {
 };
 
 // UI reducer
-const uiReducer = combineReducers({
-  asynchronous: asyncReducer
-});
+const ui = combineReducers({ asynchronous });
 
 // Combine reducers
-export default combineReducers({
-  ui: uiReducer
-});
+export default combineReducers({ ui });
 
 // Non-memoized utility selectors
 const getNode = state => state.screens.users.signup;
