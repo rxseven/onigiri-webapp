@@ -6,7 +6,7 @@ import { combineReducers } from 'redux';
 import { LANDING_GET, LANDING_GET_FAILURE, LANDING_GET_SUCCESS } from './data/landing/actions';
 
 // Reducers
-import dataReducer from './data/reducers';
+import data from './data/reducers';
 
 // Constants
 import STATE_MODELS from '../../../../constants/models/state';
@@ -17,7 +17,7 @@ const initialState = {
 };
 
 // Asynchronous reducer
-const asyncReducer = (state = initialState, action) => {
+const asynchronous = (state = initialState, action) => {
   switch (action.type) {
     // Get landing page URI
     case LANDING_GET:
@@ -55,14 +55,12 @@ const asyncReducer = (state = initialState, action) => {
 };
 
 // UI reducer
-const uiReducer = combineReducers({
-  asynchronous: asyncReducer
-});
+const ui = combineReducers({ asynchronous });
 
 // Combine reducers
 export default combineReducers({
-  data: dataReducer,
-  ui: uiReducer
+  data,
+  ui
 });
 
 // Non-memoized utility selectors
