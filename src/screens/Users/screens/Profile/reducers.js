@@ -19,7 +19,7 @@ import {
 import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './data/profile/actions';
 
 // Reducers
-import dataReducer from './data/reducers';
+import data from './data/reducers';
 
 // Constants
 import STATE_MODELS from '../../../../constants/models/state';
@@ -35,7 +35,7 @@ const initialState = {
 };
 
 // Asynchronous reducer
-const asyncReducer = (state = initialState, action) => {
+const asynchronous = (state = initialState, action) => {
   switch (action.type) {
     // Delete user account
     case USER_DELETE:
@@ -166,14 +166,12 @@ const asyncReducer = (state = initialState, action) => {
 };
 
 // UI reducer
-const uiReducer = combineReducers({
-  asynchronous: asyncReducer
-});
+const ui = combineReducers({ asynchronous });
 
 // Combine reducers
 export default combineReducers({
-  data: dataReducer,
-  ui: uiReducer
+  data,
+  ui
 });
 
 // Non-memoized utility selectors
