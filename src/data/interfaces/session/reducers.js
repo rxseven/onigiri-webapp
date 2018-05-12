@@ -16,7 +16,7 @@ const initialState = {
 };
 
 // Asynchronous reducer
-const asyncReducer = (state = initialState, action) => {
+const asynchronous = (state = initialState, action) => {
   switch (action.type) {
     case SIGNOUT:
       return {
@@ -46,9 +46,7 @@ const asyncReducer = (state = initialState, action) => {
 };
 
 // Combine reducers
-export default combineReducers({
-  asynchronous: asyncReducer
-});
+export default combineReducers({ asynchronous });
 
 // Non-memoized utility selectors
 const getNode = state => state.data.interfaces;

@@ -13,8 +13,8 @@ const initialState = {
   post: { ...STATE_MODELS.model.asynchronous }
 };
 
-// Reducer
-const asyncReducer = (state = initialState, action) => {
+// Asynchronous reducer
+const asynchronous = (state = initialState, action) => {
   switch (action.type) {
     // Checkout
     case CHECKOUT:
@@ -46,14 +46,10 @@ const asyncReducer = (state = initialState, action) => {
 };
 
 // UI reducer
-const uiReducer = combineReducers({
-  asynchronous: asyncReducer
-});
+const ui = combineReducers({ asynchronous });
 
 // Combine reducers
-export default combineReducers({
-  ui: uiReducer
-});
+export default combineReducers({ ui });
 
 // Non-memoized utility selectors
 const getNode = state => state.data.features.payments;
