@@ -1,8 +1,8 @@
 // Module dependencies
 import { combineReducers } from 'redux';
 
-import modalReducer from './modal/reducer';
-import sessionReducer from './session/reducer';
+import modalReducer from './modal/reducers';
+import sessionReducer from './session/reducers';
 
 // Reducer
 export default combineReducers({

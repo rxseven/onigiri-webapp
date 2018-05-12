@@ -2,7 +2,7 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import paymentsReducer from './payments/reducer';
+import paymentsReducer from './payments/reducers';
 
 // Combine reducers
 export default combineReducers({

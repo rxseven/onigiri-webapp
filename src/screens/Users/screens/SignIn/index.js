@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getSession } from '../../../../data/session/reducer';
+import { getSession } from '../../../../data/session/reducers';
 import { getUI } from './reducers';
 
 import FacebookLogin from '../../../../components/features/OAuth/Facebook';

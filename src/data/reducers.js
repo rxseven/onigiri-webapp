@@ -2,10 +2,10 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import creditsReducer from './credits/reducer';
-import featuresReducer from './features/reducer';
-import interfacesReducer from './interfaces/reducer';
-import sessionReducer from './session/reducer';
+import creditsReducer from './credits/reducers';
+import featuresReducer from './features/reducers';
+import interfacesReducer from './interfaces/reducers';
+import sessionReducer from './session/reducers';
 
 // Combine reducers
 export default combineReducers({

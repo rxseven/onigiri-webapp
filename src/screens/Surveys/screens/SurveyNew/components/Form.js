@@ -13,9 +13,9 @@ import Spinner from '../../../../../components/shared/base/Spinner';
 import Confirm from '../../../../../components/shared/extended/Confirm';
 
 import { getCredits } from '../../../../../data/credits/actions';
-import { getBalance } from '../../../../../data/credits/reducer';
+import { getBalance } from '../../../../../data/credits/reducers';
 import * as modalActions from '../../../../../data/interfaces/modal/actions';
-import { getModal } from '../../../../../data/interfaces/modal/reducer';
+import { getModal } from '../../../../../data/interfaces/modal/reducers';
 import validationHelper from '../../../../../helpers/validation';
 
 // Constants

@@ -4,7 +4,7 @@ import { reducer as formReducer } from 'redux-form';
 import { reducer as menuReducer } from 'redux-burger-menu';
 
 // Reducers
-import dataReducer from '../data/reducer';
+import dataReducer from '../data/reducers';
 import screensReducer from '../screens/reducers';
 
 // Combine reducers

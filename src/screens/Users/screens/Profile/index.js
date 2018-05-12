@@ -5,10 +5,10 @@ import { bindActionCreators } from 'redux';
 import { deleteUser } from '../../../../data/session/actions';
 
 import * as creditsActions from '../../../../data/credits/actions';
-import { getCredits } from '../../../../data/credits/reducer';
+import { getCredits } from '../../../../data/credits/reducers';
 
 import * as modalActions from '../../../../data/interfaces/modal/actions';
-import { getModal } from '../../../../data/interfaces/modal/reducer';
+import { getModal } from '../../../../data/interfaces/modal/reducers';
 
 // Peer dependencies
 import * as profileActions from './data/profile/actions';
