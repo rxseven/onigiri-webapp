@@ -1,8 +1,4 @@
-// Module dependencies
-import tokenHelper from '../../helpers/token';
-import * as usersService from '../../services/users';
-
-// Actions
+// Action types
 export const OAUTH_FACEBOOK = 'data/session/OAUTH_FACEBOOK';
 export const OAUTH_FACEBOOK_FAILURE = 'data/session/OAUTH_FACEBOOK_FAILURE';
 export const OAUTH_FACEBOOK_SUCCESS = 'data/session/OAUTH_FACEBOOK_SUCCESS';
@@ -36,267 +32,143 @@ export const USER_GET_SUCCESS = 'data/session/USER_GET_SUCCESS';
 
 export const USER_RESET = 'data/session/USER_RESET';
 
-// Reset user
-export const resetUser = () => ({ type: USER_RESET });
-
-// Sign-up : Success
-const signUpSuccess = data => ({
-  type: SIGNUP_SUCCESS,
-  payload: data
+// Delete user account : Start
+export const deleteUser = callback => ({
+  callback,
+  type: USER_DELETE
 });
 
-// Sign-up : Failure
-const signUpFailure = error => ({
-  type: SIGNUP_FAILURE,
-  payload: error.response.data.error
+// Delete user account : Failure
+export const deleteUserFailure = error => ({
+  payload: error.response.data.error,
+  type: USER_DELETE_FAILURE
 });
 
-// Sign-up : Start (loading)
-export const signUp = (credentials, callback) => async (dispatch) => {
-  try {
-    // 1. Inform a reducer that the request began (loading)
-    dispatch({ type: SIGNUP });
-
-    // 2. Register new user account with email and password
-    // 3. Retrieve data in a response and transform to an appropriate format
-    const { data } = await usersService.signUp(credentials);
-
-    // 4. Inform a reducer that the request finished successfully
-    dispatch(signUpSuccess(data));
-
-    // 5. Store a token in the user's browser
-    tokenHelper.save(data.token);
-
-    // 6. Execute a callback
-    callback();
-  } catch (error) {
-    // Inform a reducer that the request failed
-    dispatch(signUpFailure(error));
-  }
-};
-
-// Sign-in : Success
-const signInSuccess = data => ({
-  type: SIGNIN_SUCCESS,
-  payload: data
+// Delete user account : Success
+export const deleteUserSuccess = () => ({
+  type: USER_DELETE_SUCCESS
 });
 
-// Sign-in : Failure
-const signInFailure = error => ({
-  type: SIGNIN_FAILURE,
-  payload: error.response.data.error
+// Get user info : Start
+export const getUser = () => ({
+  type: USER_GET
 });
 
-// Sign-in : Start (loading)
-export const signIn = (credentials, callback) => async (dispatch) => {
-  try {
-    // 1. Inform a reducer that the request began (loading)
-    dispatch({ type: SIGNIN });
-
-    // 2. Sign in a user with an email address and password
-    // 3. Retrieve data in a response and transform to an appropriate format
-    const { data } = await usersService.signIn(credentials);
-
-    // 4. Inform a reducer that the request finished successfully
-    dispatch(signInSuccess(data));
-
-    // 5. Store a token in the user's browser
-    tokenHelper.save(data.token);
-
-    // 6. Execute a callback
-    callback();
-  } catch (error) {
-    // Inform a reducer that the request failed
-    dispatch(signInFailure(error));
-  }
-};
-
-// Sign-in with Facebook : Success
-const oauthFacebookSuccess = data => ({
-  type: OAUTH_FACEBOOK_SUCCESS,
-  payload: data
+// Get user info : Failure
+export const getUserFailure = () => ({
+  type: USER_GET_FAILURE
 });
 
-// Sign-in with Facebook : Failure
-const oauthFacebookFailure = error => ({
-  type: OAUTH_FACEBOOK_FAILURE,
-  payload: error.response.data.error
+// Get user info : Success
+export const getUserSuccess = data => ({
+  payload: data,
+  type: USER_GET_SUCCESS
 });
 
-// Sign-in with Facebook : Start (loading)
-export const oauthFacebook = (accessToken, callback) => async (dispatch) => {
-  try {
-    // 1. Inform a reducer that the request began (loading)
-    dispatch({ type: OAUTH_FACEBOOK });
-
-    // 2. Sign in a user with Facebook
-    // 3. Retrieve data in a response and transform to an appropriate format
-    const { data, status } = await usersService.oauthFacebook(accessToken);
-
-    // 4. Inform a reducer that the request finished successfully
-    dispatch(oauthFacebookSuccess(data, status));
-
-    // 5. Store a token in the user's browser
-    tokenHelper.save(data.token);
-
-    // 6. Execute a callback
-    if (callback) callback(status);
-  } catch (error) {
-    // Inform a reducer that the request failed
-    dispatch(oauthFacebookFailure(error));
-  }
-};
-
-// Sign-in with Google : Success
-const oauthGoogleSuccess = data => ({
-  type: OAUTH_GOOGLE_SUCCESS,
-  payload: data
+// Sign in with Facebook : Start
+export const oauthFacebook = (accessToken, callback) => ({
+  callback,
+  payload: { accessToken },
+  type: OAUTH_FACEBOOK
 });
 
-// Sign-in with Google : Failure
-const oauthGoogleFailure = error => ({
-  type: OAUTH_GOOGLE_FAILURE,
-  payload: error.response.data.error
+// Sign in with Facebook : Failure
+export const oauthFacebookFailure = error => ({
+  payload: error.response.data.error,
+  type: OAUTH_FACEBOOK_FAILURE
 });
 
-// Sign-in with Google : Start (loading)
-export const oauthGoogle = (accessToken, callback) => async (dispatch) => {
-  try {
-    // 1. Inform a reducer that the request began (loading)
-    dispatch({ type: OAUTH_GOOGLE });
+// Sign in with Facebook : Success
+export const oauthFacebookSuccess = data => ({
+  payload: data,
+  type: OAUTH_FACEBOOK_SUCCESS
+});
 
-    // 2. Sign in a user with Google
-    // 3. Retrieve data in a response and transform to an appropriate format
-    const { data, status } = await usersService.oauthGoogle(accessToken);
+// Sign in with Google : Start
+export const oauthGoogle = (accessToken, callback) => ({
+  callback,
+  payload: { accessToken },
+  type: OAUTH_GOOGLE
+});
 
-    // 4. Inform a reducer that the request finished successfully
-    dispatch(oauthGoogleSuccess(data));
+// Sign in with Google : Failure
+export const oauthGoogleFailure = error => ({
+  payload: error.response.data.error,
+  type: OAUTH_GOOGLE_FAILURE
+});
 
-    // 5. Store a token in the user's browser
-    tokenHelper.save(data.token);
+// Sign in with Google : Success
+export const oauthGoogleSuccess = data => ({
+  payload: data,
+  type: OAUTH_GOOGLE_SUCCESS
+});
 
-    // 6. Execute a callback
-    if (callback) callback(status);
-  } catch (error) {
-    // Inform a reducer that the request failed
-    dispatch(oauthGoogleFailure(error));
-  }
-};
-
-// Sign-in with OAuth : Failure
+// Sign in with OAuth : Failure
 export const oauthFailure = () => ({
   type: OAUTH_FAILURE
 });
 
-// Sign-in with OAuth : Request
+// Sign in with OAuth : Request
 export const oauthRequest = () => ({
   type: OAUTH_REQUEST
 });
 
-// Sign-out : Success
-const signOutSuccess = () => ({ type: SIGNOUT_SUCCESS });
-
-// Sign-out : Failure
-const signOutFailure = error => ({
-  type: SIGNOUT_FAILURE,
-  payload: error.response.data.error
+// Reset user
+export const resetUser = () => ({
+  type: USER_RESET
 });
 
-// Sign-out : Start (loading)
-export const signOut = callback => async (dispatch) => {
-  try {
-    // 1. Inform a reducer that the request began (loading)
-    dispatch({ type: SIGNOUT });
-
-    // 2. Sign out the current user
-    // 3. Retrieve a response
-    await usersService.signOut();
-
-    // 4. Inform a reducer that the request finished successfully
-    dispatch(signOutSuccess());
-
-    // 5. Clean up session state
-    dispatch(resetUser());
-
-    // 6. Remove an access token from the user's browser
-    tokenHelper.remove();
-
-    // 7. Execute a callback
-    callback();
-  } catch (error) {
-    // Inform a reducer that the request failed
-    dispatch(signOutFailure(error));
-  }
-};
-
-// Delete user account : Success
-const deleteUserSuccess = () => ({
-  type: USER_DELETE_SUCCESS
+// Sign in : Start
+export const signIn = (credentials, callback) => ({
+  callback,
+  payload: { credentials },
+  type: SIGNIN
 });
 
-// Delete user account : Failure
-const deleteUserFailure = error => ({
-  type: USER_DELETE_FAILURE,
-  payload: error.response.data.error
+// Sign in : Failure
+export const signInFailure = error => ({
+  payload: error.response.data.error,
+  type: SIGNIN_FAILURE
 });
 
-// Delete user account : Start (loading)
-export const deleteUser = callback => async (dispatch) => {
-  try {
-    // 1. Inform a reducer that the request began (loading)
-    dispatch({ type: USER_DELETE });
-
-    // 2. Delete user account
-    await usersService.deleteUser();
-
-    // 4. Inform a reducer that the request finished successfully
-    dispatch(deleteUserSuccess());
-
-    // 5. Clean up session state
-    dispatch(resetUser());
-
-    // 6. Remove an access token from the user's browser
-    tokenHelper.remove();
-
-    // 7. Execute a callback
-    callback();
-  } catch (error) {
-    // Inform a reducer that the request failed
-    dispatch(deleteUserFailure(error));
-  }
-};
-
-// Get user info : Success
-const getUserSuccess = data => ({
-  type: USER_GET_SUCCESS,
-  payload: data
+// Sign in : Success
+export const signInSuccess = data => ({
+  payload: data,
+  type: SIGNIN_SUCCESS
 });
 
-// Get user info : Failure
-const getUserFailure = (error) => {
-  // If unauthorized, remove an access token from the user's browser
-  if (error.response.status === 401) {
-    tokenHelper.remove();
-  }
+// Sign out : Start
+export const signOut = callback => ({
+  callback,
+  type: SIGNOUT
+});
 
-  // Return an action
-  return { type: USER_GET_FAILURE };
-};
+// Sign out : Failure
+export const signOutFailure = error => ({
+  payload: error.response.data.error,
+  type: SIGNOUT_FAILURE
+});
 
-// Get user info : Start (loading)
-export const getUser = () => async (dispatch) => {
-  try {
-    // 1. Inform a reducer that the request began (loading)
-    dispatch({ type: USER_GET });
+// Sign out : Success
+export const signOutSuccess = () => ({
+  type: SIGNOUT_SUCCESS
+});
 
-    // 2. Get user account's info
-    // 3. Retrieve data in a response and transform to an appropriate format
-    const { data } = await usersService.getUser();
+// Sign up : Start
+export const signUp = (credentials, callback) => ({
+  callback,
+  payload: { credentials },
+  type: SIGNUP
+});
 
-    // 4. Inform a reducer that the request finished successfully
-    dispatch(getUserSuccess(data));
-  } catch (error) {
-    // Inform a reducer that the request failed
-    dispatch(getUserFailure(error));
-  }
-};
+// Sign up : Failure
+export const signUpFailure = error => ({
+  payload: error.response.data.error,
+  type: SIGNUP_FAILURE
+});
+
+// Sign up : Success
+export const signUpSuccess = data => ({
+  payload: data,
+  type: SIGNUP_SUCCESS
+});

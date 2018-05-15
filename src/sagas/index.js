@@ -2,8 +2,13 @@
 import { map } from 'ramda';
 import { all, fork } from 'redux-saga/effects';
 
+// Sagas
+import data from '../data/sagas';
+
 // Combine Sagas
-const sagas = {};
+const sagas = {
+  ...data
+};
 
 // Root Saga
 function* root() {
