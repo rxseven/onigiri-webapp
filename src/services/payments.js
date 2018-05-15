@@ -5,11 +5,12 @@ import ajax from '../helpers/ajax';
 import API from '../config/api';
 
 // Checkout
-export default {
-  checkout: token =>
-    ajax({
-      data: token,
-      method: 'post',
-      url: API.endpoints.payments.checkout
-    })
-};
+const checkout = token =>
+  ajax({
+    data: token,
+    method: 'post',
+    url: API.endpoints.payments.checkout
+  });
+
+// Module exports
+export default { checkout };
