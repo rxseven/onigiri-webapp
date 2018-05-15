@@ -1,4 +1,4 @@
-// Actions
+// Action types
 export const SIGNIN_RESET_UI = 'SignIn/SIGNIN_RESET_UI';
 
 // Reset UI state
