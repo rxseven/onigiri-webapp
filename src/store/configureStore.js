@@ -1,10 +1,15 @@
 // Module dependencies
 import { applyMiddleware, compose, createStore } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';
 
 import { getUser } from '../data/session/actions';
 import tokenHelper from '../helpers/token';
 import reducer from '../reducers';
+import saga from '../sagas';
+
+// Initialize middleware
+const sagaMiddleware = createSagaMiddleware();
 
 // Store configuration
 const configureStore = (initialState) => {
@@ -14,12 +19,15 @@ const configureStore = (initialState) => {
     initialState,
     compose(
       // Middleware,
-      applyMiddleware(thunk),
+      applyMiddleware(sagaMiddleware, thunk),
 
       // Enable Redux DevTools Extension
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );
+
+  // Run middleware
+  sagaMiddleware.run(saga);
 
   // Check if Webpack Hot Module Replacement is enabled
   if (process.env.NODE_ENV !== 'production') {
