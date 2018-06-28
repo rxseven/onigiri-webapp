@@ -2,9 +2,9 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import profileReducer from './profile/reducer';
+import surveyReducer from './survey/reducers';
 
 // Combine reducers
 export default combineReducers({
-  profile: profileReducer
+  survey: surveyReducer
 });

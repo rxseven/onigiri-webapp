@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { checkout } from '../../../data/credits/actions';
-import { getUI } from '../../../data/features/payments/reducer';
+import { getUI } from '../../../data/features/payments/reducers';
 
 // Peer dependencies
 import UI from './UI';

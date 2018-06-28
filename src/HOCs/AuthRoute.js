@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-import { getAuth } from '../data/session/reducer';
+import { getAuth } from '../data/session/reducers';
 
 // Constants
 import PATHS from '../constants/router/paths';

@@ -2,9 +2,11 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import paymentsReducer from './payments/reducer';
+import surveys from './Surveys/reducers';
+import users from './Users/reducers';
 
 // Combine reducers
 export default combineReducers({
-  payments: paymentsReducer
+  surveys,
+  users
 });

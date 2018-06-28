@@ -3,21 +3,21 @@ import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 // Actions
-import { CHECKOUT, CHECKOUT_FAILURE, CHECKOUT_SUCCESS } from '../../credits/actions';
+import { SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS } from '../../../../data/session/actions';
+import { SIGNUP_RESET_UI } from './actions';
 
 // Constants
-import STATE_MODELS from '../../../constants/models/state';
+import STATE_MODELS from '../../../../constants/models/state';
 
 // Initial state
 const initialState = {
   post: { ...STATE_MODELS.model.asynchronous }
 };
 
-// Reducer
-const asyncReducer = (state = initialState, action) => {
+// Asynchronous reducer
+const asynchronous = (state = initialState, action) => {
   switch (action.type) {
-    // Checkout
-    case CHECKOUT:
+    case SIGNUP:
       return {
         ...state,
         post: {
@@ -25,7 +25,7 @@ const asyncReducer = (state = initialState, action) => {
           loading: true
         }
       };
-    case CHECKOUT_FAILURE:
+    case SIGNUP_FAILURE:
       return {
         ...state,
         post: {
@@ -33,33 +33,27 @@ const asyncReducer = (state = initialState, action) => {
           error: action.payload
         }
       };
-    case CHECKOUT_SUCCESS:
+    case SIGNUP_SUCCESS:
+    case SIGNUP_RESET_UI:
       return {
-        ...state,
         ...initialState
       };
-
-    // Default
     default:
       return state;
   }
 };
 
 // UI reducer
-const uiReducer = combineReducers({
-  asynchronous: asyncReducer
-});
+const ui = combineReducers({ asynchronous });
 
 // Combine reducers
-export default combineReducers({
-  ui: uiReducer
-});
+export default combineReducers({ ui });
 
 // Non-memoized utility selectors
-const getNode = state => state.data.features.payments;
+const getNode = state => state.screens.users.signup;
 
 // Get UI state
 export const getUI = createSelector(getNode, node => node.ui);
 
 // Get asynchronous state
-export const getAsync = createSelector(getNode, node => node.ui.asynchronous);
+export const getAsync = createSelector(getNode, node => node.asynchronous);

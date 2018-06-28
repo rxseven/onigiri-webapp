@@ -1,4 +1,4 @@
-// Actions
+// Action types
 export const SURVEYS_RESET_VIEW = 'Surveys/SURVEYS_RESET_VIEW';
 export const SURVEYS_SAVE_PAGINATION = 'Surveys/SURVEYS_SAVE_PAGINATION';
 
@@ -9,6 +9,6 @@ export const resetView = () => ({
 
 // Save pagination query
 export const savePagination = values => ({
-  type: SURVEYS_SAVE_PAGINATION,
-  payload: values
+  payload: values,
+  type: SURVEYS_SAVE_PAGINATION
 });

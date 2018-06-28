@@ -19,7 +19,7 @@ import PATHS from '../../../../../../constants/router/paths';
 
 // Peer dependencies
 import * as surveyActions from '../../../SurveyNew/actions';
-import { getUI } from '../../reducer';
+import { getUI } from '../../reducers';
 import FIELDS from '../../constants/fields';
 import styles from './styles.scss';
 

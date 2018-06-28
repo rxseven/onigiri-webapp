@@ -1,4 +1,4 @@
-// Actions
+// Action types
 export const SIGNUP_RESET_UI = 'SignUp/SIGNUP_RESET_UI';
 
 // Reset UI state

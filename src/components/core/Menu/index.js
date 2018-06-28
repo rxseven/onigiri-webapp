@@ -10,8 +10,8 @@ import { bindActionCreators } from 'redux';
 import { action as toggleMenu, decorator as reduxMenu } from 'redux-burger-menu';
 
 import { signOut } from '../../../data/session/actions';
-import { getSession } from '../../../data/session/reducer';
-import { getAsync } from '../../../data/interfaces/session/reducer';
+import { getSession } from '../../../data/session/reducers';
+import { getAsync } from '../../../data/interfaces/session/reducers';
 
 import Avatar from '../../shared/base/Avatar';
 import Icon from '../../shared/base/Icon';

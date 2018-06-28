@@ -6,9 +6,9 @@ import * as commonActions from '../../actions';
 
 // Peer dependencies
 import * as dataActions from './data/surveys/actions';
-import { getSurveys } from './data/surveys/reducer';
+import { getSurveys } from './data/surveys/reducers';
 import * as uiActions from './actions';
-import { getUI, getView } from './reducer';
+import { getUI, getView } from './reducers';
 import UI from './UI';
 
 // Map state to props
