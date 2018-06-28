@@ -1,4 +1,5 @@
 // Global styles
+@import "../../../styles/base/settings";
 @import "../../../styles/mixins/utilities";
 
 // Logo
@@ -12,4 +13,18 @@
 // Spinner
 .spinner {
   padding-top: 5px;
+}
+
+// Description
+.description {
+  bottom: 1rem;
+  color: $color-secondary;
+  font-size: 0.875rem;
+  left: 0;
+  position: fixed;
+  right: 0;
+
+  > p {
+    margin-bottom: 0;
+  }
 }
