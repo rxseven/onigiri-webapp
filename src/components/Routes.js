@@ -10,13 +10,14 @@ import ReferralRoute from '../HOCs/ReferralRoute';
 // Constants
 import PATHS from '../constants/router/paths';
 
-// Static screens
+// Screens
+import SurveyList from '../screens/Surveys/screens/SurveyList';
+
 const Home = Loadable(() => import('../screens/Home'));
 
 const SurveyDetails = Loadable(() => import('../screens/Surveys/screens/SurveyDetails'));
 const SurveyDoorway = Loadable(() => import('../screens/Surveys/screens/SurveyDoorway'));
 const SurveyNew = Loadable(() => import('../screens/Surveys/screens/SurveyNew'));
-const SurveyList = Loadable(() => import('../screens/Surveys/screens/SurveyList'));
 const SurveySuccess = Loadable(() => import('../screens/Surveys/screens/SurveySuccess'));
 
 const Farewell = Loadable(() => import('../screens/Users/screens/Farewell'));
