@@ -1,6 +1,7 @@
 // Dependencies
 import cx from 'classnames';
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import {
@@ -26,6 +27,7 @@ import Text from '../../../components/shared/base/Text';
 
 // Constants
 import CSS from '../../../constants/string/css';
+import PATHS from '../../../constants/router/paths';
 
 // Component
 const Overview = () => (
@@ -63,10 +65,8 @@ const Overview = () => (
                     built with React, Redux, Node.js, Express, Passport, and MongoDB.
                   </CardText>
                   <CardText>
-                    It is maintained by{' '}
-                    <ExLink flat to="https://www.linkedin.com/in/pongsupawat/">
-                      Theerawat Pongsupawat
-                    </ExLink>, frontend web developer from{' '}
+                    It is maintained by <Link to={PATHS.static.me}>Theerawat Pongsupawat</Link>,
+                    frontend developer from{' '}
                     <ExLink flat to="https://en.wikipedia.org/wiki/Chiang_Mai">
                       Chiang Mai, Thailand
                     </ExLink>.
@@ -103,7 +103,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        v="1.0.0-alpha.3"
+                        v="1.0.0-alpha.4"
                       >
                         Web application
                       </ListLink>
@@ -111,7 +111,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-api/releases"
-                        v="1.0.0-alpha.3"
+                        v="1.0.0-alpha.4"
                       >
                         RESTful API
                       </ListLink>
@@ -148,33 +148,35 @@ const Overview = () => (
         </Card>
 
         <Card>
-          <CardHeader>License</CardHeader>
+          <CardHeader>Licenses</CardHeader>
           <CardBody>
             <List>
               <ListItem end>
                 <ListContent>
                   <CardText>
-                    <a
-                      href="http://creativecommons.org/licenses/by-nc-nd/4.0/"
-                      rel="license noopener noreferrer"
-                      target="_blank"
-                    >
+                    <ExLink rel="license" to="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                       <img
-                        alt="Creative Commons License"
-                        src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png"
+                        alt="License: CC BY-NC-ND 4.0"
+                        src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg"
                       />
-                    </a>
+                    </ExLink>
+                    <span>&nbsp;</span>
+                    <ExLink rel="license" to="https://www.gnu.org/licenses/agpl-3.0">
+                      <img
+                        alt="License: AGPL v3"
+                        src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg"
+                      />
+                    </ExLink>
                   </CardText>
                   <CardText>
-                    This work is licensed under a{' '}
-                    <a
-                      href="http://creativecommons.org/licenses/by-nc-nd/4.0/"
-                      rel="license noopener noreferrer"
-                      target="_blank"
-                    >
+                    The content of this project itself is licensed under the{' '}
+                    <ExLink rel="license" to="http://creativecommons.org/licenses/by-nc-nd/4.0/">
                       Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International
-                      License
-                    </a>.
+                      license
+                    </ExLink>, and the underlying source code is licensed under the{' '}
+                    <ExLink rel="license" to="https://www.gnu.org/licenses/agpl-3.0">
+                      GNU AGPLv3 license
+                    </ExLink>.
                   </CardText>
                 </ListContent>
               </ListItem>
@@ -274,7 +276,7 @@ const Overview = () => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-webapp/releases"
-                          v="1.0.0-alpha.3"
+                          v="1.0.0-alpha.4"
                         >
                           Web application
                         </ListLink>
@@ -282,7 +284,7 @@ const Overview = () => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-api/releases"
-                          v="1.0.0-alpha.3"
+                          v="1.0.0-alpha.4"
                         >
                           RESTful API
                         </ListLink>
@@ -298,7 +300,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        tag="April 28, 2018"
+                        tag="June 29, 2018"
                       >
                         Web application
                       </ListLink>
@@ -306,7 +308,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-api/releases"
-                        tag="April 28, 2018"
+                        tag="June 29, 2018"
                       >
                         RESTful API
                       </ListLink>
