@@ -1,8 +1,7 @@
-// Module dependencies
-import * as surveysService from '../../../../../../services/surveys';
-
-// Actions
+// Action types
 export const SURVEYS_CANCEL = 'Surveys/data/SURVEYS_CANCEL';
+export const SURVEYS_CANCEL_FAILURE = 'Surveys/data/SURVEYS_CANCEL_FAILURE';
+export const SURVEYS_CANCEL_SUCCESS = 'Surveys/data/SURVEYS_CANCEL_SUCCESS';
 
 export const SURVEYS_GET = 'Surveys/data/SURVEYS_GET';
 export const SURVEYS_GET_FAILURE = 'Surveys/data/SURVEYS_GET_FAILURE';
@@ -11,49 +10,39 @@ export const SURVEYS_GET_SUCCESS = 'Surveys/data/SURVEYS_GET_SUCCESS';
 export const SURVEYS_RESET_DATA = 'Surveys/data/SURVEYS_RESET_DATA';
 export const SURVEYS_SELECT_MODE = 'Surveys/data/SURVEYS_SELECT_MODE';
 
-// Cancel getting a list of surveys
-export const cancelSurveys = () => {
-  // 1. Cancel a request
-  surveysService.cancelSurveys();
+// Cancel getting surveys : Start
+export const cancelSurveys = () => ({
+  type: SURVEYS_CANCEL
+});
 
-  // 2. Return an action
-  return { type: SURVEYS_CANCEL };
-};
+// Cancel getting surveys : Failure
+export const cancelSurveysFailure = () => ({
+  type: SURVEYS_CANCEL_FAILURE
+});
 
-// Get a list of surveys : Success
-const getSurveysSuccess = data => ({
-  type: SURVEYS_GET_SUCCESS,
-  payload: data
+// Cancel getting surveys : Success
+export const cancelSurveysSuccess = () => ({
+  type: SURVEYS_CANCEL_SUCCESS
+});
+
+// Get a list of surveys : Start
+export const getSurveys = (query, callback) => ({
+  callback,
+  payload: { query },
+  type: SURVEYS_GET
 });
 
 // Get a list of surveys : Failure
-const getSurveysFailure = error => ({
-  type: SURVEYS_GET_FAILURE,
-  payload: error.response.data.error
+export const getSurveysFailure = error => ({
+  payload: error.response.data.error,
+  type: SURVEYS_GET_FAILURE
 });
 
-// Get a list of surveys : Start (loading)
-export const getSurveys = (query, callback) => async (dispatch) => {
-  try {
-    // 1. Inform a reducer that the request began (loading)
-    dispatch({ type: SURVEYS_GET });
-
-    // 2. Get a list of surveys
-    // 3. Retrieve data in a response and transform to an appropriate format
-    const { data } = await surveysService.getSurveys(query);
-
-    // 4. Inform a reducer that the request finished successfully
-    dispatch(getSurveysSuccess(data));
-
-    // 5. Execute a callback
-    callback();
-  } catch (error) {
-    if (error.response) {
-      // Inform a reducer that the request failed
-      dispatch(getSurveysFailure(error));
-    }
-  }
-};
+// Get a list of surveys : Success
+export const getSurveysSuccess = data => ({
+  payload: data,
+  type: SURVEYS_GET_SUCCESS
+});
 
 // Reset surveys data
 export const resetData = () => ({
@@ -62,6 +51,6 @@ export const resetData = () => ({
 
 // Select list view mode
 export const selectMode = query => ({
-  type: SURVEYS_SELECT_MODE,
-  payload: query
+  payload: query,
+  type: SURVEYS_SELECT_MODE
 });

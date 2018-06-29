@@ -2,9 +2,11 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import landingReducer from './landing/reducer';
+import modal from './modal/reducers';
+import session from './session/reducers';
 
 // Combine reducers
 export default combineReducers({
-  landing: landingReducer
+  modal,
+  session
 });

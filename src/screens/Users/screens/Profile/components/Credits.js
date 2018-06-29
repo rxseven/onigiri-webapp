@@ -1,11 +1,10 @@
 // Module dependencies
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { Card, CardBody, CardFooter, CardTitle } from '../../../../../components/shared/base/Card';
 import Icon from '../../../../../components/shared/base/Icon';
 import Text from '../../../../../components/shared/base/Text';
 import { Tip, TipHeader } from '../../../../../components/shared/base/Tip';
-import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
 import timestampHelper from '../../../../../helpers/timestamp';
 
 // Peer dependencies
@@ -18,7 +17,7 @@ const Credits = ({ callback, state }) => {
 
   // View
   return (
-    <JSXwrapper>
+    <Fragment>
       <Card end>
         <CardBody>
           <CardTitle>You have {balance && <span>{balance}</span>} survey credits</CardTitle>
@@ -65,7 +64,7 @@ const Credits = ({ callback, state }) => {
           money (in case you use a real one).
         </p>
       </Tip>
-    </JSXwrapper>
+    </Fragment>
   );
 };
 

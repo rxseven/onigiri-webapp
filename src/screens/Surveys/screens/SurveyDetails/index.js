@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as modalActions from '../../../../data/interfaces/modal/actions';
-import { getModal } from '../../../../data/interfaces/modal/reducer';
+import { getModal } from '../../../../data/interfaces/modal/reducers';
 import * as commonActions from '../../actions';
 
 // Peer dependencies
 import * as dataActions from './data/survey/actions';
-import { getSurvey } from './data/survey/reducer';
-import { getUI } from './reducer';
+import { getSurvey } from './data/survey/reducers';
+import { getUI } from './reducers';
 import UI from './UI';
 
 // Map state to props

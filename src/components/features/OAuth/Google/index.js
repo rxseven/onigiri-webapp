@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { oauthGoogle, oauthFailure, oauthRequest } from '../../../../data/session/actions';
-import { getSession } from '../../../../data/session/reducer';
+import { getSession } from '../../../../data/session/reducers';
 
 // Peer dependencies
 import UI from './UI';

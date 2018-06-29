@@ -8,8 +8,8 @@ import Dropdown, { DropdownContent, DropdownTrigger } from 'react-simple-dropdow
 import { action as toggleMenu } from 'redux-burger-menu';
 
 import { signOut } from '../../../data/session/actions';
-import { getSession } from '../../../data/session/reducer';
-import { getAsync } from '../../../data/interfaces/session/reducer';
+import { getSession } from '../../../data/session/reducers';
+import { getAsync } from '../../../data/interfaces/session/reducers';
 
 import Avatar from '../../shared/base/Avatar';
 import { Container } from '../../shared/base/Grid';

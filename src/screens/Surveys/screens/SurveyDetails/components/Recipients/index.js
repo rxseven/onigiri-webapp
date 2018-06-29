@@ -1,6 +1,6 @@
 // Module dependencies
 import { map, size } from 'lodash';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
 import { CardSubtitle } from '../../../../../../components/shared/base/Card';
@@ -12,7 +12,6 @@ import {
 } from '../../../../../../components/shared/base/List';
 import Spinner from '../../../../../../components/shared/base/Spinner';
 import Error from '../../../../../../components/shared/extended/Error';
-import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
 
 // Constants
 import PROP_TYPES from '../../../../../../constants/models/propTypes';
@@ -33,7 +32,7 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
 
   // View
   return (
-    <JSXwrapper>
+    <Fragment>
       <hr />
       <CardSubtitle options={CSS.margin.MB04}>Recipients</CardSubtitle>
       <If condition={!data}>
@@ -77,7 +76,7 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
           </ListItem>
         </List>
       </If>
-    </JSXwrapper>
+    </Fragment>
   );
 };
 

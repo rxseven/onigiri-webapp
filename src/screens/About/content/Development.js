@@ -1,6 +1,6 @@
 // Dependencies
 import cx from 'classnames';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { Card, CardBody, CardHeader, CardSubtitle } from '../../../components/shared/base/Card';
@@ -13,14 +13,13 @@ import {
   ListLabel,
   ListLink
 } from '../../../components/shared/base/List';
-import JSXwrapper from '../../../components/shared/helpers/JSXwrapper';
 
 // Constants
 import CSS from '../../../constants/string/css';
 
 // Component
 const Development = () => (
-  <JSXwrapper>
+  <Fragment>
     <div>
       <p>
         Below is the list of web authoring and debugging tools, third party services, and testing
@@ -107,7 +106,7 @@ const Development = () => (
                 </ListContent>
               </ListItem>
               <ListItem>
-                <ListLabel>CSS &amp; Sass syntax</ListLabel>
+                <ListLabel>Sass syntax</ListLabel>
                 <ListContent>
                   <ListLink to="http://sass-lang.com">SCSS</ListLink>
                 </ListContent>
@@ -142,7 +141,7 @@ const Development = () => (
               <ListItem>
                 <ListLabel>Operating system</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/lae/macos/high-sierra/" v="10.13.4">
+                  <ListLink to="https://www.apple.com/lae/macos/high-sierra/" v="10.13.5">
                     macOS High Sierra
                   </ListLink>
                 </ListContent>
@@ -189,30 +188,59 @@ const Development = () => (
                       </ListLink>
                     </li>
                     <li>
-                      <ListLink to="https://github.com/Microsoft/vscode-eslint">ESLint</ListLink>
+                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">
+                        ESLint
+                      </ListLink>
                     </li>
                     <li>
-                      <ListLink to="https://github.com/flowtype/flow-for-vscode">Flow</ListLink>
+                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode">
+                        Flow
+                      </ListLink>
                     </li>
                     <li>
-                      <ListLink to="https://github.com/jest-community/vscode-jest">Jest</ListLink>
+                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest">
+                        Jest
+                      </ListLink>
                     </li>
                     <li>
-                      <ListLink to="https://github.com/prettier/prettier-vscode">Prettier</ListLink>
+                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">
+                        Prettier
+                      </ListLink>
+                    </li>
+                    <li>
+                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv">
+                        DotENV
+                      </ListLink>
                     </li>
                   </ul>
                 </ListContent>
               </ListItem>
               <ListItem>
-                <ListLabel>Web browser</ListLabel>
+                <ListLabel>Web browser and debugging tools</ListLabel>
                 <ListContent>
                   <ListLink to="https://www.google.com/chrome/">Chrome</ListLink>
-                </ListContent>
-              </ListItem>
-              <ListItem>
-                <ListLabel>Web authoring and debugging tools</ListLabel>
-                <ListContent>
-                  <ListLink to="https://developer.chrome.com/devtools">Chrome DevTools</ListLink>
+                  <ul className={cx(CSS.margin.MB00, CSS.margin.MT02)}>
+                    <li>
+                      <ListLink to="https://developer.chrome.com/devtools">
+                        Chrome DevTools
+                      </ListLink>
+                    </li>
+                    <li>
+                      <ListLink to="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi">
+                        React Developer Tools
+                      </ListLink>
+                    </li>
+                    <li>
+                      <ListLink to="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd">
+                        Redux DevTools
+                      </ListLink>
+                    </li>
+                    <li>
+                      <ListLink to="https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog">
+                        Immutable.js Object Formatter
+                      </ListLink>
+                    </li>
+                  </ul>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -249,12 +277,16 @@ const Development = () => (
 
             <hr />
 
-            <CardSubtitle>3<sup>rd</sup> party service’s tools</CardSubtitle>
+            <CardSubtitle>
+              3<sup>rd</sup> party service’s tools
+            </CardSubtitle>
             <List>
               <ListItem>
                 <ListLabel>CLI for managing Heroku apps</ListLabel>
                 <ListContent>
-                  <ListLink to="https://devcenter.heroku.com/articles/heroku-cli">Heroku CLI</ListLink>
+                  <ListLink to="https://devcenter.heroku.com/articles/heroku-cli">
+                    Heroku CLI
+                  </ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -274,6 +306,14 @@ const Development = () => (
                 <ListContent>
                   <ListLink to="https://github.com/facebook/create-react-app">
                     Create React App
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>React & Redux boilerplate with best practices</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/rxseven/setup-react-app">
+                    Setup React App
                   </ListLink>
                 </ListContent>
               </ListItem>
@@ -565,7 +605,7 @@ const Development = () => (
               <ListItem>
                 <ListLabel>Mac</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/macos/high-sierra/" v="10.13.4">
+                  <ListLink to="https://www.apple.com/macos/high-sierra/" v="10.13.5">
                     macOS High Sierra
                   </ListLink>
                 </ListContent>
@@ -575,12 +615,12 @@ const Development = () => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://developer.apple.com/xcode/" v="9.2.0">
+                      <ListLink to="https://developer.apple.com/xcode/" v="10.0">
                         Xcode - iOS Simulator
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.google.com/chrome/" v="65.0.3325.181">
+                      <ListLink to="https://www.google.com/chrome/" v="67.0.3396.99">
                         Chrome DevTools
                       </ListLink>
                     </ListGroupItem>
@@ -592,17 +632,17 @@ const Development = () => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/safari/" v="11.1">
+                      <ListLink to="https://www.apple.com/safari/" v="11.1.1">
                         Safari
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="59.0.2">
+                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="61.0">
                         Firefox
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.google.com/chrome/" v="65.0.3325.181">
+                      <ListLink to="https://www.google.com/chrome/" v="67.0.3396.99">
                         Chrome
                       </ListLink>
                     </ListGroupItem>
@@ -619,7 +659,7 @@ const Development = () => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.3">
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4">
                         iPhone 6
                       </ListLink>
                     </ListGroupItem>
@@ -642,7 +682,7 @@ const Development = () => (
               <ListItem end>
                 <ListLabel>Tablet</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.3">
+                  <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4">
                     iPad mini 3
                   </ListLink>
                 </ListContent>
@@ -652,7 +692,7 @@ const Development = () => (
         </Card>
       </TabPanel>
     </Tabs>
-  </JSXwrapper>
+  </Fragment>
 );
 
 // Module exports

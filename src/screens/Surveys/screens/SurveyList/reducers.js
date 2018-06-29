@@ -14,7 +14,7 @@ import {
 import { SURVEYS_RESET_VIEW, SURVEYS_SAVE_PAGINATION } from './actions';
 
 // Reducers
-import dataReducer from './data/reducer';
+import data from './data/reducers';
 
 // Constants
 import STATE_MODELS from '../../../../constants/models/state';
@@ -36,7 +36,7 @@ const initialState = {
 };
 
 // Asynchronous reducer
-const asyncReducer = (state = initialState.asynchronous, action) => {
+const asynchronous = (state = initialState.asynchronous, action) => {
   switch (action.type) {
     // Get surveys
     case SURVEYS_GET:
@@ -77,7 +77,7 @@ const asyncReducer = (state = initialState.asynchronous, action) => {
 };
 
 // View reducer
-const viewReducer = (state = initialState.view, action) => {
+const view = (state = initialState.view, action) => {
   switch (action.type) {
     // Save pagination query
     case SURVEYS_SAVE_PAGINATION:
@@ -121,15 +121,13 @@ const viewReducer = (state = initialState.view, action) => {
 };
 
 // UI reducer
-const uiReducer = combineReducers({
-  asynchronous: asyncReducer
-});
+const ui = combineReducers({ asynchronous });
 
 // Combine reducers
 export default combineReducers({
-  data: dataReducer,
-  ui: uiReducer,
-  view: viewReducer
+  data,
+  ui,
+  view
 });
 
 // Non-memoized utility selectors

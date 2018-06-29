@@ -2,10 +2,9 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Icon from '../Icon';
-import JSXwrapper from '../../helpers/JSXwrapper';
 
 // Peer dependencies
 import styles from './styles.scss';
@@ -17,6 +16,7 @@ const propTypes = exact({
   flat: PropTypes.bool,
   icon: PropTypes.bool,
   options: PropTypes.string,
+  rel: PropTypes.string,
   replace: PropTypes.bool,
   to: PropTypes.string.isRequired
 });
@@ -26,18 +26,19 @@ const defaultProps = {
   flat: false,
   icon: false,
   options: null,
+  rel: 'noopener noreferrer',
   replace: false
 };
 
 // Component
 const ExLink = ({
-  button, children, flat, icon, options, replace, to
+  button, children, flat, icon, options, rel, replace, to
 }) => (
-  <JSXwrapper>
+  <Fragment>
     <a
       className={cx(button && `btn btn-${button}`, flat && styles.flat, options)}
       href={to}
-      rel="noopener noreferrer"
+      rel={rel}
       target={replace ? '_self' : '_blank'}
     >
       {children}
@@ -47,7 +48,7 @@ const ExLink = ({
         </span>
       </If>
     </a>
-  </JSXwrapper>
+  </Fragment>
 );
 
 // Specify prop types and default values for props

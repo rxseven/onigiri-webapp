@@ -33,13 +33,14 @@ const Me = () => (
           <CardHeader>Summary</CardHeader>
           <CardBody>
             <CardText>
-              Hi, I’m a detail-oriented frontend developer inventing responsive website &amp; web
-              application. I’m proficient in HTML, CSS, and JavaScript using valid, well-formatted,
-              and semantic coding approaches.
+              Hello, I’m a detail-oriented frontend developer proficient in HTML, SCSS, and
+              JavaScript (especially React and Redux) using valid, well-formatted, and semantic
+              coding approaches.
             </CardText>
-            <CardText>
-              I’m not an expert in this field but I’m doing well at my job and trying to keep up to
-              date with the latest web development technology.
+            <hr />
+            <CardText options="text-secondary text-small">
+              I’m not an expert but I’m doing well at my job and trying to keep up to date with the
+              latest web development technology.
             </CardText>
           </CardBody>
         </Card>
@@ -77,9 +78,7 @@ const Me = () => (
               </ListItem>
               <ListItem>
                 <ListLabel>Key skills</ListLabel>
-                <ListContent>
-                  React, Redux, ES6/ES2015, CSS3/SCSS, Node.js, Webpack
-                </ListContent>
+                <ListContent>React, Redux, ES6, SCSS, Node.js, Webpack</ListContent>
               </ListItem>
               <ListItem>
                 <ListLabel>Education</ListLabel>
@@ -139,10 +138,12 @@ const Me = () => (
                   </CardText>
                   <hr />
                   <CardText>
-                    The recent open-source project I have published and can be shared publicly is
-                    this one, <strong>Onigiri</strong>.
+                    The recent open-source projects I have published and can be shared publicly are{' '}
+                    <ExLink to="https://github.com/rxseven/onigiri-webapp">Onigiri</ExLink> (with{' '}
+                    <ExLink to="https://github.com/rxseven/onigiri-api">its API</ExLink>) and{' '}
+                    <ExLink to="https://github.com/rxseven/setup-react-app">Setup React App</ExLink>.
                   </CardText>
-                  <ListTitle>How could you evaluate me from this project?</ListTitle>
+                  <ListTitle>How could you evaluate me from those projects?</ListTitle>
                   <ListLabel>Results</ListLabel>
                   <ul>
                     <li>Functionality</li>
@@ -181,8 +182,8 @@ const Me = () => (
                   <Text block>Independent contractor</Text>
                   <Text block>React &amp; Redux</Text>
                   <Text block>
-                    <ExLink flat to="https://en.wikipedia.org/wiki/Chiang_Rai">
-                      Chiang Rai
+                    <ExLink flat to="https://en.wikipedia.org/wiki/Chiang_Mai">
+                      Chiang Mai
                     </ExLink>{' '}
                     <small className="text-secondary">
                       <Icon name="location" title="Location" />

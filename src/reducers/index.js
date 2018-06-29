@@ -1,18 +1,18 @@
 // Module dependencies
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
-import { reducer as menuReducer } from 'redux-burger-menu';
+import { reducer as form } from 'redux-form';
+import { reducer as burgerMenu } from 'redux-burger-menu';
 
 // Reducers
-import dataReducer from '../data/reducer';
-import screensReducer from '../screens/reducer';
+import data from '../data/reducers';
+import screens from '../screens/reducers';
 
 // Combine reducers
 const reducer = combineReducers({
-  burgerMenu: menuReducer,
-  data: dataReducer,
-  form: formReducer,
-  screens: screensReducer
+  burgerMenu,
+  data,
+  form,
+  screens
 });
 
 // Module exports

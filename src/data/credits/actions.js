@@ -1,8 +1,4 @@
-// Module dependencies
-import paymentsService from '../../services/payments';
-import * as usersService from '../../services/users';
-
-// Actions
+// Action types
 export const CHECKOUT = 'data/credits/CHECKOUT';
 export const CHECKOUT_FAILURE = 'data/credits/CHECKOUT_FAILURE';
 export const CHECKOUT_SUCCESS = 'data/credits/CHECKOUT_SUCCESS';
@@ -13,71 +9,44 @@ export const CREDITS_GET_SUCCESS = 'data/credits/CREDITS_GET_SUCCESS';
 
 export const CREDITS_UPDATE = 'data/credits/CREDITS_UPDATE';
 
-// Checkout : Success
-const checkoutSuccess = data => ({
-  type: CHECKOUT_SUCCESS,
-  payload: data
+// Checkout : Start
+export const checkout = (token, callback) => ({
+  callback,
+  payload: { token },
+  type: CHECKOUT
 });
 
 // Checkout : Failure
-const checkoutFailure = error => ({
-  type: CHECKOUT_FAILURE,
-  payload: error.response.data.error
+export const checkoutFailure = error => ({
+  payload: error.response.data.error,
+  type: CHECKOUT_FAILURE
 });
 
-// Checkout : Start (loading)
-export const checkout = (token, callback) => async (dispatch) => {
-  try {
-    // 1. Inform a reducer that the request began (loading)
-    dispatch({ type: CHECKOUT });
+// Checkout : Success
+export const checkoutSuccess = data => ({
+  payload: data,
+  type: CHECKOUT_SUCCESS
+});
 
-    // 2. Forward Stripe Checkout token to the API
-    // 3. Retrieve data in a response and transform to an appropriate format
-    const { data } = await paymentsService.checkout(token);
-
-    // 4. Inform a reducer that the request finished successfully
-    dispatch(checkoutSuccess(data));
-
-    // 5. Execute a callback
-    callback();
-  } catch (error) {
-    // Inform a reducer that the request failed
-    dispatch(checkoutFailure(error));
-  }
-};
-
-// Get credits : Success
-const getCreditsSuccess = data => ({
-  type: CREDITS_GET_SUCCESS,
-  payload: data
+// Get credits : Start
+export const getCredits = () => ({
+  type: CREDITS_GET
 });
 
 // Get credits : Failure
-const getCreditsFailure = error => ({
-  type: CREDITS_GET_FAILURE,
-  payload: error.response.data.error
+export const getCreditsFailure = error => ({
+  payload: error.response.data.error,
+  type: CREDITS_GET_FAILURE
 });
 
-// Get credits : Start (loading)
-export const getCredits = () => async (dispatch) => {
-  try {
-    // 1. Inform a reducer that the request began (loading)
-    dispatch({ type: CREDITS_GET });
-
-    // 2. Get credits
-    // 3. Retrieve data in a response and transform to an appropriate format
-    const { data } = await usersService.getCredits();
-
-    // 4. Inform a reducer that the request finished successfully
-    dispatch(getCreditsSuccess(data));
-  } catch (error) {
-    // Inform a reducer that the request failed
-    dispatch(getCreditsFailure(error));
-  }
-};
+// Get credits : Success
+export const getCreditsSuccess = data => ({
+  payload: data,
+  type: CREDITS_GET_SUCCESS
+});
 
 // Update credits
 export const updateCredits = data => ({
-  type: CREDITS_UPDATE,
-  payload: data
+  payload: data,
+  type: CREDITS_UPDATE
 });

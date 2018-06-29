@@ -1,14 +1,13 @@
 // Module dependencies
 import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Payments from '../../../../../components/features/Payments';
 import { ButtonSet } from '../../../../../components/shared/base/Buttons';
 import { CardText } from '../../../../../components/shared/base/Card';
 import Spinner from '../../../../../components/shared/base/Spinner';
 import Error from '../../../../../components/shared/extended/Error';
-import JSXwrapper from '../../../../../components/shared/helpers/JSXwrapper';
 
 // Constants
 import PROP_TYPES from '../../../../../constants/models/propTypes';
@@ -37,7 +36,7 @@ const Checkout = ({ callback, state: { ui: { asynchronous } } }) => {
 
   // View
   return (
-    <JSXwrapper>
+    <Fragment>
       <CardText>Pay $5.00 get 5 survey credits.</CardText>
       <If condition={error}>
         <Error alert={error} />
@@ -48,7 +47,7 @@ const Checkout = ({ callback, state: { ui: { asynchronous } } }) => {
           <Spinner />
         </If>
       </ButtonSet>
-    </JSXwrapper>
+    </Fragment>
   );
 };
 

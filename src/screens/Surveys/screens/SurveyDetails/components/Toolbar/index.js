@@ -1,6 +1,6 @@
 // Module dependencies
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import {
   Button,
@@ -9,7 +9,6 @@ import {
   ButtonToolbar
 } from '../../../../../../components/shared/base/Buttons';
 import Spinner from '../../../../../../components/shared/base/Spinner';
-import JSXwrapper from '../../../../../../components/shared/helpers/JSXwrapper';
 
 import dateHelper from '../../../../../../helpers/date';
 
@@ -57,7 +56,7 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
       </ButtonGroup>
 
       <If condition={!error}>
-        <JSXwrapper>
+        <Fragment>
           <div className={styles.status}>
             <If condition={loading}>
               <Spinner loading />
@@ -93,7 +92,7 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
               title="Delete"
             />
           </ButtonGroup>
-        </JSXwrapper>
+        </Fragment>
       </If>
     </ButtonToolbar>
   );

@@ -1,7 +1,7 @@
 // Module dependencies
 import { connect } from 'react-redux';
 
-import { getSession } from '../../../data/session/reducer';
+import { getSession } from '../../../data/session/reducers';
 
 // Peer dependencies
 import UI from './UI';
