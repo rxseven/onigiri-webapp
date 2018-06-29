@@ -47,7 +47,7 @@ class UI extends PureComponent {
           </div>
           <If condition={this.state.longLoad}>
             <div className={styles.description}>
-              <p>The app has been sleeping, it’s waking up...</p>
+              <p>Hang tight, the app has been sleeping...</p>
             </div>
           </If>
         </Overlay>
