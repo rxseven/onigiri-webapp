@@ -16,6 +16,7 @@ const propTypes = exact({
   flat: PropTypes.bool,
   icon: PropTypes.bool,
   options: PropTypes.string,
+  rel: PropTypes.string,
   replace: PropTypes.bool,
   to: PropTypes.string.isRequired
 });
@@ -25,18 +26,19 @@ const defaultProps = {
   flat: false,
   icon: false,
   options: null,
+  rel: 'noopener noreferrer',
   replace: false
 };
 
 // Component
 const ExLink = ({
-  button, children, flat, icon, options, replace, to
+  button, children, flat, icon, options, rel, replace, to
 }) => (
   <Fragment>
     <a
       className={cx(button && `btn btn-${button}`, flat && styles.flat, options)}
       href={to}
-      rel="noopener noreferrer"
+      rel={rel}
       target={replace ? '_self' : '_blank'}
     >
       {children}
