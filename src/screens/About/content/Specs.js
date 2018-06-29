@@ -264,9 +264,11 @@ const Technical = () => (
                 </ListContent>
               </ListItem>
               <ListItem>
-                <ListLabel>A middleware for handling asynchronous actions in Redux</ListLabel>
+                <ListLabel>
+                  A Redux middleware that is designed to make handling side effects nice and simple
+                </ListLabel>
                 <ListContent>
-                  <ListLink to="https://github.com/gaearon/redux-thunk">Redux Thunk</ListLink>
+                  <ListLink to="https://redux-saga.js.org">Redux Saga</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -316,15 +318,17 @@ const Technical = () => (
                   A utility provides access to the last location in React and React Router apps
                 </ListLabel>
                 <ListContent>
-                  <ListLink to="https://github.com/hinok/react-router-last-location">react-router-last-location</ListLink>
+                  <ListLink to="https://github.com/hinok/react-router-last-location">
+                    react-router-last-location
+                  </ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
-                <ListLabel>
-                  React component to keep the scroll position of the page
-                </ListLabel>
+                <ListLabel>React component to keep the scroll position of the page</ListLabel>
                 <ListContent>
-                  <ListLink to="https://github.com/ipatate/react-router-scroll-memory">react-router-scroll-memory</ListLink>
+                  <ListLink to="https://github.com/ipatate/react-router-scroll-memory">
+                    react-router-scroll-memory
+                  </ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
