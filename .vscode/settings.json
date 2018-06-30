@@ -3,6 +3,11 @@
   // Format a file on save. A formatter must be available, the file must not be auto-saved, and editor must not be shutting down.
   "editor.formatOnSave": true,
 
+  // File associations to languages
+  "files.associations": {
+    ".babelrc": "json"
+  },
+
   // Flow
   // Flow works best when installed per-project with explicit versioning rather than globally.
   // Use Flow from local NPM dependency.
