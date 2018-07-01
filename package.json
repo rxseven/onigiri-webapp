@@ -16,6 +16,7 @@
   "private": true,
   "main": "index.jsx",
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "build": "node scripts/build.js",
     "format": "prettier-eslint --write src/**/*.{js,json,jsx,scss}",
     "lint:script": "eslint src/**/*.{js,jsx}",
