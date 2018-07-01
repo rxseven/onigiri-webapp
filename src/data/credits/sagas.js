@@ -8,11 +8,6 @@ import * as actions from './actions';
 import paymentsService from '../../services/payments';
 import * as usersService from '../../services/users';
 
-// Actions watcher
-function* watcher() {
-  yield all([takeLatest(actions.CHECKOUT, checkout), takeLatest(actions.CREDITS_GET, getCredits)]);
-}
-
 // Checkout
 function* checkout({ callback, payload }) {
   try {
@@ -44,6 +39,11 @@ function* getCredits() {
     // Inform reducers that the request failed
     yield put(actions.getCreditsFailure(error));
   }
+}
+
+// Actions watcher
+function* watcher() {
+  yield all([takeLatest(actions.CHECKOUT, checkout), takeLatest(actions.CREDITS_GET, getCredits)]);
 }
 
 // Module exports

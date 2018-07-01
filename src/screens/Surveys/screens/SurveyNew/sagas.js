@@ -8,11 +8,6 @@ import { updateCredits } from '../../../../data/credits/actions';
 // Services
 import * as surveysService from '../../../../services/surveys';
 
-// Actions watcher
-function* watcher() {
-  yield takeLatest(actions.SURVEY_CREATE, createSurvey);
-}
-
 // Create survey
 function* createSurvey({ callback, payload }) {
   try {
@@ -30,6 +25,11 @@ function* createSurvey({ callback, payload }) {
     // Inform reducers that the request failed
     yield put(actions.createSurveyFailure(error));
   }
+}
+
+// Actions watcher
+function* watcher() {
+  yield takeLatest(actions.SURVEY_CREATE, createSurvey);
 }
 
 // Module exports

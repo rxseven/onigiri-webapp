@@ -7,11 +7,6 @@ import * as actions from './actions';
 // Services
 import * as usersService from '../../../../../../services/users';
 
-// Actions watcher
-function* watcher() {
-  yield takeLatest(actions.PROFILE_GET, getProfile);
-}
-
 // Get user profile
 function* getProfile(action) {
   try {
@@ -25,6 +20,11 @@ function* getProfile(action) {
     // Inform reducers that the request failed
     yield put(actions.getProfileFailure(error));
   }
+}
+
+// Actions watcher
+function* watcher() {
+  yield takeLatest(actions.PROFILE_GET, getProfile);
 }
 
 // Module exports

@@ -8,19 +8,6 @@ import * as actions from './actions';
 import tokenHelper from '../../helpers/token';
 import * as usersService from '../../services/users';
 
-// Actions watcher
-function* watcher() {
-  all([
-    yield takeLatest(actions.OAUTH_FACEBOOK, oauthFacebook),
-    yield takeLatest(actions.OAUTH_GOOGLE, oauthGoogle),
-    yield takeLatest(actions.SIGNIN, signIn),
-    yield takeLatest(actions.SIGNOUT, signOut),
-    yield takeLatest(actions.SIGNUP, signUp),
-    yield takeLatest(actions.USER_DELETE, deleteUser),
-    yield takeLatest(actions.USER_GET, getUser)
-  ]);
-}
-
 // Delete user account
 function* deleteUser({ callback }) {
   try {
@@ -167,6 +154,19 @@ function* signUp({ callback, payload }) {
     // Inform reducers that the request failed
     yield put(actions.signUpFailure(error));
   }
+}
+
+// Actions watcher
+function* watcher() {
+  all([
+    yield takeLatest(actions.OAUTH_FACEBOOK, oauthFacebook),
+    yield takeLatest(actions.OAUTH_GOOGLE, oauthGoogle),
+    yield takeLatest(actions.SIGNIN, signIn),
+    yield takeLatest(actions.SIGNOUT, signOut),
+    yield takeLatest(actions.SIGNUP, signUp),
+    yield takeLatest(actions.USER_DELETE, deleteUser),
+    yield takeLatest(actions.USER_GET, getUser)
+  ]);
 }
 
 // Module exports

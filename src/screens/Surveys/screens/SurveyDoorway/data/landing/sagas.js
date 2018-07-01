@@ -7,11 +7,6 @@ import * as actions from './actions';
 // Services
 import * as surveysService from '../../../../../../services/surveys';
 
-// Actions watcher
-function* watcher() {
-  yield takeLatest(actions.LANDING_GET, getLanding);
-}
-
 // Get landing page URI
 function* getLanding({ payload }) {
   try {
@@ -25,6 +20,11 @@ function* getLanding({ payload }) {
     // Inform reducers that the request failed
     yield put(actions.getLandingFailure(error));
   }
+}
+
+// Actions watcher
+function* watcher() {
+  yield takeLatest(actions.LANDING_GET, getLanding);
 }
 
 // Module exports
