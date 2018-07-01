@@ -26,6 +26,7 @@
     "start:https": "HTTPS=true yarn start",
     "test": "node scripts/test.js --env=jsdom --config jest.config.json",
     "test:coverage": "npm test -- --coverage --no-cache",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
     "test:staged": "cross-env CI=true node scripts/test.js --env=jsdom --config jest.config.json --findRelatedTests",
     "type": "flow",
     "type:check": "flow check",
