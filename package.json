@@ -18,6 +18,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "flow": "flow",
+    "precommit": "lint-staged",
     "start": "node scripts/start.js",
     "test": "node scripts/test.js --env=jsdom"
   },
