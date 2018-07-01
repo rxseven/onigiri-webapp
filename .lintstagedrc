@@ -1,6 +1,7 @@
 {
   "src/**/*.{js,jsx}": [
     "yarn lint:script:fix",
+    "yarn type:check:focus",
     "git add"
   ],
   "src/**/*.scss": [

@@ -25,6 +25,7 @@
     "test": "node scripts/test.js --env=jsdom",
     "type": "flow",
     "type:check": "flow check",
+    "type:check:focus": "flow focus-check",
     "type:install": "flow-typed install"
   },
   "dependencies": {
