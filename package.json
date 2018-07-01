@@ -3,9 +3,9 @@
   "description": "React and Redux web application for collecting and organizing surveys",
   "version": "1.0.0-alpha",
   "homepage": "https://onigiri-webapp.herokuapp.com",
-  "license": "CC BY-NC-ND 4.0",
+  "license": "AGPL-3.0-or-later",
   "author": {
-    "name": "Theerawat Pongpawat",
+    "name": "Theerawat Pongsupawat",
     "email": "rxseven.com@gmail.com",
     "url": "http://www.rxseven.com"
   },
