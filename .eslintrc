@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "node": true,
     "jest/globals": true,
     "jsx-control-statements/jsx-control-statements": true
   },
@@ -11,7 +12,7 @@
     "plugin:jsx-control-statements/recommended"
   ],
   "parser": "babel-eslint",
-  "plugins": ["import", "jest", "jsx-a11y", "jsx-control-statements", "react"],
+  "plugins": ["jest", "jsx-control-statements"],
   "rules": {
     "comma-dangle": ["error", "never"],
     "no-unused-vars": [
@@ -21,10 +22,10 @@
         "args": "none"
       }
     ],
-    "no-useless-escape": 0,
+    "no-useless-escape": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "import/no-named-as-default": 0,
-    "import/no-named-as-default-member": 0,
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off",
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
@@ -37,19 +38,19 @@
         "specialLink": ["to"]
       }
     ],
-    "jsx-a11y/href-no-hash": 0,
-    "jsx-a11y/label-has-for": 0,
-    "jsx-control-statements/jsx-choose-not-empty": 1,
-    "jsx-control-statements/jsx-for-require-each": 1,
-    "jsx-control-statements/jsx-for-require-of": 1,
-    "jsx-control-statements/jsx-if-require-condition": 1,
-    "jsx-control-statements/jsx-otherwise-once-last": 1,
-    "jsx-control-statements/jsx-use-if-tag": 1,
-    "jsx-control-statements/jsx-when-require-condition": 1,
-    "jsx-control-statements/jsx-jcs-no-undef": 1,
-    "react/jsx-filename-extension": 0,
-    "react/jsx-no-undef": [2, { "allowGlobals": true }],
-    "react/no-string-refs": 0,
-    "react/prop-types": 0
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-control-statements/jsx-choose-not-empty": "warn",
+    "jsx-control-statements/jsx-for-require-each": "warn",
+    "jsx-control-statements/jsx-for-require-of": "warn",
+    "jsx-control-statements/jsx-if-require-condition": "warn",
+    "jsx-control-statements/jsx-otherwise-once-last": "warn",
+    "jsx-control-statements/jsx-use-if-tag": "warn",
+    "jsx-control-statements/jsx-when-require-condition": "warn",
+    "jsx-control-statements/jsx-jcs-no-undef": "warn",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-no-undef": ["error", { "allowGlobals": true }],
+    "react/no-string-refs": "off",
+    "react/prop-types": "off"
   }
 }
