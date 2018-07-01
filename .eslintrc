@@ -5,10 +5,10 @@
     "jsx-control-statements/jsx-control-statements": true
   },
   "extends": [
+    "react-app",
     "airbnb",
     "plugin:jest/recommended",
-    "plugin:jsx-control-statements/recommended",
-    "react-app"
+    "plugin:jsx-control-statements/recommended"
   ],
   "parser": "babel-eslint",
   "plugins": ["import", "jest", "jsx-a11y", "jsx-control-statements", "react"],
