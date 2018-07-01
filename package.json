@@ -20,6 +20,7 @@
     "flow": "flow",
     "lint:script": "eslint src/**/*.{js,jsx}",
     "lint:script:fix": "eslint --fix src/**/*.{js,jsx}",
+    "lint:stylesheet": "stylelint \"src/**/*.scss\"",
     "precommit": "lint-staged",
     "start": "node scripts/start.js",
     "test": "node scripts/test.js --env=jsdom"
