@@ -6,6 +6,7 @@
   // File associations to languages
   "files.associations": {
     ".babelrc": "json",
+    ".eslintrc": "json",
     ".lintstagedrc": "json"
   },
 
