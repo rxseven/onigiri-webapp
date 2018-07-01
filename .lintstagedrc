@@ -8,5 +8,9 @@
   "src/**/*.scss": [
     "yarn lint:stylesheet",
     "git add"
+  ],
+  "src/**/*.{js,json,jsx,scss}": [
+    "yarn format",
+    "git add"
   ]
 }
