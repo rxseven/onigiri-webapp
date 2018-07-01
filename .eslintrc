@@ -52,5 +52,12 @@
     "react/jsx-no-undef": ["error", { "allowGlobals": true }],
     "react/no-string-refs": "off",
     "react/prop-types": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
   }
 }
