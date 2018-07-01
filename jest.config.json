@@ -14,7 +14,7 @@
     "^react-native$": "react-native-web"
   },
   "setupFiles": ["<rootDir>/config/polyfills.js"],
-  "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests",
+  "setupTestFrameworkScriptFile": "<rootDir>/src/tests/setup.js",
   "testEnvironment": "node",
   "testMatch": [
     "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
