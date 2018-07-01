@@ -5,7 +5,8 @@
 
   // File associations to languages
   "files.associations": {
-    ".babelrc": "json"
+    ".babelrc": "json",
+    ".lintstagedrc": "json"
   },
 
   // Flow
