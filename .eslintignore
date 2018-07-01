@@ -1,2 +1,4 @@
-/build/**
-/src/playground/**
+/build
+/config
+/scripts
+/src/playground
