@@ -24,6 +24,7 @@
     "start": "node scripts/start.js",
     "test": "node scripts/test.js --env=jsdom",
     "type": "flow",
+    "type:check": "flow check",
     "type:install": "flow-typed install"
   },
   "dependencies": {
