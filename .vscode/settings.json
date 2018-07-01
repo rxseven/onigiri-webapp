@@ -7,7 +7,7 @@
   "scss.validate": false,
 
   // Prettier
-  // Format a file on save. A formatter must be available, the file must not be auto-saved, and editor must not be shutting down.
+  // Format a file on save.
   "editor.formatOnSave": true,
 
   // File associations to languages
@@ -24,8 +24,8 @@
   "flow.useNPMPackagedFlow": true,
 
   // Prettier
-  // Disable the default JavaScript formatter (VSCode's built-in) and allows Prettier to handle our code formatting.
-  // Enable/disable default JavaScript formatter.
+  // Disable the default JavaScript formatter (editor’s built-in) and allows
+  // Prettier to handle code formatting.
   "javascript.format.enable": false,
 
   // Flow and ESLint
