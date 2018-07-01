@@ -33,7 +33,8 @@
   // rather than built-in JavaScript & TypeScript validation.
   "javascript.validate.enable": false,
 
-  // Prettier and ESLint
-  // Use prettier-eslint instead of prettier. Other settings will only be fallbacks in case they could not be inferred from ESLint rules.
+  // Prettier
+  // Use prettier-eslint instead of prettier. Other settings will only be
+  // fallbacks in case they could not be inferred from ESLint rules.
   "prettier.eslintIntegration": true
 }
