@@ -13,11 +13,6 @@ import surveyDoorway from './screens/SurveyDoorway/data/landing/sagas';
 import surveyList from './screens/SurveyList/data/surveys/sagas';
 import surveyNew from './screens/SurveyNew/sagas';
 
-// Actions watcher
-function* watcher() {
-  yield takeLatest(actions.SURVEY_DELETE, deleteSurvey);
-}
-
 // Delete survey
 function* deleteSurvey({ callback, payload }) {
   try {
@@ -34,6 +29,11 @@ function* deleteSurvey({ callback, payload }) {
     // Inform reducers that the request failed
     yield put(actions.deleteSurveyFailure(error));
   }
+}
+
+// Actions watcher
+function* watcher() {
+  yield takeLatest(actions.SURVEY_DELETE, deleteSurvey);
 }
 
 // Combine Sagas

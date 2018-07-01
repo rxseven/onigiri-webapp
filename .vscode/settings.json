@@ -1,24 +1,40 @@
 {
+  // Stylelint
+  // Prevent both the editor’s stylesheet built-in linters and Stylelint
+  // from reporting essentially the same errors.
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
   // Prettier
-  // Format a file on save. A formatter must be available, the file must not be auto-saved, and editor must not be shutting down.
+  // Format a file on save.
   "editor.formatOnSave": true,
 
+  // File associations to languages
+  "files.associations": {
+    ".babelrc": "json",
+    ".eslintrc": "json",
+    ".lintstagedrc": "json",
+    ".prettierrc": "json",
+    ".stylelintrc": "json"
+  },
+
   // Flow
-  // Flow works best when installed per-project with explicit versioning rather than globally.
-  // Use Flow from local NPM dependency.
+  // Run Flow from local Node modules.
   "flow.useNPMPackagedFlow": true,
 
   // Prettier
-  // Disable the default JavaScript formatter (VSCode's built-in) and allows Prettier to handle our code formatting.
-  // Enable/disable default JavaScript formatter.
+  // Disable the default JavaScript formatter (editor’s built-in) and allows
+  // Prettier to handle code formatting.
   "javascript.format.enable": false,
 
-  // ESLint and Flow
-  // Disable all built-in syntax checking and use ESLint and Flow to validate our source code.
-  // Enable/disable JavaScript validation.
+  // Flow and ESLint
+  // Use Flow for static type checking and ESLint for JavaScript linting
+  // rather than built-in JavaScript & TypeScript validation.
   "javascript.validate.enable": false,
 
-  // Prettier and ESLint
-  // Use prettier-eslint instead of prettier. Other settings will only be fallbacks in case they could not be inferred from ESLint rules.
+  // Prettier
+  // Use prettier-eslint instead of prettier. Other settings will only be
+  // fallbacks in case they could not be inferred from ESLint rules.
   "prettier.eslintIntegration": true
 }

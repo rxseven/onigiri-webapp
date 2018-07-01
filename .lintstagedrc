@@ -1,0 +1,16 @@
+{
+  "src/**/*.{js,jsx}": [
+    "yarn test:staged",
+    "yarn lint:script:fix",
+    "yarn type:check:focus",
+    "git add"
+  ],
+  "src/**/*.scss": [
+    "yarn lint:stylesheet",
+    "git add"
+  ],
+  "src/**/*.{js,json,jsx,scss}": [
+    "yarn format",
+    "git add"
+  ]
+}

@@ -7,15 +7,6 @@ import * as actions from './actions';
 // Services
 import * as surveysService from '../../../../../../services/surveys';
 
-// Actions watcher
-function* watcher() {
-  yield all([
-    takeLatest(actions.RECIPIENTS_GET, getRecipients),
-    takeLatest(actions.SURVEY_GET, getSurvey),
-    takeLatest(actions.SURVEY_UPDATE, updateSurvey)
-  ]);
-}
-
 // Get recipients
 function* getRecipients({ payload }) {
   try {
@@ -62,6 +53,15 @@ function* updateSurvey({ payload: { id, values } }) {
     // Inform reducers that the request failed
     yield put(actions.updateSurveyFailure(error));
   }
+}
+
+// Actions watcher
+function* watcher() {
+  yield all([
+    takeLatest(actions.RECIPIENTS_GET, getRecipients),
+    takeLatest(actions.SURVEY_GET, getSurvey),
+    takeLatest(actions.SURVEY_UPDATE, updateSurvey)
+  ]);
 }
 
 // Module exports
