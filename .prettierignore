@@ -1,3 +1,4 @@
-config/webpack.config.dev.js
-config/webpack.config.prod.js
+/config
+/scripts
 package.json
+README.md
