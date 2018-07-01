@@ -14,7 +14,7 @@
     "url": "https://github.com/rxseven/onigiri-webapp.git"
   },
   "private": true,
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "build": "node scripts/build.js",
     "flow": "flow",
