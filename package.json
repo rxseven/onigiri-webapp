@@ -17,6 +17,7 @@
   "main": "index.jsx",
   "scripts": {
     "build": "node scripts/build.js",
+    "format": "prettier-eslint --write src/**/*.{js,json,jsx,scss}",
     "lint:script": "eslint src/**/*.{js,jsx}",
     "lint:script:fix": "eslint --fix src/**/*.{js,jsx}",
     "lint:stylesheet": "stylelint \"src/**/*.scss\"",
