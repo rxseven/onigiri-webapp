@@ -1,4 +1,11 @@
 {
+  // Stylelint
+  // Prevent both the editor’s stylesheet built-in linters and Stylelint
+  // from reporting essentially the same errors.
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
   // Prettier
   // Format a file on save. A formatter must be available, the file must not be auto-saved, and editor must not be shutting down.
   "editor.formatOnSave": true,
