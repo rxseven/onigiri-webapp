@@ -23,6 +23,7 @@
     "lint:stylesheet": "stylelint \"src/**/*.scss\"",
     "precommit": "lint-staged",
     "start": "node scripts/start.js",
+    "start:https": "HTTPS=true yarn start",
     "test": "node scripts/test.js --env=jsdom --config jest.config.json",
     "test:coverage": "npm test -- --coverage --no-cache",
     "test:staged": "cross-env CI=true node scripts/test.js --env=jsdom --config jest.config.json --findRelatedTests",
