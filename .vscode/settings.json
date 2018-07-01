@@ -19,8 +19,7 @@
   },
 
   // Flow
-  // Flow works best when installed per-project with explicit versioning rather than globally.
-  // Use Flow from local NPM dependency.
+  // Run Flow from local Node modules.
   "flow.useNPMPackagedFlow": true,
 
   // Prettier
@@ -28,9 +27,9 @@
   // Enable/disable default JavaScript formatter.
   "javascript.format.enable": false,
 
-  // ESLint and Flow
-  // Disable all built-in syntax checking and use ESLint and Flow to validate our source code.
-  // Enable/disable JavaScript validation.
+  // Flow and ESLint
+  // Use Flow for static type checking and ESLint for JavaScript linting
+  // rather than built-in JavaScript & TypeScript validation.
   "javascript.validate.enable": false,
 
   // Prettier and ESLint
