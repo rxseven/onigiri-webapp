@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "name": "Debug JavaScript",
+      "request": "launch",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      },
+      "type": "chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceRoot}/src"
+    }
+  ],
+  "version": "0.2.0"
+}
