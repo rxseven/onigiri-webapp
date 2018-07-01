@@ -15,6 +15,7 @@
     ".babelrc": "json",
     ".eslintrc": "json",
     ".lintstagedrc": "json",
+    ".prettierrc": "json",
     ".stylelintrc": "json"
   },
 
