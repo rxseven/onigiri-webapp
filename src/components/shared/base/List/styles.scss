@@ -10,6 +10,10 @@
   &.block {
     margin-bottom: 0.875rem;
 
+    &.end {
+      margin-bottom: 0;
+    }
+
     .label,
     .content {
       display: block;

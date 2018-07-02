@@ -103,7 +103,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        v="1.0.0-alpha.4"
+                        v="1.0.0-alpha.5"
                       >
                         Web application
                       </ListLink>
@@ -276,7 +276,7 @@ const Overview = () => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-webapp/releases"
-                          v="1.0.0-alpha.4"
+                          v="1.0.0-alpha.5"
                         >
                           Web application
                         </ListLink>
@@ -300,7 +300,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        tag="June 29, 2018"
+                        tag="July 2, 2018"
                       >
                         Web application
                       </ListLink>
@@ -333,7 +333,7 @@ const Overview = () => (
                     <li>
                       OAuth 2.0{' '}
                       <Text options="text-secondary">
-                        (via 3<sup>rd</sup> party services, Facebook &amp; Google)
+                        (via third-party services, Facebook &amp; Google)
                       </Text>
                     </li>
                     <li>Sign out</li>
@@ -362,9 +362,7 @@ const Overview = () => (
                     <li>View credits</li>
                     <li>
                       Add credits, checkout, pay by credit card{' '}
-                      <Text options="text-secondary">
-                        (via 3<sup>rd</sup> party service, Stripe)
-                      </Text>
+                      <Text options="text-secondary">(via third-party service, Stripe)</Text>
                     </li>
                   </ul>
                 </ListContent>
@@ -401,9 +399,7 @@ const Overview = () => (
                   <ul className="list-end">
                     <li>
                       Send survey emails{' '}
-                      <Text options="text-secondary">
-                        (via 3<sup>rd</sup> party service, SendGrid)
-                      </Text>
+                      <Text options="text-secondary">(via third-party service, SendGrid)</Text>
                     </li>
                     <li>
                       Collect response data <Text options="text-secondary">(via webhook)</Text>

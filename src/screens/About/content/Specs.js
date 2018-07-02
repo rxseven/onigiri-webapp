@@ -18,10 +18,7 @@ import styles from '../styles.scss';
 const Technical = () => (
   <Fragment>
     <div>
-      <p>
-        Below is the list of technology stack and third party services I use to build and run this
-        project.
-      </p>
+      <p>Below is the list of technology stack and services I use to build and run this project.</p>
     </div>
 
     <Tabs className="pills">
@@ -121,14 +118,12 @@ const Technical = () => (
           </CardBody>
         </Card>
 
-        <Card end>
-          <CardHeader>
-            3<sup>rd</sup> party services
-          </CardHeader>
+        <Card>
+          <CardHeader>Third-party services</CardHeader>
           <CardBody>
             <List>
               <ListItem>
-                <ListLabel>Cloud-based email service</ListLabel>
+                <ListLabel>Cloud-based email</ListLabel>
                 <ListContent>
                   <ListLink to="https://sendgrid.com">
                     <span className={styles.sendgrid} />
@@ -162,7 +157,7 @@ const Technical = () => (
                       <span className={styles.content}>Sandbox</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Service</span>
+                      <span className={styles.label}>Services</span>
                       <span className={styles.content}>Checkout</span>
                     </li>
                   </ul>
@@ -172,7 +167,7 @@ const Technical = () => (
               <hr />
 
               <ListItem>
-                <ListLabel>Social Networking Platform</ListLabel>
+                <ListLabel>Social networking platform</ListLabel>
                 <ListContent>
                   <ListLink to="https://developers.facebook.com/products/account-creation">
                     <span className={styles.facebook} />
@@ -184,7 +179,7 @@ const Technical = () => (
                       <span className={styles.content}>Free</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Service</span>
+                      <span className={styles.label}>Services</span>
                       <span className={styles.content}>Facebook Login</span>
                     </li>
                   </ul>
@@ -193,10 +188,10 @@ const Technical = () => (
 
               <hr />
 
-              <ListItem end>
-                <ListLabel>Cloud computing, Hosting services &amp; APIs</ListLabel>
+              <ListItem>
+                <ListLabel>Cloud computing, Hosting, and APIs</ListLabel>
                 <ListContent>
-                  <ListLink to="https://cloud.google.com/">
+                  <ListLink to="https://cloud.google.com">
                     <span className={styles.google} />
                     Google Cloud Platform
                   </ListLink>
@@ -206,8 +201,79 @@ const Technical = () => (
                       <span className={styles.content}>Free</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Service</span>
+                      <span className={styles.label}>Services</span>
                       <span className={styles.content}>OAuth client ID</span>
+                    </li>
+                  </ul>
+                </ListContent>
+              </ListItem>
+            </List>
+          </CardBody>
+        </Card>
+
+        <Card end>
+          <CardHeader>Authoring services</CardHeader>
+          <CardBody>
+            <List>
+              <ListItem>
+                <ListLabel>Web-based hosting service for version control using Git</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com">
+                    <span className={styles.github} />
+                    GitHub
+                  </ListLink>
+                  <ul className={styles.specs}>
+                    <li>
+                      <span className={styles.label}>Plan</span>
+                      <span className={styles.content}>Free</span>
+                    </li>
+                    <li>
+                      <span className={styles.label}>Services</span>
+                      <span className={styles.content}>Version control, deployment</span>
+                    </li>
+                  </ul>
+                </ListContent>
+              </ListItem>
+
+              <hr />
+
+              <ListItem>
+                <ListLabel>Continuous integration</ListLabel>
+                <ListContent>
+                  <ListLink to="https://travis-ci.org">
+                    <span className={styles.travis} />
+                    Travis CI
+                  </ListLink>
+                  <ul className={styles.specs}>
+                    <li>
+                      <span className={styles.label}>Plan</span>
+                      <span className={styles.content}>Open source</span>
+                    </li>
+                    <li>
+                      <span className={styles.label}>Services</span>
+                      <span className={styles.content}>CI &amp; CD</span>
+                    </li>
+                  </ul>
+                </ListContent>
+              </ListItem>
+
+              <hr />
+
+              <ListItem end>
+                <ListLabel>Test coverage history and statistics</ListLabel>
+                <ListContent>
+                  <ListLink to="https://coveralls.io">
+                    <span className={styles.coveralls} />
+                    Coveralls
+                  </ListLink>
+                  <ul className={styles.specs}>
+                    <li>
+                      <span className={styles.label}>Plan</span>
+                      <span className={styles.content}>Open source</span>
+                    </li>
+                    <li>
+                      <span className={styles.label}>Services</span>
+                      <span className={styles.content}>Test coverage history and statistics</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -439,9 +505,7 @@ const Technical = () => (
 
             <hr />
 
-            <CardSubtitle>
-              3<sup>rd</sup> party services and libraries for React
-            </CardSubtitle>
+            <CardSubtitle>Third-party services and libraries for React</CardSubtitle>
             <List>
               <ListItem>
                 <ListLabel>Easily inject checkout.js as a React component</ListLabel>
@@ -491,6 +555,12 @@ const Technical = () => (
                 <ListLabel>JavaScript utility library</ListLabel>
                 <ListContent>
                   <ListLink to="https://lodash.com">Lodash</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>A practical functional library for JavaScript programmers</ListLabel>
+                <ListContent>
+                  <ListLink to="https://ramdajs.com">Ramda</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -712,9 +782,7 @@ const Technical = () => (
 
             <hr />
 
-            <CardSubtitle>
-              3<sup>rd</sup> party libraries for Node.js
-            </CardSubtitle>
+            <CardSubtitle>Third-party libraries for Node.js</CardSubtitle>
             <List>
               <ListItem>
                 <ListLabel>SendGrid Node.js library</ListLabel>
