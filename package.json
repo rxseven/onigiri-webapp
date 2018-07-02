@@ -3,9 +3,9 @@
   "description": "React and Redux web application for collecting and organizing surveys",
   "version": "1.0.0-alpha",
   "homepage": "https://onigiri-webapp.herokuapp.com",
-  "license": "CC BY-NC-ND 4.0",
+  "license": "AGPL-3.0-or-later",
   "author": {
-    "name": "Theerawat Pongpawat",
+    "name": "Theerawat Pongsupawat",
     "email": "rxseven.com@gmail.com",
     "url": "http://www.rxseven.com"
   },
@@ -14,7 +14,27 @@
     "url": "https://github.com/rxseven/onigiri-webapp.git"
   },
   "private": true,
-  "main": "index.js",
+  "main": "index.jsx",
+  "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "build": "node scripts/build.js",
+    "format": "prettier-eslint --write src/**/*.{js,json,jsx,scss}",
+    "lint:script": "eslint src/**/*.{js,jsx}",
+    "lint:script:fix": "eslint --fix src/**/*.{js,jsx}",
+    "lint:stylesheet": "stylelint \"src/**/*.scss\"",
+    "precommit": "lint-staged",
+    "start": "node scripts/start.js",
+    "start:https": "HTTPS=true yarn start",
+    "test": "node scripts/test.js --env=jsdom --config jest.config.json",
+    "test:coverage": "npm test -- --coverage --no-cache",
+    "test:coverage:ci": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
+    "test:staged": "cross-env CI=true node scripts/test.js --env=jsdom --config jest.config.json --findRelatedTests",
+    "type": "flow",
+    "type:check": "flow check",
+    "type:check:focus": "flow focus-check",
+    "type:install": "flow-typed install"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "better-react-spinkit": "^2.0.4",
@@ -25,7 +45,6 @@
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
     "fs-extra": "3.0.1",
-    "jest": "20.0.4",
     "lodash": "^4.17.5",
     "object-assign": "4.1.1",
     "open-iconic": "^1.1.1",
@@ -64,59 +83,22 @@
     "redux-form": "^7.3.0",
     "redux-saga": "^0.16.0",
     "reselect": "^3.0.1",
+    "source-map-explorer": "^1.5.0",
     "whatwg-fetch": "2.0.3"
-  },
-  "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "flow": "flow",
-    "test": "node scripts/test.js --env=jsdom"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "mjs",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
   },
   "devDependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
-    "babel-eslint": "7.2.3",
+    "babel-eslint": "8.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.2",
     "babel-plugin-jsx-control-statements": "^3.2.8",
+    "babel-plugin-react-css-modules": "^3.4.2",
     "babel-preset-react-app": "^3.1.1",
     "babel-runtime": "6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "coveralls": "^3.0.2",
+    "cross-env": "^5.2.0",
     "css-loader": "0.28.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -133,14 +115,26 @@
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "flow-bin": "^0.70.0",
+    "flow-typed": "^2.4.0",
     "html-webpack-plugin": "2.29.0",
+    "husky": "^0.14.3",
+    "jest": "20.0.4",
     "jest-enzyme": "^6.0.0",
+    "lint-staged": "^7.2.0",
     "node-sass": "^4.7.2",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
+    "postcss-scss": "^1.0.6",
     "prettier-eslint": "^8.8.1",
+    "prettier-eslint-cli": "^4.7.1",
+    "react-test-renderer": "^16.4.1",
+    "redux-mock-store": "^1.5.3",
     "sass-loader": "^6.0.7",
     "style-loader": "0.19.0",
+    "stylelint": "^9.3.0",
+    "stylelint-config-css-modules": "^1.3.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-scss": "^3.1.3",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",

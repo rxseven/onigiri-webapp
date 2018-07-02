@@ -1,4 +1,16 @@
 {
-  "plugins": ["jsx-control-statements"],
+  "plugins": [
+    "jsx-control-statements",
+    [
+      "react-css-modules",
+      {
+        "filetypes": {
+          ".scss": {
+            "syntax": "postcss-scss"
+          }
+        }
+      }
+    ]
+  ],
   "presets": ["react-app"]
 }

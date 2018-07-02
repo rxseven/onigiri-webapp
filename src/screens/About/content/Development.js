@@ -13,6 +13,7 @@ import {
   ListLabel,
   ListLink
 } from '../../../components/shared/base/List';
+import Text from '../../../components/shared/base/Text';
 
 // Constants
 import CSS from '../../../constants/string/css';
@@ -22,9 +23,9 @@ const Development = () => (
   <Fragment>
     <div>
       <p>
-        Below is the list of web authoring and debugging tools, third party services, and testing
-        workflow I use on a daily basis to build this project. I can’t include everything, but here
-        are a couple of my favorites and other widely used ones.
+        Below is the list of my development workflow and tools I use on a daily basis to build this
+        project. I can’t include everything, but here are a couple of my favorites and other widely
+        used ones.
       </p>
     </div>
 
@@ -128,8 +129,14 @@ const Development = () => (
             <List>
               <ListItem>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/mac-mini/">Mac mini</ListLink>,{' '}
-                  <ListLink to="https://www.apple.com/macbook-pro/">MacBook Pro</ListLink>
+                  <ListGroup>
+                    <ListGroupItem>
+                      <ListLink to="https://www.apple.com/mac-mini/">Mac mini</ListLink>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListLink to="https://www.apple.com/macbook-pro/">MacBook Pro</ListLink>
+                    </ListGroupItem>
+                  </ListGroup>
                 </ListContent>
               </ListItem>
             </List>
@@ -188,8 +195,18 @@ const Development = () => (
                       </ListLink>
                     </li>
                     <li>
+                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss">
+                        SCSS IntelliSense
+                      </ListLink>
+                    </li>
+                    <li>
                       <ListLink to="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">
                         ESLint
+                      </ListLink>
+                    </li>
+                    <li>
+                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=shinnn.stylelint">
+                        Stylelint
                       </ListLink>
                     </li>
                     <li>
@@ -208,8 +225,18 @@ const Development = () => (
                       </ListLink>
                     </li>
                     <li>
+                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome">
+                        Debugger for Chrome
+                      </ListLink>
+                    </li>
+                    <li>
                       <ListLink to="https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv">
                         DotENV
+                      </ListLink>
+                    </li>
+                    <li>
+                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script">
+                        npm
                       </ListLink>
                     </li>
                   </ul>
@@ -252,7 +279,20 @@ const Development = () => (
               <ListItem>
                 <ListLabel>GUI for Git</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.sourcetreeapp.com">Sourcetree</ListLink>
+                  <ListGroup>
+                    <ListGroupItem>
+                      <ListLink to="https://www.git-tower.com">Tower</ListLink>{' '}
+                      <Text options="text-secondary" small>
+                        (primary)
+                      </Text>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListLink to="https://www.sourcetreeapp.com">Sourcetree</ListLink>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListLink to="https://desktop.github.com">GitHub Desktop</ListLink>
+                    </ListGroupItem>
+                  </ListGroup>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -277,29 +317,7 @@ const Development = () => (
 
             <hr />
 
-            <CardSubtitle>
-              3<sup>rd</sup> party service’s tools
-            </CardSubtitle>
-            <List>
-              <ListItem>
-                <ListLabel>CLI for managing Heroku apps</ListLabel>
-                <ListContent>
-                  <ListLink to="https://devcenter.heroku.com/articles/heroku-cli">
-                    Heroku CLI
-                  </ListLink>
-                </ListContent>
-              </ListItem>
-              <ListItem>
-                <ListLabel>Plugin for Heroku CLI that can manipulate the repo</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/heroku/heroku-repo">Heroku Repo plugin</ListLink>
-                </ListContent>
-              </ListItem>
-            </List>
-
-            <hr />
-
-            <CardSubtitle>Workflow</CardSubtitle>
+            <CardSubtitle>Build tool &amp; Starter kit</CardSubtitle>
             <List>
               <ListItem>
                 <ListLabel>React build tool &amp; Development server</ListLabel>
@@ -310,11 +328,29 @@ const Development = () => (
                 </ListContent>
               </ListItem>
               <ListItem>
-                <ListLabel>React & Redux boilerplate with best practices</ListLabel>
+                <ListLabel>React & Redux starter kit with best practices</ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com/rxseven/setup-react-app">
                     Setup React App
                   </ListLink>
+                </ListContent>
+              </ListItem>
+            </List>
+
+            <hr />
+
+            <CardSubtitle>Development tools</CardSubtitle>
+            <List>
+              <ListItem>
+                <ListLabel>JavaScript module bundler</ListLabel>
+                <ListContent>
+                  <ListLink to="https://webpack.js.org">Webpack</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>JavaScript compiler</ListLabel>
+                <ListContent>
+                  <ListLink to="https://babeljs.io">Babel</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -326,9 +362,28 @@ const Development = () => (
                 </ListContent>
               </ListItem>
               <ListItem>
+                <ListLabel>Git hooks</ListLabel>
+                <ListContent>
+                  <ListGroup>
+                    <ListGroupItem>
+                      <ListLink to="https://github.com/typicode/husky">Husky</ListLink>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListLink to="https://github.com/okonet/lint-staged">Lint-staged</ListLink>
+                    </ListGroupItem>
+                  </ListGroup>
+                </ListContent>
+              </ListItem>
+              <ListItem>
                 <ListLabel>Node.js bindings to libSass</ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com/sass/node-sass">node-sass</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>A tool for transforming CSS with JavaScript</ListLabel>
+                <ListContent>
+                  <ListLink to="https://postcss.org">PostCSS</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -350,6 +405,12 @@ const Development = () => (
                 </ListContent>
               </ListItem>
               <ListItem>
+                <ListLabel>Linting utility for stylesheet</ListLabel>
+                <ListContent>
+                  <ListLink to="https://stylelint.io">Stylelint</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
                 <ListLabel>Static type checker for JavaScript</ListLabel>
                 <ListContent>
                   <ListLink to="https://flow.org">Flow</ListLink>
@@ -362,76 +423,30 @@ const Development = () => (
                 </ListContent>
               </ListItem>
               <ListItem>
-                <ListLabel>Formats JavaScript using Prettier followed by ESLint</ListLabel>
+                <ListLabel>Cross platform setting of environment scripts</ListLabel>
                 <ListContent>
-                  <ListLink to="https://github.com/prettier/prettier-eslint">
-                    prettier-eslint
-                  </ListLink>
+                  <ListLink to="https://github.com/kentcdodds/cross-env">cross-env</ListLink>
                 </ListContent>
               </ListItem>
-            </List>
-
-            <hr />
-
-            <CardSubtitle>Plugins &amp; Presets</CardSubtitle>
-            <List>
-              <ListItem>
-                <ListLabel>Babel plugin that extends JSX to add basic control statements</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/AlexGilleran/jsx-control-statements">
-                    JSX Control Statements
-                  </ListLink>
-                </ListContent>
-              </ListItem>
-            </List>
-
-            <hr />
-
-            <CardSubtitle>Rules &amp; Configurations</CardSubtitle>
-            <List>
-              <ListItem>
-                <ListLabel>ESLint’s rules for Node.js</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/mysticatea/eslint-plugin-node">
-                    eslint-plugin-node
-                  </ListLink>
-                </ListContent>
-              </ListItem>
-              <ListItem>
-                <ListLabel>Airbnb’s ESLint as an extensible shared config</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/airbnb/javascript">
-                    eslint-config-airbnb
-                  </ListLink>
-                </ListContent>
-              </ListItem>
-              <ListItem>
-                <ListLabel>JSX control statements specific linting rules for ESLint</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/vkbansal/eslint-plugin-jsx-control-statements">
-                    eslint-plugin-jsx-control-statements
-                  </ListLink>
-                </ListContent>
-              </ListItem>
-            </List>
-
-            <hr />
-
-            <CardSubtitle>Utilities</CardSubtitle>
-            <List>
               <ListItem>
                 <ListLabel>Runtime type checking for React props</ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com/facebook/prop-types">PropTypes</ListLink>
                 </ListContent>
               </ListItem>
+              <ListItem>
+                <ListLabel>Bash script to manage multiple active Node.js versions</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/creationix/nvm">nvm</ListLink>
+                </ListContent>
+              </ListItem>
               <ListItem end>
                 <ListLabel>
-                  A utility for React PropTypes, will error on any prop not explicitly specified
+                  A tool for analyzing and debuging JavaScript (or Sass or LESS)
                 </ListLabel>
                 <ListContent>
-                  <ListLink to="https://github.com/airbnb/prop-types-exact">
-                    prop-types-exact
+                  <ListLink to="https://github.com/danvk/source-map-explorer">
+                    Source Map Explorer
                   </ListLink>
                 </ListContent>
               </ListItem>
@@ -440,9 +455,7 @@ const Development = () => (
         </Card>
 
         <Card end>
-          <CardHeader>
-            3<sup>rd</sup> party services
-          </CardHeader>
+          <CardHeader>Third-party services</CardHeader>
           <CardBody>
             <CardSubtitle>Hosting &amp; Distributing services</CardSubtitle>
             <List>
@@ -458,16 +471,28 @@ const Development = () => (
                   <ListLink to="https://www.heroku.com">Heroku</ListLink>
                 </ListContent>
               </ListItem>
-              <ListItem>
+              <ListItem end>
                 <ListLabel>Database as a service for MongoDB</ListLabel>
                 <ListContent>
                   <ListLink to="https://mlab.com">mLab</ListLink>
                 </ListContent>
               </ListItem>
+            </List>
+
+            <hr />
+
+            <CardSubtitle>Continuous Integration services</CardSubtitle>
+            <List>
               <ListItem>
-                <ListLabel>Continuous Integration (CI) service</ListLabel>
+                <ListLabel>CI &amp; CD services</ListLabel>
                 <ListContent>
                   <ListLink to="https://travis-ci.org">Travis CI</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem end>
+                <ListLabel>Test coverage history &amp; statistics services</ListLabel>
+                <ListContent>
+                  <ListLink to="https://coveralls.io">Coveralls</ListLink>
                 </ListContent>
               </ListItem>
             </List>
@@ -506,6 +531,32 @@ const Development = () => (
                 <ListLabel>Cloud computing, Hosting services &amp; APIs</ListLabel>
                 <ListContent>
                   <ListLink to="https://cloud.google.com/">Google Cloud Platform</ListLink>
+                </ListContent>
+              </ListItem>
+            </List>
+
+            <hr />
+
+            <CardSubtitle>Tools</CardSubtitle>
+            <List>
+              <ListItem>
+                <ListLabel>CLI for managing Heroku apps</ListLabel>
+                <ListContent>
+                  <ListLink to="https://devcenter.heroku.com/articles/heroku-cli">
+                    Heroku CLI
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>Plugin for Heroku CLI that can manipulate the repo</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/heroku/heroku-repo">Heroku Repo plugin</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem end>
+                <ListLabel>Coveralls.io support for Node.js</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/nickmerwin/node-coveralls">Coveralls</ListLink>
                 </ListContent>
               </ListItem>
             </List>
@@ -551,6 +602,24 @@ const Development = () => (
                 <ListContent>
                   <ListLink to="https://github.com/jest-community/eslint-plugin-jest">
                     eslint-plugin-jest package
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>Test Renderer</ListLabel>
+                <ListContent>
+                  <ListLink to="https://reactjs.org/docs/test-renderer.html">
+                    react-test-renderer
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem end>
+                <ListLabel>
+                  A mock store for testing Redux async action creators and middleware
+                </ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/dmitry-zaets/redux-mock-store">
+                    redux-mock-store
                   </ListLink>
                 </ListContent>
               </ListItem>
@@ -682,9 +751,18 @@ const Development = () => (
               <ListItem end>
                 <ListLabel>Tablet</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4">
-                    iPad mini 3
-                  </ListLink>
+                  <ListGroup>
+                    <ListGroupItem>
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4">
+                        iPad 9.7-inch (2018)
+                      </ListLink>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4">
+                        iPad mini 3
+                      </ListLink>
+                    </ListGroupItem>
+                  </ListGroup>
                 </ListContent>
               </ListItem>
             </List>

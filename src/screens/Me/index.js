@@ -33,9 +33,9 @@ const Me = () => (
           <CardHeader>Summary</CardHeader>
           <CardBody>
             <CardText>
-              Hello, I’m a detail-oriented frontend developer proficient in HTML, SCSS, and
-              JavaScript (especially React and Redux) using valid, well-formatted, and semantic
-              coding approaches.
+              Hello, I’m a detail-oriented frontend developer from Thailand, proficient in HTML,
+              SCSS, and JavaScript (especially React and Redux) using valid, well-formatted, and
+              semantic coding approaches.
             </CardText>
             <hr />
             <CardText options="text-secondary text-small">
@@ -72,6 +72,9 @@ const Me = () => (
                     </Text>, English{' '}
                     <Text options="text-secondary" small>
                       (good)
+                    </Text>, Japanese{' '}
+                    <Text options="text-secondary" small>
+                      (basic)
                     </Text>
                   </Text>
                 </ListContent>
@@ -104,6 +107,12 @@ const Me = () => (
                 <ListLabel>Email</ListLabel>
                 <ListContent>
                   <a href="mailto:t.pongsupawat@gmail.com">t.pongsupawat@gmail.com</a>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>Personal website</ListLabel>
+                <ListContent>
+                  <ListLink to="http://www.rxseven.com">www.rxseven.com</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -157,6 +166,12 @@ const Me = () => (
                     <li>Coding standards and quality</li>
                     <li>Development workflow</li>
                   </ul>
+                  <ListLabel>Development practices</ListLabel>
+                  <ul>
+                    <li>Testing</li>
+                    <li>Continuous integration (CI)</li>
+                    <li>Continuous deployment (CD)</li>
+                  </ul>
                   <ListLabel>Management</ListLabel>
                   <ul className="list-end">
                     <li>Git branching and merging</li>
@@ -177,7 +192,7 @@ const Me = () => (
                 <ListLabel>2018 - Present</ListLabel>
                 <ListContent>
                   <Text block bold>
-                    Web application development
+                    Frontend web development
                   </Text>
                   <Text block>Independent contractor</Text>
                   <Text block>React &amp; Redux</Text>
@@ -248,9 +263,9 @@ const Me = () => (
                   <Text block bold>
                     Overseas projects, remote jobs
                   </Text>
-                  <Text block>
-                    Singapore, South Korea, San Jose &amp; San Francisco, California, USA
-                  </Text>
+                  <Text block>Singapore</Text>
+                  <Text block>Incheon &amp; Seoul, South Korea</Text>
+                  <Text block>San Jose &amp; San Francisco, California, USA</Text>
                 </ListContent>
               </ListItem>
               <ListItem end>
@@ -259,7 +274,7 @@ const Me = () => (
                   <Text block bold>
                     Employee exchange programs
                   </Text>
-                  <Text block>Stuttgart, Germany</Text>
+                  <Text block>Frankfurt &amp; Stuttgart, Germany</Text>
                 </ListContent>
               </ListItem>
             </List>

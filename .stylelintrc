@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "stylelint-config-recommended-scss",
+    "stylelint-config-css-modules"
+  ],
+  "rules": {
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": ["each", "extend", "function", "if", "include", "mixin"]
+    }],
+    "no-descending-specificity": null
+  }
+}

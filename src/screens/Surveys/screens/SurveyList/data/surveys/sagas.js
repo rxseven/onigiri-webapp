@@ -7,14 +7,6 @@ import * as actions from './actions';
 // Services
 import * as surveysService from '../../../../../../services/surveys';
 
-// Actions watcher
-function* watcher() {
-  yield all([
-    takeLatest(actions.SURVEYS_CANCEL, cancelSurveys),
-    takeLatest(actions.SURVEYS_GET, getSurveys)
-  ]);
-}
-
 // Cancel getting surveys
 function* cancelSurveys() {
   try {
@@ -45,6 +37,14 @@ function* getSurveys({ callback, payload }) {
     // Inform reducers that the request failed
     yield put(actions.getSurveysFailure(error));
   }
+}
+
+// Actions watcher
+function* watcher() {
+  yield all([
+    takeLatest(actions.SURVEYS_CANCEL, cancelSurveys),
+    takeLatest(actions.SURVEYS_GET, getSurveys)
+  ]);
 }
 
 // Module exports
