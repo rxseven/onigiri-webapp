@@ -22,6 +22,13 @@ $label-width-xs: 25%;
   width: 50px;
 }
 
+.coveralls {
+  background-image: url("./images/logo-coveralls.png");
+  composes: logo;
+  height: 26px;
+  width: 150px;
+}
+
 .express {
   background-image: url("./images/logo-express.png");
   composes: logo;
@@ -33,6 +40,13 @@ $label-width-xs: 25%;
   background-image: url("./images/logo-facebook.png");
   composes: logo;
   height: 31px;
+  width: 150px;
+}
+
+.github {
+  background-image: url("./images/logo-github.png");
+  composes: logo;
+  height: 40px;
   width: 150px;
 }
 
@@ -95,6 +109,13 @@ $label-width-xs: 25%;
   background-image: url("./images/logo-stripe.png");
   composes: logo;
   height: 63px;
+  width: 150px;
+}
+
+.travis {
+  background-image: url("./images/logo-travis.png");
+  composes: logo;
+  height: 47px;
   width: 150px;
 }
 
