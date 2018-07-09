@@ -27,7 +27,6 @@ const SignUp = Loadable(() => import('../screens/Users/screens/SignUp'));
 const Welcome = Loadable(() => import('../screens/Users/screens/Welcome'));
 
 const About = Loadable(() => import('../screens/About'));
-const Me = Loadable(() => import('../screens/Me'));
 const Privacy = Loadable(() => import('../screens/Policy/Privacy'));
 const Terms = Loadable(() => import('../screens/Terms'));
 const NotFound = Loadable(() => import('../screens/NotFound'));
@@ -54,7 +53,6 @@ const Routes = () => (
     <ReferralRoute component={Welcome} path={PATHS.users.welcome} />
 
     <Route component={About} path={PATHS.static.about} />
-    <Route component={Me} path={PATHS.static.me} />
     <Route component={Privacy} path={PATHS.static.privacy} />
     <Route component={Terms} path={PATHS.static.terms} />
     <Route component={NotFound} />
