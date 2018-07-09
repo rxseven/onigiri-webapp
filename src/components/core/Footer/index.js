@@ -45,7 +45,10 @@ const Footer = () => (
               <ExLink to="https://redux.js.org">Redux</ExLink>.
             </p>
             <p>
-              Copyright © 2018 <ExLink to="http://www.rxseven.com">Theerawat Pongsupawat</ExLink>.
+              <ExLink to="https://github.com/rxseven/onigiri-webapp/blob/master/LICENSE">
+                Copyright © 2018
+              </ExLink>{' '}
+              <ExLink to="http://www.rxseven.com">Theerawat Pongsupawat</ExLink>.
             </p>
           </div>
         </Column>
