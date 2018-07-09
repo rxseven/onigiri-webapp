@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/rxseven/onigiri-webapp.svg?branch=master)](https://travis-ci.org/rxseven/onigiri-webapp) [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
-A single page application built with React and Redux.
+React & Redux web application for collecting and organizing surveys.
 
 With **Onigiri**, you can create and analyze surveys right in your pocket or web browser —no special software required. You get results as they come in and, you can summarize survey results at a glance with graphs.
 
@@ -52,7 +52,7 @@ Onigiri is hosted on Heroku at [https://onigiri-webapp.herokuapp.com](https://on
 git clone https://github.com/rxseven/onigiri-webapp.git
 ```
 
-**2.** Switch to specified Node version:
+**2.** Switch to a specified Node version:
 
 ```sh
 nvm use

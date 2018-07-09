@@ -14,6 +14,7 @@ import { getSession } from '../../../data/session/reducers';
 import { getAsync } from '../../../data/interfaces/session/reducers';
 
 import Avatar from '../../shared/base/Avatar';
+import ExLink from '../../shared/base/ExLink';
 import Icon from '../../shared/base/Icon';
 import Text from '../../shared/base/Text';
 
@@ -130,9 +131,12 @@ class UI extends Component {
         </MenuLink>
       </li>
       <li>
-        <MenuLink icon="comment-square" title="Me" to={PATHS.static.me}>
+        <ExLink options="styles.icon" to="http://www.rxseven.com">
+          <span className={styles.icon}>
+            <Icon name="comment-square" title="Me" />
+          </span>
           Me
-        </MenuLink>
+        </ExLink>
       </li>
       <li>
         <MenuLink icon="file" title="Terms" to={PATHS.static.terms}>

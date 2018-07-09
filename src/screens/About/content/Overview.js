@@ -1,7 +1,6 @@
 // Dependencies
 import cx from 'classnames';
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import {
@@ -27,7 +26,6 @@ import Text from '../../../components/shared/base/Text';
 
 // Constants
 import CSS from '../../../constants/string/css';
-import PATHS from '../../../constants/router/paths';
 
 // Component
 const Overview = () => (
@@ -65,8 +63,9 @@ const Overview = () => (
                     built with React, Redux, Node.js, Express, Passport, and MongoDB.
                   </CardText>
                   <CardText>
-                    It is maintained by <Link to={PATHS.static.me}>Theerawat Pongsupawat</Link>,
-                    frontend developer from{' '}
+                    It is maintained by{' '}
+                    <ExLink to="http://www.rxseven.com">Theerawat Pongsupawat</ExLink>, frontend
+                    developer from{' '}
                     <ExLink flat to="https://en.wikipedia.org/wiki/Chiang_Mai">
                       Chiang Mai, Thailand
                     </ExLink>.
@@ -103,7 +102,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        v="1.0.0-alpha.5"
+                        v="1.0.0-alpha.6"
                       >
                         Web application
                       </ListLink>
@@ -111,7 +110,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-api/releases"
-                        v="1.0.0-alpha.4"
+                        v="1.0.0-alpha.5"
                       >
                         RESTful API
                       </ListLink>
@@ -276,7 +275,7 @@ const Overview = () => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-webapp/releases"
-                          v="1.0.0-alpha.5"
+                          v="1.0.0-alpha.6"
                         >
                           Web application
                         </ListLink>
@@ -284,7 +283,7 @@ const Overview = () => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-api/releases"
-                          v="1.0.0-alpha.4"
+                          v="1.0.0-alpha.5"
                         >
                           RESTful API
                         </ListLink>
@@ -300,7 +299,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        tag="July 2, 2018"
+                        tag="July 9, 2018"
                       >
                         Web application
                       </ListLink>
@@ -308,7 +307,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-api/releases"
-                        tag="June 29, 2018"
+                        tag="July 2, 2018"
                       >
                         RESTful API
                       </ListLink>
