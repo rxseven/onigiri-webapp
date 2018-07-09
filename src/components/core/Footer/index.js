@@ -29,7 +29,7 @@ const Footer = () => (
               <FooterLink to={PATHS.static.about}>About</FooterLink>
             </li>
             <li>
-              <FooterLink to={PATHS.static.me}>Me</FooterLink>
+              <ExLink to="http://www.rxseven.com">Me</ExLink>
             </li>
             <li>
               <FooterLink to={PATHS.static.terms}>Terms</FooterLink>
@@ -45,8 +45,7 @@ const Footer = () => (
               <ExLink to="https://redux.js.org">Redux</ExLink>.
             </p>
             <p>
-              Copyright © 2018{' '}
-              <ExLink to="https://www.linkedin.com/in/pongsupawat/">Theerawat Pongsupawat</ExLink>.
+              Copyright © 2018 <ExLink to="http://www.rxseven.com">Theerawat Pongsupawat</ExLink>.
             </p>
           </div>
         </Column>
