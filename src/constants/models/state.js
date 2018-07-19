@@ -1,5 +1,14 @@
+// Module dependencies
+import { fromJS } from 'immutable';
+
 // State models
 export default {
+  immutable: {
+    screen: fromJS({
+      data: {},
+      ui: {}
+    })
+  },
   model: {
     asynchronous: {
       error: null,
