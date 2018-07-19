@@ -33,3 +33,8 @@ export const fromJSOrdered = (js) => {
     .map(fromJSOrdered)
     .toOrderedMap();
 };
+
+// Generate state for a container component
+export const generateState = handler => ({
+  state: handler
+});
