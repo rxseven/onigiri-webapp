@@ -1,5 +1,5 @@
 // Module dependencies
-import { fromJS } from 'immutable';
+import { fromJS, Seq } from 'immutable';
 
 // Constants
 import { ERROR, LOADING } from '../constants/types/asynchronous';
@@ -8,7 +8,6 @@ import { ERROR, LOADING } from '../constants/types/asynchronous';
 import STATE_MODELS from '../constants/models/state';
 
 // Set asynchronous status
-// eslint-disable-next-line
 export const setAsync = (selector, state, type = undefined, payload = null) => {
   switch (type) {
     case LOADING:
@@ -18,4 +17,19 @@ export const setAsync = (selector, state, type = undefined, payload = null) => {
     default:
       return state.setIn(selector, fromJS(STATE_MODELS.model.asynchronous));
   }
+};
+
+// Convert plain JavaScript objects into Immutable.OrderedMap
+// https://github.com/facebook/immutable-js/wiki/Converting-from-JS-objects
+export const fromJSOrdered = (js) => {
+  if (typeof js !== 'object' || js === null) {
+    return js;
+  } else if (Array.isArray(js)) {
+    return Seq(js)
+      .map(fromJSOrdered)
+      .toList();
+  }
+  return Seq(js)
+    .map(fromJSOrdered)
+    .toOrderedMap();
 };
