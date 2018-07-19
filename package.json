@@ -45,6 +45,7 @@
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
     "fs-extra": "3.0.1",
+    "immutable": "4.0.0-rc.9",
     "lodash": "^4.17.5",
     "object-assign": "4.1.1",
     "open-iconic": "^1.1.1",
