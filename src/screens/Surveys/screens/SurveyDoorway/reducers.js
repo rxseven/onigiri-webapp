@@ -1,6 +1,6 @@
 // Module dependencies
 import { createSelector } from 'reselect';
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 
 // Actions
 import { LANDING_GET, LANDING_GET_FAILURE, LANDING_GET_SUCCESS } from './data/landing/actions';
