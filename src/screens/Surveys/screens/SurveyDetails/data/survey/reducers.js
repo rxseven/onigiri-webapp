@@ -1,4 +1,5 @@
 // Module dependencies
+import { mapKeys } from 'lodash';
 import { createSelector } from 'reselect';
 
 // Actions
@@ -18,19 +19,20 @@ import {
 } from './actions';
 
 // Initial state
-const initialState = null;
+const initialState = {};
 
 // Reducer
 export default (state = initialState, action) => {
-  const { payload, type } = action;
-
-  switch (type) {
+  switch (action.type) {
     // Get recipients
     case RECIPIENTS_GET:
     case RECIPIENTS_GET_FAILURE:
       return state;
     case RECIPIENTS_GET_SUCCESS:
-      return state.set('recipients', payload);
+      return {
+        ...state,
+        recipients: mapKeys(action.payload.recipients, '_id')
+      };
 
     // Delete survey
     case SURVEY_DELETE:
@@ -44,16 +46,22 @@ export default (state = initialState, action) => {
     case SURVEY_GET_FAILURE:
       return state;
     case SURVEY_GET_SUCCESS:
-      return payload;
+      return {
+        ...state,
+        ...action.payload
+      };
 
     // Update survey
     case SURVEY_UPDATE:
     case SURVEY_UPDATE_FAILURE:
       return state;
     case SURVEY_UPDATE_SUCCESS:
-      return state.merge(payload);
+      return {
+        ...state,
+        ...action.payload
+      };
 
-    // Reset state
+    // Clean up data
     case SURVEY_RESET_DATA:
     case USER_RESET:
       return initialState;
@@ -65,7 +73,7 @@ export default (state = initialState, action) => {
 };
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'surveys', 'details', 'data']);
+const getNode = state => state.screens.surveys.details.data;
 
-// Get survey state
-export const getSurvey = createSelector(getNode, node => node.get('survey'));
+// Get survey
+export const getSurvey = createSelector(getNode, node => node.survey);
