@@ -1,11 +1,14 @@
 // Module dependencies
+import { fromJS } from 'immutable';
+import { mapKeys } from 'lodash';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
+
+// Helper functions and services
+import { fromJSOrdered, getError } from '../../../../../../helpers/data';
+import * as surveysService from '../../../../../../services/surveys';
 
 // Action types and action creators
 import * as actions from './actions';
-
-// Services
-import * as surveysService from '../../../../../../services/surveys';
 
 // Cancel getting surveys
 function* cancelSurveys() {
@@ -17,7 +20,7 @@ function* cancelSurveys() {
     yield put(actions.cancelSurveysSuccess());
   } catch (error) {
     // Inform reducers that the request failed
-    yield put(actions.cancelSurveysFailure(error));
+    yield put(actions.cancelSurveysFailure());
   }
 }
 
@@ -28,14 +31,23 @@ function* getSurveys({ callback, payload }) {
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getSurveys, payload.query);
 
+    // Normalize data and convert plain JavaScript into Immutable object
+    const immutableData = fromJSOrdered({
+      ...data,
+      data: mapKeys(data.data, '_id')
+    });
+
     // Inform reducers that the request finished successfully
-    yield put(actions.getSurveysSuccess(data));
+    yield put(actions.getSurveysSuccess(immutableData));
 
     // Execute a callback
     callback();
   } catch (error) {
+    // Convert plain JavaScript into Immutable object
+    const immutableData = fromJS(getError(error));
+
     // Inform reducers that the request failed
-    yield put(actions.getSurveysFailure(error));
+    yield put(actions.getSurveysFailure(immutableData));
   }
 }
 
