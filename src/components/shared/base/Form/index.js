@@ -3,7 +3,7 @@ import { map } from 'lodash';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Field } from 'redux-form';
+import { Field } from 'redux-form/immutable';
 
 import { Button, ButtonSet } from '../../base/Buttons';
 import Spinner from '../../base/Spinner';
