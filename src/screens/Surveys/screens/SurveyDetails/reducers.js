@@ -1,6 +1,11 @@
 // Module dependencies
-import { createSelector } from 'reselect';
+import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
+import { createSelector } from 'reselect';
+
+import STATE_MODELS from '../../../../constants/models/state';
+import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
+import { setAsync } from '../../../../helpers/data';
 
 // Actions
 import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../actions';
@@ -20,144 +25,72 @@ import {
 import data from './data/reducers';
 
 // Constants
-import STATE_MODELS from '../../../../constants/models/state';
+const asyncModel = { ...STATE_MODELS.model.asynchronous };
 
 // Initial state
-const initialState = {
-  get: {
-    recipients: { ...STATE_MODELS.model.asynchronous },
-    survey: { ...STATE_MODELS.model.asynchronous }
+const initialState = fromJS({
+  delete: {
+    survey: asyncModel
   },
-  delete: { survey: { ...STATE_MODELS.model.asynchronous } },
+  get: {
+    recipients: asyncModel,
+    survey: asyncModel
+  },
   patch: {
-    survey: { ...STATE_MODELS.model.asynchronous }
+    survey: asyncModel
+  }
+});
+
+// Immutable map
+const map = {
+  delete: {
+    survey: ['delete', 'survey']
+  },
+  get: {
+    recipients: ['get', 'recipients'],
+    survey: ['get', 'survey']
+  },
+  patch: {
+    survey: ['patch', 'survey']
   }
 };
 
 // Asynchronous reducer
 const asynchronous = (state = initialState, action) => {
-  switch (action.type) {
+  const { payload, type } = action;
+
+  switch (type) {
     // Get recipients
     case RECIPIENTS_GET:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          recipients: {
-            ...initialState.get.recipients,
-            loading: true
-          }
-        }
-      };
+      return setAsync(map.get.recipients, state, LOADING);
     case RECIPIENTS_GET_FAILURE:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          recipients: {
-            ...initialState.get.recipients,
-            error: action.payload
-          }
-        }
-      };
+      return setAsync(map.get.recipients, state, ERROR, payload);
     case RECIPIENTS_GET_SUCCESS:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          recipients: initialState.get.recipients
-        }
-      };
-
-    // Get survey
-    case SURVEY_GET:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          survey: {
-            ...initialState.get.survey,
-            loading: true
-          }
-        }
-      };
-    case SURVEY_GET_FAILURE:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          survey: {
-            ...initialState.get.survey,
-            error: action.payload
-          }
-        }
-      };
-    case SURVEY_GET_SUCCESS:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          survey: initialState.get.survey
-        }
-      };
+      return setAsync(map.get.recipients, state);
 
     // Delete survey
     case SURVEY_DELETE:
-      return {
-        ...state,
-        delete: {
-          survey: {
-            ...initialState.delete.survey,
-            loading: true
-          }
-        }
-      };
+      return setAsync(map.delete.survey, state, LOADING);
     case SURVEY_DELETE_FAILURE:
-      return {
-        ...state,
-        delete: {
-          survey: {
-            ...initialState.delete.survey,
-            error: action.payload
-          }
-        }
-      };
+      return setAsync(map.delete.survey, state, ERROR, payload);
     case SURVEY_DELETE_SUCCESS:
-      return {
-        ...state,
-        delete: {
-          survey: initialState.delete.survey
-        }
-      };
+      return setAsync(map.delete.survey, state);
+
+    // Get survey
+    case SURVEY_GET:
+      return setAsync(map.get.survey, state, LOADING);
+    case SURVEY_GET_FAILURE:
+      return setAsync(map.get.survey, state, ERROR, payload);
+    case SURVEY_GET_SUCCESS:
+      return setAsync(map.get.survey, state);
 
     // Update survey
     case SURVEY_UPDATE:
-      return {
-        ...state,
-        patch: {
-          survey: {
-            ...initialState.patch.survey,
-            loading: true
-          }
-        }
-      };
+      return setAsync(map.patch.survey, state, LOADING);
     case SURVEY_UPDATE_FAILURE:
-      return {
-        ...state,
-        patch: {
-          survey: {
-            ...initialState.patch.survey,
-            error: action.payload
-          }
-        }
-      };
+      return setAsync(map.patch.survey, state, ERROR, payload);
     case SURVEY_UPDATE_SUCCESS:
-      return {
-        ...state,
-        patch: {
-          survey: initialState.patch.survey
-        }
-      };
+      return setAsync(map.patch.survey, state);
 
     // Default
     default:
@@ -175,10 +108,10 @@ export default combineReducers({
 });
 
 // Non-memoized utility selectors
-const getNode = state => state.screens.surveys.details;
+const getNode = state => state.getIn(['screens', 'surveys', 'details']);
 
 // Get UI state
-export const getUI = createSelector(getNode, node => node.ui);
+export const getUI = createSelector(getNode, node => node.get('ui'));
 
 // Get asynchronous state
-export const getAsync = createSelector(getNode, node => node.ui.asynchronous);
+export const getAsync = createSelector(getNode, node => node.getIn(['ui', 'asynchronous']));
