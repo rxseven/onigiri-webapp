@@ -1,52 +1,53 @@
 // Module dependencies
+import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 import { combineReducers } from 'redux-immutable';
 
+import STATE_MODELS from '../../../../constants/models/state';
+import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
+import { setAsync } from '../../../../helpers/data';
+
 // Actions
-import { LANDING_GET, LANDING_GET_FAILURE, LANDING_GET_SUCCESS } from './data/landing/actions';
+import {
+  LANDING_GET,
+  LANDING_GET_FAILURE,
+  LANDING_GET_SUCCESS,
+  LANDING_RESET_DATA
+} from './data/landing/actions';
 
 // Reducers
 import data from './data/reducers';
 
-// Constants
-import STATE_MODELS from '../../../../constants/models/state';
-
 // Initial state
-const initialState = {
-  get: { landing: { ...STATE_MODELS.model.asynchronous } }
+const initialState = fromJS({
+  get: {
+    landing: { ...STATE_MODELS.model.asynchronous }
+  }
+});
+
+// Immutable map
+const map = {
+  get: {
+    landing: ['get', 'landing']
+  }
 };
 
 // Asynchronous reducer
 const asynchronous = (state = initialState, action) => {
-  switch (action.type) {
+  const { payload, type } = action;
+
+  switch (type) {
     // Get landing page URI
     case LANDING_GET:
-      return {
-        ...state,
-        get: {
-          landing: {
-            ...initialState.get.landing,
-            loading: true
-          }
-        }
-      };
+      return setAsync(map.get.landing, state, LOADING);
     case LANDING_GET_FAILURE:
-      return {
-        ...state,
-        get: {
-          landing: {
-            ...initialState.get.landing,
-            error: action.payload
-          }
-        }
-      };
+      return setAsync(map.get.landing, state, ERROR, payload);
     case LANDING_GET_SUCCESS:
-      return {
-        ...state,
-        get: {
-          landing: initialState.get.landing
-        }
-      };
+      return setAsync(map.get.landing, state);
+
+    // Reset state
+    case LANDING_RESET_DATA:
+      return initialState;
 
     // Default
     default:
@@ -64,10 +65,10 @@ export default combineReducers({
 });
 
 // Non-memoized utility selectors
-const getNode = state => state.screens.surveys.doorway;
+const getNode = state => state.getIn(['screens', 'surveys', 'doorway']);
 
 // Get UI state
-export const getUI = createSelector(getNode, node => node.ui);
+export const getUI = createSelector(getNode, node => node.get('ui'));
 
 // Get asynchronous state
-export const getAsync = createSelector(getNode, node => node.ui.asynchronous);
+export const getAsync = createSelector(getNode, node => node.getIn(['ui', 'asynchronous']));
