@@ -1,6 +1,6 @@
 // Module dependencies
 import { createSelector } from 'reselect';
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 
 // Actions
 import { CHECKOUT, CHECKOUT_FAILURE, CHECKOUT_SUCCESS } from '../../credits/actions';
