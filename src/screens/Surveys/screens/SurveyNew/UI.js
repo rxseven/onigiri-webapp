@@ -1,7 +1,7 @@
 // Module dependencies
 import cx from 'classnames';
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form/immutable';
 
 import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
 import { FormHL } from '../../../../components/shared/base/Form';

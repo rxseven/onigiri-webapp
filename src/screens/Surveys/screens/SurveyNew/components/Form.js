@@ -4,8 +4,10 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form/immutable';
 
+import { generateState } from '../../../../../helpers/data';
+import toJS from '../../../../../HOCs/toJS';
 import { Button } from '../../../../../components/shared/base/Buttons';
 import { Card, CardBody, CardHeader, CardText } from '../../../../../components/shared/base/Card';
 import { Form, FormSHL } from '../../../../../components/shared/base/Form';
@@ -19,6 +21,7 @@ import { getModal } from '../../../../../data/interfaces/modal/reducers';
 import validationHelper from '../../../../../helpers/validation';
 
 // Constants
+import STATE_MODELS from '../../../../../constants/models/state';
 import PATHS from '../../../../../constants/router/paths';
 
 // Peer dependencies
@@ -137,37 +140,37 @@ const validate = (values) => {
   const errors = {};
 
   // Validate survey title
-  if (values.title) {
-    errors.title = validationHelper.name(values.title);
+  if (values.get('title')) {
+    errors.title = validationHelper.name(values.get('title'));
   }
 
   // Validate sender name
-  if (values.sender) {
-    errors.sender = validationHelper.name(values.sender);
+  if (values.get('sender')) {
+    errors.sender = validationHelper.name(values.get('sender'));
   }
 
   // Validate sender email
-  errors.from = validationHelper.email(values.from);
+  errors.from = validationHelper.email(values.get('from'));
 
   // Validate subject line
-  if (values.subject) {
-    errors.subject = validationHelper.name(values.subject);
+  if (values.get('subject')) {
+    errors.subject = validationHelper.name(values.get('subject'));
   }
 
   // Validate body
-  if (values.body) {
-    errors.body = validationHelper.name(values.body);
+  if (values.get('body')) {
+    errors.body = validationHelper.name(values.get('body'));
   }
 
   // Validate recipient emails
-  errors.recipients = validationHelper.emails(values.recipients);
+  errors.recipients = validationHelper.emails(values.get('recipients'));
 
   // Validate landing page
-  errors.landing = validationHelper.url(values.landing);
+  errors.landing = validationHelper.url(values.get('landing'));
 
   // Iterates over elements of collection and validate value for each element
   each(FIELDS, ({ name, required }) => {
-    if (required && !values[name]) {
+    if (required && !values.get(name)) {
       errors[name] = 'You must provide a value';
     }
   });
@@ -181,12 +184,12 @@ const warn = (values) => {
   const warnings = {};
 
   // From field
-  if (!values.from) {
+  if (!values.get('from')) {
     warnings.from = 'Leaving it blank the default email will be applied';
   }
 
   // Landing page field
-  if (!values.landing) {
+  if (!values.get('landing')) {
     warnings.landing = 'Leaving it blank the default URL will be applied';
   }
 
@@ -194,16 +197,10 @@ const warn = (values) => {
 };
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    data: {
-      balance: getBalance(state),
-      interfaces: {
-        modal: getModal(state)
-      }
-    }
-  }
-});
+const mapStateToProps = state =>
+  generateState(STATE_MODELS.immutable
+    .setIn(['data', 'balance'], getBalance(state))
+    .setIn(['data', 'interfaces', 'modal'], getModal(state)));
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
@@ -214,7 +211,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connect component to application state
-const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(SurveyForm));
+const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(SurveyForm)));
 
 // Configure Redux Form
 export default reduxForm({
