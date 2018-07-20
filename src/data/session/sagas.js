@@ -62,7 +62,10 @@ function* oauthFacebook({ callback, payload }) {
   try {
     // Sign in a user
     // Retrieve data in a response and transform to an appropriate format
-    const { data: { token, user } } = yield call(usersService.oauthFacebook, payload.accessToken);
+    const { data: { token, user }, status } = yield call(
+      usersService.oauthFacebook,
+      payload.accessToken
+    );
 
     // Normalize data and convert plain JavaScript into Immutable object
     const immutableData = fromJS(user);
@@ -74,7 +77,7 @@ function* oauthFacebook({ callback, payload }) {
     tokenHelper.save(token);
 
     // Execute a callback
-    callback();
+    callback(status);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
     const immutableData = fromJS(getError(error));
@@ -89,7 +92,10 @@ function* oauthGoogle({ callback, payload }) {
   try {
     // Sign in a user
     // Retrieve data in a response and transform to an appropriate format
-    const { data: { token, user } } = yield call(usersService.oauthGoogle, payload.accessToken);
+    const { data: { token, user }, status } = yield call(
+      usersService.oauthGoogle,
+      payload.accessToken
+    );
 
     // Normalize data and convert plain JavaScript into Immutable object
     const immutableData = fromJS(user);
@@ -101,7 +107,7 @@ function* oauthGoogle({ callback, payload }) {
     tokenHelper.save(token);
 
     // Execute a callback
-    callback();
+    callback(status);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
     const immutableData = fromJS(getError(error));
