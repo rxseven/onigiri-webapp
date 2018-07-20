@@ -151,6 +151,14 @@ class UI extends Component {
           Privacy
         </MenuLink>
       </li>
+      <li>
+        <ExLink options="styles.icon" to="https://github.com/rxseven/onigiri-webapp">
+          <span className={styles.icon}>
+            <Icon name="fork" title="GitHub" />
+          </span>
+          View on GitHub
+        </ExLink>
+      </li>
     </ul>
   );
 
