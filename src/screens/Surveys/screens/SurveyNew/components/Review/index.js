@@ -67,6 +67,7 @@ class SurveyReview extends Component {
       });
     });
   };
+
   // Render fields
   renderField = () =>
     // Create Field array of values
