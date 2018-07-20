@@ -38,3 +38,6 @@ export const fromJSOrdered = (js) => {
 export const generateState = handler => ({
   state: handler
 });
+
+// Extract error message from a network response
+export const getError = error => error.response.data.error;
