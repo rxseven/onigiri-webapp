@@ -18,7 +18,7 @@ export const checkout = (token, callback) => ({
 
 // Checkout : Failure
 export const checkoutFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: CHECKOUT_FAILURE
 });
 
@@ -35,7 +35,7 @@ export const getCredits = () => ({
 
 // Get credits : Failure
 export const getCreditsFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: CREDITS_GET_FAILURE
 });
 
