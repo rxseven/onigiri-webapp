@@ -1,43 +1,37 @@
 // Module dependencies
+import { fromJS } from 'immutable';
+import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
-import { combineReducers } from 'redux';
+
+import STATE_MODELS from '../../../constants/models/state';
+import { ERROR, LOADING } from '../../../constants/types/asynchronous';
+import { setAsync } from '../../../helpers/data';
 
 // Actions
-import { SIGNOUT, SIGNOUT_FAILURE, SIGNOUT_SUCCESS } from '../../session/actions';
-
-// Constants
-import STATE_MODELS from '../../../constants/models/state';
+import { SIGNOUT, SIGNOUT_FAILURE, SIGNOUT_SUCCESS } from '../../../data/session/actions';
 
 // Initial state
-const initialState = {
-  signout: {
-    ...STATE_MODELS.model.asynchronous
-  }
+const initialState = fromJS({
+  signout: { ...STATE_MODELS.model.asynchronous }
+});
+
+// Immutable map
+const map = {
+  signout: ['signout']
 };
 
 // Asynchronous reducer
 const asynchronous = (state = initialState, action) => {
-  switch (action.type) {
+  const { payload, type } = action;
+
+  switch (type) {
+    // Sign-out
     case SIGNOUT:
-      return {
-        ...state,
-        signout: {
-          ...initialState.signout,
-          loading: true
-        }
-      };
+      return setAsync(map.signout, state, LOADING);
     case SIGNOUT_FAILURE:
-      return {
-        ...state,
-        signout: {
-          ...initialState.signout,
-          error: action.payload
-        }
-      };
+      return setAsync(map.signout, state, ERROR, payload);
     case SIGNOUT_SUCCESS:
-      return {
-        ...initialState
-      };
+      return initialState;
 
     // Default
     default:
@@ -49,10 +43,10 @@ const asynchronous = (state = initialState, action) => {
 export default combineReducers({ asynchronous });
 
 // Non-memoized utility selectors
-const getNode = state => state.data.interfaces;
+const getNode = state => state.getIn(['data', 'interfaces']);
 
 // Get session state
-export const getSession = createSelector(getNode, node => node.session);
+export const getSession = createSelector(getNode, node => node.get('session'));
 
 // Get asynchronous state
-export const getAsync = createSelector(getNode, node => node.session.asynchronous);
+export const getAsync = createSelector(getNode, node => node.getIn(['session', 'asynchronous']));

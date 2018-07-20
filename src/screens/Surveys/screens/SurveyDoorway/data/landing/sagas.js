@@ -1,11 +1,13 @@
 // Module dependencies
+import { fromJS } from 'immutable';
 import { call, put, takeLatest } from 'redux-saga/effects';
+
+// Helper functions and services
+import { getError } from '../../../../../../helpers/data';
+import * as surveysService from '../../../../../../services/surveys';
 
 // Action types and action creators
 import * as actions from './actions';
-
-// Services
-import * as surveysService from '../../../../../../services/surveys';
 
 // Get landing page URI
 function* getLanding({ payload }) {
@@ -14,11 +16,17 @@ function* getLanding({ payload }) {
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getLanding, payload.id);
 
+    // Normalize data and convert plain JavaScript into Immutable object
+    const immutableData = fromJS(data);
+
     // Inform reducers that the request finished successfully
-    yield put(actions.getLandingSuccess(data));
+    yield put(actions.getLandingSuccess(immutableData));
   } catch (error) {
+    // Convert plain JavaScript into Immutable object
+    const immutableData = fromJS(getError(error));
+
     // Inform reducers that the request failed
-    yield put(actions.getLandingFailure(error));
+    yield put(actions.getLandingFailure(immutableData));
   }
 }
 

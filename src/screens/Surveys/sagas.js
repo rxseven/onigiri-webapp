@@ -1,11 +1,13 @@
 // Module dependencies
+import { fromJS } from 'immutable';
 import { call, put, takeLatest } from 'redux-saga/effects';
+
+// Helper functions and services
+import { getError } from '../../helpers/data';
+import * as surveysService from '../../services/surveys';
 
 // Action types and action creators
 import * as actions from './actions';
-
-// Services
-import * as surveysService from '../../services/surveys';
 
 // Sagas
 import surveyDetails from './screens/SurveyDetails/data/survey/sagas';
@@ -20,14 +22,20 @@ function* deleteSurvey({ callback, payload }) {
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.deleteSurvey, payload.id);
 
+    // Normalize data and convert plain JavaScript into Immutable object
+    const immutableData = fromJS(data.id);
+
     // Inform reducers that the request finished successfully
-    yield put(actions.deleteSurveySuccess(data));
+    yield put(actions.deleteSurveySuccess(immutableData));
 
     // Execute a callback
     callback(data.id);
   } catch (error) {
+    // Convert plain JavaScript into Immutable object
+    const immutableData = fromJS(getError(error));
+
     // Inform reducers that the request failed
-    yield put(actions.deleteSurveyFailure(error));
+    yield put(actions.deleteSurveyFailure(immutableData));
   }
 }
 

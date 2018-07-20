@@ -4,8 +4,10 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form/immutable';
 
+import { generateState } from '../../../../../helpers/data';
+import toJS from '../../../../../HOCs/toJS';
 import { signIn } from '../../../../../data/session/actions';
 import { resetUI } from '../actions';
 import { getUI } from '../reducers';
@@ -15,6 +17,7 @@ import { Form } from '../../../../../components/shared/base/Form';
 import validationHelper from '../../../../../helpers/validation';
 
 // Constants
+import STATE_MODELS from '../../../../../constants/models/state';
 import PATHS from '../../../../../constants/router/paths';
 
 // Peer dependencies
@@ -62,11 +65,11 @@ const validate = (values) => {
   const errors = {};
 
   // Validate email
-  errors.email = validationHelper.email(values.email);
+  errors.email = validationHelper.email(values.get('email'));
 
   // Iterates over elements of collection and validate value for each element
   each(FIELDS, ({ name }) => {
-    if (!values[name]) {
+    if (!values.get(name)) {
       errors[name] = 'You must provide a value';
     }
   });
@@ -75,11 +78,7 @@ const validate = (values) => {
 };
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    ui: getUI(state)
-  }
-});
+const mapStateToProps = state => generateState(STATE_MODELS.immutable.setIn(['ui'], getUI(state)));
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
@@ -89,7 +88,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connect component to application state
-const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(SignInForm));
+const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(SignInForm)));
 
 // Configure Redux Form
 export default reduxForm({ form: 'signin', validate })(container);

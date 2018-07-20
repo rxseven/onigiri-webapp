@@ -10,7 +10,7 @@ export const getProfile = () => ({
 
 // Get user profile : Failure
 export const getProfileFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: PROFILE_GET_FAILURE
 });
 

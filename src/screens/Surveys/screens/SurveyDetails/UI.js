@@ -112,7 +112,8 @@ class UI extends Component {
   // Remove survey item from its list
   onRemoveItem = () => {
     // Variables
-    const { state: { data: { survey } }, location: { state } } = this.props;
+    const { state: { data }, location: { state } } = this.props;
+    const survey = data.survey ? data.survey : {};
     const { mode } = state || { mode: false };
     const isActive = Object.prototype.hasOwnProperty.call(survey, mode);
     const isArchived = survey.archived;

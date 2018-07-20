@@ -1,5 +1,5 @@
 // Module dependencies
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 
 // Reducers
 import details from './screens/SurveyDetails/reducers';

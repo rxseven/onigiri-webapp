@@ -1,43 +1,42 @@
 // Module dependencies
+import { fromJS } from 'immutable';
+import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
-import { combineReducers } from 'redux';
+
+import STATE_MODELS from '../../../constants/models/state';
+import { ERROR, LOADING } from '../../../constants/types/asynchronous';
+import { setAsync } from '../../../helpers/data';
 
 // Actions
-import { CHECKOUT, CHECKOUT_FAILURE, CHECKOUT_SUCCESS } from '../../credits/actions';
-
-// Constants
-import STATE_MODELS from '../../../constants/models/state';
+import { USER_RESET } from '../../../data/session/actions';
+import { CHECKOUT, CHECKOUT_FAILURE, CHECKOUT_SUCCESS } from '../../../data/credits/actions';
 
 // Initial state
-const initialState = {
+const initialState = fromJS({
   post: { ...STATE_MODELS.model.asynchronous }
+});
+
+// Immutable map
+const map = {
+  post: ['post']
 };
 
 // Asynchronous reducer
 const asynchronous = (state = initialState, action) => {
-  switch (action.type) {
+  const { payload, type } = action;
+
+  switch (type) {
     // Checkout
     case CHECKOUT:
-      return {
-        ...state,
-        post: {
-          ...initialState.post,
-          loading: true
-        }
-      };
+      return setAsync(map.post, state, LOADING);
     case CHECKOUT_FAILURE:
-      return {
-        ...state,
-        post: {
-          ...initialState.post,
-          error: action.payload
-        }
-      };
+      return setAsync(map.post, state, ERROR, payload);
     case CHECKOUT_SUCCESS:
-      return {
-        ...state,
-        ...initialState
-      };
+      return initialState;
+
+    // Reset state
+    case USER_RESET:
+      return initialState;
 
     // Default
     default:
@@ -52,10 +51,10 @@ const ui = combineReducers({ asynchronous });
 export default combineReducers({ ui });
 
 // Non-memoized utility selectors
-const getNode = state => state.data.features.payments;
+const getNode = state => state.getIn(['data', 'features', 'payments']);
 
 // Get UI state
-export const getUI = createSelector(getNode, node => node.ui);
+export const getUI = createSelector(getNode, node => node.get('ui'));
 
 // Get asynchronous state
-export const getAsync = createSelector(getNode, node => node.ui.asynchronous);
+export const getAsync = createSelector(getNode, node => node.getIn(['ui', 'asynchronous']));

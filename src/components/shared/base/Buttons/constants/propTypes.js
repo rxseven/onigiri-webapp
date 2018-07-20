@@ -35,7 +35,7 @@ export default exact({
   },
   set: {
     children: PropTypes.node.isRequired,
-    options: PropTypes.string
+    options: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
   },
   toolbar: {
     alignItem: PropTypes.string,

@@ -13,7 +13,7 @@ export const getLanding = id => ({
 
 // Get landing page URI : Failure
 export const getLandingFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: LANDING_GET_FAILURE
 });
 

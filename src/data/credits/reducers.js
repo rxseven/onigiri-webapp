@@ -1,4 +1,5 @@
 // Module dependencies
+import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
 // Actions
@@ -14,41 +15,39 @@ import {
 } from './actions';
 
 // Initial state
-const initialState = {
+const initialState = Map({
   balance: null,
   lastCheckout: null
-};
-
-// Data model
-const dataModel = data => ({
-  balance: data.balance,
-  lastCheckout: data.lastCheckout
 });
+
+// Set credits
+const setCredits = (state, payload) =>
+  state.set('balance', payload.get('balance')).set('lastCheckout', payload.get('lastCheckout'));
 
 // Reducer
 export default (state = initialState, action) => {
-  switch (action.type) {
-    // Checkout and get credits
+  const { payload, type } = action;
+
+  switch (type) {
+    // Checkout
     case CHECKOUT:
     case CHECKOUT_FAILURE:
+      return state;
+    case CHECKOUT_SUCCESS:
+      return setCredits(state, payload);
+
+    // Get credits
     case CREDITS_GET:
     case CREDITS_GET_FAILURE:
       return state;
-    case CHECKOUT_SUCCESS:
     case CREDITS_GET_SUCCESS:
-      return {
-        ...state,
-        ...dataModel(action.payload)
-      };
+      return setCredits(state, payload);
 
     // Update credits
     case CREDITS_UPDATE:
-      return {
-        ...state,
-        balance: action.payload.balance
-      };
+      return state.set('balance', payload.get('balance'));
 
-    // Clean up data
+    // Reset state
     case USER_RESET:
       return initialState;
 
@@ -59,10 +58,10 @@ export default (state = initialState, action) => {
 };
 
 // Non-memoized utility selectors
-const getNode = state => state.data;
+const getNode = state => state.get('data');
 
-// Get credits selector
-export const getCredits = createSelector(getNode, node => node.credits);
+// Get credits state
+export const getCredits = createSelector(getNode, node => node.get('credits'));
 
-// Get balance selector
-export const getBalance = createSelector(getNode, node => node.credits.balance);
+// Get balance state
+export const getBalance = createSelector(getNode, node => node.getIn(['credits', 'balance']));

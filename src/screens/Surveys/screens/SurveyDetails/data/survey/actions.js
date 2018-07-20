@@ -22,7 +22,7 @@ export const getSurvey = (id, callback) => ({
 
 // Get survey : Failure
 export const getSurveyFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: SURVEY_GET_FAILURE
 });
 
@@ -40,7 +40,7 @@ export const getRecipients = id => ({
 
 // Get recipients : Failure
 export const getRecipientsFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: RECIPIENTS_GET_FAILURE
 });
 
@@ -57,7 +57,7 @@ export const resetData = () => ({
 
 // Update survey : Failure
 export const updateSurveyFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: SURVEY_UPDATE_FAILURE
 });
 

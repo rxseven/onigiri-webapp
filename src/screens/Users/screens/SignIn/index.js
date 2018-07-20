@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { generateState } from '../../../../helpers/data';
+import toJS from '../../../../HOCs/toJS';
 import { getSession } from '../../../../data/session/reducers';
 import { getUI } from './reducers';
 
@@ -18,6 +20,7 @@ import Error from '../../../../components/shared/extended/Error';
 import Layout from '../../../Users/components/Layout';
 
 // Constants
+import STATE_MODELS from '../../../../constants/models/state';
 import PATHS from '../../../../constants/router/paths';
 
 // Peer dependencies
@@ -138,17 +141,11 @@ class SignIn extends Component {
 }
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    data: {
-      session: getSession(state)
-    },
-    ui: getUI(state)
-  }
-});
+const mapStateToProps = state =>
+  generateState(STATE_MODELS.immutable.setIn(['data', 'session'], getSession(state)).setIn(['ui'], getUI(state)));
 
 // Connect component to application state
-const container = connect(mapStateToProps)(SignIn);
+const container = connect(mapStateToProps)(toJS(SignIn));
 
 // Module exports
 export default container;

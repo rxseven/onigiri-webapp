@@ -1,7 +1,7 @@
 // Module dependencies
-import { combineReducers } from 'redux';
-import { reducer as form } from 'redux-form';
-import { reducer as burgerMenu } from 'redux-burger-menu';
+import { combineReducers } from 'redux-immutable';
+import { reducer as form } from 'redux-form/immutable';
+import { reducer as burgerMenu } from 'redux-burger-menu/immutable';
 
 // Reducers
 import data from '../data/reducers';

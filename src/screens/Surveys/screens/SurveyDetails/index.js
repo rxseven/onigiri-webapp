@@ -2,9 +2,14 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { generateState } from '../../../../helpers/data';
+import toJS from '../../../../HOCs/toJS';
 import * as modalActions from '../../../../data/interfaces/modal/actions';
 import { getModal } from '../../../../data/interfaces/modal/reducers';
 import * as commonActions from '../../actions';
+
+// Constants
+import STATE_MODELS from '../../../../constants/models/state';
 
 // Peer dependencies
 import * as dataActions from './data/survey/actions';
@@ -13,17 +18,11 @@ import { getUI } from './reducers';
 import UI from './UI';
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    data: {
-      survey: getSurvey(state),
-      interfaces: {
-        modal: getModal(state)
-      }
-    },
-    ui: getUI(state)
-  }
-});
+const mapStateToProps = state =>
+  generateState(STATE_MODELS.immutable
+    .setIn(['data', 'survey'], getSurvey(state))
+    .setIn(['data', 'interfaces', 'modal'], getModal(state))
+    .setIn(['ui'], getUI(state)));
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
@@ -40,7 +39,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connect component to application state
-const container = connect(mapStateToProps, mapDispatchToProps)(UI);
+const container = connect(mapStateToProps, mapDispatchToProps)(toJS(UI));
 
 // Module exports
 export default container;

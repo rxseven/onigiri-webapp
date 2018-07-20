@@ -1,4 +1,5 @@
 // Module dependencies
+import { Map } from 'immutable';
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
@@ -10,8 +11,11 @@ import saga from '../sagas';
 // Initialize middleware
 const sagaMiddleware = createSagaMiddleware();
 
+// Initialize state
+const initialState = Map();
+
 // Store configuration
-const configureStore = (initialState) => {
+const configureStore = () => {
   // Create store
   const store = createStore(
     reducer,

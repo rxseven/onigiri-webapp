@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
+import { generateState } from '../../../../../../helpers/data';
+import toJS from '../../../../../../HOCs/toJS';
 import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
 import { FormSHL } from '../../../../../../components/shared/base/Form';
 import Spinner from '../../../../../../components/shared/base/Spinner';
@@ -65,6 +67,7 @@ class SurveyReview extends Component {
       });
     });
   };
+
   // Render fields
   renderField = () =>
     // Create Field array of values
@@ -127,14 +130,10 @@ class SurveyReview extends Component {
 }
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    data: {
-      form: state.form.survey.values
-    },
-    ui: getUI(state)
-  }
-});
+const mapStateToProps = state =>
+  generateState(STATE_MODELS.immutable
+    .setIn(['data', 'form'], state.getIn(['form', 'survey', 'values']))
+    .setIn(['ui'], getUI(state)));
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
@@ -148,7 +147,7 @@ SurveyReview.propTypes = propTypes;
 SurveyReview.defaultProps = defaultProps;
 
 // Connect component to application state
-const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(SurveyReview));
+const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(SurveyReview)));
 
 // Module exports
 export default container;
