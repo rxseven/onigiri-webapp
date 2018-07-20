@@ -1,6 +1,6 @@
 // Module dependencies
 import { createSelector } from 'reselect';
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 
 // Actions
 import { SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS } from '../../../../data/session/actions';
