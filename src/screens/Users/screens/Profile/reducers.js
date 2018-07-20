@@ -1,6 +1,11 @@
 // Module dependencies
-import { createSelector } from 'reselect';
+import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
+import { createSelector } from 'reselect';
+
+import STATE_MODELS from '../../../../constants/models/state';
+import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
+import { setAsync } from '../../../../helpers/data';
 
 // Actions
 import {
@@ -14,7 +19,8 @@ import {
 import {
   USER_DELETE,
   USER_DELETE_FAILURE,
-  USER_DELETE_SUCCESS
+  USER_DELETE_SUCCESS,
+  USER_RESET
 } from '../../../../data/session/actions';
 import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './data/profile/actions';
 
@@ -22,142 +28,72 @@ import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './data/pr
 import data from './data/reducers';
 
 // Constants
-import STATE_MODELS from '../../../../constants/models/state';
+const asyncModel = { ...STATE_MODELS.model.asynchronous };
 
 // Initial state
-const initialState = {
-  delete: { profile: { ...STATE_MODELS.model.asynchronous } },
+const initialState = fromJS({
+  delete: { profile: asyncModel },
   get: {
-    credits: { ...STATE_MODELS.model.asynchronous },
-    profile: { ...STATE_MODELS.model.asynchronous }
+    credits: asyncModel,
+    profile: asyncModel
   },
-  post: { checkout: { ...STATE_MODELS.model.asynchronous } }
+  post: { checkout: asyncModel }
+});
+
+// Immutable map
+const map = {
+  delete: {
+    profile: ['delete', 'profile']
+  },
+  get: {
+    credits: ['get', 'credits'],
+    profile: ['get', 'profile']
+  },
+  post: {
+    checkout: ['post', 'checkout']
+  }
 };
 
 // Asynchronous reducer
 const asynchronous = (state = initialState, action) => {
-  switch (action.type) {
+  const { payload, type } = action;
+
+  switch (type) {
     // Delete user account
     case USER_DELETE:
-      return {
-        ...state,
-        delete: {
-          profile: {
-            ...initialState.delete.profile,
-            loading: true
-          }
-        }
-      };
+      return setAsync(map.delete.profile, state, LOADING);
     case USER_DELETE_FAILURE:
-      return {
-        ...state,
-        delete: {
-          profile: {
-            ...initialState.delete.profile,
-            error: action.payload
-          }
-        }
-      };
+      return setAsync(map.delete.profile, state, ERROR, payload);
     case USER_DELETE_SUCCESS:
-      return {
-        ...state,
-        delete: {
-          profile: initialState.get.profile
-        }
-      };
+      return setAsync(map.delete.profile, state);
 
     // Get user profile
     case PROFILE_GET:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          profile: {
-            ...initialState.get.profile,
-            loading: true
-          }
-        }
-      };
+      return setAsync(map.get.profile, state, LOADING);
     case PROFILE_GET_FAILURE:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          profile: {
-            ...initialState.get.profile,
-            error: action.payload
-          }
-        }
-      };
+      return setAsync(map.get.profile, state, ERROR, payload);
     case PROFILE_GET_SUCCESS:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          profile: initialState.get.profile
-        }
-      };
+      return setAsync(map.get.profile, state);
 
     // Checkout
     case CHECKOUT:
-      return {
-        ...state,
-        post: {
-          checkout: {
-            ...initialState.post.checkout,
-            loading: true
-          }
-        }
-      };
+      return setAsync(map.post.checkout, state, LOADING);
     case CHECKOUT_FAILURE:
-      return {
-        ...state,
-        post: {
-          checkout: {
-            ...initialState.post.checkout,
-            error: action.payload
-          }
-        }
-      };
+      return setAsync(map.post.checkout, state, ERROR, payload);
     case CHECKOUT_SUCCESS:
-      return {
-        ...state,
-        post: {
-          checkout: initialState.post.checkout
-        }
-      };
+      return setAsync(map.post.checkout, state);
 
     // Get credits
     case CREDITS_GET:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          credits: {
-            ...initialState.get.credits,
-            loading: true
-          }
-        }
-      };
+      return setAsync(map.get.credits, state, LOADING);
     case CREDITS_GET_FAILURE:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          credits: {
-            ...initialState.get.credits,
-            error: action.payload
-          }
-        }
-      };
+      return setAsync(map.get.credits, state, ERROR, payload);
     case CREDITS_GET_SUCCESS:
-      return {
-        ...state,
-        get: {
-          ...state.get,
-          credits: initialState.get.credits
-        }
-      };
+      return setAsync(map.get.credits, state);
+
+    // Reset state
+    case USER_RESET:
+      return initialState;
 
     // Default
     default:
@@ -175,10 +111,10 @@ export default combineReducers({
 });
 
 // Non-memoized utility selectors
-const getNode = state => state.screens.users.profile;
+const getNode = state => state.getIn(['screens', 'users', 'profile']);
 
 // Get UI state
-export const getUI = createSelector(getNode, node => node.ui);
+export const getUI = createSelector(getNode, node => node.get('ui'));
 
 // Get asynchronous state
-export const getAsync = createSelector(getNode, node => node.ui.asynchronous);
+export const getAsync = createSelector(getNode, node => node.getIn(['ui', 'asynchronous']));
