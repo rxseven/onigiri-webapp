@@ -1,11 +1,6 @@
 // Module dependencies
-import { fromJS } from 'immutable';
-import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
-
-import STATE_MODELS from '../../../../constants/models/state';
-import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
-import { setAsync } from '../../../../helpers/data';
+import { combineReducers } from 'redux';
 
 // Actions
 import {
@@ -23,53 +18,58 @@ import {
 } from '../../../../data/session/actions';
 import { SIGNIN_RESET_UI } from './actions';
 
+// Constants
+import STATE_MODELS from '../../../../constants/models/state';
+
 // Initial state
-const initialState = fromJS({
+const initialState = {
   asynchronous: {
     post: { ...STATE_MODELS.model.asynchronous }
   },
   strategy: {
     type: null
   }
-});
-
-// Immutable map
-const map = {
-  asynchronous: {
-    post: ['post']
-  },
-  strategy: {
-    type: 'type'
-  }
 };
 
 // Asynchronous reducer
-const asynchronous = (state = initialState.get('asynchronous'), action) => {
-  const { payload, type } = action;
-
-  switch (type) {
-    // Authentication
+const asynchronous = (state = initialState.asynchronous, action) => {
+  switch (action.type) {
     case OAUTH_FACEBOOK:
     case OAUTH_GOOGLE:
     case OAUTH_REQUEST:
     case SIGNIN:
-      return setAsync(map.asynchronous.post, state, LOADING);
-
+      return {
+        ...state,
+        post: {
+          ...initialState.asynchronous.post,
+          loading: true
+        }
+      };
     case OAUTH_FAILURE:
-      return setAsync(map.asynchronous.post, state, ERROR);
+      return {
+        ...state,
+        post: {
+          ...initialState.asynchronous.post,
+          loading: false
+        }
+      };
     case OAUTH_FACEBOOK_FAILURE:
     case OAUTH_GOOGLE_FAILURE:
     case SIGNIN_FAILURE:
-      return setAsync(map.asynchronous.post, state, ERROR, payload);
-
+      return {
+        ...state,
+        post: {
+          ...initialState.asynchronous.post,
+          error: action.payload
+        }
+      };
     case OAUTH_FACEBOOK_SUCCESS:
     case OAUTH_GOOGLE_SUCCESS:
     case SIGNIN_SUCCESS:
-      return setAsync(map.asynchronous.post, state);
-
-    // Reset state
     case SIGNIN_RESET_UI:
-      return initialState.get('asynchronous');
+      return {
+        ...initialState.asynchronous
+      };
 
     // Default
     default:
@@ -78,19 +78,22 @@ const asynchronous = (state = initialState.get('asynchronous'), action) => {
 };
 
 // Strategy reducer
-const strategy = (state = initialState.get('strategy'), action) => {
-  const { type } = action;
-
-  switch (type) {
-    // Authentication
+const strategy = (state = initialState.strategy, action) => {
+  switch (action.type) {
     case SIGNIN:
-      return state.set(map.strategy.type, 'local');
+      return {
+        ...state,
+        type: 'local'
+      };
     case OAUTH_REQUEST:
-      return state.set(map.strategy.type, 'oauth');
-
-    // Reset state
+      return {
+        ...state,
+        type: 'oauth'
+      };
     case SIGNIN_RESET_UI:
-      return initialState.get('strategy');
+      return {
+        ...initialState.strategy
+      };
 
     // Default
     default:
@@ -108,10 +111,10 @@ const ui = combineReducers({
 export default combineReducers({ ui });
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'users', 'signin']);
+const getNode = state => state.screens.users.signin;
 
 // Get UI state
-export const getUI = createSelector(getNode, node => node.get('ui'));
+export const getUI = createSelector(getNode, node => node.ui);
 
 // Get asynchronous state
-export const getAsync = createSelector(getNode, node => node.getIn(['ui', 'asynchronous']));
+export const getAsync = createSelector(getNode, node => node.asynchronous);
