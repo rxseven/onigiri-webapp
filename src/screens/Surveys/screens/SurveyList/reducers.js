@@ -1,6 +1,11 @@
 // Module dependencies
-import { createSelector } from 'reselect';
+import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
+import { createSelector } from 'reselect';
+
+import STATE_MODELS from '../../../../constants/models/state';
+import { ERROR, LOADED, LOADING } from '../../../../constants/types/asynchronous';
+import { setAsync } from '../../../../helpers/data';
 
 // Actions
 import { USER_RESET } from '../../../../data/session/actions';
@@ -16,11 +21,8 @@ import { SURVEYS_RESET_VIEW, SURVEYS_SAVE_PAGINATION } from './actions';
 // Reducers
 import data from './data/reducers';
 
-// Constants
-import STATE_MODELS from '../../../../constants/models/state';
-
 // Initial state
-const initialState = {
+const initialState = fromJS({
   asynchronous: {
     get: {
       ...STATE_MODELS.model.asynchronous,
@@ -33,42 +35,39 @@ const initialState = {
     query: null,
     selected: null
   }
+});
+
+// Immutable map
+const map = {
+  asynchronous: {
+    get: ['get']
+  },
+  view: ['view']
 };
 
 // Asynchronous reducer
-const asynchronous = (state = initialState.asynchronous, action) => {
-  switch (action.type) {
-    // Get surveys
-    case SURVEYS_GET:
-      return {
-        ...state,
-        get: {
-          ...initialState.asynchronous.get,
-          loading: true
-        }
-      };
-    case SURVEYS_GET_FAILURE:
-      return {
-        ...state,
-        get: {
-          ...initialState.asynchronous.get,
-          error: action.payload
-        }
-      };
-    case SURVEYS_GET_SUCCESS:
-      return {
-        ...state,
-        get: {
-          ...initialState.asynchronous.get,
-          loaded: true
-        }
-      };
+const asynchronous = (state = initialState.get('asynchronous'), action) => {
+  const { payload, type } = action;
 
-    // Reset list view
+  switch (type) {
+    // Get serveys
+    case SURVEYS_GET:
+      return setAsync(map.asynchronous.get, state, LOADING).setIn(
+        [...map.asynchronous.get, LOADED],
+        false
+      );
+    case SURVEYS_GET_FAILURE:
+      return setAsync(map.asynchronous.get, state, ERROR, payload).setIn(
+        [...map.asynchronous.get, LOADED],
+        false
+      );
+    case SURVEYS_GET_SUCCESS:
+      return setAsync(map.asynchronous.get, state).setIn([...map.asynchronous.get, LOADED], true);
+
+    // Reset state
+    case USER_RESET:
     case SURVEYS_RESET_VIEW:
-      return {
-        ...initialState.asynchronous
-      };
+      return initialState.get('asynchronous');
 
     // Default
     default:
@@ -77,42 +76,30 @@ const asynchronous = (state = initialState.asynchronous, action) => {
 };
 
 // View reducer
-const view = (state = initialState.view, action) => {
-  switch (action.type) {
+const view = (state = initialState.get('view'), action) => {
+  const { payload, type } = action;
+
+  switch (type) {
     // Save pagination query
     case SURVEYS_SAVE_PAGINATION:
-      return {
-        ...state,
-        pagination: action.payload
-      };
+      return state.set('pagination', payload);
 
     // Change mode
     case SURVEYS_SELECT_MODE:
-      return {
-        ...state,
-        ...action.payload
-      };
+      return state.mergeDeep(payload);
 
     // Track survey
     case SURVEY_SELECTED_ADD:
-      return {
-        ...state,
-        selected: action.payload
-      };
+      return state.set('selected', payload);
 
     // Untrack survey
     case SURVEY_SELECTED_REMOVE:
-      return {
-        ...state,
-        selected: initialState.view.selected
-      };
+      return state.set('selected', null);
 
     // Reset view
     case USER_RESET:
     case SURVEYS_RESET_VIEW:
-      return {
-        ...initialState.view
-      };
+      return initialState.get('view');
 
     // Default
     default:
@@ -131,13 +118,13 @@ export default combineReducers({
 });
 
 // Non-memoized utility selectors
-const getNode = state => state.screens.surveys.list;
+const getNode = state => state.getIn(['screens', 'surveys', 'list']);
 
 // Get UI state
-export const getUI = createSelector(getNode, node => node.ui);
+export const getUI = createSelector(getNode, node => node.get('ui'));
 
 // Get asynchronous state
-export const getAsync = createSelector(getNode, node => node.ui.asynchronous);
+export const getAsync = createSelector(getNode, node => node.getIn(['ui', 'asynchronous']));
 
 // Get view state
-export const getView = createSelector(getNode, node => node.view);
+export const getView = createSelector(getNode, node => node.get('view'));
