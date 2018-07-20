@@ -5,7 +5,12 @@ import PropTypes from 'prop-types';
 export default {
   model: {
     asynchronous: PropTypes.shape({
-      error: PropTypes.objectOf(PropTypes.string),
+      error: PropTypes.oneOfType([
+        PropTypes.shape({
+          message: PropTypes.string
+        }),
+        PropTypes.bool
+      ]),
       loading: PropTypes.bool
     })
   },
