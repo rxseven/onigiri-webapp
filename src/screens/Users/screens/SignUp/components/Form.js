@@ -4,8 +4,10 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form/immutable';
 
+import { generateState } from '../../../../../helpers/data';
+import toJS from '../../../../../HOCs/toJS';
 import { signUp } from '../../../../../data/session/actions';
 import { resetUI } from '../actions';
 import { getUI } from '../reducers';
@@ -14,6 +16,7 @@ import { Form } from '../../../../../components/shared/base/Form';
 import validationHelper from '../../../../../helpers/validation';
 
 // Constants
+import STATE_MODELS from '../../../../../constants/models/state';
 import PATHS from '../../../../../constants/router/paths';
 
 // Peer dependencies
@@ -64,31 +67,31 @@ const validate = (values) => {
   const errors = {};
 
   // Validate first name
-  if (values.firstName) {
-    errors.firstName = validationHelper.name(values.firstName);
+  if (values.get('firstName')) {
+    errors.firstName = validationHelper.name(values.get('firstName'));
   }
 
   // Validate last name
-  if (values.lastName) {
-    errors.lastName = validationHelper.name(values.lastName);
+  if (values.get('lastName')) {
+    errors.lastName = validationHelper.name(values.get('lastName'));
   }
 
   // Validate email
-  errors.email = validationHelper.email(values.email);
+  errors.email = validationHelper.email(values.get('email'));
 
   // Validate password
-  if (values.password) {
-    errors.password = validationHelper.password(values.password);
+  if (values.get('password')) {
+    errors.password = validationHelper.password(values.get('password'));
   }
 
   // Compare password
-  if (values.password !== values.passwordConfirm) {
+  if (values.get('password') !== values.get('passwordConfirm')) {
     errors.passwordConfirm = 'Passwords must match';
   }
 
   // Iterates over elements of collection and validate value for each element
   each(FIELDS, ({ name }) => {
-    if (!values[name]) {
+    if (!values.get(name)) {
       errors[name] = 'You must provide a value';
     }
   });
@@ -110,11 +113,7 @@ const warn = (values) => {
 };
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    ui: getUI(state)
-  }
-});
+const mapStateToProps = state => generateState(STATE_MODELS.immutable.setIn(['ui'], getUI(state)));
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
@@ -124,7 +123,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connect component to application state
-const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUpForm));
+const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(SignUpForm)));
 
 // Configure Redux Form
 export default reduxForm({
