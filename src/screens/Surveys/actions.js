@@ -28,13 +28,13 @@ export const deleteSurvey = (id, callback) => ({
 
 // Delete survey : Failure
 export const deleteSurveyFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: SURVEY_DELETE_FAILURE
 });
 
 // Delete survey : Success
 export const deleteSurveySuccess = data => ({
-  payload: data.id,
+  payload: data,
   type: SURVEY_DELETE_SUCCESS
 });
 
