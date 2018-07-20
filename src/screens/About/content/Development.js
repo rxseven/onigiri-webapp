@@ -148,7 +148,7 @@ const Development = () => (
               <ListItem>
                 <ListLabel>Operating system</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/lae/macos/high-sierra/" v="10.13.5">
+                  <ListLink to="https://www.apple.com/lae/macos/high-sierra/" v="10.13.6">
                     macOS High Sierra
                   </ListLink>
                 </ListContent>
@@ -674,7 +674,7 @@ const Development = () => (
               <ListItem>
                 <ListLabel>Mac</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/macos/high-sierra/" v="10.13.5">
+                  <ListLink to="https://www.apple.com/macos/high-sierra/" v="10.13.6">
                     macOS High Sierra
                   </ListLink>
                 </ListContent>
@@ -701,12 +701,12 @@ const Development = () => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/safari/" v="11.1.1">
+                      <ListLink to="https://www.apple.com/safari/" v="11.1.2">
                         Safari
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="61.0">
+                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="61.0.1">
                         Firefox
                       </ListLink>
                     </ListGroupItem>
@@ -728,7 +728,7 @@ const Development = () => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4">
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4.1">
                         iPhone 6
                       </ListLink>
                     </ListGroupItem>
@@ -753,13 +753,18 @@ const Development = () => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4">
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4.1">
                         iPad 9.7-inch (2018)
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4">
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4.1">
                         iPad mini 3
+                      </ListLink>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v9.3.2">
+                        iPad mini 2
                       </ListLink>
                     </ListGroupItem>
                   </ListGroup>
