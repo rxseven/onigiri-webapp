@@ -61,11 +61,7 @@ const defaultProps = {
 
 // Form field
 export const FormField = ({
-  helper,
-  input,
-  label,
-  meta: { error, touched, warning },
-  type
+  helper, input, label, meta: { error, touched, warning }, type
 }) => {
   // Configuration
   const isInvalid = (error && warning) || (error && !warning);
@@ -86,7 +82,11 @@ export const FormField = ({
         <textarea className={inputStyles} id={input.name} placeholder={label} rows={3} {...input} />
       </If>
 
-      {helper && <Text mute options="form-text" small>{helper}</Text>}
+      {helper && (
+        <Text mute options="form-text" small>
+          {helper}
+        </Text>
+      )}
 
       <div
         className={`${touched &&
@@ -157,7 +157,9 @@ export class Form extends Component {
 }
 
 // Form group
-export const FormGroup = ({ children, end }) => <div className={cx('form-group', end && styles.end)}>{children}</div>;
+export const FormGroup = ({ children, end }) => (
+  <div className={cx('form-group', end && styles.end)}>{children}</div>
+);
 
 // Form headline
 export const FormHL = ({ children }) => <h2 className={styles.headline}>{children}</h2>;
