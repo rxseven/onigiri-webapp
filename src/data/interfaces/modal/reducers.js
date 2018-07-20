@@ -1,34 +1,39 @@
 // Module dependencies
+import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
 // Actions
 import { MODAL_CLOSE, MODAL_OPEN } from './actions';
 
 // Initial state
-const initialState = {
+const initialState = Map({
   isOpen: false
+});
+
+// Immutable map
+const map = {
+  isOpen: 'isOpen'
 };
 
 // Reducer
 export default (state = initialState, action) => {
-  switch (action.type) {
+  const { type } = action;
+
+  switch (type) {
+    // Visibility
     case MODAL_CLOSE:
-      return {
-        ...state,
-        isOpen: false
-      };
+      return state.set(map.isOpen, false);
     case MODAL_OPEN:
-      return {
-        ...state,
-        isOpen: true
-      };
+      return state.set(map.isOpen, true);
+
+    // Default
     default:
       return state;
   }
 };
 
 // Non-memoized utility selectors
-const getNode = state => state.data.interfaces;
+const getNode = state => state.getIn(['data', 'interfaces']);
 
 // Get modal state
-export const getModal = createSelector(getNode, node => node.modal);
+export const getModal = createSelector(getNode, node => node.get('modal'));

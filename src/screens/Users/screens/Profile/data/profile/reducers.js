@@ -10,18 +10,17 @@ const initialState = null;
 
 // Reducer
 export default (state = initialState, action) => {
-  switch (action.type) {
+  const { payload, type } = action;
+
+  switch (type) {
     // Get user profile
     case PROFILE_GET:
     case PROFILE_GET_FAILURE:
       return state;
     case PROFILE_GET_SUCCESS:
-      return {
-        ...state,
-        ...action.payload
-      };
+      return payload;
 
-    // Clean up data
+    // Reset state
     case USER_RESET:
       return initialState;
 
@@ -32,7 +31,7 @@ export default (state = initialState, action) => {
 };
 
 // Non-memoized utility selectors
-const getNode = state => state.screens.users.profile.data;
+const getNode = state => state.getIn(['screens', 'users', 'profile', 'data']);
 
-// Get user profile
-export const getProfile = createSelector(getNode, node => node.profile);
+// Get user profile state
+export const getProfile = createSelector(getNode, node => node.get('profile'));

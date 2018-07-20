@@ -34,7 +34,7 @@ export const getSurveys = (query, callback) => ({
 
 // Get a list of surveys : Failure
 export const getSurveysFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: SURVEYS_GET_FAILURE
 });
 

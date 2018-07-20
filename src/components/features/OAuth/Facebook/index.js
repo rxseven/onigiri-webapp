@@ -2,20 +2,20 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { generateState } from '../../../../helpers/data';
+import toJS from '../../../../HOCs/toJS';
 import { oauthFacebook, oauthFailure, oauthRequest } from '../../../../data/session/actions';
 import { getSession } from '../../../../data/session/reducers';
+
+// Constants
+import STATE_MODELS from '../../../../constants/models/state';
 
 // Peer dependencies
 import UI from './UI';
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    data: {
-      session: getSession(state)
-    }
-  }
-});
+const mapStateToProps = state =>
+  generateState(STATE_MODELS.immutable.setIn(['data', 'session'], getSession(state)));
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connect component to application state
-const container = connect(mapStateToProps, mapDispatchToProps)(UI);
+const container = connect(mapStateToProps, mapDispatchToProps)(toJS(UI));
 
 // Module exports
 export default container;

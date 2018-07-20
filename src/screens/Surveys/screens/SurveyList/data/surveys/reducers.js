@@ -1,5 +1,5 @@
 // Module dependencies
-import { mapKeys, omit } from 'lodash';
+import { fromJS, OrderedMap } from 'immutable';
 import { createSelector } from 'reselect';
 
 // Actions
@@ -19,42 +19,38 @@ import {
 } from './actions';
 
 // Initial state
-const initialState = {
-  data: {},
-  meta: {}
+const initialState = fromJS({
+  data: OrderedMap({}),
+  meta: null
+});
+
+// Immutable map
+const map = {
+  data: 'data',
+  meta: 'meta'
 };
 
 // Reducer
 export default (state = initialState, action) => {
-  switch (action.type) {
-    // Get surveys
-    case SURVEYS_GET:
-    case SURVEYS_GET_FAILURE:
-      return state;
-    case SURVEYS_GET_SUCCESS:
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          ...mapKeys(action.payload.data, '_id')
-        },
-        meta: {
-          ...action.payload.meta
-        }
-      };
+  const { payload, type } = action;
 
+  switch (type) {
     // Remove survey from a list
     case SURVEY_DELETE:
     case SURVEY_DELETE_FAILURE:
       return state;
     case SURVEY_DELETE_SUCCESS:
     case SURVEY_REMOVE:
-      return {
-        ...state,
-        data: omit(state.data, action.payload)
-      };
+      return state.deleteIn([map.data, payload]);
 
-    // Clean up data
+    // Get surveys
+    case SURVEYS_GET:
+    case SURVEYS_GET_FAILURE:
+      return state;
+    case SURVEYS_GET_SUCCESS:
+      return state.mergeIn([map.data], payload.get(map.data)).set(map.meta, payload.get(map.meta));
+
+    // Reset state
     case USER_RESET:
     case SURVEYS_SELECT_MODE:
     case SURVEYS_RESET_DATA:
@@ -67,7 +63,7 @@ export default (state = initialState, action) => {
 };
 
 // Non-memoized utility selectors
-const getNode = state => state.screens.surveys.list.data;
+const getNode = state => state.getIn(['screens', 'surveys', 'list', 'data']);
 
-// Get surveys
-export const getSurveys = createSelector(getNode, node => node.surveys);
+// Get surveys state
+export const getSurveys = createSelector(getNode, node => node.get('surveys'));

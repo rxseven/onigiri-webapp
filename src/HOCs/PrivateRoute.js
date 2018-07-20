@@ -3,9 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
+import { generateState } from '../helpers/data';
+import toJS from '../HOCs/toJS';
 import { getAuth } from '../data/session/reducers';
 
 // Constants
+import STATE_MODELS from '../constants/models/state';
 import PATHS from '../constants/router/paths';
 
 // Declare default props
@@ -45,16 +48,11 @@ const PrivateRoute = ({
 PrivateRoute.defaultProps = defaultProps;
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    data: {
-      authorization: getAuth(state)
-    }
-  }
-});
+const mapStateToProps = state =>
+  generateState(STATE_MODELS.immutable.setIn(['data', 'authorization'], getAuth(state)));
 
 // Connect component to application state
-const container = connect(mapStateToProps)(PrivateRoute);
+const container = connect(mapStateToProps)(toJS(PrivateRoute));
 
 // Module exports
 export default container;

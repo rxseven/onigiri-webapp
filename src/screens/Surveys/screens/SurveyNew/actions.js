@@ -14,7 +14,7 @@ export const createSurvey = (values, callback) => ({
 
 // Create survey : Failure
 export const createSurveyFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: SURVEY_CREATE_FAILURE
 });
 

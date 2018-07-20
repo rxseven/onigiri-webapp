@@ -40,7 +40,7 @@ export const deleteUser = callback => ({
 
 // Delete user account : Failure
 export const deleteUserFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: USER_DELETE_FAILURE
 });
 
@@ -74,7 +74,7 @@ export const oauthFacebook = (accessToken, callback) => ({
 
 // Sign in with Facebook : Failure
 export const oauthFacebookFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: OAUTH_FACEBOOK_FAILURE
 });
 
@@ -93,7 +93,7 @@ export const oauthGoogle = (accessToken, callback) => ({
 
 // Sign in with Google : Failure
 export const oauthGoogleFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: OAUTH_GOOGLE_FAILURE
 });
 
@@ -127,7 +127,7 @@ export const signIn = (credentials, callback) => ({
 
 // Sign in : Failure
 export const signInFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: SIGNIN_FAILURE
 });
 
@@ -145,7 +145,7 @@ export const signOut = callback => ({
 
 // Sign out : Failure
 export const signOutFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: SIGNOUT_FAILURE
 });
 
@@ -163,7 +163,7 @@ export const signUp = (credentials, callback) => ({
 
 // Sign up : Failure
 export const signUpFailure = error => ({
-  payload: error.response.data.error,
+  payload: error,
   type: SIGNUP_FAILURE
 });
 

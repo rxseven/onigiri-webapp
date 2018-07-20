@@ -37,6 +37,9 @@ const Footer = () => (
             <li>
               <FooterLink to={PATHS.static.privacy}>Privacy</FooterLink>
             </li>
+            <li>
+              <ExLink to="https://github.com/rxseven/onigiri-webapp">View on GitHub</ExLink>
+            </li>
           </ul>
           <div className={styles.content}>
             <p>

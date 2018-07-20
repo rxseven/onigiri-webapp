@@ -1,10 +1,10 @@
 // Module dependencies
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 
 // Reducers
-import surveyReducer from './survey/reducers';
+import survey from './survey/reducers';
 
 // Combine reducers
 export default combineReducers({
-  survey: surveyReducer
+  survey
 });

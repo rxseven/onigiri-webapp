@@ -1,5 +1,12 @@
+// Module dependencies
+import { fromJS } from 'immutable';
+
 // State models
 export default {
+  immutable: fromJS({
+    data: {},
+    ui: {}
+  }),
   model: {
     asynchronous: {
       error: null,

@@ -7,8 +7,10 @@ import { slide as Menu } from 'react-burger-menu';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { action as toggleMenu, decorator as reduxMenu } from 'redux-burger-menu';
+import { action as toggleMenu, decorator as reduxMenu } from 'redux-burger-menu/immutable';
 
+import { generateState } from '../../../helpers/data';
+import toJS from '../../../HOCs/toJS';
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducers';
 import { getAsync } from '../../../data/interfaces/session/reducers';
@@ -20,6 +22,7 @@ import Text from '../../shared/base/Text';
 
 // Constants
 import HTML from '../../../constants/elements/html';
+import STATE_MODELS from '../../../constants/models/state';
 import PATHS from '../../../constants/router/paths';
 
 // Peer dependencies
@@ -148,6 +151,14 @@ class UI extends Component {
           Privacy
         </MenuLink>
       </li>
+      <li>
+        <ExLink options="styles.icon" to="https://github.com/rxseven/onigiri-webapp">
+          <span className={styles.icon}>
+            <Icon name="fork" title="GitHub" />
+          </span>
+          View on GitHub
+        </ExLink>
+      </li>
     </ul>
   );
 
@@ -217,19 +228,11 @@ class UI extends Component {
 }
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    data: {
-      interfaces: {
-        menu: state.burgerMenu
-      },
-      session: getSession(state)
-    },
-    ui: {
-      asynchronous: getAsync(state)
-    }
-  }
-});
+const mapStateToProps = state =>
+  generateState(STATE_MODELS.immutable
+    .setIn(['data', 'interfaces', 'menu'], state.get('burgerMenu'))
+    .setIn(['data', 'session'], getSession(state))
+    .setIn(['ui', 'asynchronous'], getAsync(state)));
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
@@ -240,7 +243,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connect component to application state
-const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(UI));
+const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(UI)));
 
 // Specify prop types and default values for props
 MenuLink.propTypes = propTypes.navigation;

@@ -1,12 +1,14 @@
 // Module dependencies
+import { fromJS } from 'immutable';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
+
+// Helper functions and services
+import { getError } from '../../helpers/data';
+import paymentsService from '../../services/payments';
+import * as usersService from '../../services/users';
 
 // Action types and action creators
 import * as actions from './actions';
-
-// Services
-import paymentsService from '../../services/payments';
-import * as usersService from '../../services/users';
 
 // Checkout
 function* checkout({ callback, payload }) {
@@ -15,14 +17,20 @@ function* checkout({ callback, payload }) {
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(paymentsService.checkout, payload.token);
 
+    // Normalize data and convert plain JavaScript into Immutable object
+    const immutableData = fromJS(data);
+
     // Inform reducers that the request finished successfully
-    yield put(actions.checkoutSuccess(data));
+    yield put(actions.checkoutSuccess(immutableData));
 
     // Execute a callback
     callback();
   } catch (error) {
+    // Convert plain JavaScript into Immutable object
+    const immutableData = fromJS(getError(error));
+
     // Inform reducers that the request failed
-    yield put(actions.checkoutFailure(error));
+    yield put(actions.checkoutFailure(immutableData));
   }
 }
 
@@ -33,11 +41,17 @@ function* getCredits() {
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.getCredits);
 
+    // Normalize data and convert plain JavaScript into Immutable object
+    const immutableData = fromJS(data);
+
     // Inform reducers that the request finished successfully
-    yield put(actions.getCreditsSuccess(data));
+    yield put(actions.getCreditsSuccess(immutableData));
   } catch (error) {
+    // Convert plain JavaScript into Immutable object
+    const immutableData = fromJS(getError(error));
+
     // Inform reducers that the request failed
-    yield put(actions.getCreditsFailure(error));
+    yield put(actions.getCreditsFailure(immutableData));
   }
 }
 

@@ -338,6 +338,15 @@ const Technical = () => (
                 </ListContent>
               </ListItem>
               <ListItem>
+                <ListLabel>
+                  Utility for creating an equivalent function of Redux <code>combineReducers</code>{' '}
+                  that works with Immutable.js state.
+                </ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/gajus/redux-immutable">Redux Immutable</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
                 <ListLabel>HOC decorator for forms using Redux &amp; React</ListLabel>
                 <ListContent>
                   <ListLink to="https://redux-form.com">Redux Form</ListLink>
@@ -347,6 +356,18 @@ const Technical = () => (
                 <ListLabel>Selector library for Redux</ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com/reactjs/reselect">Reselect</ListLink>
+                </ListContent>
+              </ListItem>
+            </List>
+
+            <hr />
+
+            <CardSubtitle>Data</CardSubtitle>
+            <List>
+              <ListItem>
+                <ListLabel>Immutable collections for JavaScript</ListLabel>
+                <ListContent>
+                  <ListLink to="https://facebook.github.io/immutable-js/">Immutable</ListLink>
                 </ListContent>
               </ListItem>
             </List>
@@ -608,28 +629,22 @@ const Technical = () => (
         </Card>
 
         <Card end>
-          <CardHeader>Will be implemented within the next releases</CardHeader>
+          <CardHeader>Will be implemented within next releases</CardHeader>
           <CardBody>
             <List>
               <ListItem>
-                <ListLabel>Immutable collections for JavaScript</ListLabel>
+                <ListLabel>
+                  A utility for normalizing and denormalizing JSON according to schema for Redux and
+                  Flux applications
+                </ListLabel>
                 <ListContent>
-                  <ListLink to="https://facebook.github.io/immutable-js/">Immutable</ListLink>
-                </ListContent>
-              </ListItem>
-              <ListItem>
-                <ListLabel>A React utility belt for function components and HOCs</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/acdlite/recompose">Recompose</ListLink>
+                  <ListLink to="https://github.com/paularmstrong/normalizr">Normalizr</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem end>
-                <ListLabel>
-                  Utility for creating an equivalent function of Redux <code>combineReducers</code>{' '}
-                  that works with Immutable.js state.
-                </ListLabel>
+                <ListLabel>A React utility belt for function components and HOCs</ListLabel>
                 <ListContent>
-                  <ListLink to="https://github.com/gajus/redux-immutable">redux-immutable</ListLink>
+                  <ListLink to="https://github.com/acdlite/recompose">Recompose</ListLink>
                 </ListContent>
               </ListItem>
             </List>

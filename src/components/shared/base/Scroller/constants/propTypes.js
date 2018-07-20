@@ -2,6 +2,9 @@
 import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 
+// Constants
+import PROP_TYPES from '../../../../../constants/models/propTypes';
+
 // Prop types
 export default exact({
   core: {
@@ -12,7 +15,7 @@ export default exact({
     children: PropTypes.node.isRequired,
     state: PropTypes.shape({
       isEmpty: PropTypes.bool.isRequired,
-      isError: PropTypes.objectOf(PropTypes.string),
+      isError: PROP_TYPES.model.asynchronous.error,
       meta: PropTypes.shape({
         paging: PropTypes.shape({
           next: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),

@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import Dropdown, { DropdownContent, DropdownTrigger } from 'react-simple-dropdown';
-import { action as toggleMenu } from 'redux-burger-menu';
+import { action as toggleMenu } from 'redux-burger-menu/immutable';
 
+import { generateState } from '../../../helpers/data';
+import toJS from '../../../HOCs/toJS';
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducers';
 import { getAsync } from '../../../data/interfaces/session/reducers';
@@ -16,6 +18,7 @@ import { Container } from '../../shared/base/Grid';
 import Icon from '../../shared/base/Icon';
 
 // Constants
+import STATE_MODELS from '../../../constants/models/state';
 import PATHS from '../../../constants/router/paths';
 
 // Peer dependencies
@@ -162,16 +165,10 @@ class Navbar extends Component {
 }
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    data: {
-      session: getSession(state)
-    },
-    ui: {
-      asynchronous: getAsync(state)
-    }
-  }
-});
+const mapStateToProps = state =>
+  generateState(STATE_MODELS.immutable
+    .setIn(['data', 'session'], getSession(state))
+    .setIn(['ui', 'asynchronous'], getAsync(state)));
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
@@ -182,7 +179,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connect component to application state
-const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
+const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(Navbar)));
 
 // Module exports
 export default container;

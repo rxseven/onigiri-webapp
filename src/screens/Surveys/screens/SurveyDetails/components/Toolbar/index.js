@@ -39,11 +39,12 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 });
 
 // Component
-const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => {
+const Toolbar = ({ actions, state: { data: { survey }, ui: { asynchronous }, status } }) => {
   // Variables
   const { error, loading } = asynchronous.get.survey;
   const { loading: updating } = asynchronous.patch.survey;
   const processing = loading || updating;
+  const { archived, completed, locked } = survey || false;
 
   // View
   return (
@@ -70,23 +71,23 @@ const Toolbar = ({ actions, state: { data, ui: { asynchronous }, status } }) => 
           </div>
           <ButtonGroup label="Actions" size="small">
             <ButtonHandler
-              button={data.survey.completed ? 'primary' : 'secondary'}
+              button={completed ? 'primary' : 'secondary'}
               disabled={processing}
               handler={{ onClick: actions.update }}
               icon="check"
               title="Done"
-              value={{ completed: !data.survey.completed }}
+              value={{ completed: !completed }}
             />
             <ButtonHandler
-              button={data.survey.archived ? 'primary' : 'secondary'}
+              button={archived ? 'primary' : 'secondary'}
               disabled={processing}
               handler={{ onClick: actions.update }}
               icon="box"
               title="Archive"
-              value={{ archived: !data.survey.archived }}
+              value={{ archived: !archived }}
             />
             <Button
-              disabled={processing || data.survey.locked}
+              disabled={processing || locked}
               handler={actions.delete}
               icon="trash"
               title="Delete"
