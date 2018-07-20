@@ -1,5 +1,5 @@
 // Module dependencies
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import { reducer as form } from 'redux-form';
 import { reducer as burgerMenu } from 'redux-burger-menu';
 
