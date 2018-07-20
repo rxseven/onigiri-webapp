@@ -2,7 +2,12 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { generateState } from '../../../../helpers/data';
+import toJS from '../../../../HOCs/toJS';
 import * as commonActions from '../../actions';
+
+// Constants
+import STATE_MODELS from '../../../../constants/models/state';
 
 // Peer dependencies
 import * as dataActions from './data/surveys/actions';
@@ -12,15 +17,11 @@ import { getUI, getView } from './reducers';
 import UI from './UI';
 
 // Map state to props
-const mapStateToProps = state => ({
-  state: {
-    data: {
-      surveys: getSurveys(state)
-    },
-    ui: getUI(state),
-    view: getView(state)
-  }
-});
+const mapStateToProps = state =>
+  generateState(STATE_MODELS.immutable
+    .setIn(['data', 'surveys'], getSurveys(state))
+    .setIn(['ui'], getUI(state))
+    .setIn(['view'], getView(state)));
 
 // Map dispatch to props
 const mapDispatchToProps = dispatch => ({
@@ -37,7 +38,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Connect component to application state
-const container = connect(mapStateToProps, mapDispatchToProps)(UI);
+const container = connect(mapStateToProps, mapDispatchToProps)(toJS(UI));
 
 // Module exports
 export default container;
