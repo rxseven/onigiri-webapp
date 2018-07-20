@@ -1,4 +1,5 @@
 // Module dependencies
+import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 
 // Actions
@@ -29,129 +30,80 @@ import {
 } from './actions';
 
 // Initial state
-const initialState = {
+const initialState = fromJS({
   authorization: false,
   loading: {
     signin: false,
     verify: false
   },
   user: null
-};
-
-// Data model
-const dataModel = data => ({
-  authorization: true,
-  loading: {
-    signin: false,
-    verify: false
-  },
-  user: {
-    id: data.id,
-    email: data.email,
-    name: data.name,
-    photo: data.photo
-  }
 });
+
+// Set user state
+const setUser = (state, payload) =>
+  state
+    .set('authorization', true)
+    .setIn(['loading', 'signin'], false)
+    .setIn(['loading', 'verify'], false)
+    .set('user', payload);
+
+// Set loading state
+const setLoading = (state, node, status = true) => state.setIn(['loading', node], status);
 
 // Reducer
 export default (state = initialState, action) => {
-  switch (action.type) {
+  const { payload, type } = action;
+
+  switch (type) {
     // OAuth
     case OAUTH_FACEBOOK:
     case OAUTH_GOOGLE:
     case OAUTH_REQUEST:
-      return {
-        ...state,
-        loading: {
-          ...state.loading,
-          signin: true
-        }
-      };
+      return setLoading(state, 'signin');
     case OAUTH_FACEBOOK_FAILURE:
-    case OAUTH_FAILURE:
     case OAUTH_GOOGLE_FAILURE:
-      return {
-        ...state,
-        loading: {
-          ...state.loading,
-          signin: false
-        }
-      };
+    case OAUTH_FAILURE:
+      return setLoading(state, 'signin', false);
     case OAUTH_FACEBOOK_SUCCESS:
     case OAUTH_GOOGLE_SUCCESS:
-      return {
-        ...state,
-        ...dataModel(action.payload.user)
-      };
+      return setUser(state, payload);
 
-    // Sign-in & Sign-up
+    // Sign-in
     case SIGNIN:
-      return {
-        ...state,
-        loading: {
-          ...state.loading,
-          signin: true
-        }
-      };
-    case SIGNUP:
-      return state;
+      return setLoading(state, 'signin');
     case SIGNIN_FAILURE:
-      return {
-        ...state,
-        loading: {
-          ...state.loading,
-          signin: false
-        }
-      };
+      return setLoading(state, 'signin', false);
+    case SIGNIN_SUCCESS:
+      return setUser(state, payload);
+
+    // Sign-up
+    case SIGNUP:
     case SIGNUP_FAILURE:
       return state;
-    case SIGNIN_SUCCESS:
     case SIGNUP_SUCCESS:
-      return {
-        ...state,
-        ...dataModel(action.payload.user)
-      };
+      return setUser(state, payload);
 
     // Sign-out
     case SIGNOUT:
     case SIGNOUT_FAILURE:
       return state;
     case SIGNOUT_SUCCESS:
-      return {
-        ...state,
-        ...initialState
-      };
+      return initialState;
 
     // Delete user account
     case USER_DELETE:
     case USER_DELETE_FAILURE:
       return state;
     case USER_DELETE_SUCCESS:
-      return {
-        ...state,
-        ...initialState
-      };
+      return initialState;
 
     // Get user info
     case USER_GET:
-      return {
-        ...state,
-        authorization: true,
-        loading: {
-          ...state.loading,
-          verify: true
-        }
-      };
+      return setLoading(state.set('authorization', true), 'verify');
     case USER_GET_FAILURE:
-      return {
-        ...state,
-        ...initialState
-      };
+      return initialState;
     case USER_GET_SUCCESS:
-      return {
-        ...state,
-        ...dataModel(action.payload)
-      };
+      return setUser(state, payload);
 
     // Default
     default:
@@ -160,10 +112,10 @@ export default (state = initialState, action) => {
 };
 
 // Non-memoized utility selectors
-const getNode = state => state.data;
+const getNode = state => state.get('data');
 
 // Get session state
-export const getSession = createSelector(getNode, node => node.session);
+export const getSession = createSelector(getNode, node => node.get('session'));
 
 // Get authorization state
-export const getAuth = createSelector(getNode, node => node.session.authorization);
+export const getAuth = createSelector(getNode, node => node.getIn(['session', 'authorization']));
