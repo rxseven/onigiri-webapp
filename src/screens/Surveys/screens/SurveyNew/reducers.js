@@ -1,6 +1,11 @@
 // Module dependencies
-import { createSelector } from 'reselect';
+import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
+import { createSelector } from 'reselect';
+
+import STATE_MODELS from '../../../../constants/models/state';
+import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
+import { setAsync } from '../../../../helpers/data';
 
 // Actions
 import {
@@ -10,38 +15,32 @@ import {
   SURVEY_RESET_UI
 } from './actions';
 
-// Constants
-import STATE_MODELS from '../../../../constants/models/state';
-
 // Initial state
-const initialState = {
+const initialState = fromJS({
   post: { ...STATE_MODELS.model.asynchronous }
+});
+
+// Immutable map
+const map = {
+  post: ['post']
 };
 
 // Asynchronous reducer
 const asyncReducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { payload, type } = action;
+
+  switch (type) {
+    // Create survey
     case SURVEY_CREATE:
-      return {
-        ...state,
-        post: {
-          ...initialState.post,
-          loading: true
-        }
-      };
+      return setAsync(map.post, state, LOADING);
     case SURVEY_CREATE_FAILURE:
-      return {
-        ...state,
-        post: {
-          ...initialState.post,
-          error: action.payload
-        }
-      };
+      return setAsync(map.post, state, ERROR, payload);
     case SURVEY_CREATE_SUCCESS:
+      return setAsync(map.post, state);
+
+    // Reset state
     case SURVEY_RESET_UI:
-      return {
-        ...initialState
-      };
+      return setAsync(map.post, state);
 
     // Default
     default:
@@ -50,20 +49,20 @@ const asyncReducer = (state = initialState, action) => {
 };
 
 // UI reducer
-const uiReducer = combineReducers({
+const ui = combineReducers({
   asynchronous: asyncReducer
 });
 
 // Combine reducers
 export default combineReducers({
-  ui: uiReducer
+  ui
 });
 
 // Non-memoized utility selectors
-const getNode = state => state.screens.surveys.new;
+const getNode = state => state.getIn(['screens', 'surveys', 'new']);
 
 // Get UI state
-export const getUI = createSelector(getNode, node => node.ui);
+export const getUI = createSelector(getNode, node => node.get('ui'));
 
 // Get asynchronous state
-export const getAsync = createSelector(getNode, node => node.ui.asynchronous);
+export const getAsync = createSelector(getNode, node => node.getIn(['ui', 'asynchronous']));
