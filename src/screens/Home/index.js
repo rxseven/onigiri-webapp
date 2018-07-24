@@ -2,13 +2,13 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { Button } from '../../components/common/Buttons';
-import { Card, CardBody, CardText } from '../../components/common/Card';
-import { Body, Document, Head, Title } from '../../components/common/Document';
-import Layout from '../../components/common/Layout';
+import { Button } from 'components/common/Buttons';
+import { Card, CardBody, CardText } from 'components/common/Card';
+import { Body, Document, Head, Title } from 'components/common/Document';
+import Layout from 'components/common/Layout';
 
 // Constants
-import PATHS from '../../constants/router/paths';
+import PATHS from 'constants/router/paths';
 
 // Peer dependencies
 import styles from './styles.scss';
