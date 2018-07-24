@@ -1,6 +1,7 @@
 // Module dependencies
 import { fromJS, Seq } from 'immutable';
 
+// Constants
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
