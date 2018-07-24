@@ -5,6 +5,7 @@ import { withLastLocation } from 'react-router-last-location';
 import withSizes from 'react-sizes';
 import { StickyContainer } from 'react-sticky';
 
+// Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Document';
 import { Column, Row } from 'components/common/Grid';
 import Layout from 'components/common/Layout';
@@ -13,7 +14,7 @@ import Layout from 'components/common/Layout';
 import CSS from 'constants/string/css';
 import PATHS from 'constants/router/paths';
 
-// Peer dependencies
+// Companion files
 import Headset from './components/Headset';
 import List from './components/List';
 import ScrollTop from './components/ScrollTop';

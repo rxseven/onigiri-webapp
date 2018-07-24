@@ -2,6 +2,7 @@
 import { isEmpty as checkEmpty, map } from 'lodash';
 import React from 'react';
 
+// Components and HOCs
 import { Button } from 'components/common/Buttons';
 import { Hero, HeroHeader, HeroBody } from 'components/common/Hero';
 import { ListGroup } from 'components/common/ListGroup';
@@ -12,7 +13,7 @@ import Text from 'components/common/Text';
 import PATHS from 'constants/router/paths';
 import CSS from 'constants/string/css';
 
-// Peer dependencies
+// Companion files
 import TYPES from '../../constants/types';
 import Item from '../Item';
 import styles from './styles.scss';

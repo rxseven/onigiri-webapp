@@ -2,16 +2,21 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+// Helper functions
 import { generateState } from 'helpers/state';
+
+// Components and HOCs
 import toJS from 'HOCs/state/toJS';
 
 // Constants
 import STATE_MODELS from 'constants/models/state';
 
-// Peer dependencies
+// Action creators and selectors
 import * as dataActions from './data/landing/actions';
 import { getLanding } from './data/landing/reducers';
 import { getUI } from './reducers';
+
+// Companion files
 import UI from './UI';
 
 // Map state to props

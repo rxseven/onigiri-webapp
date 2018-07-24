@@ -2,7 +2,7 @@
 import { fromJS, OrderedMap } from 'immutable';
 import { createSelector } from 'reselect';
 
-// Actions
+// Action types
 import { USER_RESET } from 'data/session/actions';
 import {
   SURVEY_DELETE,

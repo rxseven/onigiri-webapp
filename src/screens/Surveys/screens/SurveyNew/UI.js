@@ -3,6 +3,7 @@ import cx from 'classnames';
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form/immutable';
 
+// Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Document';
 import { FormHL } from 'components/common/Form';
 import Icon from 'components/common/Icon';
@@ -12,7 +13,7 @@ import { Tip, TipHeader } from 'components/common/Tip';
 // Constants
 import CSS from 'constants/string/css';
 
-// Peer dependencies
+// Companion files
 import Form from './components/Form';
 import Review from './components/Review';
 

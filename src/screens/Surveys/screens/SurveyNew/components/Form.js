@@ -6,25 +6,29 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 
+// Helper functions
 import { generateState } from 'helpers/state';
-import toJS from 'HOCs/state/toJS';
+import validationHelper from 'helpers/validation';
+
+// Components and HOCs
 import { Button } from 'components/common/Buttons';
 import { Card, CardBody, CardHeader, CardText } from 'components/common/Card';
 import { Form, FormSHL } from 'components/common/Form';
 import Spinner from 'components/common/Spinner';
 import Confirm from 'components/composite/Confirm';
-
-import { getCredits } from 'data/credits/actions';
-import { getBalance } from 'data/credits/reducers';
-import * as modalActions from 'data/interfaces/modal/actions';
-import { getModal } from 'data/interfaces/modal/reducers';
-import validationHelper from 'helpers/validation';
+import toJS from 'HOCs/state/toJS';
 
 // Constants
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
-// Peer dependencies
+// Action creators and selectors
+import { getCredits } from 'data/credits/actions';
+import { getBalance } from 'data/credits/reducers';
+import * as modalActions from 'data/interfaces/modal/actions';
+import { getModal } from 'data/interfaces/modal/reducers';
+
+// Companion files
 import FIELDS from '../constants/fields';
 
 // Component

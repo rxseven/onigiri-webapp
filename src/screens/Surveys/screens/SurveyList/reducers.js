@@ -3,11 +3,14 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from 'constants/models/state';
-import { ERROR, LOADED, LOADING } from 'constants/types/asynchronous';
+// Helper functions
 import { setAsync } from 'helpers/state';
 
-// Actions
+// Constants
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADED, LOADING } from 'constants/types/asynchronous';
+
+// Action types
 import { USER_RESET } from 'data/session/actions';
 import { SURVEY_SELECTED_ADD, SURVEY_SELECTED_REMOVE } from '../../actions';
 import {

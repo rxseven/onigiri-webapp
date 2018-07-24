@@ -2,6 +2,7 @@
 import { map, size } from 'lodash';
 import React, { Fragment } from 'react';
 
+// Components and HOCs
 import { Button, ButtonSet } from 'components/common/Buttons';
 import { CardSubtitle } from 'components/common/Card';
 import { List, ListItem, ListContent, ListLabel } from 'components/common/List';
@@ -13,7 +14,7 @@ import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 import CSS from 'constants/string/css';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Declare prop types and default props

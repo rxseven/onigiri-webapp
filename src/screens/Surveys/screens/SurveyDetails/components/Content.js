@@ -2,6 +2,10 @@
 import cx from 'classnames';
 import React, { Fragment } from 'react';
 
+// Helper functions
+import timestampHelper from 'helpers/timestamp';
+
+// Components and HOCs
 import Alert from 'components/common/Alert';
 import { Card, CardBody, CardHeader, CardSubtitle } from 'components/common/Card';
 import ExLink from 'components/common/ExLink';
@@ -9,12 +13,10 @@ import Icon from 'components/common/Icon';
 import { List, ListItem, ListContent, ListLabel } from 'components/common/List';
 import Text from 'components/common/Text';
 
-import timestampHelper from 'helpers/timestamp';
-
 // Constants
 import CSS from 'constants/string/css';
 
-// Peer dependencies
+// Companion files
 import Chart from './Chart';
 import Recipients from './Recipients';
 

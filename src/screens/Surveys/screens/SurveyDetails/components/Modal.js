@@ -1,6 +1,7 @@
 // Module dependencies
 import React from 'react';
 
+// Components and HOCs
 import Confirm from 'components/composite/Confirm';
 
 // Component

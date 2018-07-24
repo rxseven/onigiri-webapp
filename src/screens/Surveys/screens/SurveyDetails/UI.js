@@ -3,6 +3,7 @@ import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
+// Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Document';
 import Layout from 'components/common/Layout';
 import Error from 'components/composite/Error';
@@ -12,7 +13,7 @@ import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
-// Peer dependencies
+// Companion files
 import Content from './components/Content';
 import Modal from './components/Modal';
 import Toolbar from './components/Toolbar';

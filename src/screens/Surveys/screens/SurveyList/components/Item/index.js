@@ -1,16 +1,18 @@
 // Module dependencies
 import React from 'react';
 
+// Helper functions
+import timestampHelper from 'helpers/timestamp';
+
+// Components and HOCs
 import { ListGroupItem, ListGroupHL, ListGroupText } from 'components/common/ListGroup';
 import Icon from 'components/common/Icon';
 import Text from 'components/common/Text';
 
-import timestampHelper from 'helpers/timestamp';
-
 // Constants
 import PATHS from 'constants/router/paths';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Component

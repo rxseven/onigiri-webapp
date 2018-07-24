@@ -2,19 +2,24 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+// Helper functions
 import { generateState } from 'helpers/state';
+
+// Components and HOCs
 import toJS from 'HOCs/state/toJS';
-import * as modalActions from 'data/interfaces/modal/actions';
-import { getModal } from 'data/interfaces/modal/reducers';
 
 // Constants
 import STATE_MODELS from 'constants/models/state';
 
-// Peer dependencies
+// Action creators and selectors
+import * as modalActions from 'data/interfaces/modal/actions';
+import { getModal } from 'data/interfaces/modal/reducers';
 import * as commonActions from '../../actions';
 import * as dataActions from './data/survey/actions';
 import { getSurvey } from './data/survey/reducers';
 import { getUI } from './reducers';
+
+// Companion files
 import UI from './UI';
 
 // Map state to props

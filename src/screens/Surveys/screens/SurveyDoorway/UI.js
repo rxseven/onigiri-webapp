@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
+// Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Document';
 import { Card, CardBody, CardHeader, CardText } from 'components/common/Card';
 import ExLink from 'components/common/ExLink';

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Component
