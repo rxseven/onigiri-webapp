@@ -7,7 +7,7 @@ import { Card, CardBody, CardHeader, CardSubtitle } from 'components/common/Card
 import { List, ListItem, ListContent, ListLabel, ListLink } from 'components/common/List';
 
 // Companion files
-import styles from '../styles.scss';
+import styles from '../../styles.scss';
 
 // Component
 const Technical = () => (

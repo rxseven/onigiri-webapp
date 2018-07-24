@@ -17,8 +17,8 @@ import Text from 'components/common/Text';
 import CSS from 'constants/string/css';
 
 // Companion files
-import Chart from './Chart';
-import Recipients from './Recipients';
+import Chart from '../Chart';
+import Recipients from '../Recipients';
 
 // Component
 const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
