@@ -2,8 +2,10 @@
 import { fromJS } from 'immutable';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-// Helper functions and services
+// Helper functions
 import { getError } from 'helpers/state';
+
+// Services
 import paymentsService from 'services/payments';
 import * as usersService from 'services/users';
 

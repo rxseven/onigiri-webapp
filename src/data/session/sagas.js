@@ -2,9 +2,11 @@
 import { fromJS } from 'immutable';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-// Helper functions and services
+// Helper functions
 import { getError } from 'helpers/state';
 import tokenHelper from 'helpers/token';
+
+// Services
 import * as usersService from 'services/users';
 
 // Action types and action creators
