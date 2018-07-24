@@ -1,10 +1,10 @@
 // Module dependencies
 import axios from 'axios';
 
-import ajax from '../helpers/ajax';
+import ajax from 'helpers/ajax';
 
 // Constants
-import API from '../config/api';
+import API from 'config/api';
 
 // Create survey and send out emails
 export const createSurvey = data =>
