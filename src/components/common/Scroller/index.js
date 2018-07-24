@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import Spinner from '../Spinner';
 import Text from '../Text';
-import Error from '../../shared/extended/Error';
+import Error from '../../composite/Error';
 
 // Peer dependencies
 import styles from './styles.scss';

@@ -8,7 +8,7 @@ import { Field } from 'redux-form/immutable';
 import { Button, ButtonSet } from '../Buttons';
 import Spinner from '../Spinner';
 import Text from '../Text';
-import Error from '../../shared/extended/Error';
+import Error from '../../composite/Error';
 
 // Constants
 import PROP_TYPES from '../../../constants/models/propTypes';

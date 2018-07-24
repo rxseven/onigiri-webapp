@@ -10,7 +10,7 @@ import toJS from '../../../../../../HOCs/toJS';
 import { Button, ButtonSet } from '../../../../../../components/common/Buttons';
 import { FormSHL } from '../../../../../../components/common/Form';
 import Spinner from '../../../../../../components/common/Spinner';
-import Error from '../../../../../../components/shared/extended/Error';
+import Error from '../../../../../../components/composite/Error';
 
 import emailHelper from '../../../../../../helpers/email';
 

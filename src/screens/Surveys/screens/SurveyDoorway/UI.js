@@ -8,7 +8,7 @@ import { Card, CardBody, CardHeader, CardText } from '../../../../components/com
 import ExLink from '../../../../components/common/ExLink';
 import Layout from '../../../../components/common/Layout';
 import Spinner from '../../../../components/common/Spinner';
-import Error from '../../../../components/shared/extended/Error';
+import Error from '../../../../components/composite/Error';
 
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';

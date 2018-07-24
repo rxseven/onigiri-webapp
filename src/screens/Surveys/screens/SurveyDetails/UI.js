@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 
 import { Body, Document, Head, Title } from '../../../../components/common/Document';
 import Layout from '../../../../components/common/Layout';
-import Error from '../../../../components/shared/extended/Error';
+import Error from '../../../../components/composite/Error';
 
 // Constants
 import PROP_TYPES from '../../../../constants/models/propTypes';

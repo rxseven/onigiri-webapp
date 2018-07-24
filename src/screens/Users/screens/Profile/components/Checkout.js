@@ -7,7 +7,7 @@ import Payments from '../../../../../components/features/Payments';
 import { ButtonSet } from '../../../../../components/common/Buttons';
 import { CardText } from '../../../../../components/common/Card';
 import Spinner from '../../../../../components/common/Spinner';
-import Error from '../../../../../components/shared/extended/Error';
+import Error from '../../../../../components/composite/Error';
 
 // Constants
 import PROP_TYPES from '../../../../../constants/models/propTypes';

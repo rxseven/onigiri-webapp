@@ -12,7 +12,7 @@ import { Button } from '../../../../../components/common/Buttons';
 import { Card, CardBody, CardHeader, CardText } from '../../../../../components/common/Card';
 import { Form, FormSHL } from '../../../../../components/common/Form';
 import Spinner from '../../../../../components/common/Spinner';
-import Confirm from '../../../../../components/shared/extended/Confirm';
+import Confirm from '../../../../../components/composite/Confirm';
 
 import { getCredits } from '../../../../../data/credits/actions';
 import { getBalance } from '../../../../../data/credits/reducers';

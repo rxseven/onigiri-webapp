@@ -6,7 +6,7 @@ import { Button, ButtonSet } from '../../../../../../components/common/Buttons';
 import { CardSubtitle } from '../../../../../../components/common/Card';
 import { List, ListItem, ListContent, ListLabel } from '../../../../../../components/common/List';
 import Spinner from '../../../../../../components/common/Spinner';
-import Error from '../../../../../../components/shared/extended/Error';
+import Error from '../../../../../../components/composite/Error';
 
 // Constants
 import PROP_TYPES from '../../../../../../constants/models/propTypes';

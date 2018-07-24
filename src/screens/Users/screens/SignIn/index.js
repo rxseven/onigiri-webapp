@@ -16,7 +16,7 @@ import { FormHL, FormMeta, FormStack } from '../../../../components/common/Form'
 import Icon from '../../../../components/common/Icon';
 import Spinner from '../../../../components/common/Spinner';
 import { Tip, TipHeader } from '../../../../components/common/Tip';
-import Error from '../../../../components/shared/extended/Error';
+import Error from '../../../../components/composite/Error';
 import Layout from '../../../Users/components/Layout';
 
 // Constants
