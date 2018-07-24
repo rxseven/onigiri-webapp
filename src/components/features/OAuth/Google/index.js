@@ -2,15 +2,16 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from 'helpers/state';
-import toJS from 'HOCs/state/toJS';
 import { oauthGoogle, oauthFailure, oauthRequest } from 'data/session/actions';
 import { getSession } from 'data/session/reducers';
 
-// Constants
+import { generateState } from 'helpers/state';
+
+import toJS from 'HOCs/state/toJS';
+
 import STATE_MODELS from 'constants/models/state';
 
-// Peer dependencies
+// Companion files
 import UI from './UI';
 
 // Map state to props

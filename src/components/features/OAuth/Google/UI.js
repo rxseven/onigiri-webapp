@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 
-// Constants
 import PATHS from 'constants/router/paths';
 
 // Component

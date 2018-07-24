@@ -5,7 +5,6 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 
 import { Button } from 'components/common/Buttons';
 
-// Constants
 import PATHS from 'constants/router/paths';
 
 // Component
