@@ -1,6 +1,6 @@
 // Module dependencies
-import { map } from 'lodash';
 import cx from 'classnames';
+import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Field } from 'redux-form/immutable';
@@ -10,11 +10,10 @@ import Spinner from 'components/common/Spinner';
 import Text from 'components/common/Text';
 import Error from 'components/composite/Error';
 
-// Constants
 import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Declare prop types and default props

@@ -6,7 +6,7 @@ import React, { Fragment } from 'react';
 
 import Icon from 'components/common/Icon';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Declare prop types and default props

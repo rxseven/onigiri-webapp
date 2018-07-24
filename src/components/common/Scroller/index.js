@@ -6,12 +6,10 @@ import Spinner from 'components/common/Spinner';
 import Text from 'components/common/Text';
 import Error from 'components/composite/Error';
 
-// Peer dependencies
-import styles from './styles.scss';
-
-// Declare prop types and default props
-import propTypes from './constants/propTypes';
+// Companion files
 import defaultProps from './constants/defaultProps';
+import propTypes from './constants/propTypes';
+import styles from './styles.scss';
 
 // Constants
 const INITIAL_STATE = {

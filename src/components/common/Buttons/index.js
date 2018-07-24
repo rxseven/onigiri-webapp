@@ -5,15 +5,12 @@ import { Link } from 'react-router-dom';
 
 import Icon from 'components/common/Icon';
 
-// Constants
 import CSS from 'constants/string/css';
 
-// Peer dependencies
-import styles from './styles.scss';
-
-// Declare prop types and default props
-import propTypes from './constants/propTypes';
+// Companion files
 import defaultProps from './constants/defaultProps';
+import propTypes from './constants/propTypes';
+import styles from './styles.scss';
 
 // Base button
 export const Button = ({

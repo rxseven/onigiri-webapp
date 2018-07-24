@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Declare prop types and default props

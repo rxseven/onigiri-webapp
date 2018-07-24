@@ -6,12 +6,12 @@ import { Button } from 'components/common/Buttons';
 import { Card, CardBody, CardHeader, CardText } from 'components/common/Card';
 import Spinner from 'components/common/Spinner';
 import Layout from 'components/common/Layout';
+
 import windowHelper from 'helpers/window';
 
-// Constants
 import CSS from 'constants/string/css';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Wrapper

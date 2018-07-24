@@ -1,4 +1,4 @@
-// Constants
+// Module dependencies
 import CSS from 'constants/string/css';
 
 // Default props

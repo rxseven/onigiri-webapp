@@ -6,7 +6,6 @@ import React from 'react';
 
 import { Column, Row } from 'components/common/Grid';
 
-// Constants
 import CSS from 'constants/string/css';
 
 // Declare prop types and default props

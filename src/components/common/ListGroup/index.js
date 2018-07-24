@@ -5,7 +5,7 @@ import exact from 'prop-types-exact';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Styles
+// Companion files
 import styles from './styles.scss';
 
 // Declare prop types and default props

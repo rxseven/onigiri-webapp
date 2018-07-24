@@ -6,7 +6,7 @@ import React from 'react';
 
 import ExLink from 'components/common/ExLink';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Declare prop types and default props

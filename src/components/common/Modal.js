@@ -4,7 +4,6 @@ import exact from 'prop-types-exact';
 import React from 'react';
 import ReactModal from 'react-modal';
 
-// Constants
 import HTML from 'constants/elements/html';
 
 // Declare prop types
