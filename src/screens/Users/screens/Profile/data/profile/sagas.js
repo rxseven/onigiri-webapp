@@ -3,8 +3,8 @@ import { fromJS } from 'immutable';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 // Helper functions and services
-import { getError } from '../../../../../../helpers/state';
-import * as usersService from '../../../../../../services/users';
+import { getError } from 'helpers/state';
+import * as usersService from 'services/users';
 
 // Action types and action creators
 import * as actions from './actions';

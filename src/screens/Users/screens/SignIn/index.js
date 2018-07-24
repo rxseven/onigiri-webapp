@@ -3,27 +3,27 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { generateState } from '../../../../helpers/state';
-import toJS from '../../../../HOCs/state/toJS';
-import { getSession } from '../../../../data/session/reducers';
-import { getUI } from './reducers';
+import { generateState } from 'helpers/state';
+import toJS from 'HOCs/state/toJS';
+import { getSession } from 'data/session/reducers';
 
-import FacebookLogin from '../../../../components/features/OAuth/Facebook';
-import GoogleLogin from '../../../../components/features/OAuth/Google';
-import { Button } from '../../../../components/common/Buttons';
-import { Body, Document, Head, Title } from '../../../../components/common/Document';
-import { FormHL, FormMeta, FormStack } from '../../../../components/common/Form';
-import Icon from '../../../../components/common/Icon';
-import Spinner from '../../../../components/common/Spinner';
-import { Tip, TipHeader } from '../../../../components/common/Tip';
-import Error from '../../../../components/composite/Error';
-import Layout from '../../../Users/components/Layout';
+import FacebookLogin from 'components/features/OAuth/Facebook';
+import GoogleLogin from 'components/features/OAuth/Google';
+import { Button } from 'components/common/Buttons';
+import { Body, Document, Head, Title } from 'components/common/Document';
+import { FormHL, FormMeta, FormStack } from 'components/common/Form';
+import Icon from 'components/common/Icon';
+import Spinner from 'components/common/Spinner';
+import { Tip, TipHeader } from 'components/common/Tip';
+import Error from 'components/composite/Error';
 
 // Constants
-import STATE_MODELS from '../../../../constants/models/state';
-import PATHS from '../../../../constants/router/paths';
+import STATE_MODELS from 'constants/models/state';
+import PATHS from 'constants/router/paths';
 
 // Peer dependencies
+import Layout from '../../../Users/components/Layout';
+import { getUI } from './reducers';
 import Form from './components/Form';
 import styles from './styles.scss';
 

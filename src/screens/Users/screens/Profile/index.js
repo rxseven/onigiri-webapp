@@ -2,18 +2,18 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../../helpers/state';
-import toJS from '../../../../HOCs/state/toJS';
-import { deleteUser } from '../../../../data/session/actions';
+import { generateState } from 'helpers/state';
+import toJS from 'HOCs/state/toJS';
+import { deleteUser } from 'data/session/actions';
 
-import * as creditsActions from '../../../../data/credits/actions';
-import { getCredits } from '../../../../data/credits/reducers';
+import * as creditsActions from 'data/credits/actions';
+import { getCredits } from 'data/credits/reducers';
 
-import * as modalActions from '../../../../data/interfaces/modal/actions';
-import { getModal } from '../../../../data/interfaces/modal/reducers';
+import * as modalActions from 'data/interfaces/modal/actions';
+import { getModal } from 'data/interfaces/modal/reducers';
 
 // Constants
-import STATE_MODELS from '../../../../constants/models/state';
+import STATE_MODELS from 'constants/models/state';
 
 // Peer dependencies
 import * as profileActions from './data/profile/actions';

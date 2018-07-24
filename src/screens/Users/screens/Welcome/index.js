@@ -1,14 +1,14 @@
 // Module dependencies
 import React from 'react';
 
-import { Button } from '../../../../components/common/Buttons';
-import { Body, Document, Head, Title } from '../../../../components/common/Document';
-import { Hero, HeroBody, HeroHeader } from '../../../../components/common/Hero';
-import Layout from '../../../../components/common/Layout';
-import Text from '../../../../components/common/Text';
+import { Button } from 'components/common/Buttons';
+import { Body, Document, Head, Title } from 'components/common/Document';
+import { Hero, HeroBody, HeroHeader } from 'components/common/Hero';
+import Layout from 'components/common/Layout';
+import Text from 'components/common/Text';
 
 // Constants
-import PATHS from '../../../../constants/router/paths';
+import PATHS from 'constants/router/paths';
 
 // Component
 const Welcome = () => (

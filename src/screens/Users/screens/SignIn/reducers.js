@@ -3,9 +3,9 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from '../../../../constants/models/state';
-import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
-import { setAsync } from '../../../../helpers/state';
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADING } from 'constants/types/asynchronous';
+import { setAsync } from 'helpers/state';
 
 // Actions
 import {
@@ -20,7 +20,7 @@ import {
   SIGNIN,
   SIGNIN_FAILURE,
   SIGNIN_SUCCESS
-} from '../../../../data/session/actions';
+} from 'data/session/actions';
 import { SIGNIN_RESET_UI } from './actions';
 
 // Initial state

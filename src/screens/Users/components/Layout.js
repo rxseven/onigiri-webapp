@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
-import Layout from '../../../components/common/Layout';
+import Layout from 'components/common/Layout';
 
 // Constants
-import CSS from '../../../constants/string/css';
+import CSS from 'constants/string/css';
 
 // Declare prop types
 const propTypes = exact({

@@ -2,16 +2,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Body, Document, Head, Title } from '../../../../components/common/Document';
-import { FormHL, FormMeta, FormStack } from '../../../../components/common/Form';
-import Icon from '../../../../components/common/Icon';
-import { Tip, TipHeader } from '../../../../components/common/Tip';
-import Layout from '../../../Users/components/Layout';
+import { Body, Document, Head, Title } from 'components/common/Document';
+import { FormHL, FormMeta, FormStack } from 'components/common/Form';
+import Icon from 'components/common/Icon';
+import { Tip, TipHeader } from 'components/common/Tip';
 
 // Constants
-import PATHS from '../../../../constants/router/paths';
+import PATHS from 'constants/router/paths';
 
 // Peer dependencies
+import Layout from '../../../Users/components/Layout';
 import Form from './components/Form';
 
 // Component
