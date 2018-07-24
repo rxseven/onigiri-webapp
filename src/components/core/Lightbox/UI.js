@@ -1,10 +1,10 @@
 // Module dependencies
 import React, { PureComponent } from 'react';
 
-import Overlay from '../../common/Overlay';
-import Spinner from '../../common/Spinner';
+import Overlay from 'components/common/Overlay';
+import Spinner from 'components/common/Spinner';
 
-import asyncHelper from '../../../helpers/asynchronous';
+import asyncHelper from 'helpers/asynchronous';
 
 // Peer dependencies
 import styles from './styles.scss';

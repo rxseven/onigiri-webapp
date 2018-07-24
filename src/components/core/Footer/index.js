@@ -2,11 +2,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import ExLink from '../../common/ExLink';
-import { Column, Container, Row } from '../../common/Grid';
+import ExLink from 'components/common/ExLink';
+import { Column, Container, Row } from 'components/common/Grid';
 
 // Constants
-import PATHS from '../../../constants/router/paths';
+import PATHS from 'constants/router/paths';
 
 // Peer dependencies
 import styles from './styles.scss';

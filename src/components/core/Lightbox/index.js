@@ -1,12 +1,12 @@
 // Module dependencies
 import { connect } from 'react-redux';
 
-import { generateState } from '../../../helpers/state';
-import toJS from '../../../HOCs/state/toJS';
-import { getSession } from '../../../data/session/reducers';
+import { generateState } from 'helpers/state';
+import toJS from 'HOCs/state/toJS';
+import { getSession } from 'data/session/reducers';
 
 // Constants
-import STATE_MODELS from '../../../constants/models/state';
+import STATE_MODELS from 'constants/models/state';
 
 // Peer dependencies
 import UI from './UI';

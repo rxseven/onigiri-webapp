@@ -2,34 +2,34 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Loadable from '../../HOCs/common/Loadable';
-import AuthRoute from '../../HOCs/routes/AuthRoute';
-import PrivateRoute from '../../HOCs/routes/PrivateRoute';
-import ReferralRoute from '../../HOCs/routes/ReferralRoute';
+import Loadable from 'HOCs/common/Loadable';
+import AuthRoute from 'HOCs/routes/AuthRoute';
+import PrivateRoute from 'HOCs/routes/PrivateRoute';
+import ReferralRoute from 'HOCs/routes/ReferralRoute';
 
 // Constants
-import PATHS from '../../constants/router/paths';
+import PATHS from 'constants/router/paths';
 
 // Screens
-import SurveyList from '../../screens/Surveys/screens/SurveyList';
+import SurveyList from 'screens/Surveys/screens/SurveyList';
 
-const Home = Loadable(() => import('../../screens/Home'));
+const Home = Loadable(() => import('screens/Home'));
 
-const SurveyDetails = Loadable(() => import('../../screens/Surveys/screens/SurveyDetails'));
-const SurveyDoorway = Loadable(() => import('../../screens/Surveys/screens/SurveyDoorway'));
-const SurveyNew = Loadable(() => import('../../screens/Surveys/screens/SurveyNew'));
-const SurveySuccess = Loadable(() => import('../../screens/Surveys/screens/SurveySuccess'));
+const SurveyDetails = Loadable(() => import('screens/Surveys/screens/SurveyDetails'));
+const SurveyDoorway = Loadable(() => import('screens/Surveys/screens/SurveyDoorway'));
+const SurveyNew = Loadable(() => import('screens/Surveys/screens/SurveyNew'));
+const SurveySuccess = Loadable(() => import('screens/Surveys/screens/SurveySuccess'));
 
-const Farewell = Loadable(() => import('../../screens/Users/screens/Farewell'));
-const Profile = Loadable(() => import('../../screens/Users/screens/Profile'));
-const SignIn = Loadable(() => import('../../screens/Users/screens/SignIn'));
-const SignUp = Loadable(() => import('../../screens/Users/screens/SignUp'));
-const Welcome = Loadable(() => import('../../screens/Users/screens/Welcome'));
+const Farewell = Loadable(() => import('screens/Users/screens/Farewell'));
+const Profile = Loadable(() => import('screens/Users/screens/Profile'));
+const SignIn = Loadable(() => import('screens/Users/screens/SignIn'));
+const SignUp = Loadable(() => import('screens/Users/screens/SignUp'));
+const Welcome = Loadable(() => import('screens/Users/screens/Welcome'));
 
-const About = Loadable(() => import('../../screens/About'));
-const Privacy = Loadable(() => import('../../screens/Policy/Privacy'));
-const Terms = Loadable(() => import('../../screens/Terms'));
-const NotFound = Loadable(() => import('../../screens/NotFound'));
+const About = Loadable(() => import('screens/About'));
+const Privacy = Loadable(() => import('screens/Policy/Privacy'));
+const Terms = Loadable(() => import('screens/Terms'));
+const NotFound = Loadable(() => import('screens/NotFound'));
 
 // Component
 const Routes = () => (

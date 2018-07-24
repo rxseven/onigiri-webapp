@@ -9,21 +9,21 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { action as toggleMenu, decorator as reduxMenu } from 'redux-burger-menu/immutable';
 
-import { generateState } from '../../../helpers/state';
-import toJS from '../../../HOCs/state/toJS';
-import { signOut } from '../../../data/session/actions';
-import { getSession } from '../../../data/session/reducers';
-import { getAsync } from '../../../data/interfaces/session/reducers';
+import { generateState } from 'helpers/state';
+import toJS from 'HOCs/state/toJS';
+import { signOut } from 'data/session/actions';
+import { getSession } from 'data/session/reducers';
+import { getAsync } from 'data/interfaces/session/reducers';
 
-import Avatar from '../../common/Avatar';
-import ExLink from '../../common/ExLink';
-import Icon from '../../common/Icon';
-import Text from '../../common/Text';
+import Avatar from 'components/common/Avatar';
+import ExLink from 'components/common/ExLink';
+import Icon from 'components/common/Icon';
+import Text from 'components/common/Text';
 
 // Constants
-import HTML from '../../../constants/elements/html';
-import STATE_MODELS from '../../../constants/models/state';
-import PATHS from '../../../constants/router/paths';
+import HTML from 'constants/elements/html';
+import STATE_MODELS from 'constants/models/state';
+import PATHS from 'constants/router/paths';
 
 // Peer dependencies
 import styles from './styles.scss';

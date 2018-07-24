@@ -1,7 +1,7 @@
 // Module dependencies
 import React from 'react';
 
-import Navbar from '../Navbar';
+import Navbar from 'components/core/Navbar';
 
 // Component
 const Header = () => <Navbar />;

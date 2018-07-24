@@ -4,7 +4,7 @@ import exact from 'prop-types-exact';
 import React from 'react';
 
 // Constants
-import HTML from '../../constants/elements/html';
+import HTML from 'constants/elements/html';
 
 // Declare prop types
 const propTypes = exact({
