@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
+// Constants
 import CSS from 'constants/string/css';
 
 // Companion files

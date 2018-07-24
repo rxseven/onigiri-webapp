@@ -2,11 +2,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+// Components and HOCs
 import Loadable from 'HOCs/common/Loadable';
 import AuthRoute from 'HOCs/routes/AuthRoute';
 import PrivateRoute from 'HOCs/routes/PrivateRoute';
 import ReferralRoute from 'HOCs/routes/ReferralRoute';
 
+// Constants
 import PATHS from 'constants/router/paths';
 
 // Screens

@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
+// Components and HOCs
 import { Column, Row } from 'components/common/Grid';
 
+// Constants
 import CSS from 'constants/string/css';
 
 // Declare prop types and default props

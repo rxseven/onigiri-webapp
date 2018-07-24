@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
+// Components and HOCs
 import Spinner from 'components/common/Spinner';
 import Text from 'components/common/Text';
 import Error from 'components/composite/Error';

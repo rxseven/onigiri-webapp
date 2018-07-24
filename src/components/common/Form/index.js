@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Field } from 'redux-form/immutable';
 
+// Components and HOCs
 import { Button, ButtonSet } from 'components/common/Buttons';
 import Spinner from 'components/common/Spinner';
 import Text from 'components/common/Text';
 import Error from 'components/composite/Error';
 
+// Constants
 import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 

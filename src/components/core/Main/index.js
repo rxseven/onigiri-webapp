@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
+// Components and HOCs
 import { Column, Container, Row } from 'components/common/Grid';
 
 // Companion files

@@ -1,8 +1,10 @@
 // Module dependencies
 import React, { PureComponent } from 'react';
 
+// Helper functions
 import asyncHelper from 'helpers/asynchronous';
 
+// Components and HOCs
 import Overlay from 'components/common/Overlay';
 import Spinner from 'components/common/Spinner';
 

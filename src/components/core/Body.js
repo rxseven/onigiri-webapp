@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
+// Constants
 import HTML from 'constants/elements/html';
 
 // Declare prop types

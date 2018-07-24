@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
+// Components and HOCs
 import Alert from 'components/common/Alert';
 
 // Declare prop types

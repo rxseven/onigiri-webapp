@@ -2,13 +2,16 @@
 import cx from 'classnames';
 import React from 'react';
 
+// Helper functions
+import windowHelper from 'helpers/window';
+
+// Components and HOCs
 import { Button } from 'components/common/Buttons';
 import { Card, CardBody, CardHeader, CardText } from 'components/common/Card';
 import Spinner from 'components/common/Spinner';
 import Layout from 'components/common/Layout';
 
-import windowHelper from 'helpers/window';
-
+// Constants
 import CSS from 'constants/string/css';
 
 // Companion files

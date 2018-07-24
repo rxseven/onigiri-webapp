@@ -2,11 +2,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+// Components and HOCs
 import { Button } from 'components/common/Buttons';
 import { Modal, ModalBody, ModalFooter } from 'components/common/Modal';
 import Spinner from 'components/common/Spinner';
 import Error from 'components/composite/Error';
 
+// Constants
 import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 

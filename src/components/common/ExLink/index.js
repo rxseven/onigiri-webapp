@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React, { Fragment } from 'react';
 
+// Components and HOCs
 import Icon from 'components/common/Icon';
 
 // Companion files

@@ -9,21 +9,25 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { action as toggleMenu, decorator as reduxMenu } from 'redux-burger-menu/immutable';
 
-import { signOut } from 'data/session/actions';
-import { getSession } from 'data/session/reducers';
-import { getAsync } from 'data/interfaces/session/reducers';
-
+// Helper functions
 import { generateState } from 'helpers/state';
 
+// Components and HOCs
 import Avatar from 'components/common/Avatar';
 import ExLink from 'components/common/ExLink';
 import Icon from 'components/common/Icon';
 import Text from 'components/common/Text';
 import toJS from 'HOCs/state/toJS';
 
+// Constants
 import HTML from 'constants/elements/html';
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
+
+// Action creators and selectors
+import { signOut } from 'data/session/actions';
+import { getSession } from 'data/session/reducers';
+import { getAsync } from 'data/interfaces/session/reducers';
 
 // Companion files
 import styles from './styles.scss';

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
+// Components and HOCs
 import App from 'components/core/App';
 
 // Component

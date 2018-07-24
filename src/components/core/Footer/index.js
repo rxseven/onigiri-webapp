@@ -2,9 +2,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+// Components and HOCs
 import ExLink from 'components/common/ExLink';
 import { Column, Container, Row } from 'components/common/Grid';
 
+// Constants
 import PATHS from 'constants/router/paths';
 
 // Companion files
