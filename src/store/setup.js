@@ -3,10 +3,17 @@ import { Map } from 'immutable';
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
+// Actions and selectors
 import { getUser } from 'data/session/actions';
-import tokenHelper from 'helpers/token';
+
+// Root reducer
 import reducer from 'reducers';
+
+// Root saga
 import saga from 'sagas';
+
+// Helper functions
+import tokenHelper from 'helpers/token';
 
 // Initialize middleware
 const sagaMiddleware = createSagaMiddleware();
