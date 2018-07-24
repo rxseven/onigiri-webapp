@@ -5,19 +5,19 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../../../../helpers/state';
-import toJS from '../../../../../../HOCs/state/toJS';
-import { Button, ButtonSet } from '../../../../../../components/common/Buttons';
-import { FormSHL } from '../../../../../../components/common/Form';
-import Spinner from '../../../../../../components/common/Spinner';
-import Error from '../../../../../../components/composite/Error';
+import { generateState } from 'helpers/state';
+import toJS from 'HOCs/state/toJS';
+import { Button, ButtonSet } from 'components/common/Buttons';
+import { FormSHL } from 'components/common/Form';
+import Spinner from 'components/common/Spinner';
+import Error from 'components/composite/Error';
 
-import emailHelper from '../../../../../../helpers/email';
+import emailHelper from 'helpers/email';
 
 // Constants
-import PROP_TYPES from '../../../../../../constants/models/propTypes';
-import STATE_MODELS from '../../../../../../constants/models/state';
-import PATHS from '../../../../../../constants/router/paths';
+import PROP_TYPES from 'constants/models/propTypes';
+import STATE_MODELS from 'constants/models/state';
+import PATHS from 'constants/router/paths';
 
 // Peer dependencies
 import * as surveyActions from '../../../SurveyNew/actions';

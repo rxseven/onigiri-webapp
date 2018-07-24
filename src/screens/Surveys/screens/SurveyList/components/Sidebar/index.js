@@ -2,11 +2,11 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { Button } from '../../../../../../components/common/Buttons';
+import { Button } from 'components/common/Buttons';
 
 // Constants
-import PATHS from '../../../../../../constants/router/paths';
-import SCREENS from '../../../../../../constants/sizing/screens';
+import PATHS from 'constants/router/paths';
+import SCREENS from 'constants/sizing/screens';
 
 // Peer dependencies
 import Menu from '../Menu';

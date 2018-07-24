@@ -3,17 +3,17 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { Body, Document, Head, Title } from '../../../../components/common/Document';
-import { Card, CardBody, CardHeader, CardText } from '../../../../components/common/Card';
-import ExLink from '../../../../components/common/ExLink';
-import Layout from '../../../../components/common/Layout';
-import Spinner from '../../../../components/common/Spinner';
-import Error from '../../../../components/composite/Error';
+import { Body, Document, Head, Title } from 'components/common/Document';
+import { Card, CardBody, CardHeader, CardText } from 'components/common/Card';
+import ExLink from 'components/common/ExLink';
+import Layout from 'components/common/Layout';
+import Spinner from 'components/common/Spinner';
+import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from '../../../../constants/models/propTypes';
-import STATE_MODELS from '../../../../constants/models/state';
-import CSS from '../../../../constants/string/css';
+import PROP_TYPES from 'constants/models/propTypes';
+import STATE_MODELS from 'constants/models/state';
+import CSS from 'constants/string/css';
 
 // Declare prop types and default props
 const propTypes = PROP_TYPES.wrapper.asynchronous({

@@ -2,11 +2,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../../helpers/state';
-import toJS from '../../../../HOCs/state/toJS';
+import { generateState } from 'helpers/state';
+import toJS from 'HOCs/state/toJS';
 
 // Constants
-import STATE_MODELS from '../../../../constants/models/state';
+import STATE_MODELS from 'constants/models/state';
 
 // Peer dependencies
 import * as dataActions from './data/landing/actions';

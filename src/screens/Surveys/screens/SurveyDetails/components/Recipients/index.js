@@ -2,16 +2,16 @@
 import { map, size } from 'lodash';
 import React, { Fragment } from 'react';
 
-import { Button, ButtonSet } from '../../../../../../components/common/Buttons';
-import { CardSubtitle } from '../../../../../../components/common/Card';
-import { List, ListItem, ListContent, ListLabel } from '../../../../../../components/common/List';
-import Spinner from '../../../../../../components/common/Spinner';
-import Error from '../../../../../../components/composite/Error';
+import { Button, ButtonSet } from 'components/common/Buttons';
+import { CardSubtitle } from 'components/common/Card';
+import { List, ListItem, ListContent, ListLabel } from 'components/common/List';
+import Spinner from 'components/common/Spinner';
+import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from '../../../../../../constants/models/propTypes';
-import STATE_MODELS from '../../../../../../constants/models/state';
-import CSS from '../../../../../../constants/string/css';
+import PROP_TYPES from 'constants/models/propTypes';
+import STATE_MODELS from 'constants/models/state';
+import CSS from 'constants/string/css';
 
 // Peer dependencies
 import styles from './styles.scss';

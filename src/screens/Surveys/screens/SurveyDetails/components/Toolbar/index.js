@@ -2,19 +2,14 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 
-import {
-  Button,
-  ButtonGroup,
-  ButtonHandler,
-  ButtonToolbar
-} from '../../../../../../components/common/Buttons';
-import Spinner from '../../../../../../components/common/Spinner';
+import { Button, ButtonGroup, ButtonHandler, ButtonToolbar } from 'components/common/Buttons';
+import Spinner from 'components/common/Spinner';
 
-import dateHelper from '../../../../../../helpers/date';
+import dateHelper from 'helpers/date';
 
 // Constants
-import PROP_TYPES from '../../../../../../constants/models/propTypes';
-import STATE_MODELS from '../../../../../../constants/models/state';
+import PROP_TYPES from 'constants/models/propTypes';
+import STATE_MODELS from 'constants/models/state';
 
 // Peer dependencies
 import styles from './styles.scss';

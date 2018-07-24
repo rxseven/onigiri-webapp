@@ -2,19 +2,15 @@
 import { isEmpty as checkEmpty, map } from 'lodash';
 import React from 'react';
 
-import { Button } from '../../../../../../components/common/Buttons';
-import { Hero, HeroHeader, HeroBody } from '../../../../../../components/common/Hero';
-import { ListGroup } from '../../../../../../components/common/ListGroup';
-import {
-  Scroller,
-  ScrollerContent,
-  ScrollerEmpty
-} from '../../../../../../components/common/Scroller';
-import Text from '../../../../../../components/common/Text';
+import { Button } from 'components/common/Buttons';
+import { Hero, HeroHeader, HeroBody } from 'components/common/Hero';
+import { ListGroup } from 'components/common/ListGroup';
+import { Scroller, ScrollerContent, ScrollerEmpty } from 'components/common/Scroller';
+import Text from 'components/common/Text';
 
 // Constants
-import PATHS from '../../../../../../constants/router/paths';
-import CSS from '../../../../../../constants/string/css';
+import PATHS from 'constants/router/paths';
+import CSS from 'constants/string/css';
 
 // Peer dependencies
 import TYPES from '../../constants/types';

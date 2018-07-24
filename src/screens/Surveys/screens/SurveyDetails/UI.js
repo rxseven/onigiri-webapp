@@ -3,14 +3,14 @@ import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { Body, Document, Head, Title } from '../../../../components/common/Document';
-import Layout from '../../../../components/common/Layout';
-import Error from '../../../../components/composite/Error';
+import { Body, Document, Head, Title } from 'components/common/Document';
+import Layout from 'components/common/Layout';
+import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from '../../../../constants/models/propTypes';
-import STATE_MODELS from '../../../../constants/models/state';
-import PATHS from '../../../../constants/router/paths';
+import PROP_TYPES from 'constants/models/propTypes';
+import STATE_MODELS from 'constants/models/state';
+import PATHS from 'constants/router/paths';
 
 // Peer dependencies
 import Content from './components/Content';

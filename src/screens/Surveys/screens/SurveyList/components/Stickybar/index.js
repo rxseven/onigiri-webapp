@@ -3,7 +3,7 @@ import React from 'react';
 import { Sticky } from 'react-sticky';
 
 // Constants
-import SCREENS from '../../../../../../constants/sizing/screens';
+import SCREENS from 'constants/sizing/screens';
 
 // Peer dependencies
 import Sidebar from '../Sidebar';

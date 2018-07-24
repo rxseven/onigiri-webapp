@@ -3,12 +3,12 @@ import { fromJS } from 'immutable';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 // Helper functions and services
-import { getError } from '../../../../helpers/state';
-import * as surveysService from '../../../../services/surveys';
+import { getError } from 'helpers/state';
+import * as surveysService from 'services/surveys';
 
 // Action types and action creators
+import { updateCredits } from 'data/credits/actions';
 import * as actions from './actions';
-import { updateCredits } from '../../../../data/credits/actions';
 
 // Create survey
 function* createSurvey({ callback, payload }) {

@@ -4,8 +4,8 @@ import { mapKeys } from 'lodash';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 // Helper functions and services
-import { fromJSOrdered, getError } from '../../../../../../helpers/state';
-import * as surveysService from '../../../../../../services/surveys';
+import { fromJSOrdered, getError } from 'helpers/state';
+import * as surveysService from 'services/surveys';
 
 // Action types and action creators
 import * as actions from './actions';

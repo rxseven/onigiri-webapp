@@ -2,16 +2,16 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../../helpers/state';
-import toJS from '../../../../HOCs/state/toJS';
-import * as modalActions from '../../../../data/interfaces/modal/actions';
-import { getModal } from '../../../../data/interfaces/modal/reducers';
-import * as commonActions from '../../actions';
+import { generateState } from 'helpers/state';
+import toJS from 'HOCs/state/toJS';
+import * as modalActions from 'data/interfaces/modal/actions';
+import { getModal } from 'data/interfaces/modal/reducers';
 
 // Constants
-import STATE_MODELS from '../../../../constants/models/state';
+import STATE_MODELS from 'constants/models/state';
 
 // Peer dependencies
+import * as commonActions from '../../actions';
 import * as dataActions from './data/survey/actions';
 import { getSurvey } from './data/survey/reducers';
 import { getUI } from './reducers';
