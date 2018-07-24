@@ -3,12 +3,12 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from '../../../constants/models/state';
-import { ERROR, LOADING } from '../../../constants/types/asynchronous';
-import { setAsync } from '../../../helpers/state';
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADING } from 'constants/types/asynchronous';
+import { setAsync } from 'helpers/state';
 
 // Actions
-import { SIGNOUT, SIGNOUT_FAILURE, SIGNOUT_SUCCESS } from '../../../data/session/actions';
+import { SIGNOUT, SIGNOUT_FAILURE, SIGNOUT_SUCCESS } from 'data/session/actions';
 
 // Initial state
 const initialState = fromJS({

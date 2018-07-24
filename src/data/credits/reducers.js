@@ -3,7 +3,7 @@ import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
 // Actions
-import { USER_RESET } from '../session/actions';
+import { USER_RESET } from 'data/session/actions';
 import {
   CHECKOUT,
   CHECKOUT_FAILURE,

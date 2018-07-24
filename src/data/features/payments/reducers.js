@@ -3,13 +3,13 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from '../../../constants/models/state';
-import { ERROR, LOADING } from '../../../constants/types/asynchronous';
-import { setAsync } from '../../../helpers/state';
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADING } from 'constants/types/asynchronous';
+import { setAsync } from 'helpers/state';
 
 // Actions
-import { USER_RESET } from '../../../data/session/actions';
-import { CHECKOUT, CHECKOUT_FAILURE, CHECKOUT_SUCCESS } from '../../../data/credits/actions';
+import { USER_RESET } from 'data/session/actions';
+import { CHECKOUT, CHECKOUT_FAILURE, CHECKOUT_SUCCESS } from 'data/credits/actions';
 
 // Initial state
 const initialState = fromJS({
