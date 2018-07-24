@@ -3,6 +3,7 @@ import cx from 'classnames';
 import React, { Fragment } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+// Components and HOCs
 import { Card, CardBody, CardHeader, CardSubtitle } from 'components/common/Card';
 import {
   List,
@@ -15,7 +16,7 @@ import {
 } from 'components/common/List';
 import Text from 'components/common/Text';
 
-// Constants
+// Companion files
 import CSS from 'constants/string/css';
 
 // Component

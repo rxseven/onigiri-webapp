@@ -2,11 +2,12 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+// Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Document';
 import Layout from 'components/common/Layout';
 import { HL } from 'components/common/Typography';
 
-// Peer dependencies
+// Companion files
 import Development from './content/Development';
 import Overview from './content/Overview';
 import Specs from './content/Specs';
