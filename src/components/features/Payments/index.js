@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../helpers/data';
+import { generateState } from '../../../helpers/state';
 import toJS from '../../../HOCs/state/toJS';
 import { checkout } from '../../../data/credits/actions';
 import { getUI } from '../../../data/features/payments/reducers';

@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 
-import { generateState } from '../../../../../helpers/data';
+import { generateState } from '../../../../../helpers/state';
 import toJS from '../../../../../HOCs/state/toJS';
 import { Button } from '../../../../../components/common/Buttons';
 import { Card, CardBody, CardHeader, CardText } from '../../../../../components/common/Card';

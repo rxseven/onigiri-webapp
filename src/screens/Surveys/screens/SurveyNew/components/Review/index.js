@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../../../../helpers/data';
+import { generateState } from '../../../../../../helpers/state';
 import toJS from '../../../../../../HOCs/state/toJS';
 import { Button, ButtonSet } from '../../../../../../components/common/Buttons';
 import { FormSHL } from '../../../../../../components/common/Form';

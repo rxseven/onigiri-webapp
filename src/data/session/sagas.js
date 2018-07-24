@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 // Helper functions and services
-import { getError } from '../../helpers/data';
+import { getError } from '../../helpers/state';
 import tokenHelper from '../../helpers/token';
 import * as usersService from '../../services/users';
 

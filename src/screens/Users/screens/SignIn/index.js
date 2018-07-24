@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { generateState } from '../../../../helpers/data';
+import { generateState } from '../../../../helpers/state';
 import toJS from '../../../../HOCs/state/toJS';
 import { getSession } from '../../../../data/session/reducers';
 import { getUI } from './reducers';

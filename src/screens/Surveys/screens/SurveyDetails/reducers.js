@@ -5,7 +5,7 @@ import { createSelector } from 'reselect';
 
 import STATE_MODELS from '../../../../constants/models/state';
 import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
-import { setAsync } from '../../../../helpers/data';
+import { setAsync } from '../../../../helpers/state';
 
 // Actions
 import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../actions';

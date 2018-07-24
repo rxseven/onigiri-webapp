@@ -5,7 +5,7 @@ import { createSelector } from 'reselect';
 
 import STATE_MODELS from '../../../../constants/models/state';
 import { ERROR, LOADED, LOADING } from '../../../../constants/types/asynchronous';
-import { setAsync } from '../../../../helpers/data';
+import { setAsync } from '../../../../helpers/state';
 
 // Actions
 import { USER_RESET } from '../../../../data/session/actions';

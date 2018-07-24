@@ -1,7 +1,7 @@
 // Module dependencies
 import { connect } from 'react-redux';
 
-import { generateState } from '../../../helpers/data';
+import { generateState } from '../../../helpers/state';
 import toJS from '../../../HOCs/state/toJS';
 import { getSession } from '../../../data/session/reducers';
 

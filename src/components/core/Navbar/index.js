@@ -7,7 +7,7 @@ import { Link, NavLink, withRouter } from 'react-router-dom';
 import Dropdown, { DropdownContent, DropdownTrigger } from 'react-simple-dropdown';
 import { action as toggleMenu } from 'redux-burger-menu/immutable';
 
-import { generateState } from '../../../helpers/data';
+import { generateState } from '../../../helpers/state';
 import toJS from '../../../HOCs/state/toJS';
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducers';

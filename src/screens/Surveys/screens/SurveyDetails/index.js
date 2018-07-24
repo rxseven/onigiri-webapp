@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../../helpers/data';
+import { generateState } from '../../../../helpers/state';
 import toJS from '../../../../HOCs/state/toJS';
 import * as modalActions from '../../../../data/interfaces/modal/actions';
 import { getModal } from '../../../../data/interfaces/modal/reducers';

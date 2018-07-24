@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../../helpers/data';
+import { generateState } from '../../../../helpers/state';
 import toJS from '../../../../HOCs/state/toJS';
 import { oauthFacebook, oauthFailure, oauthRequest } from '../../../../data/session/actions';
 import { getSession } from '../../../../data/session/reducers';

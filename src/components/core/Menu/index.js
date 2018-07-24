@@ -9,7 +9,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { action as toggleMenu, decorator as reduxMenu } from 'redux-burger-menu/immutable';
 
-import { generateState } from '../../../helpers/data';
+import { generateState } from '../../../helpers/state';
 import toJS from '../../../HOCs/state/toJS';
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducers';

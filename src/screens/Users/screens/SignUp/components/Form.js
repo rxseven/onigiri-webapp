@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 
-import { generateState } from '../../../../../helpers/data';
+import { generateState } from '../../../../../helpers/state';
 import toJS from '../../../../../HOCs/state/toJS';
 import { signUp } from '../../../../../data/session/actions';
 import { resetUI } from '../actions';

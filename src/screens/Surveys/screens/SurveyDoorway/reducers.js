@@ -5,7 +5,7 @@ import { combineReducers } from 'redux-immutable';
 
 import STATE_MODELS from '../../../../constants/models/state';
 import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
-import { setAsync } from '../../../../helpers/data';
+import { setAsync } from '../../../../helpers/state';
 
 // Actions
 import {
