@@ -2,14 +2,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Button } from '../common/Buttons';
-import { Modal, ModalBody, ModalFooter } from '../common/Modal';
-import Spinner from '../common/Spinner';
-import Error from './Error';
+import { Button } from 'components/common/Buttons';
+import { Modal, ModalBody, ModalFooter } from 'components/common/Modal';
+import Spinner from 'components/common/Spinner';
+import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from '../../constants/models/propTypes';
-import STATE_MODELS from '../../constants/models/state';
+import PROP_TYPES from 'constants/models/propTypes';
+import STATE_MODELS from 'constants/models/state';
 
 // Declare prop types and default props
 const propTypes = {
