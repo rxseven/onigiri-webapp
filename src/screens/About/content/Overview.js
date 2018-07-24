@@ -19,7 +19,7 @@ import {
 } from 'components/common/List';
 import Text from 'components/common/Text';
 
-// Companion files
+// Constants
 import CSS from 'constants/string/css';
 
 // Component
