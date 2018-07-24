@@ -3,8 +3,8 @@ import { map } from 'ramda';
 import { all, fork } from 'redux-saga/effects';
 
 // Sagas
-import data from '../data/sagas';
-import screens from '../screens/sagas';
+import data from 'data/sagas';
+import screens from 'screens/sagas';
 
 // Combine Sagas
 const sagas = {
