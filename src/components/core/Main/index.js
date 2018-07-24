@@ -5,7 +5,7 @@ import React from 'react';
 
 import { Column, Container, Row } from 'components/common/Grid';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Declare prop types

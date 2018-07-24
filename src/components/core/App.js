@@ -12,8 +12,8 @@ import Lightbox from 'components/core/Lightbox';
 import Main from 'components/core/Main';
 import Menu from 'components/core/Menu';
 import Notification from 'components/core/Notification';
-import Wrapper from 'components/core/Wrapper';
 import Routes from 'components/core/Routes';
+import Wrapper from 'components/core/Wrapper';
 
 // Component
 const App = () => (

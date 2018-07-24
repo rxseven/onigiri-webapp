@@ -5,7 +5,6 @@ import exact from 'prop-types-exact';
 
 import uiHelper from 'helpers/interface';
 
-// Constants
 import HTML from 'constants/elements/html';
 
 // Declare prop types
