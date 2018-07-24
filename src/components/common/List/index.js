@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
-import ExLink from '../ExLink';
+import ExLink from 'components/common/ExLink';
 
 // Peer dependencies
 import styles from './styles.scss';

@@ -5,7 +5,7 @@ import exact from 'prop-types-exact';
 import React from 'react';
 
 // Constants
-import CSS from '../../../constants/string/css';
+import CSS from 'constants/string/css';
 
 // Peer dependencies
 import styles from './styles.scss';

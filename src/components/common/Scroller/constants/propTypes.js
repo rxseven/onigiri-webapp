@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 
 // Constants
-import PROP_TYPES from '../../../../constants/models/propTypes';
+import PROP_TYPES from 'constants/models/propTypes';
 
 // Prop types
 export default exact({

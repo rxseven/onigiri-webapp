@@ -2,14 +2,14 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { Button } from '../Buttons';
-import { Card, CardBody, CardHeader, CardText } from '../Card';
-import Spinner from '../Spinner';
-import Layout from '../Layout';
-import windowHelper from '../../../helpers/window';
+import { Button } from 'components/common/Buttons';
+import { Card, CardBody, CardHeader, CardText } from 'components/common/Card';
+import Spinner from 'components/common/Spinner';
+import Layout from 'components/common/Layout';
+import windowHelper from 'helpers/window';
 
 // Constants
-import CSS from '../../../constants/string/css';
+import CSS from 'constants/string/css';
 
 // Peer dependencies
 import styles from './styles.scss';

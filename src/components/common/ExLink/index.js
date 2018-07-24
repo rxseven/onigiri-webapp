@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React, { Fragment } from 'react';
 
-import Icon from '../Icon';
+import Icon from 'components/common/Icon';
 
 // Peer dependencies
 import styles from './styles.scss';

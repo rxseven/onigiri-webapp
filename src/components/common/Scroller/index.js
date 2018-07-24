@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
-import Spinner from '../Spinner';
-import Text from '../Text';
-import Error from '../../composite/Error';
+import Spinner from 'components/common/Spinner';
+import Text from 'components/common/Text';
+import Error from 'components/composite/Error';
 
 // Peer dependencies
 import styles from './styles.scss';

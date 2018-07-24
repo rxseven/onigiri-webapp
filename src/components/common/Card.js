@@ -6,7 +6,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Constants
-import CSS from '../../constants/string/css';
+import CSS from 'constants/string/css';
 
 // Declare prop types and default props
 const propTypes = exact({

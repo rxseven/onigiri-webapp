@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Field } from 'redux-form/immutable';
 
-import { Button, ButtonSet } from '../Buttons';
-import Spinner from '../Spinner';
-import Text from '../Text';
-import Error from '../../composite/Error';
+import { Button, ButtonSet } from 'components/common/Buttons';
+import Spinner from 'components/common/Spinner';
+import Text from 'components/common/Text';
+import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from '../../../constants/models/propTypes';
-import STATE_MODELS from '../../../constants/models/state';
+import PROP_TYPES from 'constants/models/propTypes';
+import STATE_MODELS from 'constants/models/state';
 
 // Peer dependencies
 import styles from './styles.scss';

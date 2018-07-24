@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
-import { Column, Row } from './Grid';
+import { Column, Row } from 'components/common/Grid';
 
 // Constants
-import CSS from '../../constants/string/css';
+import CSS from 'constants/string/css';
 
 // Declare prop types and default props
 const propTypes = exact({

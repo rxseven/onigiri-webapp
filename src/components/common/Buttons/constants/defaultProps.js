@@ -1,5 +1,5 @@
 // Constants
-import CSS from '../../../../constants/string/css';
+import CSS from 'constants/string/css';
 
 // Default props
 export default {

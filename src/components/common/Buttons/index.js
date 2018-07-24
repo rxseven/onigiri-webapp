@@ -3,10 +3,10 @@ import cx from 'classnames';
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import Icon from '../Icon';
+import Icon from 'components/common/Icon';
 
 // Constants
-import CSS from '../../../constants/string/css';
+import CSS from 'constants/string/css';
 
 // Peer dependencies
 import styles from './styles.scss';
