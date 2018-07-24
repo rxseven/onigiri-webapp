@@ -1,6 +1,7 @@
 // Module dependencies
 import LoadableVisibility from 'react-loadable-visibility/react-loadable';
 
+// Components and HOCs
 import Loader from 'components/common/Loader';
 
 // HOC

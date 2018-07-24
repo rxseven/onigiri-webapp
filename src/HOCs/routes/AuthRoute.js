@@ -3,14 +3,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-import { getAuth } from 'data/session/reducers';
-
+// Helper functions
 import { generateState } from 'helpers/state';
 
+// Components and HOCs
 import toJS from 'HOCs/state/toJS';
 
+// Constants
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
+
+// Action creators and selectors
+import { getAuth } from 'data/session/reducers';
 
 // HOC
 const AuthRoute = ({ component: Component, state: { data: { authorization } }, ...rest }) => (
