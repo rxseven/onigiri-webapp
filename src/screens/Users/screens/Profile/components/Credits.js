@@ -1,10 +1,10 @@
 // Module dependencies
 import React, { Fragment } from 'react';
 
-import { Card, CardBody, CardFooter, CardTitle } from '../../../../../components/shared/base/Card';
-import Icon from '../../../../../components/shared/base/Icon';
-import Text from '../../../../../components/shared/base/Text';
-import { Tip, TipHeader } from '../../../../../components/shared/base/Tip';
+import { Card, CardBody, CardFooter, CardTitle } from '../../../../../components/common/Card';
+import Icon from '../../../../../components/common/Icon';
+import Text from '../../../../../components/common/Text';
+import { Tip, TipHeader } from '../../../../../components/common/Tip';
 import timestampHelper from '../../../../../helpers/timestamp';
 
 // Peer dependencies

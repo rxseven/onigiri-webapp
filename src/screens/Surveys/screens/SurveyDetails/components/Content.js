@@ -2,17 +2,12 @@
 import cx from 'classnames';
 import React, { Fragment } from 'react';
 
-import Alert from '../../../../../components/shared/base/Alert';
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardSubtitle
-} from '../../../../../components/shared/base/Card';
-import ExLink from '../../../../../components/shared/base/ExLink';
-import Icon from '../../../../../components/shared/base/Icon';
-import { List, ListItem, ListContent, ListLabel } from '../../../../../components/shared/base/List';
-import Text from '../../../../../components/shared/base/Text';
+import Alert from '../../../../../components/common/Alert';
+import { Card, CardBody, CardHeader, CardSubtitle } from '../../../../../components/common/Card';
+import ExLink from '../../../../../components/common/ExLink';
+import Icon from '../../../../../components/common/Icon';
+import { List, ListItem, ListContent, ListLabel } from '../../../../../components/common/List';
+import Text from '../../../../../components/common/Text';
 
 import timestampHelper from '../../../../../helpers/timestamp';
 

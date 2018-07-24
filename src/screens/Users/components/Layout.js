@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
-import Layout from '../../../components/shared/base/Layout';
+import Layout from '../../../components/common/Layout';
 
 // Constants
 import CSS from '../../../constants/string/css';

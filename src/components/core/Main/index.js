@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
-import { Column, Container, Row } from '../../shared/base/Grid';
+import { Column, Container, Row } from '../../common/Grid';
 
 // Peer dependencies
 import styles from './styles.scss';

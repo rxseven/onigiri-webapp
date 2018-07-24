@@ -3,8 +3,8 @@ import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
-import Layout from '../../../../components/shared/base/Layout';
+import { Body, Document, Head, Title } from '../../../../components/common/Document';
+import Layout from '../../../../components/common/Layout';
 import Error from '../../../../components/shared/extended/Error';
 
 // Constants

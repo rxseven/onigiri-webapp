@@ -15,10 +15,10 @@ import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducers';
 import { getAsync } from '../../../data/interfaces/session/reducers';
 
-import Avatar from '../../shared/base/Avatar';
-import ExLink from '../../shared/base/ExLink';
-import Icon from '../../shared/base/Icon';
-import Text from '../../shared/base/Text';
+import Avatar from '../../common/Avatar';
+import ExLink from '../../common/ExLink';
+import Icon from '../../common/Icon';
+import Text from '../../common/Text';
 
 // Constants
 import HTML from '../../../constants/elements/html';

@@ -2,8 +2,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import ExLink from '../../shared/base/ExLink';
-import { Column, Container, Row } from '../../shared/base/Grid';
+import ExLink from '../../common/ExLink';
+import { Column, Container, Row } from '../../common/Grid';
 
 // Constants
 import PATHS from '../../../constants/router/paths';

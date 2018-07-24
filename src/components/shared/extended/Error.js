@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
-import Alert from '../base/Alert';
+import Alert from '../../common/Alert';
 
 // Declare prop types
 const propTypes = exact({

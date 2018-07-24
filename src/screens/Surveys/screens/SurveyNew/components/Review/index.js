@@ -7,9 +7,9 @@ import { bindActionCreators } from 'redux';
 
 import { generateState } from '../../../../../../helpers/data';
 import toJS from '../../../../../../HOCs/toJS';
-import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
-import { FormSHL } from '../../../../../../components/shared/base/Form';
-import Spinner from '../../../../../../components/shared/base/Spinner';
+import { Button, ButtonSet } from '../../../../../../components/common/Buttons';
+import { FormSHL } from '../../../../../../components/common/Form';
+import Spinner from '../../../../../../components/common/Spinner';
 import Error from '../../../../../../components/shared/extended/Error';
 
 import emailHelper from '../../../../../../helpers/email';

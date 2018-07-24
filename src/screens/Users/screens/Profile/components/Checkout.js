@@ -4,9 +4,9 @@ import exact from 'prop-types-exact';
 import React, { Fragment } from 'react';
 
 import Payments from '../../../../../components/features/Payments';
-import { ButtonSet } from '../../../../../components/shared/base/Buttons';
-import { CardText } from '../../../../../components/shared/base/Card';
-import Spinner from '../../../../../components/shared/base/Spinner';
+import { ButtonSet } from '../../../../../components/common/Buttons';
+import { CardText } from '../../../../../components/common/Card';
+import Spinner from '../../../../../components/common/Spinner';
 import Error from '../../../../../components/shared/extended/Error';
 
 // Constants

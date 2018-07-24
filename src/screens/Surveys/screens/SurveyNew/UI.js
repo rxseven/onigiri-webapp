@@ -3,11 +3,11 @@ import cx from 'classnames';
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form/immutable';
 
-import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
-import { FormHL } from '../../../../components/shared/base/Form';
-import Icon from '../../../../components/shared/base/Icon';
-import Layout from '../../../../components/shared/base/Layout';
-import { Tip, TipHeader } from '../../../../components/shared/base/Tip';
+import { Body, Document, Head, Title } from '../../../../components/common/Document';
+import { FormHL } from '../../../../components/common/Form';
+import Icon from '../../../../components/common/Icon';
+import Layout from '../../../../components/common/Layout';
+import { Tip, TipHeader } from '../../../../components/common/Tip';
 
 // Constants
 import CSS from '../../../../constants/string/css';

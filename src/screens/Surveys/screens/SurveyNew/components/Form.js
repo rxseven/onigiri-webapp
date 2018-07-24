@@ -8,10 +8,10 @@ import { reduxForm } from 'redux-form/immutable';
 
 import { generateState } from '../../../../../helpers/data';
 import toJS from '../../../../../HOCs/toJS';
-import { Button } from '../../../../../components/shared/base/Buttons';
-import { Card, CardBody, CardHeader, CardText } from '../../../../../components/shared/base/Card';
-import { Form, FormSHL } from '../../../../../components/shared/base/Form';
-import Spinner from '../../../../../components/shared/base/Spinner';
+import { Button } from '../../../../../components/common/Buttons';
+import { Card, CardBody, CardHeader, CardText } from '../../../../../components/common/Card';
+import { Form, FormSHL } from '../../../../../components/common/Form';
+import Spinner from '../../../../../components/common/Spinner';
 import Confirm from '../../../../../components/shared/extended/Confirm';
 
 import { getCredits } from '../../../../../data/credits/actions';

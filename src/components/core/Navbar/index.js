@@ -13,9 +13,9 @@ import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducers';
 import { getAsync } from '../../../data/interfaces/session/reducers';
 
-import Avatar from '../../shared/base/Avatar';
-import { Container } from '../../shared/base/Grid';
-import Icon from '../../shared/base/Icon';
+import Avatar from '../../common/Avatar';
+import { Container } from '../../common/Grid';
+import Icon from '../../common/Icon';
 
 // Constants
 import STATE_MODELS from '../../../constants/models/state';

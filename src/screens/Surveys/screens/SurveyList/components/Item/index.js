@@ -5,9 +5,9 @@ import {
   ListGroupItem,
   ListGroupHL,
   ListGroupText
-} from '../../../../../../components/shared/base/ListGroup';
-import Icon from '../../../../../../components/shared/base/Icon';
-import Text from '../../../../../../components/shared/base/Text';
+} from '../../../../../../components/common/ListGroup';
+import Icon from '../../../../../../components/common/Icon';
+import Text from '../../../../../../components/common/Text';
 
 import timestampHelper from '../../../../../../helpers/timestamp';
 

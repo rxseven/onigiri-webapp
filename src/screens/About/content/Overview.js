@@ -9,9 +9,9 @@ import {
   CardHeader,
   CardSubtitle,
   CardText
-} from '../../../components/shared/base/Card';
-import ExLink from '../../../components/shared/base/ExLink';
-import Icon from '../../../components/shared/base/Icon';
+} from '../../../components/common/Card';
+import ExLink from '../../../components/common/ExLink';
+import Icon from '../../../components/common/Icon';
 import {
   List,
   ListItem,
@@ -21,8 +21,8 @@ import {
   ListLabel,
   ListLink,
   ListTitle
-} from '../../../components/shared/base/List';
-import Text from '../../../components/shared/base/Text';
+} from '../../../components/common/List';
+import Text from '../../../components/common/Text';
 
 // Constants
 import CSS from '../../../constants/string/css';

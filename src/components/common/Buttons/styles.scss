@@ -1,0 +1,28 @@
+// Global styles
+@import "../../../styles/base/settings";
+
+// Button set
+.buttonSet {
+  $element-spacing: 0.25rem;
+
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+
+  > :not(:last-child) {
+    margin-right: $element-spacing;
+  }
+
+  > :not(:first-child) {
+    margin-left: $element-spacing;
+  }
+}
+
+// Button list
+.buttonList {
+  .text {
+    @media (max-width: $breakpoint-sm - 1) {
+      display: none;
+    }
+  }
+}

@@ -1,14 +1,9 @@
 // Module dependencies
 import React from 'react';
 
-import { Button } from '../../../../../components/shared/base/Buttons';
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardSubtitle
-} from '../../../../../components/shared/base/Card';
-import Text from '../../../../../components/shared/base/Text';
+import { Button } from '../../../../../components/common/Buttons';
+import { Card, CardBody, CardHeader, CardSubtitle } from '../../../../../components/common/Card';
+import Text from '../../../../../components/common/Text';
 import Confirm from '../../../../../components/shared/extended/Confirm';
 import stringHelper from '../../../../../helpers/string';
 import timestampHelper from '../../../../../helpers/timestamp';

@@ -2,8 +2,8 @@
 import { map } from 'lodash';
 import React from 'react';
 
-import { ButtonHandler } from '../../../../../../components/shared/base/Buttons';
-import { ListGroup } from '../../../../../../components/shared/base/ListGroup';
+import { ButtonHandler } from '../../../../../../components/common/Buttons';
+import { ListGroup } from '../../../../../../components/common/ListGroup';
 
 // Peer dependencies
 import ITEMS from './items';

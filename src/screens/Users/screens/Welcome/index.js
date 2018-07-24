@@ -1,11 +1,11 @@
 // Module dependencies
 import React from 'react';
 
-import { Button } from '../../../../components/shared/base/Buttons';
-import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
-import { Hero, HeroBody, HeroHeader } from '../../../../components/shared/base/Hero';
-import Layout from '../../../../components/shared/base/Layout';
-import Text from '../../../../components/shared/base/Text';
+import { Button } from '../../../../components/common/Buttons';
+import { Body, Document, Head, Title } from '../../../../components/common/Document';
+import { Hero, HeroBody, HeroHeader } from '../../../../components/common/Hero';
+import Layout from '../../../../components/common/Layout';
+import Text from '../../../../components/common/Text';
 
 // Constants
 import PATHS from '../../../../constants/router/paths';

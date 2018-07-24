@@ -2,9 +2,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Button } from '../base/Buttons';
-import { Modal, ModalBody, ModalFooter } from '../base/Modal';
-import Spinner from '../base/Spinner';
+import { Button } from '../../common/Buttons';
+import { Modal, ModalBody, ModalFooter } from '../../common/Modal';
+import Spinner from '../../common/Spinner';
 import Error from '../extended/Error';
 
 // Constants

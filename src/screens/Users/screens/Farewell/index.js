@@ -1,15 +1,9 @@
 // Module dependencies
 import React from 'react';
 
-import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
-import {
-  Card,
-  CardBody,
-  CardLink,
-  CardText,
-  CardTitle
-} from '../../../../components/shared/base/Card';
-import Layout from '../../../../components/shared/base/Layout';
+import { Body, Document, Head, Title } from '../../../../components/common/Document';
+import { Card, CardBody, CardLink, CardText, CardTitle } from '../../../../components/common/Card';
+import Layout from '../../../../components/common/Layout';
 
 // Constants
 import PATHS from '../../../../constants/router/paths';

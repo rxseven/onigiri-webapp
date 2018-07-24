@@ -12,8 +12,8 @@ import { signIn } from '../../../../../data/session/actions';
 import { resetUI } from '../actions';
 import { getUI } from '../reducers';
 
-import { Button } from '../../../../../components/shared/base/Buttons';
-import { Form } from '../../../../../components/shared/base/Form';
+import { Button } from '../../../../../components/common/Buttons';
+import { Form } from '../../../../../components/common/Form';
 import validationHelper from '../../../../../helpers/validation';
 
 // Constants

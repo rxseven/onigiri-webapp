@@ -7,8 +7,8 @@ import {
   ButtonGroup,
   ButtonHandler,
   ButtonToolbar
-} from '../../../../../../components/shared/base/Buttons';
-import Spinner from '../../../../../../components/shared/base/Spinner';
+} from '../../../../../../components/common/Buttons';
+import Spinner from '../../../../../../components/common/Spinner';
 
 import dateHelper from '../../../../../../helpers/date';
 

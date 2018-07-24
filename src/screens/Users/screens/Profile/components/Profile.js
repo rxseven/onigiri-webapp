@@ -2,8 +2,8 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { Card, CardBody, CardHeader } from '../../../../../components/shared/base/Card';
-import ExLink from '../../../../../components/shared/base/ExLink';
+import { Card, CardBody, CardHeader } from '../../../../../components/common/Card';
+import ExLink from '../../../../../components/common/ExLink';
 
 // Peer dependencies
 import styles from '../styles/profile.scss';

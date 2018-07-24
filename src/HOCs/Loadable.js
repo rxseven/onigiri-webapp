@@ -1,7 +1,7 @@
 // Module dependencies
 import LoadableVisibility from 'react-loadable-visibility/react-loadable';
 
-import Loader from '../components/shared/base/Loader';
+import Loader from '../components/common/Loader';
 
 // HOC
 const withLoadable = loader =>

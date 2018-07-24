@@ -1,7 +1,7 @@
 // Module dependencies
 import React from 'react';
 
-import { Button } from '../../../../../../components/shared/base/Buttons';
+import { Button } from '../../../../../../components/common/Buttons';
 
 // Constants
 import PATHS from '../../../../../../constants/router/paths';

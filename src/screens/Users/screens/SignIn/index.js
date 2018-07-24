@@ -10,12 +10,12 @@ import { getUI } from './reducers';
 
 import FacebookLogin from '../../../../components/features/OAuth/Facebook';
 import GoogleLogin from '../../../../components/features/OAuth/Google';
-import { Button } from '../../../../components/shared/base/Buttons';
-import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
-import { FormHL, FormMeta, FormStack } from '../../../../components/shared/base/Form';
-import Icon from '../../../../components/shared/base/Icon';
-import Spinner from '../../../../components/shared/base/Spinner';
-import { Tip, TipHeader } from '../../../../components/shared/base/Tip';
+import { Button } from '../../../../components/common/Buttons';
+import { Body, Document, Head, Title } from '../../../../components/common/Document';
+import { FormHL, FormMeta, FormStack } from '../../../../components/common/Form';
+import Icon from '../../../../components/common/Icon';
+import Spinner from '../../../../components/common/Spinner';
+import { Tip, TipHeader } from '../../../../components/common/Tip';
 import Error from '../../../../components/shared/extended/Error';
 import Layout from '../../../Users/components/Layout';
 

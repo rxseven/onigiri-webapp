@@ -12,7 +12,7 @@ import { signUp } from '../../../../../data/session/actions';
 import { resetUI } from '../actions';
 import { getUI } from '../reducers';
 
-import { Form } from '../../../../../components/shared/base/Form';
+import { Form } from '../../../../../components/common/Form';
 import validationHelper from '../../../../../helpers/validation';
 
 // Constants
