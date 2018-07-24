@@ -2,10 +2,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import AuthRoute from '../../HOCs/AuthRoute';
-import Loadable from '../../HOCs/Loadable';
-import PrivateRoute from '../../HOCs/PrivateRoute';
-import ReferralRoute from '../../HOCs/ReferralRoute';
+import Loadable from '../../HOCs/common/Loadable';
+import AuthRoute from '../../HOCs/routes/AuthRoute';
+import PrivateRoute from '../../HOCs/routes/PrivateRoute';
+import ReferralRoute from '../../HOCs/routes/ReferralRoute';
 
 // Constants
 import PATHS from '../../constants/router/paths';

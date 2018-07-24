@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 import { generateState } from '../../../helpers/data';
-import toJS from '../../../HOCs/toJS';
+import toJS from '../../../HOCs/state/toJS';
 import { getSession } from '../../../data/session/reducers';
 
 // Constants

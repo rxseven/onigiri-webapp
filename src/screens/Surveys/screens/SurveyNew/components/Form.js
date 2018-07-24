@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 
 import { generateState } from '../../../../../helpers/data';
-import toJS from '../../../../../HOCs/toJS';
+import toJS from '../../../../../HOCs/state/toJS';
 import { Button } from '../../../../../components/common/Buttons';
 import { Card, CardBody, CardHeader, CardText } from '../../../../../components/common/Card';
 import { Form, FormSHL } from '../../../../../components/common/Form';

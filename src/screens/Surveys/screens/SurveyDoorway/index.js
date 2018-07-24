@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { generateState } from '../../../../helpers/data';
-import toJS from '../../../../HOCs/toJS';
+import toJS from '../../../../HOCs/state/toJS';
 
 // Constants
 import STATE_MODELS from '../../../../constants/models/state';

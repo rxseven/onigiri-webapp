@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import { action as toggleMenu, decorator as reduxMenu } from 'redux-burger-menu/immutable';
 
 import { generateState } from '../../../helpers/data';
-import toJS from '../../../HOCs/toJS';
+import toJS from '../../../HOCs/state/toJS';
 import { signOut } from '../../../data/session/actions';
 import { getSession } from '../../../data/session/reducers';
 import { getAsync } from '../../../data/interfaces/session/reducers';

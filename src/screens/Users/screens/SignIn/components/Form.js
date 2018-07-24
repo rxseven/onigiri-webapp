@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 
 import { generateState } from '../../../../../helpers/data';
-import toJS from '../../../../../HOCs/toJS';
+import toJS from '../../../../../HOCs/state/toJS';
 import { signIn } from '../../../../../data/session/actions';
 import { resetUI } from '../actions';
 import { getUI } from '../reducers';

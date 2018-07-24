@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
 import { generateState } from '../../../../../../helpers/data';
-import toJS from '../../../../../../HOCs/toJS';
+import toJS from '../../../../../../HOCs/state/toJS';
 import { Button, ButtonSet } from '../../../../../../components/common/Buttons';
 import { FormSHL } from '../../../../../../components/common/Form';
 import Spinner from '../../../../../../components/common/Spinner';
