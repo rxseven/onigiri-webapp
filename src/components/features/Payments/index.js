@@ -2,13 +2,13 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../helpers/state';
-import toJS from '../../../HOCs/state/toJS';
-import { checkout } from '../../../data/credits/actions';
-import { getUI } from '../../../data/features/payments/reducers';
+import { generateState } from 'helpers/state';
+import toJS from 'HOCs/state/toJS';
+import { checkout } from 'data/credits/actions';
+import { getUI } from 'data/features/payments/reducers';
 
 // Constants
-import STATE_MODELS from '../../../constants/models/state';
+import STATE_MODELS from 'constants/models/state';
 
 // Peer dependencies
 import UI from './UI';

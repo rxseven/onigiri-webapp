@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
-import { Button } from '../../../components/common/Buttons';
+import { Button } from 'components/common/Buttons';
 
 // Declare prop types
 const propTypes = {
