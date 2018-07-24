@@ -29,7 +29,7 @@ import * as modalActions from 'data/interfaces/modal/actions';
 import { getModal } from 'data/interfaces/modal/reducers';
 
 // Companion files
-import FIELDS from '../constants/fields';
+import FIELDS from '../../constants/fields';
 
 // Component
 class SurveyForm extends Component {
