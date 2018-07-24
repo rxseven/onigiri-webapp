@@ -1,6 +1,7 @@
 // Module dependencies
 import axios from 'axios';
 
+// Helper functions
 import ajax from 'helpers/ajax';
 
 // Constants
