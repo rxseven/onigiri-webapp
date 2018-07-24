@@ -3,13 +3,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-import { generateState } from '../../helpers/state';
-import toJS from '../../HOCs/state/toJS';
-import { getAuth } from '../../data/session/reducers';
+import { generateState } from 'helpers/state';
+import toJS from 'HOCs/state/toJS';
+import { getAuth } from 'data/session/reducers';
 
 // Constants
-import STATE_MODELS from '../../constants/models/state';
-import PATHS from '../../constants/router/paths';
+import STATE_MODELS from 'constants/models/state';
+import PATHS from 'constants/router/paths';
 
 // Declare default props
 const defaultProps = {

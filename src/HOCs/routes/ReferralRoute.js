@@ -3,7 +3,7 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 // Constants
-import PATHS from '../../constants/router/paths';
+import PATHS from 'constants/router/paths';
 
 // Declare default props
 const defaultProps = {
