@@ -7,7 +7,7 @@ import './dependencies';
 import Root from './components/core/Root';
 
 // Redux store
-import configureStore from './store/configureStore';
+import configureStore from './store/setup';
 
 // Constants
 import HTML from './constants/elements/html';
