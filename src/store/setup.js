@@ -3,10 +3,10 @@ import { Map } from 'immutable';
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-import { getUser } from '../data/session/actions';
-import tokenHelper from '../helpers/token';
-import reducer from '../reducers';
-import saga from '../sagas';
+import { getUser } from 'data/session/actions';
+import tokenHelper from 'helpers/token';
+import reducer from 'reducers';
+import saga from 'sagas';
 
 // Initialize middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -36,7 +36,7 @@ const configureStore = () => {
   if (process.env.NODE_ENV !== 'production') {
     if (module.hot) {
       // Enable HMR by accepting update of dependency
-      module.hot.accept('../reducers', () => {
+      module.hot.accept('reducers', () => {
         // Replaces the reducer currently used by the store to calculate the state
         store.replaceReducer(reducer);
       });
