@@ -2,10 +2,8 @@
 import { fromJS, Seq } from 'immutable';
 
 // Constants
-import { ERROR, LOADING } from '../constants/types/asynchronous';
-
-// Constants
-import STATE_MODELS from '../constants/models/state';
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Set asynchronous status
 export const setAsync = (selector, state, type = undefined, payload = null) => {
