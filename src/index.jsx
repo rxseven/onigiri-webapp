@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './dependencies';
 
 // Starting point component
-import Root from './components/Root';
+import Root from './components/core/Root';
 
 // Redux store
 import configureStore from './store/configureStore';

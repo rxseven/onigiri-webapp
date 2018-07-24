@@ -5,14 +5,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { LastLocationProvider } from 'react-router-last-location';
 import ScrollMemory from 'react-router-scroll-memory';
 
-import Body from './core/Body';
-import Footer from './core/Footer';
-import Header from './core/Header';
-import Lightbox from './core/Lightbox';
-import Main from './core/Main';
-import Menu from './core/Menu';
-import Notification from './core/Notification';
-import Wrapper from './core/Wrapper';
+import Body from './Body';
+import Footer from './Footer';
+import Header from './Header';
+import Lightbox from './Lightbox';
+import Main from './Main';
+import Menu from './Menu';
+import Notification from './Notification';
+import Wrapper from './Wrapper';
 import Routes from './Routes';
 
 // Component
