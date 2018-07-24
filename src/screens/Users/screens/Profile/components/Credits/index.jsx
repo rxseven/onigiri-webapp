@@ -11,7 +11,7 @@ import Text from 'components/common/Text';
 import { Tip, TipHeader } from 'components/common/Tip';
 
 // Companion files
-import Checkout from './Checkout';
+import Checkout from '../Checkout';
 
 // Component
 const Credits = ({ callback, state }) => {

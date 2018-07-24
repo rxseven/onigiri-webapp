@@ -12,7 +12,7 @@ import Text from 'components/common/Text';
 import Confirm from 'components/composite/Confirm';
 
 // Companion files
-import styles from '../styles/profile.scss';
+import styles from '../../styles/profile.scss';
 
 // Component
 const Account = ({

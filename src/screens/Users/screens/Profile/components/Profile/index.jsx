@@ -7,7 +7,7 @@ import { Card, CardBody, CardHeader } from 'components/common/Card';
 import ExLink from 'components/common/ExLink';
 
 // Companion files
-import styles from '../styles/profile.scss';
+import styles from '../../styles/profile.scss';
 
 // Component
 const Profile = ({ state: { data } }) => {

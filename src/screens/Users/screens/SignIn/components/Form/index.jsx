@@ -21,11 +21,11 @@ import PATHS from 'constants/router/paths';
 
 // Action creators and selectors
 import { signIn } from 'data/session/actions';
-import { resetUI } from '../actions';
-import { getUI } from '../reducers';
+import { resetUI } from '../../actions';
+import { getUI } from '../../reducers';
 
 // Companion files
-import FIELDS from '../constants/fields';
+import FIELDS from '../../constants/fields';
 
 // Component
 class SignInForm extends Component {
