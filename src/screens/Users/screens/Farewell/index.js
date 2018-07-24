@@ -1,6 +1,7 @@
 // Module dependencies
 import React from 'react';
 
+// Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Document';
 import { Card, CardBody, CardLink, CardText, CardTitle } from 'components/common/Card';
 import Layout from 'components/common/Layout';

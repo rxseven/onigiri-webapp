@@ -3,11 +3,14 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from 'constants/models/state';
-import { ERROR, LOADING } from 'constants/types/asynchronous';
+// Helper functions
 import { setAsync } from 'helpers/state';
 
-// Actions
+// Constants
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADING } from 'constants/types/asynchronous';
+
+// Action types
 import {
   CHECKOUT,
   CHECKOUT_FAILURE,

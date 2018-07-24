@@ -1,6 +1,7 @@
 // Module dependencies
 import React from 'react';
 
+// Components
 import { Button } from 'components/common/Buttons';
 import { Body, Document, Head, Title } from 'components/common/Document';
 import { Hero, HeroBody, HeroHeader } from 'components/common/Hero';

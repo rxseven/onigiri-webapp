@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React, { Fragment } from 'react';
 
+// Components and HOCs
 import Payments from 'components/features/Payments';
 import { ButtonSet } from 'components/common/Buttons';
 import { CardText } from 'components/common/Card';

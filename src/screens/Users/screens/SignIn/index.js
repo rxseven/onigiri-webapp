@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+// Helper functions
 import { generateState } from 'helpers/state';
-import toJS from 'HOCs/state/toJS';
-import { getSession } from 'data/session/reducers';
 
+// Components and HOCs
 import FacebookLogin from 'components/features/OAuth/Facebook';
 import GoogleLogin from 'components/features/OAuth/Google';
 import { Button } from 'components/common/Buttons';
@@ -16,14 +16,18 @@ import Icon from 'components/common/Icon';
 import Spinner from 'components/common/Spinner';
 import { Tip, TipHeader } from 'components/common/Tip';
 import Error from 'components/composite/Error';
+import toJS from 'HOCs/state/toJS';
 
 // Constants
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
-// Peer dependencies
-import Layout from '../../../Users/components/Layout';
+// Action creators and selectors
+import { getSession } from 'data/session/reducers';
 import { getUI } from './reducers';
+
+// Companion files
+import Layout from '../../../Users/components/Layout';
 import Form from './components/Form';
 import styles from './styles.scss';
 

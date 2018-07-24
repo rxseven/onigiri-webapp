@@ -6,21 +6,25 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 
+// Helper functions
 import { generateState } from 'helpers/state';
-import toJS from 'HOCs/state/toJS';
-import { signIn } from 'data/session/actions';
+import validationHelper from 'helpers/validation';
 
+// Components and HOCs
 import { Button } from 'components/common/Buttons';
 import { Form } from 'components/common/Form';
-import validationHelper from 'helpers/validation';
+import toJS from 'HOCs/state/toJS';
 
 // Constants
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
-// Peer dependencies
+// Action creators and selectors
+import { signIn } from 'data/session/actions';
 import { resetUI } from '../actions';
 import { getUI } from '../reducers';
+
+// Companion files
 import FIELDS from '../constants/fields';
 
 // Component
