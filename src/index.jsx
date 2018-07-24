@@ -1,16 +1,16 @@
 // Module dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './dependencies';
+import 'dependencies';
 
 // Starting point component
-import Root from './components/Root';
+import Root from 'components/core/Root';
 
 // Redux store
-import configureStore from './store/configureStore';
+import configureStore from 'store/setup';
 
 // Constants
-import HTML from './constants/elements/html';
+import HTML from 'constants/elements/html';
 
 // Styles
 import './styles/index.scss';

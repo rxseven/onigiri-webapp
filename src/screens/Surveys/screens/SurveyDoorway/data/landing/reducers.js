@@ -2,7 +2,7 @@
 import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
-// Actions
+// Action types
 import {
   LANDING_GET,
   LANDING_GET_FAILURE,

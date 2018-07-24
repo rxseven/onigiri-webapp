@@ -1,7 +1,7 @@
 // Module dependencies
 import React from 'react';
 
-// Peer dependencies
+// Companion files
 import UI from './UI';
 
 // Component

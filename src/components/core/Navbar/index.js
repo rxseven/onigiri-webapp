@@ -7,21 +7,25 @@ import { Link, NavLink, withRouter } from 'react-router-dom';
 import Dropdown, { DropdownContent, DropdownTrigger } from 'react-simple-dropdown';
 import { action as toggleMenu } from 'redux-burger-menu/immutable';
 
-import { generateState } from '../../../helpers/data';
-import toJS from '../../../HOCs/toJS';
-import { signOut } from '../../../data/session/actions';
-import { getSession } from '../../../data/session/reducers';
-import { getAsync } from '../../../data/interfaces/session/reducers';
+// Helper functions
+import { generateState } from 'helpers/state';
 
-import Avatar from '../../shared/base/Avatar';
-import { Container } from '../../shared/base/Grid';
-import Icon from '../../shared/base/Icon';
+// Components and HOCs
+import Avatar from 'components/common/Avatar';
+import { Container } from 'components/common/Grid';
+import Icon from 'components/common/Icon';
+import toJS from 'HOCs/state/toJS';
 
 // Constants
-import STATE_MODELS from '../../../constants/models/state';
-import PATHS from '../../../constants/router/paths';
+import STATE_MODELS from 'constants/models/state';
+import PATHS from 'constants/router/paths';
 
-// Peer dependencies
+// Action creators and selectors
+import { signOut } from 'data/session/actions';
+import { getSession } from 'data/session/reducers';
+import { getAsync } from 'data/interfaces/session/reducers';
+
+// Companion files
 import styles from './styles.scss';
 
 // Component

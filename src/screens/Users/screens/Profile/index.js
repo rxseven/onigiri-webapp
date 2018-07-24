@@ -2,23 +2,26 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../../helpers/data';
-import toJS from '../../../../HOCs/toJS';
-import { deleteUser } from '../../../../data/session/actions';
+// Helper functions
+import { generateState } from 'helpers/state';
 
-import * as creditsActions from '../../../../data/credits/actions';
-import { getCredits } from '../../../../data/credits/reducers';
-
-import * as modalActions from '../../../../data/interfaces/modal/actions';
-import { getModal } from '../../../../data/interfaces/modal/reducers';
+// Components and HOCs
+import toJS from 'HOCs/state/toJS';
 
 // Constants
-import STATE_MODELS from '../../../../constants/models/state';
+import STATE_MODELS from 'constants/models/state';
 
-// Peer dependencies
+// Action creators and selectors
+import * as creditsActions from 'data/credits/actions';
+import { getCredits } from 'data/credits/reducers';
+import * as modalActions from 'data/interfaces/modal/actions';
+import { getModal } from 'data/interfaces/modal/reducers';
+import { deleteUser } from 'data/session/actions';
 import * as profileActions from './data/profile/actions';
 import { getProfile } from './data/profile/reducers';
 import { getUI } from './reducers';
+
+// Companion files
 import UI from './UI';
 
 // Map state to props

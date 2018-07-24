@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React, { Fragment } from 'react';
 
-import Payments from '../../../../../components/features/Payments';
-import { ButtonSet } from '../../../../../components/shared/base/Buttons';
-import { CardText } from '../../../../../components/shared/base/Card';
-import Spinner from '../../../../../components/shared/base/Spinner';
-import Error from '../../../../../components/shared/extended/Error';
+// Components and HOCs
+import Payments from 'components/features/Payments';
+import { ButtonSet } from 'components/common/Buttons';
+import { CardText } from 'components/common/Card';
+import Spinner from 'components/common/Spinner';
+import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from '../../../../../constants/models/propTypes';
-import STATE_MODELS from '../../../../../constants/models/state';
+import PROP_TYPES from 'constants/models/propTypes';
+import STATE_MODELS from 'constants/models/state';
 
 // Declare prop types and default props
 const propTypes = exact({

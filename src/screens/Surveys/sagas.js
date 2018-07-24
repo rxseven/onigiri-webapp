@@ -2,18 +2,20 @@
 import { fromJS } from 'immutable';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-// Helper functions and services
-import { getError } from '../../helpers/data';
-import * as surveysService from '../../services/surveys';
+// Helper functions
+import { getError } from 'helpers/state';
 
-// Action types and action creators
-import * as actions from './actions';
+// Services
+import * as surveysService from 'services/surveys';
 
 // Sagas
 import surveyDetails from './screens/SurveyDetails/data/survey/sagas';
 import surveyDoorway from './screens/SurveyDoorway/data/landing/sagas';
 import surveyList from './screens/SurveyList/data/surveys/sagas';
 import surveyNew from './screens/SurveyNew/sagas';
+
+// Action types and action creators
+import * as actions from './actions';
 
 // Delete survey
 function* deleteSurvey({ callback, payload }) {

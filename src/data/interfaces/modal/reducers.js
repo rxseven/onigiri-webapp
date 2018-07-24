@@ -2,7 +2,7 @@
 import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
-// Actions
+// Action types
 import { MODAL_CLOSE, MODAL_OPEN } from './actions';
 
 // Initial state

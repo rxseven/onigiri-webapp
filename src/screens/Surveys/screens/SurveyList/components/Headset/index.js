@@ -1,12 +1,13 @@
 // Module dependencies
 import React from 'react';
 
-import { Button } from '../../../../../../components/shared/base/Buttons';
+// Components and HOCs
+import { Button } from 'components/common/Buttons';
 
 // Constants
-import PATHS from '../../../../../../constants/router/paths';
+import PATHS from 'constants/router/paths';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Component

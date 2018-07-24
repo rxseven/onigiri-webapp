@@ -1,8 +1,8 @@
 // Module dependencies
-import ajax from '../helpers/ajax';
+import ajax from 'helpers/ajax';
 
 // Constants
-import API from '../config/api';
+import API from 'config/api';
 
 // Checkout
 const checkout = token =>

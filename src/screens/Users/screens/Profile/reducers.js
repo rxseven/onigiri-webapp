@@ -3,11 +3,14 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from '../../../../constants/models/state';
-import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
-import { setAsync } from '../../../../helpers/data';
+// Helper functions
+import { setAsync } from 'helpers/state';
 
-// Actions
+// Constants
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADING } from 'constants/types/asynchronous';
+
+// Action types
 import {
   CHECKOUT,
   CHECKOUT_FAILURE,
@@ -15,13 +18,13 @@ import {
   CREDITS_GET,
   CREDITS_GET_FAILURE,
   CREDITS_GET_SUCCESS
-} from '../../../../data/credits/actions';
+} from 'data/credits/actions';
 import {
   USER_DELETE,
   USER_DELETE_FAILURE,
   USER_DELETE_SUCCESS,
   USER_RESET
-} from '../../../../data/session/actions';
+} from 'data/session/actions';
 import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './data/profile/actions';
 
 // Reducers

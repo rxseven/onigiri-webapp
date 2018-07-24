@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 
-import uiHelper from '../../helpers/interface';
+// Helper functions
+import uiHelper from 'helpers/interface';
 
 // Constants
-import HTML from '../../constants/elements/html';
+import HTML from 'constants/elements/html';
 
 // Declare prop types
 const propTypes = exact({

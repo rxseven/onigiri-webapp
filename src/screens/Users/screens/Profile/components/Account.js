@@ -1,19 +1,17 @@
 // Module dependencies
 import React from 'react';
 
-import { Button } from '../../../../../components/shared/base/Buttons';
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardSubtitle
-} from '../../../../../components/shared/base/Card';
-import Text from '../../../../../components/shared/base/Text';
-import Confirm from '../../../../../components/shared/extended/Confirm';
-import stringHelper from '../../../../../helpers/string';
-import timestampHelper from '../../../../../helpers/timestamp';
+// Helper functions
+import stringHelper from 'helpers/string';
+import timestampHelper from 'helpers/timestamp';
 
-// Peer dependencies
+// Components and HOCs
+import { Button } from 'components/common/Buttons';
+import { Card, CardBody, CardHeader, CardSubtitle } from 'components/common/Card';
+import Text from 'components/common/Text';
+import Confirm from 'components/composite/Confirm';
+
+// Companion files
 import styles from '../styles/profile.scss';
 
 // Component

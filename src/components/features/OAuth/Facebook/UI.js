@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
-import { Button } from '../../../../components/shared/base/Buttons';
+// Components and HOCs
+import { Button } from 'components/common/Buttons';
 
 // Constants
-import PATHS from '../../../../constants/router/paths';
+import PATHS from 'constants/router/paths';
 
 // Component
 class UI extends Component {

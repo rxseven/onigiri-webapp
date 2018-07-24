@@ -2,10 +2,11 @@
 import { map } from 'lodash';
 import React from 'react';
 
-import { ButtonHandler } from '../../../../../../components/shared/base/Buttons';
-import { ListGroup } from '../../../../../../components/shared/base/ListGroup';
+// Components and HOCs
+import { ButtonHandler } from 'components/common/Buttons';
+import { ListGroup } from 'components/common/ListGroup';
 
-// Peer dependencies
+// Companion files
 import ITEMS from './items';
 import styles from './styles.scss';
 

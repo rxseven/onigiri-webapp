@@ -2,9 +2,10 @@
 import React from 'react';
 import ScrollToTop from 'react-scroll-up';
 
-import Icon from '../../../../../../components/shared/base/Icon';
+// Components and HOCs
+import Icon from 'components/common/Icon';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Configuration

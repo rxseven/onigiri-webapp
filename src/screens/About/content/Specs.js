@@ -2,16 +2,11 @@
 import React, { Fragment } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import { Card, CardBody, CardHeader, CardSubtitle } from '../../../components/shared/base/Card';
-import {
-  List,
-  ListItem,
-  ListContent,
-  ListLabel,
-  ListLink
-} from '../../../components/shared/base/List';
+// Components and HOCs
+import { Card, CardBody, CardHeader, CardSubtitle } from 'components/common/Card';
+import { List, ListItem, ListContent, ListLabel, ListLink } from 'components/common/List';
 
-// Peer dependencies
+// Companion files
 import styles from '../styles.scss';
 
 // Component

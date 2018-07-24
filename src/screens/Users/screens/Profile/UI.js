@@ -4,17 +4,18 @@ import React, { Component } from 'react';
 import Notification from 'react-s-alert';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
-import Layout from '../../../../components/shared/base/Layout';
-import Spinner from '../../../../components/shared/base/Spinner';
-import Error from '../../../../components/shared/extended/Error';
+// Components and HOCs
+import { Body, Document, Head, Title } from 'components/common/Document';
+import Layout from 'components/common/Layout';
+import Spinner from 'components/common/Spinner';
+import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from '../../../../constants/models/propTypes';
-import STATE_MODELS from '../../../../constants/models/state';
-import PATHS from '../../../../constants/router/paths';
+import PROP_TYPES from 'constants/models/propTypes';
+import STATE_MODELS from 'constants/models/state';
+import PATHS from 'constants/router/paths';
 
-// Peer dependencies
+// Companion files
 import Account from './components/Account';
 import Credits from './components/Credits';
 import Profile from './components/Profile';

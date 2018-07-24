@@ -1,7 +1,8 @@
 // Module dependencies
 import React from 'react';
 
-import Confirm from '../../../../../components/shared/extended/Confirm';
+// Components and HOCs
+import Confirm from 'components/composite/Confirm';
 
 // Component
 const Modal = ({ actions, state: { ui } }) => (

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 
 // Constants
-import PATHS from '../../../../constants/router/paths';
+import PATHS from 'constants/router/paths';
 
 // Component
 class UI extends Component {

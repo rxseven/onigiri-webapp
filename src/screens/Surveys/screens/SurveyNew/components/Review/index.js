@@ -5,23 +5,27 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { generateState } from '../../../../../../helpers/data';
-import toJS from '../../../../../../HOCs/toJS';
-import { Button, ButtonSet } from '../../../../../../components/shared/base/Buttons';
-import { FormSHL } from '../../../../../../components/shared/base/Form';
-import Spinner from '../../../../../../components/shared/base/Spinner';
-import Error from '../../../../../../components/shared/extended/Error';
+// Helper functions
+import emailHelper from 'helpers/email';
+import { generateState } from 'helpers/state';
 
-import emailHelper from '../../../../../../helpers/email';
+// Components and HOCs
+import { Button, ButtonSet } from 'components/common/Buttons';
+import { FormSHL } from 'components/common/Form';
+import Spinner from 'components/common/Spinner';
+import Error from 'components/composite/Error';
+import toJS from 'HOCs/state/toJS';
 
 // Constants
-import PROP_TYPES from '../../../../../../constants/models/propTypes';
-import STATE_MODELS from '../../../../../../constants/models/state';
-import PATHS from '../../../../../../constants/router/paths';
+import PROP_TYPES from 'constants/models/propTypes';
+import STATE_MODELS from 'constants/models/state';
+import PATHS from 'constants/router/paths';
 
-// Peer dependencies
-import * as surveyActions from '../../../SurveyNew/actions';
+// Action creators and selectors
+import * as surveyActions from '../../actions';
 import { getUI } from '../../reducers';
+
+// Companion files
 import FIELDS from '../../constants/fields';
 import styles from './styles.scss';
 

@@ -1,16 +1,17 @@
 // Module dependencies
 import React from 'react';
 
-import { Button } from '../../../../components/shared/base/Buttons';
-import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
-import Icon from '../../../../components/shared/base/Icon';
-import { Card, CardBody, CardHeader } from '../../../../components/shared/base/Card';
-import Layout from '../../../../components/shared/base/Layout';
+// Components and HOCs
+import { Button } from 'components/common/Buttons';
+import { Body, Document, Head, Title } from 'components/common/Document';
+import Icon from 'components/common/Icon';
+import { Card, CardBody, CardHeader } from 'components/common/Card';
+import Layout from 'components/common/Layout';
 
 // Constants
-import PATHS from '../../../../constants/router/paths';
+import PATHS from 'constants/router/paths';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Component

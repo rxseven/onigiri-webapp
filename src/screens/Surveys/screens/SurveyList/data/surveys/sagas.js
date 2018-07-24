@@ -3,9 +3,11 @@ import { fromJS } from 'immutable';
 import { mapKeys } from 'lodash';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-// Helper functions and services
-import { fromJSOrdered, getError } from '../../../../../../helpers/data';
-import * as surveysService from '../../../../../../services/surveys';
+// Helper functions
+import { fromJSOrdered, getError } from 'helpers/state';
+
+// Services
+import * as surveysService from 'services/surveys';
 
 // Action types and action creators
 import * as actions from './actions';

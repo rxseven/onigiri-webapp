@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import exact from 'prop-types-exact';
 import React from 'react';
 
-import { Column, Container, Row } from '../../shared/base/Grid';
+// Components and HOCs
+import { Column, Container, Row } from 'components/common/Grid';
 
-// Peer dependencies
+// Companion files
 import styles from './styles.scss';
 
 // Declare prop types

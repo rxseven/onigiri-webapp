@@ -1,10 +1,11 @@
 // Module dependencies
 import axios from 'axios';
 
-import tokenHelper from '../helpers/token';
+// Helper functions
+import tokenHelper from 'helpers/token';
 
 // Constants
-import API from '../config/api';
+import API from 'config/api';
 
 // Ajax helpers
 export default ({

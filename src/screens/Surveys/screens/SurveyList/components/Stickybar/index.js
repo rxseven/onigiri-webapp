@@ -3,9 +3,9 @@ import React from 'react';
 import { Sticky } from 'react-sticky';
 
 // Constants
-import SCREENS from '../../../../../../constants/sizing/screens';
+import SCREENS from 'constants/sizing/screens';
 
-// Peer dependencies
+// Companion files
 import Sidebar from '../Sidebar';
 import styles from './styles.scss';
 

@@ -5,15 +5,16 @@ import { withLastLocation } from 'react-router-last-location';
 import withSizes from 'react-sizes';
 import { StickyContainer } from 'react-sticky';
 
-import { Body, Document, Head, Title } from '../../../../components/shared/base/Document';
-import { Column, Row } from '../../../../components/shared/base/Grid';
-import Layout from '../../../../components/shared/base/Layout';
+// Components and HOCs
+import { Body, Document, Head, Title } from 'components/common/Document';
+import { Column, Row } from 'components/common/Grid';
+import Layout from 'components/common/Layout';
 
 // Constants
-import CSS from '../../../../constants/string/css';
-import PATHS from '../../../../constants/router/paths';
+import CSS from 'constants/string/css';
+import PATHS from 'constants/router/paths';
 
-// Peer dependencies
+// Companion files
 import Headset from './components/Headset';
 import List from './components/List';
 import ScrollTop from './components/ScrollTop';

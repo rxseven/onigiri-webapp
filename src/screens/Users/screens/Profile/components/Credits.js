@@ -1,13 +1,16 @@
 // Module dependencies
 import React, { Fragment } from 'react';
 
-import { Card, CardBody, CardFooter, CardTitle } from '../../../../../components/shared/base/Card';
-import Icon from '../../../../../components/shared/base/Icon';
-import Text from '../../../../../components/shared/base/Text';
-import { Tip, TipHeader } from '../../../../../components/shared/base/Tip';
-import timestampHelper from '../../../../../helpers/timestamp';
+// Helper functions
+import timestampHelper from 'helpers/timestamp';
 
-// Peer dependencies
+// Components and HOCs
+import { Card, CardBody, CardFooter, CardTitle } from 'components/common/Card';
+import Icon from 'components/common/Icon';
+import Text from 'components/common/Text';
+import { Tip, TipHeader } from 'components/common/Tip';
+
+// Companion files
 import Checkout from './Checkout';
 
 // Component

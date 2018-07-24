@@ -6,21 +6,25 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 
-import { generateState } from '../../../../../helpers/data';
-import toJS from '../../../../../HOCs/toJS';
-import { signIn } from '../../../../../data/session/actions';
+// Helper functions
+import { generateState } from 'helpers/state';
+import validationHelper from 'helpers/validation';
+
+// Components and HOCs
+import { Button } from 'components/common/Buttons';
+import { Form } from 'components/common/Form';
+import toJS from 'HOCs/state/toJS';
+
+// Constants
+import STATE_MODELS from 'constants/models/state';
+import PATHS from 'constants/router/paths';
+
+// Action creators and selectors
+import { signIn } from 'data/session/actions';
 import { resetUI } from '../actions';
 import { getUI } from '../reducers';
 
-import { Button } from '../../../../../components/shared/base/Buttons';
-import { Form } from '../../../../../components/shared/base/Form';
-import validationHelper from '../../../../../helpers/validation';
-
-// Constants
-import STATE_MODELS from '../../../../../constants/models/state';
-import PATHS from '../../../../../constants/router/paths';
-
-// Peer dependencies
+// Companion files
 import FIELDS from '../constants/fields';
 
 // Component
