@@ -3,7 +3,7 @@ import cx from 'classnames';
 import React, { Fragment } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import { Card, CardBody, CardHeader, CardSubtitle } from '../../../components/common/Card';
+import { Card, CardBody, CardHeader, CardSubtitle } from 'components/common/Card';
 import {
   List,
   ListItem,
@@ -12,11 +12,11 @@ import {
   ListGroupItem,
   ListLabel,
   ListLink
-} from '../../../components/common/List';
-import Text from '../../../components/common/Text';
+} from 'components/common/List';
+import Text from 'components/common/Text';
 
 // Constants
-import CSS from '../../../constants/string/css';
+import CSS from 'constants/string/css';
 
 // Component
 const Development = () => (

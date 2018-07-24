@@ -2,9 +2,9 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import { Body, Document, Head, Title } from '../../components/common/Document';
-import Layout from '../../components/common/Layout';
-import { HL } from '../../components/common/Typography';
+import { Body, Document, Head, Title } from 'components/common/Document';
+import Layout from 'components/common/Layout';
+import { HL } from 'components/common/Typography';
 
 // Peer dependencies
 import Development from './content/Development';

@@ -3,15 +3,9 @@ import cx from 'classnames';
 import React, { Fragment } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardSubtitle,
-  CardText
-} from '../../../components/common/Card';
-import ExLink from '../../../components/common/ExLink';
-import Icon from '../../../components/common/Icon';
+import { Card, CardBody, CardHeader, CardSubtitle, CardText } from 'components/common/Card';
+import ExLink from 'components/common/ExLink';
+import Icon from 'components/common/Icon';
 import {
   List,
   ListItem,
@@ -21,11 +15,11 @@ import {
   ListLabel,
   ListLink,
   ListTitle
-} from '../../../components/common/List';
-import Text from '../../../components/common/Text';
+} from 'components/common/List';
+import Text from 'components/common/Text';
 
 // Constants
-import CSS from '../../../constants/string/css';
+import CSS from 'constants/string/css';
 
 // Component
 const Overview = () => (
