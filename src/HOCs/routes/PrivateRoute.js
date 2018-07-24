@@ -3,11 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-import { generateState } from 'helpers/state';
-import toJS from 'HOCs/state/toJS';
 import { getAuth } from 'data/session/reducers';
 
-// Constants
+import { generateState } from 'helpers/state';
+
+import toJS from 'HOCs/state/toJS';
+
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
