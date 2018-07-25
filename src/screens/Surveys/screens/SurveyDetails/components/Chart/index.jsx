@@ -3,7 +3,7 @@ import React from 'react';
 import { Pie } from 'react-chartjs-2';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Component
 const Chart = ({ data }) => {
@@ -30,7 +30,7 @@ const Chart = ({ data }) => {
   // View
   return (
     response > 0 && (
-      <div className={styles.wrapper}>
+      <div styleName="wrapper">
         <Pie data={chart.data} legend={chart.legend} />
       </div>
     )

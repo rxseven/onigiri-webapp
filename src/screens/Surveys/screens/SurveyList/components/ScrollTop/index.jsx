@@ -6,7 +6,7 @@ import ScrollToTop from 'react-scroll-up';
 import Icon from 'components/common/Icon';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Configuration
 const options = {
@@ -21,10 +21,10 @@ const options = {
 
 // Component
 const ScrollTop = () => (
-  <div className={styles.wrapper}>
-    <div className={styles.pin}>
+  <div styleName="wrapper">
+    <div styleName="pin">
       <ScrollToTop {...options}>
-        <span className={styles.button}>
+        <span styleName="button">
           <Icon name="data-transfer-upload" title="Scroll Top" />
         </span>
       </ScrollToTop>

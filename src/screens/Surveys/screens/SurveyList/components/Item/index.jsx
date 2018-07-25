@@ -13,7 +13,7 @@ import Text from 'components/common/Text';
 import PATHS from 'constants/router/paths';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Component
 const Item = ({
@@ -34,22 +34,22 @@ const Item = ({
         state: { fromList: true, mode }
       }}
     >
-      <div className={styles.content}>
+      <div styleName="content">
         <ListGroupHL>{title}</ListGroupHL>
         <ListGroupText>{subject}</ListGroupText>
       </div>
-      <div className={styles.status}>
+      <div styleName="status">
         <If condition={isResponse}>
           <Icon name="bar-chart" title="Statistics" />
-          <span className={styles.text}>
-            <span className={styles.yes}>Y{yes}</span> <span className={styles.no}>N{no}</span>
+          <span styleName="text">
+            <span styleName="yes">Y{yes}</span> <span styleName="no">N{no}</span>
           </span>
         </If>
         <If condition={locked}>
           <Icon disabled name="lock-locked" title="Locked" />
         </If>
       </div>
-      <div className={styles.footer}>
+      <div styleName="footer">
         <Text small>Sent on {timestampHelper.date(dateSent)}</Text>
       </div>
     </ListGroupItem>

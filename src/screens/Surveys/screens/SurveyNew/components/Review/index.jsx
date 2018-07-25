@@ -27,7 +27,7 @@ import { getUI } from '../../reducers';
 
 // Companion files
 import FIELDS from '../../constants/fields';
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = PROP_TYPES.wrapper.asynchronous({
@@ -83,7 +83,7 @@ class SurveyReview extends Component {
       if (value) {
         return (
           <div className="form-group" key={index}>
-            <label className={styles.label}>{label}</label>
+            <label styleName="label">{label}</label>
             <div>{value}</div>
           </div>
         );
@@ -96,7 +96,7 @@ class SurveyReview extends Component {
   // Render info
   renderInfo = () => (
     <If condition={!this.props.state.data.form.from}>
-      <div className={styles.info}>
+      <div styleName="info">
         You did’t provide sender email, the system defaults will be applied.
       </div>
     </If>

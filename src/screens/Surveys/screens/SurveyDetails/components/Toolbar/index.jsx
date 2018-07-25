@@ -14,7 +14,7 @@ import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = PROP_TYPES.wrapper.asynchronous({
@@ -55,7 +55,7 @@ const Toolbar = ({ actions, state: { data: { survey }, ui: { asynchronous }, sta
 
       <If condition={!error}>
         <Fragment>
-          <div className={styles.status}>
+          <div styleName="status">
             <If condition={loading}>
               <Spinner loading />
             </If>

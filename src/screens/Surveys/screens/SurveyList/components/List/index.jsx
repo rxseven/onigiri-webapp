@@ -16,7 +16,7 @@ import CSS from 'constants/string/css';
 // Companion files
 import TYPES from '../../constants/types';
 import Item from '../Item';
-import styles from './styles.scss';
+import './styles.scss';
 
 // Render message
 const renderMessage = () => (
@@ -51,7 +51,7 @@ const List = ({ actions, state }) => {
 
   // View
   return (
-    <div className={styles.wrapper}>
+    <div styleName="wrapper">
       <Scroller
         actions={actions}
         state={{

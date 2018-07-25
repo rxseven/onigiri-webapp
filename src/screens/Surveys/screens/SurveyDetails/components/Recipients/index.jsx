@@ -15,7 +15,7 @@ import STATE_MODELS from 'constants/models/state';
 import CSS from 'constants/string/css';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = PROP_TYPES.pattern.asynchronous;
@@ -58,7 +58,7 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
           <ListItem end>
             <ListLabel>Recipient list</ListLabel>
             <ListContent>
-              <ul className={styles.list}>
+              <ul styleName="list">
                 {map(data, (item) => {
                   const { _id: id } = item;
                   return (

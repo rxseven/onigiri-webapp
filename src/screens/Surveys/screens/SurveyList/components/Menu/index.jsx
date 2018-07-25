@@ -8,11 +8,11 @@ import { ListGroup } from 'components/common/ListGroup';
 
 // Companion files
 import ITEMS from './items';
-import styles from './styles.scss';
+import './styles.scss';
 
 // Component
 const Menu = ({ actions, state }) => (
-  <div className={styles.wrapper}>
+  <div styleName="wrapper">
     <ListGroup>
       {map(ITEMS, ({
  icon, selection, title, value
