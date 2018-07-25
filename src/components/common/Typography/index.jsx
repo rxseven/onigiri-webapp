@@ -4,7 +4,7 @@ import exact from 'prop-types-exact';
 import React from 'react';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = exact({
@@ -17,10 +17,10 @@ const propTypes = exact({
 });
 
 // HL
-export const HL = ({ children }) => <h2 className={styles.headline}>{children}</h2>;
+export const HL = ({ children }) => <h2 styleName="headline">{children}</h2>;
 
 // SHL
-export const SHL = ({ children }) => <h3 className={styles.subheadline}>{children}</h3>;
+export const SHL = ({ children }) => <h3 styleName="subheadline">{children}</h3>;
 
 // Specify prop types and default values for props
 HL.propTypes = propTypes.headline;

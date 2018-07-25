@@ -15,7 +15,7 @@ import Layout from 'components/common/Layout';
 import CSS from 'constants/string/css';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Wrapper
 const Wrapper = ({ children }) => (
@@ -46,7 +46,7 @@ const Loader = (props) => {
     return (
       <Wrapper>
         <Spinner loading />
-        <div className={styles.timeout}>
+        <div styleName="timeout">
           <p>Please take a moment</p>
         </div>
       </Wrapper>

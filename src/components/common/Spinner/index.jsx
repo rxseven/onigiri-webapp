@@ -5,7 +5,7 @@ import exact from 'prop-types-exact';
 import React from 'react';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = exact({
@@ -30,12 +30,12 @@ const options = {
 const Spinner = ({ loading }) => (
   <Choose>
     <When condition={loading}>
-      <div className={styles.bounce}>
+      <div styleName="bounce">
         <ThreeBounce {...options.bounce} />
       </div>
     </When>
     <Otherwise>
-      <div className={styles.circle}>
+      <div styleName="circle">
         <FadingCircle />
       </div>
     </Otherwise>

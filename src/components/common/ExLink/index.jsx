@@ -8,7 +8,7 @@ import React, { Fragment } from 'react';
 import Icon from 'components/common/Icon';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = exact({
@@ -37,14 +37,15 @@ const ExLink = ({
 }) => (
   <Fragment>
     <a
-      className={cx(button && `btn btn-${button}`, flat && styles.flat, options)}
+      className={cx(button && `btn btn-${button}`, options)}
       href={to}
       rel={rel}
+      styleName={cx(flat && 'flat')}
       target={replace ? '_self' : '_blank'}
     >
       {children}
       <If condition={icon}>
-        <span className={styles.icon}>
+        <span styleName="icon">
           <Icon name="external-link" title="External link" />
         </span>
       </If>
