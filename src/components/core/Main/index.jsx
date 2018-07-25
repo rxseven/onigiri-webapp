@@ -7,7 +7,7 @@ import React from 'react';
 import { Column, Container, Row } from 'components/common/Grid';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types
 const propTypes = exact({
@@ -16,7 +16,7 @@ const propTypes = exact({
 
 // Component
 const Main = ({ children }) => (
-  <main className={styles.wrapper}>
+  <main styleName="wrapper">
     <Container>
       <Row>
         <Column>{children}</Column>

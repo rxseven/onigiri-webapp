@@ -60,7 +60,7 @@ const MenuLink = ({
   children, exact: exactPath, icon, title, to
 }) => (
   <NavLink activeClassName={cx('active', styles.active)} exact={exactPath} to={to}>
-    <span className={styles.icon}>
+    <span styleName="icon">
       <Icon name={icon} title={title} />
     </span>
     {children}
@@ -107,9 +107,9 @@ class UI extends Component {
   // Render header
   renderHeader = ({ isAuth, user }) =>
     isAuth && (
-      <NavLink activeClassName="active" className={styles.header} to={PATHS.users.profile}>
-        <div className={styles.user}>
-          <div className={styles.avatar}>
+      <NavLink activeClassName="active" styleName="header" to={PATHS.users.profile}>
+        <div styleName="user">
+          <div styleName="avatar">
             <Avatar url={user.photo.url} />
           </div>
           <Text>{`${user.name.firstName} ${user.name.lastName}`}</Text>
@@ -119,7 +119,7 @@ class UI extends Component {
 
   // Render navigation
   renderNav = ({ isAuth }) => (
-    <ul className={styles.navigation}>
+    <ul styleName="navigation">
       <li>
         <MenuLink exact icon="home" title="Home" to={PATHS.root}>
           Home
@@ -138,8 +138,8 @@ class UI extends Component {
         </MenuLink>
       </li>
       <li>
-        <ExLink options="styles.icon" to="http://www.rxseven.com">
-          <span className={styles.icon}>
+        <ExLink options="icon" to="http://www.rxseven.com">
+          <span styleName="icon">
             <Icon name="comment-square" title="Me" />
           </span>
           Me
@@ -156,8 +156,8 @@ class UI extends Component {
         </MenuLink>
       </li>
       <li>
-        <ExLink options="styles.icon" to="https://github.com/rxseven/onigiri-webapp">
-          <span className={styles.icon}>
+        <ExLink options="icon" to="https://github.com/rxseven/onigiri-webapp">
+          <span styleName="icon">
             <Icon name="fork" title="GitHub" />
           </span>
           View on GitHub
@@ -168,7 +168,7 @@ class UI extends Component {
 
   // Render profile
   renderProfile = ({ asynchronous, isAuth, user }) => (
-    <ul className={styles.navigation}>
+    <ul styleName="navigation">
       <Choose>
         <When condition={isAuth}>
           <li>
@@ -177,13 +177,13 @@ class UI extends Component {
             </MenuLink>
           </li>
           <li>
-            <button className={styles.signout} onClick={this.onSignout} type="button">
-              <span className={styles.icon}>
+            <button onClick={this.onSignout} styleName="signout" type="button">
+              <span styleName="icon">
                 <Icon name="account-logout" title="Log out" />
               </span>
               <Choose>
                 <When condition={asynchronous.signout.loading}>
-                  <span className={styles.leaving}>Logging out...</span>
+                  <span styleName="leaving">Logging out...</span>
                 </When>
                 <Otherwise>
                   <span>Log out</span>

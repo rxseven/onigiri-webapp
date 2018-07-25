@@ -9,7 +9,7 @@ import Overlay from 'components/common/Overlay';
 import Spinner from 'components/common/Spinner';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Component
 class UI extends PureComponent {
@@ -43,12 +43,12 @@ class UI extends PureComponent {
     return (
       <If condition={data.session.loading.verify}>
         <Overlay>
-          <div className={styles.logo} />
-          <div className={styles.spinner}>
+          <div styleName="logo" />
+          <div styleName="spinner">
             <Spinner loading />
           </div>
           <If condition={this.state.longLoad}>
-            <div className={styles.description}>
+            <div styleName="description">
               <p>Hang tight, the app has been sleeping...</p>
             </div>
           </If>
