@@ -12,7 +12,7 @@ import Layout from 'components/common/Layout';
 import PATHS from 'constants/router/paths';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Component
 const SurveySuccess = ({ location: { state } }) => (
@@ -25,7 +25,7 @@ const SurveySuccess = ({ location: { state } }) => (
         <Card alignment="text-center" end>
           <CardHeader>Success</CardHeader>
           <CardBody>
-            <div className={styles.symbol}>
+            <div styleName="symbol">
               <Icon name="circle-check" title="Success" />
             </div>
             <p>
@@ -34,7 +34,7 @@ const SurveySuccess = ({ location: { state } }) => (
                 's'}{' '}
               shortly.
             </p>
-            <div className={styles.actions}>
+            <div styleName="actions">
               <Button button="primary" link={`${PATHS.surveys.base}/${state.id}`} type="link">
                 View survey details
               </Button>

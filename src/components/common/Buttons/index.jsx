@@ -12,7 +12,7 @@ import CSS from 'constants/string/css';
 // Companion files
 import defaultProps from './constants/defaultProps';
 import propTypes from './constants/propTypes';
-import styles from './styles.scss';
+import './styles.scss';
 
 // Base button
 export const Button = ({
@@ -123,19 +123,22 @@ export const ButtonList = ({
   // View
   return (
     <button
-      className={cx(baseClass, `${baseClass}-action`, styles.buttonList, { active })}
+      className={cx(baseClass, `${baseClass}-action`, { active })}
       onClick={handler}
+      styleName="button-list"
       type="button"
     >
       {icon && <Icon name={icon} text title={title} />}
-      <span className={styles.text}>{children}</span>
+      <span styleName="text">{children}</span>
     </button>
   );
 };
 
 // Button set
 export const ButtonSet = ({ children, options }) => (
-  <div className={cx(styles.buttonSet, options)}>{children}</div>
+  <div className={cx(options)} styleName="button-set">
+    {children}
+  </div>
 );
 
 // Button toolbar

@@ -1,5 +1,4 @@
 // Module dependencies
-import cx from 'classnames';
 import React from 'react';
 
 // Components and HOCs
@@ -19,22 +18,22 @@ const Profile = ({ state: { data } }) => {
     <Card>
       <CardHeader>Profile</CardHeader>
       <CardBody>
-        <div className={styles.list}>
-          <div className={styles.item}>
-            <div className={styles.label}>Avatar</div>
-            <div className={styles.content}>
-              <div className={styles.avatar}>
-                <img alt="Avatar" className={styles.photo} src={data.photo.url} />
+        <div>
+          <div styleName="item">
+            <div styleName="label">Avatar</div>
+            <div styleName="content">
+              <div styleName="avatar">
+                <img alt="Avatar" src={data.photo.url} styleName="photo" />
                 <If condition={isLocal}>
                   <ExLink options={styles.overlay} to="https://en.gravatar.com">
-                    <span className={styles.text}>
+                    <span styleName="text">
                       Change<br /> avatar
                     </span>
                   </ExLink>
                 </If>
               </div>
               <If condition={isLocal}>
-                <div className={styles.description}>
+                <div styleName="description">
                   <p>
                     Update your avatar through your{' '}
                     <ExLink to="https://en.gravatar.com">Gavatar account</ExLink>.
@@ -43,21 +42,21 @@ const Profile = ({ state: { data } }) => {
               </If>
             </div>
           </div>
-          <div className={styles.item}>
-            <div className={styles.label}>Name</div>
-            <div className={styles.content}>{`${data.name.firstName} ${data.name.lastName}`}</div>
+          <div styleName="item">
+            <div styleName="label">Name</div>
+            <div styleName="content">{`${data.name.firstName} ${data.name.lastName}`}</div>
           </div>
-          <div className={styles.item}>
-            <div className={styles.label}>Email</div>
-            <div className={styles.content}>{data.email}</div>
+          <div styleName="item">
+            <div styleName="label">Email</div>
+            <div styleName="content">{data.email}</div>
           </div>
-          <div className={styles.item}>
-            <div className={styles.label}>Gender</div>
-            <div className={styles.content}>{data.gender}</div>
+          <div styleName="item">
+            <div styleName="label">Gender</div>
+            <div styleName="content">{data.gender}</div>
           </div>
-          <div className={cx(styles.item, styles.end)}>
-            <div className={styles.label}>Language</div>
-            <div className={styles.content}>{data.language}</div>
+          <div styleName="item end">
+            <div styleName="label">Language</div>
+            <div styleName="content">{data.language}</div>
           </div>
         </div>
       </CardBody>

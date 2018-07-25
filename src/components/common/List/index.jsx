@@ -8,7 +8,7 @@ import React from 'react';
 import ExLink from 'components/common/ExLink';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = exact({
@@ -57,30 +57,30 @@ const defaultProps = {
 };
 
 // List container
-export const List = ({ children }) => <div className={styles.list}>{children}</div>;
+export const List = ({ children }) => <div>{children}</div>;
 
 // List content
-export const ListContent = ({ children }) => <div className={styles.content}>{children}</div>;
+export const ListContent = ({ children }) => <div styleName="content">{children}</div>;
 
 // List group
-export const ListGroup = ({ children }) => <div className={styles.group}>{children}</div>;
+export const ListGroup = ({ children }) => <div>{children}</div>;
 
 // List group item
-export const ListGroupItem = ({ children }) => <div className={styles.groupItem}>{children}</div>;
+export const ListGroupItem = ({ children }) => <div>{children}</div>;
 
 // List item
 export const ListItem = ({ children, end, inline }) => (
-  <div className={cx(styles.item, end && styles.end, !inline && styles.block)}>{children}</div>
+  <div styleName={cx('item', end && 'end', !inline && 'block')}>{children}</div>
 );
 
 // List label
-export const ListLabel = ({ children }) => <div className={styles.label}>{children}</div>;
+export const ListLabel = ({ children }) => <div styleName="label">{children}</div>;
 
 // List link
 export const ListLink = ({
   children, icon, tag, to, v
 }) => (
-  <span className={cx((tag || v) && styles.version)}>
+  <span styleName={cx((tag || v) && 'version')}>
     <ExLink icon={icon} to={to}>
       {children}
     </ExLink>
@@ -90,7 +90,7 @@ export const ListLink = ({
 );
 
 // List title
-export const ListTitle = ({ children }) => <h4 className={styles.title}>{children}</h4>;
+export const ListTitle = ({ children }) => <h4 styleName="title">{children}</h4>;
 
 // Specify prop types and default values for props
 List.propTypes = propTypes.container;

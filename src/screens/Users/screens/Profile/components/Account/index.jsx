@@ -12,7 +12,7 @@ import Text from 'components/common/Text';
 import Confirm from 'components/composite/Confirm';
 
 // Companion files
-import styles from '../../styles/profile.scss';
+import '../../styles/profile.scss';
 
 // Component
 const Account = ({
@@ -22,31 +22,31 @@ const Account = ({
   <Card end>
     <CardHeader>Account</CardHeader>
     <CardBody>
-      <div className={styles.list}>
-        <div className={styles.item}>
-          <div className={styles.label}>ID</div>
-          <div className={styles.content}>{profile.id}</div>
+      <div>
+        <div styleName="item">
+          <div styleName="label">ID</div>
+          <div styleName="content">{profile.id}</div>
         </div>
-        <div className={styles.item}>
-          <div className={styles.label}>Account type</div>
-          <div className={styles.content}>{profile.role}</div>
+        <div styleName="item">
+          <div styleName="label">Account type</div>
+          <div styleName="content">{profile.role}</div>
         </div>
-        <div className={styles.item}>
-          <div className={styles.label}>Logged in with</div>
-          <div className={styles.content}>
+        <div styleName="item">
+          <div styleName="label">Logged in with</div>
+          <div styleName="content">
             <Choose>
               <When condition={profile.provider === 'local'}>Email</When>
               <Otherwise>{stringHelper.capitalizeFirstLetter(profile.provider)} ID</Otherwise>
             </Choose>
           </div>
         </div>
-        <div className={styles.item}>
-          <div className={styles.label}>Verification</div>
-          <div className={styles.content}>{profile.verify ? 'verified' : 'unverified'}</div>
+        <div styleName="item">
+          <div styleName="label">Verification</div>
+          <div styleName="content">{profile.verify ? 'verified' : 'unverified'}</div>
         </div>
-        <div className={styles.item}>
-          <div className={styles.label}>Creation date</div>
-          <div className={styles.content}>
+        <div styleName="item">
+          <div styleName="label">Creation date</div>
+          <div styleName="content">
             {timestampHelper.date(profile.creationDate)},{' '}
             {timestampHelper.time(profile.creationDate)}
           </div>
@@ -57,7 +57,7 @@ const Account = ({
 
       <div>
         <CardSubtitle options="is-danger">Delete account</CardSubtitle>
-        <p className={styles.description}>
+        <p styleName="description">
           Once you delete your account, there is no going back. Please be certain.
         </p>
         <Button
@@ -69,7 +69,7 @@ const Account = ({
           Delete your account
         </Button>
         <If condition={profile.role === 'tester'}>
-          <p className={styles.meta}>
+          <p styleName="meta">
             Note : This account cannot be deleted, it was created for specific use by the
             administrator. If you would like to try with this feature please create your own account
             instead.

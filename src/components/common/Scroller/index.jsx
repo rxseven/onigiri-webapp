@@ -10,7 +10,7 @@ import Error from 'components/composite/Error';
 // Companion files
 import defaultProps from './constants/defaultProps';
 import propTypes from './constants/propTypes';
-import styles from './styles.scss';
+import './styles.scss';
 
 // Constants
 const INITIAL_STATE = {
@@ -142,7 +142,7 @@ export class Scroller extends Component {
   // Render ended content
   renderEnded = ({ isEmpty }) => (
     <If condition={this.state.total >= 1 && !this.state.more && !isEmpty}>
-      <div className={styles.ended}>
+      <div styleName="ended">
         <Text small>You reached the end of the list</Text>
       </div>
     </If>

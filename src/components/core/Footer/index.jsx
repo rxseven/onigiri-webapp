@@ -21,11 +21,11 @@ const FooterLink = ({ children, to }) => (
 
 // Footer
 const Footer = () => (
-  <footer className={styles.wrapper}>
+  <footer styleName="wrapper">
     <Container>
       <Row>
         <Column>
-          <ul className={styles.navigation}>
+          <ul styleName="navigation">
             <li>
               <FooterLink to={PATHS.static.about}>About</FooterLink>
             </li>
@@ -42,7 +42,7 @@ const Footer = () => (
               <ExLink to="https://github.com/rxseven/onigiri-webapp">View on GitHub</ExLink>
             </li>
           </ul>
-          <div className={styles.content}>
+          <div styleName="content">
             <p>
               Designed &amp; built with all the love in{' '}
               <ExLink to="https://reactjs.org">React</ExLink> &amp;{' '}

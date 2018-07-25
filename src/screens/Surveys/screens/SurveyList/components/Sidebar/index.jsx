@@ -19,9 +19,9 @@ const Sidebar = ({
     isSticky, css, mode, screenWidth
   }
 }) => (
-  <div className={cx(styles.sidebar, isSticky ? styles.isSticky : false)} style={css}>
-    <div className={styles.wrapper}>
-      <div className={styles.list}>
+  <div style={css} styleName={cx('sidebar', isSticky && 'isSticky')}>
+    <div styleName="wrapper">
+      <div styleName="list">
         <Menu actions={actions} state={{ mode }} />
       </div>
 
@@ -34,11 +34,11 @@ const Sidebar = ({
           title="Create Survey"
           type="link"
         >
-          Create <span className={styles.hidden}>Survey</span>
+          Create <span styleName="hidden">Survey</span>
         </Button>
       </div>
     </div>
-    <div className={styles.fade} />
+    <div styleName="fade" />
   </div>
 );
 

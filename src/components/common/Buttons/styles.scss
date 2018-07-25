@@ -2,7 +2,7 @@
 @import "../../../styles/base/settings";
 
 // Button set
-.buttonSet {
+.button-set {
   $element-spacing: 0.25rem;
 
   align-items: center;
@@ -19,7 +19,7 @@
 }
 
 // Button list
-.buttonList {
+.button-list {
   .text {
     @media (max-width: $breakpoint-sm - 1) {
       display: none;

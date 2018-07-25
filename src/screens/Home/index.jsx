@@ -1,5 +1,4 @@
 // Module dependencies
-import cx from 'classnames';
 import React from 'react';
 
 // Components and HOCs
@@ -12,7 +11,7 @@ import Layout from 'components/common/Layout';
 import PATHS from 'constants/router/paths';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Component
 const Home = () => (
@@ -24,11 +23,9 @@ const Home = () => (
       <Layout>
         <Card>
           <CardBody>
-            <div className={styles.intro}>
-              <h3 className={cx(styles.headline, styles.highlight)}>
-                What can you do with Onigiri?
-              </h3>
-              <div className={cx(styles.content, styles.highlight)}>
+            <div styleName="intro">
+              <h3 styleName="headline highlight">What can you do with Onigiri?</h3>
+              <div styleName="content highlight">
                 <CardText>
                   With Onigiri, you can create and analyze surveys right in your pocket or web
                   browser —no special software required. You get results as they come in and, you
@@ -41,11 +38,11 @@ const Home = () => (
 
         <Card>
           <CardBody>
-            <h3 className={styles.headline}>
-              <span className={styles.number}>1</span>
+            <h3 styleName="headline">
+              <span styleName="number">1</span>
               <span>Create your survey</span>
             </h3>
-            <div className={styles.content}>
+            <div styleName="content">
               <CardText>To start, we’ll create a new survey and add questions.</CardText>
             </div>
           </CardBody>
@@ -53,11 +50,11 @@ const Home = () => (
 
         <Card>
           <CardBody>
-            <h3 className={styles.headline}>
-              <span className={styles.number}>2</span>
+            <h3 styleName="headline">
+              <span styleName="number">2</span>
               <span>Preview your survey</span>
             </h3>
-            <div className={styles.content}>
+            <div styleName="content">
               <CardText>
                 When you’re done adding questions, you can preview your changes before sending it
                 out.
@@ -68,11 +65,11 @@ const Home = () => (
 
         <Card>
           <CardBody>
-            <h3 className={styles.headline}>
-              <span className={styles.number}>3</span>
+            <h3 styleName="headline">
+              <span styleName="number">3</span>
               <span>Send your survey</span>
             </h3>
-            <div className={styles.content}>
+            <div styleName="content">
               <CardText>
                 Now, you’re ready to send out your survey and start collecting responses.
               </CardText>
@@ -82,11 +79,11 @@ const Home = () => (
 
         <Card end>
           <CardBody>
-            <h3 className={styles.headline}>
-              <span className={styles.number}>4</span>
+            <h3 styleName="headline">
+              <span styleName="number">4</span>
               <span>Analyze responses</span>
             </h3>
-            <div className={styles.content}>
+            <div styleName="content">
               <CardText>
                 After you send out your form, you’ll see responses on the Surveys tab.
               </CardText>
@@ -94,7 +91,7 @@ const Home = () => (
           </CardBody>
         </Card>
 
-        <div className={styles.start}>
+        <div styleName="start">
           <Button button="outline-primary" link={PATHS.surveys.new} type="link">
             Get started
           </Button>

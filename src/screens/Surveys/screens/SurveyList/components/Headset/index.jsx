@@ -8,12 +8,12 @@ import { Button } from 'components/common/Buttons';
 import PATHS from 'constants/router/paths';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Component
 const Headset = () => (
-  <div className={styles.headset}>
-    <h2 className={styles.headline}>Your surveys</h2>
+  <div styleName="headset">
+    <h2 styleName="headline">Your surveys</h2>
     <Button
       button="primary"
       icon="envelope-closed"

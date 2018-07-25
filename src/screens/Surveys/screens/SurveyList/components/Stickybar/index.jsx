@@ -7,11 +7,11 @@ import SCREENS from 'constants/sizing/screens';
 
 // Companion files
 import Sidebar from '../Sidebar';
-import styles from './styles.scss';
+import './styles.scss';
 
 // Component
 const Stickybar = ({ actions, state }) => (
-  <div className={styles.wrapper}>
+  <div styleName="wrapper">
     <Sticky topOffset={-64}>
       {({ isSticky, style }) => {
         // Base styles

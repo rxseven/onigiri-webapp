@@ -1,5 +1,4 @@
 // Module dependencies
-import cx from 'classnames';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -26,7 +25,7 @@ import { getSession } from 'data/session/reducers';
 import { getAsync } from 'data/interfaces/session/reducers';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Component
 class Navbar extends Component {
@@ -61,7 +60,7 @@ class Navbar extends Component {
     return (
       authorization &&
       user && (
-        <div className={cx('nav-item', styles.avatar)}>
+        <div className="nav-item" styleName="avatar">
           <Dropdown ref="dropdown">
             <DropdownTrigger>
               <Avatar url={user.photo.url} />
@@ -80,7 +79,7 @@ class Navbar extends Component {
                   <Icon name="account-logout" title="Log out" />
                   <Choose>
                     <When condition={this.props.state.ui.asynchronous.signout.loading}>
-                      <span className={styles.leaving}>Logging out...</span>
+                      <span styleName="leaving">Logging out...</span>
                     </When>
                     <Otherwise>
                       <span>Log out</span>
@@ -98,7 +97,7 @@ class Navbar extends Component {
   // Render brand
   renderBrand = () => (
     <Link className="navbar-brand" to={PATHS.root}>
-      <div className={styles.logo}>
+      <div styleName="logo">
         <span>おにぎり</span>
       </div>
     </Link>
@@ -114,7 +113,7 @@ class Navbar extends Component {
     // View
     return (
       <If condition={!authorization && (pathname !== signin && pathname !== signup)}>
-        <NavLink className={cx('navbar-item', 'nav-link', styles.link)} to={signin}>
+        <NavLink className="navbar-item nav-link" styleName="link" to={signin}>
           Sign in
         </NavLink>
       </If>
@@ -130,7 +129,7 @@ class Navbar extends Component {
     return (
       <div className="navbar-nav mr-auto">
         <If condition={!authorization}>
-          <NavLink className={cx('navbar-item', 'nav-link', styles.home)} exact to={PATHS.root}>
+          <NavLink className="navbar-item nav-link" exact to={PATHS.root}>
             Home
           </NavLink>
         </If>
@@ -138,7 +137,7 @@ class Navbar extends Component {
           <NavLink className="navbar-item nav-link" exact to={PATHS.surveys.list}>
             Dashboard
           </NavLink>
-          <NavLink className={cx('navbar-item', 'nav-link', styles.link)} to={PATHS.surveys.new}>
+          <NavLink className="navbar-item nav-link" styleName="link" to={PATHS.surveys.new}>
             New Survey
           </NavLink>
         </If>
@@ -151,13 +150,13 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-dark bg-dark fixed-top">
         <Container>
-          <button className={styles.menu} onClick={this.onToggleMenu} type="button">
+          <button onClick={this.onToggleMenu} styleName="menu" type="button">
             <Icon name="menu" title="Menu" />
           </button>
           {this.renderBrand()}
-          <div className={styles.group}>
+          <div styleName="group">
             {this.renderNav()}
-            <div className={styles.meta}>
+            <div styleName="meta">
               {this.renderLinks()}
               {this.renderAvatar()}
             </div>

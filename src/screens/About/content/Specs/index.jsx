@@ -7,7 +7,7 @@ import { Card, CardBody, CardHeader, CardSubtitle } from 'components/common/Card
 import { List, ListItem, ListContent, ListLabel, ListLink } from 'components/common/List';
 
 // Companion files
-import styles from '../../styles.scss';
+import '../../styles.scss';
 
 // Component
 const Technical = () => (
@@ -38,29 +38,29 @@ const Technical = () => (
                 <ListLabel>Cloud platform as a service</ListLabel>
                 <ListContent>
                   <ListLink to="https://www.heroku.com">
-                    <span className={styles.heroku} />
+                    <span styleName="heroku" />
                     Heroku
                   </ListLink>
-                  <ul className={styles.specs}>
+                  <ul styleName="specs">
                     <li>
-                      <span className={styles.label}>Plan</span>
-                      <span className={styles.content}>Free</span>
+                      <span styleName="label">Plan</span>
+                      <span styleName="content">Free</span>
                     </li>
                     <li>
-                      <span className={styles.label}>RAM</span>
-                      <span className={styles.content}>512 MB</span>
+                      <span styleName="label">RAM</span>
+                      <span styleName="content">512 MB</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Sleep</span>
-                      <span className={styles.content}>After 30 mins of inactivity</span>
+                      <span styleName="label">Sleep</span>
+                      <span styleName="content">After 30 mins of inactivity</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Dedicated</span>
-                      <span className={styles.content}>No</span>
+                      <span styleName="label">Dedicated</span>
+                      <span styleName="content">No</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Region</span>
-                      <span className={styles.content}>United States</span>
+                      <span styleName="label">Region</span>
+                      <span styleName="content">United States</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -70,41 +70,41 @@ const Technical = () => (
                 <ListLabel>Database as a service for MongoDB</ListLabel>
                 <ListContent>
                   <ListLink to="https://mlab.com">
-                    <span className={styles.mlab} />
+                    <span styleName="mlab" />
                     mLab
                   </ListLink>
-                  <ul className={styles.specs}>
+                  <ul styleName="specs">
                     <li>
-                      <span className={styles.label}>Plan</span>
-                      <span className={styles.content}>Sandbox</span>
+                      <span styleName="label">Plan</span>
+                      <span styleName="content">Sandbox</span>
                     </li>
                     <li>
-                      <span className={styles.label}>MongoDB</span>
-                      <span className={styles.content}>v3.4.13 (MMAPv1)</span>
+                      <span styleName="label">MongoDB</span>
+                      <span styleName="content">v3.4.13 (MMAPv1)</span>
                     </li>
                     <li>
-                      <span className={styles.label}>RAM</span>
-                      <span className={styles.content}>Variable</span>
+                      <span styleName="label">RAM</span>
+                      <span styleName="content">Variable</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Storage</span>
-                      <span className={styles.content}>0.5 GB</span>
+                      <span styleName="label">Storage</span>
+                      <span styleName="content">0.5 GB</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Provider</span>
-                      <span className={styles.content}>Amazon Web Services</span>
+                      <span styleName="label">Provider</span>
+                      <span styleName="content">Amazon Web Services</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Region</span>
-                      <span className={styles.content}>US East (Virginia) (us-east-1)</span>
+                      <span styleName="label">Region</span>
+                      <span styleName="content">US East (Virginia) (us-east-1)</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Server</span>
-                      <span className={styles.content}>Single shared database</span>
+                      <span styleName="label">Server</span>
+                      <span styleName="content">Single shared database</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Process</span>
-                      <span className={styles.content}>Running on shared VM</span>
+                      <span styleName="label">Process</span>
+                      <span styleName="content">Running on shared VM</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -121,17 +121,17 @@ const Technical = () => (
                 <ListLabel>Cloud-based email</ListLabel>
                 <ListContent>
                   <ListLink to="https://sendgrid.com">
-                    <span className={styles.sendgrid} />
+                    <span styleName="sendgrid" />
                     SendGrid
                   </ListLink>
-                  <ul className={styles.specs}>
+                  <ul styleName="specs">
                     <li>
-                      <span className={styles.label}>Plan</span>
-                      <span className={styles.content}>Free</span>
+                      <span styleName="label">Plan</span>
+                      <span styleName="content">Free</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Limitation</span>
-                      <span className={styles.content}>Send 100 emails/day</span>
+                      <span styleName="label">Limitation</span>
+                      <span styleName="content">Send 100 emails/day</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -143,17 +143,17 @@ const Technical = () => (
                 <ListLabel>Online payment platform</ListLabel>
                 <ListContent>
                   <ListLink to="https://stripe.com/checkout">
-                    <span className={styles.stripe} />
+                    <span styleName="stripe" />
                     Stripe
                   </ListLink>
-                  <ul className={styles.specs}>
+                  <ul styleName="specs">
                     <li>
-                      <span className={styles.label}>Plan</span>
-                      <span className={styles.content}>Sandbox</span>
+                      <span styleName="label">Plan</span>
+                      <span styleName="content">Sandbox</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Services</span>
-                      <span className={styles.content}>Checkout</span>
+                      <span styleName="label">Services</span>
+                      <span styleName="content">Checkout</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -165,17 +165,17 @@ const Technical = () => (
                 <ListLabel>Social networking platform</ListLabel>
                 <ListContent>
                   <ListLink to="https://developers.facebook.com/products/account-creation">
-                    <span className={styles.facebook} />
+                    <span styleName="facebook" />
                     Facebook Platform
                   </ListLink>
-                  <ul className={styles.specs}>
+                  <ul styleName="specs">
                     <li>
-                      <span className={styles.label}>Plan</span>
-                      <span className={styles.content}>Free</span>
+                      <span styleName="label">Plan</span>
+                      <span styleName="content">Free</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Services</span>
-                      <span className={styles.content}>Facebook Login</span>
+                      <span styleName="label">Services</span>
+                      <span styleName="content">Facebook Login</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -187,17 +187,17 @@ const Technical = () => (
                 <ListLabel>Cloud computing, Hosting, and APIs</ListLabel>
                 <ListContent>
                   <ListLink to="https://cloud.google.com">
-                    <span className={styles.google} />
+                    <span styleName="google" />
                     Google Cloud Platform
                   </ListLink>
-                  <ul className={styles.specs}>
+                  <ul styleName="specs">
                     <li>
-                      <span className={styles.label}>Plan</span>
-                      <span className={styles.content}>Free</span>
+                      <span styleName="label">Plan</span>
+                      <span styleName="content">Free</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Services</span>
-                      <span className={styles.content}>OAuth client ID</span>
+                      <span styleName="label">Services</span>
+                      <span styleName="content">OAuth client ID</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -214,17 +214,17 @@ const Technical = () => (
                 <ListLabel>Web-based hosting service for version control using Git</ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com">
-                    <span className={styles.github} />
+                    <span styleName="github" />
                     GitHub
                   </ListLink>
-                  <ul className={styles.specs}>
+                  <ul styleName="specs">
                     <li>
-                      <span className={styles.label}>Plan</span>
-                      <span className={styles.content}>Free</span>
+                      <span styleName="label">Plan</span>
+                      <span styleName="content">Free</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Services</span>
-                      <span className={styles.content}>Version control, deployment</span>
+                      <span styleName="label">Services</span>
+                      <span styleName="content">Version control, deployment</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -236,17 +236,17 @@ const Technical = () => (
                 <ListLabel>Continuous integration</ListLabel>
                 <ListContent>
                   <ListLink to="https://travis-ci.org">
-                    <span className={styles.travis} />
+                    <span styleName="travis" />
                     Travis CI
                   </ListLink>
-                  <ul className={styles.specs}>
+                  <ul styleName="specs">
                     <li>
-                      <span className={styles.label}>Plan</span>
-                      <span className={styles.content}>Open source</span>
+                      <span styleName="label">Plan</span>
+                      <span styleName="content">Open source</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Services</span>
-                      <span className={styles.content}>CI &amp; CD</span>
+                      <span styleName="label">Services</span>
+                      <span styleName="content">CI &amp; CD</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -258,17 +258,17 @@ const Technical = () => (
                 <ListLabel>Test coverage history and statistics</ListLabel>
                 <ListContent>
                   <ListLink to="https://coveralls.io">
-                    <span className={styles.coveralls} />
+                    <span styleName="coveralls" />
                     Coveralls
                   </ListLink>
-                  <ul className={styles.specs}>
+                  <ul styleName="specs">
                     <li>
-                      <span className={styles.label}>Plan</span>
-                      <span className={styles.content}>Open source</span>
+                      <span styleName="label">Plan</span>
+                      <span styleName="content">Open source</span>
                     </li>
                     <li>
-                      <span className={styles.label}>Services</span>
-                      <span className={styles.content}>Test coverage history and statistics</span>
+                      <span styleName="label">Services</span>
+                      <span styleName="content">Test coverage history and statistics</span>
                     </li>
                   </ul>
                 </ListContent>
@@ -285,7 +285,7 @@ const Technical = () => (
               <ListItem>
                 <ListLabel>JavaScript library for building user interfaces</ListLabel>
                 <ListContent>
-                  <span className={styles.react} />
+                  <span styleName="react" />
                   <ListLink to="https://reactjs.org" v="16.3.2">
                     React
                   </ListLink>
@@ -294,7 +294,7 @@ const Technical = () => (
               <ListItem>
                 <ListLabel>JavaScript library for managing application state</ListLabel>
                 <ListContent>
-                  <span className={styles.redux} />
+                  <span styleName="redux" />
                   <ListLink to="https://redux.js.org" v="5.0.7">
                     Redux
                   </ListLink>
@@ -303,7 +303,7 @@ const Technical = () => (
               <ListItem end>
                 <ListLabel>Frontend component library</ListLabel>
                 <ListContent>
-                  <span className={styles.bootstrap} />
+                  <span styleName="bootstrap" />
                   <ListLink to="https://getbootstrap.com" v="4.0.0">
                     Bootstrap
                   </ListLink>
@@ -654,7 +654,7 @@ const Technical = () => (
               <ListItem>
                 <ListLabel>JavaScript runtime</ListLabel>
                 <ListContent>
-                  <span className={styles.node} />
+                  <span styleName="node" />
                   <ListLink to="https://nodejs.org/en/" v="8.9.3">
                     Node.js
                   </ListLink>
@@ -663,7 +663,7 @@ const Technical = () => (
               <ListItem>
                 <ListLabel>Node.js web application framework</ListLabel>
                 <ListContent>
-                  <span className={styles.express} />
+                  <span styleName="express" />
                   <ListLink to="https://expressjs.com" v="4.16.3">
                     Express
                   </ListLink>
@@ -672,7 +672,7 @@ const Technical = () => (
               <ListItem end>
                 <ListLabel>Cross-platform document-oriented database program</ListLabel>
                 <ListContent>
-                  <span className={styles.mongodb} />
+                  <span styleName="mongodb" />
                   <ListLink to="https://www.mongodb.com" v="3.4.x">
                     MongoDB
                   </ListLink>

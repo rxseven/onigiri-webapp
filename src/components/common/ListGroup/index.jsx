@@ -6,7 +6,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = exact({
@@ -42,7 +42,7 @@ export const ListGroup = ({ children, margin }) => {
 };
 
 // List group headline
-export const ListGroupHL = ({ children }) => <h5 className={styles.headline}>{children}</h5>;
+export const ListGroupHL = ({ children }) => <h5 styleName="headline">{children}</h5>;
 
 // List group item
 export const ListGroupItem = ({ children, link }) => {
@@ -58,7 +58,7 @@ export const ListGroupItem = ({ children, link }) => {
 };
 
 // List group text
-export const ListGroupText = ({ children }) => <p className={styles.text}>{children}</p>;
+export const ListGroupText = ({ children }) => <p styleName="text">{children}</p>;
 
 // Specify prop types and default values for props
 ListGroup.propTypes = propTypes.container;

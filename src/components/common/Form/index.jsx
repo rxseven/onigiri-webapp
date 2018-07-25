@@ -16,7 +16,7 @@ import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = {
@@ -159,16 +159,18 @@ export class Form extends Component {
 
 // Form group
 export const FormGroup = ({ children, end }) => (
-  <div className={cx('form-group', end && styles.end)}>{children}</div>
+  <div className="form-group" styleName={cx(end && 'end')}>
+    {children}
+  </div>
 );
 
 // Form headline
-export const FormHL = ({ children }) => <h2 className={styles.headline}>{children}</h2>;
+export const FormHL = ({ children }) => <h2 styleName="headline">{children}</h2>;
 
 // Form meta
 export const FormMeta = ({ children }) => (
-  <div className={styles.meta}>
-    <span className={styles.context}>{children}</span>
+  <div styleName="meta">
+    <span styleName="context">{children}</span>
   </div>
 );
 
@@ -176,7 +178,7 @@ export const FormMeta = ({ children }) => (
 export const FormStack = ({ children, end }) => <div className={!end && 'mb-3'}>{children}</div>;
 
 // Form Subheadline
-export const FormSHL = ({ children }) => <h3 className={styles.subheadline}>{children}</h3>;
+export const FormSHL = ({ children }) => <h3 styleName="subheadline">{children}</h3>;
 
 // Specify prop types and default values for props
 Form.propTypes = propTypes.form;

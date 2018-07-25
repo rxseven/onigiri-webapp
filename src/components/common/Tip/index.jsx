@@ -8,7 +8,7 @@ import React from 'react';
 import CSS from 'constants/string/css';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = exact({
@@ -35,11 +35,13 @@ const defaultProps = {
 export const Tip = ({
   children, end, margin, options
 }) => (
-  <div className={cx(styles.container, CSS.margin.MT04, !end && margin, options)}>{children}</div>
+  <div className={cx(CSS.margin.MT04, !end && margin, options)} styleName="container">
+    {children}
+  </div>
 );
 
 // Tip header
-export const TipHeader = ({ children }) => <h3 className={styles.header}>{children}</h3>;
+export const TipHeader = ({ children }) => <h3 styleName="header">{children}</h3>;
 
 // Specify prop types and default values for props
 Tip.propTypes = propTypes.container;

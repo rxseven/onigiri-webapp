@@ -2,10 +2,14 @@
 @import "./base/settings";
 @import "./base/reset";
 @import "./base/layout";
-@import "./base/typography";
 
 // Mixins
+@import "./mixins/clearfix";
+@import "./mixins/transition";
 @import "./mixins/utilities";
+
+// Content
+@import "./content/typography";
 
 // 3rd party libraries
 @import "./vendor/index";

@@ -5,7 +5,7 @@ import exact from 'prop-types-exact';
 import React from 'react';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types and default props
 const propTypes = exact({
@@ -32,14 +32,8 @@ const Icon = ({
   return (
     <span
       aria-hidden="true"
-      className={cx(
-        baseClass,
-        `${baseClass}-${name}`,
-        'icon',
-        disabled && styles.disabled,
-        options,
-        text && `icon-inline ${styles.inline}`
-      )}
+      className={cx(baseClass, `${baseClass}-${name}`, 'icon', options, text && 'icon-inline')}
+      styleName={cx(disabled && 'disabled', text && 'inline')}
       title={title}
     />
   );

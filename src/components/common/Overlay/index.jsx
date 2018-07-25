@@ -4,7 +4,7 @@ import exact from 'prop-types-exact';
 import React from 'react';
 
 // Companion files
-import styles from './styles.scss';
+import './styles.scss';
 
 // Declare prop types
 const propTypes = exact({
@@ -13,8 +13,8 @@ const propTypes = exact({
 
 // Component
 const Overlay = ({ children }) => (
-  <div className={styles.wrapper}>
-    <div className={styles.content}>{children}</div>
+  <div styleName="wrapper">
+    <div styleName="content">{children}</div>
   </div>
 );
 
