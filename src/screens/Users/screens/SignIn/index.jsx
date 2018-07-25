@@ -29,7 +29,7 @@ import { getUI } from './reducers';
 // Companion files
 import Layout from '../../../Users/components/Layout';
 import Form from './components/Form';
-import styles from './styles.scss';
+import './styles.scss';
 
 // Constants
 const PAGE_TITLE = 'Sign in to Onigiri';
@@ -91,7 +91,7 @@ class SignIn extends Component {
     <Choose>
       <When condition={isLoading && strategy.type === 'oauth'}>
         <FormStack>
-          <div className={styles.loading}>
+          <div styleName="loading">
             <Spinner />
           </div>
         </FormStack>
