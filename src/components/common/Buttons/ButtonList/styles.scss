@@ -1,0 +1,11 @@
+// Global styles
+@import "../../../../styles/base/settings";
+
+// Button list
+.button-list {
+  .text {
+    @media (max-width: $breakpoint-sm - 1) {
+      display: none;
+    }
+  }
+}
