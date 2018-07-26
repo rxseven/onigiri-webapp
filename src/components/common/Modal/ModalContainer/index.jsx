@@ -9,25 +9,17 @@ import HTML from 'constants/elements/html';
 
 // Declare prop types
 const propTypes = exact({
-  body: {
-    children: PropTypes.node.isRequired
-  },
-  container: {
-    children: PropTypes.node.isRequired,
-    onClose: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
-    visibility: PropTypes.bool.isRequired
-  },
-  footer: {
-    children: PropTypes.node.isRequired
-  }
+  children: PropTypes.node.isRequired,
+  onClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  visibility: PropTypes.bool.isRequired
 });
 
 // Hide the application from screenreaders and other assistive technologies
 ReactModal.setAppElement(`#${HTML.root}`);
 
-// Modal container
-export const Modal = ({
+// Component
+const ModalContainer = ({
   children, onClose, title, visibility
 }) => (
   <ReactModal
@@ -49,13 +41,8 @@ export const Modal = ({
   </ReactModal>
 );
 
-// Modal body
-export const ModalBody = ({ children }) => <div className="modal-body">{children}</div>;
-
-// Modal footer
-export const ModalFooter = ({ children }) => <div className="modal-footer">{children}</div>;
-
 // Specify prop types
-Modal.propTypes = propTypes.container;
-ModalBody.propTypes = propTypes.body;
-ModalFooter.propTypes = propTypes.footer;
+ModalContainer.propTypes = propTypes;
+
+// Module exports
+export default ModalContainer;
