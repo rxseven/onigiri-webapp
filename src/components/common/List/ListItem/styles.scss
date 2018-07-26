@@ -1,0 +1,20 @@
+// Global styles
+@import "../../../../styles/mixins/clearfix";
+
+// Item
+.item {
+  @include clearfix;
+  margin-bottom: 0.5rem;
+
+  &.block {
+    margin-bottom: 0.875rem;
+
+    &.end {
+      margin-bottom: 0;
+    }
+  }
+
+  &.end {
+    margin-bottom: 0;
+  }
+}
