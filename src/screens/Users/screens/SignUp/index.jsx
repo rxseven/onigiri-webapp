@@ -3,8 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Components and HOCs
-import { Body, Document, Head, Title } from 'components/common/Document';
-import { FormHL, FormMeta, FormStack } from 'components/common/Form';
+import { Body, Document, Head, Title } from 'components/common/Page';
+import { FormHL, FormMeta, FormStack } from 'components/common/Forms';
 import Icon from 'components/common/Icon';
 import { Tip, TipHeader } from 'components/common/Tip';
 

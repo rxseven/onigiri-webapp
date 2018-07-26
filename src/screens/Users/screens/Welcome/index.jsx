@@ -3,7 +3,7 @@ import React from 'react';
 
 // Components
 import { Button } from 'components/common/Buttons';
-import { Body, Document, Head, Title } from 'components/common/Document';
+import { Body, Document, Head, Title } from 'components/common/Page';
 import { Hero, HeroBody, HeroHeader } from 'components/common/Hero';
 import Layout from 'components/common/Layout';
 import Text from 'components/common/Text';

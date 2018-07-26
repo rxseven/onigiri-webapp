@@ -6,7 +6,7 @@ import withSizes from 'react-sizes';
 import { StickyContainer } from 'react-sticky';
 
 // Components and HOCs
-import { Body, Document, Head, Title } from 'components/common/Document';
+import { Body, Document, Head, Title } from 'components/common/Page';
 import { Column, Row } from 'components/common/Grid';
 import Layout from 'components/common/Layout';
 

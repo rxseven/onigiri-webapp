@@ -11,7 +11,7 @@ import { generateState } from 'helpers/state';
 import validationHelper from 'helpers/validation';
 
 // Components and HOCs
-import { Form } from 'components/common/Form';
+import { Form } from 'components/common/Forms';
 import toJS from 'HOCs/state/toJS';
 
 // Constants

@@ -4,7 +4,7 @@ import React from 'react';
 // Components and HOCs
 import { Button } from 'components/common/Buttons';
 import { Card, CardBody, CardText } from 'components/common/Card';
-import { Body, Document, Head, Title } from 'components/common/Document';
+import { Body, Document, Head, Title } from 'components/common/Page';
 import Layout from 'components/common/Layout';
 
 // Constants

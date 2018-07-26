@@ -11,7 +11,7 @@ import { generateState } from 'helpers/state';
 
 // Components and HOCs
 import { Button, ButtonSet } from 'components/common/Buttons';
-import { FormSHL } from 'components/common/Form';
+import { FormSHL } from 'components/common/Forms';
 import Spinner from 'components/common/Spinner';
 import Error from 'components/composite/Error';
 import toJS from 'HOCs/state/toJS';

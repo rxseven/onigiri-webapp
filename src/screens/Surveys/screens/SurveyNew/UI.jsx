@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form/immutable';
 
 // Components and HOCs
-import { Body, Document, Head, Title } from 'components/common/Document';
-import { FormHL } from 'components/common/Form';
+import { Body, Document, Head, Title } from 'components/common/Page';
+import { FormHL } from 'components/common/Forms';
 import Icon from 'components/common/Icon';
 import Layout from 'components/common/Layout';
 import { Tip, TipHeader } from 'components/common/Tip';
