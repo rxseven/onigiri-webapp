@@ -1,5 +1,5 @@
 // Global styles
-@import "../../../styles/base/settings";
+@import "../../../../styles/base/settings";
 
 // List group headline
 .headline {
@@ -8,14 +8,5 @@
 
   @media (min-width: $breakpoint-sm) {
     font-size: 1.15rem;
-  }
-}
-
-// List group text
-.text {
-  font-size: 0.875rem;
-
-  @media (min-width: $breakpoint-sm) {
-    font-size: 1rem;
   }
 }
