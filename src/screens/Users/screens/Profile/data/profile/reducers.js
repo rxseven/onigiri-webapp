@@ -2,7 +2,7 @@
 import { createSelector } from 'reselect';
 
 // Action types
-import { USER_RESET } from 'data/session/actions';
+import { USER_RESET } from 'data/session/types';
 import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './actions';
 
 // Initial state

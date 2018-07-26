@@ -24,7 +24,7 @@ import {
   USER_DELETE_FAILURE,
   USER_DELETE_SUCCESS,
   USER_RESET
-} from 'data/session/actions';
+} from 'data/session/types';
 import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './data/profile/actions';
 
 // Reducers

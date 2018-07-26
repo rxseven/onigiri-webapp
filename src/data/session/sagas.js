@@ -9,8 +9,9 @@ import tokenHelper from 'helpers/token';
 // Services
 import * as usersService from 'services/users';
 
-// Action types and action creators
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Delete user account
 function* deleteUser({ callback }) {
@@ -202,13 +203,13 @@ function* signUp({ callback, payload }) {
 // Actions watcher
 function* watcher() {
   all([
-    yield takeLatest(actions.OAUTH_FACEBOOK, oauthFacebook),
-    yield takeLatest(actions.OAUTH_GOOGLE, oauthGoogle),
-    yield takeLatest(actions.SIGNIN, signIn),
-    yield takeLatest(actions.SIGNOUT, signOut),
-    yield takeLatest(actions.SIGNUP, signUp),
-    yield takeLatest(actions.USER_DELETE, deleteUser),
-    yield takeLatest(actions.USER_GET, getUser)
+    yield takeLatest(types.OAUTH_FACEBOOK, oauthFacebook),
+    yield takeLatest(types.OAUTH_GOOGLE, oauthGoogle),
+    yield takeLatest(types.SIGNIN, signIn),
+    yield takeLatest(types.SIGNOUT, signOut),
+    yield takeLatest(types.SIGNUP, signUp),
+    yield takeLatest(types.USER_DELETE, deleteUser),
+    yield takeLatest(types.USER_GET, getUser)
   ]);
 }
 

@@ -27,7 +27,7 @@ import {
   USER_GET,
   USER_GET_FAILURE,
   USER_GET_SUCCESS
-} from './actions';
+} from './types';
 
 // Initial state
 const initialState = fromJS({

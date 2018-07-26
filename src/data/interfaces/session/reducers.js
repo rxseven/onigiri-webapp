@@ -11,7 +11,7 @@ import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
-import { SIGNOUT, SIGNOUT_FAILURE, SIGNOUT_SUCCESS } from 'data/session/actions';
+import { SIGNOUT, SIGNOUT_FAILURE, SIGNOUT_SUCCESS } from 'data/session/types';
 
 // Initial state
 const initialState = fromJS({

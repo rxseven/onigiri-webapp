@@ -11,7 +11,7 @@ import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
-import { SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS } from 'data/session/actions';
+import { SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS } from 'data/session/types';
 import { SIGNUP_RESET_UI } from './actions';
 
 // Initial state

@@ -2,7 +2,7 @@
 import { createSelector } from 'reselect';
 
 // Action types
-import { USER_RESET } from 'data/session/actions';
+import { USER_RESET } from 'data/session/types';
 import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../../../actions';
 import {
   RECIPIENTS_GET,

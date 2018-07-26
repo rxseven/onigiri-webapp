@@ -23,7 +23,7 @@ import {
   SIGNIN,
   SIGNIN_FAILURE,
   SIGNIN_SUCCESS
-} from 'data/session/actions';
+} from 'data/session/types';
 import { SIGNIN_RESET_UI } from './actions';
 
 // Initial state
