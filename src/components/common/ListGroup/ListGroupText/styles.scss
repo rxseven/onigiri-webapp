@@ -1,0 +1,11 @@
+// Global styles
+@import "../../../../styles/base/settings";
+
+// List group text
+.text {
+  font-size: 0.875rem;
+
+  @media (min-width: $breakpoint-sm) {
+    font-size: 1rem;
+  }
+}

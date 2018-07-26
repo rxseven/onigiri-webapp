@@ -3,7 +3,7 @@ import React from 'react';
 
 // Components and HOCs
 import { Card, CardBody, CardLink, CardText, CardTitle } from 'components/common/Card';
-import { Body, Document, Head, Title } from 'components/common/Document';
+import { Body, Document, Head, Title } from 'components/common/Page';
 import Layout from 'components/common/Layout';
 
 // Constants

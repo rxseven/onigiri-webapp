@@ -3,7 +3,7 @@ import React from 'react';
 
 // Components and HOCs
 import { Button } from 'components/common/Buttons';
-import { Body, Document, Head, Title } from 'components/common/Document';
+import { Body, Document, Head, Title } from 'components/common/Page';
 import Icon from 'components/common/Icon';
 import { Card, CardBody, CardHeader } from 'components/common/Card';
 import Layout from 'components/common/Layout';

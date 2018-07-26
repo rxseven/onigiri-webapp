@@ -36,12 +36,14 @@ const Confirm = (props) => {
     children,
     onClose,
     onConfirm,
-    spinner
+    spinner,
+    title,
+    visibility
   } = props;
 
   // View
   return (
-    <Modal {...props}>
+    <Modal onClose={onClose} title={title} visibility={visibility}>
       <ModalBody>{children}</ModalBody>
       <ModalFooter>
         <If condition={spinner && loading}>
@@ -50,7 +52,7 @@ const Confirm = (props) => {
         <If condition={alert && error}>
           <Error alert={error} />
         </If>
-        <Button disabled={loading} handler={() => onClose()} styles="secondary">
+        <Button disabled={loading} handler={() => onClose()}>
           {buttonCancel}
         </Button>
         <Button button="danger" disabled={loading} handler={onConfirm}>

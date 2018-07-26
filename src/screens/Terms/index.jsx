@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Components and HOCs
-import { Body, Document, Head, Title } from 'components/common/Document';
+import { Body, Document, Head, Title } from 'components/common/Page';
 import Layout from 'components/common/Layout';
 import { HL } from 'components/common/Typography';
 

@@ -13,7 +13,7 @@ import validationHelper from 'helpers/validation';
 // Components and HOCs
 import { Button } from 'components/common/Buttons';
 import { Card, CardBody, CardHeader, CardText } from 'components/common/Card';
-import { Form, FormSHL } from 'components/common/Form';
+import { Form, FormSHL } from 'components/common/Forms';
 import Spinner from 'components/common/Spinner';
 import Confirm from 'components/composite/Confirm';
 import toJS from 'HOCs/state/toJS';

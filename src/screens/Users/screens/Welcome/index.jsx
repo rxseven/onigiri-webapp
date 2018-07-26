@@ -3,7 +3,7 @@ import React from 'react';
 
 // Components
 import { Button } from 'components/common/Buttons';
-import { Body, Document, Head, Title } from 'components/common/Document';
+import { Body, Document, Head, Title } from 'components/common/Page';
 import { Hero, HeroBody, HeroHeader } from 'components/common/Hero';
 import Layout from 'components/common/Layout';
 import Text from 'components/common/Text';
@@ -19,7 +19,7 @@ const Welcome = () => (
     </Head>
     <Body>
       <Layout>
-        <Hero end>
+        <Hero>
           <HeroHeader>Welcome to Onigiri</HeroHeader>
           <HeroBody>
             <Text lead>Create a survey as easily as creating a blog post</Text>

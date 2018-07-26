@@ -5,7 +5,7 @@ import Notification from 'react-s-alert';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 // Components and HOCs
-import { Body, Document, Head, Title } from 'components/common/Document';
+import { Body, Document, Head, Title } from 'components/common/Page';
 import Layout from 'components/common/Layout';
 import Spinner from 'components/common/Spinner';
 import Error from 'components/composite/Error';
