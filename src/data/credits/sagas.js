@@ -9,8 +9,9 @@ import { getError } from 'helpers/state';
 import paymentsService from 'services/payments';
 import * as usersService from 'services/users';
 
-// Action types and action creators
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Checkout
 function* checkout({ callback, payload }) {
@@ -59,7 +60,7 @@ function* getCredits() {
 
 // Actions watcher
 function* watcher() {
-  yield all([takeLatest(actions.CHECKOUT, checkout), takeLatest(actions.CREDITS_GET, getCredits)]);
+  yield all([takeLatest(types.CHECKOUT, checkout), takeLatest(types.CREDITS_GET, getCredits)]);
 }
 
 // Module exports

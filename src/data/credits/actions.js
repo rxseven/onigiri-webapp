@@ -1,13 +1,13 @@
 // Action types
-export const CHECKOUT = 'data/credits/CHECKOUT';
-export const CHECKOUT_FAILURE = 'data/credits/CHECKOUT_FAILURE';
-export const CHECKOUT_SUCCESS = 'data/credits/CHECKOUT_SUCCESS';
-
-export const CREDITS_GET = 'data/credits/CREDITS_GET';
-export const CREDITS_GET_FAILURE = 'data/credits/CREDITS_GET_FAILURE';
-export const CREDITS_GET_SUCCESS = 'data/credits/CREDITS_GET_SUCCESS';
-
-export const CREDITS_UPDATE = 'data/credits/CREDITS_UPDATE';
+import {
+  CHECKOUT,
+  CHECKOUT_FAILURE,
+  CHECKOUT_SUCCESS,
+  CREDITS_GET,
+  CREDITS_GET_FAILURE,
+  CREDITS_GET_SUCCESS,
+  CREDITS_UPDATE
+} from './types';
 
 // Checkout : Start
 export const checkout = (token, callback) => ({

@@ -12,7 +12,7 @@ import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
 import { USER_RESET } from 'data/session/types';
-import { CHECKOUT, CHECKOUT_FAILURE, CHECKOUT_SUCCESS } from 'data/credits/actions';
+import { CHECKOUT, CHECKOUT_FAILURE, CHECKOUT_SUCCESS } from 'data/credits/types';
 
 // Initial state
 const initialState = fromJS({

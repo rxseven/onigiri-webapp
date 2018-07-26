@@ -18,7 +18,7 @@ import {
   CREDITS_GET,
   CREDITS_GET_FAILURE,
   CREDITS_GET_SUCCESS
-} from 'data/credits/actions';
+} from 'data/credits/types';
 import {
   USER_DELETE,
   USER_DELETE_FAILURE,

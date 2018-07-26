@@ -12,7 +12,7 @@ import {
   CREDITS_GET_FAILURE,
   CREDITS_GET_SUCCESS,
   CREDITS_UPDATE
-} from './actions';
+} from './types';
 
 // Initial state
 const initialState = Map({
