@@ -1,6 +1,5 @@
 // Action types
-export const MODAL_CLOSE = 'data/interface/modal/MODAL_CLOSE';
-export const MODAL_OPEN = 'data/interface/modal/MODAL_OPEN';
+import { MODAL_CLOSE, MODAL_OPEN } from './types';
 
 // Open modal
 export const openModal = () => ({
