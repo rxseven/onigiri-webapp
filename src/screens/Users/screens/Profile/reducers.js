@@ -25,7 +25,11 @@ import {
   USER_DELETE_SUCCESS,
   USER_RESET
 } from 'data/session/types';
-import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './data/profile/types';
+import {
+  PROFILE_GET_FAILURE,
+  PROFILE_GET_REQUEST,
+  PROFILE_GET_SUCCESS
+} from './data/profile/types';
 
 // Reducers
 import data from './data/reducers';
@@ -71,7 +75,7 @@ const asynchronous = (state = initialState, action) => {
       return setAsync(map.delete.profile, state);
 
     // Get user profile
-    case PROFILE_GET:
+    case PROFILE_GET_REQUEST:
       return setAsync(map.get.profile, state, LOADING);
     case PROFILE_GET_FAILURE:
       return setAsync(map.get.profile, state, ERROR, payload);

@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 
 // Action types
 import { USER_RESET } from 'data/session/types';
-import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './types';
+import { PROFILE_GET_FAILURE, PROFILE_GET_REQUEST, PROFILE_GET_SUCCESS } from './types';
 
 // Initial state
 const initialState = null;
@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
 
   switch (type) {
     // Get user profile
-    case PROFILE_GET:
+    case PROFILE_GET_REQUEST:
     case PROFILE_GET_FAILURE:
       return state;
     case PROFILE_GET_SUCCESS:

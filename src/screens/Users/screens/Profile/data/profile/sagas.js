@@ -15,6 +15,9 @@ import * as types from './types';
 // Get user profile
 function* getProfile(action) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getProfileRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.getProfile);
