@@ -11,7 +11,7 @@ import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
-import { SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS } from 'data/session/types';
+import { SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS } from 'data/session/types';
 import { SIGNUP_RESET_UI } from './types';
 
 // Initial state
@@ -30,7 +30,7 @@ const asynchronous = (state = initialState, action) => {
 
   switch (type) {
     // Sign-up
-    case SIGNUP:
+    case SIGNUP_REQUEST:
       return setAsync(map.post, state, LOADING);
     case SIGNUP_FAILURE:
       return setAsync(map.post, state, ERROR, payload);

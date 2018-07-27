@@ -12,16 +12,16 @@ import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
 import {
-  OAUTH_FACEBOOK,
   OAUTH_FACEBOOK_FAILURE,
+  OAUTH_FACEBOOK_REQUEST,
   OAUTH_FACEBOOK_SUCCESS,
-  OAUTH_GOOGLE,
   OAUTH_GOOGLE_FAILURE,
+  OAUTH_GOOGLE_REQUEST,
   OAUTH_GOOGLE_SUCCESS,
   OAUTH_FAILURE,
   OAUTH_REQUEST,
-  SIGNIN,
   SIGNIN_FAILURE,
+  SIGNIN_REQUEST,
   SIGNIN_SUCCESS
 } from 'data/session/types';
 import { SIGNIN_RESET_UI } from './types';
@@ -52,10 +52,10 @@ const asynchronous = (state = initialState.get('asynchronous'), action) => {
 
   switch (type) {
     // Authentication
-    case OAUTH_FACEBOOK:
-    case OAUTH_GOOGLE:
+    case OAUTH_FACEBOOK_REQUEST:
+    case OAUTH_GOOGLE_REQUEST:
     case OAUTH_REQUEST:
-    case SIGNIN:
+    case SIGNIN_REQUEST:
       return setAsync(map.asynchronous.post, state, LOADING);
 
     case OAUTH_FAILURE:
@@ -86,7 +86,7 @@ const strategy = (state = initialState.get('strategy'), action) => {
 
   switch (type) {
     // Authentication
-    case SIGNIN:
+    case SIGNIN_REQUEST:
       return state.set(map.strategy.type, 'local');
     case OAUTH_REQUEST:
       return state.set(map.strategy.type, 'oauth');

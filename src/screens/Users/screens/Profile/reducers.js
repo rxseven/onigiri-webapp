@@ -20,8 +20,8 @@ import {
   CREDITS_GET_SUCCESS
 } from 'data/credits/types';
 import {
-  USER_DELETE,
   USER_DELETE_FAILURE,
+  USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_RESET
 } from 'data/session/types';
@@ -63,7 +63,7 @@ const asynchronous = (state = initialState, action) => {
 
   switch (type) {
     // Delete user account
-    case USER_DELETE:
+    case USER_DELETE_REQUEST:
       return setAsync(map.delete.profile, state, LOADING);
     case USER_DELETE_FAILURE:
       return setAsync(map.delete.profile, state, ERROR, payload);
