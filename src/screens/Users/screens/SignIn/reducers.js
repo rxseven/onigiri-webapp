@@ -24,7 +24,7 @@ import {
   SIGNIN_FAILURE,
   SIGNIN_SUCCESS
 } from 'data/session/types';
-import { SIGNIN_RESET_UI } from './actions';
+import { SIGNIN_RESET_UI } from './types';
 
 // Initial state
 const initialState = fromJS({

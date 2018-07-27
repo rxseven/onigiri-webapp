@@ -1,5 +1,7 @@
+/* eslint-disable import/prefer-default-export */
+
 // Action types
-export const SIGNUP_RESET_UI = 'SignUp/SIGNUP_RESET_UI';
+import { SIGNUP_RESET_UI } from './types';
 
 // Reset UI state
 export const resetUI = () => ({

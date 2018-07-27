@@ -12,7 +12,7 @@ import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
 import { SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS } from 'data/session/types';
-import { SIGNUP_RESET_UI } from './actions';
+import { SIGNUP_RESET_UI } from './types';
 
 // Initial state
 const initialState = fromJS({
