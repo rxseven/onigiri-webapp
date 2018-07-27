@@ -2,9 +2,11 @@
 import {
   CHECKOUT,
   CHECKOUT_FAILURE,
+  CHECKOUT_REQUEST,
   CHECKOUT_SUCCESS,
   CREDITS_GET,
   CREDITS_GET_FAILURE,
+  CREDITS_GET_REQUEST,
   CREDITS_GET_SUCCESS,
   CREDITS_UPDATE
 } from './types';
@@ -22,6 +24,11 @@ export const checkoutFailure = error => ({
   type: CHECKOUT_FAILURE
 });
 
+// Checkout : Request
+export const checkoutRequest = () => ({
+  type: CHECKOUT_REQUEST
+});
+
 // Checkout : Success
 export const checkoutSuccess = data => ({
   payload: data,
@@ -37,6 +44,11 @@ export const getCredits = () => ({
 export const getCreditsFailure = error => ({
   payload: error,
   type: CREDITS_GET_FAILURE
+});
+
+// Get credits : Request
+export const getCreditsRequest = () => ({
+  type: CREDITS_GET_REQUEST
 });
 
 // Get credits : Success

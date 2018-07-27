@@ -12,7 +12,7 @@ import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
 import { USER_RESET } from 'data/session/types';
-import { CHECKOUT, CHECKOUT_FAILURE, CHECKOUT_SUCCESS } from 'data/credits/types';
+import { CHECKOUT_FAILURE, CHECKOUT_REQUEST, CHECKOUT_SUCCESS } from 'data/credits/types';
 
 // Initial state
 const initialState = fromJS({
@@ -30,7 +30,7 @@ const asynchronous = (state = initialState, action) => {
 
   switch (type) {
     // Checkout
-    case CHECKOUT:
+    case CHECKOUT_REQUEST:
       return setAsync(map.post, state, LOADING);
     case CHECKOUT_FAILURE:
       return setAsync(map.post, state, ERROR, payload);

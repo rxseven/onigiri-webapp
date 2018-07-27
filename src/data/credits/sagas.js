@@ -16,6 +16,9 @@ import * as types from './types';
 // Checkout
 function* checkout({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.checkoutRequest());
+
     // Forward Stripe Checkout token to the API
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(paymentsService.checkout, payload.token);
@@ -40,6 +43,9 @@ function* checkout({ callback, payload }) {
 // Get credits
 function* getCredits() {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getCreditsRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.getCredits);

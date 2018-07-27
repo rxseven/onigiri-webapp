@@ -12,11 +12,11 @@ import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
 import {
-  CHECKOUT,
   CHECKOUT_FAILURE,
+  CHECKOUT_REQUEST,
   CHECKOUT_SUCCESS,
-  CREDITS_GET,
   CREDITS_GET_FAILURE,
+  CREDITS_GET_REQUEST,
   CREDITS_GET_SUCCESS
 } from 'data/credits/types';
 import {
@@ -79,7 +79,7 @@ const asynchronous = (state = initialState, action) => {
       return setAsync(map.get.profile, state);
 
     // Checkout
-    case CHECKOUT:
+    case CHECKOUT_REQUEST:
       return setAsync(map.post.checkout, state, LOADING);
     case CHECKOUT_FAILURE:
       return setAsync(map.post.checkout, state, ERROR, payload);
@@ -87,7 +87,7 @@ const asynchronous = (state = initialState, action) => {
       return setAsync(map.post.checkout, state);
 
     // Get credits
-    case CREDITS_GET:
+    case CREDITS_GET_REQUEST:
       return setAsync(map.get.credits, state, LOADING);
     case CREDITS_GET_FAILURE:
       return setAsync(map.get.credits, state, ERROR, payload);
