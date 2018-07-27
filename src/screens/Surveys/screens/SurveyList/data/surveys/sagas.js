@@ -9,8 +9,9 @@ import { fromJSOrdered, getError } from 'helpers/state';
 // Services
 import * as surveysService from 'services/surveys';
 
-// Action types and action creators
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Cancel getting surveys
 function* cancelSurveys() {
@@ -56,8 +57,8 @@ function* getSurveys({ callback, payload }) {
 // Actions watcher
 function* watcher() {
   yield all([
-    takeLatest(actions.SURVEYS_CANCEL, cancelSurveys),
-    takeLatest(actions.SURVEYS_GET, getSurveys)
+    takeLatest(types.SURVEYS_CANCEL, cancelSurveys),
+    takeLatest(types.SURVEYS_GET, getSurveys)
   ]);
 }
 

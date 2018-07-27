@@ -9,8 +9,9 @@ import { fromJSOrdered, getError } from 'helpers/state';
 // Services
 import * as surveysService from 'services/surveys';
 
-// Action types and action creators
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Get recipients
 function* getRecipients({ payload }) {
@@ -81,9 +82,9 @@ function* updateSurvey({ payload: { id, values } }) {
 // Actions watcher
 function* watcher() {
   yield all([
-    takeLatest(actions.RECIPIENTS_GET, getRecipients),
-    takeLatest(actions.SURVEY_GET, getSurvey),
-    takeLatest(actions.SURVEY_UPDATE, updateSurvey)
+    takeLatest(types.RECIPIENTS_GET, getRecipients),
+    takeLatest(types.SURVEY_GET, getSurvey),
+    takeLatest(types.SURVEY_UPDATE, updateSurvey)
   ]);
 }
 

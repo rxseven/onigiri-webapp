@@ -1,9 +1,5 @@
 // Action types
-export const LANDING_GET = 'Landing/data/LANDING_GET';
-export const LANDING_GET_FAILURE = 'Landing/data/LANDING_GET_FAILURE';
-export const LANDING_GET_SUCCESS = 'Landing/data/LANDING_GET_SUCCESS';
-
-export const LANDING_RESET_DATA = 'Landing/data/LANDING_RESET_DATA';
+import { LANDING_GET, LANDING_GET_FAILURE, LANDING_GET_SUCCESS, LANDING_RESET_DATA } from './types';
 
 // Get landing page URI : Start
 export const getLanding = id => ({

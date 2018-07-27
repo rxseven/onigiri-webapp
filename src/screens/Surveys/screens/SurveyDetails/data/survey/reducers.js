@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 
 // Action types
 import { USER_RESET } from 'data/session/types';
-import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../../../actions';
+import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../../../types';
 import {
   RECIPIENTS_GET,
   RECIPIENTS_GET_FAILURE,
@@ -15,7 +15,7 @@ import {
   SURVEY_UPDATE,
   SURVEY_UPDATE_FAILURE,
   SURVEY_UPDATE_SUCCESS
-} from './actions';
+} from './types';
 
 // Initial state
 const initialState = null;

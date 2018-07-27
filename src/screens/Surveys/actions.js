@@ -1,12 +1,12 @@
 // Action types
-export const SURVEY_DELETE = 'Survey/SURVEY_DELETE';
-export const SURVEY_DELETE_FAILURE = 'Survey/SURVEY_DELETE_FAILURE';
-export const SURVEY_DELETE_SUCCESS = 'Survey/SURVEY_DELETE_SUCCESS';
-
-export const SURVEY_REMOVE = 'Survey/SURVEY_REMOVE';
-
-export const SURVEY_SELECTED_ADD = 'Survey/SURVEY_SELECTED_ADD';
-export const SURVEY_SELECTED_REMOVE = 'Survey/SURVEY_SELECTED_REMOVE';
+import {
+  SURVEY_DELETE,
+  SURVEY_DELETE_FAILURE,
+  SURVEY_DELETE_SUCCESS,
+  SURVEY_REMOVE,
+  SURVEY_SELECTED_ADD,
+  SURVEY_SELECTED_REMOVE
+} from './types';
 
 // Add selected survey
 export const addSelectedSurvey = id => ({

@@ -16,7 +16,7 @@ import {
   LANDING_GET_FAILURE,
   LANDING_GET_SUCCESS,
   LANDING_RESET_DATA
-} from './data/landing/actions';
+} from './data/landing/types';
 
 // Reducers
 import data from './data/reducers';

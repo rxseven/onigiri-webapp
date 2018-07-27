@@ -16,7 +16,7 @@ import {
   SURVEY_CREATE_FAILURE,
   SURVEY_CREATE_SUCCESS,
   SURVEY_RESET_UI
-} from './actions';
+} from './types';
 
 // Initial state
 const initialState = fromJS({

@@ -14,8 +14,9 @@ import surveyDoorway from './screens/SurveyDoorway/data/landing/sagas';
 import surveyList from './screens/SurveyList/data/surveys/sagas';
 import surveyNew from './screens/SurveyNew/sagas';
 
-// Action types and action creators
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Delete survey
 function* deleteSurvey({ callback, payload }) {
@@ -43,7 +44,7 @@ function* deleteSurvey({ callback, payload }) {
 
 // Actions watcher
 function* watcher() {
-  yield takeLatest(actions.SURVEY_DELETE, deleteSurvey);
+  yield takeLatest(types.SURVEY_DELETE, deleteSurvey);
 }
 
 // Combine Sagas

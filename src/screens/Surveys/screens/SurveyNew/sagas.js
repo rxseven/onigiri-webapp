@@ -8,9 +8,10 @@ import { getError } from 'helpers/state';
 // Services
 import * as surveysService from 'services/surveys';
 
-// Action types and action creators
+// Action creators and action types
 import { updateCredits } from 'data/credits/actions';
 import * as actions from './actions';
+import * as types from './types';
 
 // Create survey
 function* createSurvey({ callback, payload }) {
@@ -39,7 +40,7 @@ function* createSurvey({ callback, payload }) {
 
 // Actions watcher
 function* watcher() {
-  yield takeLatest(actions.SURVEY_CREATE, createSurvey);
+  yield takeLatest(types.SURVEY_CREATE, createSurvey);
 }
 
 // Module exports

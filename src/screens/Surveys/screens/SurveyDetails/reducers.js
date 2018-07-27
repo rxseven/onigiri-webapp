@@ -11,7 +11,7 @@ import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
-import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../actions';
+import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../types';
 import {
   RECIPIENTS_GET,
   RECIPIENTS_GET_FAILURE,
@@ -22,7 +22,7 @@ import {
   SURVEY_UPDATE,
   SURVEY_UPDATE_FAILURE,
   SURVEY_UPDATE_SUCCESS
-} from './data/survey/actions';
+} from './data/survey/types';
 
 // Reducers
 import data from './data/reducers';

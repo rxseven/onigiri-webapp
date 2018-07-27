@@ -9,14 +9,14 @@ import {
   SURVEY_DELETE_FAILURE,
   SURVEY_DELETE_SUCCESS,
   SURVEY_REMOVE
-} from '../../../../actions';
+} from '../../../../types';
 import {
   SURVEYS_GET,
   SURVEYS_GET_FAILURE,
   SURVEYS_GET_SUCCESS,
   SURVEYS_SELECT_MODE,
   SURVEYS_RESET_DATA
-} from './actions';
+} from './types';
 
 // Initial state
 const initialState = fromJS({

@@ -12,14 +12,14 @@ import { ERROR, LOADED, LOADING } from 'constants/types/asynchronous';
 
 // Action types
 import { USER_RESET } from 'data/session/types';
-import { SURVEY_SELECTED_ADD, SURVEY_SELECTED_REMOVE } from '../../actions';
+import { SURVEY_SELECTED_ADD, SURVEY_SELECTED_REMOVE } from '../../types';
 import {
   SURVEYS_GET,
   SURVEYS_GET_FAILURE,
   SURVEYS_GET_SUCCESS,
   SURVEYS_SELECT_MODE
-} from './data/surveys/actions';
-import { SURVEYS_RESET_VIEW, SURVEYS_SAVE_PAGINATION } from './actions';
+} from './data/surveys/types';
+import { SURVEYS_RESET_VIEW, SURVEYS_SAVE_PAGINATION } from './types';
 
 // Reducers
 import data from './data/reducers';

@@ -3,12 +3,7 @@ import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
 // Action types
-import {
-  LANDING_GET,
-  LANDING_GET_FAILURE,
-  LANDING_GET_SUCCESS,
-  LANDING_RESET_DATA
-} from './actions';
+import { LANDING_GET, LANDING_GET_FAILURE, LANDING_GET_SUCCESS, LANDING_RESET_DATA } from './types';
 
 // Initial state
 const initialState = Map({ URI: null });
