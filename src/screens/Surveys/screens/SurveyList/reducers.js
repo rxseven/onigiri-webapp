@@ -3,20 +3,23 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from '../../../../constants/models/state';
-import { ERROR, LOADED, LOADING } from '../../../../constants/types/asynchronous';
-import { setAsync } from '../../../../helpers/data';
+// Helper functions
+import { setAsync } from 'helpers/state';
 
-// Actions
-import { USER_RESET } from '../../../../data/session/actions';
-import { SURVEY_SELECTED_ADD, SURVEY_SELECTED_REMOVE } from '../../actions';
+// Constants
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADED, LOADING } from 'constants/types/asynchronous';
+
+// Action types
+import { USER_RESET } from 'data/session/types';
+import { SURVEY_SELECTED_ADD, SURVEY_SELECTED_REMOVE } from '../../types';
 import {
-  SURVEYS_GET,
   SURVEYS_GET_FAILURE,
+  SURVEYS_GET_REQUEST,
   SURVEYS_GET_SUCCESS,
   SURVEYS_SELECT_MODE
-} from './data/surveys/actions';
-import { SURVEYS_RESET_VIEW, SURVEYS_SAVE_PAGINATION } from './actions';
+} from './data/surveys/types';
+import { SURVEYS_RESET_VIEW, SURVEYS_SAVE_PAGINATION } from './types';
 
 // Reducers
 import data from './data/reducers';
@@ -51,7 +54,7 @@ const asynchronous = (state = initialState.get('asynchronous'), action) => {
 
   switch (type) {
     // Get serveys
-    case SURVEYS_GET:
+    case SURVEYS_GET_REQUEST:
       return setAsync(map.asynchronous.get, state, LOADING).setIn(
         [...map.asynchronous.get, LOADED],
         false

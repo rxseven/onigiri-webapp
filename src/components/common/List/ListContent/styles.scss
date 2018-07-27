@@ -1,0 +1,19 @@
+// Global styles
+@import "../../../../styles/base/settings";
+
+// Content
+.content {
+  display: flex;
+  float: left;
+  width: 70%;
+
+  @media (min-width: $breakpoint-sm) {
+    width: 75%;
+  }
+
+  :global(.block) & {
+    display: block;
+    float: none;
+    width: 100%;
+  }
+}

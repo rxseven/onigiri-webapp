@@ -1,0 +1,21 @@
+// Global styles
+@import "../../../../styles/base/settings";
+
+// Label
+.label {
+  color: $color-label;
+  display: block;
+  float: left;
+  margin-bottom: 0.25rem;
+  width: 30%;
+
+  @media (min-width: $breakpoint-sm) {
+    width: 25%;
+  }
+
+  :global(.block) & {
+    display: block;
+    float: none;
+    width: 100%;
+  }
+}

@@ -1,0 +1,12 @@
+// Global styles
+@import "../../../../styles/base/settings";
+
+// List group headline
+.headline {
+  color: $color-primary;
+  font-size: 0.9rem;
+
+  @media (min-width: $breakpoint-sm) {
+    font-size: 1.15rem;
+  }
+}

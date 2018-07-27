@@ -3,26 +3,33 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from '../../../../constants/models/state';
-import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
-import { setAsync } from '../../../../helpers/data';
+// Helper functions
+import { setAsync } from 'helpers/state';
 
-// Actions
+// Constants
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADING } from 'constants/types/asynchronous';
+
+// Action types
 import {
-  CHECKOUT,
   CHECKOUT_FAILURE,
+  CHECKOUT_REQUEST,
   CHECKOUT_SUCCESS,
-  CREDITS_GET,
   CREDITS_GET_FAILURE,
+  CREDITS_GET_REQUEST,
   CREDITS_GET_SUCCESS
-} from '../../../../data/credits/actions';
+} from 'data/credits/types';
 import {
-  USER_DELETE,
   USER_DELETE_FAILURE,
+  USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_RESET
-} from '../../../../data/session/actions';
-import { PROFILE_GET, PROFILE_GET_FAILURE, PROFILE_GET_SUCCESS } from './data/profile/actions';
+} from 'data/session/types';
+import {
+  PROFILE_GET_FAILURE,
+  PROFILE_GET_REQUEST,
+  PROFILE_GET_SUCCESS
+} from './data/profile/types';
 
 // Reducers
 import data from './data/reducers';
@@ -60,7 +67,7 @@ const asynchronous = (state = initialState, action) => {
 
   switch (type) {
     // Delete user account
-    case USER_DELETE:
+    case USER_DELETE_REQUEST:
       return setAsync(map.delete.profile, state, LOADING);
     case USER_DELETE_FAILURE:
       return setAsync(map.delete.profile, state, ERROR, payload);
@@ -68,7 +75,7 @@ const asynchronous = (state = initialState, action) => {
       return setAsync(map.delete.profile, state);
 
     // Get user profile
-    case PROFILE_GET:
+    case PROFILE_GET_REQUEST:
       return setAsync(map.get.profile, state, LOADING);
     case PROFILE_GET_FAILURE:
       return setAsync(map.get.profile, state, ERROR, payload);
@@ -76,7 +83,7 @@ const asynchronous = (state = initialState, action) => {
       return setAsync(map.get.profile, state);
 
     // Checkout
-    case CHECKOUT:
+    case CHECKOUT_REQUEST:
       return setAsync(map.post.checkout, state, LOADING);
     case CHECKOUT_FAILURE:
       return setAsync(map.post.checkout, state, ERROR, payload);
@@ -84,7 +91,7 @@ const asynchronous = (state = initialState, action) => {
       return setAsync(map.post.checkout, state);
 
     // Get credits
-    case CREDITS_GET:
+    case CREDITS_GET_REQUEST:
       return setAsync(map.get.credits, state, LOADING);
     case CREDITS_GET_FAILURE:
       return setAsync(map.get.credits, state, ERROR, payload);

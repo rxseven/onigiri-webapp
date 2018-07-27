@@ -3,13 +3,16 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from '../../../../constants/models/state';
-import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
-import { setAsync } from '../../../../helpers/data';
+// Helper functions
+import { setAsync } from 'helpers/state';
 
-// Actions
-import { SIGNUP, SIGNUP_FAILURE, SIGNUP_SUCCESS } from '../../../../data/session/actions';
-import { SIGNUP_RESET_UI } from './actions';
+// Constants
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADING } from 'constants/types/asynchronous';
+
+// Action types
+import { SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS } from 'data/session/types';
+import { SIGNUP_RESET_UI } from './types';
 
 // Initial state
 const initialState = fromJS({
@@ -27,7 +30,7 @@ const asynchronous = (state = initialState, action) => {
 
   switch (type) {
     // Sign-up
-    case SIGNUP:
+    case SIGNUP_REQUEST:
       return setAsync(map.post, state, LOADING);
     case SIGNUP_FAILURE:
       return setAsync(map.post, state, ERROR, payload);

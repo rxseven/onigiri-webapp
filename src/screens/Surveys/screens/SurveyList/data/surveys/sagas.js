@@ -3,16 +3,22 @@ import { fromJS } from 'immutable';
 import { mapKeys } from 'lodash';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-// Helper functions and services
-import { fromJSOrdered, getError } from '../../../../../../helpers/data';
-import * as surveysService from '../../../../../../services/surveys';
+// Helper functions
+import { fromJSOrdered, getError } from 'helpers/state';
 
-// Action types and action creators
+// Services
+import * as surveysService from 'services/surveys';
+
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Cancel getting surveys
 function* cancelSurveys() {
   try {
+    // Inform reducers that the request started
+    yield put(actions.cancelSurveysRequest());
+
     // Cancel a network request
     yield call(surveysService.cancelSurveys);
 
@@ -27,6 +33,9 @@ function* cancelSurveys() {
 // Get surveys
 function* getSurveys({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getSurveysRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getSurveys, payload.query);
@@ -54,8 +63,8 @@ function* getSurveys({ callback, payload }) {
 // Actions watcher
 function* watcher() {
   yield all([
-    takeLatest(actions.SURVEYS_CANCEL, cancelSurveys),
-    takeLatest(actions.SURVEYS_GET, getSurveys)
+    takeLatest(types.SURVEYS_CANCEL, cancelSurveys),
+    takeLatest(types.SURVEYS_GET, getSurveys)
   ]);
 }
 

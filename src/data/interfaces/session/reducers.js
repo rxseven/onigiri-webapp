@@ -3,12 +3,15 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from '../../../constants/models/state';
-import { ERROR, LOADING } from '../../../constants/types/asynchronous';
-import { setAsync } from '../../../helpers/data';
+// Helper functions
+import { setAsync } from 'helpers/state';
 
-// Actions
-import { SIGNOUT, SIGNOUT_FAILURE, SIGNOUT_SUCCESS } from '../../../data/session/actions';
+// Constants
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADING } from 'constants/types/asynchronous';
+
+// Action types
+import { SIGNOUT_FAILURE, SIGNOUT_REQUEST, SIGNOUT_SUCCESS } from 'data/session/types';
 
 // Initial state
 const initialState = fromJS({
@@ -26,7 +29,7 @@ const asynchronous = (state = initialState, action) => {
 
   switch (type) {
     // Sign-out
-    case SIGNOUT:
+    case SIGNOUT_REQUEST:
       return setAsync(map.signout, state, LOADING);
     case SIGNOUT_FAILURE:
       return setAsync(map.signout, state, ERROR, payload);

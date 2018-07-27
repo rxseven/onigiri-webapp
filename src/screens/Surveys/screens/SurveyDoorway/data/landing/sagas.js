@@ -2,16 +2,22 @@
 import { fromJS } from 'immutable';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-// Helper functions and services
-import { getError } from '../../../../../../helpers/data';
-import * as surveysService from '../../../../../../services/surveys';
+// Helper functions
+import { getError } from 'helpers/state';
 
-// Action types and action creators
+// Services
+import * as surveysService from 'services/surveys';
+
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Get landing page URI
 function* getLanding({ payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getLandingRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getLanding, payload.id);
@@ -32,7 +38,7 @@ function* getLanding({ payload }) {
 
 // Actions watcher
 function* watcher() {
-  yield takeLatest(actions.LANDING_GET, getLanding);
+  yield takeLatest(types.LANDING_GET, getLanding);
 }
 
 // Module exports

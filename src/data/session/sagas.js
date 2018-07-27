@@ -2,17 +2,23 @@
 import { fromJS } from 'immutable';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-// Helper functions and services
-import { getError } from '../../helpers/data';
-import tokenHelper from '../../helpers/token';
-import * as usersService from '../../services/users';
+// Helper functions
+import { getError } from 'helpers/state';
+import tokenHelper from 'helpers/token';
 
-// Action types and action creators
+// Services
+import * as usersService from 'services/users';
+
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Delete user account
 function* deleteUser({ callback }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.deleteUserRequest());
+
     // Delete the current user account
     yield call(usersService.deleteUser);
 
@@ -37,6 +43,9 @@ function* deleteUser({ callback }) {
 // Get user info
 function* getUser() {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getUserRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.getUser);
@@ -60,6 +69,9 @@ function* getUser() {
 // Sign in with Facebook
 function* oauthFacebook({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.oauthFacebookRequest());
+
     // Sign in a user
     // Retrieve data in a response and transform to an appropriate format
     const { data: { token, user }, status } = yield call(
@@ -90,6 +102,9 @@ function* oauthFacebook({ callback, payload }) {
 // Sign in with Google
 function* oauthGoogle({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.oauthGoogleRequest());
+
     // Sign in a user
     // Retrieve data in a response and transform to an appropriate format
     const { data: { token, user }, status } = yield call(
@@ -120,6 +135,9 @@ function* oauthGoogle({ callback, payload }) {
 // Sign in with an email address and password
 function* signIn({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.signInRequest());
+
     // Sign in a user
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.signIn, payload.credentials.toJS());
@@ -147,6 +165,9 @@ function* signIn({ callback, payload }) {
 // Sign out
 function* signOut({ callback }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.signOutRequest());
+
     // Sign out the current user
     yield call(usersService.signOut);
 
@@ -173,6 +194,9 @@ function* signOut({ callback }) {
 // Sign up
 function* signUp({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.signUpRequest());
+
     // Create a password-based account
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.signUp, payload.credentials.toJS());
@@ -200,13 +224,13 @@ function* signUp({ callback, payload }) {
 // Actions watcher
 function* watcher() {
   all([
-    yield takeLatest(actions.OAUTH_FACEBOOK, oauthFacebook),
-    yield takeLatest(actions.OAUTH_GOOGLE, oauthGoogle),
-    yield takeLatest(actions.SIGNIN, signIn),
-    yield takeLatest(actions.SIGNOUT, signOut),
-    yield takeLatest(actions.SIGNUP, signUp),
-    yield takeLatest(actions.USER_DELETE, deleteUser),
-    yield takeLatest(actions.USER_GET, getUser)
+    yield takeLatest(types.OAUTH_FACEBOOK, oauthFacebook),
+    yield takeLatest(types.OAUTH_GOOGLE, oauthGoogle),
+    yield takeLatest(types.SIGNIN, signIn),
+    yield takeLatest(types.SIGNOUT, signOut),
+    yield takeLatest(types.SIGNUP, signUp),
+    yield takeLatest(types.USER_DELETE, deleteUser),
+    yield takeLatest(types.USER_GET, getUser)
   ]);
 }
 

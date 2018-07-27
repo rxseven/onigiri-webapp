@@ -3,17 +3,20 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { createSelector } from 'reselect';
 
-import STATE_MODELS from '../../../../constants/models/state';
-import { ERROR, LOADING } from '../../../../constants/types/asynchronous';
-import { setAsync } from '../../../../helpers/data';
+// Helper functions
+import { setAsync } from 'helpers/state';
 
-// Actions
+// Constants
+import STATE_MODELS from 'constants/models/state';
+import { ERROR, LOADING } from 'constants/types/asynchronous';
+
+// Action types
 import {
-  SURVEY_CREATE,
   SURVEY_CREATE_FAILURE,
+  SURVEY_CREATE_REQUEST,
   SURVEY_CREATE_SUCCESS,
   SURVEY_RESET_UI
-} from './actions';
+} from './types';
 
 // Initial state
 const initialState = fromJS({
@@ -31,7 +34,7 @@ const asyncReducer = (state = initialState, action) => {
 
   switch (type) {
     // Create survey
-    case SURVEY_CREATE:
+    case SURVEY_CREATE_REQUEST:
       return setAsync(map.post, state, LOADING);
     case SURVEY_CREATE_FAILURE:
       return setAsync(map.post, state, ERROR, payload);

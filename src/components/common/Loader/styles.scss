@@ -1,0 +1,10 @@
+// Global styles
+@import "../../../styles/base/settings";
+
+// Timeout
+.timeout {
+  color: $color-secondary;
+  font-size: 0.85rem;
+  padding-top: 1rem;
+  text-align: center;
+}

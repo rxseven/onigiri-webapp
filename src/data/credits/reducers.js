@@ -2,17 +2,17 @@
 import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
-// Actions
-import { USER_RESET } from '../session/actions';
+// Action types
+import { USER_RESET } from 'data/session/types';
 import {
-  CHECKOUT,
   CHECKOUT_FAILURE,
+  CHECKOUT_REQUEST,
   CHECKOUT_SUCCESS,
-  CREDITS_GET,
   CREDITS_GET_FAILURE,
+  CREDITS_GET_REQUEST,
   CREDITS_GET_SUCCESS,
   CREDITS_UPDATE
-} from './actions';
+} from './types';
 
 // Initial state
 const initialState = Map({
@@ -30,14 +30,14 @@ export default (state = initialState, action) => {
 
   switch (type) {
     // Checkout
-    case CHECKOUT:
+    case CHECKOUT_REQUEST:
     case CHECKOUT_FAILURE:
       return state;
     case CHECKOUT_SUCCESS:
       return setCredits(state, payload);
 
     // Get credits
-    case CREDITS_GET:
+    case CREDITS_GET_REQUEST:
     case CREDITS_GET_FAILURE:
       return state;
     case CREDITS_GET_SUCCESS:
