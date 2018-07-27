@@ -11,7 +11,7 @@ import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
-import { SIGNOUT, SIGNOUT_FAILURE, SIGNOUT_SUCCESS } from 'data/session/actions';
+import { SIGNOUT_FAILURE, SIGNOUT_REQUEST, SIGNOUT_SUCCESS } from 'data/session/types';
 
 // Initial state
 const initialState = fromJS({
@@ -29,7 +29,7 @@ const asynchronous = (state = initialState, action) => {
 
   switch (type) {
     // Sign-out
-    case SIGNOUT:
+    case SIGNOUT_REQUEST:
       return setAsync(map.signout, state, LOADING);
     case SIGNOUT_FAILURE:
       return setAsync(map.signout, state, ERROR, payload);

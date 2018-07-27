@@ -9,12 +9,16 @@ import { getError } from 'helpers/state';
 import paymentsService from 'services/payments';
 import * as usersService from 'services/users';
 
-// Action types and action creators
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Checkout
 function* checkout({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.checkoutRequest());
+
     // Forward Stripe Checkout token to the API
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(paymentsService.checkout, payload.token);
@@ -39,6 +43,9 @@ function* checkout({ callback, payload }) {
 // Get credits
 function* getCredits() {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getCreditsRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.getCredits);
@@ -59,7 +66,7 @@ function* getCredits() {
 
 // Actions watcher
 function* watcher() {
-  yield all([takeLatest(actions.CHECKOUT, checkout), takeLatest(actions.CREDITS_GET, getCredits)]);
+  yield all([takeLatest(types.CHECKOUT, checkout), takeLatest(types.CREDITS_GET, getCredits)]);
 }
 
 // Module exports

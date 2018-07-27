@@ -12,11 +12,11 @@ import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
 import {
-  LANDING_GET,
   LANDING_GET_FAILURE,
+  LANDING_GET_REQUEST,
   LANDING_GET_SUCCESS,
   LANDING_RESET_DATA
-} from './data/landing/actions';
+} from './data/landing/types';
 
 // Reducers
 import data from './data/reducers';
@@ -41,7 +41,7 @@ const asynchronous = (state = initialState, action) => {
 
   switch (type) {
     // Get landing page URI
-    case LANDING_GET:
+    case LANDING_GET_REQUEST:
       return setAsync(map.get.landing, state, LOADING);
     case LANDING_GET_FAILURE:
       return setAsync(map.get.landing, state, ERROR, payload);

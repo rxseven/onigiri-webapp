@@ -8,12 +8,16 @@ import { getError } from 'helpers/state';
 // Services
 import * as usersService from 'services/users';
 
-// Action types and action creators
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Get user profile
 function* getProfile(action) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getProfileRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.getProfile);
@@ -34,7 +38,7 @@ function* getProfile(action) {
 
 // Actions watcher
 function* watcher() {
-  yield takeLatest(actions.PROFILE_GET, getProfile);
+  yield takeLatest(types.PROFILE_GET, getProfile);
 }
 
 // Module exports

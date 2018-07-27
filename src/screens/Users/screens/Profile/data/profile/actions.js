@@ -1,7 +1,10 @@
 // Action types
-export const PROFILE_GET = 'Profile/data/PROFILE_GET';
-export const PROFILE_GET_FAILURE = 'Profile/data/PROFILE_GET_FAILURE';
-export const PROFILE_GET_SUCCESS = 'Profile/data/PROFILE_GET_SUCCESS';
+import {
+  PROFILE_GET,
+  PROFILE_GET_FAILURE,
+  PROFILE_GET_REQUEST,
+  PROFILE_GET_SUCCESS
+} from './types';
 
 // Get user profile : Start
 export const getProfile = () => ({
@@ -12,6 +15,11 @@ export const getProfile = () => ({
 export const getProfileFailure = error => ({
   payload: error,
   type: PROFILE_GET_FAILURE
+});
+
+// Get user profile : Request
+export const getProfileRequest = () => ({
+  type: PROFILE_GET_REQUEST
 });
 
 // Get user profile : Success

@@ -8,13 +8,17 @@ import { getError } from 'helpers/state';
 // Services
 import * as surveysService from 'services/surveys';
 
-// Action types and action creators
+// Action creators and action types
 import { updateCredits } from 'data/credits/actions';
 import * as actions from './actions';
+import * as types from './types';
 
 // Create survey
 function* createSurvey({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.createSurveyRequest());
+
     // Create survey and send emails asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.createSurvey, payload.values);
@@ -39,7 +43,7 @@ function* createSurvey({ callback, payload }) {
 
 // Actions watcher
 function* watcher() {
-  yield takeLatest(actions.SURVEY_CREATE, createSurvey);
+  yield takeLatest(types.SURVEY_CREATE, createSurvey);
 }
 
 // Module exports

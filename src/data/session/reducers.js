@@ -4,30 +4,30 @@ import { createSelector } from 'reselect';
 
 // Actions
 import {
-  OAUTH_FACEBOOK,
   OAUTH_FACEBOOK_FAILURE,
+  OAUTH_FACEBOOK_REQUEST,
   OAUTH_FACEBOOK_SUCCESS,
-  OAUTH_GOOGLE,
   OAUTH_GOOGLE_FAILURE,
+  OAUTH_GOOGLE_REQUEST,
   OAUTH_GOOGLE_SUCCESS,
   OAUTH_FAILURE,
   OAUTH_REQUEST,
-  SIGNIN,
   SIGNIN_FAILURE,
+  SIGNIN_REQUEST,
   SIGNIN_SUCCESS,
-  SIGNOUT,
   SIGNOUT_FAILURE,
+  SIGNOUT_REQUEST,
   SIGNOUT_SUCCESS,
-  SIGNUP,
   SIGNUP_FAILURE,
+  SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
-  USER_DELETE,
   USER_DELETE_FAILURE,
+  USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
-  USER_GET,
   USER_GET_FAILURE,
+  USER_GET_REQUEST,
   USER_GET_SUCCESS
-} from './actions';
+} from './types';
 
 // Initial state
 const initialState = fromJS({
@@ -56,8 +56,8 @@ export default (state = initialState, action) => {
 
   switch (type) {
     // OAuth
-    case OAUTH_FACEBOOK:
-    case OAUTH_GOOGLE:
+    case OAUTH_FACEBOOK_REQUEST:
+    case OAUTH_GOOGLE_REQUEST:
     case OAUTH_REQUEST:
       return setLoading(state, 'signin');
     case OAUTH_FACEBOOK_FAILURE:
@@ -69,7 +69,7 @@ export default (state = initialState, action) => {
       return setUser(state, payload);
 
     // Sign-in
-    case SIGNIN:
+    case SIGNIN_REQUEST:
       return setLoading(state, 'signin');
     case SIGNIN_FAILURE:
       return setLoading(state, 'signin', false);
@@ -77,28 +77,28 @@ export default (state = initialState, action) => {
       return setUser(state, payload);
 
     // Sign-up
-    case SIGNUP:
+    case SIGNUP_REQUEST:
     case SIGNUP_FAILURE:
       return state;
     case SIGNUP_SUCCESS:
       return setUser(state, payload);
 
     // Sign-out
-    case SIGNOUT:
+    case SIGNOUT_REQUEST:
     case SIGNOUT_FAILURE:
       return state;
     case SIGNOUT_SUCCESS:
       return initialState;
 
     // Delete user account
-    case USER_DELETE:
+    case USER_DELETE_REQUEST:
     case USER_DELETE_FAILURE:
       return state;
     case USER_DELETE_SUCCESS:
       return initialState;
 
     // Get user info
-    case USER_GET:
+    case USER_GET_REQUEST:
       return setLoading(state.set('authorization', true), 'verify');
     case USER_GET_FAILURE:
       return initialState;

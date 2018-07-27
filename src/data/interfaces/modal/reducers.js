@@ -3,7 +3,7 @@ import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
 // Action types
-import { MODAL_CLOSE, MODAL_OPEN } from './actions';
+import { MODAL_CLOSE, MODAL_OPEN } from './types';
 
 // Initial state
 const initialState = Map({

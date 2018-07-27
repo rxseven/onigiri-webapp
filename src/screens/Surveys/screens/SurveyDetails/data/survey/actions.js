@@ -1,17 +1,19 @@
 // Action types
-export const RECIPIENTS_GET = 'Survey/data/RECIPIENTS_GET';
-export const RECIPIENTS_GET_FAILURE = 'Survey/data/RECIPIENTS_GET_FAILURE';
-export const RECIPIENTS_GET_SUCCESS = 'Survey/data/RECIPIENTS_GET_SUCCESS';
-
-export const SURVEY_GET = 'Survey/data/SURVEY_GET';
-export const SURVEY_GET_FAILURE = 'Survey/data/SURVEY_GET_FAILURE';
-export const SURVEY_GET_SUCCESS = 'Survey/data/SURVEY_GET_SUCCESS';
-
-export const SURVEY_RESET_DATA = 'Survey/data/SURVEY_RESET_DATA';
-
-export const SURVEY_UPDATE = 'Survey/SURVEY_UPDATE';
-export const SURVEY_UPDATE_FAILURE = 'Survey/SURVEY_UPDATE_FAILURE';
-export const SURVEY_UPDATE_SUCCESS = 'Survey/SURVEY_UPDATE_SUCCESS';
+import {
+  RECIPIENTS_GET,
+  RECIPIENTS_GET_FAILURE,
+  RECIPIENTS_GET_REQUEST,
+  RECIPIENTS_GET_SUCCESS,
+  SURVEY_GET,
+  SURVEY_GET_FAILURE,
+  SURVEY_GET_REQUEST,
+  SURVEY_GET_SUCCESS,
+  SURVEY_RESET_DATA,
+  SURVEY_UPDATE,
+  SURVEY_UPDATE_FAILURE,
+  SURVEY_UPDATE_REQUEST,
+  SURVEY_UPDATE_SUCCESS
+} from './types';
 
 // Get survey : Start
 export const getSurvey = (id, callback) => ({
@@ -24,6 +26,11 @@ export const getSurvey = (id, callback) => ({
 export const getSurveyFailure = error => ({
   payload: error,
   type: SURVEY_GET_FAILURE
+});
+
+// Get survey : Request
+export const getSurveyRequest = () => ({
+  type: SURVEY_GET_REQUEST
 });
 
 // Get survey : Success
@@ -44,6 +51,11 @@ export const getRecipientsFailure = error => ({
   type: RECIPIENTS_GET_FAILURE
 });
 
+// Get recipients : Request
+export const getRecipientsRequest = () => ({
+  type: RECIPIENTS_GET_REQUEST
+});
+
 // Get recipients : Success
 export const getRecipientsSuccess = data => ({
   payload: data,
@@ -55,18 +67,6 @@ export const resetData = () => ({
   type: SURVEY_RESET_DATA
 });
 
-// Update survey : Failure
-export const updateSurveyFailure = error => ({
-  payload: error,
-  type: SURVEY_UPDATE_FAILURE
-});
-
-// Update survey : Success
-export const updateSurveySuccess = data => ({
-  payload: data,
-  type: SURVEY_UPDATE_SUCCESS
-});
-
 // Update survey : Start
 export const updateSurvey = (id, values) => ({
   payload: {
@@ -74,4 +74,21 @@ export const updateSurvey = (id, values) => ({
     values
   },
   type: SURVEY_UPDATE
+});
+
+// Update survey : Failure
+export const updateSurveyFailure = error => ({
+  payload: error,
+  type: SURVEY_UPDATE_FAILURE
+});
+
+// Update survey : Request
+export const updateSurveyRequest = () => ({
+  type: SURVEY_UPDATE_REQUEST
+});
+
+// Update survey : Success
+export const updateSurveySuccess = data => ({
+  payload: data,
+  type: SURVEY_UPDATE_SUCCESS
 });

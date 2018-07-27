@@ -9,12 +9,16 @@ import { fromJSOrdered, getError } from 'helpers/state';
 // Services
 import * as surveysService from 'services/surveys';
 
-// Action types and action creators
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Get recipients
 function* getRecipients({ payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getRecipientsRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getRecipients, payload.id);
@@ -36,6 +40,9 @@ function* getRecipients({ payload }) {
 // Get survey
 function* getSurvey({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getSurveyRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getSurvey, payload.id);
@@ -60,6 +67,9 @@ function* getSurvey({ callback, payload }) {
 // Update survey
 function* updateSurvey({ payload: { id, values } }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.updateSurveyRequest());
+
     // Update survey
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.updateSurvey, id, values);
@@ -81,9 +91,9 @@ function* updateSurvey({ payload: { id, values } }) {
 // Actions watcher
 function* watcher() {
   yield all([
-    takeLatest(actions.RECIPIENTS_GET, getRecipients),
-    takeLatest(actions.SURVEY_GET, getSurvey),
-    takeLatest(actions.SURVEY_UPDATE, updateSurvey)
+    takeLatest(types.RECIPIENTS_GET, getRecipients),
+    takeLatest(types.SURVEY_GET, getSurvey),
+    takeLatest(types.SURVEY_UPDATE, updateSurvey)
   ]);
 }
 

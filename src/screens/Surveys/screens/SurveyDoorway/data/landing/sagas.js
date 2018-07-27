@@ -8,12 +8,16 @@ import { getError } from 'helpers/state';
 // Services
 import * as surveysService from 'services/surveys';
 
-// Action types and action creators
+// Action creators and action types
 import * as actions from './actions';
+import * as types from './types';
 
 // Get landing page URI
 function* getLanding({ payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getLandingRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getLanding, payload.id);
@@ -34,7 +38,7 @@ function* getLanding({ payload }) {
 
 // Actions watcher
 function* watcher() {
-  yield takeLatest(actions.LANDING_GET, getLanding);
+  yield takeLatest(types.LANDING_GET, getLanding);
 }
 
 // Module exports
