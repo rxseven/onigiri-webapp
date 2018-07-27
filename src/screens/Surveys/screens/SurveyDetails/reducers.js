@@ -11,16 +11,16 @@ import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Action types
-import { SURVEY_DELETE, SURVEY_DELETE_FAILURE, SURVEY_DELETE_SUCCESS } from '../../types';
+import { SURVEY_DELETE_FAILURE, SURVEY_DELETE_REQUEST, SURVEY_DELETE_SUCCESS } from '../../types';
 import {
-  RECIPIENTS_GET,
   RECIPIENTS_GET_FAILURE,
+  RECIPIENTS_GET_REQUEST,
   RECIPIENTS_GET_SUCCESS,
-  SURVEY_GET,
   SURVEY_GET_FAILURE,
+  SURVEY_GET_REQUEST,
   SURVEY_GET_SUCCESS,
-  SURVEY_UPDATE,
   SURVEY_UPDATE_FAILURE,
+  SURVEY_UPDATE_REQUEST,
   SURVEY_UPDATE_SUCCESS
 } from './data/survey/types';
 
@@ -64,7 +64,7 @@ const asynchronous = (state = initialState, action) => {
 
   switch (type) {
     // Get recipients
-    case RECIPIENTS_GET:
+    case RECIPIENTS_GET_REQUEST:
       return setAsync(map.get.recipients, state, LOADING);
     case RECIPIENTS_GET_FAILURE:
       return setAsync(map.get.recipients, state, ERROR, payload);
@@ -72,7 +72,7 @@ const asynchronous = (state = initialState, action) => {
       return setAsync(map.get.recipients, state);
 
     // Delete survey
-    case SURVEY_DELETE:
+    case SURVEY_DELETE_REQUEST:
       return setAsync(map.delete.survey, state, LOADING);
     case SURVEY_DELETE_FAILURE:
       return setAsync(map.delete.survey, state, ERROR, payload);
@@ -80,7 +80,7 @@ const asynchronous = (state = initialState, action) => {
       return setAsync(map.delete.survey, state);
 
     // Get survey
-    case SURVEY_GET:
+    case SURVEY_GET_REQUEST:
       return setAsync(map.get.survey, state, LOADING);
     case SURVEY_GET_FAILURE:
       return setAsync(map.get.survey, state, ERROR, payload);
@@ -88,7 +88,7 @@ const asynchronous = (state = initialState, action) => {
       return setAsync(map.get.survey, state);
 
     // Update survey
-    case SURVEY_UPDATE:
+    case SURVEY_UPDATE_REQUEST:
       return setAsync(map.patch.survey, state, LOADING);
     case SURVEY_UPDATE_FAILURE:
       return setAsync(map.patch.survey, state, ERROR, payload);

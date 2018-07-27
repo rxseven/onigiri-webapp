@@ -16,6 +16,9 @@ import * as types from './types';
 // Cancel getting surveys
 function* cancelSurveys() {
   try {
+    // Inform reducers that the request started
+    yield put(actions.cancelSurveysRequest());
+
     // Cancel a network request
     yield call(surveysService.cancelSurveys);
 
@@ -30,6 +33,9 @@ function* cancelSurveys() {
 // Get surveys
 function* getSurveys({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getSurveysRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getSurveys, payload.query);

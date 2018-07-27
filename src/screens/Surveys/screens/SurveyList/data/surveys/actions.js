@@ -2,9 +2,11 @@
 import {
   SURVEYS_CANCEL,
   SURVEYS_CANCEL_FAILURE,
+  SURVEYS_CANCEL_REQUEST,
   SURVEYS_CANCEL_SUCCESS,
   SURVEYS_GET,
   SURVEYS_GET_FAILURE,
+  SURVEYS_GET_REQUEST,
   SURVEYS_GET_SUCCESS,
   SURVEYS_RESET_DATA,
   SURVEYS_SELECT_MODE
@@ -18,6 +20,11 @@ export const cancelSurveys = () => ({
 // Cancel getting surveys : Failure
 export const cancelSurveysFailure = () => ({
   type: SURVEYS_CANCEL_FAILURE
+});
+
+// Cancel getting surveys : Request
+export const cancelSurveysRequest = () => ({
+  type: SURVEYS_CANCEL_REQUEST
 });
 
 // Cancel getting surveys : Success
@@ -36,6 +43,11 @@ export const getSurveys = (query, callback) => ({
 export const getSurveysFailure = error => ({
   payload: error,
   type: SURVEYS_GET_FAILURE
+});
+
+// Get a list of surveys : Request
+export const getSurveysRequest = () => ({
+  type: SURVEYS_GET_REQUEST
 });
 
 // Get a list of surveys : Success

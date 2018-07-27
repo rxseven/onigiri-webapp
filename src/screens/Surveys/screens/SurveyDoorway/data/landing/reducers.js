@@ -3,7 +3,12 @@ import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
 // Action types
-import { LANDING_GET, LANDING_GET_FAILURE, LANDING_GET_SUCCESS, LANDING_RESET_DATA } from './types';
+import {
+  LANDING_GET_FAILURE,
+  LANDING_GET_REQUEST,
+  LANDING_GET_SUCCESS,
+  LANDING_RESET_DATA
+} from './types';
 
 // Initial state
 const initialState = Map({ URI: null });
@@ -14,7 +19,7 @@ export default (state = initialState, action) => {
 
   switch (type) {
     // Get landing page URI
-    case LANDING_GET:
+    case LANDING_GET_REQUEST:
     case LANDING_GET_FAILURE:
       return state;
     case LANDING_GET_SUCCESS:

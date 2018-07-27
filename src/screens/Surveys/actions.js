@@ -2,6 +2,7 @@
 import {
   SURVEY_DELETE,
   SURVEY_DELETE_FAILURE,
+  SURVEY_DELETE_REQUEST,
   SURVEY_DELETE_SUCCESS,
   SURVEY_REMOVE,
   SURVEY_SELECTED_ADD,
@@ -30,6 +31,11 @@ export const deleteSurvey = (id, callback) => ({
 export const deleteSurveyFailure = error => ({
   payload: error,
   type: SURVEY_DELETE_FAILURE
+});
+
+// Delete survey : Request
+export const deleteSurveyRequest = () => ({
+  type: SURVEY_DELETE_REQUEST
 });
 
 // Delete survey : Success

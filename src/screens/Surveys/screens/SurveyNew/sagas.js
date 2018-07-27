@@ -16,6 +16,9 @@ import * as types from './types';
 // Create survey
 function* createSurvey({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.createSurveyRequest());
+
     // Create survey and send emails asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.createSurvey, payload.values);

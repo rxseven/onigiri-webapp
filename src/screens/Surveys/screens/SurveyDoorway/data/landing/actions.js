@@ -1,5 +1,11 @@
 // Action types
-import { LANDING_GET, LANDING_GET_FAILURE, LANDING_GET_SUCCESS, LANDING_RESET_DATA } from './types';
+import {
+  LANDING_GET,
+  LANDING_GET_FAILURE,
+  LANDING_GET_REQUEST,
+  LANDING_GET_SUCCESS,
+  LANDING_RESET_DATA
+} from './types';
 
 // Get landing page URI : Start
 export const getLanding = id => ({
@@ -11,6 +17,11 @@ export const getLanding = id => ({
 export const getLandingFailure = error => ({
   payload: error,
   type: LANDING_GET_FAILURE
+});
+
+// Get landing page URI : Request
+export const getLandingRequest = () => ({
+  type: LANDING_GET_REQUEST
 });
 
 // Get landing page URI : Success

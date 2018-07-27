@@ -16,6 +16,9 @@ import * as types from './types';
 // Get recipients
 function* getRecipients({ payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getRecipientsRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getRecipients, payload.id);
@@ -37,6 +40,9 @@ function* getRecipients({ payload }) {
 // Get survey
 function* getSurvey({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getSurveyRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getSurvey, payload.id);
@@ -61,6 +67,9 @@ function* getSurvey({ callback, payload }) {
 // Update survey
 function* updateSurvey({ payload: { id, values } }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.updateSurveyRequest());
+
     // Update survey
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.updateSurvey, id, values);

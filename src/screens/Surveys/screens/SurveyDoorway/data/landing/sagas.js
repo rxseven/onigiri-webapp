@@ -15,6 +15,9 @@ import * as types from './types';
 // Get landing page URI
 function* getLanding({ payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.getLandingRequest());
+
     // Fetch data asynchronously
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getLanding, payload.id);

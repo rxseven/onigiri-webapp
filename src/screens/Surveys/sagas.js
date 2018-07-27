@@ -21,6 +21,9 @@ import * as types from './types';
 // Delete survey
 function* deleteSurvey({ callback, payload }) {
   try {
+    // Inform reducers that the request started
+    yield put(actions.deleteSurveyRequest());
+
     // Delete survey
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.deleteSurvey, payload.id);
