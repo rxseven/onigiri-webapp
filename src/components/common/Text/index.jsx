@@ -1,50 +1,56 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
-// Declare prop types and default props
-const propTypes = exact({
-  text: {
-    block: PropTypes.bool,
-    bold: PropTypes.bool,
-    children: PropTypes.node.isRequired,
-    lead: PropTypes.bool,
-    options: PropTypes.string,
-    secondary: PropTypes.bool,
-    small: PropTypes.bool
-  }
-});
+// Static types
+type Props = {
+  block: boolean,
+  bold: boolean,
+  children: React.Node,
+  lead: boolean,
+  mute: boolean,
+  options: string,
+  secondary: boolean,
+  small: boolean
+};
+
+type Return =
+  | React.Element<'p'>
+  | React.Element<'small'>
+  | React.Element<'strong'>
+  | React.Element<'span'>;
 
 const defaultProps = {
-  text: {
-    block: false,
-    bold: false,
-    lead: false,
-    mute: false,
-    options: null,
-    secondary: false,
-    small: false
-  }
+  block: false,
+  bold: false,
+  lead: false,
+  mute: false,
+  options: '',
+  secondary: false,
+  small: false
 };
 
 // Text
-export default ({
+const Text = ({
   block, bold, children, lead, mute, options, secondary, small
-}) => {
+}: Props): Return => {
   const css = secondary && 'text-secondary';
 
   if (lead) {
     return <p className="lead">{children}</p>;
   } else if (small) {
-    return <small className={cx(css, mute && 'text-muted', options)}>{children}</small>;
+    return (
+      <small className={cx(css, mute && 'text-muted', !!options && options)}>{children}</small>
+    );
   } else if (bold) {
     return <strong className={cx(block && 'text-block', css)}>{children}</strong>;
   }
-  return <span className={cx(block && 'text-block', css, options)}>{children}</span>;
+  return <span className={cx(block && 'text-block', css, !!options && options)}>{children}</span>;
 };
 
-// Specify prop types and default values for props
-Text.propTypes = propTypes.text;
-Text.defaultProps = defaultProps.text;
+// Specify default values for props
+Text.defaultProps = defaultProps;
+
+// Module exports
+export default Text;
