@@ -1,3 +1,4 @@
+// @flow
 // Module dependencies
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
@@ -10,7 +11,10 @@ import { setAsync } from 'helpers/state';
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
-// Action types
+// Types
+import type { Asynchronous } from 'types/common/state';
+
+// Action and static types
 import {
   OAUTH_FACEBOOK_FAILURE,
   OAUTH_FACEBOOK_REQUEST,
@@ -22,22 +26,32 @@ import {
   OAUTH_REQUEST,
   SIGNIN_FAILURE,
   SIGNIN_REQUEST,
-  SIGNIN_SUCCESS
+  SIGNIN_SUCCESS,
+  type Action as ActionSession
 } from 'data/session/types';
-import { SIGNIN_RESET_UI } from './types';
+import { SIGNIN_RESET_UI, type Action as ActionSignIn, type Strategy } from './types';
 
-// Initial state
-const initialState = fromJS({
+// Static types
+type Action = ActionSession | ActionSignIn;
+type Key = Object;
+type Model = {
+  asynchronous: { post: Asynchronous },
+  strategy: Strategy
+};
+type State = any;
+
+// State shape
+const stateShape: Model = {
   asynchronous: {
     post: { ...STATE_MODELS.model.asynchronous }
   },
   strategy: {
     type: null
   }
-});
+};
 
-// Immutable map
-const map = {
+// Immutable key path
+const statePath: Key = {
   asynchronous: {
     post: ['post']
   },
@@ -46,29 +60,30 @@ const map = {
   }
 };
 
-// Asynchronous reducer
-const asynchronous = (state = initialState.get('asynchronous'), action) => {
-  const { payload, type } = action;
+// Initial state
+const initialState: State = fromJS(stateShape);
 
-  switch (type) {
+// Asynchronous reducer
+const asynchronous = (state: State = initialState.get('asynchronous'), action: Action): State => {
+  switch (action.type) {
     // Authentication
     case OAUTH_FACEBOOK_REQUEST:
     case OAUTH_GOOGLE_REQUEST:
     case OAUTH_REQUEST:
     case SIGNIN_REQUEST:
-      return setAsync(map.asynchronous.post, state, LOADING);
+      return setAsync(statePath.asynchronous.post, state, LOADING);
 
     case OAUTH_FAILURE:
-      return setAsync(map.asynchronous.post, state, ERROR);
+      return setAsync(statePath.asynchronous.post, state, ERROR);
     case OAUTH_FACEBOOK_FAILURE:
     case OAUTH_GOOGLE_FAILURE:
     case SIGNIN_FAILURE:
-      return setAsync(map.asynchronous.post, state, ERROR, payload);
+      return setAsync(statePath.asynchronous.post, state, ERROR, action.payload);
 
     case OAUTH_FACEBOOK_SUCCESS:
     case OAUTH_GOOGLE_SUCCESS:
     case SIGNIN_SUCCESS:
-      return setAsync(map.asynchronous.post, state);
+      return setAsync(statePath.asynchronous.post, state);
 
     // Reset state
     case SIGNIN_RESET_UI:
@@ -81,15 +96,13 @@ const asynchronous = (state = initialState.get('asynchronous'), action) => {
 };
 
 // Strategy reducer
-const strategy = (state = initialState.get('strategy'), action) => {
-  const { type } = action;
-
-  switch (type) {
+const strategy = (state: State = initialState.get('strategy'), action: Action): State => {
+  switch (action.type) {
     // Authentication
     case SIGNIN_REQUEST:
-      return state.set(map.strategy.type, 'local');
+      return state.set(statePath.strategy.type, 'local');
     case OAUTH_REQUEST:
-      return state.set(map.strategy.type, 'oauth');
+      return state.set(statePath.strategy.type, 'oauth');
 
     // Reset state
     case SIGNIN_RESET_UI:
