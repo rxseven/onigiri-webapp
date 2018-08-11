@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React, { Fragment } from 'react';
+import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { LastLocationProvider } from 'react-router-last-location';
@@ -18,10 +19,13 @@ import {
   Wrapper
 } from 'components/core';
 
+// Static types
+type Return = React.Element<typeof Router>;
+
 // Component
-const App = () => (
+const App = (): Return => (
   <Router>
-    <Fragment>
+    <React.Fragment>
       <ScrollMemory />
       <LastLocationProvider>
         <Wrapper>
@@ -37,7 +41,7 @@ const App = () => (
           <Notification />
         </Wrapper>
       </LastLocationProvider>
-    </Fragment>
+    </React.Fragment>
   </Router>
 );
 
