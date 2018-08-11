@@ -1,5 +1,10 @@
 [ignore]
-.*/node_modules/.*
+.*/node_modules/enzyme-matchers/.*
+.*/node_modules/eslint-plugin-jsx-a11y/.*
+.*/node_modules/babel-plugin-jsx-control-statements/jsx-control-statements.flow.js
+.*/node_modules/jest-enzyme/.*
+.*/node_modules/promise/.*
+.*/node_modules/stylelint/.*
 
 [include]
 
