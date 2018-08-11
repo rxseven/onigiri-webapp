@@ -1,3 +1,4 @@
+// @flow
 // Module dependencies
 import axios from 'axios';
 
@@ -7,16 +8,33 @@ import tokenHelper from 'helpers/token';
 // Constants
 import API from 'config/api';
 
+// Static types
+type Parameters = {
+  auth?: boolean,
+  cancelToken?:
+    | {
+        promise: Promise<any>
+      }
+    | any,
+  data?: mixed,
+  headers?: {},
+  method?: string,
+  params?: {},
+  url: string
+};
+
+type Return = Promise<any>;
+
 // Ajax helpers
 export default ({
   auth = true,
-  cancelToken = null,
-  data = null,
-  headers = null,
+  cancelToken = undefined,
+  data = undefined,
+  headers = {},
   method = 'get',
-  params = null,
+  params = {},
   url
-}) => {
+}: Parameters): Return => {
   // Initial config
   const config = {
     baseURL: API.host,
@@ -36,14 +54,14 @@ export default ({
     request = {
       ...config,
       headers: {
-        ...config.header,
+        ...config.headers,
         authorization: tokenHelper.get()
       }
     };
   }
 
   // Perform a network request
-  return axios(request).catch((error) => {
+  return axios(request).catch((error): Return => {
     // Operation canceled by the user
     if (axios.isCancel(error)) {
       return Promise.reject(error);

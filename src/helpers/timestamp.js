@@ -1,5 +1,7 @@
+// @flow
+
 // Timestamp helpers
 export default {
-  date: timestamp => new Date(timestamp).toDateString(),
-  time: timestamp => new Date(timestamp).toLocaleTimeString()
+  date: <T: string>(timestamp: T): T => new Date(timestamp).toDateString(),
+  time: <T: string>(timestamp: T): T => new Date(timestamp).toLocaleTimeString()
 };
