@@ -18,7 +18,7 @@ const defaultProps = {
   type: 'danger'
 };
 
-// Comnponent
+// Component
 const Alert = ({
   children, flat, options, type
 }: Props): Return => {
