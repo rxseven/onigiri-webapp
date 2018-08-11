@@ -1,7 +1,7 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Page';
@@ -12,27 +12,50 @@ import Spinner from 'components/common/Spinner';
 import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 import CSS from 'constants/string/css';
 
-// Declare prop types and default props
-const propTypes = PROP_TYPES.wrapper.asynchronous({
-  get: PropTypes.shape({
-    landing: PROP_TYPES.model.asynchronous
-  })
-});
+// Types
+import type { MatchID } from 'types/common/router';
+import type { Asynchronous } from 'types/common/state';
+import type { URI } from './data/landing/types';
 
-const defaultProps = STATE_MODELS.wrapper.asynchronous({
-  get: {
-    landing: { ...STATE_MODELS.model.asynchronous }
+// Static types
+type Props = {
+  actions: {
+    surveys: {
+      resetData: Function,
+      getLanding: Function
+    }
+  },
+  match: MatchID,
+  state: {
+    data: {
+      landing: URI
+    },
+    ui: {
+      asynchronous: {
+        get: {
+          landing: Asynchronous
+        }
+      }
+    }
   }
-});
+};
+
+type Return = React.Element<typeof Document>;
 
 // Component
-class UI extends Component {
+class UI extends React.Component<Props> {
+  // Default props
+  static defaultProps = STATE_MODELS.wrapper.asynchronous({
+    get: {
+      landing: { ...STATE_MODELS.model.asynchronous }
+    }
+  });
+
   // Constructor
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     // Component properties
@@ -52,18 +75,22 @@ class UI extends Component {
   }
 
   // Reset landing page data
-  onResetData = () => {
+  onResetData = (): void => {
     this.props.actions.surveys.resetData();
   };
 
   // Get landing page URI
-  getLanding = () => {
+  getLanding = (): void => {
     this.props.actions.surveys.getLanding(this.surveyId);
   };
 
+  // Static types definition for class property fields
+  surveyId: string;
+
   // Render content
-  renderContent = ({ state: { data, ui: { asynchronous } } }) => {
+  renderContent = (): React.Node | void => {
     // Variables
+    const { state: { data, ui: { asynchronous } } } = this.props;
     const { error, loading } = asynchronous.get.landing;
 
     // Error
@@ -87,7 +114,7 @@ class UI extends Component {
               We’re grateful that you trust our service and will continue to do everything we can to
               offer you the best experience possible.
             </CardText>
-            <If condition={data.landing.URI}>
+            <If condition={!!data.landing.URI}>
               <ExLink button="primary" to={data.landing.URI || '#'} replace>
                 View campaign
               </ExLink>
@@ -102,25 +129,19 @@ class UI extends Component {
   };
 
   // Render component
-  render() {
+  render(): Return {
     return (
       <Document>
         <Head>
           <Title>Onigiri</Title>
         </Head>
         <Body>
-          <Layout size={cx(CSS.grid.col.MD08, CSS.grid.col.LG06)}>
-            {this.renderContent(this.props)}
-          </Layout>
+          <Layout size={cx(CSS.grid.col.MD08, CSS.grid.col.LG06)}>{this.renderContent()}</Layout>
         </Body>
       </Document>
     );
   }
 }
-
-// Specify prop types and default values for props
-UI.propTypes = propTypes;
-UI.defaultProps = defaultProps;
 
 // Module exports
 export default UI;
