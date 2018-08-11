@@ -1,21 +1,27 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Constants
 import CSS from 'constants/string/css';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired,
-  label: PropTypes.string,
-  size: PropTypes.string
-});
+// Static types
+type Props = {
+  children: React.Node,
+  label: string,
+  size: string
+};
+
+type Return = React.Element<'div'>;
+
+// Default props
+const defaultProps = {
+  size: ''
+};
 
 // Component
-const ButtonGroup = ({ children, label, size }) => {
+const ButtonGroup = ({ children, label, size }: Props): Return => {
   // Configuration
   const baseClass = 'btn-group';
 
@@ -23,7 +29,7 @@ const ButtonGroup = ({ children, label, size }) => {
   return (
     <div
       aria-label={label}
-      className={cx(baseClass, size && `${baseClass}-${CSS.size[size]}`)}
+      className={cx(baseClass, !!size && `${baseClass}-${CSS.size[size]}`)}
       role="group"
     >
       {children}
@@ -31,8 +37,8 @@ const ButtonGroup = ({ children, label, size }) => {
   );
 };
 
-// Specify prop types
-ButtonGroup.propTypes = propTypes;
+// Specify default values for props
+ButtonGroup.defaultProps = defaultProps;
 
 // Module exports
 export default ButtonGroup;

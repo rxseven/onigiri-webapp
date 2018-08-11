@@ -1,8 +1,7 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import Icon from 'components/common/Icon';
@@ -10,20 +9,29 @@ import Icon from 'components/common/Icon';
 // Companion files
 import './styles.scss';
 
-// Declare prop types
-const propTypes = exact({
-  active: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  handler: PropTypes.func,
-  icon: PropTypes.string,
-  title: PropTypes.string
-});
+// Static types
+type Props = {
+  active: boolean,
+  children: React.Node,
+  handler: any,
+  icon: string,
+  title: string
+};
+
+type Return = React.Element<'button'>;
+
+// Default props
+const defaultProps = {
+  icon: '',
+  title: ''
+};
 
 // Component
-const ButtonList = ({
-  active, children, handler, icon, title
-}) => {
+const ButtonList = (props: Props): Return => {
   // Configuration
+  const {
+    active, children, handler, icon, title
+  } = props;
   const baseClass = 'list-group-item';
 
   // View
@@ -34,14 +42,16 @@ const ButtonList = ({
       styleName="button-list"
       type="button"
     >
-      {icon && <Icon name={icon} text title={title} />}
+      <If condition={!!icon}>
+        <Icon name={icon} text title={title} />
+      </If>
       <span styleName="text">{children}</span>
     </button>
   );
 };
 
-// Specify prop types
-ButtonList.propTypes = propTypes;
+// Specify default values for props
+ButtonList.defaultProps = defaultProps;
 
 // Module exports
 export default ButtonList;

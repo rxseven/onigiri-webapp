@@ -1,27 +1,33 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Companion files
 import './styles.scss';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired,
-  options: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
-});
+// Static types
+type Props = {
+  children: React.Node,
+  options: string
+};
+
+type Return = React.Element<'div'>;
+
+// Default props
+const defaultProps = {
+  options: ''
+};
 
 // Component
-const ButtonSet = ({ children, options }) => (
-  <div className={cx(options)} styleName="button-set">
+const ButtonSet = ({ children, options }: Props): Return => (
+  <div className={cx(!!options && options)} styleName="button-set">
     {children}
   </div>
 );
 
-// Specify prop types
-ButtonSet.propTypes = propTypes;
+// Specify default values for props
+ButtonSet.defaultProps = defaultProps;
 
 // Module exports
 export default ButtonSet;
