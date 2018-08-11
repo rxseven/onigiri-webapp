@@ -1,18 +1,20 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired
-});
+// Component types
+import HeroBody from '../HeroBody';
+import HeroHeader from '../HeroHeader';
+
+// Static types
+type Props = {
+  children: React.Element<typeof HeroBody> | React.Element<typeof HeroHeader>
+};
+
+type Return = React.Element<'div'>;
 
 // Component
-const HeroContainer = ({ children }) => <div className="jumbotron">{children}</div>;
-
-// Specify prop types
-HeroContainer.propTypes = propTypes;
+const HeroContainer = ({ children }: Props): Return => <div className="jumbotron">{children}</div>;
 
 // Module exports
 export default HeroContainer;
