@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // Components and HOCs
@@ -29,8 +30,11 @@ const Privacy = Loadable(() => import('screens/Policy/Privacy'));
 const Terms = Loadable(() => import('screens/Terms'));
 const NotFound = Loadable(() => import('screens/NotFound'));
 
+// Static types
+type Return = React.Element<typeof Switch>;
+
 // Component
-const Routes = () => (
+const Routes = (): Return => (
   <Switch>
     <Route component={Home} exact path={PATHS.root} />
 
