@@ -14,12 +14,17 @@
 [lints]
 
 [options]
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
 module.file_ext=.css
 module.file_ext=.js
 module.file_ext=.json
 module.file_ext=.jsx
 module.file_ext=.mjs
 module.file_ext=.scss
+module.system.node.resolve_dirname=.
 module.system.node.resolve_dirname=src
+module.system.node.resolve_dirname=node_modules
+suppress_comment= \\(.\\|\n\\)*\\flow-disable-next-line
 
 [strict]
