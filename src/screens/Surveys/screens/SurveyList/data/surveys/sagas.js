@@ -7,7 +7,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { fromJSOrdered, getError } from 'helpers/state';
 
 // Services
-import * as surveysService from 'services/surveys';
+import * as surveysService from '../../../../services';
 
 // Action creators and action types
 import * as actions from './actions';

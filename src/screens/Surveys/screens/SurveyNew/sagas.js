@@ -2,14 +2,16 @@
 import { fromJS } from 'immutable';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
+// Action creators
+import { updateCredits } from 'data/credits/actions';
+
 // Helper functions
 import { getError } from 'helpers/state';
 
 // Services
-import * as surveysService from 'services/surveys';
+import * as surveysService from '../../services';
 
-// Action creators and action types
-import { updateCredits } from 'data/credits/actions';
+// Action creators, action and static types
 import * as actions from './actions';
 import * as types from './types';
 

@@ -6,7 +6,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { getError } from 'helpers/state';
 
 // Services
-import * as surveysService from 'services/surveys';
+import * as surveysService from './services';
 
 // Sagas
 import surveyDetails from './screens/SurveyDetails/data/survey/sagas';
