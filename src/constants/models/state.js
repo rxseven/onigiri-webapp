@@ -14,7 +14,7 @@ export default {
     }
   },
   pattern: {
-    asynchronous: props => ({
+    asynchronous: () => ({
       state: {
         ui: {
           asynchronous: {
