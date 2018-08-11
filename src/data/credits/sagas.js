@@ -6,7 +6,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { getError } from 'helpers/state';
 
 // Services
-import paymentsService from 'services/payments';
+import paymentsService from 'data/features/payments/services';
 import * as usersService from 'services/users';
 
 // Action creators and action types

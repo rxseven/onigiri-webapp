@@ -5,7 +5,7 @@ import { Redirect, Route } from 'react-router-dom';
 // Constants
 import PATHS from 'constants/router/paths';
 
-// Declare default props
+// Default props
 const defaultProps = {
   exact: false,
   redirectTo: PATHS.root

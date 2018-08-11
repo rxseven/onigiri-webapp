@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Card, CardBody, CardLink, CardText, CardTitle } from 'components/common/Card';
@@ -9,8 +10,11 @@ import Layout from 'components/common/Layout';
 // Constants
 import PATHS from 'constants/router/paths';
 
+// Static types
+type Return = React.Element<typeof Document>;
+
 // Component
-const NotFound = () => (
+const NotFound = (): Return => (
   <Document>
     <Head>
       <Title>Page Not Found</Title>

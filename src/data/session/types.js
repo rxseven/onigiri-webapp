@@ -1,3 +1,10 @@
+// @flow
+// Module dependencies
+import type { OAuthToken, SignIn, SignUp } from 'types/common/session';
+import type { Data, Error } from 'types/common/state';
+import type { Callback } from 'types/common/utilities';
+
+// Action types
 export const OAUTH_FACEBOOK = 'data/session/OAUTH_FACEBOOK';
 export const OAUTH_FACEBOOK_FAILURE = 'data/session/OAUTH_FACEBOOK_FAILURE';
 export const OAUTH_FACEBOOK_REQUEST = 'data/session/OAUTH_FACEBOOK_REQUEST';
@@ -37,3 +44,58 @@ export const USER_GET_REQUEST = 'data/session/USER_GET_REQUEST';
 export const USER_GET_SUCCESS = 'data/session/USER_GET_SUCCESS';
 
 export const USER_RESET = 'data/session/USER_RESET';
+
+// Static types
+export type User = {
+  email: string,
+  name: {
+    firstName: string,
+    lastName: string
+  },
+  id: string,
+  photo: {
+    url: string
+  }
+};
+
+export type Session = {
+  authorization: boolean,
+  loading: {
+    signin: boolean,
+    verify: boolean
+  },
+  user: ?User
+};
+
+export type Action =
+  | { type: typeof OAUTH_FACEBOOK, callback: Callback, payload: { accessToken: OAuthToken } }
+  | { type: typeof OAUTH_FACEBOOK_FAILURE, payload: Error }
+  | { type: typeof OAUTH_FACEBOOK_REQUEST }
+  | { type: typeof OAUTH_FACEBOOK_SUCCESS, payload: Data }
+  | { type: typeof OAUTH_GOOGLE, callback: Callback, payload: { accessToken: OAuthToken } }
+  | { type: typeof OAUTH_GOOGLE_FAILURE, payload: Error }
+  | { type: typeof OAUTH_GOOGLE_REQUEST }
+  | { type: typeof OAUTH_GOOGLE_SUCCESS, payload: Data }
+  | { type: typeof OAUTH_FAILURE }
+  | { type: typeof OAUTH_REQUEST }
+  | { type: typeof SIGNIN, callback: Callback, payload: { credentials: SignIn } }
+  | { type: typeof SIGNIN_FAILURE, payload: Error }
+  | { type: typeof SIGNIN_REQUEST }
+  | { type: typeof SIGNIN_SUCCESS, payload: Data }
+  | { type: typeof SIGNOUT, callback: Callback }
+  | { type: typeof SIGNOUT_FAILURE, payload: Error }
+  | { type: typeof SIGNOUT_REQUEST }
+  | { type: typeof SIGNOUT_SUCCESS }
+  | { type: typeof SIGNUP, callback: Callback, payload: { credentials: SignUp } }
+  | { type: typeof SIGNUP_FAILURE, payload: Error }
+  | { type: typeof SIGNUP_REQUEST }
+  | { type: typeof SIGNUP_SUCCESS, payload: Data }
+  | { type: typeof USER_DELETE, callback: Callback }
+  | { type: typeof USER_DELETE_FAILURE, payload: Error }
+  | { type: typeof USER_DELETE_REQUEST }
+  | { type: typeof USER_DELETE_SUCCESS }
+  | { type: typeof USER_GET }
+  | { type: typeof USER_GET_FAILURE }
+  | { type: typeof USER_GET_REQUEST }
+  | { type: typeof USER_GET_SUCCESS, payload: Data }
+  | { type: typeof USER_RESET };

@@ -1,5 +1,6 @@
+// @flow
 // Dependencies
-import React, { Fragment } from 'react';
+import * as React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 // Components and HOCs
@@ -9,9 +10,12 @@ import { List, ListItem, ListContent, ListLabel, ListLink } from 'components/com
 // Companion files
 import '../../styles.scss';
 
+// Static types
+type Return = React.Node;
+
 // Component
-const Technical = () => (
-  <Fragment>
+const Technical = (): Return => (
+  <React.Fragment>
     <div>
       <p>Below is the list of technology stack and services I use to build and run this project.</p>
     </div>
@@ -825,7 +829,7 @@ const Technical = () => (
         </Card>
       </TabPanel>
     </Tabs>
-  </Fragment>
+  </React.Fragment>
 );
 
 // Module exports

@@ -1,5 +1,7 @@
+// @flow
+
 // String helpers
 module.exports = {
   // Capitalize first letter
-  capitalizeFirstLetter: string => string.charAt(0).toUpperCase() + string.slice(1)
+  capitalizeFirstLetter: <T: string>(value: T): T => value.charAt(0).toUpperCase() + value.slice(1)
 };

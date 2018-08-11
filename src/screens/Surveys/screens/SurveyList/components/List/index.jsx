@@ -1,6 +1,7 @@
+// @flow
 // Module dependencies
 import { isEmpty as checkEmpty, map } from 'lodash';
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Button } from 'components/common/Buttons';
@@ -13,13 +14,32 @@ import Text from 'components/common/Text';
 import PATHS from 'constants/router/paths';
 import CSS from 'constants/string/css';
 
+// Types
+import type { Empty, List as Data, Meta } from '../../data/surveys/types';
+import type { Async as Asynchronous, Mode, Pagination, QueryList as Query } from '../../types';
+
 // Companion files
 import TYPES from '../../constants/types';
 import Item from '../Item';
 import './styles.scss';
 
+// Static types
+type Props = {
+  actions: Object,
+  state: {
+    data: Data | Empty,
+    asynchronous: Asynchronous,
+    meta: Meta,
+    mode: Mode,
+    pagination: Pagination,
+    query: Query
+  }
+};
+
+type Return = React.Element<'div'>;
+
 // Render message
-const renderMessage = () => (
+const renderMessage = (): React.Element<typeof Hero> => (
   <Hero>
     <HeroHeader>Get started!</HeroHeader>
     <HeroBody>
@@ -32,14 +52,14 @@ const renderMessage = () => (
 );
 
 // Render empty list
-const renderEmpty = mode => (
+const renderEmpty = (mode: string): React.Element<typeof Hero> => (
   <Hero>
     <HeroBody>No {mode} items</HeroBody>
   </Hero>
 );
 
 // Component
-const List = ({ actions, state }) => {
+const List = ({ actions, state }: Props): Return => {
   // Variables
   const {
     asynchronous, data, meta, mode, pagination, query

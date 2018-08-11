@@ -1,12 +1,14 @@
+// @flow
 // Module dependencies
 import { createSelector } from 'reselect';
 
-// Action types
+// Action and static types
 import { USER_RESET } from 'data/session/types';
 import {
   SURVEY_DELETE_FAILURE,
   SURVEY_DELETE_REQUEST,
-  SURVEY_DELETE_SUCCESS
+  SURVEY_DELETE_SUCCESS,
+  type Action as ActionSurveys
 } from '../../../../types';
 import {
   RECIPIENTS_GET_FAILURE,
@@ -18,23 +20,31 @@ import {
   SURVEY_RESET_DATA,
   SURVEY_UPDATE_FAILURE,
   SURVEY_UPDATE_REQUEST,
-  SURVEY_UPDATE_SUCCESS
+  SURVEY_UPDATE_SUCCESS,
+  type Action as ActionData,
+  type Survey
 } from './types';
 
+// Static types
+type Action = ActionSurveys | ActionData;
+type Model = ?Survey;
+type State = any;
+
+// State shape
+const stateShape: Model = null;
+
 // Initial state
-const initialState = null;
+const initialState: State = stateShape;
 
 // Reducer
-export default (state = initialState, action) => {
-  const { payload, type } = action;
-
-  switch (type) {
+export default (state: State = initialState, action: Action): State => {
+  switch (action.type) {
     // Get recipients
     case RECIPIENTS_GET_REQUEST:
     case RECIPIENTS_GET_FAILURE:
       return state;
     case RECIPIENTS_GET_SUCCESS:
-      return state.set('recipients', payload);
+      return state.set('recipients', action.payload);
 
     // Delete survey
     case SURVEY_DELETE_REQUEST:
@@ -48,14 +58,14 @@ export default (state = initialState, action) => {
     case SURVEY_GET_FAILURE:
       return state;
     case SURVEY_GET_SUCCESS:
-      return payload;
+      return action.payload;
 
     // Update survey
     case SURVEY_UPDATE_REQUEST:
     case SURVEY_UPDATE_FAILURE:
       return state;
     case SURVEY_UPDATE_SUCCESS:
-      return state.merge(payload);
+      return state.merge(action.payload);
 
     // Reset state
     case SURVEY_RESET_DATA:

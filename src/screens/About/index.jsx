@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 // Components and HOCs
@@ -12,8 +13,11 @@ import Development from './content/Development';
 import Overview from './content/Overview';
 import Specs from './content/Specs';
 
+// Static types
+type Return = React.Element<typeof Document>;
+
 // Component
-const About = () => (
+const About = (): Return => (
   <Document>
     <Head>
       <Title>About Onigiri</Title>

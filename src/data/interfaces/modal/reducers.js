@@ -1,30 +1,37 @@
+// @flow
 // Module dependencies
 import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
-// Action types
-import { MODAL_CLOSE, MODAL_OPEN } from './types';
+// Action and static types
+import { MODAL_CLOSE, MODAL_OPEN, type Action, type Modal } from './types';
 
-// Initial state
-const initialState = Map({
+// Static types
+type Key = Object;
+type Model = Modal;
+type State = any;
+
+// State shape
+const stateShape: Model = {
   isOpen: false
-});
+};
 
-// Immutable map
-const map = {
+// Immutable key path
+const statePath: Key = {
   isOpen: 'isOpen'
 };
 
-// Reducer
-export default (state = initialState, action) => {
-  const { type } = action;
+// Initial state
+const initialState: State = Map(stateShape);
 
-  switch (type) {
+// Reducer
+export default (state: State = initialState, action: Action): State => {
+  switch (action.type) {
     // Visibility
     case MODAL_CLOSE:
-      return state.set(map.isOpen, false);
+      return state.set(statePath.isOpen, false);
     case MODAL_OPEN:
-      return state.set(map.isOpen, true);
+      return state.set(statePath.isOpen, true);
 
     // Default
     default:

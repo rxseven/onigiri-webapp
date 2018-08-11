@@ -1,6 +1,9 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
+
+// Static types
+import { type Asynchronous } from 'types/common/state';
 
 // Components and HOCs
 import { Button } from 'components/common/Buttons';
@@ -9,16 +12,25 @@ import Spinner from 'components/common/Spinner';
 import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 
-// Declare prop types and default props
-const propTypes = {
-  alert: PropTypes.bool,
-  asynchronous: PROP_TYPES.model.asynchronous,
-  spinner: PropTypes.bool
+// Static types
+type Props = {
+  alert: boolean,
+  asynchronous: Asynchronous,
+  buttonCancel: string,
+  buttonConfirm: string,
+  children: React.Node,
+  onClose: Function,
+  onConfirm: Function,
+  spinner: boolean,
+  title: string,
+  visibility: boolean
 };
 
+type Return = React.Element<typeof Modal>;
+
+// Default props
 const defaultProps = {
   alert: true,
   asynchronous: { ...STATE_MODELS.model.asynchronous },
@@ -26,20 +38,20 @@ const defaultProps = {
 };
 
 // Component
-const Confirm = (props) => {
+const Confirm = ({
+  alert,
+  asynchronous,
+  buttonCancel,
+  buttonConfirm,
+  children,
+  onClose,
+  onConfirm,
+  spinner,
+  title,
+  visibility
+}: Props): Return => {
   // Variables
-  const {
-    alert,
-    asynchronous: { error, loading },
-    buttonCancel,
-    buttonConfirm,
-    children,
-    onClose,
-    onConfirm,
-    spinner,
-    title,
-    visibility
-  } = props;
+  const { error, loading } = asynchronous;
 
   // View
   return (
@@ -49,9 +61,7 @@ const Confirm = (props) => {
         <If condition={spinner && loading}>
           <Spinner />
         </If>
-        <If condition={alert && error}>
-          <Error alert={error} />
-        </If>
+        {alert && error && <Error alert={error} />}
         <Button disabled={loading} handler={() => onClose()}>
           {buttonCancel}
         </Button>
@@ -63,8 +73,7 @@ const Confirm = (props) => {
   );
 };
 
-// Specify prop types and default values for props
-Confirm.propTypes = propTypes;
+// Specify default values for props
 Confirm.defaultProps = defaultProps;
 
 // Module exports

@@ -1,23 +1,24 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
-// Declare prop types and default props
-const propTypes = exact({
-  children: PropTypes.node.isRequired,
-  size: PropTypes.string
-});
+// Static types
+type Props = {
+  children: React.Node,
+  size: string
+};
 
+type Return = React.Element<'div'>;
+
+// Default props
 const defaultProps = {
   size: 'col'
 };
 
 // Component
-const Column = ({ children, size }) => <div className={size}>{children}</div>;
+const Column = ({ children, size }: Props): Return => <div className={size}>{children}</div>;
 
-// Specify prop types and default values for props
-Column.propTypes = propTypes;
+// Specify default values for props
 Column.defaultProps = defaultProps;
 
 // Module exports

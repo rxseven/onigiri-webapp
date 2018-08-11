@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React, { PureComponent } from 'react';
+import * as React from 'react';
 
 // Helper functions
 import asyncHelper from 'helpers/asynchronous';
@@ -8,11 +9,29 @@ import asyncHelper from 'helpers/asynchronous';
 import Overlay from 'components/common/Overlay';
 import Spinner from 'components/common/Spinner';
 
+// Types
+import type { Session } from 'data/session/types';
+
 // Companion files
 import './styles.scss';
 
+// Static types
+type Props = {
+  state: {
+    data: {
+      session: Session
+    }
+  }
+};
+
+type Return = React.Node | void;
+
+type State = {
+  longLoad: boolean
+};
+
 // Component
-class UI extends PureComponent {
+class UI extends React.PureComponent<Props, State> {
   // Infitial state
   state = { longLoad: false };
 
@@ -28,14 +47,14 @@ class UI extends PureComponent {
    * the user won't know if it should always take this long, or if they should
    * try refreshing. The app should show a friendly message to the user.
    */
-  timeoutMessage = () => {
+  timeoutMessage = (): void => {
     asyncHelper.timeout(null, 5000).then((response) => {
       this.setState(() => ({ longLoad: true }));
     });
   };
 
   // Render component
-  render() {
+  render(): Return {
     // Variables
     const { state: { data } } = this.props;
 

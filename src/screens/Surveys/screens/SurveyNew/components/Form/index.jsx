@@ -1,6 +1,7 @@
+// @flow
 // Module dependencies
 import { each } from 'lodash';
-import React, { Component, Fragment } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -22,6 +23,11 @@ import toJS from 'HOCs/state/toJS';
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
+// Types
+import type { Balance } from 'data/credits/types';
+import type { Modal } from 'data/interfaces/modal/types';
+import type { History, Location } from 'types/common/router';
+
 // Action creators and selectors
 import { getCredits } from 'data/credits/actions';
 import { getBalance } from 'data/credits/reducers';
@@ -31,8 +37,35 @@ import { getModal } from 'data/interfaces/modal/reducers';
 // Companion files
 import FIELDS from '../../constants/fields';
 
+// Static types
+type Props = {
+  actions: {
+    credits: {
+      getCredits: Function
+    },
+    modal: {
+      closeModal: Function,
+      openModal: Function
+    }
+  },
+  history: History,
+  location: Location,
+  onReview: Function,
+  pristine: boolean,
+  state: {
+    data: {
+      balance: Balance,
+      interfaces: {
+        modal: Modal
+      }
+    }
+  }
+};
+
+type Return = React.Node;
+
 // Component
-class SurveyForm extends Component {
+class SurveyForm extends React.Component<Props> {
   // After a component is mounted...
   componentDidMount() {
     // Get credits
@@ -40,7 +73,7 @@ class SurveyForm extends Component {
   }
 
   // Request for cancelling form
-  onCancelFormRequest = () => {
+  onCancelFormRequest = (): void => {
     // Verify form values
     if (this.props.pristine) {
       // If the form is clean, navigate away
@@ -52,7 +85,7 @@ class SurveyForm extends Component {
   };
 
   // Confirm cancelling form
-  onCancelFormConfirm = () => {
+  onCancelFormConfirm = (): void => {
     // Close a modal
     this.props.actions.modal.closeModal();
 
@@ -61,40 +94,40 @@ class SurveyForm extends Component {
   };
 
   // Navigate to survey list view screen
-  onLeave = () => {
+  onLeave = (): void => {
     this.props.history.push(PATHS.surveys.list);
   };
 
   // Get credits
-  getCredits = () => {
+  getCredits = (): void => {
     if (this.props.state.data.balance == null) {
       this.props.actions.credits.getCredits();
     }
   };
 
   // Render content
-  renderContent = () => (
+  renderContent = (props): React.Element<'div'> => (
     <div>
       <FormSHL>Please enter your entries</FormSHL>
       <Form
-        {...this.props}
+        {...props}
         alert={false}
         cancelButton={<Button handler={this.onCancelFormRequest}>Cancel</Button>}
         fields={FIELDS}
         spinner={false}
         submitButton="Next"
         submitCallback={false}
-        submitFunction={this.props.onReview}
+        submitFunction={props.onReview}
       />
       <Confirm
         alert={false}
         buttonCancel="Cancel"
         buttonConfirm="Discard"
-        onClose={this.props.actions.modal.closeModal}
+        onClose={props.actions.modal.closeModal}
         onConfirm={this.onCancelFormConfirm}
         spinner={false}
         title="Cancel Creating Survey"
-        visibility={this.props.state.data.interfaces.modal.isOpen}
+        visibility={props.state.data.interfaces.modal.isOpen}
       >
         <h5>All your progress will be lost</h5>
         <p>Are you sure you don’t want to reconsider?</p>
@@ -103,17 +136,17 @@ class SurveyForm extends Component {
   );
 
   // Render loading state
-  renderLoading = () => <Spinner loading />;
+  renderLoading = (): React.Element<typeof Spinner> => <Spinner loading />;
 
   // Render warning message
-  renderWarning = () => (
+  renderWarning = (location): React.Element<typeof Card> => (
     <Card alignment="text-center" end>
       <CardHeader>Not enough credits</CardHeader>
       <CardBody>
         <CardText>Sorry, your credits are gone.</CardText>
         <Button
           button="primary"
-          link={{ pathname: PATHS.users.profile, state: { from: this.props.location } }}
+          link={{ pathname: PATHS.users.profile, state: { from: location } }}
           type="link"
         >
           Add credits
@@ -123,23 +156,23 @@ class SurveyForm extends Component {
   );
 
   // Render component
-  render() {
+  render(): Return {
     // Variables
     const { balance } = this.props.state.data;
 
     // View
     return (
-      <Fragment>
+      <React.Fragment>
         {balance == null && this.renderLoading()}
-        {balance != null && balance < 1 && this.renderWarning()}
-        {balance != null && balance >= 1 && this.renderContent()}
-      </Fragment>
+        {balance != null && balance < 1 && this.renderWarning(this.props.location)}
+        {balance != null && balance >= 1 && this.renderContent(this.props)}
+      </React.Fragment>
     );
   }
 }
 
 // Error validation rules
-const validate = (values) => {
+const validate = (values: any): {} => {
   // Initial errors object
   const errors = {};
 
@@ -183,7 +216,7 @@ const validate = (values) => {
 };
 
 // Warning validation rules
-const warn = (values) => {
+const warn = (values: any): {} => {
   // Initial warnings object
   const warnings = {};
 
@@ -201,13 +234,13 @@ const warn = (values) => {
 };
 
 // Map state to props
-const mapStateToProps = state =>
+const mapStateToProps = (state: any): any =>
   generateState(STATE_MODELS.immutable
     .setIn(['data', 'balance'], getBalance(state))
     .setIn(['data', 'interfaces', 'modal'], getModal(state)));
 
 // Map dispatch to props
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: any): any => ({
   actions: {
     credits: bindActionCreators({ getCredits }, dispatch),
     modal: bindActionCreators(modalActions, dispatch)

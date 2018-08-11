@@ -1,16 +1,31 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 import { Sticky } from 'react-sticky';
 
 // Constants
 import SCREENS from 'constants/sizing/screens';
 
+// Types
+import type { Mode, Screen } from '../../types';
+
 // Companion files
 import Sidebar from '../Sidebar';
 import './styles.scss';
 
+// Static types
+type Props = {
+  actions: Object,
+  state: {
+    mode: Mode,
+    screenWidth: Screen
+  }
+};
+
+type Return = React.Element<'div'>;
+
 // Component
-const Stickybar = ({ actions, state }) => (
+const Stickybar = ({ actions, state }: Props): Return => (
   <div styleName="wrapper">
     <Sticky topOffset={-64}>
       {({ isSticky, style }) => {

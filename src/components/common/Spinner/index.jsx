@@ -1,17 +1,16 @@
+// @flow
 // Module dependencies
 import { FadingCircle, ThreeBounce } from 'better-react-spinkit';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Companion files
 import './styles.scss';
 
-// Declare prop types and default props
-const propTypes = exact({
-  loading: PropTypes.bool
-});
+// Static types
+type Props = { loading: boolean };
+type Return = React.Node;
 
+// Default props
 const defaultProps = {
   loading: false
 };
@@ -27,9 +26,9 @@ const options = {
 };
 
 // Component
-const Spinner = ({ loading }) => (
+const Spinner = ({ loading }: Props): Return => (
   <Choose>
-    <When condition={loading}>
+    <When condition={!!loading}>
       <div styleName="bounce">
         <ThreeBounce {...options.bounce} />
       </div>
@@ -42,8 +41,7 @@ const Spinner = ({ loading }) => (
   </Choose>
 );
 
-// Specify prop types and default values for props
-Spinner.propTypes = propTypes;
+// Specify default values for props
 Spinner.defaultProps = defaultProps;
 
 // Module exports

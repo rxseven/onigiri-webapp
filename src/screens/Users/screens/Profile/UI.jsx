@@ -1,6 +1,6 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import * as React from 'react';
 import Notification from 'react-s-alert';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
@@ -11,32 +11,62 @@ import Spinner from 'components/common/Spinner';
 import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from 'constants/models/propTypes';
-import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
+
+// Types
+import type { From, History } from 'types/common/router';
+import type { Asynchronous } from 'types/common/state';
 
 // Companion files
 import Account from './components/Account';
 import Credits from './components/Credits';
 import Profile from './components/Profile';
 
-// Declare prop types and default props
-const propTypes = PROP_TYPES.wrapper.asynchronous({
-  get: PropTypes.shape({
-    credits: PROP_TYPES.model.asynchronous,
-    profile: PROP_TYPES.model.asynchronous
-  })
-});
-
-const defaultProps = STATE_MODELS.wrapper.asynchronous({
-  get: {
-    credits: { ...STATE_MODELS.model.asynchronous },
-    profile: { ...STATE_MODELS.model.asynchronous }
+// Static types
+type Props = {
+  actions: {
+    credits: {
+      getCredits: Function
+    },
+    modal: {
+      openModal: Function,
+      closeModal: Function
+    },
+    profile: {
+      getProfile: Function
+    },
+    user: {
+      deleteUser: Function
+    }
+  },
+  history: History,
+  location: {
+    state: {
+      from?: string
+    }
+  },
+  state: {
+    data: {
+      credits: Object,
+      interfaces: Object,
+      profile: Object
+    },
+    ui: {
+      asynchronous: {
+        delete: Object,
+        get: {
+          credits: Asynchronous,
+          profile: Asynchronous
+        }
+      }
+    }
   }
-});
+};
+
+type Return = React.Element<typeof Document>;
 
 // Component
-class UI extends Component {
+class UI extends React.Component<Props> {
   // After a component is mounted...
   componentDidMount() {
     // Get credits
@@ -47,13 +77,13 @@ class UI extends Component {
   }
 
   // Request for deleting user account
-  onDeleteAccountRequest = () => {
+  onDeleteAccountRequest = (): void => {
     // Open a confirmation modal
     this.props.actions.modal.openModal();
   };
 
   // Confirm deleting user account
-  onDeleteAccountConfirm = () => {
+  onDeleteAccountConfirm = (): void => {
     this.props.actions.user.deleteUser(() => {
       // Close a modal
       this.props.actions.modal.closeModal();
@@ -69,7 +99,7 @@ class UI extends Component {
   };
 
   // Payment handler
-  onCheckoutSuccess = () => {
+  onCheckoutSuccess = (): void => {
     // Variables
     const { from } = this.props.location.state || { from: false };
 
@@ -89,30 +119,35 @@ class UI extends Component {
   };
 
   // Redirect to a referrer
-  onRedirect = (from) => {
+  onRedirect = (from: From): void => {
     this.props.history.push(from);
   };
 
   // Get credits
-  getCredits = () => {
+  getCredits = (): void => {
     this.props.actions.credits.getCredits();
   };
 
   // Get user profile
-  getProfile = () => {
+  getProfile = (): void => {
     this.props.actions.profile.getProfile();
   };
 
   // Check data in the application state before making a network request
-  getData = (action) => {
+  getData = (action: Function): void => {
     if (!this.props.state.data.profile) {
       action();
     }
   };
 
   // Render content
-  renderContent = ({ actions, state }) => {
+  renderContent = (props: Props):
+    | React.Element<typeof Error>
+    | React.Element<typeof Spinner>
+    | React.Element<typeof Tabs>
+    | React.Element<'div'> => {
     // Variables
+    const { actions, state } = props;
     const { data, ui } = state;
     const { profile } = data;
     const { asynchronous } = ui;
@@ -123,6 +158,7 @@ class UI extends Component {
     if (creditsError || profileError) {
       const error = creditsError || profileError;
 
+      // flow-disable-next-line
       return <Error alert={error} />;
     }
 
@@ -155,7 +191,14 @@ class UI extends Component {
                 deleteConfirm: this.onDeleteAccountConfirm,
                 deleteRequest: this.onDeleteAccountRequest
               }}
-              state={{ data, ui }}
+              state={{
+                data,
+                ui: {
+                  asynchronous: {
+                    delete: asynchronous.delete
+                  }
+                }
+              }}
             />
           </TabPanel>
         </Tabs>
@@ -167,7 +210,7 @@ class UI extends Component {
   };
 
   // Render component
-  render() {
+  render(): Return {
     return (
       <Document>
         <Head>
@@ -180,10 +223,6 @@ class UI extends Component {
     );
   }
 }
-
-// Specify prop types and default values for props
-UI.propTypes = propTypes;
-UI.defaultProps = defaultProps;
 
 // Module exports
 export default UI;

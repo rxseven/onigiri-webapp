@@ -1,3 +1,4 @@
+// @flow
 // Module dependencies
 import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
@@ -10,43 +11,53 @@ import { setAsync } from 'helpers/state';
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
-// Action types
+// Types
+import type { Asynchronous } from 'types/common/state';
+
+// Action and static types
 import {
   LANDING_GET_FAILURE,
   LANDING_GET_REQUEST,
   LANDING_GET_SUCCESS,
-  LANDING_RESET_DATA
+  LANDING_RESET_DATA,
+  type Action
 } from './data/landing/types';
 
 // Reducers
 import data from './data/reducers';
 
-// Initial state
-const initialState = fromJS({
+// Static types
+type Key = Object;
+type Model = { get: { landing: Asynchronous } };
+type State = any;
+
+// State shape
+const stateShape: Model = {
   get: {
     landing: { ...STATE_MODELS.model.asynchronous }
   }
-});
+};
 
-// Immutable map
-const map = {
+// Immutable key path
+const statePath: Key = {
   get: {
     landing: ['get', 'landing']
   }
 };
 
-// Asynchronous reducer
-const asynchronous = (state = initialState, action) => {
-  const { payload, type } = action;
+// Initial state
+const initialState: State = fromJS(stateShape);
 
-  switch (type) {
+// Asynchronous reducer
+const asynchronous = (state: State = initialState, action: Action): State => {
+  switch (action.type) {
     // Get landing page URI
     case LANDING_GET_REQUEST:
-      return setAsync(map.get.landing, state, LOADING);
+      return setAsync(statePath.get.landing, state, LOADING);
     case LANDING_GET_FAILURE:
-      return setAsync(map.get.landing, state, ERROR, payload);
+      return setAsync(statePath.get.landing, state, ERROR, action.payload);
     case LANDING_GET_SUCCESS:
-      return setAsync(map.get.landing, state);
+      return setAsync(statePath.get.landing, state);
 
     // Reset state
     case LANDING_RESET_DATA:

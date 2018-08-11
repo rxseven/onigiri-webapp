@@ -1,3 +1,4 @@
+// @flow
 // Viewport sizes
 export default {
   small: 576,

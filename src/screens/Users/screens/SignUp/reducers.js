@@ -1,3 +1,4 @@
+// @flow
 // Module dependencies
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
@@ -10,30 +11,43 @@ import { setAsync } from 'helpers/state';
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
-// Action types
-import { SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS } from 'data/session/types';
-import { SIGNUP_RESET_UI } from './types';
+// Types
+import type { Asynchronous } from 'types/common/state';
 
-// Initial state
-const initialState = fromJS({
+// Action and static types
+import {
+  SIGNUP_FAILURE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  type Action as ActionSession
+} from 'data/session/types';
+import { SIGNUP_RESET_UI, type Action as ActionSignUp } from './types';
+
+// Static types
+type Action = ActionSession | ActionSignUp;
+type Key = Object;
+type Model = { post: Asynchronous };
+type State = any;
+
+// State shape
+const stateShape: Model = {
   post: { ...STATE_MODELS.model.asynchronous }
-});
-
-// Immutable map
-const map = {
-  post: ['post']
 };
 
-// Asynchronous reducer
-const asynchronous = (state = initialState, action) => {
-  const { payload, type } = action;
+// Immutable key path
+const statePath: Key = { post: ['post'] };
 
-  switch (type) {
+// Initial state
+const initialState: State = fromJS(stateShape);
+
+// Asynchronous reducer
+const asynchronous = (state: State = initialState, action: Action): State => {
+  switch (action.type) {
     // Sign-up
     case SIGNUP_REQUEST:
-      return setAsync(map.post, state, LOADING);
+      return setAsync(statePath.post, state, LOADING);
     case SIGNUP_FAILURE:
-      return setAsync(map.post, state, ERROR, payload);
+      return setAsync(statePath.post, state, ERROR, action.payload);
     case SIGNUP_SUCCESS:
       return initialState;
 

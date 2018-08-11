@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
@@ -9,8 +10,29 @@ import { Button } from 'components/common/Buttons';
 // Constants
 import PATHS from 'constants/router/paths';
 
+// Types
+import type { History } from 'types/common/router';
+
+// Static types
+type Props = {
+  actions: {
+    auth: {
+      oauthFailure: Function,
+      oauthFacebook: Function,
+      oauthRequest: Function
+    }
+  },
+  history: History
+};
+
+type Return = React.Element<typeof FacebookLogin>;
+
+type State = {
+  isLoading: boolean
+};
+
 // Component
-class UI extends Component {
+class UI extends React.Component<Props, State> {
   // After a component is instantiated as well as when it receives new props...
   static getDerivedStateFromProps(nextProps, prevState) {
     // Set loading status
@@ -18,12 +40,10 @@ class UI extends Component {
   }
 
   // Initial state
-  state = {
-    isLoading: false
-  };
+  state = { isLoading: false };
 
   // Login handler
-  onLogin = (response) => {
+  onLogin = (response: any): void => {
     // Success, submit the access token to the API
     if (response.accessToken) {
       this.props.actions.auth.oauthFacebook(response.accessToken, (status) => {
@@ -49,7 +69,7 @@ class UI extends Component {
   };
 
   // Request handler
-  onRequest = () => {
+  onRequest = (): void => {
     // Set loading status
     this.setState(() => ({ isLoading: true }));
 
@@ -58,14 +78,14 @@ class UI extends Component {
   };
 
   // Render button
-  renderButton = ({ onClick }) => (
+  renderButton = ({ onClick }: any): React.Element<typeof Button> => (
     <Button block button="primary" disabled={this.state.isLoading} handler={onClick}>
       Login with Facebook
     </Button>
   );
 
   // Render component
-  render() {
+  render(): Return {
     return (
       <FacebookLogin
         appId={process.env.REACT_APP_FACEBOOK_APP_ID}

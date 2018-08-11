@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Button } from 'components/common/Buttons';
@@ -13,8 +14,11 @@ import PATHS from 'constants/router/paths';
 // Companion files
 import './styles.scss';
 
+// Static types
+type Return = React.Element<typeof Document>;
+
 // Component
-const Home = () => (
+const Home = (): Return => (
   <Document>
     <Head>
       <Title>Onigiri</Title>

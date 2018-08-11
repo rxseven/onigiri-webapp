@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -22,9 +23,13 @@ import toJS from 'HOCs/state/toJS';
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
-// Action creators and selectors
+// Types
+import type { Asynchronous } from 'types/common/state';
+
+// Action creators, static types, and selectors
 import { getSession } from 'data/session/reducers';
 import { getUI } from './reducers';
+import type { Strategy } from './types';
 
 // Companion files
 import Layout from '../../../Users/components/Layout';
@@ -34,8 +39,27 @@ import './styles.scss';
 // Constants
 const PAGE_TITLE = 'Sign in to Onigiri';
 
+// Static types
+type Props = {
+  state: {
+    ui: {
+      asynchronous: {
+        post: Asynchronous
+      },
+      strategy: Strategy
+    }
+  }
+};
+
+type State = {
+  isLoading: boolean,
+  isLocal: boolean
+};
+
+type Return = React.Element<typeof Document>;
+
 // Component
-class SignIn extends Component {
+class SignIn extends React.Component<Props, State> {
   // After a component is instantiated as well as when it receives new props...
   static getDerivedStateFromProps(nextProps, prevState) {
     // Set loading status
@@ -49,12 +73,12 @@ class SignIn extends Component {
   };
 
   // Toggle sign-in form
-  onToggleForm = () => {
+  onToggleForm = (): void => {
     this.setState(prevState => ({ isLocal: !prevState.isLocal }));
   };
 
   // Render forms
-  renderForms = () => (
+  renderForms = (): React.ChildrenArray<React.Element<typeof FormStack>> => (
     <Choose>
       <When condition={!this.state.isLocal}>
         <FormStack>
@@ -78,7 +102,7 @@ class SignIn extends Component {
   );
 
   // Render options
-  renderOptions = ({ isLoading }) => (
+  renderOptions = ({ isLoading }): React.Element<typeof FormMeta> | void => (
     <If condition={!isLoading}>
       <FormMeta>
         New to Onigiri? <Link to={PATHS.users.signup}>Create an account</Link>.
@@ -87,7 +111,11 @@ class SignIn extends Component {
   );
 
   // Render status
-  renderStatus = ({ isError, isLoading, strategy }) => (
+  renderStatus = ({
+    isError,
+    isLoading,
+    strategy
+  }): React.Element<typeof FormStack> | React.Element<typeof Error> => (
     <Choose>
       <When condition={isLoading && strategy.type === 'oauth'}>
         <FormStack>
@@ -96,14 +124,15 @@ class SignIn extends Component {
           </div>
         </FormStack>
       </When>
-      <When condition={isError}>
+      <When condition={!!isError}>
+        {/* flow-disable-next-line */}
         <Error alert={isError} />
       </When>
     </Choose>
   );
 
   // Render tips
-  renderTips = ({ isLoading }) => (
+  renderTips = ({ isLoading }): React.Element<typeof Tip> | void => (
     <If condition={!isLoading}>
       <Tip end>
         <TipHeader>
@@ -119,7 +148,7 @@ class SignIn extends Component {
   );
 
   // Render component
-  render() {
+  render(): Return {
     // Variables
     const { asynchronous, strategy } = this.props.state.ui;
     const { error: isError, loading: isLoading } = asynchronous.post;
@@ -145,7 +174,7 @@ class SignIn extends Component {
 }
 
 // Map state to props
-const mapStateToProps = state =>
+const mapStateToProps = (state: any): any =>
   generateState(STATE_MODELS.immutable.setIn(['data', 'session'], getSession(state)).setIn(['ui'], getUI(state)));
 
 // Connect component to application state

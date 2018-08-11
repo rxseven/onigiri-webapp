@@ -1,37 +1,39 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
-// Declare prop types and default props
-const propTypes = exact({
-  children: PropTypes.node.isRequired,
-  options: PropTypes.string,
-  type: PropTypes.string
-});
+// Static types
+type Props = {
+  children: React.Node,
+  options: string,
+  type: string
+};
 
+type Return = React.Element<'div'>;
+
+// Default props
 const defaultProps = {
+  options: '',
   type: 'danger'
 };
 
-// Comnponent
+// Component
 const Alert = ({
   children, flat, options, type
-}) => {
+}: Props): Return => {
   // Configuration
   const baseClass = 'alert';
 
   // View
   return (
-    <div className={cx(baseClass, `${baseClass}-${type}`, options)} role="alert">
+    <div className={cx(baseClass, `${baseClass}-${type}`, !!options && options)} role="alert">
       {children}
     </div>
   );
 };
 
-// Specify prop types and default values for props
-Alert.propTypes = propTypes;
+// Specify default values for props
 Alert.defaultProps = defaultProps;
 
 // Module exports

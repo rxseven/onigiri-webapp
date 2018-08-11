@@ -1,11 +1,15 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import Navbar from 'components/core/Navbar';
 
+// Static types
+type Return = React.Element<typeof Navbar>;
+
 // Component
-const Header = () => <Navbar />;
+const Header = (): Return => <Navbar />;
 
 // Module exports
 export default Header;

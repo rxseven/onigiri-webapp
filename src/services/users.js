@@ -1,11 +1,16 @@
+// @flow
 // Module dependencies
 import ajax from 'helpers/ajax';
+import type { OAuthToken, SignIn, SignUp } from 'types/common/session';
 
 // Constants
 import API from 'config/api';
 
+// Static types
+type Return = Promise<any>;
+
 // Sign in a user with Facebook
-export const oauthFacebook = accessToken =>
+export const oauthFacebook = (accessToken: OAuthToken): Return =>
   ajax({
     auth: false,
     data: { access_token: accessToken },
@@ -14,7 +19,7 @@ export const oauthFacebook = accessToken =>
   });
 
 // Sign in a user with Google
-export const oauthGoogle = accessToken =>
+export const oauthGoogle = (accessToken: OAuthToken): Return =>
   ajax({
     auth: false,
     data: { access_token: accessToken },
@@ -22,10 +27,10 @@ export const oauthGoogle = accessToken =>
     url: API.endpoints.users.oauth.google
   });
 
-// Sign-up, register new user account
+// Sign up, register new user account
 export const signUp = ({
   email, firstName, lastName, password
-}) =>
+}: SignUp): Return =>
   ajax({
     auth: false,
     data: {
@@ -39,7 +44,7 @@ export const signUp = ({
   });
 
 // Sign in a user with an email address and password
-export const signIn = ({ email, password }) =>
+export const signIn = ({ email, password }: SignIn): Return =>
   ajax({
     auth: false,
     data: { email, password },
@@ -48,19 +53,19 @@ export const signIn = ({ email, password }) =>
   });
 
 // Sign out the current user
-export const signOut = () => ajax({ url: API.endpoints.users.signout });
+export const signOut = (): Return => ajax({ url: API.endpoints.users.signout });
 
 // Get user info
-export const getUser = () => ajax({ url: API.endpoints.users.base });
+export const getUser = (): Return => ajax({ url: API.endpoints.users.base });
 
 // Get user profile
-export const getProfile = () => ajax({ url: API.endpoints.users.profile });
+export const getProfile = (): Return => ajax({ url: API.endpoints.users.profile });
 
 // Get credits
-export const getCredits = () => ajax({ url: API.endpoints.users.credits });
+export const getCredits = (): Return => ajax({ url: API.endpoints.users.credits });
 
 // Delete user account
-export const deleteUser = () =>
+export const deleteUser = (): Return =>
   ajax({
     method: 'delete',
     url: API.endpoints.users.base

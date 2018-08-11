@@ -1,8 +1,9 @@
+// @flow
 // Module dependencies
 import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 
-// Actions
+// Action and static types
 import {
   OAUTH_FACEBOOK_FAILURE,
   OAUTH_FACEBOOK_REQUEST,
@@ -26,21 +27,29 @@ import {
   USER_DELETE_SUCCESS,
   USER_GET_FAILURE,
   USER_GET_REQUEST,
-  USER_GET_SUCCESS
+  USER_GET_SUCCESS,
+  type Action,
+  type Session
 } from './types';
 
-// Initial state
-const initialState = fromJS({
+// Static types
+type State = any;
+
+// State shape
+const stateShape: Session = {
   authorization: false,
   loading: {
     signin: false,
     verify: false
   },
   user: null
-});
+};
+
+// Initial state
+const initialState: State = fromJS(stateShape);
 
 // Set user state
-const setUser = (state, payload) =>
+const setUser = <T: any>(state: T, payload: T): T =>
   state
     .set('authorization', true)
     .setIn(['loading', 'signin'], false)
@@ -48,13 +57,12 @@ const setUser = (state, payload) =>
     .set('user', payload);
 
 // Set loading state
-const setLoading = (state, node, status = true) => state.setIn(['loading', node], status);
+const setLoading = <T: any>(state: T, node: string, status?: boolean = true): T =>
+  state.setIn(['loading', node], status);
 
 // Reducer
-export default (state = initialState, action) => {
-  const { payload, type } = action;
-
-  switch (type) {
+export default (state: State = initialState, action: Action): State => {
+  switch (action.type) {
     // OAuth
     case OAUTH_FACEBOOK_REQUEST:
     case OAUTH_GOOGLE_REQUEST:
@@ -66,7 +74,7 @@ export default (state = initialState, action) => {
       return setLoading(state, 'signin', false);
     case OAUTH_FACEBOOK_SUCCESS:
     case OAUTH_GOOGLE_SUCCESS:
-      return setUser(state, payload);
+      return setUser(state, action.payload);
 
     // Sign-in
     case SIGNIN_REQUEST:
@@ -74,14 +82,14 @@ export default (state = initialState, action) => {
     case SIGNIN_FAILURE:
       return setLoading(state, 'signin', false);
     case SIGNIN_SUCCESS:
-      return setUser(state, payload);
+      return setUser(state, action.payload);
 
     // Sign-up
     case SIGNUP_REQUEST:
     case SIGNUP_FAILURE:
       return state;
     case SIGNUP_SUCCESS:
-      return setUser(state, payload);
+      return setUser(state, action.payload);
 
     // Sign-out
     case SIGNOUT_REQUEST:
@@ -103,7 +111,7 @@ export default (state = initialState, action) => {
     case USER_GET_FAILURE:
       return initialState;
     case USER_GET_SUCCESS:
-      return setUser(state, payload);
+      return setUser(state, action.payload);
 
     // Default
     default:

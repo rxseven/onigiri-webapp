@@ -1,25 +1,20 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Companion files
 import './styles.scss';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired
-});
+// Static types
+type Props = { children: React.Node };
+type Return = React.Element<'div'>;
 
 // Component
-const Overlay = ({ children }) => (
+const Overlay = ({ children }: Props): Return => (
   <div styleName="wrapper">
     <div styleName="content">{children}</div>
   </div>
 );
-
-// Specify prop types
-Overlay.propTypes = propTypes;
 
 // Module exports
 export default Overlay;

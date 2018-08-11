@@ -1,4 +1,6 @@
+// @flow
+
 // Window object helpers
 export default {
-  reload: () => window.location.reload()
+  reload: (): void => window.location.reload()
 };

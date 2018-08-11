@@ -1,18 +1,16 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
-// Declare prop types and default props
-const propTypes = exact({
-  children: PropTypes.node.isRequired
-});
+// Component types
+import ListGroupItem from '../ListGroupItem';
+
+// Static types
+type Props = { children: React.Element<typeof ListGroupItem> };
+type Return = React.Element<'div'>;
 
 // Component
-const ListGroup = ({ children }) => <div>{children}</div>;
-
-// Specify prop types
-ListGroup.propTypes = propTypes;
+const ListGroup = ({ children }: Props): Return => <div>{children}</div>;
 
 // Module exports
 export default ListGroup;

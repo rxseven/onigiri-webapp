@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, NavLink, withRouter } from 'react-router-dom';
@@ -19,6 +20,11 @@ import toJS from 'HOCs/state/toJS';
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
+// Types
+import type { Session } from 'data/session/types';
+import type { History, Location } from 'types/common/router';
+import type { Asynchronous } from 'types/common/state';
+
 // Action creators and selectors
 import { signOut } from 'data/session/actions';
 import { getSession } from 'data/session/reducers';
@@ -27,10 +33,36 @@ import { getAsync } from 'data/interfaces/session/reducers';
 // Companion files
 import './styles.scss';
 
+// Static types
+type Props = {
+  actions: {
+    auth: {
+      signOut: Function
+    },
+    menu: {
+      toggleMenu: Function
+    }
+  },
+  history: History,
+  location: Location,
+  state: {
+    data: {
+      session: Session
+    },
+    ui: {
+      asynchronous: {
+        signout: Asynchronous
+      }
+    }
+  }
+};
+
+type Return = React.Element<'nav'>;
+
 // Component
-class Navbar extends Component {
+class Navbar extends React.Component<Props> {
   // Sign-out handler
-  onSignout = (event) => {
+  onSignout = (event: SyntheticEvent<HTMLAnchorElement>): void => {
     // Prevent a browser from being refreshed
     event.preventDefault();
 
@@ -42,27 +74,29 @@ class Navbar extends Component {
   };
 
   // Dropdown handler
-  onDropdownClick = () => {
+  onDropdownClick = (): void => {
     this.refs.dropdown.hide();
   };
 
   // Toggle menu
-  onToggleMenu = () => {
+  onToggleMenu = (): void => {
     this.props.actions.menu.toggleMenu(true);
   };
 
   // Render user avatar
-  renderAvatar = () => {
+  renderAvatar = (): React.Element<'div'> | void => {
     // Variables
     const { authorization, user } = this.props.state.data.session;
+    const isAuth = !!(authorization && user);
 
     // View
     return (
-      authorization &&
-      user && (
+      // flow-disable-next-line
+      <If condition={isAuth}>
         <div className="nav-item" styleName="avatar">
           <Dropdown ref="dropdown">
             <DropdownTrigger>
+              {/* flow-disable-next-line */}
               <Avatar url={user.photo.url} />
             </DropdownTrigger>
             <DropdownContent>
@@ -90,12 +124,12 @@ class Navbar extends Component {
             </DropdownContent>
           </Dropdown>
         </div>
-      )
+      </If>
     );
   };
 
   // Render brand
-  renderBrand = () => (
+  renderBrand = (): React.Element<typeof Link> => (
     <Link className="navbar-brand" to={PATHS.root}>
       <div styleName="logo">
         <span>おにぎり</span>
@@ -104,7 +138,7 @@ class Navbar extends Component {
   );
 
   // Render nav links
-  renderLinks = () => {
+  renderLinks = (): React.Element<typeof NavLink> | void => {
     // Variables
     const { authorization } = this.props.state.data.session;
     const { pathname } = this.props.location;
@@ -112,8 +146,14 @@ class Navbar extends Component {
 
     // View
     return (
+      // flow-disable-next-line
       <If condition={!authorization && (pathname !== signin && pathname !== signup)}>
-        <NavLink className="navbar-item nav-link" styleName="link" to={signin}>
+        <NavLink
+          activeClassName="active"
+          className="navbar-item nav-link"
+          styleName="link"
+          to={signin}
+        >
           Sign in
         </NavLink>
       </If>
@@ -121,7 +161,7 @@ class Navbar extends Component {
   };
 
   // Render nav links
-  renderNav = () => {
+  renderNav = (): React.Element<'div'> => {
     // Variables
     const { authorization } = this.props.state.data.session;
 
@@ -146,7 +186,7 @@ class Navbar extends Component {
   };
 
   // Render a component
-  render() {
+  render(): Return {
     return (
       <nav className="navbar navbar-dark bg-dark fixed-top">
         <Container>
@@ -168,13 +208,13 @@ class Navbar extends Component {
 }
 
 // Map state to props
-const mapStateToProps = state =>
+const mapStateToProps = (state: any): any =>
   generateState(STATE_MODELS.immutable
     .setIn(['data', 'session'], getSession(state))
     .setIn(['ui', 'asynchronous'], getAsync(state)));
 
 // Map dispatch to props
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: any): any => ({
   actions: {
     auth: bindActionCreators({ signOut }, dispatch),
     menu: bindActionCreators({ toggleMenu }, dispatch)
