@@ -1,8 +1,6 @@
+// @flow
 // Module dependencies
-import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React, { Component } from 'react';
+import * as React from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
@@ -24,13 +22,19 @@ import HTML from 'constants/elements/html';
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
+// Types
+import type { Session } from 'data/session/types';
+import type { History, Location } from 'types/common/router';
+import type { Asynchronous } from 'types/common/state';
+
 // Action creators and selectors
 import { signOut } from 'data/session/actions';
 import { getSession } from 'data/session/reducers';
 import { getAsync } from 'data/interfaces/session/reducers';
 
 // Companion files
-import styles from './styles.scss';
+import MenuLink from './MenuLink';
+import './styles.scss';
 
 // Local constants
 const MENU_OPEN = 'menu-open';
@@ -38,37 +42,49 @@ const MENU_OPEN = 'menu-open';
 // Extended Menu component
 const ExMenu = reduxMenu(Menu);
 
-// Declare prop types and default props
-const propTypes = exact({
+// Static types
+type Props = {
+  actions: {
+    auth: {
+      signOut: Function
+    },
+    menu: {
+      toggleMenu: Function
+    }
+  },
+  history: History,
+  location: Location,
   navigation: {
-    children: PropTypes.node.isRequired,
-    exact: PropTypes.bool,
-    icon: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    to: PropTypes.string.isRequired
-  }
-});
-
-const defaultProps = {
-  navigation: {
-    exact: false
+    exact: boolean
+  },
+  state: {
+    data: {
+      interfaces: {
+        menu: {
+          isOpen: boolean
+        }
+      },
+      session: Session
+    },
+    ui: {
+      asynchronous: {
+        signout: Asynchronous
+      }
+    }
   }
 };
 
-// Link micro component
-const MenuLink = ({
-  children, exact: exactPath, icon, title, to
-}) => (
-  <NavLink activeClassName={cx('active', styles.active)} exact={exactPath} to={to}>
-    <span styleName="icon">
-      <Icon name={icon} title={title} />
-    </span>
-    {children}
-  </NavLink>
-);
+type Return = React.Element<typeof ExMenu>;
 
 // Component
-class UI extends Component {
+class UI extends React.Component<Props> {
+  // Default props
+  static defaultProps = {
+    navigation: {
+      exact: false
+    }
+  };
+
   // After updating occurs
   componentDidUpdate(prevProps) {
     // Close off-canvas menu
@@ -78,19 +94,21 @@ class UI extends Component {
 
     // Toggle overflow content
     if (this.props.state.data.interfaces.menu.isOpen) {
+      // flow-disable-next-line
       document.body.classList.add(MENU_OPEN);
     } else {
+      // flow-disable-next-line
       document.body.classList.remove(MENU_OPEN);
     }
   }
 
   // Toggle menu
-  onToggleMenu = () => {
+  onToggleMenu = (): void => {
     this.props.actions.menu.toggleMenu(false);
   };
 
   // Sign-out handler
-  onSignout = (event) => {
+  onSignout = (event: SyntheticEvent<HTMLButtonElement>): void => {
     // Prevent a browser from being refreshed
     event.preventDefault();
 
@@ -105,20 +123,24 @@ class UI extends Component {
   };
 
   // Render header
-  renderHeader = ({ isAuth, user }) =>
-    isAuth && (
+  renderHeader = ({ isAuth, user }): React.Element<typeof NavLink> | void => (
+    // flow-disable-next-line
+    <If condition={isAuth}>
       <NavLink activeClassName="active" styleName="header" to={PATHS.users.profile}>
         <div styleName="user">
           <div styleName="avatar">
+            {/* flow-disable-next-line */}
             <Avatar url={user.photo.url} />
           </div>
+          {/* flow-disable-next-line */}
           <Text>{`${user.name.firstName} ${user.name.lastName}`}</Text>
         </div>
       </NavLink>
-    );
+    </If>
+  );
 
   // Render navigation
-  renderNav = ({ isAuth }) => (
+  renderNav = ({ isAuth }): React.Element<'ul'> => (
     <ul styleName="navigation">
       <li>
         <MenuLink exact icon="home" title="Home" to={PATHS.root}>
@@ -167,7 +189,7 @@ class UI extends Component {
   );
 
   // Render profile
-  renderProfile = ({ asynchronous, isAuth, user }) => (
+  renderProfile = ({ asynchronous, isAuth, user }): React.Element<'ul'> => (
     <ul styleName="navigation">
       <Choose>
         <When condition={isAuth}>
@@ -204,10 +226,10 @@ class UI extends Component {
   );
 
   // Render component
-  render() {
+  render(): Return {
     // Variables
     const { data: { session: { authorization, user } }, ui: { asynchronous } } = this.props.state;
-    const isAuth = authorization && user;
+    const isAuth = !!(authorization && user);
 
     // Options
     const menuOptions = {
@@ -232,14 +254,14 @@ class UI extends Component {
 }
 
 // Map state to props
-const mapStateToProps = state =>
+const mapStateToProps = (state: any): any =>
   generateState(STATE_MODELS.immutable
     .setIn(['data', 'interfaces', 'menu'], state.get('burgerMenu'))
     .setIn(['data', 'session'], getSession(state))
     .setIn(['ui', 'asynchronous'], getAsync(state)));
 
 // Map dispatch to props
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: any): any => ({
   actions: {
     auth: bindActionCreators({ signOut }, dispatch),
     menu: bindActionCreators({ toggleMenu }, dispatch)
@@ -248,10 +270,6 @@ const mapDispatchToProps = dispatch => ({
 
 // Connect component to application state
 const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(UI)));
-
-// Specify prop types and default values for props
-MenuLink.propTypes = propTypes.navigation;
-MenuLink.defaultProps = defaultProps.navigation;
 
 // Module exports
 export default container;
