@@ -1,11 +1,15 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 
 // Companion files
 import UI from './UI';
 
+// Static types
+type Return = React.Element<typeof UI>;
+
 // Component
-const SurveyNew = () => <UI />;
+const SurveyNew = (): Return => <UI />;
 
 // Module exports
 export default SurveyNew;

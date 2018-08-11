@@ -1,45 +1,61 @@
+// @flow
 // Module dependencies
-import { map } from 'lodash';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
+import { isEmpty, map } from 'lodash';
+import * as React from 'react';
 
 // Helper functions
 import emailHelper from 'helpers/email';
-import { generateState } from 'helpers/state';
 
 // Components and HOCs
 import { Button, ButtonSet } from 'components/common/Buttons';
 import { FormSHL } from 'components/common/Forms';
 import Spinner from 'components/common/Spinner';
 import Error from 'components/composite/Error';
-import toJS from 'HOCs/state/toJS';
 
 // Constants
-import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
-// Action creators and selectors
-import * as surveyActions from '../../actions';
-import { getUI } from '../../reducers';
+// Types
+import type { History } from 'types/common/router';
+import type { Asynchronous } from 'types/common/state';
+import type { Form } from '../../types';
 
 // Companion files
 import FIELDS from '../../constants/fields';
 import './styles.scss';
 
-// Declare prop types and default props
-const propTypes = PROP_TYPES.wrapper.asynchronous({
-  post: PROP_TYPES.model.asynchronous
-});
+// Static types
+type Props = {
+  actions: {
+    surveys: {
+      createSurvey: Function,
+      resetUI: Function
+    }
+  },
+  history: History,
+  onCancel: Function,
+  state: {
+    data: {
+      form: Form
+    },
+    ui: {
+      asynchronous: {
+        post: Asynchronous
+      }
+    }
+  }
+};
 
-const defaultProps = STATE_MODELS.wrapper.asynchronous({
-  post: { ...STATE_MODELS.model.asynchronous }
-});
+type Return = React.Element<'div'>;
 
 // Component
-class SurveyReview extends Component {
+class UI extends React.Component<Props> {
+  // Default props
+  static defaultProps = STATE_MODELS.wrapper.asynchronous({
+    post: { ...STATE_MODELS.model.asynchronous }
+  });
+
   // Before a component is unmounted and destroyed...
   componentWillUnmount() {
     // Reset UI state
@@ -47,12 +63,12 @@ class SurveyReview extends Component {
   }
 
   // Reset UI state
-  onReset = () => {
+  onReset = (): void => {
     this.props.actions.surveys.resetUI();
   };
 
   // Submit handler
-  onSubmit = () => {
+  onSubmit = (): void => {
     // Variables
     const { actions, history, state: { data: { form } } } = this.props;
     const { recipients, title } = form;
@@ -73,29 +89,26 @@ class SurveyReview extends Component {
   };
 
   // Render fields
-  renderField = () =>
+  renderField = (form: Form): React.Node | void =>
     // Create Field array of values
     map(FIELDS, ({ label, name }, index) => {
       // Variables
-      const value = this.props.state.data.form[name];
+      const value = form[name];
 
       // Generate HTML elements if the value exists
-      if (value) {
-        return (
+      return (
+        <If condition={!!value}>
           <div className="form-group" key={index}>
             <label styleName="label">{label}</label>
             <div>{value}</div>
           </div>
-        );
-      }
-
-      // Otherwise
-      return null;
+        </If>
+      );
     });
 
   // Render info
-  renderInfo = () => (
-    <If condition={!this.props.state.data.form.from}>
+  renderInfo = (form: Form): React.Node | void => (
+    <If condition={isEmpty(form.from)}>
       <div styleName="info">
         You did’t provide sender email, the system defaults will be applied.
       </div>
@@ -103,20 +116,18 @@ class SurveyReview extends Component {
   );
 
   // Render a component
-  render() {
+  render(): Return {
     // Variables
-    const { onCancel, state: { ui: { asynchronous } } } = this.props;
+    const { onCancel, state: { data: { form }, ui: { asynchronous } } } = this.props;
     const { error, loading } = asynchronous.post;
 
     // View
     return (
       <div className="form-review">
         <FormSHL>Please review your entries</FormSHL>
-        {this.renderField()}
-        {this.renderInfo()}
-        <If condition={error}>
-          <Error alert={error} />
-        </If>
+        {this.renderField(form)}
+        {this.renderInfo(form)}
+        {!!error && <Error alert={error} />}
         <ButtonSet>
           <Button disabled={loading} handler={onCancel}>
             Edit
@@ -133,25 +144,5 @@ class SurveyReview extends Component {
   }
 }
 
-// Map state to props
-const mapStateToProps = state =>
-  generateState(STATE_MODELS.immutable
-    .setIn(['data', 'form'], state.getIn(['form', 'survey', 'values']))
-    .setIn(['ui'], getUI(state)));
-
-// Map dispatch to props
-const mapDispatchToProps = dispatch => ({
-  actions: {
-    surveys: bindActionCreators(surveyActions, dispatch)
-  }
-});
-
-// Specify prop types and default values for props
-SurveyReview.propTypes = propTypes;
-SurveyReview.defaultProps = defaultProps;
-
-// Connect component to application state
-const container = withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(SurveyReview)));
-
 // Module exports
-export default container;
+export default UI;
