@@ -48,6 +48,7 @@
     "jsx-control-statements/jsx-use-if-tag": "warn",
     "jsx-control-statements/jsx-when-require-condition": "warn",
     "jsx-control-statements/jsx-jcs-no-undef": "warn",
+    "react/default-props-match-prop-types": ["error", { "allowRequiredDefaults": true }],
     "react/jsx-filename-extension": "off",
     "react/jsx-no-undef": ["error", { "allowGlobals": true }],
     "react/no-string-refs": "off",
