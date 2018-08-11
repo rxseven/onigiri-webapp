@@ -11,7 +11,7 @@ type Props = {
 
 type Return = React.Element<'p'>;
 
-// Declare default props
+// Default props
 const defaultProps = {
   options: ''
 };

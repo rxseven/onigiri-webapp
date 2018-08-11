@@ -27,7 +27,7 @@ type Props = {
 
 type Return = React.Element<'div'>;
 
-// Declare default props
+// Default props
 const defaultProps = {
   alignment: '',
   background: '',
