@@ -9,6 +9,7 @@
 [include]
 
 [libs]
+./node_modules/babel-plugin-jsx-control-statements/jsx-control-statements.latest.flow.js
 
 [lints]
 
