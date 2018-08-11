@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
@@ -16,7 +17,20 @@ import PATHS from 'constants/router/paths';
 // Action creators and selectors
 import { getAuth } from 'data/session/reducers';
 
-// Declare default props
+// Static types
+type Props = {
+  component: React.ComponentType<any>,
+  exact: boolean,
+  state: {
+    data: {
+      authorization: boolean
+    }
+  }
+};
+
+type Return = React.Element<typeof Route>;
+
+// Default props
 const defaultProps = {
   exact: false
 };
@@ -27,7 +41,8 @@ const PrivateRoute = ({
   state: { data: { authorization } },
   exact,
   ...rest
-}) => (
+}: Props): Return => (
+  // flow-disable-next-line
   <Route
     {...rest}
     exact={exact}
