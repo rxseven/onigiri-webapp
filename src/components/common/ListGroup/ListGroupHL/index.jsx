@@ -1,21 +1,16 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Companion files
 import './styles.scss';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired
-});
+// Static types
+type Props = { children: string };
+type Return = React.Element<'h5'>;
 
 // Component
-const ListGroupHL = ({ children }) => <h5 styleName="headline">{children}</h5>;
-
-// Specify prop types
-ListGroupHL.propTypes = propTypes;
+const ListGroupHL = ({ children }: Props): Return => <h5 styleName="headline">{children}</h5>;
 
 // Module exports
 export default ListGroupHL;
