@@ -1,6 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import * as React from 'react';
 
 // Components and HOCs
 import ExLink from 'components/common/ExLink';
@@ -10,17 +10,14 @@ import { Column, Container, Row } from 'components/common/Grid';
 import PATHS from 'constants/router/paths';
 
 // Companion files
-import styles from './styles.scss';
+import FooterLink from './FooterLink';
+import './styles.scss';
 
-// Link
-const FooterLink = ({ children, to }) => (
-  <NavLink activeClassName={styles.active} to={to}>
-    {children}
-  </NavLink>
-);
+// Static types
+type Return = React.Element<'footer'>;
 
 // Footer
-const Footer = () => (
+const Footer = (): Return => (
   <footer styleName="wrapper">
     <Container>
       <Row>
