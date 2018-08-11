@@ -1,3 +1,4 @@
+// @flow
 // Module dependencies
 import { fromJS, Seq } from 'immutable';
 
@@ -6,7 +7,7 @@ import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Set asynchronous status
-export const setAsync = (selector, state, type = undefined, payload = null) => {
+export const setAsync = (selector: any, state: any, type?: string, payload?: {}): any => {
   switch (type) {
     case LOADING:
       return state.setIn([...selector, LOADING], true).setIn([...selector, 'error'], false);
@@ -19,7 +20,7 @@ export const setAsync = (selector, state, type = undefined, payload = null) => {
 
 // Convert plain JavaScript objects into Immutable.OrderedMap
 // https://github.com/facebook/immutable-js/wiki/Converting-from-JS-objects
-export const fromJSOrdered = (js) => {
+export const fromJSOrdered = (js: any): any => {
   if (typeof js !== 'object' || js === null) {
     return js;
   } else if (Array.isArray(js)) {
@@ -27,15 +28,17 @@ export const fromJSOrdered = (js) => {
       .map(fromJSOrdered)
       .toList();
   }
+
   return Seq(js)
     .map(fromJSOrdered)
     .toOrderedMap();
 };
 
 // Generate state for a container component
-export const generateState = handler => ({
+export const generateState = <T: any>(handler: T): { state: T } => ({
   state: handler
 });
 
 // Extract error message from a network response
-export const getError = error => error.response.data.error;
+export const getError = <T: { message: string }>(error: { response: { data: { error: T } } }): T =>
+  error.response.data.error;

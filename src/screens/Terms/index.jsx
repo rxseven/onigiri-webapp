@@ -1,13 +1,17 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Page';
 import Layout from 'components/common/Layout';
 import { HL } from 'components/common/Typography';
 
+// Static types
+type Return = React.Element<typeof Document>;
+
 // Component
-const Terms = () => (
+const Terms = (): Return => (
   <Document>
     <Head>
       <Title>Terms of Service</Title>

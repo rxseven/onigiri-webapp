@@ -1,30 +1,33 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Companion files
 import './styles.scss';
 
-// Declare prop types and default props
-const propTypes = exact({
-  disabled: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  options: PropTypes.string,
-  text: PropTypes.bool,
-  title: PropTypes.string.isRequired
-});
+// Static types
+type Props = {
+  disabled: boolean,
+  name: string,
+  options: string,
+  text: boolean,
+  title: string
+};
 
+type Return = React.Element<'span'>;
+
+// Default props
 const defaultProps = {
   disabled: false,
+  options: '',
   text: false
 };
 
 // Component
 const Icon = ({
   disabled, name, options, text, title
-}) => {
+}: Props): Return => {
   // Configuration
   const baseClass = 'oi';
 
@@ -32,15 +35,20 @@ const Icon = ({
   return (
     <span
       aria-hidden="true"
-      className={cx(baseClass, `${baseClass}-${name}`, 'icon', options, text && 'icon-inline')}
+      className={cx(
+        baseClass,
+        `${baseClass}-${name}`,
+        'icon',
+        !!options && options,
+        text && 'icon-inline'
+      )}
       styleName={cx(disabled && 'disabled', text && 'inline')}
       title={title}
     />
   );
 };
 
-// Specify prop types and default values for props
-Icon.propTypes = propTypes;
+// Specify default values for props
 Icon.defaultProps = defaultProps;
 
 // Module exports

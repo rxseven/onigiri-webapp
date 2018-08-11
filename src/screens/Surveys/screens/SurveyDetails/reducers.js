@@ -1,3 +1,4 @@
+// @flow
 // Module dependencies
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
@@ -10,8 +11,13 @@ import { setAsync } from 'helpers/state';
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
-// Action types
-import { SURVEY_DELETE_FAILURE, SURVEY_DELETE_REQUEST, SURVEY_DELETE_SUCCESS } from '../../types';
+// Action and static types
+import {
+  SURVEY_DELETE_FAILURE,
+  SURVEY_DELETE_REQUEST,
+  SURVEY_DELETE_SUCCESS,
+  type Action as ActionSurveys
+} from '../../types';
 import {
   RECIPIENTS_GET_FAILURE,
   RECIPIENTS_GET_REQUEST,
@@ -21,8 +27,10 @@ import {
   SURVEY_GET_SUCCESS,
   SURVEY_UPDATE_FAILURE,
   SURVEY_UPDATE_REQUEST,
-  SURVEY_UPDATE_SUCCESS
+  SURVEY_UPDATE_SUCCESS,
+  type Action as ActionData
 } from './data/survey/types';
+import type { Async as Asynchronous } from './types';
 
 // Reducers
 import data from './data/reducers';
@@ -30,8 +38,14 @@ import data from './data/reducers';
 // Constants
 const asyncModel = { ...STATE_MODELS.model.asynchronous };
 
-// Initial state
-const initialState = fromJS({
+// Static types
+type Action = ActionSurveys | ActionData;
+type Key = Object;
+type Model = Asynchronous;
+type State = any;
+
+// State shape
+const stateShape: Model = {
   delete: {
     survey: asyncModel
   },
@@ -42,10 +56,10 @@ const initialState = fromJS({
   patch: {
     survey: asyncModel
   }
-});
+};
 
-// Immutable map
-const map = {
+// Immutable key path
+const statePath: Key = {
   delete: {
     survey: ['delete', 'survey']
   },
@@ -58,42 +72,43 @@ const map = {
   }
 };
 
-// Asynchronous reducer
-const asynchronous = (state = initialState, action) => {
-  const { payload, type } = action;
+// Initial state
+const initialState: State = fromJS(stateShape);
 
-  switch (type) {
+// Asynchronous reducer
+const asynchronous = (state: State = initialState, action: Action): State => {
+  switch (action.type) {
     // Get recipients
     case RECIPIENTS_GET_REQUEST:
-      return setAsync(map.get.recipients, state, LOADING);
+      return setAsync(statePath.get.recipients, state, LOADING);
     case RECIPIENTS_GET_FAILURE:
-      return setAsync(map.get.recipients, state, ERROR, payload);
+      return setAsync(statePath.get.recipients, state, ERROR, action.payload);
     case RECIPIENTS_GET_SUCCESS:
-      return setAsync(map.get.recipients, state);
+      return setAsync(statePath.get.recipients, state);
 
     // Delete survey
     case SURVEY_DELETE_REQUEST:
-      return setAsync(map.delete.survey, state, LOADING);
+      return setAsync(statePath.delete.survey, state, LOADING);
     case SURVEY_DELETE_FAILURE:
-      return setAsync(map.delete.survey, state, ERROR, payload);
+      return setAsync(statePath.delete.survey, state, ERROR, action.payload);
     case SURVEY_DELETE_SUCCESS:
-      return setAsync(map.delete.survey, state);
+      return setAsync(statePath.delete.survey, state);
 
     // Get survey
     case SURVEY_GET_REQUEST:
-      return setAsync(map.get.survey, state, LOADING);
+      return setAsync(statePath.get.survey, state, LOADING);
     case SURVEY_GET_FAILURE:
-      return setAsync(map.get.survey, state, ERROR, payload);
+      return setAsync(statePath.get.survey, state, ERROR, action.payload);
     case SURVEY_GET_SUCCESS:
-      return setAsync(map.get.survey, state);
+      return setAsync(statePath.get.survey, state);
 
     // Update survey
     case SURVEY_UPDATE_REQUEST:
-      return setAsync(map.patch.survey, state, LOADING);
+      return setAsync(statePath.patch.survey, state, LOADING);
     case SURVEY_UPDATE_FAILURE:
-      return setAsync(map.patch.survey, state, ERROR, payload);
+      return setAsync(statePath.patch.survey, state, ERROR, action.payload);
     case SURVEY_UPDATE_SUCCESS:
-      return setAsync(map.patch.survey, state);
+      return setAsync(statePath.patch.survey, state);
 
     // Default
     default:

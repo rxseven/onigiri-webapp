@@ -1,6 +1,7 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Button } from 'components/common/Buttons';
@@ -9,16 +10,32 @@ import { Button } from 'components/common/Buttons';
 import PATHS from 'constants/router/paths';
 import SCREENS from 'constants/sizing/screens';
 
+// Types
+import type { Mode, Screen } from '../../types';
+
 // Companion files
 import Menu from '../Menu';
 import styles from './styles.scss';
+
+// Static types
+type Props = {
+  actions: Object,
+  state: {
+    isSticky: boolean,
+    css: {},
+    mode: Mode,
+    screenWidth: Screen
+  }
+};
+
+type Return = React.Element<'div'>;
 
 // Component
 const Sidebar = ({
   actions, state: {
     isSticky, css, mode, screenWidth
   }
-}) => (
+}: Props): Return => (
   <div style={css} styleName={cx('sidebar', isSticky && 'isSticky')}>
     <div styleName="wrapper">
       <div styleName="list">

@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Button } from 'components/common/Buttons';
@@ -10,8 +11,11 @@ import PATHS from 'constants/router/paths';
 // Companion files
 import './styles.scss';
 
+// Static types
+type Return = React.Element<'div'>;
+
 // Component
-const Headset = () => (
+const Headset = (): Return => (
   <div styleName="headset">
     <h2 styleName="headline">Your surveys</h2>
     <Button

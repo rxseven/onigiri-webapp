@@ -1,6 +1,7 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withLastLocation } from 'react-router-last-location';
 import withSizes from 'react-sizes';
 import { StickyContainer } from 'react-sticky';
@@ -14,6 +15,10 @@ import Layout from 'components/common/Layout';
 import CSS from 'constants/string/css';
 import PATHS from 'constants/router/paths';
 
+// Types
+import type { QueryMode } from './data/surveys/types';
+import type { Mode, Pagination, QueryList, Screen, View } from './types';
+
 // Companion files
 import Headset from './components/Headset';
 import List from './components/List';
@@ -21,14 +26,50 @@ import ScrollTop from './components/ScrollTop';
 import Stickybar from './components/Stickybar';
 import TYPES from './constants/types';
 
+// Static types
+type Props = {
+  actions: {
+    surveys: {
+      cancelSurveys: Function,
+      getSurveys: Function,
+      removeSelectedSurvey: Function,
+      resetData: Function,
+      resetView: Function,
+      savePagination: Function,
+      selectMode: Function
+    }
+  },
+  screenWidth: Screen,
+  state: {
+    data: {
+      surveys: {
+        data: Object,
+        meta: Object
+      }
+    },
+    ui: {
+      asynchronous: Object
+    },
+    view: View
+  }
+};
+
+type Return = React.Element<typeof Document>;
+
+type State = {
+  mode: Mode,
+  query: QueryList,
+  revisit: boolean
+};
+
 // Component
-class UI extends Component {
+class UI extends React.Component<Props, State> {
   // Constructor
   constructor(props) {
     super(props);
 
     // Declare default state values
-    let defaultState = { mode: null, query: null, revisit: false };
+    let defaultState = { mode: '', query: null, revisit: false };
 
     // If recent selected survey and last visited location exist
     if (props.state.view.selected && props.lastLocation) {
@@ -60,7 +101,7 @@ class UI extends Component {
   }
 
   // Initialize default configuration
-  onInitialize = () => {
+  onInitialize = (): void => {
     // If the last location was not details screen, set default
     if (!this.state.revisit && !this.state.mode) {
       // Reset list view
@@ -75,7 +116,7 @@ class UI extends Component {
   };
 
   // Mode selection
-  onMode = (values) => {
+  onMode = (values: QueryMode): void => {
     // If the current selected mode is not identical to the previous one
     if (values.mode !== this.state.mode) {
       // Update list view mode
@@ -90,22 +131,22 @@ class UI extends Component {
   };
 
   // Save the current pagination query
-  onPaginate = (values) => {
+  onPaginate = (values: Pagination): void => {
     this.props.actions.surveys.savePagination(values);
   };
 
   // Reset surveys data
-  onResetData = () => {
+  onResetData = (): void => {
     this.props.actions.surveys.resetData();
   };
 
   // Reset list view
-  onResetView = () => {
+  onResetView = (): void => {
     this.props.actions.surveys.resetView();
   };
 
   // Reset the recent selected survey
-  onResetSelected = () => {
+  onResetSelected = (): void => {
     // If the selected item exists, reset
     if (this.props.state.view.selected) {
       this.props.actions.surveys.removeSelectedSurvey();
@@ -113,7 +154,7 @@ class UI extends Component {
   };
 
   // Render component
-  render() {
+  render(): Return {
     // Variables
     const {
       actions,

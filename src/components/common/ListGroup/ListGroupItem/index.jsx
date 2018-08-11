@@ -1,31 +1,36 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired,
-  link: PropTypes.object.isRequired
-});
+// Static types
+type Props = {
+  children: React.Node,
+  link: {
+    pathname: string,
+    state: {
+      fromList: boolean,
+      mode: string
+    }
+  }
+};
+
+type Return = React.Element<typeof Link>;
 
 // Component
-const ListGroupItem = ({ children, link }) => {
+const ListGroupItem = ({ children, link }: Props): Return => {
   // Configuration
   const baseClass = 'list-group-item';
+  const to: any = link;
 
   // View
   return (
-    <Link className={cx(baseClass, `${baseClass}-action`)} to={link}>
+    <Link className={cx(baseClass, `${baseClass}-action`)} to={to}>
       {children}
     </Link>
   );
 };
-
-// Specify prop types
-ListGroupItem.propTypes = propTypes;
 
 // Module exports
 export default ListGroupItem;

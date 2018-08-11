@@ -1,3 +1,4 @@
+// @flow
 export default [
   {
     label: 'Survey title',

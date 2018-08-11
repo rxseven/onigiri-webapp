@@ -1,6 +1,8 @@
+// @flow
+
 // Token helper
 export default {
-  get: () => localStorage.getItem('token'),
-  remove: () => localStorage.removeItem('token'),
-  save: token => localStorage.setItem('token', token)
+  get: (): ?string => localStorage.getItem('token'),
+  remove: (): void => localStorage.removeItem('token'),
+  save: (value: string): void => localStorage.setItem('token', value)
 };

@@ -1,6 +1,7 @@
+// @flow
 // Module dependencies
 import { map, size } from 'lodash';
-import React, { Fragment } from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Button, ButtonSet } from 'components/common/Buttons';
@@ -10,25 +11,42 @@ import Spinner from 'components/common/Spinner';
 import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 import CSS from 'constants/string/css';
+
+// Types
+import type { Asynchronous } from 'types/common/state';
+import type { Recipient } from '../../data/survey/types';
 
 // Companion files
 import './styles.scss';
 
-// Declare prop types and default props
-const propTypes = PROP_TYPES.pattern.asynchronous;
+// Static types
+type Props = {
+  actions: {
+    getRecipients: Function
+  },
+  state: {
+    data: ?Recipient,
+    ui: {
+      asynchronous: Asynchronous
+    }
+  }
+};
+
+type Return = React.Node;
+
+// Default props
 const defaultProps = STATE_MODELS.pattern.asynchronous;
 
 // Component
-const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
+const Recipients = ({ actions, state: { data, ui: { asynchronous } } }: Props): Return => {
   // Variables
   const { error, loading } = asynchronous;
 
   // View
   return (
-    <Fragment>
+    <React.Fragment>
       <hr />
       <CardSubtitle options={CSS.margin.MB04}>Recipients</CardSubtitle>
       <If condition={!data}>
@@ -46,14 +64,12 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
           </If>
         </ButtonSet>
       </If>
-      <If condition={error}>
-        <Error alert={error} options={CSS.margin.MB00} />
-      </If>
-      <If condition={data}>
+      {!!error && <Error alert={error} />}
+      <If condition={!!data}>
         <List>
           <ListItem>
             <ListLabel>Total</ListLabel>
-            <ListContent>{size(data)}</ListContent>
+            <ListContent>{data && size(data)}</ListContent>
           </ListItem>
           <ListItem end>
             <ListLabel>Recipient list</ListLabel>
@@ -72,12 +88,11 @@ const Recipients = ({ actions, state: { data, ui: { asynchronous } } }) => {
           </ListItem>
         </List>
       </If>
-    </Fragment>
+    </React.Fragment>
   );
 };
 
-// Specify prop types and default values for props
-Recipients.propTypes = propTypes;
+// Specify default values for props
 Recipients.defaultProps = defaultProps;
 
 // Module exports

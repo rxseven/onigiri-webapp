@@ -1,21 +1,23 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Constants
 import CSS from 'constants/string/css';
 
-// Declare prop types and default props
-const propTypes = exact({
-  alignItem: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  justifyContent: PropTypes.string,
-  label: PropTypes.string.isRequired,
-  marginBottom: PropTypes.string
-});
+// Static types
+type Props = {
+  alignItem: string,
+  children: React.Node,
+  justifyContent: string,
+  label: string,
+  marginBottom: string
+};
 
+type Return = React.Element<'div'>;
+
+// Default props
 const defaultProps = {
   alignItem: 'center',
   justifyContent: 'between',
@@ -24,8 +26,12 @@ const defaultProps = {
 
 // Component
 const ButtonToolbar = ({
-  alignItem, children, justifyContent, label, marginBottom
-}) => (
+  alignItem,
+  children,
+  justifyContent,
+  label,
+  marginBottom
+}: Props): Return => (
   <div
     aria-label={label}
     className={cx(
@@ -40,8 +46,7 @@ const ButtonToolbar = ({
   </div>
 );
 
-// Specify prop types and default values for props
-ButtonToolbar.propTypes = propTypes;
+// Specify default values for props
 ButtonToolbar.defaultProps = defaultProps;
 
 // Module exports

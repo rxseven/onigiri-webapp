@@ -1,5 +1,5 @@
-// flow-typed signature: 1e77c62a23c66bfc730d2df8586dcf50
-// flow-typed version: 18ad538dcd/ramda_v0.x.x/flow_>=v0.62.x
+// flow-typed signature: 6fd4e29e6b460431005b1a6d591b9d6e
+// flow-typed version: 199a0f315c/ramda_v0.x.x/flow_>=v0.62.x
 
 /* eslint-disable no-unused-vars, no-redeclare */
 
@@ -10,6 +10,8 @@ type Transformer<A, B> = {
 };
 
 declare type $npm$ramda$Placeholder = { "@@functional/placeholder": true };
+
+declare opaque type $npm$ramda$Reduced<T>;
 
 declare module ramda {
   declare type UnaryFn<A, R> = (a: A) => R;
@@ -410,13 +412,25 @@ declare module ramda {
     ) => UnaryFn<A, C>) &
     (<A, B>(ab: UnaryFn<A, B>) => UnaryFn<A, B>);
 
-  declare type Filter = (<K, V, T: Array<V> | { [key: K]: V }>(
-    fn: UnaryPredicateFn<V>,
-    xs: T
-  ) => T) &
-    (<K, V, T: Array<V> | { [key: K]: V }>(
-      fn: UnaryPredicateFn<V>
-    ) => (xs: T) => T);
+  // This kind of filter allows us to do type refinement on the result, but we
+  // still need Filter so that non-refining predicates still pass a type check.
+  declare type RefineFilter =
+    & (<K, V, P: $Pred<1>, T: Array<V> | { [key: K]: V }>(
+      fn: P,
+      xs: T
+    ) => Array<$Refine<V, P, 1>>)
+    & (<K, V, P: $Pred<1>, T: Array<V> | { [key: K]: V }>(
+      fn: P
+    ) => (xs: T) => Array<$Refine<V, P, 1>>)
+
+  declare type Filter =
+    & (<K, V, T: Array<V> | { [key: K]: V }>(
+      fn: UnaryPredicateFn<V>,
+      xs: T
+    ) => T)
+    & (<K, V, T: Array<V> | { [key: K]: V }>(
+      fn: UnaryPredicateFn<V>,
+    ) => (xs: T) => T)
 
   declare class Monad<T> {
     chain: Function;
@@ -474,7 +488,15 @@ declare module ramda {
   declare var sum: UnaryFn<Array<number>, number>;
 
   // Filter
-  declare var filter: Filter;
+  // To refine with filter, be sure to import the RefineFilter type, and cast
+  // filter to a RefineFilter.
+  // ex:
+  // import { type RefineFilter, filter } from 'ramda'
+  // const notNull = (x): bool %checks => x != null
+  // const ns: Array<number> = (filter: RefineFilter)(notNull, [1, 2, null])
+  declare var filter: RefineFilter & Filter;
+  // reject doesn't get RefineFilter since it performs the opposite work of
+  // filter, and we don't have a kind of $NotPred type.
   declare var reject: Filter;
 
   // *String
@@ -795,6 +817,8 @@ declare module ramda {
 
   declare var range: CurriedFunction2<number, number, Array<number>>;
 
+  declare function reduced<T>(x: T | $npm$ramda$Reduced<T>): $npm$ramda$Reduced<T>;
+
   declare function remove<T>(
     from: number,
   ): ((to: number) => (src: Array<T>) => Array<T>) &
@@ -924,20 +948,20 @@ declare module ramda {
 
   declare function init<T, V: Array<T> | string>(xs: V): V;
 
-  declare function length<T>(xs: Array<T>): number;
+  declare function length<T>(xs: Array<T> | string | {length: number}): number;
 
   declare function reverse<T, V: Array<T> | string>(xs: V): V;
 
   declare type Reduce = (<A, B>(
-    fn: (acc: A, elm: B) => A
+    fn: (acc: A, elm: B) => $npm$ramda$Reduced<A> | A
   ) => ((init: A) => (xs: Array<B> | $ReadOnlyArray<B>) => A) &
     ((init: A, xs: Array<B> | $ReadOnlyArray<B>) => A)) &
     (<A, B>(
-      fn: (acc: A, elm: B) => A,
+      fn: (acc: A, elm: B) => $npm$ramda$Reduced<A> | A,
       init: A
     ) => (xs: Array<B> | $ReadOnlyArray<B>) => A) &
     (<A, B>(
-      fn: (acc: A, elm: B) => A,
+      fn: (acc: A, elm: B) => $npm$ramda$Reduced<A> | A,
       init: A,
       xs: Array<B> | $ReadOnlyArray<B>
     ) => A);

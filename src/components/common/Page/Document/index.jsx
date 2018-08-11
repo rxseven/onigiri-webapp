@@ -1,17 +1,18 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
+import * as React from 'react';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired
-});
+// Component types
+import Body from '../Body';
+import Head from '../Head';
+
+// Static types
+type Children = React.Element<typeof Body> & React.Element<typeof Head>;
+type Props = { children: Children };
+type Return = Children;
 
 // Component
-export const Document = ({ children }) => children;
-
-// Specify prop types
-Document.propTypes = propTypes;
+export const Document = ({ children }: Props): Return => children;
 
 // Module exports
 export default Document;

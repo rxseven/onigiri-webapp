@@ -1,13 +1,35 @@
+// @flow
 // Module dependencies
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 
 // Constants
 import PATHS from 'constants/router/paths';
 
+// Types
+import type { History } from 'types/common/router';
+
+// Static types
+type Props = {
+  actions: {
+    auth: {
+      oauthFailure: Function,
+      oauthGoogle: Function,
+      oauthRequest: Function
+    }
+  },
+  history: History
+};
+
+type Return = React.Element<typeof GoogleLogin>;
+
+type State = {
+  isLoading: boolean
+};
+
 // Component
-class UI extends Component {
+class UI extends React.Component<Props, State> {
   // After a component is instantiated as well as when it receives new props...
   static getDerivedStateFromProps(nextProps, prevState) {
     // Set loading status
@@ -15,18 +37,16 @@ class UI extends Component {
   }
 
   // Initial state
-  state = {
-    isLoading: false
-  };
+  state = { isLoading: false };
 
   // Failure handler
-  onFailure = () => {
+  onFailure = (): void => {
     // Reset session status
     this.props.actions.auth.oauthFailure();
   };
 
   // Success handler
-  onSussess = (response) => {
+  onSuccess = (response: any): void => {
     // Submit the access token to the API
     this.props.actions.auth.oauthGoogle(response.accessToken, (status) => {
       // Redirect to Welcome screen after user account has been registered
@@ -47,7 +67,7 @@ class UI extends Component {
   };
 
   // Request handler
-  onRequest = () => {
+  onRequest = (): void => {
     // Set loading status
     this.setState(() => ({ isLoading: true }));
 
@@ -56,7 +76,7 @@ class UI extends Component {
   };
 
   // Render component
-  render() {
+  render(): Return {
     return (
       <GoogleLogin
         buttonText="Login"
@@ -65,7 +85,7 @@ class UI extends Component {
         disabled={this.state.isLoading}
         onFailure={this.onFailure}
         onRequest={this.onRequest}
-        onSuccess={this.onSussess}
+        onSuccess={this.onSuccess}
       >
         <span>Login with Google</span>
       </GoogleLogin>

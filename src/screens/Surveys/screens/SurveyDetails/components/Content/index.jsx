@@ -1,6 +1,8 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import React, { Fragment } from 'react';
+import { isEmpty } from 'lodash';
+import * as React from 'react';
 
 // Helper functions
 import timestampHelper from 'helpers/timestamp';
@@ -16,24 +18,43 @@ import Text from 'components/common/Text';
 // Constants
 import CSS from 'constants/string/css';
 
+// Types
+import type { Survey } from '../../data/survey/types';
+import type { Async as Asynchronous } from '../../types';
+
 // Companion files
 import Chart from '../Chart';
 import Recipients from '../Recipients';
 
+// Static types
+type Props = {
+  actions: Object,
+  state: {
+    data: Survey,
+    ui: {
+      asynchronous: Asynchronous
+    }
+  }
+};
+
+type Return = React.Node;
+
 // Component
-const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
+const Content = ({ actions, state: { data, ui: { asynchronous } } }: Props): Return => {
   // Variables
-  const { archived, completed } = data;
+  const {
+    archived, completed, no, yes
+  } = data;
   const isActive = !archived && !completed;
   const isClosed = archived && completed;
 
   // View
   return (
-    <Fragment>
+    <React.Fragment>
       <Card background={data.completed ? 'light' : 'default'} end>
         <CardHeader>{data.title}</CardHeader>
         <CardBody>
-          <Chart data={data} />
+          <Chart data={{ no, yes }} />
           <CardSubtitle options={CSS.margin.MB04}>Statistics</CardSubtitle>
           <List>
             <ListItem inline>
@@ -46,7 +67,7 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
             </ListItem>
           </List>
 
-          <If condition={data.lastResponded}>
+          <If condition={!isEmpty(data.lastResponded)}>
             <hr />
             <CardSubtitle options={CSS.margin.MB04}>Response</CardSubtitle>
             <List>
@@ -57,7 +78,8 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
               <ListItem>
                 <ListLabel>Recent responded</ListLabel>
                 <ListContent>
-                  {timestampHelper.date(data.lastResponded)},{' '}
+                  {/* flow-disable-next-line */}
+                  {timestampHelper.date(data.lastResponded)}, {/* flow-disable-next-line */}
                   {timestampHelper.time(data.lastResponded)}
                 </ListContent>
               </ListItem>
@@ -72,14 +94,12 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
               <ListLabel>Sender</ListLabel>
               <ListContent>{data.sender}</ListContent>
             </ListItem>
-            {data.from && (
-              <ListItem>
-                <ListLabel>From</ListLabel>
-                <ListContent>
-                  <Text>{data.from}</Text>
-                </ListContent>
-              </ListItem>
-            )}
+            <ListItem>
+              <ListLabel>From</ListLabel>
+              <ListContent>
+                <Text>{data.from}</Text>
+              </ListContent>
+            </ListItem>
             <ListItem>
               <ListLabel>Subject line</ListLabel>
               <ListContent>{data.subject}</ListContent>
@@ -88,16 +108,17 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
               <ListLabel>Body</ListLabel>
               <ListContent>{data.body}</ListContent>
             </ListItem>
-            {data.landing && (
+            <If condition={!isEmpty(data.landing)}>
               <ListItem>
                 <ListLabel>Landing page</ListLabel>
                 <ListContent>
+                  {/* flow-disable-next-line */}
                   <ExLink icon to={data.landing}>
                     {data.landing}
                   </ExLink>
                 </ListContent>
               </ListItem>
-            )}
+            </If>
           </List>
 
           <hr />
@@ -133,13 +154,13 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }) => {
         </CardBody>
       </Card>
 
-      <If condition={data.locked}>
+      <If condition={!isEmpty(data.locked)}>
         <Alert options={cx(CSS.margin.MT03, CSS.margin.MB00, 'text-small')} type="warning">
           <Icon name="lock-locked" title="Locked" /> This sample survey is locked from being
           deleted.
         </Alert>
       </If>
-    </Fragment>
+    </React.Fragment>
   );
 };
 

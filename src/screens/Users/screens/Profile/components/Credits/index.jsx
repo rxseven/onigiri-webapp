@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React, { Fragment } from 'react';
+import * as React from 'react';
 
 // Helper functions
 import timestampHelper from 'helpers/timestamp';
@@ -10,28 +11,45 @@ import Icon from 'components/common/Icon';
 import Text from 'components/common/Text';
 import { Tip, TipHeader } from 'components/common/Tip';
 
+// Types
+import type { Credits as CreditsType } from 'data/credits/types';
+import type { Callback } from 'types/common/utilities';
+
 // Companion files
 import Checkout from '../Checkout';
 
+// Static types
+type Props = {
+  callback: Callback,
+  state: {
+    data: {
+      credits: CreditsType
+    }
+  }
+};
+
+type Return = React.Node;
+
 // Component
-const Credits = ({ callback, state }) => {
+const Credits = ({ callback, state }: Props): Return => {
   // Variables
   const { balance, lastCheckout } = state.data.credits;
 
   // View
   return (
-    <Fragment>
+    <React.Fragment>
       <Card end>
         <CardBody>
           <CardTitle>You have {balance && <span>{balance}</span>} survey credits</CardTitle>
           <hr />
           <Checkout callback={callback} state={{ ...state }} />
         </CardBody>
-        <If condition={lastCheckout}>
+        <If condition={!!lastCheckout}>
           <CardFooter>
             <Text mute small>
-              Last checkout on {timestampHelper.date(lastCheckout)},{' '}
-              {timestampHelper.time(lastCheckout)}
+              {/* flow-disable-next-line */}
+              Last checkout on {timestampHelper.date(lastCheckout)}, {/* flow-disable-next-line */}
+              <span>{timestampHelper.time(lastCheckout)}</span>
             </Text>
           </CardFooter>
         </If>
@@ -67,7 +85,7 @@ const Credits = ({ callback, state }) => {
           money (in case you use a real one).
         </p>
       </Tip>
-    </Fragment>
+    </React.Fragment>
   );
 };
 

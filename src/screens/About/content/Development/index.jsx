@@ -1,6 +1,7 @@
+// @flow
 // Dependencies
 import cx from 'classnames';
-import React, { Fragment } from 'react';
+import * as React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 // Components and HOCs
@@ -19,9 +20,12 @@ import Text from 'components/common/Text';
 // Constants
 import CSS from 'constants/string/css';
 
+// Static types
+type Return = React.Node;
+
 // Component
-const Development = () => (
-  <Fragment>
+const Development = (): Return => (
+  <React.Fragment>
     <div>
       <p>
         Below is the list of my development workflow and tools I use on a daily basis to build this
@@ -430,12 +434,6 @@ const Development = () => (
                 </ListContent>
               </ListItem>
               <ListItem>
-                <ListLabel>Runtime type checking for React props</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/facebook/prop-types">PropTypes</ListLink>
-                </ListContent>
-              </ListItem>
-              <ListItem>
                 <ListLabel>Bash script to manage multiple active Node.js versions</ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com/creationix/nvm">nvm</ListLink>
@@ -690,7 +688,7 @@ const Development = () => (
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.google.com/chrome/" v="67.0.3396.99">
+                      <ListLink to="https://www.google.com/chrome/" v="68.0.3440.106">
                         Chrome DevTools
                       </ListLink>
                     </ListGroupItem>
@@ -707,12 +705,12 @@ const Development = () => (
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="61.0.1">
+                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="61.0.2">
                         Firefox
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.google.com/chrome/" v="67.0.3396.99">
+                      <ListLink to="https://www.google.com/chrome/" v="68.0.3440.106">
                         Chrome
                       </ListLink>
                     </ListGroupItem>
@@ -776,7 +774,7 @@ const Development = () => (
         </Card>
       </TabPanel>
     </Tabs>
-  </Fragment>
+  </React.Fragment>
 );
 
 // Module exports

@@ -1,8 +1,7 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Constants
 import CSS from 'constants/string/css';
@@ -10,31 +9,33 @@ import CSS from 'constants/string/css';
 // Companion files
 import './styles.scss';
 
-// Declare prop types and default props
-const propTypes = exact({
-  children: PropTypes.node.isRequired,
-  end: PropTypes.bool,
-  margin: PropTypes.string,
-  options: PropTypes.string
-});
+// Static type
+type Props = {
+  children: React.Node,
+  end: boolean,
+  margin: string,
+  options: string
+};
 
+type Return = React.Element<'div'>;
+
+// Default props
 const defaultProps = {
   end: false,
   margin: CSS.margin.MB04,
-  options: null
+  options: ''
 };
 
 // Component
 const TipContainer = ({
   children, end, margin, options
-}) => (
-  <div className={cx(CSS.margin.MT04, !end && margin, options)} styleName="container">
+}: Props): Return => (
+  <div className={cx(CSS.margin.MT04, !end && margin, !!options && options)} styleName="container">
     {children}
   </div>
 );
 
-// Specify prop types and default values for props
-TipContainer.propTypes = propTypes;
+// Specify default values for props
 TipContainer.defaultProps = defaultProps;
 
 // Module exports

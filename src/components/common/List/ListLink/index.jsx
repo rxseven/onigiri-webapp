@@ -1,8 +1,7 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import ExLink from 'components/common/ExLink';
@@ -10,36 +9,42 @@ import ExLink from 'components/common/ExLink';
 // Companion files
 import './styles.scss';
 
-// Declare prop types and default props
-const propTypes = exact({
-  children: PropTypes.node.isRequired,
-  icon: PropTypes.bool,
-  tag: PropTypes.string,
-  to: PropTypes.string.isRequired,
-  v: PropTypes.string
-});
+// Static types
+type Props = {
+  children: string,
+  icon: boolean,
+  tag: string,
+  to: string,
+  v: string
+};
 
+type Return = React.Element<'span'>;
+
+// Default props
 const defaultProps = {
   icon: false,
-  tag: null,
-  v: null
+  tag: '',
+  v: ''
 };
 
 // Component
 const ListLink = ({
   children, icon, tag, to, v
-}) => (
-  <span styleName={cx((tag || v) && 'version')}>
+}: Props): Return => (
+  <span styleName={cx(((!!tag && tag) || (!!v && v)) && 'version')}>
     <ExLink icon={icon} to={to}>
       {children}
     </ExLink>
-    {tag && <code>{tag}</code>}
-    {v && <code>v{v}</code>}
+    <If condition={!!tag}>
+      <code>{tag}</code>
+    </If>
+    <If condition={!!v}>
+      <code>v{v}</code>
+    </If>
   </span>
 );
 
-// Specify prop types and default values for props
-ListLink.propTypes = propTypes;
+// Specify default values for props
 ListLink.defaultProps = defaultProps;
 
 // Module exports

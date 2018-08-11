@@ -1,21 +1,16 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Companion files
 import './styles.scss';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired
-});
+// Static types
+type Props = { children: React.Node };
+type Return = React.Element<'div'>;
 
 // Component
-const ListContent = ({ children }) => <div styleName="content">{children}</div>;
-
-// Specify prop types
-ListContent.propTypes = propTypes;
+const ListContent = ({ children }: Props): Return => <div styleName="content">{children}</div>;
 
 // Module exports
 export default ListContent;

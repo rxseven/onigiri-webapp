@@ -1,8 +1,7 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React, { Fragment } from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 // Components and HOCs
@@ -11,31 +10,33 @@ import Icon from 'components/common/Icon';
 // Constants
 import CSS from 'constants/string/css';
 
-// Declare prop types and default props
-const propTypes = exact({
-  block: PropTypes.bool,
-  button: PropTypes.string,
-  children: PropTypes.node,
-  disabled: PropTypes.bool,
-  handler: PropTypes.func,
-  icon: PropTypes.string,
-  link: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  size: PropTypes.string,
-  title: PropTypes.string,
-  type: PropTypes.string,
-  visibility: PropTypes.bool
-});
+// Static types
+type Props = {
+  block: boolean,
+  button: string,
+  children: React.Node,
+  disabled: boolean,
+  handler: Function,
+  icon: string,
+  link: string,
+  size: string,
+  title: string,
+  type: string
+};
 
+type Return = React.Element<'button'> | React.Element<typeof Link>;
+
+// Default props
 const defaultProps = {
   block: false,
   button: 'secondary',
   disabled: false,
-  handler: null,
-  icon: null,
+  handler: undefined,
+  icon: '',
   link: '#',
+  size: '',
   title: 'Button',
-  type: 'button',
-  visibility: false
+  type: 'button'
 };
 
 // Component
@@ -49,9 +50,8 @@ const Button = ({
   link,
   size,
   title,
-  type,
-  visibility
-}) => {
+  type
+}: Props): Return => {
   // Configuration
   const baseClass = 'btn';
 
@@ -60,17 +60,20 @@ const Button = ({
       baseClass,
       block && `${baseClass}-block`,
       `${baseClass}-${button}`,
-      size && `${baseClass}-${CSS.size[size]}`,
-      visibility
+      !!size && `${baseClass}-${CSS.size[size]}`
     ),
     icon: { text: !!children }
   };
 
   const content = (
-    <Fragment>
-      {icon && <Icon name={icon} text={css.icon.text} title={title} />}
-      {children && <span className={`${baseClass}-text`}>{children}</span>}
-    </Fragment>
+    <React.Fragment>
+      <If condition={!!icon}>
+        <Icon name={icon} text={css.icon.text} title={title} />
+      </If>
+      <If condition={!!children}>
+        <span className={`${baseClass}-text`}>{children}</span>
+      </If>
+    </React.Fragment>
   );
 
   const properties = { className: css.button, disabled, type };
@@ -94,8 +97,7 @@ const Button = ({
   }
 };
 
-// Specify prop types and default values for props
-Button.propTypes = propTypes;
+// Specify default values for props
 Button.defaultProps = defaultProps;
 
 // Module exports

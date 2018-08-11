@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 // Components and HOCs
@@ -15,8 +16,11 @@ import PATHS from 'constants/router/paths';
 import Layout from '../../../Users/components/Layout';
 import Form from './components/Form';
 
+// Static types
+type Return = React.Element<typeof Document>;
+
 // Component
-const SignUp = () => (
+const SignUp = (): Return => (
   <Document>
     <Head>
       <Title>Create new Onigiri account</Title>

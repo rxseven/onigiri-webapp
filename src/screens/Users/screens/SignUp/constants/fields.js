@@ -1,3 +1,4 @@
+// @flow
 export default [
   { label: 'First name', name: 'firstName', type: 'text' },
   { label: 'Last name', name: 'lastName', type: 'text' },

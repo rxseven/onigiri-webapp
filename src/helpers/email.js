@@ -1,4 +1,6 @@
+// @flow
+
 // Email helpers
 export default {
-  length: string => string.split(',').map(email => email.trim()).length
+  length: (value: string): number => value.split(',').map(email => email.trim()).length
 };

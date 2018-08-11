@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 
 // Helper functions
 import stringHelper from 'helpers/string';
@@ -11,14 +12,47 @@ import { Card, CardBody, CardHeader, CardSubtitle } from 'components/common/Card
 import Text from 'components/common/Text';
 import Confirm from 'components/composite/Confirm';
 
+// Types
+import type { Credits } from 'data/credits/types';
+import type { Modal } from 'data/interfaces/modal/types';
+import type { Asynchronous } from 'types/common/state';
+import type { Profile } from '../../data/profile/types';
+
 // Companion files
 import '../../styles/profile.scss';
+
+// Static types
+type Props = {
+  actions: {
+    closeModal: Function,
+    deleteConfirm: Function,
+    deleteRequest: Function
+  },
+  state: {
+    data: {
+      credits: Credits,
+      interfaces: {
+        modal: Modal
+      },
+      profile: Profile
+    },
+    ui: {
+      asynchronous: {
+        delete: {
+          profile: Asynchronous
+        }
+      }
+    }
+  }
+};
+
+type Return = React.Element<typeof Card>;
 
 // Component
 const Account = ({
   actions,
   state: { data: { credits: { balance }, interfaces, profile }, ui: { asynchronous } }
-}) => (
+}: Props): Return => (
   <Card end>
     <CardHeader>Account</CardHeader>
     <CardBody>
@@ -42,7 +76,7 @@ const Account = ({
         </div>
         <div styleName="item">
           <div styleName="label">Verification</div>
-          <div styleName="content">{profile.verify ? 'verified' : 'unverified'}</div>
+          <div styleName="content">{profile.verified ? 'verified' : 'unverified'}</div>
         </div>
         <div styleName="item">
           <div styleName="label">Creation date</div>
@@ -86,12 +120,12 @@ const Account = ({
         >
           <h5>Is this goodbye?</h5>
           <p>This action is permanent. Are you sure you don’t want to reconsider?</p>
-          <If condition={balance > 0}>
+          <If condition={!!balance && balance > 0}>
             <p>
               <Text options="text-secondary" small>
-                You have <strong>{balance}</strong> survey credit{balance > 1 && 's'} left, Onigiri
-                is a pay-as-you-go service. We do not issue full or partial refunds for deleted
-                accounts.
+                You have <strong>{balance}</strong> survey credit{!!balance && balance > 1 && 's'}{' '}
+                left, Onigiri is a pay-as-you-go service. We do not issue full or partial refunds
+                for deleted accounts.
               </Text>
             </p>
           </If>

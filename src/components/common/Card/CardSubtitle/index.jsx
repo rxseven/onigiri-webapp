@@ -1,28 +1,29 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
-// Declare prop types and default props
-const propTypes = exact({
-  bold: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  options: PropTypes.string
-});
+// Static type
+type Props = {
+  bold: boolean,
+  children: React.Node,
+  options: string
+};
 
+type Return = React.Element<'h6'>;
+
+// Default props
 const defaultProps = {
   bold: false,
-  options: null
+  options: ''
 };
 
 // Component
-const CardSubtitle = ({ bold, children, options }) => (
-  <h6 className={cx('card-title', bold && 'font-weight-bold', options)}>{children}</h6>
+const CardSubtitle = ({ bold, children, options }: Props): Return => (
+  <h6 className={cx('card-title', bold && 'font-weight-bold', !!options && options)}>{children}</h6>
 );
 
-// Specify prop types and default values for props
-CardSubtitle.propTypes = propTypes;
+// Specify default values for props
 CardSubtitle.defaultProps = defaultProps;
 
 // Module exports

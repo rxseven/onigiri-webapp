@@ -1,33 +1,40 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import Button from '../Button';
 import ButtonList from '../ButtonList';
 
-// Declare prop types
-const propTypes = {
-  children: PropTypes.node,
-  type: PropTypes.string
+// Static types
+type Props = {
+  active: boolean,
+  children: React.Node,
+  handler: {
+    onClick: mixed => void
+  },
+  type: string,
+  value: string
 };
 
-const defaultProps = {
-  children: null,
-  type: null
-};
+type Return = React.Node;
 
 // Component
-class ButtonHandler extends Component {
+class ButtonHandler extends React.Component<Props> {
+  // Default props
+  static defaultProps = {
+    type: ''
+  };
+
   // Click handler
-  handleClick = () => {
+  handleClick = (): void => {
     this.props.handler.onClick(this.props.value);
   };
 
   // Render Button
-  renderButton = () => {
+  renderButton = (): React.Element<typeof Button> => {
     // Variables
     // eslint-disable-next-line
-    const { value, ...props } = this.props;
+    const { handler, value, ...props } = this.props;
 
     // View
     return (
@@ -38,10 +45,10 @@ class ButtonHandler extends Component {
   };
 
   // Render Button list group
-  renderButtonList = () => {
+  renderButtonList = (): React.Element<typeof ButtonList> => {
     // Variables
     // eslint-disable-next-line
-    const { type, value, ...props } = this.props;
+    const { handler, type, value, ...props } = this.props;
 
     // View
     return (
@@ -51,19 +58,16 @@ class ButtonHandler extends Component {
     );
   };
 
-  // Render a component
-  render() {
-    if (this.props.type === 'button-list') {
-      return this.renderButtonList();
-    }
-
-    return this.renderButton();
+  // Render component
+  render(): Return {
+    return (
+      <Choose>
+        <When condition={this.props.type === 'button-list'}>{this.renderButtonList()}</When>
+        <Otherwise>{this.renderButton()}</Otherwise>
+      </Choose>
+    );
   }
 }
-
-// Specify prop types and default values for props
-ButtonHandler.propTypes = propTypes;
-ButtonHandler.defaultProps = defaultProps;
 
 // Module exports
 export default ButtonHandler;

@@ -1,3 +1,4 @@
+// @flow
 // Module dependencies
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
@@ -10,25 +11,31 @@ import { setAsync } from 'helpers/state';
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
-// Action types
+// Static types
+import type { Asynchronous } from 'types/common/state';
+
+// Action and static types
 import {
   CHECKOUT_FAILURE,
   CHECKOUT_REQUEST,
   CHECKOUT_SUCCESS,
   CREDITS_GET_FAILURE,
   CREDITS_GET_REQUEST,
-  CREDITS_GET_SUCCESS
+  CREDITS_GET_SUCCESS,
+  type Action as ActionCredits
 } from 'data/credits/types';
 import {
   USER_DELETE_FAILURE,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
-  USER_RESET
+  USER_RESET,
+  type Action as ActionSession
 } from 'data/session/types';
 import {
   PROFILE_GET_FAILURE,
   PROFILE_GET_REQUEST,
-  PROFILE_GET_SUCCESS
+  PROFILE_GET_SUCCESS,
+  type Action as ActionProfile
 } from './data/profile/types';
 
 // Reducers
@@ -37,18 +44,35 @@ import data from './data/reducers';
 // Constants
 const asyncModel = { ...STATE_MODELS.model.asynchronous };
 
-// Initial state
-const initialState = fromJS({
+// Static types
+type Action = ActionCredits | ActionSession | ActionProfile;
+type Key = Object;
+type Model = {
+  delete: {
+    profile: Asynchronous
+  },
+  get: {
+    credits: Asynchronous,
+    profile: Asynchronous
+  },
+  post: {
+    checkout: Asynchronous
+  }
+};
+type State = any;
+
+// State shape
+const stateShape: Model = {
   delete: { profile: asyncModel },
   get: {
     credits: asyncModel,
     profile: asyncModel
   },
   post: { checkout: asyncModel }
-});
+};
 
-// Immutable map
-const map = {
+// Immutable key path
+const statePath: Key = {
   delete: {
     profile: ['delete', 'profile']
   },
@@ -61,42 +85,43 @@ const map = {
   }
 };
 
-// Asynchronous reducer
-const asynchronous = (state = initialState, action) => {
-  const { payload, type } = action;
+// Initial state
+const initialState: State = fromJS(stateShape);
 
-  switch (type) {
+// Asynchronous reducer
+const asynchronous = (state: State = initialState, action: Action): State => {
+  switch (action.type) {
     // Delete user account
     case USER_DELETE_REQUEST:
-      return setAsync(map.delete.profile, state, LOADING);
+      return setAsync(statePath.delete.profile, state, LOADING);
     case USER_DELETE_FAILURE:
-      return setAsync(map.delete.profile, state, ERROR, payload);
+      return setAsync(statePath.delete.profile, state, ERROR, action.payload);
     case USER_DELETE_SUCCESS:
-      return setAsync(map.delete.profile, state);
+      return setAsync(statePath.delete.profile, state);
 
     // Get user profile
     case PROFILE_GET_REQUEST:
-      return setAsync(map.get.profile, state, LOADING);
+      return setAsync(statePath.get.profile, state, LOADING);
     case PROFILE_GET_FAILURE:
-      return setAsync(map.get.profile, state, ERROR, payload);
+      return setAsync(statePath.get.profile, state, ERROR, action.payload);
     case PROFILE_GET_SUCCESS:
-      return setAsync(map.get.profile, state);
+      return setAsync(statePath.get.profile, state);
 
     // Checkout
     case CHECKOUT_REQUEST:
-      return setAsync(map.post.checkout, state, LOADING);
+      return setAsync(statePath.post.checkout, state, LOADING);
     case CHECKOUT_FAILURE:
-      return setAsync(map.post.checkout, state, ERROR, payload);
+      return setAsync(statePath.post.checkout, state, ERROR, action.payload);
     case CHECKOUT_SUCCESS:
-      return setAsync(map.post.checkout, state);
+      return setAsync(statePath.post.checkout, state);
 
     // Get credits
     case CREDITS_GET_REQUEST:
-      return setAsync(map.get.credits, state, LOADING);
+      return setAsync(statePath.get.credits, state, LOADING);
     case CREDITS_GET_FAILURE:
-      return setAsync(map.get.credits, state, ERROR, payload);
+      return setAsync(statePath.get.credits, state, ERROR, action.payload);
     case CREDITS_GET_SUCCESS:
-      return setAsync(map.get.credits, state);
+      return setAsync(statePath.get.credits, state);
 
     // Reset state
     case USER_RESET:

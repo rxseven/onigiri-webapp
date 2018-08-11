@@ -1,3 +1,4 @@
+// @flow
 // CSS base classes
 export default {
   flex: {

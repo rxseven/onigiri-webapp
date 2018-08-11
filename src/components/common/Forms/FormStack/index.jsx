@@ -1,23 +1,26 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
-// Declare prop types and default props
-const propTypes = exact({
-  children: PropTypes.node.isRequired,
-  end: PropTypes.bool
-});
+// Static types
+type Props = {
+  children: React.Node,
+  end: boolean
+};
 
+type Return = React.Element<'div'>;
+
+// Default props
 const defaultProps = {
   end: false
 };
 
 // Component
-const FormStack = ({ children, end }) => <div className={!end && 'mb-3'}>{children}</div>;
+const FormStack = ({ children, end }: Props): Return => (
+  <div className={!end && 'mb-3'}>{children}</div>
+);
 
-// Specify prop types and default values for props
-FormStack.propTypes = propTypes;
+// Specify default values for props
 FormStack.defaultProps = defaultProps;
 
 // Module exports

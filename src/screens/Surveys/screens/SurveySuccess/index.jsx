@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Button } from 'components/common/Buttons';
@@ -14,8 +15,21 @@ import PATHS from 'constants/router/paths';
 // Companion files
 import './styles.scss';
 
+// Static types
+type Props = {
+  location: {
+    state: {
+      id: string,
+      recipients: number,
+      title: string
+    }
+  }
+};
+
+type Return = React.Element<typeof Document>;
+
 // Component
-const SurveySuccess = ({ location: { state } }) => (
+const SurveySuccess = ({ location: { state } }: Props): Return => (
   <Document>
     <Head>
       <Title>Create Survey - Success</Title>

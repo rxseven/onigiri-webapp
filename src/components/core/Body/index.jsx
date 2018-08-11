@@ -1,21 +1,24 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Constants
 import HTML from 'constants/elements/html';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired
-});
+// Component types
+import Footer from '../Footer';
+import Main from '../Main';
+import Menu from '../Menu';
+
+// Static types
+type Props = {
+  children: React.Element<typeof Footer> | React.Element<typeof Main> | React.Element<typeof Menu>
+};
+
+type Return = React.Element<'div'>;
 
 // Component
-const Body = ({ children }) => <div id={HTML.body}>{children}</div>;
-
-// Specify prop types
-Body.propTypes = propTypes;
+const Body = ({ children }: Props): Return => <div id={HTML.body}>{children}</div>;
 
 // Module exports
 export default Body;

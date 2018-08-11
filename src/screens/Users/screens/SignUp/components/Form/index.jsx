@@ -1,6 +1,7 @@
+// @flow
 // Module dependencies
 import { each } from 'lodash';
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -18,6 +19,10 @@ import toJS from 'HOCs/state/toJS';
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
+// Types
+import type { History } from 'types/common/router';
+import type { Asynchronous } from 'types/common/state';
+
 // Action creators and selectors
 import { signUp } from 'data/session/actions';
 import { resetUI } from '../../actions';
@@ -26,8 +31,28 @@ import { getUI } from '../../reducers';
 // Companion files
 import FIELDS from '../../constants/fields';
 
+// Static types
+type Props = {
+  actions: {
+    auth: {
+      resetUI: Function,
+      signUp: Function
+    }
+  },
+  history: History,
+  state: {
+    ui: {
+      asynchronous: {
+        post: Asynchronous
+      }
+    }
+  }
+};
+
+type Return = React.Element<typeof Form>;
+
 // Component
-class SignUpForm extends Component {
+class SignUpForm extends React.Component<Props> {
   // Before a component is unmounted and destroyed...
   componentWillUnmount() {
     // Reset UI state
@@ -35,12 +60,12 @@ class SignUpForm extends Component {
   }
 
   // Reset UI state
-  onReset = () => {
+  onReset = (): void => {
     this.props.actions.auth.resetUI();
   };
 
   // Form submission callback
-  submitCallback = () => {
+  submitCallback = (): void => {
     // Redirect to Welcome screen after the form has been submitted
     this.props.history.push({
       pathname: PATHS.users.welcome,
@@ -51,7 +76,7 @@ class SignUpForm extends Component {
   };
 
   // Render component
-  render() {
+  render(): Return {
     return (
       <Form
         {...this.props}
@@ -66,7 +91,7 @@ class SignUpForm extends Component {
 }
 
 // Error validation rules
-const validate = (values) => {
+const validate = (values: any): {} => {
   // Initial errors object
   const errors = {};
 
@@ -104,7 +129,7 @@ const validate = (values) => {
 };
 
 // Warning validation rules
-const warn = (values) => {
+const warn = (values: any): {} => {
   // Initial warnings object
   const warnings = {};
 
@@ -117,10 +142,11 @@ const warn = (values) => {
 };
 
 // Map state to props
-const mapStateToProps = state => generateState(STATE_MODELS.immutable.setIn(['ui'], getUI(state)));
+const mapStateToProps = (state: any): any =>
+  generateState(STATE_MODELS.immutable.setIn(['ui'], getUI(state)));
 
 // Map dispatch to props
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: any): any => ({
   actions: {
     auth: bindActionCreators({ resetUI, signUp }, dispatch)
   }

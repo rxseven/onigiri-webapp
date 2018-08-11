@@ -1,24 +1,30 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
-// Declare prop types and default props
-const propTypes = exact({
-  alignment: PropTypes.string,
-  children: PropTypes.node.isRequired
-});
+// Component types
+import Column from '../Column';
 
+// Static types
+type Props = {
+  alignment: string,
+  children: React.Element<typeof Column>
+};
+
+type Return = React.Element<'div'>;
+
+// Default props
 const defaultProps = {
-  alignment: null
+  alignment: ''
 };
 
 // Component
-const Row = ({ alignment, children }) => <div className={cx('row', alignment)}>{children}</div>;
+const Row = ({ alignment, children }: Props): Return => (
+  <div className={cx('row', !!alignment && alignment)}>{children}</div>
+);
 
-// Specify prop types and default values for props
-Row.propTypes = propTypes;
+// Specify default values for props
 Row.defaultProps = defaultProps;
 
 // Module exports

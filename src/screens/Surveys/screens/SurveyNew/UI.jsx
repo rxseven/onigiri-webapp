@@ -1,6 +1,7 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import React, { Component } from 'react';
+import * as React from 'react';
 import { reduxForm } from 'redux-form/immutable';
 
 // Components and HOCs
@@ -17,27 +18,36 @@ import CSS from 'constants/string/css';
 import Form from './components/Form';
 import Review from './components/Review';
 
+// Static types
+type View = boolean;
+type Props = {};
+type State = { isReview: View };
+type Return = React.Element<typeof Document>;
+
 // Component
-class UI extends Component {
+class UI extends React.Component<Props, State> {
   // Initial state
   state = { isReview: false };
 
   // Toggle form view
-  onToggleView = (visibility) => {
+  onToggleView = (visibility: View): void => {
     this.setState({ isReview: visibility });
   };
 
   // Render content
-  renderContent = () => {
-    if (this.state.isReview) {
-      return <Review onCancel={() => this.onToggleView(false)} />;
-    }
-
-    return <Form onReview={() => this.onToggleView(true)} />;
-  };
+  renderContent = (): React.Element<typeof Review | Form> => (
+    <Choose>
+      <When condition={this.state.isReview}>
+        <Review onCancel={() => this.onToggleView(false)} />
+      </When>
+      <Otherwise>
+        <Form onReview={() => this.onToggleView(true)} />
+      </Otherwise>
+    </Choose>
+  );
 
   // Render tips
-  renderTips = () => (
+  renderTips = (): React.Element<typeof Tip> => (
     <Tip end>
       <TipHeader>
         <Icon name="star" title="Tips" /> Demo tips
@@ -69,7 +79,7 @@ class UI extends Component {
   );
 
   // Render component
-  render() {
+  render(): Return {
     return (
       <Document>
         <Head>

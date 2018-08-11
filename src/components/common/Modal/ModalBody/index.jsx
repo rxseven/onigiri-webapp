@@ -1,18 +1,13 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired
-});
+// Static types
+type Props = { children: React.Node };
+type Return = React.Element<'div'>;
 
 // Component
-const ModalBody = ({ children }) => <div className="modal-body">{children}</div>;
-
-// Specify prop types
-ModalBody.propTypes = propTypes;
+const ModalBody = ({ children }: Props): Return => <div className="modal-body">{children}</div>;
 
 // Module exports
 export default ModalBody;

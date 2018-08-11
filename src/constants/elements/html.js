@@ -1,3 +1,4 @@
+// @flow
 // HTML elements
 export default {
   body: 'body',

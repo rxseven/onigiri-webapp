@@ -1,6 +1,7 @@
+// @flow
 // Module dependencies
 import { each } from 'lodash';
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -19,6 +20,10 @@ import toJS from 'HOCs/state/toJS';
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
 
+// Types
+import type { History } from 'types/common/router';
+import type { Asynchronous } from 'types/common/state';
+
 // Action creators and selectors
 import { signIn } from 'data/session/actions';
 import { resetUI } from '../../actions';
@@ -27,8 +32,29 @@ import { getUI } from '../../reducers';
 // Companion files
 import FIELDS from '../../constants/fields';
 
+// Static types
+type Props = {
+  actions: {
+    auth: {
+      resetUI: Function,
+      signIn: Function
+    }
+  },
+  history: History,
+  onCancel: Function,
+  state: {
+    ui: {
+      asynchronous: {
+        post: Asynchronous
+      }
+    }
+  }
+};
+
+type Return = React.Element<typeof Form>;
+
 // Component
-class SignInForm extends Component {
+class SignInForm extends React.Component<Props> {
   // Before a component is unmounted and destroyed...
   componentWillUnmount() {
     // Reset UI state
@@ -36,18 +62,18 @@ class SignInForm extends Component {
   }
 
   // Reset UI state
-  onReset = () => {
+  onReset = (): void => {
     this.props.actions.auth.resetUI();
   };
 
   // Form submission callback
-  submitCallback = () => {
+  submitCallback = (): void => {
     // Redirect to Surveys screen after the form has been submitted
     this.props.history.push({ pathname: PATHS.surveys.list });
   };
 
   // Render component
-  render() {
+  render(): Return {
     return (
       <Form
         {...this.props}
@@ -64,7 +90,7 @@ class SignInForm extends Component {
 }
 
 // Error validation rules
-const validate = (values) => {
+const validate = (values: any): {} => {
   // Initial errors object
   const errors = {};
 
@@ -82,10 +108,11 @@ const validate = (values) => {
 };
 
 // Map state to props
-const mapStateToProps = state => generateState(STATE_MODELS.immutable.setIn(['ui'], getUI(state)));
+const mapStateToProps = (state: any): any =>
+  generateState(STATE_MODELS.immutable.setIn(['ui'], getUI(state)));
 
 // Map dispatch to props
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: any): any => ({
   actions: {
     auth: bindActionCreators({ resetUI, signIn }, dispatch)
   }

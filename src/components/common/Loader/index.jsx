@@ -1,6 +1,6 @@
+// @flow
 // Module dependencies
-import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 
 // Helper functions
 import windowHelper from 'helpers/window';
@@ -9,21 +9,22 @@ import windowHelper from 'helpers/window';
 import { Button } from 'components/common/Buttons';
 import { Card, CardBody, CardHeader, CardText } from 'components/common/Card';
 import Spinner from 'components/common/Spinner';
-import Layout from 'components/common/Layout';
-
-// Constants
-import CSS from 'constants/string/css';
 
 // Companion files
+import Wrapper from './Wrapper';
 import './styles.scss';
 
-// Wrapper
-const Wrapper = ({ children }) => (
-  <Layout size={cx(CSS.grid.col.MD08, CSS.grid.col.LG06)}>{children}</Layout>
-);
+// Static types
+type Props = {
+  error: ?mixed,
+  pastDelay: boolean,
+  timedOut: boolean
+};
+
+type Return = React.Element<typeof Wrapper> | React.Element<typeof Spinner> | null;
 
 // Component
-const Loader = (props) => {
+const Loader = (props: Props): Return => {
   // When the loader has errored
   if (props.error) {
     return (

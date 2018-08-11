@@ -1,6 +1,6 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import * as React from 'react';
 
 // Helper functions
 import dateHelper from 'helpers/date';
@@ -10,22 +10,46 @@ import { Button, ButtonGroup, ButtonHandler, ButtonToolbar } from 'components/co
 import Spinner from 'components/common/Spinner';
 
 // Constants
-import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
+
+// Types
+import type { Asynchronous } from 'types/common/state';
+import type { Survey } from '../../data/survey/types';
 
 // Companion files
 import './styles.scss';
 
-// Declare prop types and default props
-const propTypes = PROP_TYPES.wrapper.asynchronous({
-  get: PropTypes.shape({
-    survey: PROP_TYPES.model.asynchronous
-  }),
-  patch: PropTypes.shape({
-    survey: PROP_TYPES.model.asynchronous
-  })
-});
+// Static types
+type Props = {
+  actions: {
+    back: Function,
+    delete: Function,
+    reload: Function,
+    update: Function
+  },
+  state: {
+    data: {
+      survey: Survey
+    },
+    ui: {
+      asynchronous: {
+        get: {
+          survey: Asynchronous
+        },
+        patch: {
+          survey: Asynchronous
+        }
+      }
+    },
+    status: {
+      updated: boolean
+    }
+  }
+};
 
+type Return = React.Element<typeof ButtonToolbar>;
+
+// Default props
 const defaultProps = STATE_MODELS.wrapper.asynchronous({
   get: {
     survey: { ...STATE_MODELS.model.asynchronous }
@@ -36,7 +60,10 @@ const defaultProps = STATE_MODELS.wrapper.asynchronous({
 });
 
 // Component
-const Toolbar = ({ actions, state: { data: { survey }, ui: { asynchronous }, status } }) => {
+const Toolbar = ({
+  actions,
+  state: { data: { survey }, ui: { asynchronous }, status }
+}: Props): Return => {
   // Variables
   const { error, loading } = asynchronous.get.survey;
   const { loading: updating } = asynchronous.patch.survey;
@@ -54,7 +81,7 @@ const Toolbar = ({ actions, state: { data: { survey }, ui: { asynchronous }, sta
       </ButtonGroup>
 
       <If condition={!error}>
-        <Fragment>
+        <React.Fragment>
           <div styleName="status">
             <If condition={loading}>
               <Spinner loading />
@@ -90,14 +117,13 @@ const Toolbar = ({ actions, state: { data: { survey }, ui: { asynchronous }, sta
               title="Delete"
             />
           </ButtonGroup>
-        </Fragment>
+        </React.Fragment>
       </If>
     </ButtonToolbar>
   );
 };
 
-// Specify prop types and default values for props
-Toolbar.propTypes = propTypes;
+// Specify default values for props
 Toolbar.defaultProps = defaultProps;
 
 // Module exports

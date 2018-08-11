@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
@@ -16,8 +17,25 @@ import PATHS from 'constants/router/paths';
 // Action creators and selectors
 import { getAuth } from 'data/session/reducers';
 
+// Static types
+type Props = {
+  component: React.ComponentType<any>,
+  state: {
+    data: {
+      authorization: boolean
+    }
+  }
+};
+
+type Return = React.Element<typeof Route>;
+
 // HOC
-const AuthRoute = ({ component: Component, state: { data: { authorization } }, ...rest }) => (
+const AuthRoute = ({
+  component: Component,
+  state: { data: { authorization } },
+  ...rest
+}: Props): Return => (
+  // flow-disable-next-line
   <Route
     {...rest}
     render={props => (

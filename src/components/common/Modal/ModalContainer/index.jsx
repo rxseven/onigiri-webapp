@@ -1,19 +1,24 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 import ReactModal from 'react-modal';
 
 // Constants
 import HTML from 'constants/elements/html';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired,
-  onClose: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  visibility: PropTypes.bool.isRequired
-});
+// Component types
+import ModalBody from '../ModalBody';
+import ModalFooter from '../ModalFooter';
+
+// Static types
+type Props = {
+  children: React.Element<typeof ModalBody> | React.Element<typeof ModalFooter>,
+  onClose: Function,
+  title: string,
+  visibility: boolean
+};
+
+type Return = React.Element<typeof ReactModal>;
 
 // Hide the application from screenreaders and other assistive technologies
 ReactModal.setAppElement(`#${HTML.root}`);
@@ -21,7 +26,7 @@ ReactModal.setAppElement(`#${HTML.root}`);
 // Component
 const ModalContainer = ({
   children, onClose, title, visibility
-}) => (
+}: Props): Return => (
   <ReactModal
     bodyOpenClassName="modal-open"
     className="modal-dialog"
@@ -40,9 +45,6 @@ const ModalContainer = ({
     </div>
   </ReactModal>
 );
-
-// Specify prop types
-ModalContainer.propTypes = propTypes;
 
 // Module exports
 export default ModalContainer;

@@ -1,3 +1,4 @@
+// @flow
 // Base routes
 const base = {
   surveys: '/surveys'

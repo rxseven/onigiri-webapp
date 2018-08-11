@@ -1,15 +1,28 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Card, CardBody, CardHeader } from 'components/common/Card';
 import ExLink from 'components/common/ExLink';
 
+// Types
+import type { Profile as ProfileType } from '../../data/profile/types';
+
 // Companion files
 import styles from '../../styles/profile.scss';
 
+// Static types
+type Props = {
+  state: {
+    data: ProfileType
+  }
+};
+
+type Return = React.Element<typeof Card>;
+
 // Component
-const Profile = ({ state: { data } }) => {
+const UI = ({ state: { data } }: Props): Return => {
   // Variables
   const isLocal = data.provider === 'local';
 
@@ -65,4 +78,4 @@ const Profile = ({ state: { data } }) => {
 };
 
 // Module exports
-export default Profile;
+export default UI;

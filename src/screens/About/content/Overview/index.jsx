@@ -1,6 +1,7 @@
+// @flow
 // Dependencies
 import cx from 'classnames';
-import React, { Fragment } from 'react';
+import * as React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 // Components and HOCs
@@ -22,9 +23,12 @@ import Text from 'components/common/Text';
 // Constants
 import CSS from 'constants/string/css';
 
+// Static types
+type Return = React.Node;
+
 // Component
-const Overview = () => (
-  <Fragment>
+const Overview = (): Return => (
+  <React.Fragment>
     <div>
       <p>
         With <strong>Onigiri</strong>, you can create and analyze surveys right in your pocket or
@@ -97,7 +101,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        v="1.0.0-alpha.8"
+                        v="1.0.0-alpha.9"
                       >
                         Web application
                       </ListLink>
@@ -270,7 +274,7 @@ const Overview = () => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-webapp/releases"
-                          v="1.0.0-alpha.8"
+                          v="1.0.0-alpha.9"
                         >
                           Web application
                         </ListLink>
@@ -294,7 +298,7 @@ const Overview = () => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        tag="July 27, 2018"
+                        tag="August 11, 2018"
                       >
                         Web application
                       </ListLink>
@@ -508,7 +512,7 @@ const Overview = () => (
         </Card>
       </TabPanel>
     </Tabs>
-  </Fragment>
+  </React.Fragment>
 );
 
 // Module exports

@@ -1,18 +1,37 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
 // Components and HOCs
 import { Button } from 'components/common/Buttons';
 
-// Declare prop types
-const propTypes = {
-  callback: PropTypes.func.isRequired
+// Types
+import type { Asynchronous } from 'types/common/state';
+import type { Callback } from 'types/common/utilities';
+import type { CheckoutToken } from 'types/features/payments';
+
+// Static types
+type Props = {
+  actions: {
+    payments: {
+      checkout: (CheckoutToken, Callback) => void
+    }
+  },
+  callback: Callback,
+  state: {
+    ui: {
+      asynchronous: {
+        post: Asynchronous
+      }
+    }
+  }
 };
 
+type Return = React.Element<typeof StripeCheckout>;
+
 // Component
-const UI = ({ actions, callback, state }) => (
+const UI = ({ actions, callback, state }: Props): Return => (
   <StripeCheckout
     amount={500}
     currency="USD"
@@ -27,9 +46,6 @@ const UI = ({ actions, callback, state }) => (
     </Button>
   </StripeCheckout>
 );
-
-// Specify prop types
-UI.propTypes = propTypes;
 
 // Module exports
 export default UI;

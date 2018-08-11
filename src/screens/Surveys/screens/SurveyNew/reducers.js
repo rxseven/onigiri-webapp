@@ -1,3 +1,4 @@
+// @flow
 // Module dependencies
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
@@ -10,40 +11,50 @@ import { setAsync } from 'helpers/state';
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
-// Action types
+// Static types
+import type { Asynchronous } from 'types/common/state';
+
+// Action and static types
 import {
   SURVEY_CREATE_FAILURE,
   SURVEY_CREATE_REQUEST,
   SURVEY_CREATE_SUCCESS,
-  SURVEY_RESET_UI
+  SURVEY_RESET_UI,
+  type Action
 } from './types';
 
-// Initial state
-const initialState = fromJS({
-  post: { ...STATE_MODELS.model.asynchronous }
-});
+// Static types
+type Key = Object;
+type Model = { post: Asynchronous };
+type State = any;
 
-// Immutable map
-const map = {
+// State model
+const stateModel: Model = {
+  post: { ...STATE_MODELS.model.asynchronous }
+};
+
+// Immutable key path
+const statePath: Key = {
   post: ['post']
 };
 
-// Asynchronous reducer
-const asyncReducer = (state = initialState, action) => {
-  const { payload, type } = action;
+// Initial state
+const initialState: State = fromJS(stateModel);
 
-  switch (type) {
+// Asynchronous reducer
+const asyncReducer = (state: State = initialState, action: Action): State => {
+  switch (action.type) {
     // Create survey
     case SURVEY_CREATE_REQUEST:
-      return setAsync(map.post, state, LOADING);
+      return setAsync(statePath.post, state, LOADING);
     case SURVEY_CREATE_FAILURE:
-      return setAsync(map.post, state, ERROR, payload);
+      return setAsync(statePath.post, state, ERROR, action.payload);
     case SURVEY_CREATE_SUCCESS:
-      return setAsync(map.post, state);
+      return setAsync(statePath.post, state);
 
     // Reset state
     case SURVEY_RESET_UI:
-      return setAsync(map.post, state);
+      return setAsync(statePath.post, state);
 
     // Default
     default:
