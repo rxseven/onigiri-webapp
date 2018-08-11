@@ -1,8 +1,7 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React, { Fragment } from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import Icon from 'components/common/Icon';
@@ -10,23 +9,26 @@ import Icon from 'components/common/Icon';
 // Companion files
 import './styles.scss';
 
-// Declare prop types and default props
-const propTypes = exact({
-  button: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  flat: PropTypes.bool,
-  icon: PropTypes.bool,
-  options: PropTypes.string,
-  rel: PropTypes.string,
-  replace: PropTypes.bool,
-  to: PropTypes.string.isRequired
-});
+// Static types
+type Props = {
+  button: string,
+  children: React.Node,
+  flat: boolean,
+  icon: boolean,
+  options: string,
+  rel: string,
+  replace: boolean,
+  to: string
+};
 
+type Return = React.Element<'a'>;
+
+// Default props
 const defaultProps = {
   button: '',
   flat: false,
   icon: false,
-  options: null,
+  options: '',
   rel: 'noopener noreferrer',
   replace: false
 };
@@ -34,27 +36,24 @@ const defaultProps = {
 // Component
 const ExLink = ({
   button, children, flat, icon, options, rel, replace, to
-}) => (
-  <Fragment>
-    <a
-      className={cx(button && `btn btn-${button}`, options)}
-      href={to}
-      rel={rel}
-      styleName={cx(flat && 'flat')}
-      target={replace ? '_self' : '_blank'}
-    >
-      {children}
-      <If condition={icon}>
-        <span styleName="icon">
-          <Icon name="external-link" title="External link" />
-        </span>
-      </If>
-    </a>
-  </Fragment>
+}: Props): Return => (
+  <a
+    className={cx(!!button && `btn btn-${button}`, !!options && options)}
+    href={to}
+    rel={rel}
+    styleName={cx(flat && 'flat')}
+    target={replace ? '_self' : '_blank'}
+  >
+    {children}
+    <If condition={!!icon}>
+      <span styleName="icon">
+        <Icon name="external-link" title="External link" />
+      </span>
+    </If>
+  </a>
 );
 
-// Specify prop types and default values for props
-ExLink.propTypes = propTypes;
+// Specify default values for props
 ExLink.defaultProps = defaultProps;
 
 // Module exports
