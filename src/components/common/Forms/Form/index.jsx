@@ -1,8 +1,8 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
 import { map } from 'lodash';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Field } from 'redux-form/immutable';
 
 // Components and HOCs
@@ -12,37 +12,49 @@ import Spinner from 'components/common/Spinner';
 import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 
-// Declare prop types and default props
-const propTypes = {
-  alert: PropTypes.bool,
-  asynchronous: PROP_TYPES.model.asynchronous,
-  options: PropTypes.string,
-  spinner: PropTypes.bool
+// Types
+import type { Asynchronous } from 'types/common/state';
+
+// Static types
+type Props = {
+  alert: boolean,
+  asynchronous: Asynchronous,
+  cancelButton: React.Node,
+  fields: Array<Object>,
+  handleSubmit: Function,
+  options: string,
+  pristine: boolean,
+  spinner: boolean,
+  submitButton: string,
+  submitCallback: Function,
+  submitFunction: Function
 };
 
-const defaultProps = {
-  alert: true,
-  asynchronous: { ...STATE_MODELS.model.asynchronous },
-  options: null,
-  spinner: true
-};
+type Return = React.Element<'form'>;
 
 // Component
-class Form extends Component {
+class Form extends React.Component<Props> {
+  // Default props
+  static defaultProps = {
+    alert: true,
+    asynchronous: { ...STATE_MODELS.model.asynchronous },
+    options: '',
+    spinner: true
+  };
+
   // Submit handler
-  onSubmit = (values) => {
+  onSubmit = (values: any): void => {
     this.props.submitFunction(values, this.props.submitCallback);
   };
 
   // Render field
-  renderField = () =>
+  renderField = (): any =>
     // Create Field array of values
     map(this.props.fields, ({
       helper, label, name, type
-    }, index) => (
+    }, index: number) => (
       <Field
         component={FormField}
         helper={helper}
@@ -54,7 +66,7 @@ class Form extends Component {
     ));
 
   // Render a component
-  render() {
+  render(): Return {
     // Variables
     const {
       alert,
@@ -69,11 +81,9 @@ class Form extends Component {
 
     // View
     return (
-      <form className={cx(options)} onSubmit={handleSubmit(this.onSubmit)}>
+      <form className={cx(!!options && options)} onSubmit={handleSubmit(this.onSubmit)}>
         {this.renderField()}
-        <If condition={alert && error}>
-          <Error alert={error} />
-        </If>
+        {alert && !!error && <Error alert={error} />}
         <ButtonSet>
           {cancelButton}
           <Button button="primary" disabled={pristine || (spinner && loading)} type="submit">
@@ -87,10 +97,6 @@ class Form extends Component {
     );
   }
 }
-
-// Specify prop types and default values for props
-Form.propTypes = propTypes;
-Form.defaultProps = defaultProps;
 
 // Module exports
 export default Form;

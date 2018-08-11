@@ -1,36 +1,45 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import Text from 'components/common/Text';
 
-// Declare prop types and default props
-const propTypes = exact({
-  helper: PropTypes.string,
-  input: PropTypes.object.isRequired,
-  label: PropTypes.string.isRequired,
-  meta: PropTypes.object.isRequired,
-  type: PropTypes.string.isRequired
-});
+// Static types
+type Props = {
+  helper: string,
+  input: Object,
+  label: string,
+  meta: {
+    error: ?string,
+    touched: boolean,
+    warning: ?string
+  },
+  type: string
+};
 
+type Return = React.Element<'div'>;
+
+// Default props
 const defaultProps = {
-  helper: null
+  helper: ''
 };
 
 // Component
 const FormField = ({
-  helper, input, label, meta: { error, touched, warning }, type
-}) => {
+  helper,
+  input,
+  label,
+  meta: { error, touched, warning },
+  type
+}: Props): Return => {
   // Configuration
   const isInvalid = (error && warning) || (error && !warning);
   const isWarning = !error && warning;
-  const inputStyles = cx(
-    'form-control',
-    `${touched && ((isInvalid && 'is-invalid') || (isWarning && 'is-warning'))}`
-  );
+  const hasInvalid = touched && isInvalid;
+  const hasWarning = touched && isWarning;
+  const inputStyles = cx('form-control', hasInvalid && 'is-invalid', hasWarning && 'is-warning');
 
   // View
   return (
@@ -43,24 +52,20 @@ const FormField = ({
         <textarea className={inputStyles} id={input.name} placeholder={label} rows={3} {...input} />
       </If>
 
-      {helper && (
+      <If condition={!!helper}>
         <Text mute options="form-text" small>
           {helper}
         </Text>
-      )}
+      </If>
 
-      <div
-        className={`${touched &&
-          ((isInvalid && 'invalid-feedback') || (isWarning && 'warning-feedback'))}`}
-      >
+      <div className={cx(hasInvalid && 'invalid-feedback', hasWarning && 'warning-feedback')}>
         {touched && ((isInvalid && <span>{error}</span>) || (isWarning && <span>{warning}</span>))}
       </div>
     </div>
   );
 };
 
-// Specify prop types and default values for props
-FormField.propTypes = propTypes;
+// Specify default values for props
 FormField.defaultProps = defaultProps;
 
 // Module exports
