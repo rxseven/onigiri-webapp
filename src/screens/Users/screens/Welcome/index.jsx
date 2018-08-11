@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 
 // Components
 import { Button } from 'components/common/Buttons';
@@ -11,8 +12,11 @@ import Text from 'components/common/Text';
 // Constants
 import PATHS from 'constants/router/paths';
 
+// Static types
+type Return = React.Element<typeof Document>;
+
 // Component
-const Welcome = () => (
+const Welcome = (): Return => (
   <Document>
     <Head>
       <Title>Welcome to Onigiri</Title>
