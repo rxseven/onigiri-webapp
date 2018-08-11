@@ -101,7 +101,7 @@ const Overview = (): Return => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        v="1.0.0-alpha.8"
+                        v="1.0.0-alpha.9"
                       >
                         Web application
                       </ListLink>
@@ -274,7 +274,7 @@ const Overview = (): Return => (
                       <ListGroupItem>
                         <ListLink
                           to="https://github.com/rxseven/onigiri-webapp/releases"
-                          v="1.0.0-alpha.8"
+                          v="1.0.0-alpha.9"
                         >
                           Web application
                         </ListLink>
@@ -298,7 +298,7 @@ const Overview = (): Return => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        tag="July 27, 2018"
+                        tag="August 11, 2018"
                       >
                         Web application
                       </ListLink>
