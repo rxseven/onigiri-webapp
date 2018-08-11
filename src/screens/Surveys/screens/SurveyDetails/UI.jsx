@@ -1,7 +1,7 @@
+// @flow
 // Module dependencies
 import { isEmpty } from 'lodash';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import * as React from 'react';
 
 // Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Page';
@@ -9,32 +9,74 @@ import Layout from 'components/common/Layout';
 import Error from 'components/composite/Error';
 
 // Constants
-import PROP_TYPES from 'constants/models/propTypes';
 import STATE_MODELS from 'constants/models/state';
 import PATHS from 'constants/router/paths';
+
+// Types
+import type { Modal as ModalType } from 'data/interfaces/modal/types';
+import type { History, MatchID } from 'types/common/router';
+import type { Callback } from 'types/common/utilities';
+import type { Survey } from './data/survey/types';
+import type { Async as Asynchronous } from './types';
 
 // Companion files
 import Content from './components/Content';
 import Modal from './components/Modal';
 import Toolbar from './components/Toolbar';
 
-// Declare prop types and default props
-const propTypes = PROP_TYPES.wrapper.asynchronous({
-  get: PropTypes.shape({
-    survey: PROP_TYPES.model.asynchronous
-  })
-});
-
-const defaultProps = STATE_MODELS.wrapper.asynchronous({
-  get: {
-    survey: { ...STATE_MODELS.model.asynchronous }
+// Static types
+type Props = {
+  actions: {
+    modal: {
+      closeModal: Function,
+      openModal: Function
+    },
+    surveys: {
+      addSelectedSurvey: Function,
+      deleteSurvey: Function,
+      getRecipients: Function,
+      getSurvey: Function,
+      removeSurvey: Function,
+      resetData: Function,
+      updateSurvey: Function
+    }
+  },
+  history: History,
+  location: {
+    state: ?{
+      fromList: boolean,
+      mode: string
+    }
+  },
+  match: MatchID,
+  state: {
+    data: {
+      interfaces: {
+        modal: ModalType
+      },
+      survey: Survey
+    },
+    ui: {
+      asynchronous: Asynchronous
+    }
   }
-});
+};
+
+type State = { updated: boolean };
+
+type Return = React.Element<typeof Document>;
 
 // Component
-class UI extends Component {
+class UI extends React.Component<Props, State> {
+  // Default props
+  static defaultProps = STATE_MODELS.wrapper.asynchronous({
+    get: {
+      survey: { ...STATE_MODELS.model.asynchronous }
+    }
+  });
+
   // Constructor
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     // Variables
@@ -42,7 +84,7 @@ class UI extends Component {
 
     // Component properties
     this.fromList = fromList;
-    this.surveyId = this.props.match.params.id;
+    this.surveyId = props.match.params.id;
 
     // Initial state
     this.state = { updated: false };
@@ -64,7 +106,7 @@ class UI extends Component {
   }
 
   // Navigate back to list view screen
-  onNavigateBack = () => {
+  onNavigateBack = (): void => {
     // Configuration
     const { history } = this.props;
 
@@ -80,7 +122,7 @@ class UI extends Component {
   };
 
   // Confirm deleting survey
-  onDeleteConfirm = () => {
+  onDeleteConfirm = (): void => {
     // Delete survey from the given ID
     this.props.actions.surveys.deleteSurvey(this.surveyId, () => {
       // Close a modal
@@ -92,13 +134,13 @@ class UI extends Component {
   };
 
   // Request for deleting survey
-  onDeleteRequest = () => {
+  onDeleteRequest = (): void => {
     // Open a confirmation modal
     this.props.actions.modal.openModal();
   };
 
   // Reload survey
-  onReload = () => {
+  onReload = (): void => {
     this.getSurvey(() => {
       // Show status once the latest updates have already been fetched
       this.setState(() => ({ updated: true }));
@@ -111,7 +153,7 @@ class UI extends Component {
   };
 
   // Remove survey item from its list
-  onRemoveItem = () => {
+  onRemoveItem = (): void => {
     // Variables
     const { state: { data }, location: { state } } = this.props;
     const survey = data.survey ? data.survey : {};
@@ -121,57 +163,68 @@ class UI extends Component {
     const isCompleted = survey.completed;
 
     // Remove selected item
-    if ((isActive && !survey[mode]) || (!isActive && (isCompleted || isArchived))) {
+    if ((mode && isActive && !survey[mode]) || (!isActive && (isCompleted || isArchived))) {
       this.props.actions.surveys.removeSurvey(this.surveyId);
     }
   };
 
   // Reset survey data
-  onResetData = () => {
+  onResetData = (): void => {
     this.props.actions.surveys.resetData();
   };
 
   // Track the current selected survey
-  onAddSelected = () => {
+  onAddSelected = (): void => {
     if (this.fromList) {
       this.props.actions.surveys.addSelectedSurvey(this.surveyId);
     }
   };
 
   // Update survey
-  onUpdate = (values) => {
+  onUpdate = (values: {}): void => {
     this.props.actions.surveys.updateSurvey(this.surveyId, values);
   };
 
   // Get recipients
-  getRecipients = () => {
+  getRecipients = (): void => {
     this.props.actions.surveys.getRecipients(this.surveyId);
   };
 
   // Get survey
-  getSurvey = (callback) => {
+  getSurvey = (callback?: Callback): void => {
     this.props.actions.surveys.getSurvey(this.surveyId, callback);
   };
 
+  // Static types definition for class property fields
+  fromList: {} | boolean;
+  surveyId: string;
+
   // Render toolbar
-  renderToolbar = props => (
-    <Toolbar
-      actions={{
-        back: this.onNavigateBack,
-        delete: this.onDeleteRequest,
-        reload: this.onReload,
-        update: this.onUpdate
-      }}
-      state={{
-        ...props.state,
-        status: { updated: this.state.updated }
-      }}
-    />
-  );
+  renderToolbar = (): React.Element<typeof Toolbar> => {
+    // Variables
+    const { state } = this.props;
+
+    // View
+    return (
+      <Toolbar
+        actions={{
+          back: this.onNavigateBack,
+          delete: this.onDeleteRequest,
+          reload: this.onReload,
+          update: this.onUpdate
+        }}
+        state={{
+          ...state,
+          status: { updated: this.state.updated }
+        }}
+      />
+    );
+  };
 
   // Render content
-  renderContent = ({ state: { data, ui: { asynchronous } } }) => {
+  renderContent = (): React.Node | void => {
     // Variables
+    const { state: { data, ui: { asynchronous } } } = this.props;
     const { error, loading } = asynchronous.get.survey;
 
     // Error
@@ -199,23 +252,29 @@ class UI extends Component {
   };
 
   // Render confirmation modal
-  renderModal = ({ actions, state: { data, ui: { asynchronous } } }) => (
-    <Modal
-      actions={{
-        close: actions.modal.closeModal,
-        confirm: this.onDeleteConfirm
-      }}
-      state={{
-        ui: {
-          asynchronous: asynchronous.delete.survey,
-          visibility: data.interfaces.modal.isOpen
-        }
-      }}
-    />
-  );
+  renderModal = (): React.Element<typeof Modal> => {
+    // Variables
+    const { actions, state: { data, ui: { asynchronous } } } = this.props;
+
+    // View
+    return (
+      <Modal
+        actions={{
+          close: actions.modal.closeModal,
+          confirm: this.onDeleteConfirm
+        }}
+        state={{
+          ui: {
+            asynchronous: asynchronous.delete.survey,
+            visibility: data.interfaces.modal.isOpen
+          }
+        }}
+      />
+    );
+  };
 
   // Render component
-  render() {
+  render(): Return {
     return (
       <Document>
         <Head>
@@ -223,19 +282,15 @@ class UI extends Component {
         </Head>
         <Body>
           <Layout>
-            {this.renderToolbar(this.props)}
-            {this.renderContent(this.props)}
-            {this.renderModal(this.props)}
+            {this.renderToolbar()}
+            {this.renderContent()}
+            {this.renderModal()}
           </Layout>
         </Body>
       </Document>
     );
   }
 }
-
-// Specify prop types and default values for props
-UI.propTypes = propTypes;
-UI.defaultProps = defaultProps;
 
 // Module exports
 export default UI;

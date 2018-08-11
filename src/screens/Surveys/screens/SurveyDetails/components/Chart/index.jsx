@@ -1,24 +1,35 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 import { Pie } from 'react-chartjs-2';
 
 // Companion files
 import './styles.scss';
 
+// Static types
+type Props = {
+  data: {
+    no: number,
+    yes: number
+  }
+};
+
+type Return = React.Node | void;
+
 // Component
-const Chart = ({ data }) => {
+const Chart = ({ data: { no, yes } }: Props): Return => {
   // Configuration
-  const response = data.yes + data.no;
+  const response = no + yes;
 
   // Chart
   const chart = {
     data: {
-      labels: ['Yes', 'No'],
+      labels: ['No', 'Yes'],
       datasets: [
         {
-          data: [data.yes, data.no],
-          backgroundColor: ['#36A2EB', '#FFCE56'],
-          hoverBackgroundColor: ['#36A2EB', '#FFCE56']
+          data: [no, yes],
+          backgroundColor: ['#FFCE56', '#36A2EB'],
+          hoverBackgroundColor: ['#FFCE56', '#36A2EB']
         }
       ]
     },
@@ -29,11 +40,11 @@ const Chart = ({ data }) => {
 
   // View
   return (
-    response > 0 && (
+    <If condition={response > 0}>
       <div styleName="wrapper">
         <Pie data={chart.data} legend={chart.legend} />
       </div>
-    )
+    </If>
   );
 };
 
