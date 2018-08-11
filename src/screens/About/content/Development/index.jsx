@@ -434,12 +434,6 @@ const Development = (): Return => (
                 </ListContent>
               </ListItem>
               <ListItem>
-                <ListLabel>Runtime type checking for React props</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/facebook/prop-types">PropTypes</ListLink>
-                </ListContent>
-              </ListItem>
-              <ListItem>
                 <ListLabel>Bash script to manage multiple active Node.js versions</ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com/creationix/nvm">nvm</ListLink>
@@ -694,7 +688,7 @@ const Development = (): Return => (
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.google.com/chrome/" v="67.0.3396.99">
+                      <ListLink to="https://www.google.com/chrome/" v="68.0.3440.106">
                         Chrome DevTools
                       </ListLink>
                     </ListGroupItem>
@@ -711,12 +705,12 @@ const Development = (): Return => (
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="61.0.1">
+                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="61.0.2">
                         Firefox
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.google.com/chrome/" v="67.0.3396.99">
+                      <ListLink to="https://www.google.com/chrome/" v="68.0.3440.106">
                         Chrome
                       </ListLink>
                     </ListGroupItem>
