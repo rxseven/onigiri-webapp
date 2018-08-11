@@ -1,49 +1,67 @@
+// @flow
 // Module dependencies
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
 // Constants
 import CSS from 'constants/string/css';
 
-// Declare prop types and default props
-const propTypes = exact({
-  alignment: PropTypes.string,
-  background: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  end: PropTypes.bool,
-  marginBottom: PropTypes.string,
-  options: PropTypes.string,
-  text: PropTypes.string
-});
+// Component types
+import CardBody from '../CardBody';
+import CardFooter from '../CardFooter';
+import CardHeader from '../CardHeader';
 
+// Static types
+type Props = {
+  alignment: string,
+  background: string,
+  children:
+    | React.Element<typeof CardBody>
+    | React.Element<typeof CardFooter>
+    | React.Element<typeof CardHeader>,
+  end: boolean,
+  marginBottom: string,
+  options: string,
+  text: string
+};
+
+type Return = React.Element<'div'>;
+
+// Declare default props
 const defaultProps = {
+  alignment: '',
+  background: '',
   end: false,
   marginBottom: CSS.margin.MB04,
-  options: null
+  options: '',
+  text: ''
 };
 
 // Component
 const CardContainer = ({
-  alignment, background, children, end, marginBottom, options, text
-}) => (
+  alignment,
+  background,
+  children,
+  end,
+  marginBottom,
+  options,
+  text
+}: Props): Return => (
   <div
     className={cx(
       'card',
-      alignment && `${alignment}`,
-      background && `bg-${background}`,
+      !!alignment && `${alignment}`,
+      !!background && `bg-${background}`,
       !end && marginBottom,
-      options,
-      text && `text-${text}`
+      !!options && options,
+      !!text && `text-${text}`
     )}
   >
     {children}
   </div>
 );
 
-// Specify prop types and default values for props
-CardContainer.propTypes = propTypes;
+// Specify default values for props
 CardContainer.defaultProps = defaultProps;
 
 // Module exports

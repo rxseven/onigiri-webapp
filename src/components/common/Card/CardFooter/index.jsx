@@ -1,18 +1,15 @@
+// @flow
 // Module dependencies
-import PropTypes from 'prop-types';
-import exact from 'prop-types-exact';
-import React from 'react';
+import * as React from 'react';
 
-// Declare prop types
-const propTypes = exact({
-  children: PropTypes.node.isRequired
-});
+// Static types
+type Props = { children: React.Node };
+type Return = React.Element<'div'>;
 
 // Component
-const CardFooter = ({ children }) => <div className="card-footer text-muted">{children}</div>;
-
-// Specify prop types
-CardFooter.propTypes = propTypes;
+const CardFooter = ({ children }: Props): Return => (
+  <div className="card-footer text-muted">{children}</div>
+);
 
 // Module exports
 export default CardFooter;
