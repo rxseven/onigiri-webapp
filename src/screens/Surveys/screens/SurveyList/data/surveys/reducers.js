@@ -1,54 +1,70 @@
+// @flow
 // Module dependencies
 import { fromJS, OrderedMap } from 'immutable';
 import { createSelector } from 'reselect';
 
-// Action types
-import { USER_RESET } from 'data/session/types';
+// Action and static types
+import { USER_RESET, type Action as ActionSession } from 'data/session/types';
 import {
   SURVEY_DELETE_FAILURE,
   SURVEY_DELETE_REQUEST,
   SURVEY_DELETE_SUCCESS,
-  SURVEY_REMOVE
+  SURVEY_REMOVE,
+  type Action as ActionSurveys
 } from '../../../../types';
 import {
   SURVEYS_GET_FAILURE,
   SURVEYS_GET_REQUEST,
   SURVEYS_GET_SUCCESS,
   SURVEYS_SELECT_MODE,
-  SURVEYS_RESET_DATA
+  SURVEYS_RESET_DATA,
+  type Action as ActionData,
+  type Meta
 } from './types';
 
-// Initial state
-const initialState = fromJS({
+// Static types
+type Action = ActionSession | ActionSurveys | ActionData;
+type Key = Object;
+type Model = {
+  data: any,
+  meta: Meta
+};
+type State = any;
+
+// State shape
+const stateShape: Model = {
   data: OrderedMap({}),
   meta: null
-});
+};
 
-// Immutable map
-const map = {
+// Immutable key path
+const statePath: Key = {
   data: 'data',
   meta: 'meta'
 };
 
-// Reducer
-export default (state = initialState, action) => {
-  const { payload, type } = action;
+// Initial state
+const initialState: State = fromJS(stateShape);
 
-  switch (type) {
+// Reducer
+export default (state: State = initialState, action: Action): State => {
+  switch (action.type) {
     // Remove survey from a list
     case SURVEY_DELETE_REQUEST:
     case SURVEY_DELETE_FAILURE:
       return state;
     case SURVEY_DELETE_SUCCESS:
     case SURVEY_REMOVE:
-      return state.deleteIn([map.data, payload]);
+      return state.deleteIn([statePath.data, action.payload]);
 
     // Get surveys
     case SURVEYS_GET_REQUEST:
     case SURVEYS_GET_FAILURE:
       return state;
     case SURVEYS_GET_SUCCESS:
-      return state.mergeIn([map.data], payload.get(map.data)).set(map.meta, payload.get(map.meta));
+      return state
+        .mergeIn([statePath.data], action.payload.get(statePath.data))
+        .set(statePath.meta, action.payload.get(statePath.meta));
 
     // Reset state
     case USER_RESET:

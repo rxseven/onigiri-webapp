@@ -1,3 +1,4 @@
+// @flow
 // Module dependencies
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
@@ -10,22 +11,42 @@ import { setAsync } from 'helpers/state';
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADED, LOADING } from 'constants/types/asynchronous';
 
-// Action types
-import { USER_RESET } from 'data/session/types';
-import { SURVEY_SELECTED_ADD, SURVEY_SELECTED_REMOVE } from '../../types';
+// Action and static types
+import { USER_RESET, type Action as ActionSession } from 'data/session/types';
+import {
+  SURVEY_SELECTED_ADD,
+  SURVEY_SELECTED_REMOVE,
+  type Action as ActionSurveys
+} from '../../types';
 import {
   SURVEYS_GET_FAILURE,
   SURVEYS_GET_REQUEST,
   SURVEYS_GET_SUCCESS,
-  SURVEYS_SELECT_MODE
+  SURVEYS_SELECT_MODE,
+  type Action as ActionData
 } from './data/surveys/types';
-import { SURVEYS_RESET_VIEW, SURVEYS_SAVE_PAGINATION } from './types';
+import {
+  SURVEYS_RESET_VIEW,
+  SURVEYS_SAVE_PAGINATION,
+  type Action as ActionList,
+  type Async as Asynchronous,
+  type View
+} from './types';
 
 // Reducers
 import data from './data/reducers';
 
-// Initial state
-const initialState = fromJS({
+// Static types
+type Action = ActionSession | ActionSurveys | ActionData | ActionList;
+type Key = Object;
+type Model = {
+  asynchronous: Asynchronous,
+  view: View
+};
+type State = any;
+
+// State shape
+const stateShape: Model = {
   asynchronous: {
     get: {
       ...STATE_MODELS.model.asynchronous,
@@ -38,34 +59,38 @@ const initialState = fromJS({
     query: null,
     selected: null
   }
-});
+};
 
-// Immutable map
-const map = {
+// Immutable key path
+const statePath: Key = {
   asynchronous: {
     get: ['get']
   },
   view: ['view']
 };
 
-// Asynchronous reducer
-const asynchronous = (state = initialState.get('asynchronous'), action) => {
-  const { payload, type } = action;
+// Initial state
+const initialState: State = fromJS(stateShape);
 
-  switch (type) {
+// Asynchronous reducer
+const asynchronous = (state: State = initialState.get('asynchronous'), action: Action): State => {
+  switch (action.type) {
     // Get serveys
     case SURVEYS_GET_REQUEST:
-      return setAsync(map.asynchronous.get, state, LOADING).setIn(
-        [...map.asynchronous.get, LOADED],
+      return setAsync(statePath.asynchronous.get, state, LOADING).setIn(
+        [...statePath.asynchronous.get, LOADED],
         false
       );
     case SURVEYS_GET_FAILURE:
-      return setAsync(map.asynchronous.get, state, ERROR, payload).setIn(
-        [...map.asynchronous.get, LOADED],
+      return setAsync(statePath.asynchronous.get, state, ERROR, action.payload).setIn(
+        [...statePath.asynchronous.get, LOADED],
         false
       );
     case SURVEYS_GET_SUCCESS:
-      return setAsync(map.asynchronous.get, state).setIn([...map.asynchronous.get, LOADED], true);
+      return setAsync(statePath.asynchronous.get, state).setIn(
+        [...statePath.asynchronous.get, LOADED],
+        true
+      );
 
     // Reset state
     case USER_RESET:
@@ -79,21 +104,19 @@ const asynchronous = (state = initialState.get('asynchronous'), action) => {
 };
 
 // View reducer
-const view = (state = initialState.get('view'), action) => {
-  const { payload, type } = action;
-
-  switch (type) {
+const view = (state: State = initialState.get('view'), action: Action): State => {
+  switch (action.type) {
     // Save pagination query
     case SURVEYS_SAVE_PAGINATION:
-      return state.set('pagination', payload);
+      return state.set('pagination', action.payload);
 
     // Change mode
     case SURVEYS_SELECT_MODE:
-      return state.mergeDeep(payload);
+      return state.mergeDeep(action.payload);
 
     // Track survey
     case SURVEY_SELECTED_ADD:
-      return state.set('selected', payload);
+      return state.set('selected', action.payload);
 
     // Untrack survey
     case SURVEY_SELECTED_REMOVE:

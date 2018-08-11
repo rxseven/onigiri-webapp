@@ -1,5 +1,6 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import * as React from 'react';
 import ScrollToTop from 'react-scroll-up';
 
 // Components and HOCs
@@ -7,6 +8,9 @@ import Icon from 'components/common/Icon';
 
 // Companion files
 import './styles.scss';
+
+// Static types
+type Return = React.Element<'div'>;
 
 // Configuration
 const options = {
@@ -20,7 +24,7 @@ const options = {
 };
 
 // Component
-const ScrollTop = () => (
+const ScrollTop = (): Return => (
   <div styleName="wrapper">
     <div styleName="pin">
       <ScrollToTop {...options}>

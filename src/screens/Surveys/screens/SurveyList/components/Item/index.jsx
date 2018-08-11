@@ -1,5 +1,7 @@
+// @flow
 // Module dependencies
-import React from 'react';
+import { isEmpty } from 'lodash';
+import * as React from 'react';
 
 // Helper functions
 import timestampHelper from 'helpers/timestamp';
@@ -15,16 +17,31 @@ import PATHS from 'constants/router/paths';
 // Companion files
 import './styles.scss';
 
-// Component
-const Item = ({
+// Types
+import type { Item as Data } from '../../data/surveys/types';
+import type { Mode } from '../../types';
+
+// Static types
+type Props = {
   state: {
-    data: {
-      dateSent, _id: id, locked, no, subject, title, yes
-    }, mode
+    data: Data,
+    mode: Mode
   }
-}) => {
+};
+
+type Return = React.Element<typeof ListGroupItem>;
+
+// Component
+const Item = (props: Props): Return => {
   // Variables
-  const isResponse = no || yes;
+  const {
+    state: {
+      data: {
+        _id: id, dateSent, locked, no, subject, title, yes
+      }, mode
+    }
+  } = props;
+  const isResponse = !!no || !!yes;
 
   // View
   return (
@@ -45,7 +62,7 @@ const Item = ({
             <span styleName="yes">Y{yes}</span> <span styleName="no">N{no}</span>
           </span>
         </If>
-        <If condition={locked}>
+        <If condition={!isEmpty(locked)}>
           <Icon disabled name="lock-locked" title="Locked" />
         </If>
       </div>
