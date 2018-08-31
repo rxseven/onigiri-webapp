@@ -13,23 +13,23 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Get user profile
-function* getProfile(action) {
+function* getProfile() {
   try {
     // Inform reducers that the request started
     yield put(actions.getProfileRequest());
 
-    // Fetch data asynchronously
+    // Get user profile
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.getProfile);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data);
+    const immutableData = yield call(fromJS, data);
 
     // Inform reducers that the request finished successfully
     yield put(actions.getProfileSuccess(immutableData));
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.getProfileFailure(immutableData));
