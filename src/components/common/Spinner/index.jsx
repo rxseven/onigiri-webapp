@@ -28,7 +28,7 @@ const options = {
 // Component
 const Spinner = ({ loading }: Props): Return => (
   <Choose>
-    <When condition={!!loading}>
+    <When condition={loading}>
       <div styleName="bounce">
         <ThreeBounce {...options.bounce} />
       </div>
