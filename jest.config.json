@@ -1,13 +1,24 @@
 {
   "collectCoverageFrom": ["src/**/*.{js,jsx,mjs}"],
   "coveragePathIgnorePatterns": [
+    "<rootDir>/.vscode/",
     "<rootDir>/build/",
     "<rootDir>/config/",
+    "<rootDir>/coverage/",
+    "<rootDir>/flow-type/",
     "<rootDir>/node_modules/",
+    "<rootDir>/public/",
+    "<rootDir>/scripts/",
+    "<rootDir>/src/__mock__/",
+    "<rootDir>/src/__tests__/",
     "<rootDir>/src/config/",
     "<rootDir>/src/constants/",
-    "<rootDir>/src/dependencies/",
-    "<rootDir>/src/index.jsx"
+    "<rootDir>/src/sagas/",
+    "<rootDir>/src/services/",
+    "<rootDir>/src/store/",
+    "<rootDir>/src/styles/",
+    "<rootDir>/src/tests/",
+    "<rootDir>/src/types/"
   ],
   "moduleFileExtensions": ["web.js", "js", "json", "web.jsx", "jsx", "node", "mjs"],
   "moduleNameMapper": {
@@ -19,6 +30,26 @@
   "testMatch": [
     "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
     "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
+  ],
+  "testPathIgnorePatterns": [
+    "<rootDir>/.vscode/",
+    "<rootDir>/build/",
+    "<rootDir>/config/",
+    "<rootDir>/coverage/",
+    "<rootDir>/flow-type/",
+    "<rootDir>/node_modules/",
+    "<rootDir>/public/",
+    "<rootDir>/scripts/",
+    "<rootDir>/src/__mock__/",
+    "<rootDir>/src/__tests__/",
+    "<rootDir>/src/config/",
+    "<rootDir>/src/constants/",
+    "<rootDir>/src/sagas/",
+    "<rootDir>/src/services/",
+    "<rootDir>/src/store/",
+    "<rootDir>/src/styles/",
+    "<rootDir>/src/tests/",
+    "<rootDir>/src/types/"
   ],
   "testURL": "http://localhost",
   "transform": {
