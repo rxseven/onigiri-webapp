@@ -10,7 +10,7 @@ import { ERROR, LOADING } from 'constants/types/asynchronous';
 export const setAsync = (selector: any, state: any, type?: string, payload?: {}): any => {
   switch (type) {
     case LOADING:
-      return state.setIn([...selector, LOADING], true).setIn([...selector, 'error'], false);
+      return state.setIn([...selector, LOADING], true).setIn([...selector, 'error'], null);
     case ERROR:
       return state.setIn([...selector, LOADING], false).setIn([...selector, 'error'], payload);
     default:
