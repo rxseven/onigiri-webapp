@@ -7,6 +7,9 @@ import { createSelector } from 'reselect';
 // Helper functions
 import { setAsync } from 'helpers/state';
 
+// Selectors
+import { getDomain } from 'selectors';
+
 // Constants
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADED, LOADING } from 'constants/types/asynchronous';
@@ -36,6 +39,9 @@ import {
 // Reducers
 import data from './data/reducers';
 
+// Constants
+const UNKNOWN = 'UNKNOWN';
+
 // Static types
 type Action = ActionSession | ActionSurveys | ActionData | ActionList;
 type Key = Object;
@@ -46,7 +52,7 @@ type Model = {
 type State = any;
 
 // State shape
-const stateShape: Model = {
+export const stateShape: Model = {
   asynchronous: {
     get: {
       ...STATE_MODELS.model.asynchronous,
@@ -70,10 +76,13 @@ const statePath: Key = {
 };
 
 // Initial state
-const initialState: State = fromJS(stateShape);
+export const initialState: State = fromJS(stateShape);
 
 // Asynchronous reducer
-const asynchronous = (state: State = initialState.get('asynchronous'), action: Action): State => {
+export const asynchronous = (
+  state: State = initialState.get('asynchronous'),
+  action: Action = { type: UNKNOWN }
+): State => {
   switch (action.type) {
     // Get serveys
     case SURVEYS_GET_REQUEST:
@@ -104,15 +113,18 @@ const asynchronous = (state: State = initialState.get('asynchronous'), action: A
 };
 
 // View reducer
-const view = (state: State = initialState.get('view'), action: Action): State => {
+export const view = (
+  state: State = initialState.get('view'),
+  action: Action = { type: UNKNOWN }
+): State => {
   switch (action.type) {
     // Save pagination query
     case SURVEYS_SAVE_PAGINATION:
-      return state.set('pagination', action.payload);
+      return state.set('pagination', fromJS(action.payload));
 
     // Change mode
     case SURVEYS_SELECT_MODE:
-      return state.mergeDeep(action.payload);
+      return state.mergeDeep(fromJS(action.payload));
 
     // Track survey
     case SURVEY_SELECTED_ADD:
@@ -134,7 +146,7 @@ const view = (state: State = initialState.get('view'), action: Action): State =>
 };
 
 // UI reducer
-const ui = combineReducers({ asynchronous });
+export const ui = combineReducers({ asynchronous });
 
 // Combine reducers
 export default combineReducers({
@@ -144,7 +156,7 @@ export default combineReducers({
 });
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'surveys', 'list']);
+export const getNode = (state: any): any => getDomain(state, ['screens', 'surveys', 'list']);
 
 // Get UI state
 export const getUI = createSelector(getNode, node => node.get('ui'));

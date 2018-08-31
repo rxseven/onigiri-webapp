@@ -7,6 +7,9 @@ import { combineReducers } from 'redux-immutable';
 // Helper functions
 import { setAsync } from 'helpers/state';
 
+// Selectors
+import { getDomain } from 'selectors';
+
 // Constants
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
@@ -26,13 +29,16 @@ import {
 // Reducers
 import data from './data/reducers';
 
+// Constants
+const UNKNOWN = 'UNKNOWN';
+
 // Static types
 type Key = Object;
 type Model = { get: { landing: Asynchronous } };
 type State = any;
 
 // State shape
-const stateShape: Model = {
+export const stateShape: Model = {
   get: {
     landing: { ...STATE_MODELS.model.asynchronous }
   }
@@ -46,10 +52,13 @@ const statePath: Key = {
 };
 
 // Initial state
-const initialState: State = fromJS(stateShape);
+export const initialState: State = fromJS(stateShape);
 
 // Asynchronous reducer
-const asynchronous = (state: State = initialState, action: Action): State => {
+export const asynchronous = (
+  state: State = initialState,
+  action: Action = { type: UNKNOWN }
+): State => {
   switch (action.type) {
     // Get landing page URI
     case LANDING_GET_REQUEST:
@@ -70,7 +79,7 @@ const asynchronous = (state: State = initialState, action: Action): State => {
 };
 
 // UI reducer
-const ui = combineReducers({ asynchronous });
+export const ui = combineReducers({ asynchronous });
 
 // Combine reducers
 export default combineReducers({
@@ -79,7 +88,7 @@ export default combineReducers({
 });
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'surveys', 'doorway']);
+export const getNode = (state: any): any => getDomain(state, ['screens', 'surveys', 'doorway']);
 
 // Get UI state
 export const getUI = createSelector(getNode, node => node.get('ui'));

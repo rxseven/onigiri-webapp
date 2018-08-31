@@ -30,7 +30,7 @@ type Props = {
 type Return = React.Element<typeof Route>;
 
 // HOC
-const AuthRoute = ({
+export const AuthRoute = ({
   component: Component,
   state: { data: { authorization } },
   ...rest

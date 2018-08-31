@@ -7,6 +7,9 @@ import { createSelector } from 'reselect';
 // Helper functions
 import { setAsync } from 'helpers/state';
 
+// Selectors
+import { getDomain } from 'selectors';
+
 // Constants
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
@@ -42,6 +45,7 @@ import {
 import data from './data/reducers';
 
 // Constants
+const UNKNOWN = 'UNKNOWN';
 const asyncModel = { ...STATE_MODELS.model.asynchronous };
 
 // Static types
@@ -62,13 +66,17 @@ type Model = {
 type State = any;
 
 // State shape
-const stateShape: Model = {
-  delete: { profile: asyncModel },
+export const stateShape: Model = {
+  delete: {
+    profile: asyncModel
+  },
   get: {
     credits: asyncModel,
     profile: asyncModel
   },
-  post: { checkout: asyncModel }
+  post: {
+    checkout: asyncModel
+  }
 };
 
 // Immutable key path
@@ -86,10 +94,13 @@ const statePath: Key = {
 };
 
 // Initial state
-const initialState: State = fromJS(stateShape);
+export const initialState: State = fromJS(stateShape);
 
 // Asynchronous reducer
-const asynchronous = (state: State = initialState, action: Action): State => {
+export const asynchronous = (
+  state: State = initialState,
+  action: Action = { type: UNKNOWN }
+): State => {
   switch (action.type) {
     // Delete user account
     case USER_DELETE_REQUEST:
@@ -134,7 +145,7 @@ const asynchronous = (state: State = initialState, action: Action): State => {
 };
 
 // UI reducer
-const ui = combineReducers({ asynchronous });
+export const ui = combineReducers({ asynchronous });
 
 // Combine reducers
 export default combineReducers({
@@ -143,7 +154,7 @@ export default combineReducers({
 });
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'users', 'profile']);
+export const getNode = (state: any): any => getDomain(state, ['screens', 'users', 'profile']);
 
 // Get UI state
 export const getUI = createSelector(getNode, node => node.get('ui'));

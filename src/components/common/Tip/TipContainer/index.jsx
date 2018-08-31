@@ -30,7 +30,7 @@ const defaultProps = {
 const TipContainer = ({
   children, end, margin, options
 }: Props): Return => (
-  <div className={cx(CSS.margin.MT04, !end && margin, !!options && options)} styleName="container">
+  <div className={cx(CSS.margin.MT04, end && margin, !!options && options)} styleName="container">
     {children}
   </div>
 );

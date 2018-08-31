@@ -1,5 +1,6 @@
 // @flow
 // Module dependencies
+import cx from 'classnames';
 import * as React from 'react';
 
 // Static types
@@ -17,7 +18,7 @@ const defaultProps = {
 
 // Component
 const FormStack = ({ children, end }: Props): Return => (
-  <div className={!end && 'mb-3'}>{children}</div>
+  <div className={cx(!end && 'mb-3')}>{children}</div>
 );
 
 // Specify default values for props

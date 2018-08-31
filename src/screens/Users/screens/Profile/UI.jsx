@@ -53,7 +53,9 @@ type Props = {
     },
     ui: {
       asynchronous: {
-        delete: Object,
+        delete: {
+          profile: Asynchronous
+        },
         get: {
           credits: Asynchronous,
           profile: Asynchronous

@@ -1,6 +1,6 @@
 # Onigiri
 
-[![Build Status](https://travis-ci.org/rxseven/onigiri-webapp.svg?branch=master)](https://travis-ci.org/rxseven/onigiri-webapp) [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![Build Status](https://travis-ci.org/rxseven/onigiri-webapp.svg?branch=master)](https://travis-ci.org/rxseven/onigiri-webapp) [![Coverage Status](https://coveralls.io/repos/github/rxseven/onigiri-webapp/badge.svg)](https://coveralls.io/github/rxseven/onigiri-webapp) [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 React & Redux web application for collecting and organizing surveys.
 
@@ -11,6 +11,7 @@ With **Onigiri**, you can create and analyze surveys right in your pocket or web
 ## Table of Contents
 
 - [Demo](#demo)
+- [What’s next?](#what’s-next?)
 - [Running Onigiri Locally](#running-onigiri-locally)
 - [Running Tests](#running-tests)
 - [Features and Specification](#features-and-specification)
@@ -29,6 +30,20 @@ Onigiri is hosted on Heroku at [https://onigiri-webapp.herokuapp.com](https://on
 > **App sleeping...** as Onigiri and its API run on a free plan, when an app on Heroku has only one web dyno and that dyno doesn’t receive any traffic in 1 hour, the dyno goes to sleep. When someone accesses the app, the dyno manager will automatically wake up the web dyno to run the web process type. **This causes a short delay for this first request**, but subsequent requests will perform normally. For more information, see [App Sleeping on Heroku](https://blog.heroku.com/app_sleeping_on_heroku).
 
 > **Daily limit** as Onigiri runs on a free plan, and the free trial is already expired, at which point, **Onigiri is restricted to sending 100 emails per day**. For more information, see [SendGrid Pricing & Plans](https://www.sendgrid.com/pricing/).
+
+[Back to top](#table-of-contents)
+
+## What’s next?
+
+- Optimize the API response with [Normalizr](https://github.com/paularmstrong/normalizr).
+- Implement reusable Higher Order Components (HOCs) with [Recompose](https://github.com/acdlite/recompose).
+- Setup container with [Docker](https://www.docker.com).
+- Deploy the app on [DigitalOcean](https://www.digitalocean.com) or [Amazon Web Service (AWS)](https://aws.amazon.com).
+- Refactor code with functional programming.
+- Implement components in isolation with [Storybook](https://storybook.js.org).
+- Optimize the app’s performance.
+- Add more unit tests to cover the entire project.
+- Add more static type checking to cover the entire project.
 
 [Back to top](#table-of-contents)
 
@@ -91,13 +106,23 @@ yarn start:https
 
 ## Running Tests
 
-Run tests with the command below:
+**1.** Open `.env.test` file and add the configuration below:
+
+```
+REACT_APP_API_URL=https://onigiri-api.herokuapp.com
+REACT_APP_WEB_URL=https://localhost:3000
+REACT_APP_FACEBOOK_APP_ID=[FACEBOOK_APP_ID]
+REACT_APP_GOOGLE_APP_ID=[GOOGLE_APP_ID]
+REACT_APP_STRIPE_KEY=[STRIPE_PUBLIC_KEY]
+```
+
+**2.** Run tests with the command below:
 
 ```sh
 yarn test
 ```
 
-> Note: by default, when you run the command above, Jest will only run the tests related to files changed (modified) since the last commit. This is an optimization designed to make your tests run fast regardless of how many tests in the project you have. However, you can also press a in the watch mode to force Jest to run all tests.
+> Note: by default, when you run the command above, Jest will only run the tests related to files changed (modified) since the last commit. This is an optimization designed to make your tests run fast regardless of how many tests in the project you have. However, you can also press `a` in the watch mode to force Jest to run all tests.
 
 [Back to top](#table-of-contents)
 

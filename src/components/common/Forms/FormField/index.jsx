@@ -23,7 +23,8 @@ type Return = React.Element<'div'>;
 
 // Default props
 const defaultProps = {
-  helper: ''
+  helper: '',
+  type: 'text'
 };
 
 // Component

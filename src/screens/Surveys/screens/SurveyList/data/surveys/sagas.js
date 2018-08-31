@@ -5,6 +5,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 // Helper functions
 import { fromJSOrdered, getError } from 'helpers/state';
+import { callFunction } from 'helpers/utilities';
 
 // Services
 import * as surveysService from '../../../../services';
@@ -14,7 +15,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Cancel getting surveys
-function* cancelSurveys() {
+export function* cancelSurveys() {
   try {
     // Inform reducers that the request started
     yield put(actions.cancelSurveysRequest());
@@ -31,29 +32,29 @@ function* cancelSurveys() {
 }
 
 // Get surveys
-function* getSurveys({ callback, payload }) {
+export function* getSurveys({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.getSurveysRequest());
 
-    // Fetch data asynchronously
+    // Get surveys
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getSurveys, payload.query);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJSOrdered({
-      ...data,
-      data: mapKeys(data.data, '_id')
+    const immutableData = yield call(fromJS, {
+      data: fromJSOrdered(mapKeys(data.data, '_id')),
+      meta: fromJS(data.meta)
     });
 
     // Inform reducers that the request finished successfully
     yield put(actions.getSurveysSuccess(immutableData));
 
     // Execute a callback
-    callback();
+    yield call(callFunction, callback);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.getSurveysFailure(immutableData));
@@ -61,7 +62,7 @@ function* getSurveys({ callback, payload }) {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield all([
     takeLatest(types.SURVEYS_CANCEL, cancelSurveys),
     takeLatest(types.SURVEYS_GET, getSurveys)

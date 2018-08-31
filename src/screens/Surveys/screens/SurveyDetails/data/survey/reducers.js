@@ -2,6 +2,9 @@
 // Module dependencies
 import { createSelector } from 'reselect';
 
+// Selectors
+import { getDomain } from 'selectors';
+
 // Action and static types
 import { USER_RESET } from 'data/session/types';
 import {
@@ -25,19 +28,22 @@ import {
   type Survey
 } from './types';
 
+// Constants
+const UNKNOWN = 'UNKNOWN';
+
 // Static types
 type Action = ActionSurveys | ActionData;
 type Model = ?Survey;
 type State = any;
 
 // State shape
-const stateShape: Model = null;
+export const stateShape: Model = null;
 
 // Initial state
-const initialState: State = stateShape;
+export const initialState: State = stateShape;
 
 // Reducer
-export default (state: State = initialState, action: Action): State => {
+export default (state: State = initialState, action: Action = { type: UNKNOWN }): State => {
   switch (action.type) {
     // Get recipients
     case RECIPIENTS_GET_REQUEST:
@@ -79,7 +85,8 @@ export default (state: State = initialState, action: Action): State => {
 };
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'surveys', 'details', 'data']);
+export const getNode = (state: any): any =>
+  getDomain(state, ['screens', 'surveys', 'details', 'data']);
 
 // Get survey state
 export const getSurvey = createSelector(getNode, node => node.get('survey'));

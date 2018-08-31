@@ -16,6 +16,7 @@ export const CREDITS_GET_REQUEST = 'data/credits/CREDITS_GET_REQUEST';
 export const CREDITS_GET_SUCCESS = 'data/credits/CREDITS_GET_SUCCESS';
 
 export const CREDITS_UPDATE = 'data/credits/CREDITS_UPDATE';
+export const UNKNOWN = 'UNKNOWN';
 
 // Static types
 export type Balance = number;
@@ -34,4 +35,5 @@ export type Action =
   | { type: typeof CREDITS_GET_FAILURE, payload: Error }
   | { type: typeof CREDITS_GET_REQUEST }
   | { type: typeof CREDITS_GET_SUCCESS, payload: Data }
-  | { type: typeof CREDITS_UPDATE, payload: Data };
+  | { type: typeof CREDITS_UPDATE, payload: Data }
+  | { type: typeof UNKNOWN };

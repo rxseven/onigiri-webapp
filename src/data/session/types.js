@@ -44,6 +44,7 @@ export const USER_GET_REQUEST = 'data/session/USER_GET_REQUEST';
 export const USER_GET_SUCCESS = 'data/session/USER_GET_SUCCESS';
 
 export const USER_RESET = 'data/session/USER_RESET';
+export const UNKNOWN = 'UNKNOWN';
 
 // Static types
 export type User = {
@@ -98,4 +99,5 @@ export type Action =
   | { type: typeof USER_GET_FAILURE }
   | { type: typeof USER_GET_REQUEST }
   | { type: typeof USER_GET_SUCCESS, payload: Data }
-  | { type: typeof USER_RESET };
+  | { type: typeof USER_RESET }
+  | { type: typeof UNKNOWN };

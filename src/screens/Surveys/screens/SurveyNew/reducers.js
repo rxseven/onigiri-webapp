@@ -7,6 +7,9 @@ import { createSelector } from 'reselect';
 // Helper functions
 import { setAsync } from 'helpers/state';
 
+// Selectors
+import { getDomain } from 'selectors';
+
 // Constants
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
@@ -23,13 +26,16 @@ import {
   type Action
 } from './types';
 
+// Constants
+const UNKNOWN = 'UNKNOWN';
+
 // Static types
 type Key = Object;
 type Model = { post: Asynchronous };
 type State = any;
 
-// State model
-const stateModel: Model = {
+// State shape
+export const stateShape: Model = {
   post: { ...STATE_MODELS.model.asynchronous }
 };
 
@@ -39,10 +45,13 @@ const statePath: Key = {
 };
 
 // Initial state
-const initialState: State = fromJS(stateModel);
+export const initialState: State = fromJS(stateShape);
 
 // Asynchronous reducer
-const asyncReducer = (state: State = initialState, action: Action): State => {
+export const asynchronous = (
+  state: State = initialState,
+  action: Action = { type: UNKNOWN }
+): State => {
   switch (action.type) {
     // Create survey
     case SURVEY_CREATE_REQUEST:
@@ -63,8 +72,8 @@ const asyncReducer = (state: State = initialState, action: Action): State => {
 };
 
 // UI reducer
-const ui = combineReducers({
-  asynchronous: asyncReducer
+export const ui = combineReducers({
+  asynchronous
 });
 
 // Combine reducers
@@ -73,7 +82,7 @@ export default combineReducers({
 });
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'surveys', 'new']);
+export const getNode = (state: any): any => getDomain(state, ['screens', 'surveys', 'new']);
 
 // Get UI state
 export const getUI = createSelector(getNode, node => node.get('ui'));

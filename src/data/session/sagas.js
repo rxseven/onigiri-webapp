@@ -3,8 +3,9 @@ import { fromJS } from 'immutable';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 // Helper functions
+import authHelper from 'helpers/authentication';
 import { getError } from 'helpers/state';
-import tokenHelper from 'helpers/token';
+import { callFunction } from 'helpers/utilities';
 
 // Services
 import * as usersService from 'services/users';
@@ -14,7 +15,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Delete user account
-function* deleteUser({ callback }) {
+export function* deleteUser({ callback }) {
   try {
     // Inform reducers that the request started
     yield put(actions.deleteUserRequest());
@@ -26,14 +27,14 @@ function* deleteUser({ callback }) {
     yield put(actions.deleteUserSuccess());
     yield put(actions.resetUser());
 
-    // Remove an access token from browser's local storage
-    tokenHelper.remove();
+    // Reset the current user session
+    yield call(authHelper.reset);
 
     // Execute a callback
-    callback();
+    yield call(callFunction, callback);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.deleteUserFailure(immutableData));
@@ -41,25 +42,23 @@ function* deleteUser({ callback }) {
 }
 
 // Get user info
-function* getUser() {
+export function* getUser() {
   try {
     // Inform reducers that the request started
     yield put(actions.getUserRequest());
 
-    // Fetch data asynchronously
+    // Get user info
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.getUser);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data);
+    const immutableData = yield call(fromJS, data);
 
     // Inform reducers that the request finished successfully
     yield put(actions.getUserSuccess(immutableData));
   } catch (error) {
-    // If unauthorized, remove an access token
-    if (error.response.status === 401) {
-      tokenHelper.remove();
-    }
+    // If unauthorized, reset the current user session
+    yield call(authHelper.verify, error.response.status);
 
     // Inform reducers that the request failed
     yield put(actions.getUserFailure());
@@ -67,7 +66,7 @@ function* getUser() {
 }
 
 // Sign in with Facebook
-function* oauthFacebook({ callback, payload }) {
+export function* oauthFacebook({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.oauthFacebookRequest());
@@ -80,19 +79,19 @@ function* oauthFacebook({ callback, payload }) {
     );
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(user);
+    const immutableData = yield call(fromJS, user);
 
     // Inform reducers that the request finished successfully
     yield put(actions.oauthFacebookSuccess(immutableData));
 
-    // Store an access token in a browser's local storage
-    tokenHelper.save(token);
+    // Create a user session
+    yield call(authHelper.authorize, token);
 
     // Execute a callback
-    callback(status);
+    yield call(callback, status);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.oauthFacebookFailure(immutableData));
@@ -100,7 +99,7 @@ function* oauthFacebook({ callback, payload }) {
 }
 
 // Sign in with Google
-function* oauthGoogle({ callback, payload }) {
+export function* oauthGoogle({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.oauthGoogleRequest());
@@ -113,19 +112,19 @@ function* oauthGoogle({ callback, payload }) {
     );
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(user);
+    const immutableData = yield call(fromJS, user);
 
     // Inform reducers that the request finished successfully
     yield put(actions.oauthGoogleSuccess(immutableData));
 
-    // Store an access token in a browser's local storage
-    tokenHelper.save(token);
+    // Create a user session
+    yield call(authHelper.authorize, token);
 
     // Execute a callback
-    callback(status);
+    yield call(callback, status);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.oauthGoogleFailure(immutableData));
@@ -133,7 +132,7 @@ function* oauthGoogle({ callback, payload }) {
 }
 
 // Sign in with an email address and password
-function* signIn({ callback, payload }) {
+export function* signIn({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.signInRequest());
@@ -143,19 +142,19 @@ function* signIn({ callback, payload }) {
     const { data } = yield call(usersService.signIn, payload.credentials.toJS());
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data.user);
+    const immutableData = yield call(fromJS, data.user);
 
     // Inform reducers that the request finished successfully
     yield put(actions.signInSuccess(immutableData));
 
-    // Store an access token in a browser's local storage
-    tokenHelper.save(data.token);
+    // Create a user session
+    yield call(authHelper.authorize, data.token);
 
     // Execute a callback
-    callback();
+    yield call(callFunction, callback);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.signInFailure(immutableData));
@@ -163,7 +162,7 @@ function* signIn({ callback, payload }) {
 }
 
 // Sign out
-function* signOut({ callback }) {
+export function* signOut({ callback }) {
   try {
     // Inform reducers that the request started
     yield put(actions.signOutRequest());
@@ -177,14 +176,14 @@ function* signOut({ callback }) {
     // Clean up session state
     yield put(actions.resetUser());
 
-    // Remove an access token from browser's local storage
-    tokenHelper.remove();
+    // Reset the current user session
+    yield call(authHelper.reset);
 
     // Execute a callback
-    callback();
+    yield call(callFunction, callback);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.signOutFailure(immutableData));
@@ -192,7 +191,7 @@ function* signOut({ callback }) {
 }
 
 // Sign up
-function* signUp({ callback, payload }) {
+export function* signUp({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.signUpRequest());
@@ -202,19 +201,19 @@ function* signUp({ callback, payload }) {
     const { data } = yield call(usersService.signUp, payload.credentials.toJS());
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data.user);
+    const immutableData = yield call(fromJS, data.user);
 
     // Inform reducers that the request finished successfully
     yield put(actions.signUpSuccess(immutableData));
 
-    // Store an access token in a browser's local storage
-    tokenHelper.save(data.token);
+    // Create a user session
+    yield call(authHelper.authorize, data.token);
 
     // Execute a callback
-    callback();
+    yield call(callFunction, callback);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.signUpFailure(immutableData));
@@ -222,7 +221,7 @@ function* signUp({ callback, payload }) {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   all([
     yield takeLatest(types.OAUTH_FACEBOOK, oauthFacebook),
     yield takeLatest(types.OAUTH_GOOGLE, oauthGoogle),

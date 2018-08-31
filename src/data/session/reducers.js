@@ -28,15 +28,19 @@ import {
   USER_GET_FAILURE,
   USER_GET_REQUEST,
   USER_GET_SUCCESS,
+  UNKNOWN,
   type Action,
   type Session
 } from './types';
+
+// Selectors
+import { getNode } from '../selectors';
 
 // Static types
 type State = any;
 
 // State shape
-const stateShape: Session = {
+export const stateShape: Session = {
   authorization: false,
   loading: {
     signin: false,
@@ -46,10 +50,10 @@ const stateShape: Session = {
 };
 
 // Initial state
-const initialState: State = fromJS(stateShape);
+export const initialState: State = fromJS(stateShape);
 
 // Set user state
-const setUser = <T: any>(state: T, payload: T): T =>
+export const setUser = <T: any>(state: T, payload: T): T =>
   state
     .set('authorization', true)
     .setIn(['loading', 'signin'], false)
@@ -57,11 +61,11 @@ const setUser = <T: any>(state: T, payload: T): T =>
     .set('user', payload);
 
 // Set loading state
-const setLoading = <T: any>(state: T, node: string, status?: boolean = true): T =>
+export const setLoading = <T: any>(state: T, node: string, status?: boolean = true): T =>
   state.setIn(['loading', node], status);
 
 // Reducer
-export default (state: State = initialState, action: Action): State => {
+export default (state: State = initialState, action: Action = { type: UNKNOWN }): State => {
   switch (action.type) {
     // OAuth
     case OAUTH_FACEBOOK_REQUEST:
@@ -118,9 +122,6 @@ export default (state: State = initialState, action: Action): State => {
       return state;
   }
 };
-
-// Non-memoized utility selectors
-const getNode = state => state.get('data');
 
 // Get session state
 export const getSession = createSelector(getNode, node => node.get('session'));
