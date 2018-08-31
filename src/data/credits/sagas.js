@@ -15,7 +15,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Checkout
-function* checkout({ callback, payload }) {
+export function* checkout({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.checkoutRequest());
@@ -42,7 +42,7 @@ function* checkout({ callback, payload }) {
 }
 
 // Get user credits
-function* getCredits() {
+export function* getCredits() {
   try {
     // Inform reducers that the request started
     yield put(actions.getCreditsRequest());
@@ -66,7 +66,7 @@ function* getCredits() {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield all([takeLatest(types.CHECKOUT, checkout), takeLatest(types.CREDITS_GET, getCredits)]);
 }
 
