@@ -31,6 +31,7 @@
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
     "test:details": "node scripts/test.js --env=jsdom --verbose --config jest.config.json",
     "test:staged": "cross-env CI=true node scripts/test.js --env=jsdom --config jest.config.json --findRelatedTests",
+    "test:sum": "node scripts/test.js --env=jsdom --silent --config jest.config.json",
     "type": "flow",
     "type:check": "flow check",
     "type:check:focus": "flow focus-check",
