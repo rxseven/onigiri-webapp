@@ -5,6 +5,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 // Helper functions
 import { fromJSOrdered, getError } from 'helpers/state';
+import { callFunction } from 'helpers/utilities';
 
 // Services
 import * as surveysService from '../../../../services';
@@ -19,18 +20,18 @@ function* getRecipients({ payload }) {
     // Inform reducers that the request started
     yield put(actions.getRecipientsRequest());
 
-    // Fetch data asynchronously
+    // Get recipients
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getRecipients, payload.id);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJSOrdered(mapKeys(data.recipients, '_id'));
+    const immutableData = yield call(fromJSOrdered, mapKeys(data.recipients, '_id'));
 
     // Inform reducers that the request finished successfully
     yield put(actions.getRecipientsSuccess(immutableData));
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.getRecipientsFailure(immutableData));
@@ -43,21 +44,21 @@ function* getSurvey({ callback, payload }) {
     // Inform reducers that the request started
     yield put(actions.getSurveyRequest());
 
-    // Fetch data asynchronously
+    // Get survey
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getSurvey, payload.id);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data);
+    const immutableData = yield call(fromJS, data);
 
     // Inform reducers that the request finished successfully
     yield put(actions.getSurveySuccess(immutableData));
 
     // Execute a callback
-    if (callback) callback();
+    yield call(callFunction, callback);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.getSurveyFailure(immutableData));
@@ -75,13 +76,13 @@ function* updateSurvey({ payload: { id, values } }) {
     const { data } = yield call(surveysService.updateSurvey, id, values);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data);
+    const immutableData = yield call(fromJS, data);
 
     // Inform reducers that the request finished successfully
     yield put(actions.updateSurveySuccess(immutableData));
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.updateSurveyFailure(immutableData));
