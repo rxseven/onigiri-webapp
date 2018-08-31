@@ -9,7 +9,8 @@
     "react-app",
     "airbnb",
     "plugin:jest/recommended",
-    "plugin:jsx-control-statements/recommended"
+    "plugin:jsx-control-statements/recommended",
+    "jest-enzyme"
   ],
   "parser": "babel-eslint",
   "plugins": ["jest", "jsx-control-statements"],

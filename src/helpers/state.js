@@ -6,11 +6,11 @@ import { fromJS, Seq } from 'immutable';
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
-// Set asynchronous status
+// Set an asynchronous status
 export const setAsync = (selector: any, state: any, type?: string, payload?: {}): any => {
   switch (type) {
     case LOADING:
-      return state.setIn([...selector, LOADING], true).setIn([...selector, 'error'], false);
+      return state.setIn([...selector, LOADING], true).setIn([...selector, 'error'], null);
     case ERROR:
       return state.setIn([...selector, LOADING], false).setIn([...selector, 'error'], payload);
     default:
@@ -39,6 +39,6 @@ export const generateState = <T: any>(handler: T): { state: T } => ({
   state: handler
 });
 
-// Extract error message from a network response
+// Extract an error message from a network response
 export const getError = <T: { message: string }>(error: { response: { data: { error: T } } }): T =>
   error.response.data.error;

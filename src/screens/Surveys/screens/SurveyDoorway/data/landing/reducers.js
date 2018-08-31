@@ -3,6 +3,9 @@
 import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 
+// Selectors
+import { getDomain } from 'selectors';
+
 // Action and static types
 import {
   LANDING_GET_FAILURE,
@@ -13,18 +16,21 @@ import {
   type URI
 } from './types';
 
+// Constants
+const UNKNOWN = 'UNKNOWN';
+
 // Static types
 type Model = URI;
 type State = any;
 
 // State shape
-const stateShape: Model = { URI: '' };
+export const stateShape: Model = { URI: '' };
 
 // Initial state
-const initialState: State = fromJS(stateShape);
+export const initialState: State = fromJS(stateShape);
 
 // Reducer
-export default (state: State = initialState, action: Action): State => {
+export default (state: State = initialState, action: Action = { type: UNKNOWN }): State => {
   switch (action.type) {
     // Get landing page URI
     case LANDING_GET_REQUEST:
@@ -44,7 +50,8 @@ export default (state: State = initialState, action: Action): State => {
 };
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'surveys', 'doorway', 'data']);
+export const getNode = (state: any): any =>
+  getDomain(state, ['screens', 'surveys', 'doorway', 'data']);
 
 // Get landing page URI state
 export const getLanding = createSelector(getNode, node => node.get('landing'));

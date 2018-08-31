@@ -169,7 +169,9 @@ class Scroller extends React.Component<Props, State> {
           if (this.isMouthing) {
             // Create the next query if next pages are available
             if (this.props.state.meta.paging.next) {
-              this.setState(() => ({ next: this.props.state.meta.paging.next }));
+              this.setState(() => ({
+                next: this.props.state.meta.paging.next
+              }));
             } else {
               this.setState(() => ({ more: false }));
             }

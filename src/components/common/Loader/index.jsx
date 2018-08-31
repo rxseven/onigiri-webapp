@@ -33,7 +33,7 @@ const Loader = (props: Props): Return => {
           <CardHeader>Sorry</CardHeader>
           <CardBody>
             <CardText>Something went wrong, please reload a webpage.</CardText>
-            <Button button="primary" handler={() => windowHelper.reload()}>
+            <Button button="primary" handler={() => windowHelper.reload()} id="loader-reload">
               Reload
             </Button>
           </CardBody>

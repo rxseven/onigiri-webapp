@@ -14,9 +14,13 @@ import {
   CREDITS_GET_REQUEST,
   CREDITS_GET_SUCCESS,
   CREDITS_UPDATE,
+  UNKNOWN,
   type Action as ActionCredits,
   type Credits
 } from './types';
+
+// Selectors
+import { getNode } from '../selectors';
 
 // Static types
 type Action = ActionSession | ActionCredits;
@@ -24,20 +28,20 @@ type Model = Credits;
 type State = any;
 
 // State shape
-const stateShape: Model = {
+export const stateShape: Model = {
   balance: null,
   lastCheckout: null
 };
 
 // Initial state
-const initialState: State = fromJS(stateShape);
+export const initialState: State = fromJS(stateShape);
 
-// Set credits
-const setCredits = <T: any>(state: T, payload: T): T =>
+// Set credits state
+export const setCredits = <T: any>(state: T, payload: T): T =>
   state.set('balance', payload.get('balance')).set('lastCheckout', payload.get('lastCheckout'));
 
 // Reducer
-export default (state: State = initialState, action: Action): State => {
+export default (state: State = initialState, action: Action = { type: UNKNOWN }): State => {
   switch (action.type) {
     // Checkout
     case CHECKOUT_REQUEST:
@@ -66,9 +70,6 @@ export default (state: State = initialState, action: Action): State => {
       return state;
   }
 };
-
-// Non-memoized utility selectors
-const getNode = state => state.get('data');
 
 // Get credits state
 export const getCredits = createSelector(getNode, node => node.get('credits'));

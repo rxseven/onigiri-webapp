@@ -4,7 +4,10 @@ import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 
 // Action and static types
-import { MODAL_CLOSE, MODAL_OPEN, type Action, type Modal } from './types';
+import { MODAL_CLOSE, MODAL_OPEN, UNKNOWN, type Action, type Modal } from './types';
+
+// Selectors
+import { getNode } from '../../selectors';
 
 // Static types
 type Key = Object;
@@ -12,7 +15,7 @@ type Model = Modal;
 type State = any;
 
 // State shape
-const stateShape: Model = {
+export const stateShape: Model = {
   isOpen: false
 };
 
@@ -22,10 +25,10 @@ const statePath: Key = {
 };
 
 // Initial state
-const initialState: State = Map(stateShape);
+export const initialState: State = Map(stateShape);
 
 // Reducer
-export default (state: State = initialState, action: Action): State => {
+export default (state: State = initialState, action: Action = { type: UNKNOWN }): State => {
   switch (action.type) {
     // Visibility
     case MODAL_CLOSE:
@@ -39,8 +42,5 @@ export default (state: State = initialState, action: Action): State => {
   }
 };
 
-// Non-memoized utility selectors
-const getNode = state => state.getIn(['data', 'interfaces']);
-
 // Get modal state
-export const getModal = createSelector(getNode, node => node.get('modal'));
+export const getModal = createSelector(getNode, node => node.getIn(['interfaces', 'modal']));

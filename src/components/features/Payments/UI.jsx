@@ -13,39 +13,40 @@ import type { CheckoutToken } from 'types/features/payments';
 
 // Static types
 type Props = {
-  actions: {
-    payments: {
-      checkout: (CheckoutToken, Callback) => void
-    }
+  asynchronous: {
+    post: Asynchronous
   },
   callback: Callback,
-  state: {
-    ui: {
-      asynchronous: {
-        post: Asynchronous
-      }
-    }
-  }
+  checkout: (CheckoutToken, Callback) => void
 };
 
 type Return = React.Element<typeof StripeCheckout>;
 
 // Component
-const UI = ({ actions, callback, state }: Props): Return => (
-  <StripeCheckout
-    amount={500}
-    currency="USD"
-    description="$5.00 for 5 survey credits"
-    name="Onigiri"
-    panelLabel="Add Credits"
-    stripeKey={process.env.REACT_APP_STRIPE_KEY}
-    token={token => actions.payments.checkout(token, callback)}
-  >
-    <Button button="outline-primary" disabled={state.ui.asynchronous.post.loading} size="small">
-      Add Credits
-    </Button>
-  </StripeCheckout>
-);
+const UI = ({ asynchronous, callback, checkout }: Props): Return => {
+  // Variables
+  const { loading: isLoading } = asynchronous.post;
+
+  // Configuration
+  const config = {
+    amount: 500,
+    currency: 'USD',
+    description: '$5.00 for 5 survey credits',
+    name: 'Onigiri',
+    panelLabel: 'Add Credits',
+    stripeKey: process.env.REACT_APP_STRIPE_KEY,
+    token: token => checkout(token, callback)
+  };
+
+  // View
+  return (
+    <StripeCheckout {...config}>
+      <Button button="outline-primary" disabled={isLoading} size="small">
+        Add Credits
+      </Button>
+    </StripeCheckout>
+  );
+};
 
 // Module exports
 export default UI;

@@ -4,6 +4,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 // Helper functions
 import { getError } from 'helpers/state';
+import { callFunction } from 'helpers/utilities';
 
 // Services
 import paymentsService from 'data/features/payments/services';
@@ -14,7 +15,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Checkout
-function* checkout({ callback, payload }) {
+export function* checkout({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.checkoutRequest());
@@ -24,40 +25,40 @@ function* checkout({ callback, payload }) {
     const { data } = yield call(paymentsService.checkout, payload.token);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data);
+    const immutableData = yield call(fromJS, data);
 
     // Inform reducers that the request finished successfully
     yield put(actions.checkoutSuccess(immutableData));
 
     // Execute a callback
-    callback();
+    yield call(callFunction, callback);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.checkoutFailure(immutableData));
   }
 }
 
-// Get credits
-function* getCredits() {
+// Get user credits
+export function* getCredits() {
   try {
     // Inform reducers that the request started
     yield put(actions.getCreditsRequest());
 
-    // Fetch data asynchronously
+    // Get user credits
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(usersService.getCredits);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data);
+    const immutableData = yield call(fromJS, data);
 
     // Inform reducers that the request finished successfully
     yield put(actions.getCreditsSuccess(immutableData));
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.getCreditsFailure(immutableData));
@@ -65,7 +66,7 @@ function* getCredits() {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield all([takeLatest(types.CHECKOUT, checkout), takeLatest(types.CREDITS_GET, getCredits)]);
 }
 

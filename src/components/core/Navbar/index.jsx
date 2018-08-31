@@ -60,7 +60,7 @@ type Props = {
 type Return = React.Element<'nav'>;
 
 // Component
-class Navbar extends React.Component<Props> {
+export class Navbar extends React.Component<Props> {
   // Sign-out handler
   onSignout = (event: SyntheticEvent<HTMLAnchorElement>): void => {
     // Prevent a browser from being refreshed

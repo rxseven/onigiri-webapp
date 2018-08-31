@@ -19,7 +19,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Delete survey
-function* deleteSurvey({ callback, payload }) {
+export function* deleteSurvey({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.deleteSurveyRequest());
@@ -29,16 +29,16 @@ function* deleteSurvey({ callback, payload }) {
     const { data } = yield call(surveysService.deleteSurvey, payload.id);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data.id);
+    const immutableData = yield call(fromJS, data.id);
 
     // Inform reducers that the request finished successfully
     yield put(actions.deleteSurveySuccess(immutableData));
 
     // Execute a callback
-    callback(data.id);
+    yield call(callback, data.id);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.deleteSurveyFailure(immutableData));
@@ -46,7 +46,7 @@ function* deleteSurvey({ callback, payload }) {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield takeLatest(types.SURVEY_DELETE, deleteSurvey);
 }
 

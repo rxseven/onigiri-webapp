@@ -54,8 +54,6 @@ export default {
   name: (value: Input): Return => {
     if (value.length < 2) {
       return 'Must be at least 2 characters';
-    } else if (value.search(/\d/) === 0) {
-      return 'Must contain only character';
     } else if (value.search(REGEX.invalid) !== -1) {
       return 'Invalid characters';
     }

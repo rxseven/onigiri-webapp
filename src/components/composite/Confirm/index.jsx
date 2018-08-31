@@ -62,10 +62,10 @@ const Confirm = ({
           <Spinner />
         </If>
         {alert && error && <Error alert={error} />}
-        <Button disabled={loading} handler={() => onClose()}>
+        <Button disabled={loading} handler={() => onClose()} id="confirm-cancel">
           {buttonCancel}
         </Button>
-        <Button button="danger" disabled={loading} handler={onConfirm}>
+        <Button button="danger" disabled={loading} handler={onConfirm} id="confirm-ok">
           {buttonConfirm}
         </Button>
       </ModalFooter>

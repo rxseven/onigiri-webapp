@@ -6,7 +6,7 @@ import * as React from 'react';
 // Static types
 type Props = {
   children: React.Node,
-  options?: string
+  options: string
 };
 
 type Return = React.Element<'h5'>;

@@ -7,6 +7,7 @@ import { updateCredits } from 'data/credits/actions';
 
 // Helper functions
 import { getError } from 'helpers/state';
+import { callFunction } from 'helpers/utilities';
 
 // Services
 import * as surveysService from '../../services';
@@ -16,7 +17,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Create survey
-function* createSurvey({ callback, payload }) {
+export function* createSurvey({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.createSurveyRequest());
@@ -26,17 +27,17 @@ function* createSurvey({ callback, payload }) {
     const { data } = yield call(surveysService.createSurvey, payload.values);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data.credits);
+    const immutableData = yield call(fromJS, data.credits);
 
     // Inform reducers that the request finished successfully
     yield put(actions.createSurveySuccess());
     yield put(updateCredits(immutableData));
 
     // Execute a callback
-    callback(data.id);
+    yield call(callFunction, callback, data.id);
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.createSurveyFailure(immutableData));
@@ -44,7 +45,7 @@ function* createSurvey({ callback, payload }) {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield takeLatest(types.SURVEY_CREATE, createSurvey);
 }
 

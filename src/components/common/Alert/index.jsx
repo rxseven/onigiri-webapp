@@ -19,9 +19,7 @@ const defaultProps = {
 };
 
 // Component
-const Alert = ({
-  children, flat, options, type
-}: Props): Return => {
+const Alert = ({ children, options, type }: Props): Return => {
   // Configuration
   const baseClass = 'alert';
 

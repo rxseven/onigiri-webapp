@@ -21,7 +21,7 @@ type Props = {
 type Return = React.Element<typeof ReactModal>;
 
 // Hide the application from screenreaders and other assistive technologies
-ReactModal.setAppElement(`#${HTML.root}`);
+if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement(`#${HTML.root}`);
 
 // Component
 const ModalContainer = ({

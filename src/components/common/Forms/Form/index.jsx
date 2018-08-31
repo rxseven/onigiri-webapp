@@ -41,6 +41,7 @@ class Form extends React.Component<Props> {
     alert: true,
     asynchronous: { ...STATE_MODELS.model.asynchronous },
     options: '',
+    pristine: true,
     spinner: true
   };
 
