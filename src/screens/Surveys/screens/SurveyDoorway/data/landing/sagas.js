@@ -12,24 +12,24 @@ import * as surveysService from '../../../../services';
 import * as actions from './actions';
 import * as types from './types';
 
-// Get landing page URI
+// Get a landing page URI
 function* getLanding({ payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.getLandingRequest());
 
-    // Fetch data asynchronously
+    // Get a landing page URI
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getLanding, payload.id);
 
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = fromJS(data);
+    const immutableData = yield call(fromJS, data);
 
     // Inform reducers that the request finished successfully
     yield put(actions.getLandingSuccess(immutableData));
   } catch (error) {
     // Convert plain JavaScript into Immutable object
-    const immutableData = fromJS(getError(error));
+    const immutableData = yield call(fromJS, getError(error));
 
     // Inform reducers that the request failed
     yield put(actions.getLandingFailure(immutableData));
