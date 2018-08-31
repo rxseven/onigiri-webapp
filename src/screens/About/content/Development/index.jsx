@@ -597,14 +597,6 @@ const Development = (): Return => (
                 </ListContent>
               </ListItem>
               <ListItem>
-                <ListLabel>ESLint plugin for Jest</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/jest-community/eslint-plugin-jest">
-                    eslint-plugin-jest package
-                  </ListLink>
-                </ListContent>
-              </ListItem>
-              <ListItem>
                 <ListLabel>Test Renderer</ListLabel>
                 <ListContent>
                   <ListLink to="https://reactjs.org/docs/test-renderer.html">
@@ -612,13 +604,47 @@ const Development = (): Return => (
                   </ListLink>
                 </ListContent>
               </ListItem>
-              <ListItem end>
+              <ListItem>
+                <ListLabel>
+                  A module to mock window.localStorage and window.sessionStorage in Jest
+                </ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/clarkbw/jest-localstorage-mock">
+                    jest-localstorage-mock
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>Redux Saga testing library</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/jfairbank/redux-saga-test-plan">
+                    redux-saga-test-plan
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
                 <ListLabel>
                   A mock store for testing Redux async action creators and middleware
                 </ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com/dmitry-zaets/redux-mock-store">
                     redux-mock-store
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>ESLint plugin for Jest</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/jest-community/eslint-plugin-jest">
+                    eslint-plugin-jest package
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem end>
+                <ListLabel>ESLint configuration for Jest &amp; Enzyme</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/FormidableLabs/enzyme-matchers/tree/master/packages/eslint-config-jest-enzyme">
+                    eslint-config-jest-enzyme
                   </ListLink>
                 </ListContent>
               </ListItem>
