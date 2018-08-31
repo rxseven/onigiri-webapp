@@ -15,7 +15,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Delete user account
-function* deleteUser({ callback }) {
+export function* deleteUser({ callback }) {
   try {
     // Inform reducers that the request started
     yield put(actions.deleteUserRequest());
@@ -42,7 +42,7 @@ function* deleteUser({ callback }) {
 }
 
 // Get user info
-function* getUser() {
+export function* getUser() {
   try {
     // Inform reducers that the request started
     yield put(actions.getUserRequest());
@@ -66,7 +66,7 @@ function* getUser() {
 }
 
 // Sign in with Facebook
-function* oauthFacebook({ callback, payload }) {
+export function* oauthFacebook({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.oauthFacebookRequest());
@@ -99,7 +99,7 @@ function* oauthFacebook({ callback, payload }) {
 }
 
 // Sign in with Google
-function* oauthGoogle({ callback, payload }) {
+export function* oauthGoogle({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.oauthGoogleRequest());
@@ -132,7 +132,7 @@ function* oauthGoogle({ callback, payload }) {
 }
 
 // Sign in with an email address and password
-function* signIn({ callback, payload }) {
+export function* signIn({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.signInRequest());
@@ -162,7 +162,7 @@ function* signIn({ callback, payload }) {
 }
 
 // Sign out
-function* signOut({ callback }) {
+export function* signOut({ callback }) {
   try {
     // Inform reducers that the request started
     yield put(actions.signOutRequest());
@@ -191,7 +191,7 @@ function* signOut({ callback }) {
 }
 
 // Sign up
-function* signUp({ callback, payload }) {
+export function* signUp({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.signUpRequest());
@@ -221,7 +221,7 @@ function* signUp({ callback, payload }) {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   all([
     yield takeLatest(types.OAUTH_FACEBOOK, oauthFacebook),
     yield takeLatest(types.OAUTH_GOOGLE, oauthGoogle),
