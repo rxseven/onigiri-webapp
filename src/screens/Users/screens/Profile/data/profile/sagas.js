@@ -13,7 +13,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Get user profile
-function* getProfile() {
+export function* getProfile() {
   try {
     // Inform reducers that the request started
     yield put(actions.getProfileRequest());
@@ -37,7 +37,7 @@ function* getProfile() {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield takeLatest(types.PROFILE_GET, getProfile);
 }
 

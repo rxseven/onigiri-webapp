@@ -7,6 +7,9 @@ import { createSelector } from 'reselect';
 // Helper functions
 import { setAsync } from 'helpers/state';
 
+// Selectors
+import { getDomain } from 'selectors';
+
 // Constants
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
@@ -31,6 +34,9 @@ import {
 } from 'data/session/types';
 import { SIGNIN_RESET_UI, type Action as ActionSignIn, type Strategy } from './types';
 
+// Constants
+const UNKNOWN = 'UNKNOWN';
+
 // Static types
 type Action = ActionSession | ActionSignIn;
 type Key = Object;
@@ -41,7 +47,7 @@ type Model = {
 type State = any;
 
 // State shape
-const stateShape: Model = {
+export const stateShape: Model = {
   asynchronous: {
     post: { ...STATE_MODELS.model.asynchronous }
   },
@@ -61,10 +67,13 @@ const statePath: Key = {
 };
 
 // Initial state
-const initialState: State = fromJS(stateShape);
+export const initialState: State = fromJS(stateShape);
 
 // Asynchronous reducer
-const asynchronous = (state: State = initialState.get('asynchronous'), action: Action): State => {
+export const asynchronous = (
+  state: State = initialState.get('asynchronous'),
+  action: Action = { type: UNKNOWN }
+): State => {
   switch (action.type) {
     // Authentication
     case OAUTH_FACEBOOK_REQUEST:
@@ -96,7 +105,10 @@ const asynchronous = (state: State = initialState.get('asynchronous'), action: A
 };
 
 // Strategy reducer
-const strategy = (state: State = initialState.get('strategy'), action: Action): State => {
+export const strategy = (
+  state: State = initialState.get('strategy'),
+  action: Action = { type: UNKNOWN }
+): State => {
   switch (action.type) {
     // Authentication
     case SIGNIN_REQUEST:
@@ -115,7 +127,7 @@ const strategy = (state: State = initialState.get('strategy'), action: Action): 
 };
 
 // UI reducer
-const ui = combineReducers({
+export const ui = combineReducers({
   asynchronous,
   strategy
 });
@@ -124,7 +136,7 @@ const ui = combineReducers({
 export default combineReducers({ ui });
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'users', 'signin']);
+export const getNode = (state: any): any => getDomain(state, ['screens', 'users', 'signin']);
 
 // Get UI state
 export const getUI = createSelector(getNode, node => node.get('ui'));

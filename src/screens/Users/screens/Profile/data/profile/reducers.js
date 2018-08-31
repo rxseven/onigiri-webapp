@@ -2,6 +2,9 @@
 // Module dependencies
 import { createSelector } from 'reselect';
 
+// Selectors
+import { getDomain } from 'selectors';
+
 // Action and static types
 import { USER_RESET, type Action as ActionSession } from 'data/session/types';
 import {
@@ -11,6 +14,9 @@ import {
   type Action as ActionProfile,
   type Profile
 } from './types';
+
+// Constants
+const UNKNOWN = 'UNKNOWN';
 
 // Static types
 type Action = ActionSession | ActionProfile;
@@ -24,7 +30,7 @@ const stateShape: Model = null;
 const initialState: State = stateShape;
 
 // Reducer
-export default (state: State = initialState, action: Action): State => {
+export default (state: State = initialState, action: Action = { type: UNKNOWN }): State => {
   switch (action.type) {
     // Get user profile
     case PROFILE_GET_REQUEST:
@@ -44,7 +50,8 @@ export default (state: State = initialState, action: Action): State => {
 };
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'users', 'profile', 'data']);
+export const getNode = (state: any): any =>
+  getDomain(state, ['screens', 'users', 'profile', 'data']);
 
 // Get user profile state
 export const getProfile = createSelector(getNode, node => node.get('profile'));
