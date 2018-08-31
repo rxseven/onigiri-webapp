@@ -7,6 +7,9 @@ import { createSelector } from 'reselect';
 // Helper functions
 import { setAsync } from 'helpers/state';
 
+// Selectors
+import { getDomain } from 'selectors';
+
 // Constants
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
@@ -16,6 +19,7 @@ import {
   CHECKOUT_FAILURE,
   CHECKOUT_REQUEST,
   CHECKOUT_SUCCESS,
+  UNKNOWN,
   type Action as ActionCredits
 } from 'data/credits/types';
 import { USER_RESET, type Action as ActionSession } from 'data/session/types';
@@ -28,7 +32,7 @@ type Model = { post: Asynchronous };
 type State = any;
 
 // State shape
-const stateShape: Model = {
+export const stateShape: Model = {
   post: { ...STATE_MODELS.model.asynchronous }
 };
 
@@ -38,10 +42,13 @@ const statePath: Key = {
 };
 
 // Initial state
-const initialState: State = fromJS(stateShape);
+export const initialState: State = fromJS(stateShape);
 
 // Asynchronous reducer
-const asynchronous = (state: State = initialState, action: Action): State => {
+export const asynchronous = (
+  state: State = initialState,
+  action: Action = { type: UNKNOWN }
+): State => {
   switch (action.type) {
     // Checkout
     case CHECKOUT_REQUEST:
@@ -62,13 +69,13 @@ const asynchronous = (state: State = initialState, action: Action): State => {
 };
 
 // UI reducer
-const ui = combineReducers({ asynchronous });
+export const ui = combineReducers({ asynchronous });
 
 // Combine reducers
 export default combineReducers({ ui });
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['data', 'features', 'payments']);
+export const getNode = (state: any): any => getDomain(state, ['data', 'features', 'payments']);
 
 // Get UI state
 export const getUI = createSelector(getNode, node => node.get('ui'));
