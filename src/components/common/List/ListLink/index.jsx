@@ -31,7 +31,7 @@ const defaultProps = {
 const ListLink = ({
   children, icon, tag, to, v
 }: Props): Return => (
-  <span styleName={cx(((!!tag && tag) || (!!v && v)) && 'version')}>
+  <span styleName={cx((!!tag || !!v) && 'version')}>
     <ExLink icon={icon} to={to}>
       {children}
     </ExLink>
