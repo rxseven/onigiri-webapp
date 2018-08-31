@@ -21,7 +21,10 @@
     "<rootDir>/src/types/",
     "<rootDir>/src/dependencies.js",
     "<rootDir>/src/index.js",
-    "<rootDir>/src/helpers/ajax.js"
+    "<rootDir>/src/data/sagas.js",
+    "<rootDir>/src/helpers/ajax.js",
+    "<rootDir>/src/screens/sagas.js",
+    "<rootDir>/src/screens/Users/sagas.js"
   ],
   "moduleFileExtensions": ["web.js", "js", "json", "web.jsx", "jsx", "node", "mjs"],
   "moduleNameMapper": {
