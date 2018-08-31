@@ -19,7 +19,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Delete survey
-function* deleteSurvey({ callback, payload }) {
+export function* deleteSurvey({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.deleteSurveyRequest());
@@ -46,7 +46,7 @@ function* deleteSurvey({ callback, payload }) {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield takeLatest(types.SURVEY_DELETE, deleteSurvey);
 }
 

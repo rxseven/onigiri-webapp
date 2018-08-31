@@ -13,7 +13,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Get a landing page URI
-function* getLanding({ payload }) {
+export function* getLanding({ payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.getLandingRequest());
@@ -37,7 +37,7 @@ function* getLanding({ payload }) {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield takeLatest(types.LANDING_GET, getLanding);
 }
 

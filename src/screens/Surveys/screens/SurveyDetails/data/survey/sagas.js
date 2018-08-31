@@ -15,7 +15,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Get recipients
-function* getRecipients({ payload }) {
+export function* getRecipients({ payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.getRecipientsRequest());
@@ -39,7 +39,7 @@ function* getRecipients({ payload }) {
 }
 
 // Get survey
-function* getSurvey({ callback, payload }) {
+export function* getSurvey({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.getSurveyRequest());
@@ -66,7 +66,7 @@ function* getSurvey({ callback, payload }) {
 }
 
 // Update survey
-function* updateSurvey({ payload: { id, values } }) {
+export function* updateSurvey({ payload: { id, values } }) {
   try {
     // Inform reducers that the request started
     yield put(actions.updateSurveyRequest());
@@ -90,7 +90,7 @@ function* updateSurvey({ payload: { id, values } }) {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield all([
     takeLatest(types.RECIPIENTS_GET, getRecipients),
     takeLatest(types.SURVEY_GET, getSurvey),

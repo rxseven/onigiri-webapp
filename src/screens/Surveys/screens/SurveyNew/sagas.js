@@ -17,7 +17,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Create survey
-function* createSurvey({ callback, payload }) {
+export function* createSurvey({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.createSurveyRequest());
@@ -45,7 +45,7 @@ function* createSurvey({ callback, payload }) {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield takeLatest(types.SURVEY_CREATE, createSurvey);
 }
 

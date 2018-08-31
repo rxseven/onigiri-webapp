@@ -15,7 +15,7 @@ import * as actions from './actions';
 import * as types from './types';
 
 // Cancel getting surveys
-function* cancelSurveys() {
+export function* cancelSurveys() {
   try {
     // Inform reducers that the request started
     yield put(actions.cancelSurveysRequest());
@@ -32,7 +32,7 @@ function* cancelSurveys() {
 }
 
 // Get surveys
-function* getSurveys({ callback, payload }) {
+export function* getSurveys({ callback, payload }) {
   try {
     // Inform reducers that the request started
     yield put(actions.getSurveysRequest());
@@ -62,7 +62,7 @@ function* getSurveys({ callback, payload }) {
 }
 
 // Actions watcher
-function* watcher() {
+export function* watcher() {
   yield all([
     takeLatest(types.SURVEYS_CANCEL, cancelSurveys),
     takeLatest(types.SURVEYS_GET, getSurveys)

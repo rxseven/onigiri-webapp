@@ -3,6 +3,9 @@
 import { fromJS, OrderedMap } from 'immutable';
 import { createSelector } from 'reselect';
 
+// Selectors
+import { getDomain } from 'selectors';
+
 // Action and static types
 import { USER_RESET, type Action as ActionSession } from 'data/session/types';
 import {
@@ -22,6 +25,9 @@ import {
   type Meta
 } from './types';
 
+// Constants
+const UNKNOWN = 'UNKNOWN';
+
 // Static types
 type Action = ActionSession | ActionSurveys | ActionData;
 type Key = Object;
@@ -32,7 +38,7 @@ type Model = {
 type State = any;
 
 // State shape
-const stateShape: Model = {
+export const stateShape: Model = {
   data: OrderedMap({}),
   meta: null
 };
@@ -44,10 +50,10 @@ const statePath: Key = {
 };
 
 // Initial state
-const initialState: State = fromJS(stateShape);
+export const initialState: State = fromJS(stateShape);
 
 // Reducer
-export default (state: State = initialState, action: Action): State => {
+export default (state: State = initialState, action: Action = { type: UNKNOWN }): State => {
   switch (action.type) {
     // Remove survey from a list
     case SURVEY_DELETE_REQUEST:
@@ -79,7 +85,8 @@ export default (state: State = initialState, action: Action): State => {
 };
 
 // Non-memoized utility selectors
-const getNode = state => state.getIn(['screens', 'surveys', 'list', 'data']);
+export const getNode = (state: any): any =>
+  getDomain(state, ['screens', 'surveys', 'list', 'data']);
 
 // Get surveys state
 export const getSurveys = createSelector(getNode, node => node.get('surveys'));
