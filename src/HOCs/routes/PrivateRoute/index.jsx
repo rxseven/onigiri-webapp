@@ -36,7 +36,7 @@ const defaultProps = {
 };
 
 // HOC
-const PrivateRoute = ({
+export const PrivateRoute = ({
   component: Component,
   state: { data: { authorization } },
   exact,
