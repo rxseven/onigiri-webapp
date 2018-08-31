@@ -29,6 +29,7 @@
     "test:coverage": "npm test -- --coverage --no-cache",
     "test:coverage:ci": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
+    "test:details": "node scripts/test.js --env=jsdom --verbose --config jest.config.json",
     "test:staged": "cross-env CI=true node scripts/test.js --env=jsdom --config jest.config.json --findRelatedTests",
     "type": "flow",
     "type:check": "flow check",
