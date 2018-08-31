@@ -17,11 +17,7 @@ import './styles.scss';
 
 // Static types
 type Props = {
-  state: {
-    data: {
-      session: Session
-    }
-  }
+  session: Session
 };
 
 type Return = React.Node | void;
@@ -45,7 +41,7 @@ class UI extends React.PureComponent<Props, State> {
    * Sometimes the app has been sleeping or network connections suck and never
    * resolve or fail, they just hang there forever. This is a bad UX because
    * the user won't know if it should always take this long, or if they should
-   * try refreshing. The app should show a friendly message to the user.
+   * try refreshing. The app should render a friendly message to the user.
    */
   timeoutMessage = (): void => {
     asyncHelper.timeout(null, 5000).then((response) => {
@@ -55,12 +51,8 @@ class UI extends React.PureComponent<Props, State> {
 
   // Render component
   render(): Return {
-    // Variables
-    const { state: { data } } = this.props;
-
-    // View
     return (
-      <If condition={data.session.loading.verify}>
+      <If condition={this.props.session.loading.verify}>
         <Overlay>
           <div styleName="logo" />
           <div styleName="spinner">

@@ -1,14 +1,8 @@
 // Module dependencies
 import { connect } from 'react-redux';
 
-// Helper functions
-import { generateState } from 'helpers/state';
-
 // Components and HOCs
 import toJS from 'HOCs/state/toJS';
-
-// Constants
-import STATE_MODELS from 'constants/models/state';
 
 // Action creators and selectors
 import { getSession } from 'data/session/reducers';
@@ -17,8 +11,7 @@ import { getSession } from 'data/session/reducers';
 import UI from './UI';
 
 // Map state to props
-const mapStateToProps = state =>
-  generateState(STATE_MODELS.immutable.setIn(['data', 'session'], getSession(state)));
+const mapStateToProps = state => ({ session: getSession(state) });
 
 // Connect UI component to application state
 const container = connect(mapStateToProps)(toJS(UI));
