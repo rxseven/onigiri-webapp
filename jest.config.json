@@ -13,7 +13,7 @@
   "moduleNameMapper": {
     "^react-native$": "react-native-web"
   },
-  "setupFiles": ["<rootDir>/config/polyfills.js"],
+  "setupFiles": ["<rootDir>/config/polyfills.js", "jest-localstorage-mock"],
   "setupTestFrameworkScriptFile": "<rootDir>/src/tests/setup.js",
   "testEnvironment": "node",
   "testMatch": [
