@@ -369,6 +369,15 @@ const Technical = (): Return => (
                   <ListLink to="https://facebook.github.io/immutable-js/">Immutable</ListLink>
                 </ListContent>
               </ListItem>
+              <ListItem>
+                <ListLabel>
+                  Utility for normalizing and denormalizing JSON according to schema for Redux and
+                  Flux applications
+                </ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/paularmstrong/normalizr">normalizr</ListLink>
+                </ListContent>
+              </ListItem>
             </List>
 
             <hr />
@@ -631,15 +640,6 @@ const Technical = (): Return => (
           <CardHeader>Will be implemented within next releases</CardHeader>
           <CardBody>
             <List>
-              <ListItem>
-                <ListLabel>
-                  A utility for normalizing and denormalizing JSON according to schema for Redux and
-                  Flux applications
-                </ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/paularmstrong/normalizr">Normalizr</ListLink>
-                </ListContent>
-              </ListItem>
               <ListItem end>
                 <ListLabel>A React utility belt for function components and HOCs</ListLabel>
                 <ListContent>
