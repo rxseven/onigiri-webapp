@@ -11,13 +11,13 @@ With **Onigiri**, you can create and analyze surveys right in your pocket or web
 ## Table of Contents
 
 - [Demo](#demo)
-- [What’s next?](#what’s-next?)
 - [Running Onigiri Locally](#running-onigiri-locally)
 - [Running Tests](#running-tests)
 - [Features and Specification](#features-and-specification)
 - [Development Workflow](#development-workflow)
 - [Browser Support](#browser-support)
 - [Related Projects](#related-projects)
+- [Milestones](#milestones)
 - [Changelog](#changelog)
 - [Acknowledgements](#acknowledgements)
 - [Credits](#credits)
@@ -30,20 +30,6 @@ Onigiri is hosted on Heroku at [https://onigiri-webapp.herokuapp.com](https://on
 > **App sleeping...** as Onigiri and its API run on a free plan, when an app on Heroku has only one web dyno and that dyno doesn’t receive any traffic in 1 hour, the dyno goes to sleep. When someone accesses the app, the dyno manager will automatically wake up the web dyno to run the web process type. **This causes a short delay for this first request**, but subsequent requests will perform normally. For more information, see [App Sleeping on Heroku](https://blog.heroku.com/app_sleeping_on_heroku).
 
 > **Daily limit** as Onigiri runs on a free plan, and the free trial is already expired, at which point, **Onigiri is restricted to sending 100 emails per day**. For more information, see [SendGrid Pricing & Plans](https://www.sendgrid.com/pricing/).
-
-[Back to top](#table-of-contents)
-
-## What’s next?
-
-- Optimize the API response with [Normalizr](https://github.com/paularmstrong/normalizr).
-- Implement reusable Higher Order Components (HOCs) with [Recompose](https://github.com/acdlite/recompose).
-- Setup container with [Docker](https://www.docker.com).
-- Deploy the app on [DigitalOcean](https://www.digitalocean.com) or [Amazon Web Service (AWS)](https://aws.amazon.com).
-- Refactor code with functional programming.
-- Implement components in isolation with [Storybook](https://storybook.js.org).
-- Optimize the app’s performance.
-- Add more unit tests to cover the entire project.
-- Add more static type checking to cover the entire project.
 
 [Back to top](#table-of-contents)
 
@@ -155,6 +141,19 @@ RESTful API for Onigiri built with Node.js, Express, Passport and MongoDB.
 **[Setup React App](https://github.com/rxseven/setup-react-app)**
 
 React & Redux starter kit with best practices bootstrapped with Create React App.
+
+[Back to top](#table-of-contents)
+
+## Milestones
+
+- Implement reusable Higher Order Components (HOCs) with [Recompose](https://github.com/acdlite/recompose) *(in progress)*.
+- Setup container with [Docker](https://www.docker.com).
+- Deploy the app on [DigitalOcean](https://www.digitalocean.com) or [Amazon Web Service (AWS)](https://aws.amazon.com).
+- Refactor code with functional programming principles.
+- Implement components in isolation with [Storybook](https://storybook.js.org).
+- Optimize the app’s performance.
+- Add more unit tests to cover the entire project.
+- Add more static type checking to cover the entire project.
 
 [Back to top](#table-of-contents)
 
