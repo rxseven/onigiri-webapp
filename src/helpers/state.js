@@ -1,6 +1,7 @@
 // @flow
 // Module dependencies
 import { fromJS, Seq } from 'immutable';
+import { normalize, schema } from 'normalizr';
 
 // Constants
 import STATE_MODELS from 'constants/models/state';
@@ -42,3 +43,18 @@ export const generateState = <T: any>(handler: T): { state: T } => ({
 // Extract an error message from a network response
 export const getError = <T: { message: string }>(error: { response: { data: { error: T } } }): T =>
   error.response.data.error;
+
+// Normalize a list of entities with their IDs
+export const normalizeList = (data: Object, key: string, id: string = '_id'): Object => {
+  // Create an entity
+  const entity = new schema.Entity(key, {}, { idAttribute: id });
+
+  // Define data schema
+  const list = { [key]: [entity] };
+
+  // Normalize input data per the schema definition provided
+  const normalizedData = normalize(data, list);
+
+  // Return normalized entity
+  return normalizedData.entities[key];
+};

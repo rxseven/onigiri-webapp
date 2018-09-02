@@ -1,10 +1,9 @@
 // Module dependencies
 import { fromJS } from 'immutable';
-import { mapKeys } from 'lodash';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 // Helper functions
-import { fromJSOrdered, getError } from 'helpers/state';
+import { fromJSOrdered, getError, normalizeList } from 'helpers/state';
 import { callFunction } from 'helpers/utilities';
 
 // Services
@@ -24,8 +23,11 @@ export function* getRecipients({ payload }) {
     // Retrieve data in a response and transform to an appropriate format
     const { data } = yield call(surveysService.getRecipients, payload.id);
 
+    // Normalize input data
+    const normalizedData = normalizeList(data, 'recipients');
+
     // Normalize data and convert plain JavaScript into Immutable object
-    const immutableData = yield call(fromJSOrdered, mapKeys(data.recipients, '_id'));
+    const immutableData = yield call(fromJSOrdered, normalizedData);
 
     // Inform reducers that the request finished successfully
     yield put(actions.getRecipientsSuccess(immutableData));

@@ -1,10 +1,9 @@
 // Module dependencies
 import { fromJS } from 'immutable';
-import { mapKeys } from 'lodash';
 import { testSaga } from 'redux-saga-test-plan';
 
 // Helper functions
-import { fromJSOrdered, getError } from 'helpers/state';
+import { fromJSOrdered, getError, normalizeList } from 'helpers/state';
 import { callFunction } from 'helpers/utilities';
 import { genData, genError } from 'tests/helpers/mock';
 
@@ -99,7 +98,7 @@ describe('screens/surveys/screens/list/data/surveys/sagas', () => {
 
           // Normalize data and convert plain JavaScript into Immutable object
           .call(fromJS, {
-            data: fromJSOrdered(mapKeys(data.plain.data, '_id')),
+            data: fromJSOrdered(normalizeList(data.plain, 'data')),
             meta: fromJS(data.plain.meta)
           })
           .next(data.immutable)
