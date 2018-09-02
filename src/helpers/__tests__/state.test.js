@@ -6,7 +6,7 @@ import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Functions
-import { fromJSOrdered, generateState, getError, setAsync } from '../state';
+import { fromJSOrdered, generateState, getError, normalizeList, setAsync } from '../state';
 
 // Unit tests
 describe('helpers/state', () => {
@@ -98,6 +98,32 @@ describe('helpers/state', () => {
 
       // Assertions
       expect(getError(data)).toEqual(result);
+    });
+  });
+
+  describe('normalizeList()', () => {
+    it('should normalize a list of entities with their IDs', () => {
+      // Mock data
+      const data = {
+        recipients: [
+          { responded: true, _id: '00000', email: 'mail-001@mail.io' },
+          { responded: true, _id: '00001', email: 'mail-002@mail.io' },
+          { responded: true, _id: '00002', email: 'mail-003@mail.io' },
+          { responded: true, _id: '00003', email: 'mail-004@mail.io' },
+          { responded: true, _id: '00004', email: 'mail-005@mail.io' }
+        ]
+      };
+
+      const result = {
+        '00000': { responded: true, _id: '00000', email: 'mail-001@mail.io' },
+        '00001': { responded: true, _id: '00001', email: 'mail-002@mail.io' },
+        '00002': { responded: true, _id: '00002', email: 'mail-003@mail.io' },
+        '00003': { responded: true, _id: '00003', email: 'mail-004@mail.io' },
+        '00004': { responded: true, _id: '00004', email: 'mail-005@mail.io' }
+      };
+
+      // Assertions
+      expect(normalizeList(data, 'recipients')).toEqual(result);
     });
   });
 
