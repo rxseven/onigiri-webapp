@@ -1,5 +1,5 @@
 // Functions
-import { callFunction } from '../utilities';
+import { callFunction, isAlert } from '../utilities';
 
 // Unit tests
 describe('helpers/utilities', () => {
@@ -24,6 +24,24 @@ describe('helpers/utilities', () => {
 
       // Assertions
       expect(callback).not.toBeCalled();
+    });
+  });
+
+  describe('isAlert()', () => {
+    it('should return an empty object if enabled', () => {
+      // Mock data
+      const result = {};
+
+      // Assertions
+      expect(isAlert(true)).toEqual(result);
+    });
+
+    it('should return an error object if disabled', () => {
+      // Mock data
+      const result = { error: false };
+
+      // Assertions
+      expect(isAlert(false)).toEqual(result);
     });
   });
 });
