@@ -7,7 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import withLoadable from 'HOCs/common/withLoadable';
 import RouteAuth from 'HOCs/routes/withAuth';
 import RoutePrivate from 'HOCs/routes/withPrivate';
-import ReferralRoute from 'HOCs/routes/ReferralRoute';
+import RouteReferral from 'HOCs/routes/withReferral';
 
 // Constants
 import PATHS from 'constants/router/paths';
@@ -39,7 +39,7 @@ const Routes = (): Return => (
     <Route component={Home} exact path={PATHS.root} />
 
     <RoutePrivate component={SurveyNew} exact path={PATHS.surveys.new} />
-    <ReferralRoute
+    <RouteReferral
       component={SurveySuccess}
       path={PATHS.surveys.success}
       redirectTo={PATHS.surveys.list}
@@ -51,8 +51,8 @@ const Routes = (): Return => (
     <RoutePrivate component={Profile} path={PATHS.users.profile} />
     <RouteAuth component={SignIn} path={PATHS.users.signin} />
     <RouteAuth component={SignUp} path={PATHS.users.signup} />
-    <ReferralRoute component={Farewell} path={PATHS.users.farewell} />
-    <ReferralRoute component={Welcome} path={PATHS.users.welcome} />
+    <RouteReferral component={Farewell} path={PATHS.users.farewell} />
+    <RouteReferral component={Welcome} path={PATHS.users.welcome} />
 
     <Route component={About} path={PATHS.static.about} />
     <Route component={Privacy} path={PATHS.static.privacy} />
