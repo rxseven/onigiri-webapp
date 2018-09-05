@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // Components and HOCs
-import Loadable from 'HOCs/common/Loadable';
+import withLoadable from 'HOCs/common/withLoadable';
 import AuthRoute from 'HOCs/routes/AuthRoute';
 import PrivateRoute from 'HOCs/routes/PrivateRoute';
 import ReferralRoute from 'HOCs/routes/ReferralRoute';
@@ -15,20 +15,20 @@ import PATHS from 'constants/router/paths';
 // Screens
 import SurveyList from 'screens/Surveys/screens/SurveyList';
 
-const Home = Loadable(() => import('screens/Home'));
-const SurveyDetails = Loadable(() => import('screens/Surveys/screens/SurveyDetails'));
-const SurveyDoorway = Loadable(() => import('screens/Surveys/screens/SurveyDoorway'));
-const SurveyNew = Loadable(() => import('screens/Surveys/screens/SurveyNew'));
-const SurveySuccess = Loadable(() => import('screens/Surveys/screens/SurveySuccess'));
-const Farewell = Loadable(() => import('screens/Users/screens/Farewell'));
-const Profile = Loadable(() => import('screens/Users/screens/Profile'));
-const SignIn = Loadable(() => import('screens/Users/screens/SignIn'));
-const SignUp = Loadable(() => import('screens/Users/screens/SignUp'));
-const Welcome = Loadable(() => import('screens/Users/screens/Welcome'));
-const About = Loadable(() => import('screens/About'));
-const Privacy = Loadable(() => import('screens/Policy/Privacy'));
-const Terms = Loadable(() => import('screens/Terms'));
-const NotFound = Loadable(() => import('screens/NotFound'));
+const Home = withLoadable(() => import('screens/Home'));
+const SurveyDetails = withLoadable(() => import('screens/Surveys/screens/SurveyDetails'));
+const SurveyDoorway = withLoadable(() => import('screens/Surveys/screens/SurveyDoorway'));
+const SurveyNew = withLoadable(() => import('screens/Surveys/screens/SurveyNew'));
+const SurveySuccess = withLoadable(() => import('screens/Surveys/screens/SurveySuccess'));
+const Farewell = withLoadable(() => import('screens/Users/screens/Farewell'));
+const Profile = withLoadable(() => import('screens/Users/screens/Profile'));
+const SignIn = withLoadable(() => import('screens/Users/screens/SignIn'));
+const SignUp = withLoadable(() => import('screens/Users/screens/SignUp'));
+const Welcome = withLoadable(() => import('screens/Users/screens/Welcome'));
+const About = withLoadable(() => import('screens/About'));
+const Privacy = withLoadable(() => import('screens/Policy/Privacy'));
+const Terms = withLoadable(() => import('screens/Terms'));
+const NotFound = withLoadable(() => import('screens/NotFound'));
 
 // Static types
 type Return = React.Element<typeof Switch>;
