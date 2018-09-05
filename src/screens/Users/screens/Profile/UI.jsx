@@ -2,13 +2,10 @@
 // Module dependencies
 import * as React from 'react';
 import Notification from 'react-s-alert';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 // Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Page';
 import Layout from 'components/common/Layout';
-import Spinner from 'components/common/Spinner';
-import Error from 'components/composite/Error';
 
 // Constants
 import PATHS from 'constants/router/paths';
@@ -18,9 +15,7 @@ import type { From, History } from 'types/common/router';
 import type { Asynchronous } from 'types/common/state';
 
 // Companion files
-import Account from './components/Account';
-import Credits from './components/Credits';
-import Profile from './components/Profile';
+import Section from './components/Section';
 
 // Static types
 type Props = {
@@ -143,72 +138,37 @@ class UI extends React.Component<Props> {
   };
 
   // Render content
-  renderContent = (props: Props):
-    | React.Element<typeof Error>
-    | React.Element<typeof Spinner>
-    | React.Element<typeof Tabs>
-    | React.Element<'div'> => {
+  renderContent = (props: Props): React.Element<typeof Section> => {
     // Variables
     const { actions, state } = props;
     const { data, ui } = state;
-    const { profile } = data;
+    const { credits, profile } = data;
     const { asynchronous } = ui;
     const { error: creditsError, loading: creditsLoading } = asynchronous.get.credits;
     const { error: profileError, loading: profileLoading } = asynchronous.get.profile;
 
-    // Error
-    if (creditsError || profileError) {
-      const error = creditsError || profileError;
+    // Properties
+    const properties = {
+      section: {
+        actions,
+        methods: {
+          onCheckoutSuccess: this.onCheckoutSuccess,
+          onDeleteAccountConfirm: this.onDeleteAccountConfirm,
+          onDeleteAccountRequest: this.onDeleteAccountRequest
+        },
+        state,
+        status: {
+          status: {
+            data: credits.balance !== null && profile,
+            error: creditsError || profileError,
+            loading: creditsLoading || profileLoading
+          }
+        },
+        ui
+      }
+    };
 
-      // flow-disable-next-line
-      return <Error alert={error} />;
-    }
-
-    // Loading
-    if (creditsLoading || (profileLoading && !profile)) {
-      return <Spinner loading />;
-    }
-
-    // Content
-    if (!profileLoading && profile) {
-      return (
-        <Tabs className="pills">
-          <TabList className="nav nav-pills">
-            <Tab className="nav-item" selectedClassName="active">
-              <span className="nav-link">Credits</span>
-            </Tab>
-            <Tab className="nav-item" selectedClassName="active">
-              <span className="nav-link">Profile</span>
-            </Tab>
-          </TabList>
-
-          <TabPanel className="nav-content">
-            <Credits callback={this.onCheckoutSuccess} state={{ ...state }} />
-          </TabPanel>
-          <TabPanel className="nav-content">
-            <Profile state={{ data: profile }} />
-            <Account
-              actions={{
-                closeModal: actions.modal.closeModal,
-                deleteConfirm: this.onDeleteAccountConfirm,
-                deleteRequest: this.onDeleteAccountRequest
-              }}
-              state={{
-                data,
-                ui: {
-                  asynchronous: {
-                    delete: asynchronous.delete
-                  }
-                }
-              }}
-            />
-          </TabPanel>
-        </Tabs>
-      );
-    }
-
-    // Otherwise
-    return <div />;
+    return <Section {...properties.section} />;
   };
 
   // Render component
