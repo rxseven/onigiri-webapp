@@ -5,11 +5,10 @@ import * as React from 'react';
 
 // Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Page';
-import { Card, CardBody, CardHeader, CardText } from 'components/common/Card';
-import ExLink from 'components/common/ExLink';
 import Layout from 'components/common/Layout';
-import Spinner from 'components/common/Spinner';
-import Error from 'components/composite/Error';
+
+// Helper function
+import { generateStatus } from 'helpers/state';
 
 // Constants
 import STATE_MODELS from 'constants/models/state';
@@ -19,6 +18,9 @@ import CSS from 'constants/string/css';
 import type { MatchID } from 'types/common/router';
 import type { Asynchronous } from 'types/common/state';
 import type { URI } from './data/landing/types';
+
+// Companion files
+import Content from './components/Content';
 
 // Static types
 type Props = {
@@ -91,41 +93,17 @@ class UI extends React.Component<Props> {
   renderContent = (): React.Node | void => {
     // Variables
     const { state: { data, ui: { asynchronous } } } = this.props;
-    const { error, loading } = asynchronous.get.landing;
 
-    // Error
-    if (error) {
-      return <Error alert={error} />;
-    }
+    // Properties
+    const properties = {
+      content: {
+        data,
+        ...generateStatus(data, asynchronous.get.landing)
+      }
+    };
 
-    // Loading spinner
-    if (loading) {
-      return <Spinner loading />;
-    }
-
-    // Content
-    if (!loading) {
-      return (
-        <Card alignment="text-center">
-          <CardHeader>Thank you for your feedback!</CardHeader>
-          <CardBody>
-            <CardText>We’re so glad you’re happy with our service.</CardText>
-            <CardText>
-              We’re grateful that you trust our service and will continue to do everything we can to
-              offer you the best experience possible.
-            </CardText>
-            <If condition={!!data.landing.URI}>
-              <ExLink button="primary" to={data.landing.URI || '#'} replace>
-                View campaign
-              </ExLink>
-            </If>
-          </CardBody>
-        </Card>
-      );
-    }
-
-    // Else
-    return null;
+    // View
+    return <Content {...properties.content} />;
   };
 
   // Render component
