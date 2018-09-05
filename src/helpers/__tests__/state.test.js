@@ -6,7 +6,14 @@ import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
 // Functions
-import { fromJSOrdered, generateState, getError, normalizeList, setAsync } from '../state';
+import {
+  fromJSOrdered,
+  generateState,
+  generateStatus,
+  getError,
+  normalizeList,
+  setAsync
+} from '../state';
 
 // Unit tests
 describe('helpers/state', () => {
@@ -74,6 +81,30 @@ describe('helpers/state', () => {
       const state = generateState(STATE_MODELS.immutable
         .setIn(['data', 'credits'], fromJS(data.credits))
         .setIn(['ui', 'asynchronous'], fromJS(data.asynchronous)));
+
+      // Assertions
+      expect(state).toEqual(result);
+    });
+  });
+
+  describe('generateStatus()', () => {
+    it('should generate fetching status', () => {
+      // Mock data
+      const data = {
+        data: 'Untitled',
+        asynchronous: STATE_MODELS.model.asynchronous
+      };
+
+      const result = {
+        status: {
+          data: true,
+          error: data.asynchronous.error,
+          loading: data.asynchronous.loading
+        }
+      };
+
+      // Run a function
+      const state = generateStatus(data.data, data.asynchronous);
 
       // Assertions
       expect(state).toEqual(result);
