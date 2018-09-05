@@ -19,6 +19,7 @@ type Props = {
   handler: Function,
   icon: string,
   link: string,
+  options: string,
   size: string,
   title: string,
   type: string
@@ -34,6 +35,7 @@ const defaultProps = {
   handler: undefined,
   icon: '',
   link: '#',
+  options: '',
   size: '',
   title: 'Button',
   type: 'button'
@@ -48,6 +50,7 @@ const Button = ({
   handler,
   icon,
   link,
+  options,
   size,
   title,
   type
@@ -60,7 +63,8 @@ const Button = ({
       baseClass,
       block && `${baseClass}-block`,
       `${baseClass}-${button}`,
-      !!size && `${baseClass}-${CSS.size[size]}`
+      !!size && `${baseClass}-${CSS.size[size]}`,
+      !!options && options
     ),
     icon: { text: !!children }
   };
