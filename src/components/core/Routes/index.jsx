@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 // Components and HOCs
 import withLoadable from 'HOCs/common/withLoadable';
-import AuthRoute from 'HOCs/routes/AuthRoute';
+import RouteAuth from 'HOCs/routes/withAuth';
 import PrivateRoute from 'HOCs/routes/PrivateRoute';
 import ReferralRoute from 'HOCs/routes/ReferralRoute';
 
@@ -49,8 +49,8 @@ const Routes = (): Return => (
     <PrivateRoute component={SurveyList} exact path={PATHS.surveys.list} />
 
     <PrivateRoute component={Profile} path={PATHS.users.profile} />
-    <AuthRoute component={SignIn} path={PATHS.users.signin} />
-    <AuthRoute component={SignUp} path={PATHS.users.signup} />
+    <RouteAuth component={SignIn} path={PATHS.users.signin} />
+    <RouteAuth component={SignUp} path={PATHS.users.signup} />
     <ReferralRoute component={Farewell} path={PATHS.users.farewell} />
     <ReferralRoute component={Welcome} path={PATHS.users.welcome} />
 

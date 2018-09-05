@@ -30,7 +30,7 @@ type Props = {
 type Return = React.Element<typeof Route>;
 
 // HOC
-export const AuthRoute = ({
+export const withAuth = ({
   component: Component,
   state: { data: { authorization } },
   ...rest
@@ -61,7 +61,7 @@ const mapStateToProps = state =>
   generateState(STATE_MODELS.immutable.setIn(['data', 'authorization'], getAuth(state)));
 
 // Connect component to application state
-const container = connect(mapStateToProps)(toJS(AuthRoute));
+const container = connect(mapStateToProps)(toJS(withAuth));
 
 // Module exports
 export default container;

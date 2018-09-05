@@ -6,7 +6,7 @@ import React from 'react';
 import { mockStore } from 'tests/helpers/mock';
 
 // Components
-import Connected, { AuthRoute } from '../index';
+import Connected, { withAuth } from '../index';
 
 // Source data
 const source = {
@@ -23,12 +23,12 @@ const source = {
 };
 
 // Unit tests
-describe('HOCs/routes/AuthRoute', () => {
+describe('HOCs/routes/withAuth', () => {
   describe('Default state', () => {
     it('should render without crashing', () => {
       // Mock data
       const props = { ...source.props };
-      const component = <AuthRoute {...props} />;
+      const component = <withAuth {...props} />;
 
       // Shallow rendering
       const wrapper = shallow(component);
