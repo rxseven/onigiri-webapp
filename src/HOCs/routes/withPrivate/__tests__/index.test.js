@@ -6,7 +6,7 @@ import React from 'react';
 import { mockStore } from 'tests/helpers/mock';
 
 // Components
-import Connected, { PrivateRoute } from '../index';
+import Connected, { withPrivate } from '../index';
 
 // Source data
 const source = {
@@ -23,12 +23,12 @@ const source = {
 };
 
 // Unit tests
-describe('HOCs/routes/PrivateRoute', () => {
+describe('HOCs/routes/withPrivate', () => {
   describe('Default state', () => {
     it('should render without crashing', () => {
       // Mock data
       const props = { ...source.props };
-      const component = <PrivateRoute {...props} />;
+      const component = <withPrivate {...props} />;
 
       // Shallow rendering
       const wrapper = shallow(component);

@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 // Components and HOCs
 import withLoadable from 'HOCs/common/withLoadable';
 import RouteAuth from 'HOCs/routes/withAuth';
-import PrivateRoute from 'HOCs/routes/PrivateRoute';
+import RoutePrivate from 'HOCs/routes/withPrivate';
 import ReferralRoute from 'HOCs/routes/ReferralRoute';
 
 // Constants
@@ -38,17 +38,17 @@ const Routes = (): Return => (
   <Switch>
     <Route component={Home} exact path={PATHS.root} />
 
-    <PrivateRoute component={SurveyNew} exact path={PATHS.surveys.new} />
+    <RoutePrivate component={SurveyNew} exact path={PATHS.surveys.new} />
     <ReferralRoute
       component={SurveySuccess}
       path={PATHS.surveys.success}
       redirectTo={PATHS.surveys.list}
     />
     <Route component={SurveyDoorway} path={PATHS.surveys.doorway} />
-    <PrivateRoute component={SurveyDetails} path={PATHS.surveys.details} />
-    <PrivateRoute component={SurveyList} exact path={PATHS.surveys.list} />
+    <RoutePrivate component={SurveyDetails} path={PATHS.surveys.details} />
+    <RoutePrivate component={SurveyList} exact path={PATHS.surveys.list} />
 
-    <PrivateRoute component={Profile} path={PATHS.users.profile} />
+    <RoutePrivate component={Profile} path={PATHS.users.profile} />
     <RouteAuth component={SignIn} path={PATHS.users.signin} />
     <RouteAuth component={SignUp} path={PATHS.users.signup} />
     <ReferralRoute component={Farewell} path={PATHS.users.farewell} />

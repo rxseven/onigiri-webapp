@@ -36,7 +36,7 @@ const defaultProps = {
 };
 
 // HOC
-export const PrivateRoute = ({
+export const withPrivate = ({
   component: Component,
   state: { data: { authorization } },
   exact,
@@ -65,14 +65,14 @@ export const PrivateRoute = ({
 );
 
 // Specify default values for props
-PrivateRoute.defaultProps = defaultProps;
+withPrivate.defaultProps = defaultProps;
 
 // Map state to props
 const mapStateToProps = state =>
   generateState(STATE_MODELS.immutable.setIn(['data', 'authorization'], getAuth(state)));
 
 // Connect component to application state
-const container = connect(mapStateToProps)(toJS(PrivateRoute));
+const container = connect(mapStateToProps)(toJS(withPrivate));
 
 // Module exports
 export default container;
