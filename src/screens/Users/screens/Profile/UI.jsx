@@ -158,11 +158,9 @@ class UI extends React.Component<Props> {
         },
         state,
         status: {
-          status: {
-            data: credits.balance !== null && profile,
-            error: creditsError || profileError,
-            loading: creditsLoading || profileLoading
-          }
+          data: credits.balance !== null && profile,
+          error: creditsError || profileError,
+          loading: creditsLoading || profileLoading
         },
         ui
       }
