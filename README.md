@@ -120,9 +120,9 @@ yarn test
 
 ### Authentication
 
-Password-base and OAuth *(via third-party services, [Facebook](https://developers.facebook.com/products/account-creation) & [Google](https://cloud.google.com/)*
+Password-base and OAuth *(via third-party services, [Facebook](https://developers.facebook.com/products/account-creation) & [Google](https://cloud.google.com/))*
 
-- Sign-up (register)
+- Sign-up *(register)*
 - Sign-in
 - Sign-out
 - JSON Web Token
@@ -146,13 +146,13 @@ Password-base and OAuth *(via third-party services, [Facebook](https://developer
 - Update survey *(mark as archive and/or complete)*
 - Delete survey
 
-### Emails & Statistics
+### Emails and Statistics
 
 - Send survey emails *(via third-party service, [SendGrid](https://sendgrid.com/))*
 - Collect response data *(via webhook)*
 - Update survey statistics
 
-> Note: full details on Onigiri’s features and technical information are available [here](https://onigiri-webapp.herokuapp.com/about).
+> Link: full details on Onigiri’s features and technical information are available [here](https://onigiri-webapp.herokuapp.com/about).
 
 [Back to top](#table-of-contents)
 
@@ -176,7 +176,7 @@ Onigiri is built with [MERN](https://www.mongodb.com/blog/post/the-modern-applic
 - SendGrid, Stripe, Gravatar
 - [More...](https://github.com/rxseven/onigiri-api/blob/master/package.json)
 
-> Note: RESTful API for Onigiri built with Node.js can be found in [this repository](https://github.com/rxseven/onigiri-api).
+> Link: RESTful API for Onigiri built with Node.js can be found in [this repository](https://github.com/rxseven/onigiri-api).
 
 [Back to top](#table-of-contents)
 
@@ -197,7 +197,7 @@ Onigiri is built with [MERN](https://www.mongodb.com/blog/post/the-modern-applic
 - CI/CD with GitHub, Travis CI, Coveralls, and Heroku
 - App deploying with Docker *(in progress)*
 
-> Note: the complete guidelines are available in [this project](https://github.com/rxseven/setup-react-app).
+> Link: the complete guidelines are available in [this project](https://github.com/rxseven/setup-react-app).
 
 [Back to top](#table-of-contents)
 
