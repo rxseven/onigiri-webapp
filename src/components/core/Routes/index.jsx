@@ -4,10 +4,10 @@ import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // Components and HOCs
-import Loadable from 'HOCs/common/Loadable';
-import AuthRoute from 'HOCs/routes/AuthRoute';
-import PrivateRoute from 'HOCs/routes/PrivateRoute';
-import ReferralRoute from 'HOCs/routes/ReferralRoute';
+import withLoadable from 'HOCs/common/withLoadable';
+import RouteAuth from 'HOCs/routes/withAuth';
+import RoutePrivate from 'HOCs/routes/withPrivate';
+import RouteReferral from 'HOCs/routes/withReferral';
 
 // Constants
 import PATHS from 'constants/router/paths';
@@ -15,20 +15,20 @@ import PATHS from 'constants/router/paths';
 // Screens
 import SurveyList from 'screens/Surveys/screens/SurveyList';
 
-const Home = Loadable(() => import('screens/Home'));
-const SurveyDetails = Loadable(() => import('screens/Surveys/screens/SurveyDetails'));
-const SurveyDoorway = Loadable(() => import('screens/Surveys/screens/SurveyDoorway'));
-const SurveyNew = Loadable(() => import('screens/Surveys/screens/SurveyNew'));
-const SurveySuccess = Loadable(() => import('screens/Surveys/screens/SurveySuccess'));
-const Farewell = Loadable(() => import('screens/Users/screens/Farewell'));
-const Profile = Loadable(() => import('screens/Users/screens/Profile'));
-const SignIn = Loadable(() => import('screens/Users/screens/SignIn'));
-const SignUp = Loadable(() => import('screens/Users/screens/SignUp'));
-const Welcome = Loadable(() => import('screens/Users/screens/Welcome'));
-const About = Loadable(() => import('screens/About'));
-const Privacy = Loadable(() => import('screens/Policy/Privacy'));
-const Terms = Loadable(() => import('screens/Terms'));
-const NotFound = Loadable(() => import('screens/NotFound'));
+const Home = withLoadable(() => import('screens/Home'));
+const SurveyDetails = withLoadable(() => import('screens/Surveys/screens/SurveyDetails'));
+const SurveyDoorway = withLoadable(() => import('screens/Surveys/screens/SurveyDoorway'));
+const SurveyNew = withLoadable(() => import('screens/Surveys/screens/SurveyNew'));
+const SurveySuccess = withLoadable(() => import('screens/Surveys/screens/SurveySuccess'));
+const Farewell = withLoadable(() => import('screens/Users/screens/Farewell'));
+const Profile = withLoadable(() => import('screens/Users/screens/Profile'));
+const SignIn = withLoadable(() => import('screens/Users/screens/SignIn'));
+const SignUp = withLoadable(() => import('screens/Users/screens/SignUp'));
+const Welcome = withLoadable(() => import('screens/Users/screens/Welcome'));
+const About = withLoadable(() => import('screens/About'));
+const Privacy = withLoadable(() => import('screens/Policy/Privacy'));
+const Terms = withLoadable(() => import('screens/Terms'));
+const NotFound = withLoadable(() => import('screens/NotFound'));
 
 // Static types
 type Return = React.Element<typeof Switch>;
@@ -38,21 +38,21 @@ const Routes = (): Return => (
   <Switch>
     <Route component={Home} exact path={PATHS.root} />
 
-    <PrivateRoute component={SurveyNew} exact path={PATHS.surveys.new} />
-    <ReferralRoute
+    <RoutePrivate component={SurveyNew} exact path={PATHS.surveys.new} />
+    <RouteReferral
       component={SurveySuccess}
       path={PATHS.surveys.success}
       redirectTo={PATHS.surveys.list}
     />
     <Route component={SurveyDoorway} path={PATHS.surveys.doorway} />
-    <PrivateRoute component={SurveyDetails} path={PATHS.surveys.details} />
-    <PrivateRoute component={SurveyList} exact path={PATHS.surveys.list} />
+    <RoutePrivate component={SurveyDetails} path={PATHS.surveys.details} />
+    <RoutePrivate component={SurveyList} exact path={PATHS.surveys.list} />
 
-    <PrivateRoute component={Profile} path={PATHS.users.profile} />
-    <AuthRoute component={SignIn} path={PATHS.users.signin} />
-    <AuthRoute component={SignUp} path={PATHS.users.signup} />
-    <ReferralRoute component={Farewell} path={PATHS.users.farewell} />
-    <ReferralRoute component={Welcome} path={PATHS.users.welcome} />
+    <RoutePrivate component={Profile} path={PATHS.users.profile} />
+    <RouteAuth component={SignIn} path={PATHS.users.signin} />
+    <RouteAuth component={SignUp} path={PATHS.users.signup} />
+    <RouteReferral component={Farewell} path={PATHS.users.farewell} />
+    <RouteReferral component={Welcome} path={PATHS.users.welcome} />
 
     <Route component={About} path={PATHS.static.about} />
     <Route component={Privacy} path={PATHS.static.privacy} />

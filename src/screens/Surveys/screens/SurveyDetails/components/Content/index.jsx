@@ -14,6 +14,7 @@ import ExLink from 'components/common/ExLink';
 import Icon from 'components/common/Icon';
 import { List, ListItem, ListContent, ListLabel } from 'components/common/List';
 import Text from 'components/common/Text';
+import withFetch from 'HOCs/composite/withFetch';
 
 // Constants
 import CSS from 'constants/string/css';
@@ -40,7 +41,7 @@ type Props = {
 type Return = React.Node;
 
 // Component
-const Content = ({ actions, state: { data, ui: { asynchronous } } }: Props): Return => {
+export const Content = ({ actions, state: { data, ui: { asynchronous } } }: Props): Return => {
   // Variables
   const {
     archived, completed, no, yes
@@ -164,5 +165,8 @@ const Content = ({ actions, state: { data, ui: { asynchronous } } }: Props): Ret
   );
 };
 
+// Enhance a component with fetch functionality
+const Enhanced = withFetch(Content);
+
 // Module exports
-export default Content;
+export default Enhanced;

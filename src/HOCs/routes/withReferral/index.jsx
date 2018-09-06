@@ -12,7 +12,7 @@ const defaultProps = {
 };
 
 // HOC
-const ReferralRoute = ({
+const withReferral = ({
   component: Component, exact, location, redirectTo, ...rest
 }) => {
   // Verify source route
@@ -42,7 +42,7 @@ const ReferralRoute = ({
 };
 
 // Specify default values for props
-ReferralRoute.defaultProps = defaultProps;
+withReferral.defaultProps = defaultProps;
 
 // Module exports
-export default ReferralRoute;
+export default withReferral;

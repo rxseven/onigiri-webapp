@@ -80,6 +80,7 @@
     "react-stripe-checkout": "^2.6.3",
     "react-tabs": "^2.2.1",
     "react-transition-group": "^2.2.1",
+    "recompose": "^0.30.0",
     "redux": "^3.7.2",
     "redux-burger-menu": "^0.2.4",
     "redux-form": "^7.3.0",
