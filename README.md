@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/rxseven/onigiri-webapp.svg?branch=master)](https://travis-ci.org/rxseven/onigiri-webapp) [![Coverage Status](https://coveralls.io/repos/github/rxseven/onigiri-webapp/badge.svg)](https://coveralls.io/github/rxseven/onigiri-webapp) [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
-React & Redux web application for collecting and organizing surveys.
+React & Redux single-page web application for collecting and organizing surveys.
 
 With **Onigiri**, you can create and analyze surveys right in your pocket or web browser —no special software required. You get results as they come in and, you can summarize survey results at a glance with graphs.
 
@@ -10,20 +10,22 @@ With **Onigiri**, you can create and analyze surveys right in your pocket or web
 
 ## Table of Contents
 
-- [Demo](#demo)
+- [Live Demo](#live-demo)
 - [Running Onigiri Locally](#running-onigiri-locally)
 - [Running Tests](#running-tests)
-- [Features and Specification](#features-and-specification)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
 - [Development Workflow](#development-workflow)
+- [Third-party services](#third-party-services)
 - [Browser Support](#browser-support)
 - [Related Projects](#related-projects)
-- [Milestones](#milestones)
+- [Development Milestones](#development-milestones)
 - [Changelog](#changelog)
 - [Acknowledgements](#acknowledgements)
 - [Credits](#credits)
 - [Licenses](#licenses)
 
-## Demo
+## Live Demo
 
 Onigiri is hosted on Heroku at [https://onigiri-webapp.herokuapp.com](https://onigiri-webapp.herokuapp.com)
 
@@ -42,7 +44,7 @@ Onigiri is hosted on Heroku at [https://onigiri-webapp.herokuapp.com](https://on
 - [nvm](https://github.com/creationix/nvm) and [Node.js v8.9.3](https://nodejs.org/en/blog/release/v8.9.3/) or higher
 - [npm v5.5.1](https://github.com/npm/npm/releases/tag/v5.5.1) or higher or [the latest version of Yarn](https://yarnpkg.com/en/)
 
-#### Third party services
+#### Software as a Service
 
 - [Facebook app ID](https://developers.facebook.com/docs/apps/register/)
 - [Google app ID](https://developers.google.com/identity/protocols/OAuth2)
@@ -78,13 +80,15 @@ REACT_APP_STRIPE_KEY=[STRIPE_PUBLIC_KEY]
 yarn install
 ```
 
-**5.** Start the app:
+### Start
+
+**1.** Start the app:
 
 ```sh
 yarn start:https
 ```
 
-**6.** Open [https://localhost:3000](https://localhost:3000) in the browser.
+**2.** Open [https://localhost:3000](https://localhost:3000) in the browser.
 
 > Note: the server will use a self-signed certificate, so your web browser will almost definitely display a warning upon accessing the page.
 
@@ -112,15 +116,110 @@ yarn test
 
 [Back to top](#table-of-contents)
 
-## Features and Specification
+## Features
 
-Full details on Onigiri’s features and technical information are available [here](https://onigiri-webapp.herokuapp.com/about).
+### Authentication
+
+Password-base and OAuth *(via third-party services, [Facebook](https://developers.facebook.com/products/account-creation) & [Google](https://cloud.google.com/)*
+
+- Sign-up (register)
+- Sign-in
+- Sign-out
+- JSON Web Token
+
+### Users
+
+- View user profile
+- Delete user account
+
+### Payments
+
+- View credits
+- Add credits, checkout, pay by credit card *(via third-party service, [Stripe](https://stripe.com/checkout))*
+
+### Surveys
+
+- Create survey *(and send emails)*
+- View survey list *(with infinite scrolling functionality)*
+- View survey details and statistics
+- View recipient list
+- Update survey *(mark as archive and/or complete)*
+- Delete survey
+
+### Emails & Statistics
+
+- Send survey emails *(via third-party service, [SendGrid](https://sendgrid.com/))*
+- Collect response data *(via webhook)*
+- Update survey statistics
+
+> Note: full details on Onigiri’s features and technical information are available [here](https://onigiri-webapp.herokuapp.com/about).
+
+[Back to top](#table-of-contents)
+
+## Technology Stack
+
+Onigiri is built with [MERN](https://www.mongodb.com/blog/post/the-modern-application-stack-part-1-introducing-the-mean-stack) stack, one of the most popular stack of technologies for building a modern single-page app.
+
+### Web application
+
+- React, React Router, React Transition Group, Recompose
+- Redux, Redux Saga, Redux Immutable, Redux Form, Reselect
+- Lodash, Ramda, Axios, Immutable, Normalizr
+- Sass, PostCSS, CSS modules, Bootstrap
+- [More...](https://github.com/rxseven/onigiri-webapp/blob/master/package.json)
+
+### RESTful API
+
+- Node.js, Express, Passport, MongoDB, Mongoose
+- Body parser, Path parser, Joi, Lodash
+- Bcrypt.js, CORS, JSON Web Token
+- SendGrid, Stripe, Gravatar
+- [More...](https://github.com/rxseven/onigiri-api/blob/master/package.json)
+
+> Note: RESTful API for Onigiri built with Node.js can be found in [this repository](https://github.com/rxseven/onigiri-api).
 
 [Back to top](#table-of-contents)
 
 ## Development Workflow
 
-The complete guidelines are available in [this project](https://github.com/rxseven/setup-react-app).
+- Project bootstraping with Create React App
+- Development server, live reloading, and assets bundling with Webpack
+- JavaScript transpiling with Babel
+- CSS pre-processing and transforming with Sass, PostCSS, and CSS modules
+- JavaScript linting with ESLint
+- Stylesheet linting with Stylelint
+- Code formatting with Prettier
+- Automate testing with Jest and Enzyme
+- Assets analyzing and debuging with Source Map Explorer
+- Static type checking with Flow
+- Code debugging with Visual Studio Code and Chrome Debugger
+- Pre-commit hooking with Husky and Lint-staged
+- CI/CD with GitHub, Travis CI, Coveralls, and Heroku
+- App deploying with Docker *(in progress)*
+
+> Note: the complete guidelines are available in [this project](https://github.com/rxseven/setup-react-app).
+
+[Back to top](#table-of-contents)
+
+## Third-party services
+
+### Infrastructure
+
+- [Heroku](https://www.heroku.com/) - cloud platform as a service
+- [mLab](https://mlab.com/) - database as a service for MongoDB
+
+### Cloud computing and Platforms
+
+- [SendGrid](https://sendgrid.com/) - cloud-based email
+- [Stripe](https://stripe.com/checkout) - online payment platform
+- [Facebook Platform](https://developers.facebook.com/products/account-creation) - social networking platform
+- [Google Cloud Platform](https://cloud.google.com/) - cloud computing, Hosting, and APIs
+
+### Software as a Service
+
+- [GitHub](https://github.com/) - web-based hosting service for version control using Git
+- [Travis CI](https://travis-ci.org/) - continuous integration
+- [Coveralls](https://coveralls.io/) - test coverage history and statistics
 
 [Back to top](#table-of-contents)
 
@@ -140,20 +239,18 @@ RESTful API for Onigiri built with Node.js, Express, Passport and MongoDB.
 
 **[Setup React App](https://github.com/rxseven/setup-react-app)**
 
-React & Redux starter kit with best practices bootstrapped with Create React App.
+React & Redux starter kit with best practices bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 [Back to top](#table-of-contents)
 
-## Milestones
+## Development Milestones
 
-- Implement reusable Higher Order Components (HOCs) with [Recompose](https://github.com/acdlite/recompose) *(in progress)*.
-- Setup container with [Docker](https://www.docker.com).
+- Setup container with [Docker](https://www.docker.com) *(in progress)*.
+- Refactor code with functional programming principles *(in progress)*.
 - Deploy the app on [DigitalOcean](https://www.digitalocean.com) or [Amazon Web Service (AWS)](https://aws.amazon.com).
-- Refactor code with functional programming principles.
 - Implement components in isolation with [Storybook](https://storybook.js.org).
 - Optimize the app’s performance.
-- Add more unit tests to cover the entire project.
-- Add more static type checking to cover the entire project.
+- Add more unit tests and static type checking to cover the entire project *(in progress)*.
 
 [Back to top](#table-of-contents)
 
@@ -163,7 +260,7 @@ See [releases](https://github.com/rxseven/onigiri-webapp/releases).
 
 ## Acknowledgements
 
-This project is maintained by [Theerawat Pongsupawat](http://www.rxseven.com), frontend developer from Chiang Mai, Thailand.
+This project is built and maintained by [Theerawat Pongsupawat](http://www.rxseven.com), frontend developer from Chiang Mai, Thailand.
 
 ## Credits
 
