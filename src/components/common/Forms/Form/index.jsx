@@ -6,16 +6,20 @@ import * as React from 'react';
 import { Field } from 'redux-form/immutable';
 
 // Components and HOCs
-import { Button, ButtonSet } from 'components/common/Buttons';
 import { FormField } from 'components/common/Forms';
-import Spinner from 'components/common/Spinner';
-import Error from 'components/composite/Error';
+
+// Helper function
+import { generateStatus } from 'helpers/state';
+import { isAlert } from 'helpers/utilities';
 
 // Constants
 import STATE_MODELS from 'constants/models/state';
 
 // Types
 import type { Asynchronous } from 'types/common/state';
+
+// Companion files
+import FormCTA from '../FormCTA';
 
 // Static types
 type Props = {
@@ -69,31 +73,28 @@ class Form extends React.Component<Props> {
   // Render a component
   render(): Return {
     // Variables
+    const { props } = this;
     const {
-      alert,
-      asynchronous: { error, loading },
-      cancelButton,
-      handleSubmit,
-      options,
-      pristine,
-      spinner,
-      submitButton
-    } = this.props;
+      alert, asynchronous, handleSubmit, options
+    } = props;
+
+    // Properties
+    const properties = {
+      cta: {
+        cancelButton: props.cancelButton,
+        loading: asynchronous.loading,
+        pristine: props.pristine,
+        spinner: props.spinner,
+        submitButton: props.submitButton,
+        ...generateStatus({}, asynchronous, isAlert(alert))
+      }
+    };
 
     // View
     return (
       <form className={cx(!!options && options)} onSubmit={handleSubmit(this.onSubmit)}>
         {this.renderField()}
-        {alert && !!error && <Error alert={error} />}
-        <ButtonSet>
-          {cancelButton}
-          <Button button="primary" disabled={pristine || (spinner && loading)} type="submit">
-            {submitButton}
-          </Button>
-          <If condition={spinner && loading}>
-            <Spinner />
-          </If>
-        </ButtonSet>
+        <FormCTA {...properties.cta} />
       </form>
     );
   }

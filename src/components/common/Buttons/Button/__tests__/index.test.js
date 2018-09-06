@@ -26,6 +26,7 @@ const source = {
     handler: () => {},
     icon: '',
     link: '#',
+    options: '',
     size: '',
     title: 'Button',
     type: 'button'
@@ -385,6 +386,53 @@ describe('components/common/Buttons/Button', () => {
 
           // Assertions
           expect(wrapper.find(Link)).toHaveProp(result);
+        });
+      });
+    });
+
+    describe('"options"', () => {
+      describe('Default prop', () => {
+        it('should have default value for prop', () => {
+          // Mock data
+          const props = { ...source.props };
+          const result = { options: props.options };
+
+          // Full DOM rendering
+          const wrapper = mount(<Button {...props} />);
+
+          // Assertions
+          expect(result).toBeDefined();
+          expect(wrapper).toHaveProp(result);
+        });
+      });
+
+      describe('Receiving prop', () => {
+        // Configuration
+        const options = 'css-style';
+
+        it('should receive the correct prop', () => {
+          // Mock data
+          const props = { ...source.props, options };
+          const result = { options: props.options };
+
+          // Full DOM rendering
+          const wrapper = mount(<Button {...props} />);
+
+          // Assertions
+          expect(result).toBeDefined();
+          expect(wrapper).toHaveProp(result);
+        });
+
+        it('should set additional CSS classes', () => {
+          // Mock data
+          const props = { ...source.props, options };
+          const result = props.options;
+
+          // Shallow rendering
+          const wrapper = shallow(<Button {...props} />);
+
+          // Assertions
+          expect(wrapper).toHaveClassName(result);
         });
       });
     });

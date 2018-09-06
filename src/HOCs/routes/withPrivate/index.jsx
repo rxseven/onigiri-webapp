@@ -20,6 +20,7 @@ import { getAuth } from 'data/session/reducers';
 // Static types
 type Props = {
   component: React.ComponentType<any>,
+  exact: boolean,
   state: {
     data: {
       authorization: boolean
@@ -29,24 +30,31 @@ type Props = {
 
 type Return = React.Element<typeof Route>;
 
+// Default props
+const defaultProps = {
+  exact: false
+};
+
 // HOC
-export const AuthRoute = ({
+export const withPrivate = ({
   component: Component,
   state: { data: { authorization } },
+  exact,
   ...rest
 }: Props): Return => (
   // flow-disable-next-line
   <Route
     {...rest}
+    exact={exact}
     render={props => (
       <Choose>
-        <When condition={!authorization}>
+        <When condition={authorization}>
           <Component {...props} />
         </When>
         <Otherwise>
           <Redirect
             to={{
-              pathname: PATHS.root,
+              pathname: PATHS.users.signin,
               state: { from: props.location }
             }}
           />
@@ -56,12 +64,15 @@ export const AuthRoute = ({
   />
 );
 
+// Specify default values for props
+withPrivate.defaultProps = defaultProps;
+
 // Map state to props
 const mapStateToProps = state =>
   generateState(STATE_MODELS.immutable.setIn(['data', 'authorization'], getAuth(state)));
 
 // Connect component to application state
-const container = connect(mapStateToProps)(toJS(AuthRoute));
+const container = connect(mapStateToProps)(toJS(withPrivate));
 
 // Module exports
 export default container;

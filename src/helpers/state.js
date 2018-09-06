@@ -7,6 +7,9 @@ import { normalize, schema } from 'normalizr';
 import STATE_MODELS from 'constants/models/state';
 import { ERROR, LOADING } from 'constants/types/asynchronous';
 
+// Types
+import type { Asynchronous } from 'types/common/state';
+
 // Set an asynchronous status
 export const setAsync = (selector: any, state: any, type?: string, payload?: {}): any => {
   switch (type) {
@@ -34,6 +37,20 @@ export const fromJSOrdered = (js: any): any => {
     .map(fromJSOrdered)
     .toOrderedMap();
 };
+
+// Generate fetching status
+export const generateStatus = (
+  data: any,
+  asynchronous: Asynchronous,
+  options?: Object
+): Object => ({
+  status: {
+    data: !!data,
+    error: asynchronous.error,
+    loading: asynchronous.loading,
+    ...options
+  }
+});
 
 // Generate state for a container component
 export const generateState = <T: any>(handler: T): { state: T } => ({

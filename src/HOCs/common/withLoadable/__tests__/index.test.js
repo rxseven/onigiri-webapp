@@ -3,14 +3,14 @@ import { shallow } from 'enzyme';
 import React from 'react';
 
 // Components
-import Loadable from '../index';
+import withLoadable from '../index';
 
 // Unit tests
-describe('HOCs/common/Loadable', () => {
+describe('HOCs/common/withLoadable', () => {
   describe('Default state', () => {
     it('should render without crashing', () => {
       // Shallow rendering
-      const wrapper = shallow(<Loadable />);
+      const wrapper = shallow(<withLoadable />);
 
       // Assertions
       expect(wrapper).toBeDefined();

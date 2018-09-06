@@ -9,7 +9,7 @@ import mock from 'tests/mock';
 import STATE_MODELS from 'constants/models/state';
 
 // Components
-import Content from '../index';
+import { Content } from '../index';
 
 // Source data
 const source = {

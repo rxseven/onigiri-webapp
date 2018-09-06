@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 
 // Components
-import ReferralRoute from '../index';
+import withReferral from '../index';
 
 // Source data
 const source = {
@@ -20,12 +20,12 @@ const source = {
 };
 
 // Unit tests
-describe('HOCs/routes/ReferralRoute', () => {
+describe('HOCs/routes/withReferral', () => {
   describe('Default state', () => {
     it('should render without crashing', () => {
       // Mock data
       const props = { ...source.props };
-      const component = <ReferralRoute {...props} />;
+      const component = <withReferral {...props} />;
 
       // Shallow rendering
       const wrapper = shallow(component);

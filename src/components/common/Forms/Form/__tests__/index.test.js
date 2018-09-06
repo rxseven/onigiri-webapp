@@ -60,27 +60,6 @@ describe('components/common/Form/Form', () => {
           expect(result).toBeDefined();
           expect(wrapper).toHaveProp(result);
         });
-
-        it('should render an error message when failure occured', () => {
-          // Mock data
-          const props = {
-            ...source.props,
-            asynchronous: {
-              ...source.props.asynchronous,
-              error: {
-                message: 'Something went wrong!'
-              }
-            }
-          };
-          const result = { alert: props.asynchronous.error };
-
-          // Shallow rendering
-          const wrapper = shallow(<Form {...props} />);
-
-          // Assertions
-          expect(wrapper.find(Error)).toExist();
-          expect(wrapper.find(Error)).toHaveProp(result);
-        });
       });
 
       describe('Receiving prop', () => {
@@ -173,18 +152,6 @@ describe('components/common/Form/Form', () => {
           // Assertions
           expect(result).toBeDefined();
           expect(wrapper).toHaveProp(result);
-        });
-
-        it('should contain a cancel button', () => {
-          // Mock data
-          const props = { ...source.props };
-          const result = props.cancelButton;
-
-          // Shallow rendering
-          const wrapper = shallow(<Form {...props} />);
-
-          // Assertions
-          expect(wrapper).toContainReact(result);
         });
       });
     });
@@ -284,17 +251,6 @@ describe('components/common/Form/Form', () => {
           expect(result).toBeDefined();
           expect(wrapper).toHaveProp(result);
         });
-
-        it('should disable a submit button when the form is clean', () => {
-          // Mock data
-          const props = { ...source.props };
-
-          // Shallow rendering
-          const wrapper = shallow(<Form {...props} />);
-
-          // Assertions
-          expect(wrapper.find(Button)).toBeDisabled();
-        });
       });
 
       describe('Receiving prop', () => {
@@ -343,40 +299,6 @@ describe('components/common/Form/Form', () => {
           // Assertions
           expect(result).toBeDefined();
           expect(wrapper).toHaveProp(result);
-        });
-
-        it('should render a spinner when performing an asynchronous action', () => {
-          // Mock data
-          const props = {
-            ...source.props,
-            asynchronous: {
-              ...source.props.asynchronous,
-              loading: true
-            }
-          };
-
-          // Shallow rendering
-          const wrapper = shallow(<Form {...props} />);
-
-          // Assertions
-          expect(wrapper.find(Spinner)).toExist();
-        });
-
-        it('should disable a submit button when performing an asynchronous action', () => {
-          // Mock data
-          const props = {
-            ...source.props,
-            asynchronous: {
-              ...source.props.asynchronous,
-              loading: true
-            }
-          };
-
-          // Shallow rendering
-          const wrapper = shallow(<Form {...props} />);
-
-          // Assertions
-          expect(wrapper.find(Button)).toBeDisabled();
         });
       });
 
@@ -449,18 +371,6 @@ describe('components/common/Form/Form', () => {
           // Assertions
           expect(result).toBeDefined();
           expect(wrapper).toHaveProp(result);
-        });
-
-        it('should render the correct text on a submit button', () => {
-          // Mock data
-          const props = { ...source.props };
-          const result = props.submitButton;
-
-          // Shallow rendering
-          const wrapper = shallow(<Form {...props} />);
-
-          // Assertions
-          expect(wrapper.find(Button).dive()).toIncludeText(result);
         });
       });
     });
@@ -586,28 +496,6 @@ describe('components/common/Form/Form', () => {
 
             // Invoke the event handler indirectly by simulating a submit event
             wrapper.find('form').simulate('submit', { preventDefault() {} });
-
-            // Assertions
-            expect(handleSubmit).toHaveBeenCalled();
-          });
-        });
-
-        describe('Invoking indirectly by simulating a click event', () => {
-          it('should call the event handler when triggered <Button> component', () => {
-            // Mock functions
-            const handleSubmit = jest.fn();
-
-            // Mock data
-            const props = {
-              ...source.props,
-              handleSubmit
-            };
-
-            // Shallow rendering
-            const wrapper = shallow(<Form {...props} />);
-
-            // Invoke the event handler indirectly by simulating a click event
-            wrapper.find(Button).simulate('click');
 
             // Assertions
             expect(handleSubmit).toHaveBeenCalled();

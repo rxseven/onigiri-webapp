@@ -1,12 +1,13 @@
 // @flow
 // Module dependencies
-import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 // Components and HOCs
 import { Body, Document, Head, Title } from 'components/common/Page';
 import Layout from 'components/common/Layout';
-import Error from 'components/composite/Error';
+
+// Helper function
+import { generateStatus } from 'helpers/state';
 
 // Constants
 import STATE_MODELS from 'constants/models/state';
@@ -224,31 +225,23 @@ class UI extends React.Component<Props, State> {
   // Render content
   renderContent = (): React.Node | void => {
     // Variables
-    const { state: { data, ui: { asynchronous } } } = this.props;
-    const { error, loading } = asynchronous.get.survey;
+    const { state: { data: { survey }, ui: { asynchronous } } } = this.props;
 
-    // Error
-    if (error) {
-      return <Error alert={error} />;
-    }
+    // Properties
+    const properties = {
+      content: {
+        actions: {
+          getRecipients: this.getRecipients
+        },
+        state: {
+          data: survey,
+          ui: { asynchronous }
+        },
+        ...generateStatus(survey, asynchronous.get.survey, { loading: false })
+      }
+    };
 
-    // Content
-    if (!loading && !isEmpty(data.survey)) {
-      return (
-        <Content
-          actions={{
-            getRecipients: this.getRecipients
-          }}
-          state={{
-            data: data.survey,
-            ui: { asynchronous }
-          }}
-        />
-      );
-    }
-
-    // Else
-    return null;
+    return <Content {...properties.content} />;
   };
 
   // Render confirmation modal
