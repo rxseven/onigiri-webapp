@@ -317,7 +317,7 @@ const Technical = (): Return => (
           </CardBody>
         </Card>
 
-        <Card>
+        <Card end>
           <CardHeader>Dependencies</CardHeader>
           <CardBody>
             <CardSubtitle>React &amp; Redux</CardSubtitle>
@@ -355,6 +355,12 @@ const Technical = (): Return => (
                 <ListLabel>Selector library for Redux</ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com/reactjs/reselect">Reselect</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>A React utility belt for function components and HOCs</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/acdlite/recompose">Recompose</ListLink>
                 </ListContent>
               </ListItem>
             </List>
@@ -630,20 +636,6 @@ const Technical = (): Return => (
                   <ListLink to="https://github.com/rxseven/onigiri-webapp/blob/master/package.json">
                     <code>package.json</code>
                   </ListLink>
-                </ListContent>
-              </ListItem>
-            </List>
-          </CardBody>
-        </Card>
-
-        <Card end>
-          <CardHeader>Will be implemented within next releases</CardHeader>
-          <CardBody>
-            <List>
-              <ListItem end>
-                <ListLabel>A React utility belt for function components and HOCs</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/acdlite/recompose">Recompose</ListLink>
                 </ListContent>
               </ListItem>
             </List>
