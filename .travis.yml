@@ -42,3 +42,9 @@ notifications:
   email:
     on_failure: always
     on_success: change
+  # Send notifications to Slack channels about build results
+  slack:
+    on_failure: always
+    on_success: always
+    rooms:
+      - secure: 'MXotKM9La5M+GAHFVQly0lMQ45M8VNRCsprgqjnkRYFatkxGyjjIuMZDU6SOxmFsWkAT7mJUBlDLvaW1fxsClT56S878fAmLw6GDCNTzmf1sNaxuhh7s7bHZij5on8yCkePHShM+eLggT8g9xMCYB+9UpE6NXQ4kfwTr0SaiG9nTLWZXV+Xjj9LdrlMs0Mlg+kwO5J2u/ckHQAbKMywBpPrY7WLjOolhJLDhxGptGStJhjemkN8a/QcY+BIAdgM6yXTO5PYdGE0IXamcKZdXjwyu4AyCJ+/n+87jsam5pnYmCdbNM9lcRGHXl65Q0yuGQQZyA41bwP+/aLK2omJq2Qi+2+1jSyKHeQWUKk5YQRCo8+v4ImjK40J7qynw6lWidJmguL5xojdSz473BqrtuxD5ZQ3U2zItR0MH22nKYicFdDFhorFIHPzvCjsqZIm2LzSKa+LvjwG6828VKv45G2Ci+XPtJ2oVXt/QUiZW1ueJDXt5d0IJz4dYM0r2XjLdIdgeputvaMjGFaq3PV7mbcyBN7gE0bMWE3YE5oXY2Q/+vjfud0EJLA3gjPDnAMEU4kxN957MOlSUx3JNE4S8zrFWJ5mrfTe1LyCdNxpHp8hNYVIr4F8pKYt2W3ZiistKdulSRzSecxJgxOaa1I8E3MR4ph0vHu6Wzr1WUG1zea0='
