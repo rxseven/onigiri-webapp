@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  proxy:
+    image: $BASE_PROXY
+    ports:
+      - $PORT_MAPPING_HTTP
+      - $PORT_MAPPING_SSL
+    restart: always
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /tmp/docker.sock
+        read_only: true
+      - type: bind
+        source: $PROXY_HOST/$PROXY_SSL
+        target: $PROXY_CONTAINER/$PROXY_SSL
+  app:
+    build:
+      args:
+        BASE_NODE: $BASE_NODE
+        BINARY: $CONTAINER_BIN
+        DEPENDENCY_LIST: $CONFIG_NPM
+        DEPENDENCY_LOCK: $CONFIG_PACKAGE
+        DEPENDENCY_PATH: $CONTAINER_DEPENDENCIES
+        PORT_EXPOSE: $PORT_DEVSERVER
+        WORKDIR: $CONTAINER_WORKDIR
+      context: $DOCKERFILE_CONTEXT
+      dockerfile: $DOCKERFILE_BASE
+    container_name: $IMAGE_REPO
+    image: $IMAGE_USERNAME/$IMAGE_REPO:$RELEASE_VERSION
