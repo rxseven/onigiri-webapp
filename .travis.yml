@@ -36,3 +36,9 @@ deploy:
 
 after_script:
   - COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN npm run test:coverage:ci
+
+notifications:
+  # Default email notification settings
+  email:
+    on_failure: always
+    on_success: change
