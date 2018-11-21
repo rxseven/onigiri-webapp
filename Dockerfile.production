@@ -1,0 +1,70 @@
+# Specify global variables
+ARG BASE_NGINX
+ARG BASE_NODE
+ARG BUILD_ENV=development
+
+# Build stage
+# Initialize a new build stage and set the base image for production build
+FROM $BASE_NODE as app
+
+# Specify build and environment variables
+ARG BUILD_ENV
+ARG DEPENDENCY_LIST
+ARG DEPENDENCY_LOCK
+ARG LABEL_INTERMEDIATE
+ARG WORKDIR
+ENV NODE_ENV=$BUILD_ENV
+ENV NPM_CONFIG_LOGLEVEL=warn
+
+# Add metadata to an image
+LABEL stage=$LABEL_INTERMEDIATE
+
+# Specify the working directory
+WORKDIR $WORKDIR
+
+# Install and update dependencies
+COPY $DEPENDENCY_LIST $DEPENDENCY_LOCK ./
+RUN yarn && yarn cache clean
+
+# Create an optimized production build
+COPY . .
+RUN yarn build
+
+# Serve stage
+# Initialize a new build stage and set the base image for production build
+FROM $BASE_NGINX
+
+# Specify build and environment variables
+ARG BUILD_DIR
+ARG BUILD_ENV
+ARG LABEL_AUTHOR_EMAIL
+ARG LABEL_AUTHOR_NAME
+ARG LABEL_DESCRIPTION
+ARG LABEL_LICENSE
+ARG PORT_EXPOSE
+ARG PROXY_CONFIG
+ARG PROXY_CONTAINER
+ARG PROXY_HOST
+ARG RELEASE_DATE
+ARG RELEASE_VERSION
+ARG WORKDIR
+ENV NODE_ENV=$BUILD_ENV
+
+# Add metadata to an image
+LABEL description=$LABEL_DESCRIPTION
+LABEL license=$LABEL_LICENSE
+LABEL maintainer="$LABEL_AUTHOR_NAME <$LABEL_AUTHOR_EMAIL>"
+LABEL release-date=$RELEASE_DATE
+LABEL version=$RELEASE_VERSION
+
+# Customize web server configuration
+COPY $PROXY_HOST/$PROXY_CONFIG $PROXY_CONTAINER/$PROXY_CONFIG
+
+# Copy the optimized production build from the build stage for hosting SPA
+COPY --from=app $WORKDIR/$BUILD_DIR /usr/share/nginx/html
+
+# Specify network ports
+EXPOSE $PORT_EXPOSE
+
+# Start a web server
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
