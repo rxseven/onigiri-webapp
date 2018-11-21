@@ -16,7 +16,9 @@
     ".eslintrc": "json",
     ".lintstagedrc": "json",
     ".prettierrc": "json",
-    ".stylelintrc": "json"
+    ".stylelintrc": "json",
+    "[Dd]ockerfile*": "dockerfile",
+    "docker-compose*": "yaml"
   },
 
   // Flow
