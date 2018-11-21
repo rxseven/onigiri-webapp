@@ -13,6 +13,7 @@ jobs:
       # Run unit tests and generate code coverage reports
       name: 'Unit tests'
       script: npm run test:coverage
+      if: branch = master
       # Run JavaScript linting
     - name: 'JavaScript linting'
       script: npm run lint:script
