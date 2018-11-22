@@ -414,6 +414,16 @@ define output-sum-docker
 	docker image ls -a
 endef
 
+# Print artifacts summary
+define output-sum-artifacts
+	$(call log-sum,Artifacts); \
+	if [[ -d "${DIR_BUILD}" || -d "${DIR_COVERAGE}" ]]; then \
+		echo "Opps! there are some artifacts left, please try again."; \
+	else \
+		echo "All clean"; \
+	fi
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
