@@ -435,6 +435,12 @@ define output-sum-temporary
 	done
 endef
 
+##@ Development:
+
+.PHONY: start
+start: ## Start the development environment and attach to containers for a service
+	@$(helper-devserver-start)
+
 ##@ Utilities:
 
 .PHONY: setup
