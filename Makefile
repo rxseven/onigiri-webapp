@@ -534,6 +534,25 @@ build: ## Create an optimized production build
 	esac
 	@$(txt-done)
 
+.PHONY: preview
+preview: ## Run the production build locally
+	@echo "Available options:"
+	@printf "1. $(call log-bold,run) *  : Run the production build\n"
+	@printf "2. $(call log-bold,build)  : Build image before running the app\n"
+	@$(newline)
+	@$(txt-options)
+	@$(newline)
+	@read -p "Enter the option: " OPTION; \
+	if [[ "$$OPTION" == "" || "$$OPTION" == 1 || "$$OPTION" == "run" ]]; then \
+		$(call helper-production-preview); \
+	elif [[ "$$OPTION" == 2 || "$$OPTION" == "build" ]]; then \
+		$(call helper-production-preview,build); \
+	elif [ "$$OPTION" == 0 ]; then \
+		$(txt-skipped); \
+	else \
+		$(txt-opps); \
+	fi;
+
 ##@ Utilities:
 
 .PHONY: setup
