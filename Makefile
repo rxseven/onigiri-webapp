@@ -461,6 +461,17 @@ stop: ## Stop running containers
 	@docker-compose stop
 	@$(txt-done)
 
+.PHONY: run
+run: ## Update npm dependencies and start the development environment
+	@$(call log-start,Update npm dependencies and start the development environment)
+	@printf "Install and update all the dependencies listed within $(call log-italic,package.json) and $(call log-italic,yarn.lock)\nbefore starting the development environment.\n"
+	@$(newline)
+	@$(call log-info,Part 1/2 : Install and update dependencies)
+	@$(helper-update)
+	@$(newline)
+	@$(call log-info,Part 2/2 : Start the development environment)
+	@$(helper-devserver-start)
+
 ##@ Utilities:
 
 .PHONY: setup
