@@ -28,6 +28,9 @@ ANSI_COLOR_RED := 31
 ANSI_COLOR_YELLOW := 33
 ANSI_COLOR_WHITE := 37
 
+# Default goal
+.DEFAULT_GOAL := help
+
 # Loggers
 log-bold = \e[1m$(1)\e[0m
 log-complete = printf "\e[${ANSI_COLOR_GREEN}m$(1)\e[0m \n"
