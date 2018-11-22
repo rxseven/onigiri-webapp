@@ -98,6 +98,13 @@ define helper-browser
 	$(txt-done)
 endef
 
+# Open Finder
+define helper-finder
+	printf "Opening $(call log-bold,$(1)) in Finder...\n"; \
+	open $(1); \
+	$(txt-done)
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
