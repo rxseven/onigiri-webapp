@@ -91,6 +91,13 @@ define helper-host
 	fi
 endef
 
+# Open a web browser
+define helper-browser
+	printf "Opening $(call log-bold,$(1)) in the default browser...\n"; \
+	open -a ${BROWSER} $(1); \
+	$(txt-done)
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
