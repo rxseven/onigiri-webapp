@@ -81,6 +81,16 @@ define helper-image-download
 	(docker pull $(1) && $(call log-complete,Downloaded successfully.))
 endef
 
+# Add host names
+define helper-host
+	if grep -Fxq "${HOST_IP}       $(1)" ${HOST_DNS}; then \
+		echo "Skipping, $(1) is already set."; \
+	else \
+		echo "${HOST_IP}       $(1)" | sudo tee -a ${HOST_DNS}; \
+		$(call log-complete,Set host name successfully.); \
+	fi
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
