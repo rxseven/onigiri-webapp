@@ -60,3 +60,6 @@ txt-status = $(call log-sum,The working tree status)
 txt-summary = $(call log-sum,Summary)
 txt-version = printf "Makefile version ${MAKEFILE_VERSION}\n"
 txt-warning = $(call log-underline,Warning)
+
+# Getters and Setters
+get-ip = $$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
