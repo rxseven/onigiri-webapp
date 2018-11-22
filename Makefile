@@ -193,6 +193,15 @@ define helper-run-lint
 	docker-compose run --rm ${SERVICE_APP} lint$(1)
 endef
 
+# Run static type checking
+define helper-run-typecheck
+	$(call log-step,[Step 1/4] Build the development image (if needed)); \
+	$(call log-step,[Step 2/4] Create and start a container for running static type checking); \
+	$(call log-step,[Step 3/4] Run static type checking); \
+	$(call log-step,[Step 4/4] Remove the container when the process finishes); \
+	docker-compose run --rm ${SERVICE_APP} type$(1)
+endef
+
 # Remove build artifacts
 define helper-remove-build
 	$(call log-process,Removing build artifacts...); \
