@@ -127,6 +127,41 @@ define helper-production-build
 	docker-compose -f ${COMPOSE_BASE} -f ${COMPOSE_PRODUCTION} $(1)
 endef
 
+# Run an optimized production build
+define helper-production-preview
+	$(newline); \
+	$(call log-start,Run the production build...); \
+	$(call log-step,[Step 1/8] Stop running containers *); \
+	docker-compose stop; \
+	$(call log-step,[Step 2/8] Create an optimized production build *); \
+	$(call log-step,[Step 3/8] Build the production image tagged $(call log-bold,${IMAGE_NAME}) *); \
+	$(call log-step,[Step 4/8] Create a network *); \
+	$(call log-step,[Step 5/8] Create app and reverse proxy containers *); \
+	$(call log-step,[Step 6/8] Start the containers); \
+	$(call log-step,[Step 7/8] Attach STDOUT/STDERR and forward signals); \
+	$(call log-step,[Step 8/8] Start the web and reverse proxy servers); \
+	$(newline); \
+	$(call log-info,Information); \
+	printf "You can view the production build in the browser at:\n"; \
+	$(newline); \
+	printf "Local           : ${URL_BUILD}\n"; \
+	printf "On your network : ${URL_PROTOCAL}://$(get-ip)\n"; \
+	$(call helper-image-verify, ${IMAGE_NAME}) && ( \
+		if [ "$(1)" == "build" ]; then \
+			$(newline); \
+			$(call log-start,Rebuilding the production image$(,) this will take a moment...); \
+			$(call helper-production-build,up --build --no-start); \
+		fi; \
+	) || ( \
+		$(newline); \
+		$(call log-start,Building the production image$(,) this will take a moment...) && \
+		$(call helper-production-build,up --no-start) \
+	); \
+	$(newline); \
+	$(call log-start,Starting the containers...); \
+	$(call helper-production-build,up)
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
