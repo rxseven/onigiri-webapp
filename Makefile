@@ -337,6 +337,13 @@ define helper-version
 	esac
 endef
 
+# Release new application version
+define helper-release
+	$(call log-step,[Step 1/1] Configure ${CONFIG_NPM} for Node.js environment deployment); \
+	$(call set-json,version,${RELEASE_VERSION},$(,),${CONFIG_NPM}); \
+	rm *.${EXT_BACKUP}
+endef
+
 # Remove build artifacts
 define helper-remove-build
 	$(call log-process,Removing build artifacts...); \
