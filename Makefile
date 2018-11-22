@@ -605,6 +605,37 @@ test: ## Run unit tests *
 		$(txt-opps); \
 	fi;
 
+.PHONY: lint
+lint: ## Run code linting *
+	@echo "Available options:"
+	@printf "1. $(call log-bold,script) *   : Lint JavaScript\n"
+	@printf "2. $(call log-bold,fix)        : Lint JavaScript and automatically fix problems\n"
+	@printf "3. $(call log-bold,stylesheet) : Lint Stylesheet (SCSS)\n"
+	@$(newline)
+	@$(txt-options)
+	@$(newline)
+	@read -p "Enter the option: " MODE; \
+	if [[ "$$MODE" == "" || "$$MODE" == 1 || "$$MODE" == "script" ]]; then \
+		$(newline); \
+		$(call log-start,Running JavaScript linting...); \
+		$(call helper-run-lint,:script); \
+		$(txt-done); \
+	elif [[ "$$MODE" == 2 || "$$MODE" == "fix" ]]; then \
+		$(newline); \
+		$(call log-start,Running JavaScript linting and trying to fix problems...); \
+		$(call helper-run-lint,:script:fix); \
+		$(txt-done); \
+	elif [[ "$$MODE" == 3 || "$$MODE" == "stylesheet" ]]; then \
+		$(newline); \
+		$(call log-start,Running Stylesheet linting...); \
+		$(call helper-run-lint,:stylesheet); \
+		$(txt-done); \
+	elif [ "$$MODE" == 0 ]; then \
+		$(txt-skipped); \
+	else \
+		$(txt-opps); \
+	fi;
+
 ##@ Utilities:
 
 .PHONY: setup
