@@ -65,3 +65,18 @@ txt-warning = $(call log-underline,Warning)
 get-ip = $$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
 set-json = sed -i.${EXT_BACKUP} 's|\(.*"$(1)"\): "\(.*\)"$(3).*|\1: '"\"$(2)\"$(3)|" $(4)
 set-env = sed -i.${EXT_BACKUP} 's;^$(1)=.*;$(1)='"$(2)"';' $(3)
+
+##@ Miscellaneous:
+
+.PHONY: help
+help: ## Print usage
+	@awk 'BEGIN {FS = ":.*##"; \
+	printf "\nUsage: make \033[${ANSI_COLOR_CYAN}m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ \
+	{ printf "  \033[${ANSI_COLOR_CYAN}m%-27s\033[0m %s\n", $$1, $$2 } /^##@/ \
+	{ printf "\n\033[0m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+	@$(newline)
+	@printf "*   with options\n"
+	@printf "**  requires user input\n"
+	@printf "*** requires superuser access\n\n"
+	@$(txt-version)
+	@$(newline)
