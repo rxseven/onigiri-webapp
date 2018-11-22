@@ -504,6 +504,36 @@ up: ## Rebuild development image for a service
 		$(txt-opps); \
 	fi;
 
+.PHONY: build
+build: ## Create an optimized production build
+	@$(call log-start,Creating an optimized production build...)
+	@$(call log-step,[Step 1/6] Remove the existing build (if one exists))
+	@$(helper-remove-build)
+	@$(call log-step,[Step 2/6] Download base images (if needed))
+	@$(call log-step,[Step 3/6] Build the development image (if it doesn't exist))
+	@$(call log-step,[Step 4/6] Create and start a container for building the app)
+	@$(call log-step,[Step 5/6] Create an optimized production build)
+	@$(call log-step,[Step 6/6] Stop and remove the container)
+	@docker-compose run --rm ${SERVICE_APP} build
+	@$(newline)
+	@$(txt-result)
+	@$(call log-sum,Build artifacts)
+	@ls ${DIR_BUILD}
+	@$(newline)
+	@$(txt-summary)
+	@printf "The production build has been created successfully in $(call log-bold,./${DIR_BUILD}) directory.\n"
+	@read -p "Would you like to view the build artifacts in Finder? " CONFIRMATION; \
+	case "$$CONFIRMATION" in \
+		${IF_YES}) \
+			echo "Opening in Finder..."; \
+			open ./${DIR_BUILD}; \
+		;; \
+		${IF_ANY}) \
+			$(txt-skipped); \
+		;; \
+	esac
+	@$(txt-done)
+
 ##@ Utilities:
 
 .PHONY: setup
