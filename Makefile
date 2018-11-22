@@ -69,6 +69,14 @@ get-ip = $$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-
 set-json = sed -i.${EXT_BACKUP} 's|\(.*"$(1)"\): "\(.*\)"$(3).*|\1: '"\"$(2)\"$(3)|" $(4)
 set-env = sed -i.${EXT_BACKUP} 's;^$(1)=.*;$(1)='"$(2)"';' $(3)
 
+# Configure Git user
+define helper-git-user
+	printf "Username : "; \
+	git config user.name; \
+	printf "Email    : "; \
+	git config user.email
+endef
+
 # Check if the specified local image exists
 define helper-image-verify
 	docker image inspect $(1) >/dev/null 2>&1
