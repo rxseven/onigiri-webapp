@@ -424,6 +424,17 @@ define output-sum-artifacts
 	fi
 endef
 
+# Print temporary files summary
+define output-sum-temporary
+	$(call log-sum,Temporary files); \
+	for f in ${DIR_TEMP}/*; do \
+		[ -e "$$f" ] && \
+		echo "Opps! there are some files left, please try again." || \
+		echo "All clean"; \
+		break; \
+	done
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
