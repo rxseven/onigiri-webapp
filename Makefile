@@ -451,6 +451,10 @@ endef
 start: ## Start the development environment and attach to containers for a service
 	@$(helper-devserver-start)
 
+.PHONY: restart
+restart: ## Rebuild image and restart the development environment
+	@$(call helper-devserver-start,build)
+
 ##@ Utilities:
 
 .PHONY: setup
