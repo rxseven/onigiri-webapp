@@ -140,6 +140,16 @@ define helper-open-coverage
 	fi
 endef
 
+# Open a treemap visualization in a web browser
+define helper-open-treemap
+	if [ -f "${DATA_TREEMAP}" ]; then \
+		$(call helper-browser,${DATA_TREEMAP}); \
+	else \
+		printf "Skipping, no treemap found.\n"; \
+		printf "Run $(call log-bold,analyze) command to generate a treemap.\n"; \
+	fi
+endef
+
 # Create an optimized production build
 define helper-production-build
 	docker-compose -f ${COMPOSE_BASE} -f ${COMPOSE_PRODUCTION} $(1)
