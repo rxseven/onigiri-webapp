@@ -184,6 +184,15 @@ define helper-run-test
 	${SERVICE_APP} test$(1)
 endef
 
+# Run code linting
+define helper-run-lint
+	$(call log-step,[Step 1/4] Build the development image (if needed)); \
+	$(call log-step,[Step 2/4] Create and start a container for running code linting); \
+	$(call log-step,[Step 3/4] Run code linting); \
+	$(call log-step,[Step 4/4] Remove the container when the process finishes); \
+	docker-compose run --rm ${SERVICE_APP} lint$(1)
+endef
+
 # Remove build artifacts
 define helper-remove-build
 	$(call log-process,Removing build artifacts...); \
