@@ -1,0 +1,2 @@
+# Configuration
+SHELL := /bin/bash
