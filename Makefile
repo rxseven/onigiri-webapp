@@ -186,6 +186,18 @@ define helper-remove-coverage
 	fi
 endef
 
+# Remove artifacts
+define helper-remove-artifacts
+	if [[ -d "${DIR_BUILD}" || -d "${DIR_COVERAGE}" ]]; then \
+		$(helper-remove-build); \
+		$(helper-remove-coverage); \
+	else \
+		$(call log-process,Removing artifacts...); \
+		echo "Skipping, no artifacts found."; \
+		$(txt-continue); \
+	fi
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
