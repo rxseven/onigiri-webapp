@@ -162,6 +162,28 @@ define helper-production-preview
 	$(call helper-production-build,up)
 endef
 
+# Run unit tests
+define helper-run-test
+	$(call log-step,[Step 1/5] Remove the existing code coverage reports); \
+	if [ "$(2)" == "cleanup" ]; then \
+		$(helper-remove-coverage); \
+	else \
+		echo "Skipping, this is not the case."; \
+		$(txt-continue); \
+	fi; \
+	$(call log-step,[Step 2/5] Build the development image (if needed)); \
+	$(call log-step,[Step 3/5] Create and start a container for running tests); \
+	$(call log-step,[Step 4/5] Run tests); \
+	$(call log-step,[Step 5/5] Remove the container when the process finishes); \
+	docker-compose \
+	-f ${COMPOSE_BASE} \
+	-f ${COMPOSE_DEVELOPMENT} \
+	-f ${COMPOSE_TEST} run \
+	--name ${IMAGE_REPO}-${ENV_TEST} \
+	--rm \
+	${SERVICE_APP} test$(1)
+endef
+
 # Remove build artifacts
 define helper-remove-build
 	$(call log-process,Removing build artifacts...); \
