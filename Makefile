@@ -472,6 +472,38 @@ run: ## Update npm dependencies and start the development environment
 	@$(call log-info,Part 2/2 : Start the development environment)
 	@$(helper-devserver-start)
 
+.PHONY: up
+up: ## Rebuild development image for a service
+	@$(call log-start,This command will perform the following actions:)
+	@echo "- Stop running containers (if ones exist)"
+	@echo "- Rebuild development image for a service"
+	@$(newline)
+	@echo "Available options:"
+	@printf "1. $(call log-bold,all) *  : Rebuild images for all services\n"
+	@printf "2. $(call log-bold,app)    : Rebuild image for app service\n"
+	@printf "3. $(call log-bold,proxy)  : Rebuild image for proxy service\n"
+	@$(newline)
+	@$(txt-options)
+	@$(newline)
+	@read -p "Enter the option: " OPTION; \
+	if [[ "$$OPTION" == "" || "$$OPTION" == 1 || "$$OPTION" == "all" ]]; then \
+		$(newline); \
+		$(call log-start,Rebuilding images for all services...); \
+		$(call helper-image-rebuild); \
+		$(txt-done); \
+	elif [[ "$$OPTION" == 2 || "$$OPTION" == "app" ]]; then \
+		$(newline); \
+		$(call log-start,Rebuilding image for ${SERVICE_APP} service...); \
+		$(call helper-image-rebuild,${SERVICE_APP}); \
+		$(txt-done); \
+	elif [[ "$$OPTION" == 3 || "$$OPTION" == "proxy" ]]; then \
+		printf "Skipping, $(call log-bold,${SERVICE_PROXY}) service uses an image.\n"; \
+	elif [ "$$OPTION" == 0 ]; then \
+		$(txt-skipped); \
+	else \
+		$(txt-opps); \
+	fi;
+
 ##@ Utilities:
 
 .PHONY: setup
