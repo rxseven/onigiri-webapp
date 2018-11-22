@@ -399,6 +399,21 @@ define helper-remove-temporary
 	done
 endef
 
+# Print Docker summary
+define output-sum-docker
+	$(call log-sum,Containers (including exited state)); \
+	docker container ls -a; \
+	$(newline); \
+	$(call log-sum,Networks); \
+	docker network ls; \
+	$(newline); \
+	$(call log-sum,Volumes); \
+	docker volume ls; \
+	$(newline); \
+	$(call log-sum,Images (including intermediates)); \
+	docker image ls -a
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
