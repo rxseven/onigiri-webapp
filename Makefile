@@ -162,6 +162,18 @@ define helper-production-preview
 	$(call helper-production-build,up)
 endef
 
+# Remove build artifacts
+define helper-remove-build
+	$(call log-process,Removing build artifacts...); \
+	if [ -d "${DIR_BUILD}" ]; then \
+		rm -rf -v ${DIR_BUILD}; \
+		$(call log-complete,Removed successfully.); \
+	else \
+		echo "Skipping, no build artifacts found."; \
+		$(txt-continue); \
+	fi
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
