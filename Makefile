@@ -636,6 +636,51 @@ lint: ## Run code linting *
 		$(txt-opps); \
 	fi;
 
+.PHONY: typecheck
+typecheck: ## Run static type checking *
+	@echo "Available options:"
+	@printf "1. $(call log-bold,default) *  : Run a default check\n"
+	@printf "2. $(call log-bold,check)      : Run a full check and print the results\n"
+	@printf "3. $(call log-bold,focus)      : Run a focus check\n"
+	@printf "4. $(call log-bold,libdef)     : Update the library definitions (libdef)\n"
+	@$(newline)
+	@$(txt-options)
+	@$(newline)
+	@read -p "Enter the option: " OPTION; \
+	if [[ "$$OPTION" == "" || "$$OPTION" == 1 || "$$OPTION" == "script" ]]; then \
+		$(newline); \
+		$(call log-start,Running static type checking...); \
+		$(call helper-run-typecheck); \
+		$(txt-done); \
+	elif [[ "$$OPTION" == 2 || "$$OPTION" == "check" ]]; then \
+		$(newline); \
+		$(call log-start,Running a full check and printing the results...); \
+		$(call helper-run-typecheck,:check); \
+		$(txt-done); \
+	elif [[ "$$OPTION" == 3 || "$$OPTION" == "focus" ]]; then \
+		$(newline); \
+		$(call log-start,Running a focus check...); \
+		$(call helper-run-typecheck,:check:focus); \
+		$(txt-done); \
+	elif [[ "$$OPTION" == 4 || "$$OPTION" == "libdef" ]]; then \
+		$(newline); \
+		$(call log-start,Updating the library definitions...); \
+		$(call helper-run-typecheck,:install); \
+		$(newline); \
+		$(txt-result); \
+		$(txt-status); \
+		git status ${DIR_TYPED}; \
+		$(newline); \
+		$(txt-summary); \
+		printf "The library definitions have been installed in $(call log-bold,./${DIR_TYPED}) directory.\n"; \
+		printf "Please commit the changes (if any).\n"; \
+		$(txt-done); \
+	elif [ "$$OPTION" == 0 ]; then \
+		$(txt-skipped); \
+	else \
+		$(txt-opps); \
+	fi;
+
 ##@ Utilities:
 
 .PHONY: setup
