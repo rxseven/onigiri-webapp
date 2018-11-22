@@ -86,6 +86,15 @@ define helper-image-ci
 	docker-compose -f ${COMPOSE_BASE} -f ${COMPOSE_CI} $(1) $(2) ${SERVICE_APP} $(3)
 endef
 
+# Rebuild image for the development environment
+define helper-image-rebuild
+	$(call log-step,[Step 1/3] Stop running containers (if ones exist)); \
+	docker-compose stop; \
+	$(call log-step,[Step 2/3] Download base images (if needed)); \
+	$(call log-step,[Step 3/3] Rebuild the image(s)); \
+	docker-compose build $(1)
+endef
+
 # Add host names
 define helper-host
 	if grep -Fxq "${HOST_IP}       $(1)" ${HOST_DNS}; then \
