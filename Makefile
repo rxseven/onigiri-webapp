@@ -553,6 +553,58 @@ preview: ## Run the production build locally
 		$(txt-opps); \
 	fi;
 
+##@ Testing & Linting:
+
+.PHONY: test
+test: ## Run unit tests *
+	@echo "Available modes:"
+	@printf "1. $(call log-bold,watch) *  : Watch files for changes and rerun tests related to changed files\n"
+	@printf "2. $(call log-bold,silent)   : Prevent tests from printing messages through the console\n"
+	@printf "3. $(call log-bold,verbose)  : Display individual test results with the test suite hierarchy\n"
+	@printf "4. $(call log-bold,coverage) : Generate code coverage reports (LCOV data)\n"
+	@$(newline)
+	@$(txt-options)
+	@$(newline)
+	@read -p "Enter test mode: " MODE; \
+	if [[ "$$MODE" == "" || "$$MODE" == 1 || "$$MODE" == "watch" ]]; then \
+		$(newline); \
+		$(call log-start,Running tests in \"watch\" mode...); \
+		$(call helper-run-test); \
+	elif [[ "$$MODE" == 2 || "$$MODE" == "silent" ]]; then \
+		$(newline); \
+		$(call log-start,Running tests in \"silent\" mode...); \
+		$(call helper-run-test,:silent); \
+	elif [[ "$$MODE" == 3 || "$$MODE" == "verbose" ]]; then \
+		$(newline); \
+		$(call log-start,Running tests in \"verbose\" mode...); \
+		$(call helper-run-test,:verbose); \
+	elif [[ "$$MODE" == 4 || "$$MODE" == "coverage" ]]; then \
+		$(newline); \
+		$(call log-start,Running tests and generate code coverage reports...); \
+		$(call helper-run-test,:coverage,cleanup); \
+		$(newline); \
+		$(txt-result); \
+		$(call log-sum,Code coverage reports); \
+		ls ${DIR_COVERAGE}; \
+		$(newline); \
+		$(txt-summary); \
+		printf "Code coverage reports have been generated in $(call log-bold,${DIR_ROOT}${DIR_COVERAGE}) directory.\n"; \
+		read -p "Would you like to view the report visualization in the browser? " CONFIRMATION; \
+		case "$$CONFIRMATION" in \
+			${IF_YES}) \
+				$(helper-open-coverage); \
+			;; \
+			${IF_ANY}) \
+				printf "Skipping, you can view the reports later by running $(call log-bold,report) command.\n"; \
+				$(txt-done); \
+			;; \
+		esac; \
+	elif [ "$$MODE" == 0 ]; then \
+		$(txt-skipped); \
+	else \
+		$(txt-opps); \
+	fi;
+
 ##@ Utilities:
 
 .PHONY: setup
