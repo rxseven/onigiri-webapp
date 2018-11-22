@@ -81,6 +81,11 @@ define helper-image-download
 	(docker pull $(1) && $(call log-complete,Downloaded successfully.))
 endef
 
+# Build image for the CI environment
+define helper-image-ci
+	docker-compose -f ${COMPOSE_BASE} -f ${COMPOSE_CI} $(1) $(2) ${SERVICE_APP} $(3)
+endef
+
 # Add host names
 define helper-host
 	if grep -Fxq "${HOST_IP}       $(1)" ${HOST_DNS}; then \
