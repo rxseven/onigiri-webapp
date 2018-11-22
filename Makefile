@@ -122,6 +122,11 @@ endef
 # Open code editor
 helper-code = code ${DIR_CWD}
 
+# Create an optimized production build
+define helper-production-build
+	docker-compose -f ${COMPOSE_BASE} -f ${COMPOSE_PRODUCTION} $(1)
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
