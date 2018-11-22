@@ -198,6 +198,17 @@ define helper-remove-artifacts
 	fi
 endef
 
+# Remove temporary files
+define helper-remove-temporary
+	$(call log-process,Removing temporary files...); \
+	for f in ${DIR_TEMP}/*; do \
+		[ -e "$$f" ] && \
+		(rm -rf -v ${DIR_TEMP}/* && $(call log-complete,Removed successfully.)) || \
+		(printf "Skipping, no temporary files found.\n" && $(txt-continue)); \
+		break; \
+	done
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
