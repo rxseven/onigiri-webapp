@@ -707,7 +707,7 @@ analyze: build ## Analyze and debug code bloat through source maps
 	@$(call log-step,[Step 4/5] Remove the container)
 	@docker container rm ${CONTAINER_NAME}
 	@$(call log-step,[Step 5/5] Open the treemap visualization in the browser)
-	@$(call helper-browser,${HOST_TEMP}/${FILE_TREEMAP})
+	@$(helper-open-treemap)
 
 ##@ Utilities:
 
