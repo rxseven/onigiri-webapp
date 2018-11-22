@@ -42,3 +42,21 @@ log-success = $(call log-template,${ANSI_COLOR_GREEN},$(1))
 log-sum = $(call log-template,${ANSI_COLOR_CYAN},$(1))
 log-template = printf "\e[100m make \e[${1};49m $(2)\e[0m \n"
 log-underline = \e[4m$(1)\e[0m
+
+# Text and string
+newline = echo ""
+headline = printf "\e[${ANSI_COLOR_CYAN};49;1m$(1)\e[0m \n\n"
+txt-continue = echo "Continue to the next step..."
+txt-diff = $(call log-sum,Changes between commits and working tree)
+txt-done = $(call log-success,Done)
+txt-note = $(call log-underline,Note)
+txt-opps = echo "Opps! please try again."
+txt-options = printf "* default option, press $(call log-bold,enter) key to continue / enter $(call log-bold,0) to cancel.\n"
+txt-performing = echo "This command will perform the following actions:"
+txt-processing = $(call log-process,Processing...)
+txt-result = $(call log-result,Listing the results...)
+txt-skipped = echo "Skipped"
+txt-status = $(call log-sum,The working tree status)
+txt-summary = $(call log-sum,Summary)
+txt-version = printf "Makefile version ${MAKEFILE_VERSION}\n"
+txt-warning = $(call log-underline,Warning)
