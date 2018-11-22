@@ -202,6 +202,27 @@ define helper-run-typecheck
 	docker-compose run --rm ${SERVICE_APP} type$(1)
 endef
 
+# Install and update npm dependencies
+define helper-update
+	$(call log-start,Install and update dependencies...)
+	$(call log-step,[Step 1/7] Stop running containers *)
+	docker-compose stop
+	$(call log-step,[Step 2/7] Build the development image *)
+	$(call log-step,[Step 3/7] Create a container for updating dependencies)
+	$(call log-step,[Step 4/7] Start the container)
+	$(call log-step,[Step 5/7] Install and update dependencies in the persistent storage (volume))
+	$(call log-step,[Step 6/7] Update ${CONFIG_PACKAGE} *)
+	$(call log-step,[Step 7/7] Remove the container)
+	$(call helper-image-verify, ${IMAGE_DEVELOPMENT}) || ( \
+		$(newline); \
+		$(call log-start,Building the development image$(,) this will take a moment...) && \
+		docker-compose build ${SERVICE_APP}; \
+	); \
+	$(newline); \
+	$(call log-start,Installing dependencies...); \
+	docker-compose run --rm ${SERVICE_APP} install
+endef
+
 # Remove build artifacts
 define helper-remove-build
 	$(call log-process,Removing build artifacts...); \
