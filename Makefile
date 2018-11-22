@@ -681,6 +681,24 @@ typecheck: ## Run static type checking *
 		$(txt-opps); \
 	fi;
 
+##@ Statistics & Reports:
+
+.PHONY: analyze
+analyze: CONTAINER_NAME = ${IMAGE_REPO}-analyzing
+analyze: build ## Analyze and debug code bloat through source maps
+	@$(newline)
+	@$(call log-start,Analyzing and debugging code...)
+	@$(call log-step,[Step 1/5] Create and start a container for analyzing the bundle)
+	@$(call log-step,[Step 2/5] Analyze the bundle size)
+	@docker-compose run --name ${CONTAINER_NAME} ${SERVICE_APP} analyze
+	@$(call log-step,[Step 3/5] Copy the result from the container's file system to the host's)
+	@docker cp ${CONTAINER_NAME}:${CONTAINER_TEMP}/. ${HOST_TEMP}
+	@ls ${HOST_TEMP}
+	@$(call log-step,[Step 4/5] Remove the container)
+	@docker container rm ${CONTAINER_NAME}
+	@$(call log-step,[Step 5/5] Open the treemap visualization in the browser)
+	@$(call helper-browser,${HOST_TEMP}/${FILE_TREEMAP})
+
 ##@ Utilities:
 
 .PHONY: setup
