@@ -278,6 +278,65 @@ define helper-devserver-option
 	esac
 endef
 
+# Set a new release version
+define helper-version
+	$(call log-start,Set a release version); \
+	printf "The current version is $(call log-bold,v${RELEASE_VERSION}) (released on ${RELEASE_DATE})\n"; \
+	$(newline); \
+	printf "$(txt-note): You $(call log-bold,must) clean up the development environment built with the configuration\nfrom v${RELEASE_VERSION} before tagging a new release version, otherwise you will not be able\nto remove the outdated environment once you have set a new version. To do that,\ncancel this command by hitting $(call log-bold,enter/return) key and run $(call log-bold,reset) command.\n"; \
+	$(newline); \
+	read -p "Would you like to clean up the development environment? " CONFIRMATION; \
+	case "$$CONFIRMATION" in \
+		${IF_YES}) \
+			$(newline); \
+			$(call log-start,Cleaning up the development environment...); \
+			$(call log-step,[Step 1/4] Stop and remove containers$(,) default network$(,) and volumes); \
+			docker-compose down -v; \
+			$(call log-step,[Step 2/4] Remove the development images); \
+			docker image rm ${ENV_LOCAL}/${IMAGE_REPO}; \
+			$(call log-step,[Step 3/4] Remove the production image); \
+			docker image rm ${IMAGE_NAME}; \
+			$(call log-step,[Step 4/4] Remove the intermediate images); \
+			docker image prune --filter label=stage=${IMAGE_INTERMEDIATE} --force; \
+			$(call log-complete,Cleaned up successfully.); \
+			$(newline); \
+			read -p "Enter a version number: " VERSION; \
+			if [ "$$VERSION" != "" ]; then \
+				GIT_CHANGES=${CONFIG_ENV}; \
+				GIT_COMMIT="Set release version to v$$VERSION"; \
+				TXT_INSTRUCTION="Skipping, please commit the changes before releasing the update."; \
+				TXT_SUMMARY="Please run $(call log-bold,release) command to prepare for the next release."; \
+				$(newline); \
+				$(call log-start,Processing...); \
+				$(call log-step,[Step 1/2] Set release date); \
+				$(call set-env,RELEASE_DATE,${CURRENT_DATE},${CONFIG_ENV}); \
+				echo "${CURRENT_DATE} (today)"; \
+				$(call log-step,[Step 2/2] Set release version); \
+				echo "v$$VERSION"; \
+				$(call set-env,RELEASE_VERSION,$$VERSION,${CONFIG_ENV}); \
+				rm ${CONFIG_ENV}.${EXT_BACKUP}; \
+				$(call log-complete,Set a new version successfully.); \
+				$(newline); \
+				$(txt-result); \
+				$(txt-status); \
+				git status ${CONFIG_ENV}; \
+				$(newline); \
+				$(txt-diff); \
+				git diff ${CONFIG_ENV}; \
+				$(newline); \
+				$(txt-summary); \
+				printf "The next release will be $(call log-bold,v$$VERSION) on ${CURRENT_DATE} (today).\n"; \
+				$(txt-done); \
+			else \
+				$(txt-skipped); \
+			fi; \
+		;; \
+		${IF_ANY}) \
+			$(txt-skipped); \
+		;; \
+	esac
+endef
+
 # Remove build artifacts
 define helper-remove-build
 	$(call log-process,Removing build artifacts...); \
