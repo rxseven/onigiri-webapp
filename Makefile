@@ -455,6 +455,12 @@ start: ## Start the development environment and attach to containers for a servi
 restart: ## Rebuild image and restart the development environment
 	@$(call helper-devserver-start,build)
 
+.PHONY: stop
+stop: ## Stop running containers
+	@$(call log-start,Stopping running containers...)
+	@docker-compose stop
+	@$(txt-done)
+
 ##@ Utilities:
 
 .PHONY: setup
