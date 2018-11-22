@@ -105,6 +105,9 @@ define helper-finder
 	$(txt-done)
 endef
 
+# Open code editor
+helper-code = code ${DIR_CWD}
+
 ##@ Miscellaneous:
 
 .PHONY: help
