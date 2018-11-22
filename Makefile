@@ -74,6 +74,13 @@ define helper-image-verify
 	docker image inspect $(1) >/dev/null 2>&1
 endef
 
+# Download image from Docker Hub
+define helper-image-download
+	docker image inspect $(1) >/dev/null 2>&1 && \
+	(echo "Skipping, $(1) already exists.") || \
+	(docker pull $(1) && $(call log-complete,Downloaded successfully.))
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
