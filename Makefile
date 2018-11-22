@@ -174,6 +174,18 @@ define helper-remove-build
 	fi
 endef
 
+# Remove code coverage reports
+define helper-remove-coverage
+	$(call log-process,Removing code coverage reports...); \
+	if [ -d "${DIR_COVERAGE}" ]; then \
+		rm -rf -v ${DIR_COVERAGE}; \
+		$(call log-complete,Removed successfully.); \
+	else \
+		echo "Skipping, no code coverage reports found."; \
+		$(txt-continue); \
+	fi
+endef
+
 ##@ Miscellaneous:
 
 .PHONY: help
