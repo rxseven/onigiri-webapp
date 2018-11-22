@@ -435,6 +435,91 @@ define output-sum-temporary
 	done
 endef
 
+##@ Utilities:
+
+.PHONY: setup
+setup: GIT_CONFIG = ${DIR_GIT}/config
+setup: ## Setup the development environment ***
+	@$(call log-start,Setting up the development environment...)
+	@$(call log-step,[Step 1/5] Configure Git username and email address)
+	@if grep -Fxq "[user]" ${GIT_CONFIG}; then \
+		echo "Your user settings are already set for this repository in ${GIT_CONFIG}:"; \
+		$(newline); \
+		$(helper-git-user); \
+	else \
+		echo "The following are your global Git user settings:"; \
+		$(newline); \
+		$(helper-git-user); \
+		$(newline); \
+		printf "$(txt-note): You can change the username and email address associated with commits\nyou make in this repository. This will override your global Git configuration\nsettings in this one repository, but will not affect any other repositories.\n"; \
+	fi
+	@$(newline)
+	@read -p "Would you like to change the current settings? " CONFIRMATION; \
+	case "$$CONFIRMATION" in \
+		${IF_YES}) \
+			read -p "Enter new username: " USERNAME; \
+			if [ "$$USERNAME" != "" ]; then \
+				git config user.name "$$USERNAME"; \
+			else \
+				$(txt-skipped); \
+			fi; \
+			read -p "Enter new email address: " EMAIL; \
+			if [ "$$EMAIL" != "" ]; then \
+				git config user.email "$$EMAIL"; \
+			else \
+				$(txt-skipped); \
+			fi; \
+			$(call log-complete,Configured successfully.); \
+		;; \
+		${IF_ANY}) \
+			echo "Skipping, use the current settings."; \
+		;; \
+	esac
+	@$(call log-step,[Step 2/5] Install dependencies required for running on the development environment)
+	@$(call log-process,Checking local images...)
+	@$(call helper-image-download,${BASE_NGINX})
+	@$(call helper-image-download,${BASE_NODE})
+	@$(call helper-image-download,${BASE_PROXY})
+	@$(call log-step,[Step 3/5] Set custom host names for a self-signed SSL certificate)
+	@$(call log-process,Verifying host names...)
+	@$(call helper-host,${DOMAIN_LOCAL})
+	@$(call helper-host,${DOMAIN_BUILD})
+	@$(call log-step,[Step 4/5] Create a backup directory)
+	@if [ -d ${DIR_BACKUP} ]; then \
+  	echo "Skipping, the directory already exists."; \
+	else \
+		$(call log-process,Creating a backup directory...); \
+		mkdir -p ${DIR_BACKUP}; \
+		echo ${DIR_BACKUP}; \
+		$(call log-complete,Created backup directory successfully.); \
+	fi
+	@$(call log-step,[Step 5/5] Build the development image)
+	@docker-compose build ${SERVICE_APP}
+	@$(call log-complete,Built successfully.)
+	@$(newline)
+	@$(txt-result)
+	@$(call log-sum,Git user settings)
+	@echo "The following information will be associated with commits you make in this repository:"
+	@$(newline)
+	@$(helper-git-user)
+	@$(newline)
+	@$(call log-sum,Images)
+	@docker image ls
+	@$(newline)
+	@$(call log-sum,Host names)
+	@cat ${HOST_DNS}
+	@$(newline)
+	@$(call log-sum,Backup directory)
+	@if [ -d ${DIR_BACKUP} ]; then \
+		echo ${DIR_BACKUP}; \
+	else \
+		echo "Opps! the directory did not create properly, please try again."; \
+	fi
+	@$(newline)
+	@$(call log-sum,Summary)
+	@echo "You are all set."
+	@$(helper-devserver-option)
+
 ##@ Miscellaneous:
 
 .PHONY: help
