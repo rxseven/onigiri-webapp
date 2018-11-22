@@ -122,6 +122,16 @@ endef
 # Open code editor
 helper-code = code ${DIR_CWD}
 
+# Open code coverage reports in a web browser
+define helper-open-coverage
+	if [ -d "${DIR_COVERAGE}" ]; then \
+		$(call helper-browser,./${DIR_COVERAGE}/lcov-report/index.html); \
+	else \
+		printf "Skipping, no code coverage reports found.\n"; \
+		printf "Run $(call log-bold,test) command with $(call log-bold,coverage) option to generate the reports.\n"; \
+	fi
+endef
+
 # Create an optimized production build
 define helper-production-build
 	docker-compose -f ${COMPOSE_BASE} -f ${COMPOSE_PRODUCTION} $(1)
