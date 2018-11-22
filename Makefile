@@ -253,6 +253,21 @@ define helper-devserver-start
 	docker-compose up
 endef
 
+# Optionally start the development and proxy servers
+define helper-devserver-option
+	read -p "Would you like to start the development server right away? " CONFIRMATION; \
+	case "$$CONFIRMATION" in \
+		${IF_YES}) \
+			$(newline); \
+			$(helper-devserver-start); \
+		;; \
+		${IF_ANY}) \
+			$(txt-skipped); \
+			$(txt-done); \
+		;; \
+	esac
+endef
+
 # Remove build artifacts
 define helper-remove-build
 	$(call log-process,Removing build artifacts...); \
