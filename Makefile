@@ -1024,6 +1024,31 @@ bash: ## Run Bash in the app container
 	@$(call log-start,Running Bash in the app container...)
 	@docker container exec -it ${IMAGE_REPO}-${ENV_LOCAL} bash
 
+.PHONY: format
+format: ## Format code automatically
+	@$(call log-start,Formatting code...)
+	@$(call log-step,[Step 1/4] Build the development image (if needed))
+	@$(call log-step,[Step 2/4] Create and start a container for formatting code)
+	@$(call log-step,[Step 3/4] Format code)
+	@$(call log-step,[Step 4/4] Remove the container)
+	@docker-compose run --rm ${SERVICE_APP} format
+	@$(newline)
+	@$(txt-result)
+	@$(txt-status)
+	@git status | grep modified
+	@$(newline)
+	@read -p "Would you like to show changes between commits? " CONFIRMATION; \
+	case "$$CONFIRMATION" in \
+		${IF_YES}) \
+			$(txt-diff); \
+			git diff; \
+		;; \
+		${IF_ANY}) \
+			$(txt-skipped); \
+		;; \
+	esac
+	@$(txt-done)
+
 .PHONY: setup
 setup: GIT_CONFIG = ${DIR_GIT}/config
 setup: ## Setup the development environment ***
