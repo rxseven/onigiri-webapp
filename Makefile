@@ -483,7 +483,7 @@ run: ## Update npm dependencies and start the development environment
 	@$(helper-devserver-start)
 
 .PHONY: up
-up: ## Rebuild development image for a service
+up: ## Rebuild development image for a service *
 	@$(call log-start,This command will perform the following actions:)
 	@echo "- Stop running containers (if ones exist)"
 	@echo "- Rebuild development image for a service"
