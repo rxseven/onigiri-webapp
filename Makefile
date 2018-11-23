@@ -856,6 +856,35 @@ refresh: ## Refresh (soft clean) the development environment
 		;; \
 	esac
 
+.PHONY: clean
+clean: ## Clean up the development environment (including persistent data)
+	@$(call log-start,Clean up the development environment)
+	@$(txt-performing)
+	@echo "- Stop running containers"
+	@echo "- Remove containers"
+	@echo "- Remove the default network"
+	@echo "- Remove volumes attached to containers"
+	@$(newline)
+	@printf "$(txt-warning): You are about to permanently remove persistent data. $(call log-bold,This operation cannot be undone.)\n"
+	@$(newline)
+	@read -p "${CONFIRM_CONTINUE} " CONFIRMATION; \
+	case "$$CONFIRMATION" in \
+		${IF_YES}) \
+			$(newline); \
+			$(call log-start,Cleaning up the development environment...); \
+			$(call log-step,[Step 1/2] Stop running containers); \
+			$(call log-step,[Step 2/2] Remove containers$(,) the default network$(,) and volumes); \
+			docker-compose down -v; \
+			$(newline); \
+			$(txt-result); \
+			$(output-sum-docker); \
+			$(txt-done); \
+		;; \
+		${IF_ANY}) \
+			$(txt-skipped); \
+		;; \
+	esac
+
 ##@ Utilities:
 
 .PHONY: setup
