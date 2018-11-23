@@ -114,7 +114,7 @@ define helper-host
 endef
 
 # Open a web browser
-define helper-browser
+define helper-open-browser
 	printf "Opening $(call log-bold,$(1)) in the default browser...\n"; \
 	open -a ${BROWSER} $(1); \
 	$(txt-done)
@@ -133,7 +133,7 @@ helper-code = code ${DIR_CWD}
 # Open code coverage reports in a web browser
 define helper-open-coverage
 	if [ -d "${DIR_COVERAGE}" ]; then \
-		$(call helper-browser,./${DIR_COVERAGE}/lcov-report/index.html); \
+		$(call helper-open-browser,./${DIR_COVERAGE}/lcov-report/index.html); \
 	else \
 		printf "Skipping, no code coverage reports found.\n"; \
 		printf "Run $(call log-bold,test) command with $(call log-bold,coverage) option to generate the reports.\n"; \
@@ -143,7 +143,7 @@ endef
 # Open a treemap visualization in a web browser
 define helper-open-treemap
 	if [ -f "${DATA_TREEMAP}" ]; then \
-		$(call helper-browser,${DATA_TREEMAP}); \
+		$(call helper-open-browser,${DATA_TREEMAP}); \
 	else \
 		printf "Skipping, no treemap found.\n"; \
 		printf "Run $(call log-bold,analyze) command to generate a treemap.\n"; \
