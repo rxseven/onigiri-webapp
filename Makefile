@@ -959,6 +959,12 @@ reset: ## Reset the development environment and clean up unused data
 
 ##@ Utilities:
 
+.PHONY: code
+code: ## Open the project in the default code editor
+	@$(call log-start,Opening the project in ${EDITOR}...)
+	@$(helper-open-code)
+	@$(txt-done)
+
 .PHONY: setup
 setup: GIT_CONFIG = ${DIR_GIT}/config
 setup: ## Setup the development environment ***
