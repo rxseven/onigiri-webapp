@@ -1199,6 +1199,19 @@ release: ## Release new application version
 		printf "Skipping, please run $(call log-bold,version) command before releasing a new version.\n"; \
 	fi;
 
+# Continuous Integration
+
+# Install and update dependencies required for running on the CI environment
+.PHONY: ci-update
+ci-update:
+	@$(call log-start,Installing and updating additional dependencies...)
+	@$(call log-step,[Step 1/1] Update Docker Compose to v${PACKAGE_COMPOSE_VERSION})
+	@sudo rm ${CONTAINER_BIN}/docker-compose
+	@curl -L ${PACKAGE_COMPOSE_REPO}/${PACKAGE_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+	@chmod +x docker-compose
+	@sudo mv docker-compose ${CONTAINER_BIN}
+	@$(txt-done)
+
 ##@ Miscellaneous:
 
 .PHONY: status
