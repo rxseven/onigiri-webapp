@@ -26,6 +26,10 @@ before_script:
   # Setup the CI environment and install required dependencies
   - make ci-setup
 
+script:
+  # Run tests and generate code coverage reports
+  # - make ci-test
+
 deploy:
   provider: heroku
   app:
