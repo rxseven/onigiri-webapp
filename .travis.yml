@@ -45,11 +45,13 @@ after_success:
   - make ci-coverage
 
 deploy:
-  provider: heroku
-  app:
-    master: onigiri-webapp
-  api_key:
-    secure: $HEROKU_API_KEY
+  # Deploy to a production server 1 (Heroku)
+  - app:
+      master: onigiri-webapp
+    api_key:
+      secure: $HEROKU_API_KEY
+    provider: heroku
+    skip_cleanup: true
 
 after_script:
   # Send LCOV data to coveralls.io
