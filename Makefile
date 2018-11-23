@@ -799,6 +799,38 @@ update: ## Install and update all the dependencies listed within package.json
 	@$(newline)
 	@$(helper-devserver-option)
 
+##@ Cleanup:
+
+.PHONY: erase
+erase: ## Remove artifacts and temporary files
+	@$(call log-start,Remove artifacts and temporary files)
+	@$(txt-performing)
+	@echo "- Remove all artifacts"
+	@echo "- Remove all temporary files"
+	@$(newline)
+	@printf "$(txt-warning): You are about to permanently remove files. You will not be able to recover them. $(call log-bold,This operation cannot be undone.)\n"
+	@$(newline)
+	@read -p "${CONFIRM_CONTINUE} " CONFIRMATION; \
+	case "$$CONFIRMATION" in \
+		${IF_YES}) \
+			$(newline); \
+			$(call log-start,Removing data...); \
+			$(call log-step,[Step 1/2] Remove artifacts); \
+			$(helper-remove-artifacts); \
+			$(call log-step,[Step 2/2] Remove temporary files); \
+			$(helper-remove-temporary); \
+			$(newline); \
+			$(txt-result); \
+			$(output-sum-artifacts); \
+			$(newline); \
+			$(output-sum-temporary); \
+			$(txt-done); \
+		;; \
+		${IF_ANY}) \
+			$(txt-skipped); \
+		;; \
+	esac
+
 ##@ Utilities:
 
 .PHONY: setup
