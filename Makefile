@@ -1173,6 +1173,12 @@ backup: ## Create a backup copy of the project
 		;; \
 	esac
 
+##@ Operations:
+
+.PHONY: version
+version: ## Set a release version **
+	@$(helper-version)
+
 ##@ Miscellaneous:
 
 .PHONY: status
