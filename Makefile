@@ -1291,6 +1291,15 @@ ci-deploy:
 	@docker push ${IMAGE_NAME}
 	@$(txt-done)
 
+# Send LCOV data (code coverage) to coveralls.io
+.PHONY: ci-coveralls
+ci-coveralls:
+	@$(call log-start,Sending LCOV data to coveralls.io...)
+	@$(call log-step,[Step 1/2] Collect LCOV data from ${DATA_LCOV})
+	@$(call log-step,[Step 2/2] Send the data to coveralls.io)
+	@cat ${DATA_LCOV} | coveralls
+	@$(txt-done)
+
 ##@ Miscellaneous:
 
 .PHONY: status
