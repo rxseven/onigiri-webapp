@@ -1212,6 +1212,21 @@ ci-update:
 	@sudo mv docker-compose ${CONTAINER_BIN}
 	@$(txt-done)
 
+# Setup the CI environment and install required dependencies
+.PHONY: ci-setup
+ci-setup:
+	@$(call log-start,Configuring the CI environment...)
+	@$(call log-step,[Step 1/4] Install dependencies required for running on the CI environment)
+	@docker pull ${BASE_NGINX}
+	@docker pull ${BASE_NODE}
+	@$(call log-step,[Step 2/4] List downloaded base images)
+	@docker image ls
+	@$(call log-step,[Step 3/4] Build image for running containers on the CI environment)
+	@$(call helper-image-ci,build)
+	@$(call log-step,[Step 4/4] List all images)
+	@docker image ls	
+	@$(txt-done)
+
 ##@ Miscellaneous:
 
 .PHONY: status
