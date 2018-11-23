@@ -1014,6 +1014,11 @@ open: ## Open the app in the default browser *
 		$(txt-opps); \
 	fi;
 
+.PHONY: shell
+shell: ## Run Bourne shell in the app container
+	@$(call log-start,Running Bourne shell in the app container...)
+	@docker container exec -it ${IMAGE_REPO}-${ENV_LOCAL} sh
+
 .PHONY: setup
 setup: GIT_CONFIG = ${DIR_GIT}/config
 setup: ## Setup the development environment ***
