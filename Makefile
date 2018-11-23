@@ -1179,6 +1179,26 @@ backup: ## Create a backup copy of the project
 version: ## Set a release version **
 	@$(helper-version)
 
+.PHONY: release
+release: ## Release new application version
+	@$(call log-start,Preparing for a new release...)
+	@if [[ `git diff ${CONFIG_ENV}` ]]; then \
+		$(helper-release); \
+		$(newline); \
+		$(txt-result); \
+		$(txt-status); \
+		git status ${CONFIG_NPM}; \
+		$(newline); \
+		$(txt-diff); \
+		git diff ${CONFIG_NPM}; \
+		$(newline); \
+		$(txt-summary); \
+		printf "Please commit the changes and merge into $(call log-bold,master) branch.\n"; \
+		$(txt-done); \
+	else \
+		printf "Skipping, please run $(call log-bold,version) command before releasing a new version.\n"; \
+	fi;
+
 ##@ Miscellaneous:
 
 .PHONY: status
