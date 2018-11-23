@@ -22,6 +22,10 @@ before_install:
   # Install and update dependencies required for running on the CI environment
   - make ci-update
 
+before_script:
+  # Setup the CI environment and install required dependencies
+  - make ci-setup
+
 jobs:
   include:
     - stage: 'Tests, Linting, Type checking, and Build'
