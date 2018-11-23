@@ -1019,6 +1019,11 @@ shell: ## Run Bourne shell in the app container
 	@$(call log-start,Running Bourne shell in the app container...)
 	@docker container exec -it ${IMAGE_REPO}-${ENV_LOCAL} sh
 
+.PHONY: bash
+bash: ## Run Bash in the app container
+	@$(call log-start,Running Bash in the app container...)
+	@docker container exec -it ${IMAGE_REPO}-${ENV_LOCAL} bash
+
 .PHONY: setup
 setup: GIT_CONFIG = ${DIR_GIT}/config
 setup: ## Setup the development environment ***
