@@ -28,7 +28,7 @@ before_script:
 
 script:
   # Run tests and generate code coverage reports
-  # - make ci-test
+  - make ci-test
   # Run JavaScript linting
   - make ci-scriptlint
   # Run stylesheet linting
