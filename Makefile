@@ -1257,6 +1257,16 @@ ci-stylelint:
 	@$(call helper-image-ci,run,--rm,lint:stylesheet)
 	@$(txt-done)
 
+# Create an optimized production build
+.PHONY: ci-build
+ci-build:
+	@$(call log-start,Creating an optimized production build...)
+	@$(call log-step,[Step 1/3] Create and start a container for building the app)
+	@$(call log-step,[Step 2/3] Create an optimized production build)
+	@$(call log-step,[Step 3/3] Remove the container when the process finishes)
+	@$(call helper-image-ci,run,--rm,build)
+	@$(txt-done)
+
 ##@ Miscellaneous:
 
 .PHONY: status
