@@ -1227,6 +1227,16 @@ ci-setup:
 	@docker image ls	
 	@$(txt-done)
 
+# Run tests and generate code coverage reports
+.PHONY: ci-test
+ci-test:
+	@$(call log-start,Running tests...)
+	@$(call log-step,[Step 1/3] Create and start a container for running tests)
+	@$(call log-step,[Step 2/3] Run tests)
+	@$(call log-step,[Step 3/3] Generate code coverage reports)
+	@$(call helper-image-ci,run,--name ${CONTAINER_CI_TEST} -e NODE_ENV=${ENV_TEST},test:coverage)
+	@$(txt-done)
+
 ##@ Miscellaneous:
 
 .PHONY: status
