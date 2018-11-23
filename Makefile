@@ -1190,9 +1190,10 @@ release: ## Release new application version
 		$(newline); \
 		$(txt-result); \
 		$(txt-status); \
-		git status ${CONFIG_NPM}; \
+		git status ${CONFIG_AWS} ${CONFIG_NPM}; \
 		$(newline); \
 		$(txt-diff); \
+		git diff ${CONFIG_AWS}; \
 		git diff ${CONFIG_NPM}; \
 		$(newline); \
 		$(txt-summary); \
