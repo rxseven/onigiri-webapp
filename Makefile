@@ -831,6 +831,31 @@ erase: ## Remove artifacts and temporary files
 		;; \
 	esac
 
+.PHONY: refresh
+refresh: ## Refresh (soft clean) the development environment
+	@$(call log-start,Refresh (soft clean) the development environment)
+	@$(txt-performing)
+	@echo "- Stop running containers"
+	@echo "- Remove containers and the default network"
+	@$(newline)
+	@read -p "${CONFIRM_CONTINUE} " CONFIRMATION; \
+	case "$$CONFIRMATION" in \
+		${IF_YES}) \
+			$(newline); \
+			$(call log-start,Refreshing the development environment...); \
+			$(call log-step,[Step 1/2] Stop running containers); \
+			$(call log-step,[Step 2/2] Remove containers and the default network); \
+			docker-compose down; \
+			$(newline); \
+			$(txt-result); \
+			$(output-sum-docker); \
+			$(txt-done); \
+		;; \
+		${IF_ANY}) \
+			$(txt-skipped); \
+		;; \
+	esac
+
 ##@ Utilities:
 
 .PHONY: setup
