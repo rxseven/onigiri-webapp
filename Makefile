@@ -128,7 +128,7 @@ define helper-open-finder
 endef
 
 # Open code editor
-helper-code = code ${DIR_CWD}
+helper-open-code = code ${DIR_CWD}
 
 # Open code coverage reports in a web browser
 define helper-open-coverage
