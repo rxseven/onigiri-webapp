@@ -18,6 +18,10 @@ addons:
 services:
   - docker
 
+before_install:
+  # Install and update dependencies required for running on the CI environment
+  - make ci-update
+
 jobs:
   include:
     - stage: 'Tests, Linting, Type checking, and Build'
