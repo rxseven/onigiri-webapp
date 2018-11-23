@@ -33,6 +33,8 @@ script:
   - make ci-scriptlint
   # Run stylesheet linting
   - make ci-stylelint
+  # Create an optimized production build
+  - make ci-build
 
 deploy:
   provider: heroku
