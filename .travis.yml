@@ -1,3 +1,5 @@
+sudo: required
+
 language: node_js
 
 node_js:
@@ -6,6 +8,15 @@ node_js:
 cache:
   directories:
     - node_modules
+
+addons:
+  apt:
+    packages:
+      # Update to the latest version of Docker Community Edition
+      - docker-ce
+
+services:
+  - docker
 
 jobs:
   include:
