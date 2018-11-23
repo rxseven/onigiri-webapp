@@ -1247,6 +1247,16 @@ ci-scriptlint:
 	@$(call helper-image-ci,run,--rm,lint:script)
 	@$(txt-done)
 
+# Run stylesheet linting
+.PHONY: ci-stylelint
+ci-stylelint:
+	@$(call log-start,Running stylesheet linting...)
+	@$(call log-step,[Step 1/3] Create and start a container for running stylesheet linting)
+	@$(call log-step,[Step 2/3] Run stylesheet linting)
+	@$(call log-step,[Step 3/3] Remove the container when the process finishes)
+	@$(call helper-image-ci,run,--rm,lint:stylesheet)
+	@$(txt-done)
+
 ##@ Miscellaneous:
 
 .PHONY: status
