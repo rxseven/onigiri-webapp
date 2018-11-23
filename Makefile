@@ -1175,6 +1175,44 @@ backup: ## Create a backup copy of the project
 
 ##@ Miscellaneous:
 
+.PHONY: status
+status: ## Show system and development environment status
+	@$(call log-start,Listing system status...)
+	@$(output-sum-docker)
+	@$(newline)
+	@$(call log-sum,Build artifacts)
+	@if [[ -d "${DIR_BUILD}" ]]; then \
+		printf "The optimized production build was created in $(call log-bold,./${DIR_BUILD}) directory.\n"; \
+		ls ${DIR_BUILD}; \
+	else \
+		echo "No production build found."; \
+	fi
+	@$(newline)
+	@$(call log-sum,Code coverage reports)
+	@if [[ -d "${DIR_COVERAGE}" ]]; then \
+		printf "Code coverage reports and LCOV data were generated in $(call log-bold,${DIR_ROOT}${DIR_COVERAGE}) directory.\n"; \
+		ls ${DIR_COVERAGE}; \
+	else \
+		echo "No code coverage reports found."; \
+	fi
+	@$(newline)
+	@$(call log-sum,Treemap)
+	@if [[ -f "${DATA_TREEMAP}" ]]; then \
+		printf "Treemap was generated in $(call log-bold,${HOST_TEMP}) directory.\n."; \
+		ls ${DATA_TREEMAP}; \
+	else \
+		echo "No treemap visualization found."; \
+	fi
+	@$(newline)
+	@$(call log-sum,Recent created backup copies)
+	@PWD=`pwd`; cd ${DIR_BACKUP}; ls -1t | head -5; cd $${PWD};
+	@$(newline)
+	@$(call log-sum,Latest commit)
+	@git show --name-status
+	@$(newline)
+	@$(txt-status)
+	@git status
+
 .PHONY: help
 help: ## Print usage
 	@awk 'BEGIN {FS = ":.*##"; \
