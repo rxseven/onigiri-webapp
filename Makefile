@@ -733,6 +733,37 @@ report: ## Open development statistics and reports *
 		$(txt-opps); \
 	fi;
 
+##@ Packages & Dependencies:
+
+.PHONY: install
+install: ## Install npm package and any packages that it depends on **
+	@read -p "Enter package name: " PACKAGE; \
+	if [ "$$PACKAGE" != "" ]; then \
+		$(newline); \
+		$(call log-start,Installing npm package...); \
+		$(call log-step,[Step 1/5] Build the development image (if needed)); \
+		$(call log-step,[Step 2/5] Create and start a container for installing dependencies); \
+		$(call log-step,[Step 3/5] Install $$PACKAGE package in the persistent storage (volume)); \
+		$(call log-step,[Step 4/5] Update ${CONFIG_NPM} and ${CONFIG_PACKAGE}); \
+		$(call log-step,[Step 5/5] Remove the container); \
+		docker-compose run --rm ${SERVICE_APP} add $$PACKAGE; \
+		$(newline); \
+		$(txt-result); \
+		$(txt-diff); \
+		git diff ${CONFIG_NPM}; \
+		git diff ${CONFIG_PACKAGE}; \
+		$(newline); \
+		$(txt-status); \
+		git status ${CONFIG_NPM} ${CONFIG_PACKAGE}; \
+		$(newline); \
+		$(txt-summary); \
+		printf "The package has been installed successfully$(,) please commit the changes (if any).\n"; \
+		$(newline); \
+		$(txt-done); \
+	else \
+		echo "Skipping, you did not enter the package name, please try again."; \
+	fi;
+
 ##@ Utilities:
 
 .PHONY: setup
