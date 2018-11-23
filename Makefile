@@ -986,6 +986,34 @@ finder: ## Open files and directories in Finder *
 		$(txt-opps); \
 	fi;
 
+.PHONY: open
+open: ## Open the app in the default browser *
+	@echo "Available options:"
+	@printf "1. $(call log-bold,dev) *    : Open the app running in the development environment\n"
+	@printf "2. $(call log-bold,build)    : Open an optimized production build locally\n"
+	@printf "3. $(call log-bold,staging)  : Unavailable!\n"
+	@printf "4. $(call log-bold,live)     : Open the live app running in the production server\n"
+	@$(newline)
+	@$(txt-options)
+	@$(newline)
+	@read -p "Enter the option: " OPTION; \
+	if [[ "$$OPTION" == "" || "$$OPTION" == 1 || "$$OPTION" == "dev" ]]; then \
+		$(newline); \
+		$(call helper-open-browser,${URL_LOCAL}); \
+	elif [[ "$$OPTION" == 2 || "$$OPTION" == "build" ]]; then \
+		$(newline); \
+		$(call helper-open-browser,${URL_BUILD}); \
+	elif [[ "$$OPTION" == 3 || "$$OPTION" == "staging" ]]; then \
+		echo "Sorry, the staging URL is not available."; \
+	elif [[ "$$OPTION" == 4 || "$$OPTION" == "live" ]]; then \
+		$(newline); \
+		$(call helper-open-browser,${URL_LIVE}); \
+	elif [ "$$OPTION" == 0 ]; then \
+		$(txt-skipped); \
+	else \
+		$(txt-opps); \
+	fi;
+
 .PHONY: setup
 setup: GIT_CONFIG = ${DIR_GIT}/config
 setup: ## Setup the development environment ***
