@@ -47,6 +47,10 @@ deploy:
   api_key:
     secure: $HEROKU_API_KEY
 
+after_script:
+  # Send LCOV data to coveralls.io
+  - make ci-coveralls
+
 notifications:
   # Default email notification settings
   email:
