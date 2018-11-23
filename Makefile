@@ -885,6 +885,78 @@ clean: ## Clean up the development environment (including persistent data)
 		;; \
 	esac
 
+.PHONY: reset
+reset: ## Reset the development environment and clean up unused data
+	@$(call log-start,Reset the development environment and clean up unused data)
+	@$(txt-performing)
+	@echo "- Stop running containers"
+	@echo "- Remove containers, default network, and volumes attached to containers"
+	@echo "- Remove the development image"
+	@echo "- Remove the production image"
+	@echo "- Remove the intermediate images"
+	@$(newline)
+	@echo "Optional:"
+	@echo "- Remove all stopped containers"
+	@echo "- Remove unused images"
+	@echo "- Remove all unused local volumes"
+	@echo "- Remove artifacts"
+	@echo "- Remove temporary files"
+	@$(newline)
+	@printf "$(txt-warning): You are about to permanently remove files. You will not be able to recover them. $(call log-bold,This operation cannot be undone.)\n"
+	@$(newline)
+	@read -p "${CONFIRM_CONTINUE} " CONFIRMATION; \
+	case "$$CONFIRMATION" in \
+		${IF_YES}) \
+			$(newline); \
+			$(call log-start,Resetting the development environment...); \
+			$(call log-step,[Step 1/9] Stop and remove containers$(,) default network$(,) and volumes); \
+			docker-compose down -v; \
+			$(call log-step,[Step 2/9] Remove the development images); \
+			docker image rm ${ENV_LOCAL}/${IMAGE_REPO}; \
+			$(call log-step,[Step 3/9] Remove the production image); \
+			docker image rm ${IMAGE_NAME}; \
+			$(call log-step,[Step 4/9] Remove the intermediate images); \
+			docker image prune --filter label=stage=${IMAGE_INTERMEDIATE} --force; \
+			$(call log-step,[Step 5/9] Remove all stopped containers (optional)); \
+			docker container prune; \
+			$(call log-step,[Step 6/9] Remove unused images (optional)); \
+			docker image prune; \
+			$(call log-step,[Step 7/9] Remove all unused local volumes (optional)); \
+			docker volume prune; \
+			$(call log-step,[Step 8/9] Remove artifacts (optional)); \
+			read -p "${CONFIRM_CONTINUE} " CONFIRMATION; \
+			case "$$CONFIRMATION" in \
+				${IF_YES}) \
+					$(helper-remove-artifacts); \
+				;; \
+				${IF_ANY}) \
+					$(txt-skipped); \
+				;; \
+			esac; \
+			$(call log-step,[Step 9/9] Remove temporary files (optional)); \
+			read -p "${CONFIRM_CONTINUE} " CONFIRMATION; \
+			case "$$CONFIRMATION" in \
+				${IF_YES}) \
+					$(helper-remove-temporary); \
+				;; \
+				${IF_ANY}) \
+					$(txt-skipped); \
+				;; \
+			esac; \
+			$(newline); \
+			$(txt-result); \
+			$(output-sum-docker); \
+			$(newline); \
+			$(output-sum-artifacts); \
+			$(newline); \
+			$(output-sum-temporary); \
+			$(txt-done); \
+		;; \
+		${IF_ANY}) \
+			$(txt-skipped); \
+		;; \
+	esac
+
 ##@ Utilities:
 
 .PHONY: setup
