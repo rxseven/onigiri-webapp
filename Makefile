@@ -121,7 +121,7 @@ define helper-open-browser
 endef
 
 # Open Finder
-define helper-finder
+define helper-open-finder
 	printf "Opening $(call log-bold,$(1)) in Finder...\n"; \
 	open $(1); \
 	$(txt-done)
