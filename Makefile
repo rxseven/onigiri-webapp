@@ -1286,6 +1286,9 @@ ci-coverage:
 ci-deploy:
 	@$(call log-start,Configuring a deployment configuration...)
 	@$(helper-release)
+	@$(call log-start,Building a deployment configuration...)
+	@$(call log-step,[Step 1/1] Build ${BUILD_ZIP} for uploading to AWS S3 service)
+	@zip ${BUILD_ZIP} ${CONFIG_AWS}
 	@$(call log-start,Building a production image (version ${RELEASE_VERSION}) for deployment...)
 	@$(call log-step,[Step 1/3] Build the image)
 	@$(call helper-production-build,build ${SERVICE_APP})
