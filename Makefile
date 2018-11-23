@@ -793,6 +793,12 @@ uninstall: ## Uninstall npm package **
 		echo "Skipping, you did not enter the package name, please try again."; \
 	fi;
 
+.PHONY: update
+update: ## Install and update all the dependencies listed within package.json
+	@$(helper-update)
+	@$(newline)
+	@$(helper-devserver-option)
+
 ##@ Utilities:
 
 .PHONY: setup
