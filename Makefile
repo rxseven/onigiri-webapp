@@ -367,7 +367,10 @@ endef
 
 # Release new application version
 define helper-release
-	$(call log-step,[Step 1/1] Configure ${CONFIG_NPM} for Node.js environment deployment); \
+	$(call log-step,[Step 1/2] Configure ${CONFIG_AWS} for AWS Elastic Beanstalk deployment); \
+	$(call set-json,Name,${IMAGE_NAME},$(,),${CONFIG_AWS}); \
+	$(call set-json,ContainerPort,${PORT_PROXY},$(blank),${CONFIG_AWS}); \
+	$(call log-step,[Step 2/2] Configure ${CONFIG_NPM} for AWS Node.js deployment); \
 	$(call set-json,version,${RELEASE_VERSION},$(,),${CONFIG_NPM}); \
 	rm *.${EXT_BACKUP}
 endef
@@ -1187,9 +1190,10 @@ release: ## Release new application version
 		$(newline); \
 		$(txt-result); \
 		$(txt-status); \
-		git status ${CONFIG_NPM}; \
+		git status ${CONFIG_AWS} ${CONFIG_NPM}; \
 		$(newline); \
 		$(txt-diff); \
+		git diff ${CONFIG_AWS}; \
 		git diff ${CONFIG_NPM}; \
 		$(newline); \
 		$(txt-summary); \
@@ -1282,6 +1286,9 @@ ci-coverage:
 ci-deploy:
 	@$(call log-start,Configuring a deployment configuration...)
 	@$(helper-release)
+	@$(call log-start,Building a deployment configuration...)
+	@$(call log-step,[Step 1/1] Build ${BUILD_ZIP} for uploading to AWS S3 service)
+	@zip ${BUILD_ZIP} ${CONFIG_AWS}
 	@$(call log-start,Building a production image (version ${RELEASE_VERSION}) for deployment...)
 	@$(call log-step,[Step 1/3] Build the image)
 	@$(call helper-production-build,build ${SERVICE_APP})
