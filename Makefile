@@ -58,7 +58,7 @@ txt-options = printf "* default option, press $(call log-bold,enter) key to cont
 txt-performing = echo "This command will perform the following actions:"
 txt-processing = $(call log-process,Processing...)
 txt-result = $(call log-result,Listing the results...)
-txt-skipped = echo "Skipping"
+txt-skipping = echo "Skipping"
 txt-status = $(call log-sum,The working tree status)
 txt-summary = $(call log-sum,Summary)
 txt-version = printf "Makefile version ${MAKEFILE_VERSION}\n"
@@ -300,7 +300,7 @@ define helper-devserver-option
 			$(helper-devserver-start); \
 		;; \
 		${IF_ANY}) \
-			$(txt-skipped); \
+			$(txt-skipping); \
 			$(txt-done); \
 		;; \
 	esac
@@ -356,11 +356,11 @@ define helper-version
 				printf "The next release will be $(call log-bold,v$$VERSION) on ${CURRENT_DATE} (today).\n"; \
 				$(txt-done); \
 			else \
-				$(txt-skipped); \
+				$(txt-skipping); \
 			fi; \
 		;; \
 		${IF_ANY}) \
-			$(txt-skipped); \
+			$(txt-skipping); \
 		;; \
 	esac
 endef
@@ -509,7 +509,7 @@ up: ## Rebuild development image for a service *
 	elif [[ "$$OPTION" == 3 || "$$OPTION" == "proxy" ]]; then \
 		printf "Skipping, $(call log-bold,${SERVICE_PROXY}) service uses an image.\n"; \
 	elif [ "$$OPTION" == 0 ]; then \
-		$(txt-skipped); \
+		$(txt-skipping); \
 	else \
 		$(txt-opps); \
 	fi;
@@ -539,7 +539,7 @@ build: ## Create an optimized production build
 			open ./${DIR_BUILD}; \
 		;; \
 		${IF_ANY}) \
-			$(txt-skipped); \
+			$(txt-skipping); \
 		;; \
 	esac
 	@$(txt-done)
@@ -558,7 +558,7 @@ preview: ## Run the production build locally *
 	elif [[ "$$OPTION" == 2 || "$$OPTION" == "build" ]]; then \
 		$(call helper-production-preview,build); \
 	elif [ "$$OPTION" == 0 ]; then \
-		$(txt-skipped); \
+		$(txt-skipping); \
 	else \
 		$(txt-opps); \
 	fi;
@@ -610,7 +610,7 @@ test: ## Run unit tests *
 			;; \
 		esac; \
 	elif [ "$$MODE" == 0 ]; then \
-		$(txt-skipped); \
+		$(txt-skipping); \
 	else \
 		$(txt-opps); \
 	fi;
@@ -641,7 +641,7 @@ lint: ## Run code linting *
 		$(call helper-run-lint,:stylesheet); \
 		$(txt-done); \
 	elif [ "$$MODE" == 0 ]; then \
-		$(txt-skipped); \
+		$(txt-skipping); \
 	else \
 		$(txt-opps); \
 	fi;
@@ -686,7 +686,7 @@ typecheck: ## Run static type checking *
 		printf "Please commit the changes (if any).\n"; \
 		$(txt-done); \
 	elif [ "$$OPTION" == 0 ]; then \
-		$(txt-skipped); \
+		$(txt-skipping); \
 	else \
 		$(txt-opps); \
 	fi;
@@ -728,7 +728,7 @@ report: ## Open development statistics and reports *
 	elif [[ "$$OPTION" == 3 || "$$OPTION" == "none" ]]; then \
 		echo "Sorry, this option is not available."; \
 	elif [ "$$OPTION" == 0 ]; then \
-		$(txt-skipped); \
+		$(txt-skipping); \
 	else \
 		$(txt-opps); \
 	fi;
@@ -827,7 +827,7 @@ erase: ## Remove artifacts and temporary files
 			$(txt-done); \
 		;; \
 		${IF_ANY}) \
-			$(txt-skipped); \
+			$(txt-skipping); \
 		;; \
 	esac
 
@@ -852,7 +852,7 @@ refresh: ## Refresh (soft clean) the development environment
 			$(txt-done); \
 		;; \
 		${IF_ANY}) \
-			$(txt-skipped); \
+			$(txt-skipping); \
 		;; \
 	esac
 
@@ -881,7 +881,7 @@ clean: ## Clean up the development environment (including persistent data)
 			$(txt-done); \
 		;; \
 		${IF_ANY}) \
-			$(txt-skipped); \
+			$(txt-skipping); \
 		;; \
 	esac
 
@@ -930,7 +930,7 @@ reset: ## Reset the development environment and clean up unused data
 					$(helper-remove-artifacts); \
 				;; \
 				${IF_ANY}) \
-					$(txt-skipped); \
+					$(txt-skipping); \
 				;; \
 			esac; \
 			$(call log-step,[Step 9/9] Remove temporary files (optional)); \
@@ -940,7 +940,7 @@ reset: ## Reset the development environment and clean up unused data
 					$(helper-remove-temporary); \
 				;; \
 				${IF_ANY}) \
-					$(txt-skipped); \
+					$(txt-skipping); \
 				;; \
 			esac; \
 			$(newline); \
@@ -953,7 +953,7 @@ reset: ## Reset the development environment and clean up unused data
 			$(txt-done); \
 		;; \
 		${IF_ANY}) \
-			$(txt-skipped); \
+			$(txt-skipping); \
 		;; \
 	esac
 
@@ -981,7 +981,7 @@ finder: ## Open files and directories in Finder *
 		$(newline); \
 		$(call helper-open-finder,${DIR_BACKUP}); \
 	elif [ "$$OPTION" == 0 ]; then \
-		$(txt-skipped); \
+		$(txt-skipping); \
 	else \
 		$(txt-opps); \
 	fi;
@@ -1009,7 +1009,7 @@ open: ## Open the app in the default browser *
 		$(newline); \
 		$(call helper-open-browser,${URL_LIVE}); \
 	elif [ "$$OPTION" == 0 ]; then \
-		$(txt-skipped); \
+		$(txt-skipping); \
 	else \
 		$(txt-opps); \
 	fi;
@@ -1044,7 +1044,7 @@ format: ## Format code automatically
 			git diff; \
 		;; \
 		${IF_ANY}) \
-			$(txt-skipped); \
+			$(txt-skipping); \
 		;; \
 	esac
 	@$(txt-done)
@@ -1073,13 +1073,13 @@ setup: ## Setup the development environment ***
 			if [ "$$USERNAME" != "" ]; then \
 				git config user.name "$$USERNAME"; \
 			else \
-				$(txt-skipped); \
+				$(txt-skipping); \
 			fi; \
 			read -p "Enter new email address: " EMAIL; \
 			if [ "$$EMAIL" != "" ]; then \
 				git config user.email "$$EMAIL"; \
 			else \
-				$(txt-skipped); \
+				$(txt-skipping); \
 			fi; \
 			$(call log-complete,Configured successfully.); \
 		;; \
@@ -1168,7 +1168,7 @@ backup: ## Create a backup copy of the project
 			$(call helper-open-finder,${DIR_BACKUP}); \
 		;; \
 		${IF_ANY}) \
-			$(txt-skipped); \
+			$(txt-skipping); \
 			$(txt-done); \
 		;; \
 	esac
