@@ -9,6 +9,10 @@ cache:
   directories:
     - node_modules
 
+env:
+  global:
+    - BUILD_ZIP=build.zip
+
 addons:
   apt:
     packages:
