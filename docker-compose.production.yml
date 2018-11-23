@@ -21,7 +21,6 @@ services:
         RELEASE_VERSION: $RELEASE_VERSION
       dockerfile: $DOCKERFILE_PRODUCTION
     environment:
-      NODE_ENV: $ENV_PRODUCTION
       VIRTUAL_HOST: $DOMAIN_NAME
       VIRTUAL_PORT: $PORT_PROXY
     restart: always
