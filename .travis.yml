@@ -36,15 +36,16 @@ script:
   # Create an optimized production build
   - make ci-build
 
+after_success:
+  # Create code coverage data (LCOV format)
+  - make ci-coverage
+
 deploy:
   provider: heroku
   app:
     master: onigiri-webapp
   api_key:
     secure: $HEROKU_API_KEY
-
-after_script:
-  - COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN npm run test:coverage:ci
 
 notifications:
   # Default email notification settings
