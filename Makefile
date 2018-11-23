@@ -1132,6 +1132,47 @@ setup: ## Setup the development environment ***
 	@echo "You are all set."
 	@$(helper-devserver-option)
 
+.PHONY: backup
+backup: BACKUP_DATE = $$(date +'%d.%m.%Y')
+backup: BACKUP_TIME = $$(date +'%H.%M.%S')
+backup: BACKUP_NAME = ${APP_NAME}-${BACKUP_DATE}-${BACKUP_TIME}.${EXT_ARCHIVE}
+backup: ## Create a backup copy of the project
+	@$(call log-start,Creating a backup copy...)
+	@$(call log-step,[Step 1/2] Create a backup copy)
+	@zip -r -q ${FILE_BACKUP} ${DIR_CWD} -x \
+	.DS_Store \
+	"${DIR_GIT}/*" \
+	"${DIR_BUILD}/*" \
+	"${DIR_COVERAGE}/*" \
+	"${DIR_DEPENDENCIES}/*" \
+	"${DIR_TEMP}/*";
+	@$(call log-step,[Step 2/2] Upload the archive to the cloud storage)
+	@mv ${FILE_BACKUP} ${DIR_BACKUP}/${BACKUP_NAME}
+	@$(newline)
+	@echo "Date     : ${BACKUP_DATE}"
+	@echo "Time     : ${BACKUP_TIME}"
+	@echo "Prefix   : ${APP_NAME}"
+	@echo "Type     : ${EXT_ARCHIVE}"
+	@echo "File     : ${BACKUP_NAME}"
+	@echo "Location : ${DIR_BACKUP}"
+	@$(newline)
+	@$(txt-result)
+	@$(call log-sum,Archived backup copies)
+	@ls ${DIR_BACKUP}
+	@$(newline)
+	@$(txt-summary)
+	@echo "The backup has been created and uploaded to the cloud storage."
+	@read -p "Would you like to show archived backup copies? " CONFIRMATION; \
+	case "$$CONFIRMATION" in \
+		${IF_YES}) \
+			$(call helper-open-finder,${DIR_BACKUP}); \
+		;; \
+		${IF_ANY}) \
+			$(txt-skipped); \
+			$(txt-done); \
+		;; \
+	esac
+
 ##@ Miscellaneous:
 
 .PHONY: help
