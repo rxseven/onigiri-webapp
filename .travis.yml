@@ -62,6 +62,20 @@ deploy:
       secure: $HEROKU_API_KEY
     provider: heroku
     skip_cleanup: true
+  # Deploy to a production server 2 (AWS Elastic Beanstalk)
+  - access_key_id: $AWS_ACCESS_KEY
+    app: 'onigiri-webapp'
+    bucket_name: 'elasticbeanstalk-ap-northeast-1-413973540256'
+    bucket_path: 'onigiri-webapp'
+    env: 'docker'
+    on:
+      branch: undefined
+    provider: elasticbeanstalk
+    region: 'ap-northeast-1'
+    secret_access_key:
+      secure: $AWS_SECRET_KEY
+    skip_cleanup: true
+    zip_file: $BUILD_ZIP
 
 after_script:
   # Send LCOV data to coveralls.io
