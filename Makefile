@@ -965,6 +965,27 @@ code: ## Open the project in the default code editor
 	@$(helper-open-code)
 	@$(txt-done)
 
+.PHONY: finder
+finder: ## Open files and directories in Finder *
+	@echo "Available options:"
+	@printf "1. $(call log-bold,workspace) * : Open the working copy\n"
+	@printf "2. $(call log-bold,backup)      : Open archived backup copies\n"
+	@$(newline)
+	@$(txt-options)
+	@$(newline)
+	@read -p "Enter the option: " OPTION; \
+	if [[ "$$OPTION" == "" || "$$OPTION" == 1 || "$$OPTION" == "workspace" ]]; then \
+		$(newline); \
+		$(call helper-open-finder,${DIR_CWD}); \
+	elif [[ "$$OPTION" == 2 || "$$OPTION" == "backup" ]]; then \
+		$(newline); \
+		$(call helper-open-finder,${DIR_BACKUP}); \
+	elif [ "$$OPTION" == 0 ]; then \
+		$(txt-skipped); \
+	else \
+		$(txt-opps); \
+	fi;
+
 .PHONY: setup
 setup: GIT_CONFIG = ${DIR_GIT}/config
 setup: ## Setup the development environment ***
