@@ -31,6 +31,8 @@ script:
   # - make ci-test
   # Run JavaScript linting
   - make ci-scriptlint
+  # Run stylesheet linting
+  - make ci-stylelint
 
 deploy:
   provider: heroku
