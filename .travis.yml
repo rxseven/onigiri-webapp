@@ -21,6 +21,8 @@ services:
 before_install:
   # Turn off non-blocking mode
   - python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);'
+  # Check whether non-blocking mode is set
+  - python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); print(flags&os.O_NONBLOCK);'
   # Install and update dependencies required for running on the CI environment
   - make ci-update
 
