@@ -45,6 +45,12 @@ after_success:
   - make ci-coverage
 
 deploy:
+  # Create deployment configuration and build a production image
+  - on:
+      branch: master
+    provider: script
+    script: make ci-deploy
+    skip_cleanup: true
   # Deploy to a production server 1 (Heroku)
   - app:
       master: onigiri-webapp
