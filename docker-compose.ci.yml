@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      dockerfile: $DOCKERFILE_CI
+    image: $ENV_CI/$IMAGE_REPO:$RELEASE_VERSION

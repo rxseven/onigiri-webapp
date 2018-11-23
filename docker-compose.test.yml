@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  app:
+    command: test
+    container_name: $IMAGE_REPO-$ENV_TEST
+    environment:
+      NODE_ENV: $ENV_TEST

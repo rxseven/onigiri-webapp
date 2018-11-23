@@ -1,3 +1,5 @@
+sudo: required
+
 language: node_js
 
 node_js:
@@ -7,35 +9,63 @@ cache:
   directories:
     - node_modules
 
-jobs:
-  include:
-    - stage: 'Tests, Linting, Type checking, and Build'
-      # Run unit tests and generate code coverage reports
-      name: 'Unit tests'
-      script: npm run test:coverage
-      if: branch = master
-      # Run JavaScript linting
-    - name: 'JavaScript linting'
-      script: npm run lint:script
-      # Run stylesheet linting
-    - name: 'Stylesheet linting'
-      script: npm run lint:stylesheet
-    - # Run static type checking
-      name: 'Static type checking'
-      script: npm run type:check:focus
-      # Create an optimized production build
-    - name: 'Production build tests'
-      script: npm run build
+env:
+  global:
+    - BUILD_ZIP=build.zip
+
+addons:
+  apt:
+    packages:
+      # Update to the latest version of Docker Community Edition
+      - docker-ce
+
+services:
+  - docker
+
+before_install:
+  # Turn off non-blocking mode
+  - python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);'
+  # Check whether non-blocking mode is set
+  - python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); print(flags&os.O_NONBLOCK);'
+  # Install and update dependencies required for running on the CI environment
+  - make ci-update
+
+before_script:
+  # Setup the CI environment and install required dependencies
+  - make ci-setup
+
+script:
+  # Run tests and generate code coverage reports
+  # - make ci-test
+  # Run JavaScript linting
+  - make ci-scriptlint
+  # Run stylesheet linting
+  - make ci-stylelint
+  # Create an optimized production build
+  - make ci-build
+
+after_success:
+  # Create code coverage data (LCOV format)
+  - make ci-coverage
 
 deploy:
-  provider: heroku
-  app:
-    master: onigiri-webapp
-  api_key:
-    secure: $HEROKU_API_KEY
+  # Create deployment configuration and build a production image
+  - on:
+      branch: master
+    provider: script
+    script: make ci-deploy
+    skip_cleanup: true
+  # Deploy to a production server 1 (Heroku)
+  - app:
+      master: onigiri-webapp
+    api_key:
+      secure: $HEROKU_API_KEY
+    provider: heroku
+    skip_cleanup: true
 
 after_script:
-  - COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN npm run test:coverage:ci
+  # Send LCOV data to coveralls.io
+  - make ci-coveralls
 
 notifications:
   # Default email notification settings

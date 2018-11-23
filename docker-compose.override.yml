@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  proxy:
+    container_name: $IMAGE_REPO-$ENV_LOCAL-$SERVICE_PROXY
+  app:
+    build:
+      args:
+        PACKAGE_GLIBC_VERSION: $PACKAGE_GLIBC_VERSION
+    container_name: $IMAGE_REPO-$ENV_LOCAL
+    environment:
+      NODE_ENV: $ENV_DEVELOPMENT
+      VIRTUAL_HOST: $DOMAIN_NAME.$DOMAIN_TLD
+      VIRTUAL_PORT: $PORT_DEVSERVER
+    image: $ENV_LOCAL/$IMAGE_REPO
+    volumes:
+      - type: bind
+        source: $DIR_CWD
+        target: $CONTAINER_WORKDIR
+      - type: volume
+        source: $DIR_DEPENDENCIES
+        target: $CONTAINER_WORKDIR/$DIR_DEPENDENCIES
+
+volumes:
+  node_modules:
