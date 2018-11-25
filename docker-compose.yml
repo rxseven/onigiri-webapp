@@ -28,4 +28,6 @@ services:
       context: $DOCKERFILE_CONTEXT
       dockerfile: $DOCKERFILE_BASE
     container_name: $IMAGE_REPO
+    environment:
+      VIRTUAL_PORT: $PORT_PROXY
     image: $IMAGE_USERNAME/$IMAGE_REPO:$RELEASE_VERSION

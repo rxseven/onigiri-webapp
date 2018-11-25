@@ -21,6 +21,5 @@ services:
         RELEASE_VERSION: $RELEASE_VERSION
       dockerfile: $DOCKERFILE_PRODUCTION
     environment:
-      VIRTUAL_HOST: $DOMAIN_NAME
-      VIRTUAL_PORT: $PORT_PROXY
+      VIRTUAL_HOST: $DOMAIN_NAME.$TLD_LIVE
     restart: always
