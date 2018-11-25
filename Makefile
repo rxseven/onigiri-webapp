@@ -369,7 +369,7 @@ endef
 define helper-release
 	$(call log-step,[Step 1/2] Configure ${CONFIG_AWS} for AWS Elastic Beanstalk deployment); \
 	$(call set-json,Name,${IMAGE_NAME},$(,),${CONFIG_AWS}); \
-	$(call set-json,ContainerPort,${PORT_PROXY},$(blank),${CONFIG_AWS}); \
+	$(call set-json,ContainerPort,${PORT_PROXY},$(BLANK),${CONFIG_AWS}); \
 	$(call log-step,[Step 2/2] Configure ${CONFIG_NPM} for AWS Node.js deployment); \
 	$(call set-json,version,${RELEASE_VERSION},$(,),${CONFIG_NPM}); \
 	rm *.${EXT_BACKUP}
