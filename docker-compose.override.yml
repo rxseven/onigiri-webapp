@@ -10,6 +10,7 @@ services:
     container_name: $IMAGE_REPO-$ENV_LOCAL
     environment:
       NODE_ENV: $ENV_DEVELOPMENT
+      VIRTUAL_HOST: $DOMAIN_NAME.$TLD_LOCAL
       VIRTUAL_PORT: $PORT_DEVSERVER
     image: $ENV_LOCAL/$IMAGE_REPO
     volumes:

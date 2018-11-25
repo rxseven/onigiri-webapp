@@ -29,6 +29,5 @@ services:
       dockerfile: $DOCKERFILE_BASE
     container_name: $IMAGE_REPO
     environment:
-      VIRTUAL_HOST: $DOMAIN_NAME
       VIRTUAL_PORT: $PORT_PROXY
     image: $IMAGE_USERNAME/$IMAGE_REPO:$RELEASE_VERSION
