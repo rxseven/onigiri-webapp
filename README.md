@@ -317,9 +317,8 @@ React & Redux starter kit with best practices bootstrapped with [Create React Ap
 
 ## Development Milestones
 
-- Setup container with [Docker](https://www.docker.com) *(in progress)*.
+- Add automated targets (scripts) to Makefile *(in progress)*.
 - Refactor code with functional programming principles *(in progress)*.
-- Deploy the app on [DigitalOcean](https://www.digitalocean.com) or [Amazon Web Service (AWS)](https://aws.amazon.com).
 - Implement components in isolation with [Storybook](https://storybook.js.org).
 - Optimize the app’s performance.
 - Add more unit tests and static type checking to cover the entire project *(in progress)*.
