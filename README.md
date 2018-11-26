@@ -15,7 +15,7 @@ With **Onigiri**, you can create and analyze surveys right in your pocket or on 
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Development Workflow](#development-workflow)
-- [Third-party services](#third-party-services)
+- [Third-party Services](#third-party-services)
 - [Browser Support](#browser-support)
 - [Related Projects](#related-projects)
 - [Development Milestones](#development-milestones)
@@ -269,11 +269,14 @@ Onigiri was built with [MERN](https://www.mongodb.com/blog/post/the-modern-appli
 
 [Back to top](#table-of-contents)
 
-## Third-party services
+## Third-party Services
 
 ### Infrastructure
 
 - [Heroku](https://www.heroku.com/) - cloud platform as a service
+- [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) - orchestration service for deploying infrastructure
+- [AWS IAM](https://aws.amazon.com/iam/) - web service that helps you securely control access to AWS resources
+- [Amazon S3](https://aws.amazon.com/s3/) - object storage built to store and retrieve any amount of data from anywhere
 - [mLab](https://mlab.com/) - database as a service for MongoDB
 
 ### Cloud computing and Platforms
@@ -288,6 +291,7 @@ Onigiri was built with [MERN](https://www.mongodb.com/blog/post/the-modern-appli
 - [GitHub](https://github.com/) - web-based hosting service for version control using Git
 - [Travis CI](https://travis-ci.org/) - continuous integration
 - [Coveralls](https://coveralls.io/) - test coverage history and statistics
+- [Docker Hub](https://hub.docker.com) - cloud-based registry service for distributing container images
 
 [Back to top](#table-of-contents)
 
