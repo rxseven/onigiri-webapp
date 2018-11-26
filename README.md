@@ -249,7 +249,10 @@ Onigiri was built with [MERN](https://www.mongodb.com/blog/post/the-modern-appli
 ## Development Workflow
 
 - Project bootstraping with Create React App
-- Development server, live reloading, and assets bundling with Webpack
+- Development environment and app containerizing with Docker
+- JavaScript and assets bundling with Webpack
+- Development server and live reloading with Webpack DevServer
+- HTTPS proxying with Nginx and self-signing SSL certificate with OpenSSL
 - JavaScript transpiling with Babel
 - CSS pre-processing and transforming with Sass, PostCSS, and CSS modules
 - JavaScript linting with ESLint
@@ -260,10 +263,9 @@ Onigiri was built with [MERN](https://www.mongodb.com/blog/post/the-modern-appli
 - Static type checking with Flow
 - Code debugging with Visual Studio Code and Chrome Debugger
 - Pre-commit hooking with Husky and Lint-staged
-- CI/CD with GitHub, Travis CI, Coveralls, and Heroku
-- App deploying with Docker *(in progress)*
+- CI/CD with GitHub, Travis CI, Coveralls, Heroku, and AWS Elastic Beanstalk
 
-> Link: the complete guidelines are available in [this project](https://github.com/rxseven/setup-react-app).
+> Note: the complete guidelines are available in [this project](https://github.com/rxseven/setup-react-app).
 
 [Back to top](#table-of-contents)
 
