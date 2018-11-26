@@ -14,6 +14,7 @@ With **Onigiri**, you can create and analyze surveys right in your pocket or on 
 - [Running Onigiri Locally](#running-onigiri-locally)
 - [Configuring the Development Environment](#configuring-the-development-environment)
 - [Deploying a Containerized Web Application](#deploying-a-containerized-web-application)
+- [Available Scripts](#available-scripts)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Development Workflow](#development-workflow)
@@ -675,6 +676,22 @@ Below is the list of parameters obtained from your Elastic Beanstalk and Amazon 
 **2.** Once `master` branch was merged, **Travis CI** will start building an image for production, push the image to [Docker Hub](https://hub.docker.com/r/rxseven/onigiri-webapp/), upload [`Dockerrun.aws.json`](https://github.com/rxseven/onigiri-webapp/blob/master/Dockerrun.aws.json) file (compressed in [`build.zip`](https://github.com/rxseven/onigiri-webapp/blob/master/Makefile#L1291) to **Amazon S3** Bucket specified in [`.travis.yml`](https://github.com/rxseven/onigiri-webapp/blob/master/.travis.yml#L68).
 
 **3.** **Elastic Beanstalk** will then [pull the image](https://docs.docker.com/engine/reference/commandline/image_pull/) from [Docker Hub](https://hub.docker.com/r/rxseven/onigiri-webapp/), create a single Docker container, update the web server environment, and deploy the app version from the source bundle in **Amazon S3** Bucket.
+
+[Back to top](#table-of-contents)
+
+## Available Scripts
+
+Onigiri contains a lengthy [`Makefile`](https://github.com/rxseven/onigiri-webapp/blob/master/Makefile) to automate the setup process, install dependencies, start the development server, run unit tests, and much more.
+
+Most of the target names (script or task names) are standardized e.g. `make start`, `make install`, but some deserve explanation. The more we add fine-grained Make targets, the more we need to describe what they do in text form.
+
+Run the following command to print the usage and list all available scripts:
+
+```sh
+make
+```
+
+> Note: if you are not using Docker, all npm scripts are listed under `scripts` section in [`package.json`](https://github.com/rxseven/onigiri-webapp/blob/master/package.json#L18) file.
 
 [Back to top](#table-of-contents)
 
