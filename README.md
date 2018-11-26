@@ -12,6 +12,7 @@ With **Onigiri**, you can create and analyze surveys right in your pocket or on 
 
 - [Live Demo](#live-demo)
 - [Running Onigiri Locally](#running-onigiri-locally)
+- [Configuring the Development Environment](#configuring-the-development-environment)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Development Workflow](#development-workflow)
@@ -179,6 +180,362 @@ The browser uses the entry in the local Hosts file to override the IP-address-to
 > A **web server** or **HTTP sever** is a server that serve the pieces of information that form web pages to users, in response to their requests.
 
 > A **reverse proxy server** is a server that typically sits in front of other web servers in order to provide additional functionality that the web servers may not provide themselves. For more information, see [Automated Nginx Reverse Proxy for Docker](http://jasonwilder.com/blog/2014/03/25/automated-nginx-reverse-proxy-for-docker/).
+
+[Back to top](#table-of-contents)
+
+## Configuring the Development Environment
+
+### Prerequisites
+
+#### Tools
+
+Before getting started, you are required to have or install the following tools on your machine:
+
+- [Git](https://git-scm.com) *(v2.17.2\*)*
+- [GNU Bash](https://www.gnu.org/software/bash/) *(v3.2.57\*)*
+- [GNU Make](https://www.gnu.org/software/make/) *(v3.8.1\*)*
+
+> Note: if you are using Mac running [macOS](https://en.wikipedia.org/wiki/MacOS) *(v10.12 Sierra\*)*, you are all set.
+
+Optional, but nice to have:
+
+- [Visual Studio Code](https://code.visualstudio.com)\**
+- [Google Chrome](https://www.google.com/chrome/)\**
+
+#### Software as a Service
+
+You also need to have to the following information beforehand:
+
+- [Facebook app ID](https://developers.facebook.com/docs/apps/) - a unique key given to every app created for Facebook
+- [Google app ID](https://developers.google.com/identity/protocols/OAuth2) - a unique application ID identifying the app in Google’s system
+- [Stripe publishable key](https://stripe.com/docs/keys) - a key to identify your account with Stripe
+
+#### Approach 1 : Container-based local development environment with Docker
+
+Creating a simple and reliable local development environment is essential to developer productivity as well as on-boarding new team members.
+
+Onigiri has pre-confiured Docker images prepared with essential and useful tools in order to provide a consistent development experience with best practices for you and your team. **With this approach, you will be developing in an identical environment to the one in which the code is going to run.** This will reduce the risk that something different locally will result in an issue in production.
+
+Below is the list of tools and services required for developing and running Onigiri:
+
+- [Docker Community Edition](https://store.docker.com/search?type=edition&offering=community) *(v18.06.1\*)*
+- [Docker ID account](https://docs.docker.com/docker-id/)
+
+#### Approach 2 : Local development environment with nvm
+
+Alternatively, if you would prefer not to use Docker, below is the list of tools required for developing and running Onigiri:
+
+- [nvm](https://github.com/creationix/nvm/releases/tag/v0.33.5) *(v0.33.5\*)* and [Node.js](https://nodejs.org/en/blog/release/v8.9.3/) *(v8.9.3\*)*
+- [npm](https://github.com/npm/npm/releases/tag/v5.5.1) *(v5.5.1\*)* or [Yarn](https://github.com/yarnpkg/yarn/releases/tag/v1.3.2) *(v1.3.2\*)*
+
+### Setup
+
+**1.** Clone Onigiri Webapp from GitHub repository and change the current working directory:
+
+```sh
+git clone https://github.com/rxseven/onigiri-webapp.git
+cd onigiri-webapp
+```
+
+**2.** Start [Docker](https://docs.docker.com/docker-for-mac/install/#install-and-run-docker-for-mac).
+
+**3.** Setup the development environment:
+
+```sh
+make setup
+```
+
+> Note: by running this command, you will be asking for the [administrator password](https://en.wikipedia.org/wiki/Sudo) to allow the script to add custom domain names associated with self-signed SSL certificates to the local `/etc/hosts` file which requires the superuser privileges.
+
+> Note: this command will take a few minutes (depending on your hardware) to complete configuring the development environment.
+
+> Note: this command is not compatible with Windows platform!
+
+**4.** Open the project with your editor of choice or with Visual Studio Code:
+
+```sh
+make code
+```
+
+> Note: this command will open the project in Visual Studio Code directly from the command line. To enable this feature, follow the further configuration steps described [here](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line).
+
+**5.** Open `.env.development` file and add the configuration below:
+
+```
+REACT_APP_API_URL=https://onigiri-api.herokuapp.com
+REACT_APP_WEB_URL=https://onigiri-webapp.local
+REACT_APP_FACEBOOK_APP_ID=<FACEBOOK_APP_ID>
+REACT_APP_GOOGLE_APP_ID=<GOOGLE_APP_ID>
+REACT_APP_STRIPE_KEY=<STRIPE_PUBLIC_KEY>
+```
+
+### Starting the development server
+
+**1.** Run the app by running the following command at the root of the project directory:
+
+```sh
+make start
+```
+
+This command will build **local/onigiri-webapp:latest** image for development and testing (if one doesn’t already exist), create **onigiri-webapp\_default** bridge network and **onigiri-webapp\_node\_modules** volume for persisting npm dependencies, create and start **onigiri-webapp-local** container running the **development server** ([Webpack DevServer](https://webpack.js.org/configuration/dev-server/)) as well as **onigiri-webapp-local-proxy** container running the **reverse proxy server** ([Nginx](https://github.com/jwilder/nginx-proxy)).
+
+**2.** Open [https://onigiri-webapp.local](https://onigiri-webapp.local), or run the command below to quickly launch the app in the default browser:
+
+```sh
+make open
+```
+
+> Note: the reverse proxy server will use a self-signed certificate, so your web browser will almost definitely display a warning upon accessing the page.
+
+> Note: if you did’t change the Facebook app in [`.env.development`](https://github.com/rxseven/onigiri-webapp/blob/master/.env.development#L3) file, the **Login with Facebook** button wouldn’t work for you, because the existing one is still in [development mode](https://developers.facebook.com/docs/apps/managing-development-cycle), and you don’t have access to it.
+
+> Tip: press `control + c` to stop the running containers.
+
+### Restarting the development server
+
+Run the command below to restart the development server:
+
+```sh
+make restart
+```
+
+This command will rebuild the image, recreate network and volume, and restart the development server.
+
+### Running shell in a running container
+
+Run one of the following options to run Unix shell in a running container (**app** service):
+
+```sh
+make bash
+make shell
+```
+
+> Tip: run `exit` inside a container to exit the shell.
+
+### Installing & Uninstalling npm dependencies
+
+Run one of the following commands, then enter a package name to add or remove dependencies with npm or Yarn:
+
+```sh
+make install
+make uninstall
+```
+
+> Note: these commands will (un)install a package (and any packages that it depends on) in the persistent storage (volume) not in the local `./node_modules` directory on the host’s file system.
+
+### Installing the dependencies listed within package.json
+
+This command is used to install all dependencies for the project. This is most commonly used when you have just checked out code for the project, or when another developer on the project has added a new dependency that you need to pick up.
+
+```sh
+make update
+```
+
+### Accessing installed dependencies
+
+When the development container is being created, Docker creates **onigiri-webapp\_node\_modules** volume for persisting dependencies and binds to `/usr/src/app/node_modules` directory inside **onigiri-webapp-local** container. To verify that the volume exists, run the command below:
+
+```sh
+docker volume ls
+```
+
+This command will list all volumes on your virtual machine.
+
+In order to access the dependencies installed in **onigiri-webapp\_node\_modules** volume, you can run Unix shell in a running container:
+
+**1.** Run Unix shell in a running container:
+
+```sh
+make shell
+```
+
+This command will automatically change the directory to the working directory defined in [`Dockerfile`](https://github.com/rxseven/onigiri-webapp/blob/master/Dockerfile#L24), which is [`/usr/src/app`](https://github.com/rxseven/onigiri-webapp/blob/master/.env#L49).
+
+**2.** Change directory to `node_modules`:
+
+```sh
+cd node_modules
+```
+
+All installed dependencies can be found in this directory, `/usr/src/app/node_modules`.
+
+**3.** To list all installed dependencies, run the command below:
+
+```sh
+ls
+```
+
+> Note: if you could not find the packages listed within [`package.json`](https://github.com/rxseven/onigiri-webapp/blob/master/package.json) file in `node_modules` directory, you could run [`yarn`](https://yarnpkg.com/lang/en/docs/cli/#toc-default-command) command to (re)install the missing packages.
+
+### Running tests
+
+**1.** Open `.env.test` file and add the configuration below:
+
+```
+REACT_APP_API_URL=https://onigiri-api.herokuapp.com
+REACT_APP_WEB_URL=https://onigiri-webapp.local
+REACT_APP_FACEBOOK_APP_ID=<FACEBOOK_APP_ID>
+REACT_APP_GOOGLE_APP_ID=<GOOGLE_APP_ID>
+REACT_APP_STRIPE_KEY=<STRIPE_PUBLIC_KEY>
+```
+
+**2.** Run the following command, then enter the available options to run tests with [Jest](https://jestjs.io/) and [Enzyme](https://airbnb.io/enzyme/):
+
+```sh
+make test
+```
+
+Available options:
+
+1. Watch files for changes and rerun tests related to changed files
+2. Prevent tests from printing messages through the console
+3. Display individual test results with the test suite hierarchy
+4. Generate code coverage reports (LCOV data)
+
+> Note: by default, when you run test in [watch mode](https://jestjs.io/docs/en/cli.html#watch), Jest will only run the tests related to files changed (modified) since the last commit. This is an optimization designed to make your tests run fast regardless of how many tests in the project you have. However, you can also press `a` in the watch mode to force Jest to run all tests.
+
+> Note: code coverage reports will be generated in the local [`./coverage`](https://jestjs.io/docs/en/configuration#coveragedirectory-string) directory. This directory is listed in [`.gitignore`](https://github.com/rxseven/onigiri-webapp/blob/master/.gitignore#L7) file to ensure that it will not be tracked by the source control.
+
+> Tip: press `control + c` to stop the running tests.
+
+### Running code linting
+
+Run the following command, then enter the available options to run code (JavaScript or SCSS) linting with [ESLint](https://eslint.org/) or [Stylelint](https://stylelint.io/):
+
+```sh
+make lint
+```
+
+Available options:
+
+1. Lint JavaScript
+2. Lint JavaScript and automatically fix problems
+3. Lint Stylesheet (SCSS)
+
+### Running static type checking
+
+Run the following command, then enter the available options to catch JavaScript errors with [Flow](https://flow.org/):
+
+```sh
+make typecheck
+```
+
+Available options:
+
+1. Run a default check
+2. Run a full check and print the results
+3. Run a focus check
+4. Install and update the library definitions ([libdef](https://flow.org/en/docs/libdefs/))
+
+> Note: the library definitions will be installed in the local [`./flow-typed`](https://github.com/rxseven/onigiri-webapp/tree/master/flow-typed) directory and must be tracked by the source control.
+
+### Formatting code automatically
+
+Run the following command to format your code against [Prettier](https://prettier.io/) and [ESLint](https://eslint.org/docs/rules/) rules:
+
+```sh
+make format
+```
+
+### Creating an optimized production build
+
+Run the command below to build the app for production. It correctly bundles the app in production mode and optimizes the build for the best performance. The build will be minified and the filenames include the hashes.
+
+```sh
+make build
+```
+
+> Note: the production build will be created in the local [`./build`](https://facebook.github.io/create-react-app/docs/deployment) directory. This directory is listed in [`.gitignore`](https://github.com/rxseven/onigiri-webapp/blob/master/.gitignore#L10) file to ensure that it will not be tracked by the source control.
+
+### Analyzing the bundle size
+
+To analyze and debug JavaScript and Sass code bloat through source maps, run the following command to create an optimized production build and start analyzing and debugging the bundle size with [Source Map Explorer](https://github.com/danvk/source-map-explorer):
+
+```sh
+make analyze
+```
+
+Once the analyzing process has finished and the report was generated, you will automatically be redirected to the browser displaying the [treemap visualization](http://evmar.github.io/webtreemap/) of how the space is used in your minified bundle.
+
+> Note: the treemap will be generated in the local `./tmp` directories. This directory is listed in [`.gitignore`](https://github.com/rxseven/onigiri-webapp/blob/master/.gitignore#L16) file to ensure that it will not be tracked by the source control.
+
+### Using Git hooks
+
+**TODO**: running scripts on any Git hooks in a Docker container is **NOT POSSIBLE** at the moment. To utilize this feature you have to rely on [nvm](https://github.com/creationix/nvm).
+
+### Resetting the development environment
+
+If your development environment doesn’t work properly, you may need to reset it with the available commands below:
+
+#### Refresh (soft clean)
+
+```sh
+make refresh
+```
+
+This command will remove containers and the default network.
+
+#### Clean up
+
+```sh
+make clean
+```
+
+This command will remove containers, the default network, and volumes attached to containers.
+
+#### Reset and clean up unused data
+
+```sh
+make reset
+```
+
+This command does a big cleanup for you, it will remove containers, the default network, volumes attached to containers, and local images (including development, production, and intermediate ones) as well as will optionally remove artifacts and temporary files in `./tmp` directory.
+
+### Accessing localhost from any device on the same network
+
+While you are developing the project or running the production build locally, you can open the app running inside Docker containers from any device on the same local network through the IP address of the host machine.
+
+**1.** Make sure that all devices are connected to the same router in your local network, where the host machine running Docker containers is connecting to.
+
+**2.** [Start the development server](#starting-the-development-server) or [run the production build](#running-the-production-build-locally).
+
+**3.** Open another terminal window and print the IP address of the host machine:
+
+```sh
+ifconfig
+```
+
+The output may look like this:
+
+```sh
+inet 192.168.1.10 netmask 0xffffff00 broadcast 192.168.1.255
+```
+
+The value of `inet` is what you need.
+
+**4.** On a mobile device or any other computer, open `https://192.168.0.10` in the browser.
+
+> Note: this connection will only be available as long as you have the app running in a container on the host.
+
+### Running the Production Build Locally
+
+**1.** Run the following command to create an optimized production build and start the web server serving the app inside a container:
+
+```sh
+make preview
+```
+
+**2.** Open [https://onigiri-webapp.herokuapp.com](https://onigiri-webapp.herokuapp.com) in the browser, or run the command below to quickly launch the production app in the default browser:
+
+```sh
+make open
+```
+
+> Note: the reverse proxy server will use a self-signed certificate, so your web browser will almost definitely display a warning upon accessing the page.
+
+> Note: if you did’t change the Facebook app ID in [`.env.production`](https://github.com/rxseven/onigiri-webapp/blob/master/.env.production#L3) file, the **Login with Facebook** button wouldn’t work for you, because the existing one is still in [development mode](https://developers.facebook.com/docs/apps/managing-development-cycle), and you don’t have access to it.
+
+> Tip: press `control + c` to stop the running container.
 
 [Back to top](#table-of-contents)
 
