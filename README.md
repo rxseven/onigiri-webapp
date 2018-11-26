@@ -186,7 +186,7 @@ The browser uses the entry in the local Hosts file to override the IP-address-to
 
 ### Authentication
 
-Password-base and OAuth *(via third-party services, [Facebook](https://developers.facebook.com/products/account-creation) & [Google](https://cloud.google.com/))*
+Password-based and OAuth2 *(via third-party services, [Facebook](https://developers.facebook.com/products/account-creation) & [Google](https://cloud.google.com/))*
 
 - Sign-up *(register)*
 - Sign-in
@@ -218,7 +218,7 @@ Password-base and OAuth *(via third-party services, [Facebook](https://developer
 - Collect response data *(via webhook)*
 - Update survey statistics
 
-> Link: full details on Onigiri’s features and technical information are available [here](https://onigiri-webapp.herokuapp.com/about).
+> Note: full details on Onigiri’s features and technical information are available [here](https://onigiri-webapp.herokuapp.com/about).
 
 [Back to top](#table-of-contents)
 
