@@ -12,7 +12,6 @@ With **Onigiri**, you can create and analyze surveys right in your pocket or web
 
 - [Live Demo](#live-demo)
 - [Running Onigiri Locally](#running-onigiri-locally)
-- [Running Tests](#running-tests)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Development Workflow](#development-workflow)
@@ -91,28 +90,6 @@ yarn start:https
 **2.** Open [https://localhost:3000](https://localhost:3000) in the browser.
 
 > Note: the server will use a self-signed certificate, so your web browser will almost definitely display a warning upon accessing the page.
-
-[Back to top](#table-of-contents)
-
-## Running Tests
-
-**1.** Open `.env.test` file and add the configuration below:
-
-```
-REACT_APP_API_URL=https://onigiri-api.herokuapp.com
-REACT_APP_WEB_URL=https://localhost:3000
-REACT_APP_FACEBOOK_APP_ID=[FACEBOOK_APP_ID]
-REACT_APP_GOOGLE_APP_ID=[GOOGLE_APP_ID]
-REACT_APP_STRIPE_KEY=[STRIPE_PUBLIC_KEY]
-```
-
-**2.** Run tests with the command below:
-
-```sh
-yarn test
-```
-
-> Note: by default, when you run the command above, Jest will only run the tests related to files changed (modified) since the last commit. This is an optimization designed to make your tests run fast regardless of how many tests in the project you have. However, you can also press `a` in the watch mode to force Jest to run all tests.
 
 [Back to top](#table-of-contents)
 
