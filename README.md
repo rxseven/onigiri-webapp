@@ -331,7 +331,7 @@ See [releases](https://github.com/rxseven/onigiri-webapp/releases).
 
 ## Acknowledgements
 
-This project is built and maintained by [Theerawat Pongsupawat](http://www.rxseven.com), frontend developer from Chiang Mai, Thailand.
+This project is maintained by [Theerawat Pongsupawat](http://www.rxseven.com), frontend developer from Chiang Mai, Thailand.
 
 ## Credits
 
