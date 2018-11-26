@@ -1,6 +1,6 @@
 # Onigiri
 
-[![Build Status](https://travis-ci.org/rxseven/onigiri-webapp.svg?branch=master 'Build Status')](https://travis-ci.org/rxseven/onigiri-webapp) [![Coverage Status](https://coveralls.io/repos/github/rxseven/onigiri-webapp/badge.svg)](https://coveralls.io/github/rxseven/onigiri-webapp) [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![Build Status](https://travis-ci.org/rxseven/onigiri-webapp.svg?branch=master 'Build Status')](https://travis-ci.org/rxseven/onigiri-webapp) [![Code Coverage](https://coveralls.io/repos/github/rxseven/onigiri-webapp/badge.svg 'Code Coverage')](https://coveralls.io/github/rxseven/onigiri-webapp) [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 React & Redux single-page web application for collecting and organizing surveys.
 
