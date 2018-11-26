@@ -13,6 +13,7 @@ With **Onigiri**, you can create and analyze surveys right in your pocket or on 
 - [Live Demo](#live-demo)
 - [Running Onigiri Locally](#running-onigiri-locally)
 - [Configuring the Development Environment](#configuring-the-development-environment)
+- [Deploying a Containerized Web Application](#deploying-a-containerized-web-application)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Development Workflow](#development-workflow)
@@ -536,6 +537,144 @@ make open
 > Note: if you did’t change the Facebook app ID in [`.env.production`](https://github.com/rxseven/onigiri-webapp/blob/master/.env.production#L3) file, the **Login with Facebook** button wouldn’t work for you, because the existing one is still in [development mode](https://developers.facebook.com/docs/apps/managing-development-cycle), and you don’t have access to it.
 
 > Tip: press `control + c` to stop the running container.
+
+[Back to top](#table-of-contents)
+
+## Deploying a Containerized Web Application
+
+Deployment of the code can be a long path, and where it is ultimately deployed can be a very different platform, environment, and configuration from the local development environment where the app was built. **Containers can reduce the friction in this process.**
+
+This section will demonstrate how to setup the [Continuous Deployment](https://aws.amazon.com/devops/continuous-delivery/) workflow to deploy a single Docker container to AWS Elastic Beanstalk using [Travis CI](https://travis-ci.org).
+
+[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is an easy-to-use service offered from [Amazon Web Services](https://aws.amazon.com) for deploying and scaling web applications and services. You can simply upload your code and Elastic Beanstalk automatically handles the deployment, from capacity provisioning, load balancing, auto-scaling to application health monitoring for you.
+
+### Prerequisites
+
+- 64bit Amazon Linux AMI *(2018.03.0 v2.12.3\*)*
+- Docker Community Edition *(v18.06.1\*)*
+- Nginx *(v1.12.1\*)*
+
+> Note: for more information about **Single Container Docker** configuration, see [Elastic Beanstalk Supported Platforms](https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.docker).
+
+### Setup
+
+#### Step 1/3 : Infrastructure
+
+**1.** Create an [AWS Elastic Beanstalk application and environment](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.environments.html):
+
+- Application name: onigiri-webapp
+- Environment tier: Web server environment
+- Domain: onigiri-webapp.\<REGION\>.elasticbeanstalk.com
+- Description: React & Redux webapp for collecting and organizing surveys
+- Preconfigured platform: Docker
+- Application code: Sample application
+
+**2.** Create an [Amazon S3 Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html):
+
+Once new Elastic Beanstalk environment was created, Amazon S3 will automatically create a new Bucket for you:
+
+- Bucket name: elasticbeanstalk-\<REGION\>-\<ID\>
+- Access: Not public
+
+**3.** Create an [AWS IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html):
+
+- User name: travis-ci
+- Access type: Programmatic access
+- Policy type: Attach existing policies directly
+- Policy name: AWSElasticBeanstalkFullAccess
+
+#### Step 2/3 : Configuration
+
+**1.** Create [`Dockkerrun.aws.json`](https://github.com/rxseven/onigiri-webapp/blob/master/Dockerrun.aws.json) file at the root of the project directory to deploy a Docker container from an existing Docker image to Elastic Beanstalk:
+
+```sh
+touch Dockkerrun.aws.json
+```
+
+A `Dockerrun.aws.json` file describes how to deploy a Docker container as an Elastic Beanstalk application. This JSON file is specific to Elastic Beanstalk.
+
+**2.** Add a deployment configuration:
+
+```json
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "rxseven/onigiri-webapp:<TAG>",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "80"
+    }
+  ],
+  "Logging": "/var/log/nginx"
+}
+```
+
+Replace [`<TAG>`](https://github.com/rxseven/onigiri-webapp/blob/master/Dockerrun.aws.json#L4) with the same value of `RELEASE_VERSION` specified in [`.env`](https://github.com/rxseven/onigiri-webapp/blob/master/.env#L3) file.
+
+> Note: for more information about single container Docker configuration, see [Single Container Docker Configuration](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_image.html).
+
+**3.** Add new file, commit and push it to **GitHub**.
+
+#### Step 3/3 : Continuous Integration
+
+Travis CI can automatically deploy your application to Elastic Beanstalk after a successful build.
+
+**1.** On Travis CI’s repository settings screen, add two environment variables defining AWS IAM credentials as follows:
+
+- `AWS_ACCESS_KEY`: AWS IAM access key ID
+- `AWS_SECRET_KEY`: AWS IAM secret access key
+
+Those keys can be obtained from the AWS IAM console.
+
+> Note: for more information on defining variables in Travis CI’s repository settings, see [Environment Variables](https://docs.travis-ci.com/user/environment-variables#defining-variables-in-repository-settings).
+
+**2.** Open `.travis.yml` and add the [global environment variable](https://github.com/rxseven/onigiri-webapp/blob/master/.travis.yml#L14) below under `env` section:
+
+```yml
+env:
+  global:
+    - BUILD_ZIP=build.zip
+```
+
+Then, add AWS Elastic Beanstalk’s [deployment configuration](https://github.com/rxseven/onigiri-webapp/blob/master/.travis.yml#L65) under `deploy` section as follows:
+
+```yml
+# Deploy to AWS Elastic Beanstalk
+- provider: elasticbeanstalk
+  access_key_id: ${AWS_ACCESS_KEY}
+  secret_access_key:
+    secure: ${AWS_SECRET_KEY}
+  app: "<APP>"
+  env: "<ENV>"
+  bucket_name: "<BUCKET_NAME>"
+  bucket_path: "<APP>"
+  region: "<REGION>"
+  skip_cleanup: true
+  zip_file: ${BUILD_ZIP}
+  on:
+    branch: master
+```
+
+Below is the list of parameters obtained from your Elastic Beanstalk and Amazon S3 consoles:
+
+- `<APP>`: App name
+- `<ENV>`: Environment name which the app will be deployed to
+- `<REGION>`: Region name which the app is running on
+- `<BUCKET_NAME>`: Amazon S3 Bucket name to upload the code of your app to
+
+> Note: for more information on deploying application to Elastic Beanstalk, see [AWS Elastic Beanstalk Deployment](https://docs.travis-ci.com/user/deployment/elasticbeanstalk/).
+
+**3.** Commit and push the changes to **GitHub**.
+
+### Deployment
+
+**1.** Create a pull request on **GitHub** and merge changes into `master` branch.
+
+**2.** Once `master` branch was merged, **Travis CI** will start building an image for production, push the image to [Docker Hub](https://hub.docker.com/r/rxseven/onigiri-webapp/), upload [`Dockerrun.aws.json`](https://github.com/rxseven/onigiri-webapp/blob/master/Dockerrun.aws.json) file (compressed in [`build.zip`](https://github.com/rxseven/onigiri-webapp/blob/master/Makefile#L1291) to **Amazon S3** Bucket specified in [`.travis.yml`](https://github.com/rxseven/onigiri-webapp/blob/master/.travis.yml#L68).
+
+**3.** **Elastic Beanstalk** will then [pull the image](https://docs.docker.com/engine/reference/commandline/image_pull/) from [Docker Hub](https://hub.docker.com/r/rxseven/onigiri-webapp/), create a single Docker container, update the web server environment, and deploy the app version from the source bundle in **Amazon S3** Bucket.
 
 [Back to top](#table-of-contents)
 
