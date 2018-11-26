@@ -224,7 +224,7 @@ Password-based and OAuth2 *(via third-party services, [Facebook](https://develop
 
 ## Technology Stack
 
-Onigiri is built with [MERN](https://www.mongodb.com/blog/post/the-modern-application-stack-part-1-introducing-the-mean-stack) stack, one of the most popular stack of technologies for building a modern single-page app.
+Onigiri was built with [MERN](https://www.mongodb.com/blog/post/the-modern-application-stack-part-1-introducing-the-mean-stack) stack, one of the most popular stack of technologies for building a modern single-page app.
 
 ### Web application
 
@@ -242,7 +242,7 @@ Onigiri is built with [MERN](https://www.mongodb.com/blog/post/the-modern-applic
 - SendGrid, Stripe, Gravatar
 - [More...](https://github.com/rxseven/onigiri-api/blob/master/package.json)
 
-> Link: RESTful API for Onigiri built with Node.js can be found in [this repository](https://github.com/rxseven/onigiri-api).
+> Note: RESTful API for Onigiri built with Node.js can be found in [this repository](https://github.com/rxseven/onigiri-api).
 
 [Back to top](#table-of-contents)
 
