@@ -844,6 +844,7 @@ React & Redux starter kit with best practices bootstrapped with [Create React Ap
 - Add automated targets (scripts) to Makefile *(in progress)*.
 - Refactor code with functional programming principles *(in progress)*.
 - Implement components in isolation with [Storybook](https://storybook.js.org).
+- Implement animations.
 - Optimize the app’s performance.
 - Add more unit tests and static type checking to cover the entire project *(in progress)*.
 
