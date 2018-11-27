@@ -47,6 +47,8 @@ script:
 after_success:
   # Create code coverage data (LCOV format)
   - make ci-coverage
+  # Send LCOV data to coveralls.io
+  - make ci-coveralls
 
 deploy:
   # Create deployment configuration and build a production image
@@ -76,10 +78,6 @@ deploy:
       secure: $AWS_SECRET_KEY
     skip_cleanup: true
     zip_file: $BUILD_ZIP
-
-after_script:
-  # Send LCOV data to coveralls.io
-  - make ci-coveralls
 
 notifications:
   # Default email notification settings
