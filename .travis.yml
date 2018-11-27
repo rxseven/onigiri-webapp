@@ -1,20 +1,97 @@
+sudo: required
+
 language: node_js
+
 node_js:
   - 8.9.3
+
 cache:
   directories:
     - node_modules
+
+env:
+  global:
+    - BUILD_ZIP=build.zip
+
+addons:
+  apt:
+    packages:
+      # Update to the latest version of Docker Community Edition
+      - docker-ce
+
+services:
+  - docker
+
+before_install:
+  # Turn off non-blocking mode
+  - python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);'
+  # Check whether non-blocking mode is set
+  - python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); print(flags&os.O_NONBLOCK);'
+  # Install and update dependencies required for running on the CI environment
+  - make ci-update
+
+before_script:
+  # Setup the CI environment and install required dependencies
+  - make ci-setup
+
 script:
-  - npm run lint:script
-  - npm run lint:stylesheet
-  - npm run type:check:focus
-  - npm run test:coverage
-  - npm run build
-after_script:
-  - COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN npm run test:coverage:ci
+  # Run tests and generate code coverage reports
+  # TODO: Fix build failing issue when running unit tests in a container
+  # ISSUE-001: "write /dev/stdout: resource temporarily unavailable"
+  # - make ci-test
+  # The following script is a workarond
+  - yarn test:coverage
+  # Run JavaScript linting
+  - make ci-scriptlint
+  # Run stylesheet linting
+  - make ci-stylelint
+  # Create an optimized production build
+  - make ci-build
+
+after_success:
+  # Create code coverage data (LCOV format)
+  # TODO: Enable the following script (related to ISSUE-001)
+  # - make ci-coverage
+  # Send LCOV data to coveralls.io
+  - make ci-coveralls
+
 deploy:
-  provider: heroku
-  app:
-    master: onigiri-webapp
-  api_key:
-    secure: $HEROKU_API_KEY
+  # Create deployment configuration and build a production image
+  - on:
+      branch: master
+    provider: script
+    script: make ci-deploy
+    skip_cleanup: true
+  # Deploy to a production server 1 (Heroku)
+  - app:
+      master: onigiri-webapp
+    api_key:
+      secure: $HEROKU_API_KEY
+    provider: heroku
+    skip_cleanup: true
+  # Deploy to a production server 2 (AWS Elastic Beanstalk)
+  - access_key_id: $AWS_ACCESS_KEY
+    app: 'onigiri-webapp'
+    bucket_name: 'elasticbeanstalk-ap-northeast-1-413973540256'
+    bucket_path: 'onigiri-webapp'
+    env: 'docker'
+    on:
+      branch: undefined
+    provider: elasticbeanstalk
+    region: 'ap-northeast-1'
+    secret_access_key:
+      secure: $AWS_SECRET_KEY
+    skip_cleanup: true
+    zip_file: $BUILD_ZIP
+
+notifications:
+  # Default email notification settings
+  email:
+    on_failure: always
+    on_success: change
+  # Send notifications to Slack channels about build results
+  slack:
+    on_failure: always
+    on_success: always
+    rooms:
+      - secure: 'MXotKM9La5M+GAHFVQly0lMQ45M8VNRCsprgqjnkRYFatkxGyjjIuMZDU6SOxmFsWkAT7mJUBlDLvaW1fxsClT56S878fAmLw6GDCNTzmf1sNaxuhh7s7bHZij5on8yCkePHShM+eLggT8g9xMCYB+9UpE6NXQ4kfwTr0SaiG9nTLWZXV+Xjj9LdrlMs0Mlg+kwO5J2u/ckHQAbKMywBpPrY7WLjOolhJLDhxGptGStJhjemkN8a/QcY+BIAdgM6yXTO5PYdGE0IXamcKZdXjwyu4AyCJ+/n+87jsam5pnYmCdbNM9lcRGHXl65Q0yuGQQZyA41bwP+/aLK2omJq2Qi+2+1jSyKHeQWUKk5YQRCo8+v4ImjK40J7qynw6lWidJmguL5xojdSz473BqrtuxD5ZQ3U2zItR0MH22nKYicFdDFhorFIHPzvCjsqZIm2LzSKa+LvjwG6828VKv45G2Ci+XPtJ2oVXt/QUiZW1ueJDXt5d0IJz4dYM0r2XjLdIdgeputvaMjGFaq3PV7mbcyBN7gE0bMWE3YE5oXY2Q/+vjfud0EJLA3gjPDnAMEU4kxN957MOlSUx3JNE4S8zrFWJ5mrfTe1LyCdNxpHp8hNYVIr4F8pKYt2W3ZiistKdulSRzSecxJgxOaa1I8E3MR4ph0vHu6Wzr1WUG1zea0='

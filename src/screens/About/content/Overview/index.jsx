@@ -31,9 +31,9 @@ const Overview = (): Return => (
   <React.Fragment>
     <div>
       <p>
-        With <strong>Onigiri</strong>, you can create and analyze surveys right in your pocket or
-        web browser —no special software required. You get results as they come in and, you can
-        summarize survey results at a glance with graphs.
+        With <strong>Onigiri</strong>, you can create and analyze surveys right in your pocket or on
+        your personal laptop —no special software required. You get results as they come in and, you
+        can summarize survey results at a glance with graphs.
       </p>
     </div>
 
@@ -99,10 +99,7 @@ const Overview = (): Return => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink
-                        to="https://github.com/rxseven/onigiri-webapp/releases"
-                        v="1.0.0-alpha.12"
-                      >
+                      <ListLink to="https://github.com/rxseven/onigiri-webapp/releases" v="1.0.0">
                         Web application
                       </ListLink>
                     </ListGroupItem>
@@ -193,8 +190,10 @@ const Overview = (): Return => (
                 <ListContent>
                   <ListTitle>When does the app go to sleep, and why?</ListTitle>
                   <CardText>
-                    As Onigiri runs on a free plan, when an app on Heroku has only one web dyno and
-                    that dyno doesn’t receive any traffic in 1 hour, the dyno goes to sleep.
+                    As Onigiri and its API run on{' '}
+                    <ExLink to="https://www.heroku.com/free">Heroku’s free plan</ExLink>, when an
+                    app on Heroku has only one web dyno and that dyno doesn’t receive any traffic in
+                    1 hour, the dyno goes to sleep.
                   </CardText>
                   <CardText>
                     When someone accesses the app, the dyno manager will automatically wake up the
@@ -222,8 +221,9 @@ const Overview = (): Return => (
               <ListItem end>
                 <ListContent>
                   <CardText>
-                    As Onigiri runs on a free plan, and the free trial is already expired, at which
-                    point,{' '}
+                    As Onigiri API runs on{' '}
+                    <ExLink to="https://sendgrid.com/free/">SendGrid’s free plan</ExLink>, and the
+                    free trial is already expired, at which point,{' '}
                     <Text options="text-danger">
                       Onigiri is restricted to sending 100 emails per day.
                     </Text>
@@ -262,7 +262,7 @@ const Overview = (): Return => (
       </TabPanel>
       <TabPanel className="nav-content">
         <Card>
-          <CardHeader>Pre-releases</CardHeader>
+          <CardHeader>Releases</CardHeader>
           <CardBody>
             <CardSubtitle>Release information</CardSubtitle>
             <List>
@@ -272,10 +272,7 @@ const Overview = (): Return => (
                   <ListContent>
                     <ListGroup>
                       <ListGroupItem>
-                        <ListLink
-                          to="https://github.com/rxseven/onigiri-webapp/releases"
-                          v="1.0.0-alpha.12"
-                        >
+                        <ListLink to="https://github.com/rxseven/onigiri-webapp/releases" v="1.0.0">
                           Web application
                         </ListLink>
                       </ListGroupItem>
@@ -298,7 +295,7 @@ const Overview = (): Return => (
                     <ListGroupItem>
                       <ListLink
                         to="https://github.com/rxseven/onigiri-webapp/releases"
-                        tag="September 6, 2018"
+                        tag="November 27, 2018"
                       >
                         Web application
                       </ListLink>
@@ -322,7 +319,7 @@ const Overview = (): Return => (
                 <ListContent>
                   <ul className="list-end">
                     <li>
-                      Password-base
+                      Password-based
                       <ul>
                         <li>Sign up</li>
                         <li>Sign in</li>
@@ -331,7 +328,11 @@ const Overview = (): Return => (
                     <li>
                       OAuth 2.0{' '}
                       <Text options="text-secondary">
-                        (via third-party services, Facebook &amp; Google)
+                        (via third-party services,{' '}
+                        <ExLink to="https://developers.facebook.com/products/account-creation">
+                          Facebook
+                        </ExLink>{' '}
+                        &amp; <ExLink to="https://cloud.google.com">Google</ExLink>)
                       </Text>
                     </li>
                     <li>Sign out</li>
@@ -360,7 +361,10 @@ const Overview = (): Return => (
                     <li>View credits</li>
                     <li>
                       Add credits, checkout, pay by credit card{' '}
-                      <Text options="text-secondary">(via third-party service, Stripe)</Text>
+                      <Text options="text-secondary">
+                        (via third-party service,{' '}
+                        <ExLink to="https://stripe.com/checkout">Stripe</ExLink>)
+                      </Text>
                     </li>
                   </ul>
                 </ListContent>
@@ -397,7 +401,10 @@ const Overview = (): Return => (
                   <ul className="list-end">
                     <li>
                       Send survey emails{' '}
-                      <Text options="text-secondary">(via third-party service, SendGrid)</Text>
+                      <Text options="text-secondary">
+                        (via third-party service,{' '}
+                        <ExLink to="https://sendgrid.com">SendGrid</ExLink>)
+                      </Text>
                     </li>
                     <li>
                       Collect response data <Text options="text-secondary">(via webhook)</Text>
@@ -469,15 +476,16 @@ const Overview = (): Return => (
               </ListItem>
             </List>
             <hr />
-            <CardSubtitle>Common</CardSubtitle>
+            <CardSubtitle>Other</CardSubtitle>
             <List>
               <ListItem end>
                 <ListContent>
                   <ul className="list-end">
-                    <li>Animations</li>
-                    <li>Performance improvements</li>
-                    <li>Testing</li>
-                    <li>Static type checking</li>
+                    <li>Add automated targets (scripts) to Makefile</li>
+                    <li>Implement animations</li>
+                    <li>Implement components in isolation with Storybook.</li>
+                    <li>Optimize app’s performance</li>
+                    <li>Refactor code with functional programming principles</li>
                   </ul>
                 </ListContent>
               </ListItem>

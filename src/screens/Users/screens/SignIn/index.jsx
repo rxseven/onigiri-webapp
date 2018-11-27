@@ -11,9 +11,10 @@ import { generateState } from 'helpers/state';
 import FacebookLogin from 'components/features/OAuth/Facebook';
 import GoogleLogin from 'components/features/OAuth/Google';
 import { Button } from 'components/common/Buttons';
-import { Body, Document, Head, Title } from 'components/common/Page';
+import ExLink from 'components/common/ExLink';
 import { FormHL, FormMeta, FormStack } from 'components/common/Forms';
 import Icon from 'components/common/Icon';
+import { Body, Document, Head, Title } from 'components/common/Page';
 import Spinner from 'components/common/Spinner';
 import { Tip, TipHeader } from 'components/common/Tip';
 import Error from 'components/composite/Error';
@@ -134,7 +135,7 @@ class SignIn extends React.Component<Props, State> {
   // Render tips
   renderTips = ({ isLoading }): React.Element<typeof Tip> | void => (
     <If condition={!isLoading}>
-      <Tip end>
+      <Tip>
         <TipHeader>
           <Icon name="star" title="Tips" /> Demo tips
         </TipHeader>
@@ -142,6 +143,24 @@ class SignIn extends React.Component<Props, State> {
         <p>
           email: <code>skywalker@rxseven.com</code>
           <br />password: <code>R2D2s</code>
+        </p>
+      </Tip>
+    </If>
+  );
+
+  // Render warning
+  renderWarning = ({ isLoading }): React.Node | void => (
+    <If condition={!isLoading}>
+      <Tip warning>
+        <TipHeader>
+          <Icon name="warning" title="Warning" /> Facebook login
+        </TipHeader>
+        <p>
+          Login with Facebook <strong>won’t work</strong> for you because the relevant Facebook app
+          is still in{' '}
+          <ExLink to="https://developers.facebook.com/docs/apps/managing-development-cycle">
+            development mode
+          </ExLink>, and you don’t have access to it.
         </p>
       </Tip>
     </If>
@@ -165,6 +184,7 @@ class SignIn extends React.Component<Props, State> {
             {this.renderForms()}
             {this.renderStatus({ isError, isLoading, strategy })}
             {this.renderOptions({ isLoading })}
+            {this.renderWarning({ isLoading })}
             {this.renderTips({ isLoading })}
           </Layout>
         </Body>

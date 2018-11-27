@@ -1,7 +1,7 @@
 {
   "name": "onigiri-webapp",
   "description": "React and Redux web application for collecting and organizing surveys",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0",
   "homepage": "https://onigiri-webapp.herokuapp.com",
   "license": "AGPL-3.0-or-later",
   "author": {
@@ -16,7 +16,7 @@
   "private": true,
   "main": "index.jsx",
   "scripts": {
-    "analyze": "source-map-explorer build/static/js/main.*",
+    "analyze": "source-map-explorer --html build/static/js/main.* > /tmp/treemap.html",
     "build": "node scripts/build.js",
     "format": "prettier-eslint --write src/**/*.{js,json,jsx,scss}",
     "lint:script": "eslint src/**/*.{js,jsx}",
@@ -136,6 +136,7 @@
     "react-test-renderer": "^16.4.1",
     "redux-mock-store": "^1.5.3",
     "redux-saga-test-plan": "^3.7.0",
+    "replace": "^1.0.0",
     "sass-loader": "^6.0.7",
     "style-loader": "0.19.0",
     "stylelint": "^9.3.0",
