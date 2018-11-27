@@ -36,7 +36,11 @@ before_script:
 
 script:
   # Run tests and generate code coverage reports
+  # TODO: Fix build failing issue when running unit tests in a container
+  # ISSUE-001: "write /dev/stdout: resource temporarily unavailable"
   # - make ci-test
+  # The following script is a workarond
+  - yarn test:coverage
   # Run JavaScript linting
   - make ci-scriptlint
   # Run stylesheet linting
