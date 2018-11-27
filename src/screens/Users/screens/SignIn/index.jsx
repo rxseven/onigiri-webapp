@@ -135,7 +135,7 @@ class SignIn extends React.Component<Props, State> {
   // Render tips
   renderTips = ({ isLoading }): React.Element<typeof Tip> | void => (
     <If condition={!isLoading}>
-      <Tip end>
+      <Tip>
         <TipHeader>
           <Icon name="star" title="Tips" /> Demo tips
         </TipHeader>
