@@ -11,6 +11,7 @@ import { generateState } from 'helpers/state';
 import FacebookLogin from 'components/features/OAuth/Facebook';
 import GoogleLogin from 'components/features/OAuth/Google';
 import { Button } from 'components/common/Buttons';
+import ExLink from 'components/common/ExLink';
 import { Body, Document, Head, Title } from 'components/common/Page';
 import { FormHL, FormMeta, FormStack } from 'components/common/Forms';
 import Icon from 'components/common/Icon';
@@ -147,6 +148,24 @@ class SignIn extends React.Component<Props, State> {
     </If>
   );
 
+  // Render warning
+  renderWarning = ({ isLoading }): React.Node | void => (
+    <If condition={!isLoading}>
+      <Tip warning>
+        <TipHeader>
+          <Icon name="warning" title="Warning" /> Facebook login
+        </TipHeader>
+        <p>
+          Login with Facebook <strong>won’t work</strong> for you because the relevant Facebook app
+          is still in{' '}
+          <ExLink to="https://developers.facebook.com/docs/apps/managing-development-cycle">
+            development mode
+          </ExLink>, and you don’t have access to it.
+        </p>
+      </Tip>
+    </If>
+  );
+
   // Render component
   render(): Return {
     // Variables
@@ -165,6 +184,7 @@ class SignIn extends React.Component<Props, State> {
             {this.renderForms()}
             {this.renderStatus({ isError, isLoading, strategy })}
             {this.renderOptions({ isLoading })}
+            {this.renderWarning({ isLoading })}
             {this.renderTips({ isLoading })}
           </Layout>
         </Body>
