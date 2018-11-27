@@ -51,7 +51,7 @@ There are only five steps to get Onigiri up and running on your local machine:
 2. Copy self-signed certificate from GitHub repository
 3. Add a custom domain name to the local Hosts file
 4. Create Docker Compose configuration file
-5. Run the app on the terminal!
+5. Run the app in the terminal
 
 ### Prerequisites
 
