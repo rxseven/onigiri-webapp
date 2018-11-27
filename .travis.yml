@@ -36,7 +36,11 @@ before_script:
 
 script:
   # Run tests and generate code coverage reports
+  # TODO: Fix build failing issue when running unit tests in a container
+  # ISSUE-001: "write /dev/stdout: resource temporarily unavailable"
   # - make ci-test
+  # The following script is a workarond
+  - yarn test:coverage
   # Run JavaScript linting
   - make ci-scriptlint
   # Run stylesheet linting
@@ -46,7 +50,10 @@ script:
 
 after_success:
   # Create code coverage data (LCOV format)
-  - make ci-coverage
+  # TODO: Enable the following script (related to ISSUE-001)
+  # - make ci-coverage
+  # Send LCOV data to coveralls.io
+  - make ci-coveralls
 
 deploy:
   # Create deployment configuration and build a production image
@@ -76,10 +83,6 @@ deploy:
       secure: $AWS_SECRET_KEY
     skip_cleanup: true
     zip_file: $BUILD_ZIP
-
-after_script:
-  # Send LCOV data to coveralls.io
-  - make ci-coveralls
 
 notifications:
   # Default email notification settings

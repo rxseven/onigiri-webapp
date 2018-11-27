@@ -30,6 +30,13 @@ $label-width-xs: 25%;
   width: 150px;
 }
 
+.docker {
+  background-image: url("./images/logo-docker.png");
+  composes: logo;
+  height: 39px;
+  width: 150px;
+}
+
 .express {
   background-image: url("./images/logo-express.png");
   composes: logo;

@@ -1,7 +1,7 @@
 {
   "name": "onigiri-webapp",
   "description": "React and Redux web application for collecting and organizing surveys",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0",
   "homepage": "https://onigiri-webapp.herokuapp.com",
   "license": "AGPL-3.0-or-later",
   "author": {

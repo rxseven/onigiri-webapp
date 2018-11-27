@@ -10,17 +10,28 @@ With **Onigiri**, you can create and analyze surveys right in your pocket or on 
 
 ## Table of Contents
 
+### Getting Started
+
 - [Live Demo](#live-demo)
 - [Running Onigiri Locally](#running-onigiri-locally)
+
+### Development & Deployment
+
 - [Configuring the Development Environment](#configuring-the-development-environment)
 - [Deploying a Containerized Web Application](#deploying-a-containerized-web-application)
 - [Available Scripts](#available-scripts)
+
+### Specifications
+
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Development Workflow](#development-workflow)
 - [Third-party Services](#third-party-services)
 - [Browser Support](#browser-support)
 - [Related Projects](#related-projects)
+
+### Appendix
+
 - [Development Milestones](#development-milestones)
 - [Changelog](#changelog)
 - [Acknowledgements](#acknowledgements)
@@ -51,7 +62,7 @@ There are only five steps to get Onigiri up and running on your local machine:
 2. Copy self-signed certificate from GitHub repository
 3. Add a custom domain name to the local Hosts file
 4. Create Docker Compose configuration file
-5. Run the app on the terminal!
+5. Run the app in the terminal
 
 ### Prerequisites
 
@@ -833,6 +844,7 @@ React & Redux starter kit with best practices bootstrapped with [Create React Ap
 - Add automated targets (scripts) to Makefile *(in progress)*.
 - Refactor code with functional programming principles *(in progress)*.
 - Implement components in isolation with [Storybook](https://storybook.js.org).
+- Implement animations.
 - Optimize the app’s performance.
 - Add more unit tests and static type checking to cover the entire project *(in progress)*.
 

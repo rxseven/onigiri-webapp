@@ -14,7 +14,8 @@ type Props = {
   children: React.Node,
   end: boolean,
   margin: string,
-  options: string
+  options: string,
+  warning: boolean
 };
 
 type Return = React.Element<'div'>;
@@ -28,9 +29,12 @@ const defaultProps = {
 
 // Component
 const TipContainer = ({
-  children, end, margin, options
+  children, end, margin, options, warning
 }: Props): Return => (
-  <div className={cx(CSS.margin.MT04, end && margin, !!options && options)} styleName="container">
+  <div
+    className={cx(CSS.margin.MT04, end && margin, !!options && options)}
+    styleName={cx('container', warning && 'is-warning')}
+  >
     {children}
   </div>
 );

@@ -84,14 +84,6 @@ const Development = (): Return => (
                   <ListLink to="https://semver.org">Semantic versioning</ListLink>
                 </ListContent>
               </ListItem>
-              <ListItem>
-                <ListLabel>Design</ListLabel>
-                <ListContent>
-                  <ListLink to="https://en.wikipedia.org/wiki/Responsive_web_design">
-                    Mobile-first responsive web design
-                  </ListLink>
-                </ListContent>
-              </ListItem>
             </List>
 
             <hr />
@@ -111,16 +103,10 @@ const Development = (): Return => (
                   </ListGroup>
                 </ListContent>
               </ListItem>
-              <ListItem>
+              <ListItem end>
                 <ListLabel>Sass syntax</ListLabel>
                 <ListContent>
                   <ListLink to="http://sass-lang.com">SCSS</ListLink>
-                </ListContent>
-              </ListItem>
-              <ListItem end>
-                <ListLabel>CSS implementation</ListLabel>
-                <ListContent>
-                  <ListLink to="https://github.com/css-modules/css-modules">CSS modules</ListLink>
                 </ListContent>
               </ListItem>
             </List>
@@ -148,13 +134,24 @@ const Development = (): Return => (
 
             <hr />
 
-            <CardSubtitle>Environment</CardSubtitle>
+            <CardSubtitle>Environments</CardSubtitle>
             <List>
               <ListItem>
                 <ListLabel>Operating system</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/lae/macos/high-sierra/" v="10.13.6">
+                  <ListLink to="https://www.apple.com/lae/macos/mojave/" v="10.14.1">
+                    macOS Mojave
+                  </ListLink>
+                  <ListLink to="https://en.wikipedia.org/wiki/MacOS_High_Sierra" v="10.13.6">
                     macOS High Sierra
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>OS-level virtualization</ListLabel>
+                <ListContent>
+                  <ListLink to="https://www.docker.com/products/docker-desktop" v="2.0.0.0-mac78">
+                    Docker
                   </ListLink>
                 </ListContent>
               </ListItem>
@@ -192,59 +189,74 @@ const Development = (): Return => (
               <ListItem>
                 <ListLabel>Code editor and extensions</ListLabel>
                 <ListContent>
-                  <ListLink to="https://code.visualstudio.com">Visual Studio Code</ListLink>
-                  <ul className={cx(CSS.margin.MB00, CSS.margin.MT02)}>
-                    <li>
-                      <ListLink to="https://github.com/dzannotti/vscode-babel/">
-                        Babel ES6/ES7
-                      </ListLink>
-                    </li>
-                    <li>
-                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss">
-                        SCSS IntelliSense
-                      </ListLink>
-                    </li>
-                    <li>
-                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">
-                        ESLint
-                      </ListLink>
-                    </li>
-                    <li>
-                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=shinnn.stylelint">
-                        Stylelint
-                      </ListLink>
-                    </li>
-                    <li>
-                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode">
-                        Flow
-                      </ListLink>
-                    </li>
-                    <li>
-                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest">
-                        Jest
-                      </ListLink>
-                    </li>
-                    <li>
-                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">
-                        Prettier
-                      </ListLink>
-                    </li>
-                    <li>
-                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome">
-                        Debugger for Chrome
-                      </ListLink>
-                    </li>
-                    <li>
-                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv">
-                        DotENV
-                      </ListLink>
-                    </li>
-                    <li>
-                      <ListLink to="https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script">
-                        npm
-                      </ListLink>
-                    </li>
-                  </ul>
+                  <ListGroup>
+                    <ListGroupItem>
+                      <ListLink to="https://code.visualstudio.com">Visual Studio Code</ListLink>{' '}
+                      <Text options="text-secondary" small>
+                        (primary)
+                      </Text>
+                      <ul className={cx(CSS.margin.MB00, CSS.margin.MT02)}>
+                        <li>
+                          <ListLink to="https://github.com/dzannotti/vscode-babel/">
+                            Babel ES6/ES7
+                          </ListLink>
+                        </li>
+                        <li>
+                          <ListLink to="https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss">
+                            SCSS IntelliSense
+                          </ListLink>
+                        </li>
+                        <li>
+                          <ListLink to="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">
+                            ESLint
+                          </ListLink>
+                        </li>
+                        <li>
+                          <ListLink to="https://marketplace.visualstudio.com/items?itemName=shinnn.stylelint">
+                            Stylelint
+                          </ListLink>
+                        </li>
+                        <li>
+                          <ListLink to="https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode">
+                            Flow
+                          </ListLink>
+                        </li>
+                        <li>
+                          <ListLink to="https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest">
+                            Jest
+                          </ListLink>
+                        </li>
+                        <li>
+                          <ListLink to="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">
+                            Prettier
+                          </ListLink>
+                        </li>
+                        <li>
+                          <ListLink to="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome">
+                            Debugger for Chrome
+                          </ListLink>
+                        </li>
+                        <li>
+                          <ListLink to="https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv">
+                            DotENV
+                          </ListLink>
+                        </li>
+                        <li>
+                          <ListLink to="https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script">
+                            npm
+                          </ListLink>
+                        </li>
+                        <li>
+                          <ListLink to="https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker">
+                            Docker
+                          </ListLink>
+                        </li>
+                      </ul>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListLink to="https://atom.io/">Atom</ListLink>
+                    </ListGroupItem>
+                  </ListGroup>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -322,7 +334,7 @@ const Development = (): Return => (
 
             <hr />
 
-            <CardSubtitle>Build tool &amp; Starter kit</CardSubtitle>
+            <CardSubtitle>Build tools &amp; Starter kits</CardSubtitle>
             <List>
               <ListItem>
                 <ListLabel>React build tool &amp; Development server</ListLabel>
@@ -344,10 +356,10 @@ const Development = (): Return => (
 
             <hr />
 
-            <CardSubtitle>Development tools</CardSubtitle>
+            <CardSubtitle>Development & Deployment tools</CardSubtitle>
             <List>
               <ListItem>
-                <ListLabel>JavaScript module bundler</ListLabel>
+                <ListLabel>JavaScript and assets bundler</ListLabel>
                 <ListContent>
                   <ListLink to="https://webpack.js.org">Webpack</ListLink>
                 </ListContent>
@@ -356,6 +368,26 @@ const Development = (): Return => (
                 <ListLabel>JavaScript compiler</ListLabel>
                 <ListContent>
                   <ListLink to="https://babeljs.io">Babel</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>Development server and live reloading</ListLabel>
+                <ListContent>
+                  <ListLink to="https://webpack.js.org/configuration/dev-server/">
+                    Webpack DevServer
+                  </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>HTTP / Web server</ListLabel>
+                <ListContent>
+                  <ListLink to="http://nginx.org">Nginx</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>Reverse proxy server</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/jwilder/nginx-proxy">nginx-proxy</ListLink>
                 </ListContent>
               </ListItem>
               <ListItem>
@@ -439,7 +471,7 @@ const Development = (): Return => (
                   <ListLink to="https://github.com/creationix/nvm">nvm</ListLink>
                 </ListContent>
               </ListItem>
-              <ListItem end>
+              <ListItem>
                 <ListLabel>
                   A tool for analyzing and debuging JavaScript (or Sass or LESS)
                 </ListLabel>
@@ -447,6 +479,12 @@ const Development = (): Return => (
                   <ListLink to="https://github.com/danvk/source-map-explorer">
                     Source Map Explorer
                   </ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem end>
+                <ListLabel>Cryptography and SSL/TLS toolkit</ListLabel>
+                <ListContent>
+                  <ListLink to="https://www.openssl.org">OpenSSL</ListLink>
                 </ListContent>
               </ListItem>
             </List>
@@ -470,10 +508,16 @@ const Development = (): Return => (
                   <ListLink to="https://www.heroku.com">Heroku</ListLink>
                 </ListContent>
               </ListItem>
-              <ListItem end>
+              <ListItem>
                 <ListLabel>Database as a service for MongoDB</ListLabel>
                 <ListContent>
                   <ListLink to="https://mlab.com">mLab</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem end>
+                <ListLabel>Cloud-based registry service</ListLabel>
+                <ListContent>
+                  <ListLink to="https://hub.docker.com">Docker Hub</ListLink>
                 </ListContent>
               </ListItem>
             </List>
@@ -699,7 +743,10 @@ const Development = (): Return => (
               <ListItem>
                 <ListLabel>Mac</ListLabel>
                 <ListContent>
-                  <ListLink to="https://www.apple.com/macos/high-sierra/" v="10.13.6">
+                  <ListLink to="https://www.apple.com/lae/macos/mojave/" v="10.14.1">
+                    macOS Mojave
+                  </ListLink>
+                  <ListLink to="https://en.wikipedia.org/wiki/MacOS_High_Sierra" v="10.13.6">
                     macOS High Sierra
                   </ListLink>
                 </ListContent>
@@ -709,12 +756,12 @@ const Development = (): Return => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://developer.apple.com/xcode/" v="10.0">
+                      <ListLink to="https://developer.apple.com/xcode/" v="10.1">
                         Xcode - iOS Simulator
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.google.com/chrome/" v="68.0.3440.106">
+                      <ListLink to="https://www.google.com/chrome/" v="70.0.3538.110">
                         Chrome DevTools
                       </ListLink>
                     </ListGroupItem>
@@ -726,17 +773,17 @@ const Development = (): Return => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/safari/" v="11.1.2">
+                      <ListLink to="https://www.apple.com/safari/" v="12.0.1">
                         Safari
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="61.0.2">
+                      <ListLink to="https://www.mozilla.org/en-US/firefox/" v="63.0.3">
                         Firefox
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.google.com/chrome/" v="68.0.3440.106">
+                      <ListLink to="https://www.google.com/chrome/" v="70.0.3538.110">
                         Chrome
                       </ListLink>
                     </ListGroupItem>
@@ -753,7 +800,7 @@ const Development = (): Return => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4.1">
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v12.1">
                         iPhone 6
                       </ListLink>
                     </ListGroupItem>
@@ -778,12 +825,12 @@ const Development = (): Return => (
                 <ListContent>
                   <ListGroup>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4.1">
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v12.1">
                         iPad 9.7-inch (2018)
                       </ListLink>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v11.4.1">
+                      <ListLink to="https://www.apple.com/ios/ios-11/" tag="iOS v12.1">
                         iPad mini 3
                       </ListLink>
                     </ListGroupItem>

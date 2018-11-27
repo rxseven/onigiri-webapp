@@ -122,6 +122,28 @@ const Technical = (): Return => (
           <CardBody>
             <List>
               <ListItem>
+                <ListLabel>Cloud-based registry service</ListLabel>
+                <ListContent>
+                  <ListLink to="https://hub.docker.com/">
+                    <span styleName="docker" />
+                    Docker Hub
+                  </ListLink>
+                  <ul styleName="specs">
+                    <li>
+                      <span styleName="label">Plan</span>
+                      <span styleName="content">Free</span>
+                    </li>
+                    <li>
+                      <span styleName="label">Services</span>
+                      <span styleName="content">Code repositories & build images</span>
+                    </li>
+                  </ul>
+                </ListContent>
+              </ListItem>
+
+              <hr />
+
+              <ListItem>
                 <ListLabel>Cloud-based email</ListLabel>
                 <ListContent>
                   <ListLink to="https://sendgrid.com">
@@ -187,7 +209,7 @@ const Technical = (): Return => (
 
               <hr />
 
-              <ListItem>
+              <ListItem end>
                 <ListLabel>Cloud computing, Hosting, and APIs</ListLabel>
                 <ListContent>
                   <ListLink to="https://cloud.google.com">
@@ -602,6 +624,12 @@ const Technical = (): Return => (
                 <ListLabel>Utility for conditionally joining class names</ListLabel>
                 <ListContent>
                   <ListLink to="https://github.com/JedWatson/classnames">classnames</ListLink>
+                </ListContent>
+              </ListItem>
+              <ListItem>
+                <ListLabel>Command line search and replace utility</ListLabel>
+                <ListContent>
+                  <ListLink to="https://github.com/ALMaclaine/replace">replace</ListLink>
                 </ListContent>
               </ListItem>
             </List>
