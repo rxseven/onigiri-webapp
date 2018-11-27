@@ -10,17 +10,28 @@ With **Onigiri**, you can create and analyze surveys right in your pocket or on 
 
 ## Table of Contents
 
+### Getting Started
+
 - [Live Demo](#live-demo)
 - [Running Onigiri Locally](#running-onigiri-locally)
+
+### Development & Deployment
+
 - [Configuring the Development Environment](#configuring-the-development-environment)
 - [Deploying a Containerized Web Application](#deploying-a-containerized-web-application)
 - [Available Scripts](#available-scripts)
+
+### Specifications
+
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Development Workflow](#development-workflow)
 - [Third-party Services](#third-party-services)
 - [Browser Support](#browser-support)
 - [Related Projects](#related-projects)
+
+### Appendix
+
 - [Development Milestones](#development-milestones)
 - [Changelog](#changelog)
 - [Acknowledgements](#acknowledgements)
