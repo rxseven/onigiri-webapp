@@ -50,7 +50,8 @@ script:
 
 after_success:
   # Create code coverage data (LCOV format)
-  - make ci-coverage
+  # TODO: Enable the following script (related to ISSUE-001)
+  # - make ci-coverage
   # Send LCOV data to coveralls.io
   - make ci-coveralls
 
